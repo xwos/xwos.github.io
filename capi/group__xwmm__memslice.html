@@ -1,0 +1,614 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>XWOS API: 内存切片分配器</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<a href="/" class="github-corner" title="返回首页">
+  <svg viewBox="0 0 250 250" style="position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path
+      d="M 0 0 L 250 250 L 250 0 L 0 0 z M 181.19336 6.25 A 18.281986 19.638775 0 0 1 192.79297 10.798828 L 241.54492 54.201172 A 6.0939954 6.5462585 0 0 1 237.64453 65.787109 L 233.13477 65.787109 A 3.0469979 3.2731292 0 0 0 230.08789 69.060547 L 230.08789 111.61133 A 18.281986 19.638775 0 0 1 211.80664 131.25 L 205.71289 131.25 A 12.187991 13.092517 0 0 1 193.52344 118.1582 L 193.52344 98.519531 A 12.187991 13.092517 0 0 0 181.33594 85.425781 A 12.187991 13.092517 0 0 0 169.14844 98.519531 L 169.14844 118.1582 A 12.187991 13.092517 0 0 1 156.95898 131.25 L 150.86523 131.25 A 18.281986 19.638775 0 0 1 132.58398 111.61133 L 132.58398 68.994141 A 3.0469979 3.2731292 0 0 0 129.29297 65.722656 L 124.7832 65.722656 A 6.0939954 6.5462585 0 0 1 120.88281 54.201172 L 169.39258 10.798828 A 18.281986 19.638775 0 0 1 181.19336 6.25 z "/>
+  </svg>
+</a>
+<style>.github-corner:hover</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">XWOS API
+   &#160;<span id="projectnumber">3.0</span>
+   </div>
+   <div id="projectbrief">XWOS API参考手册</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('group__xwmm__memslice.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">结构体</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">内存切片分配器<div class="ingroups"><a class="el" href="group__xwos.html">XWOS内核</a> &raquo; <a class="el" href="group__xwmm.html">XWOS内存管理</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+内存切片分配器 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmm__memslice.png" border="0" usemap="#agroup____xwmm____memslice" alt=""/></div>
+<map name="agroup____xwmm____memslice" id="agroup____xwmm____memslice">
+<area shape="rect" href="group__xwmm.html" title=" " alt="" coords="5,5,120,31"/>
+<area shape="rect" title=" " alt="" coords="168,5,281,31"/>
+</map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+结构体</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structxwmm__memslice.html">xwmm_memslice</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">内存切片分配器  <a href="structxwmm__memslice.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:ga56a8e2e7b5977d6fdd53fa8946d92368"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmm__memslice.html#ga56a8e2e7b5977d6fdd53fa8946d92368">xwmm_memslice_init</a> (struct <a class="el" href="structxwmm__memslice.html">xwmm_memslice</a> *msa, <a class="el" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a> origin, <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> total_size, <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> card_size, const char *name, <a class="el" href="group__xwos__lib__type.html#gaf7d6db44108764f9cbaea53c923d2736">ctor_f</a> ctor, <a class="el" href="group__xwos__lib__type.html#gafe80dfa42b558589ad7ebce2bea43946">dtor_f</a> dtor)</td></tr>
+<tr class="memdesc:ga56a8e2e7b5977d6fdd53fa8946d92368"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMM API：静态方式初始化内存切片分配器  <br /></td></tr>
+<tr class="separator:ga56a8e2e7b5977d6fdd53fa8946d92368"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6b9a1ff8b0ea0720d3e684a6b673dbe6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmm__memslice.html#ga6b9a1ff8b0ea0720d3e684a6b673dbe6">xwmm_memslice_alloc</a> (struct <a class="el" href="structxwmm__memslice.html">xwmm_memslice</a> *msa, void **membuf)</td></tr>
+<tr class="memdesc:ga6b9a1ff8b0ea0720d3e684a6b673dbe6"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMM API：申请内存切片  <br /></td></tr>
+<tr class="separator:ga6b9a1ff8b0ea0720d3e684a6b673dbe6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga337a549e8b2fc9e95d1e9c240bde1e31"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmm__memslice.html#ga337a549e8b2fc9e95d1e9c240bde1e31">xwmm_memslice_free</a> (struct <a class="el" href="structxwmm__memslice.html">xwmm_memslice</a> *msa, void *mem)</td></tr>
+<tr class="memdesc:ga337a549e8b2fc9e95d1e9c240bde1e31"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMM API：释放内存切片  <br /></td></tr>
+<tr class="separator:ga337a549e8b2fc9e95d1e9c240bde1e31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<p>内存切片分配器将内存切割成等量的块，就像 <b>卡片</b> 一样，然后将它们组成链表队列， 每次分配时取一块内存，回收时再把内存切片放回到队列中。</p>
+<ul>
+<li>优点：<ul>
+<li>简单，代码量较小；</li>
+<li>支持释放操作；</li>
+<li>申请与释放操作的运行时间是稳定的；</li>
+<li>反复申请与释放不会造成内存碎片。</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>内存块大小固定，如果要求的内存过小，会造成内存浪费； 如果要求的内存超过内存块的大小，无法满足需求；</li>
+<li>连续申请的两块内存不能保证是连续的。</li>
+</ul>
+</li>
+<li>适用性：对时间稳定性要求高的RTOS应用场合。</li>
+<li>上下文的安全性：在任何上下文（中断、中断底半部、线程）都是安全的。 </li>
+</ul>
+<h2 class="groupheader">函数说明</h2>
+<a id="ga6b9a1ff8b0ea0720d3e684a6b673dbe6" name="ga6b9a1ff8b0ea0720d3e684a6b673dbe6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6b9a1ff8b0ea0720d3e684a6b673dbe6">&#9670;&#160;</a></span>xwmm_memslice_alloc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwmm_memslice_alloc </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwmm__memslice.html">xwmm_memslice</a> *&#160;</td>
+          <td class="paramname"><em>msa</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void **&#160;</td>
+          <td class="paramname"><em>membuf</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWMM API：申请内存切片 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">msa</td><td>内存切片分配器对象的指针 </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">membuf</td><td>指向地址缓存的指针，通过此指针缓存返回申请到的内存的首地址 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">-EFAULT</td><td>空指针 </td></tr>
+    <tr><td class="paramname">-ENOMEM</td><td>内存不足 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>同步/异步：同步</li>
+<li>上下文：中断、中断底半部、线程</li>
+<li>重入性：可重入 </li>
+</ul>
+</dd></dl>
+<p>&lt;No error</p>
+
+<p class="definition">在文件 <a class="el" href="memslice_8c_source.html">memslice.c</a> 第 <a class="el" href="memslice_8c_source.html#l00083">83</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   84</span>{</div>
+<div class="line"><span class="lineno">   85</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga862eb6a46e40b94681ec41a99f4fcb7e">xwlfq_t</a> * card;</div>
+<div class="line"><span class="lineno">   86</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">   87</span> </div>
+<div class="line"><span class="lineno">   88</span>        <a class="code hl_define" href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a>((msa), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">   89</span>        <a class="code hl_define" href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a>((membuf), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">   90</span> </div>
+<div class="line"><span class="lineno">   91</span>        card = <a class="code hl_function" href="group__xwos__lib__lfq.html#gacbe43c237a9c7c6f21baa98daaf49e68">xwlib_lfq_pop</a>(&amp;msa-&gt;<a class="code hl_variable" href="structxwmm__memslice.html#ab3f918b02f7c37e5d7f46c219092839a">free_list</a>);</div>
+<div class="line"><span class="lineno">   92</span>        <span class="keywordflow">if</span> (<a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a> == card) {</div>
+<div class="line"><span class="lineno">   93</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#ga6a05c923dad0c1208043e9c20a58c8e5">ENOMEM</a>;</div>
+<div class="line"><span class="lineno">   94</span>                *membuf = <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><span class="lineno">   95</span>                <span class="keywordflow">goto</span> err_lfq_pop;</div>
+<div class="line"><span class="lineno">   96</span>        }</div>
+<div class="line"><span class="lineno">   97</span>        <a class="code hl_define" href="group__xwos__lib__xwaop.html#gae0b3f8bf7b0d30d78c73f24dbfde6273">xwaop_sub</a>(<a class="code hl_typedef" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a>, &amp;msa-&gt;<a class="code hl_variable" href="structxwmm__memslice.html#a4ff9db3f677e4dcdf88c010cc14b4a40">num_free</a>, 1, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><span class="lineno">   98</span>        *(<a class="code hl_typedef" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a> *)card = msa-&gt;<a class="code hl_variable" href="structxwmm__memslice.html#ab6d4c104e52c5aeb5441ca96c360be85">backup</a>; <span class="comment">/* restore original data */</span></div>
+<div class="line"><span class="lineno">   99</span>        *membuf = card;</div>
+<div class="line"><span class="lineno">  100</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><span class="lineno">  101</span> </div>
+<div class="line"><span class="lineno">  102</span>err_lfq_pop:</div>
+<div class="line"><span class="lineno">  103</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  104</span>}</div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga3f317946e043623f9d6b93dbf60e6316"><div class="ttname"><a href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a></div><div class="ttdeci">#define EFAULT</div><div class="ttdoc">Bad address</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00044">errno.h:44</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga6a05c923dad0c1208043e9c20a58c8e5"><div class="ttname"><a href="group__xwos__lib__errno.html#ga6a05c923dad0c1208043e9c20a58c8e5">ENOMEM</a></div><div class="ttdeci">#define ENOMEM</div><div class="ttdoc">Not enough space</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00042">errno.h:42</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga6a72d49d869215a02342eb465166537b"><div class="ttname"><a href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a></div><div class="ttdeci">#define XWOK</div><div class="ttdoc">No error</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00182">errno.h:182</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__lfq_html_gacbe43c237a9c7c6f21baa98daaf49e68"><div class="ttname"><a href="group__xwos__lib__lfq.html#gacbe43c237a9c7c6f21baa98daaf49e68">xwlib_lfq_pop</a></div><div class="ttdeci">static xwlfq_t * xwlib_lfq_pop(atomic_xwlfq_t *h)</div><div class="ttdoc">弹出无锁队列中的第一个节点（栈式队列）</div><div class="ttdef"><b>Definition</b> <a href="lfq_8h_source.html#l00053">lfq.h:53</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga06847ea8c7edb2b1f166288b230f251f"><div class="ttname"><a href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a></div><div class="ttdeci">signed long xwer_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00554">type.h:554</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00028">type.h:28</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga2d00153ecb0cdcc8ea0823c13ee59649"><div class="ttname"><a href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a></div><div class="ttdeci">unsigned long xwsz_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00339">type.h:339</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga862eb6a46e40b94681ec41a99f4fcb7e"><div class="ttname"><a href="group__xwos__lib__type.html#ga862eb6a46e40b94681ec41a99f4fcb7e">xwlfq_t</a></div><div class="ttdeci">xwptr_t xwlfq_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00591">type.h:591</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_gacef49946313c8d1985a8279bb40e31c4"><div class="ttname"><a href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a></div><div class="ttdeci">unsigned long xwptr_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00375">type.h:375</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__xwaop_html_gae0b3f8bf7b0d30d78c73f24dbfde6273"><div class="ttname"><a href="group__xwos__lib__xwaop.html#gae0b3f8bf7b0d30d78c73f24dbfde6273">xwaop_sub</a></div><div class="ttdeci">#define xwaop_sub(type, a, v, nv, ov)</div><div class="ttdoc">对原子变量进行原子操作：读取－相减－回写</div><div class="ttdef"><b>Definition</b> <a href="xwaop_8h_source.html#l00598">xwaop.h:598</a></div></div>
+<div class="ttc" id="agroup__xwos__standard_html_ga0c63a67f52b315298e2be98f79cd0c08"><div class="ttname"><a href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a></div><div class="ttdeci">#define XWOS_VALIDATE(exp, errstr,...)</div><div class="ttdoc">检查函数参数是否有效</div><div class="ttdef"><b>Definition</b> <a href="xwos_2standard_8h_source.html#l00076">standard.h:76</a></div></div>
+<div class="ttc" id="astructxwmm__memslice_html_a4ff9db3f677e4dcdf88c010cc14b4a40"><div class="ttname"><a href="structxwmm__memslice.html#a4ff9db3f677e4dcdf88c010cc14b4a40">xwmm_memslice::num_free</a></div><div class="ttdeci">atomic_xwsz_t num_free</div><div class="ttdef"><b>Definition</b> <a href="memslice_8h_source.html#l00048">memslice.h:48</a></div></div>
+<div class="ttc" id="astructxwmm__memslice_html_ab3f918b02f7c37e5d7f46c219092839a"><div class="ttname"><a href="structxwmm__memslice.html#ab3f918b02f7c37e5d7f46c219092839a">xwmm_memslice::free_list</a></div><div class="ttdeci">atomic_xwlfq_t free_list</div><div class="ttdef"><b>Definition</b> <a href="memslice_8h_source.html#l00050">memslice.h:50</a></div></div>
+<div class="ttc" id="astructxwmm__memslice_html_ab6d4c104e52c5aeb5441ca96c360be85"><div class="ttname"><a href="structxwmm__memslice.html#ab6d4c104e52c5aeb5441ca96c360be85">xwmm_memslice::backup</a></div><div class="ttdeci">xwptr_t backup</div><div class="ttdef"><b>Definition</b> <a href="memslice_8h_source.html#l00051">memslice.h:51</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmm__memslice_ga6b9a1ff8b0ea0720d3e684a6b673dbe6_cgraph.png" border="0" usemap="#agroup__xwmm__memslice_ga6b9a1ff8b0ea0720d3e684a6b673dbe6_cgraph" alt=""/></div>
+<map name="agroup__xwmm__memslice_ga6b9a1ff8b0ea0720d3e684a6b673dbe6_cgraph" id="agroup__xwmm__memslice_ga6b9a1ff8b0ea0720d3e684a6b673dbe6_cgraph">
+<area shape="rect" title="XWMM API：申请内存切片" alt="" coords="5,5,164,31"/>
+<area shape="rect" href="group__xwos__lib__lfq.html#gacbe43c237a9c7c6f21baa98daaf49e68" title="弹出无锁队列中的第一个节点（栈式队列）" alt="" coords="212,5,313,31"/>
+<area shape="poly" title=" " alt="" coords="164,15,198,15,198,21,164,21"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmm__memslice_ga6b9a1ff8b0ea0720d3e684a6b673dbe6_icgraph.png" border="0" usemap="#agroup__xwmm__memslice_ga6b9a1ff8b0ea0720d3e684a6b673dbe6_icgraph" alt=""/></div>
+<map name="agroup__xwmm__memslice_ga6b9a1ff8b0ea0720d3e684a6b673dbe6_icgraph" id="agroup__xwmm__memslice_ga6b9a1ff8b0ea0720d3e684a6b673dbe6_icgraph">
+<area shape="rect" title="XWMM API：申请内存切片" alt="" coords="460,129,619,155"/>
+<area shape="rect" href="xwmq_8c.html#a266a048d37f3f16990f8d6bcf3ac2828" title="获取一个消息槽" alt="" coords="297,129,412,155"/>
+<area shape="poly" title=" " alt="" coords="446,145,412,145,412,139,446,139"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga8359c9ba02c8fb2a74e6c4c6094d94cc" title="XWMQ API：限时等待消息槽，成功后将消息发送到消息队列的 尾端 （入队）" alt="" coords="143,5,239,31"/>
+<area shape="poly" title=" " alt="" coords="331,120,294,82,248,44,227,33,229,28,251,40,298,78,335,116"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga8a32f1b107baef4bc25957bca4d4bddd" title="XWMQ API：等待消息槽，且等待不可被中断， 成功后将消息发送到消息队列的 尾端 （入队）" alt="" coords="132,55,249,80"/>
+<area shape="poly" title=" " alt="" coords="315,126,248,94,223,83,225,78,250,89,317,121"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga0eb1aa3f3e83b696612a7cd9cc90a6f2" title="XWMQ API：限时等待消息槽，成功后将消息发送到消息队列的 首端 （插队）" alt="" coords="145,104,237,129"/>
+<area shape="poly" title=" " alt="" coords="283,134,237,126,237,121,284,128"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga3c6e22dce3a927f790d95f1e294c5789" title="XWMQ API：等待消息槽，且等待不可被中断， 成功后将消息发送到消息队列的 首端 （插队）" alt="" coords="134,153,247,179"/>
+<area shape="poly" title=" " alt="" coords="284,155,248,160,247,155,283,150"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga30b3fc4cf9323d3597eb8a383bdf611f" title="XWMQ API：尝试获取消息槽，成功后将消息发送到消息队列的 尾端 （入队）" alt="" coords="144,203,237,228"/>
+<area shape="poly" title=" " alt="" coords="315,163,250,192,222,205,220,200,248,188,312,158"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga706a753c885996d85ec7fbf6d7461385" title="XWMQ API：尝试获取消息槽，成功后将消息发送到消息队列的 首端 （插队）" alt="" coords="146,252,235,277"/>
+<area shape="poly" title=" " alt="" coords="335,167,298,204,251,242,228,254,225,249,248,237,294,200,331,163"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#gad8d2b0b29234d2959a05eeb67a23ff45" title="XWMQ API：等待消息槽，成功后将消息发送到消息队列的 尾端 （入队）" alt="" coords="5,5,84,31"/>
+<area shape="poly" title=" " alt="" coords="129,21,84,21,84,15,129,15"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga18b4d97f9de46feb6eebd197738aabf6" title="XWMQ API：等待消息槽，成功后将消息发送到消息队列的 首端 （插队）" alt="" coords="7,104,82,129"/>
+<area shape="poly" title=" " alt="" coords="131,119,82,119,82,114,131,114"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga337a549e8b2fc9e95d1e9c240bde1e31" name="ga337a549e8b2fc9e95d1e9c240bde1e31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga337a549e8b2fc9e95d1e9c240bde1e31">&#9670;&#160;</a></span>xwmm_memslice_free()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwmm_memslice_free </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwmm__memslice.html">xwmm_memslice</a> *&#160;</td>
+          <td class="paramname"><em>msa</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>mem</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWMM API：释放内存切片 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">msa</td><td>内存切片分配器对象的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mem</td><td>内存切片的首地址 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>同步/异步：同步</li>
+<li>上下文：中断、中断底半部、线程</li>
+<li>重入性：可重入 </li>
+</ul>
+</dd></dl>
+<p>&lt;Owner error</p>
+<p>&lt;No error</p>
+
+<p class="definition">在文件 <a class="el" href="memslice_8c_source.html">memslice.c</a> 第 <a class="el" href="memslice_8c_source.html#l00107">107</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  108</span>{</div>
+<div class="line"><span class="lineno">  109</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">  110</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga2225ca1f29b430d7c231a07487f1cc06">atomic_xwlfq_t</a> * card;</div>
+<div class="line"><span class="lineno">  111</span> </div>
+<div class="line"><span class="lineno">  112</span>        <a class="code hl_define" href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a>((msa), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  113</span>        <a class="code hl_define" href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a>((mem), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  114</span> </div>
+<div class="line"><span class="lineno">  115</span>        <span class="keywordflow">if</span> (((<a class="code hl_typedef" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a>)mem &lt; msa-&gt;zone.origin) ||</div>
+<div class="line"><span class="lineno">  116</span>            (((<a class="code hl_typedef" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a>)mem - msa-&gt;<a class="code hl_variable" href="structxwmm__memslice.html#a9cdad0d9b1bc74ba35b027eba7c56875">zone</a>.<a class="code hl_variable" href="structxwmm__zone.html#a6234f16a4f0b8787dfa3fcab0767d9e5">origin</a>) &gt; msa-&gt;<a class="code hl_variable" href="structxwmm__memslice.html#a9cdad0d9b1bc74ba35b027eba7c56875">zone</a>.<a class="code hl_variable" href="structxwmm__zone.html#ae3584b179ee84eeb61c2497617ac877b">size</a>)) {</div>
+<div class="line"><span class="lineno">  117</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#gad331c001cd1eca1b7b95a99055f93697">EOWNER</a>;</div>
+<div class="line"><span class="lineno">  118</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  119</span>                <span class="keywordflow">if</span> (<a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a> != msa-&gt;<a class="code hl_variable" href="structxwmm__memslice.html#a0e5b694aa7441773a568f002de3869e9">dtor</a>) {</div>
+<div class="line"><span class="lineno">  120</span>                        msa-&gt;<a class="code hl_variable" href="structxwmm__memslice.html#a0e5b694aa7441773a568f002de3869e9">dtor</a>(mem);</div>
+<div class="line"><span class="lineno">  121</span>                }</div>
+<div class="line"><span class="lineno">  122</span>                card = (<a class="code hl_typedef" href="group__xwos__lib__type.html#ga2225ca1f29b430d7c231a07487f1cc06">atomic_xwlfq_t</a> *)mem;</div>
+<div class="line"><span class="lineno">  123</span>                <a class="code hl_function" href="group__xwos__lib__lfq.html#ga1cac1b49ec185ccb135f19401e286166">xwlib_lfq_push</a>(&amp;msa-&gt;<a class="code hl_variable" href="structxwmm__memslice.html#ab3f918b02f7c37e5d7f46c219092839a">free_list</a>, card);</div>
+<div class="line"><span class="lineno">  124</span>                <a class="code hl_define" href="group__xwos__lib__xwaop.html#gadd1ff1c64048de270aac44c35a8519e7">xwaop_add</a>(<a class="code hl_typedef" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a>, &amp;msa-&gt;<a class="code hl_variable" href="structxwmm__memslice.html#a4ff9db3f677e4dcdf88c010cc14b4a40">num_free</a>, 1, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><span class="lineno">  125</span>                rc = <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><span class="lineno">  126</span>        }</div>
+<div class="line"><span class="lineno">  127</span> </div>
+<div class="line"><span class="lineno">  128</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  129</span>}</div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_gad331c001cd1eca1b7b95a99055f93697"><div class="ttname"><a href="group__xwos__lib__errno.html#gad331c001cd1eca1b7b95a99055f93697">EOWNER</a></div><div class="ttdeci">#define EOWNER</div><div class="ttdoc">Owner error</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00205">errno.h:205</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__lfq_html_ga1cac1b49ec185ccb135f19401e286166"><div class="ttname"><a href="group__xwos__lib__lfq.html#ga1cac1b49ec185ccb135f19401e286166">xwlib_lfq_push</a></div><div class="ttdeci">static void xwlib_lfq_push(atomic_xwlfq_t *h, atomic_xwlfq_t *n)</div><div class="ttdoc">将一个节点推入无锁队列（栈式队列）</div><div class="ttdef"><b>Definition</b> <a href="lfq_8h_source.html#l00042">lfq.h:42</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga2225ca1f29b430d7c231a07487f1cc06"><div class="ttname"><a href="group__xwos__lib__type.html#ga2225ca1f29b430d7c231a07487f1cc06">atomic_xwlfq_t</a></div><div class="ttdeci">__xwcc_atomic xwlfq_t atomic_xwlfq_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00594">type.h:594</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__xwaop_html_gadd1ff1c64048de270aac44c35a8519e7"><div class="ttname"><a href="group__xwos__lib__xwaop.html#gadd1ff1c64048de270aac44c35a8519e7">xwaop_add</a></div><div class="ttdeci">#define xwaop_add(type, a, v, nv, ov)</div><div class="ttdoc">对原子变量进行原子操作：读取－相加－回写</div><div class="ttdef"><b>Definition</b> <a href="xwaop_8h_source.html#l00330">xwaop.h:330</a></div></div>
+<div class="ttc" id="astructxwmm__memslice_html_a0e5b694aa7441773a568f002de3869e9"><div class="ttname"><a href="structxwmm__memslice.html#a0e5b694aa7441773a568f002de3869e9">xwmm_memslice::dtor</a></div><div class="ttdeci">dtor_f dtor</div><div class="ttdef"><b>Definition</b> <a href="memslice_8h_source.html#l00058">memslice.h:58</a></div></div>
+<div class="ttc" id="astructxwmm__memslice_html_a9cdad0d9b1bc74ba35b027eba7c56875"><div class="ttname"><a href="structxwmm__memslice.html#a9cdad0d9b1bc74ba35b027eba7c56875">xwmm_memslice::zone</a></div><div class="ttdeci">struct xwmm_zone zone</div><div class="ttdef"><b>Definition</b> <a href="memslice_8h_source.html#l00045">memslice.h:45</a></div></div>
+<div class="ttc" id="astructxwmm__zone_html_a6234f16a4f0b8787dfa3fcab0767d9e5"><div class="ttname"><a href="structxwmm__zone.html#a6234f16a4f0b8787dfa3fcab0767d9e5">xwmm_zone::origin</a></div><div class="ttdeci">xwptr_t origin</div><div class="ttdef"><b>Definition</b> <a href="xwos_2mm_2common_8h_source.html#l00041">common.h:41</a></div></div>
+<div class="ttc" id="astructxwmm__zone_html_ae3584b179ee84eeb61c2497617ac877b"><div class="ttname"><a href="structxwmm__zone.html#ae3584b179ee84eeb61c2497617ac877b">xwmm_zone::size</a></div><div class="ttdeci">xwsz_t size</div><div class="ttdef"><b>Definition</b> <a href="xwos_2mm_2common_8h_source.html#l00042">common.h:42</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmm__memslice_ga337a549e8b2fc9e95d1e9c240bde1e31_cgraph.png" border="0" usemap="#agroup__xwmm__memslice_ga337a549e8b2fc9e95d1e9c240bde1e31_cgraph" alt=""/></div>
+<map name="agroup__xwmm__memslice_ga337a549e8b2fc9e95d1e9c240bde1e31_cgraph" id="agroup__xwmm__memslice_ga337a549e8b2fc9e95d1e9c240bde1e31_cgraph">
+<area shape="rect" title="XWMM API：释放内存切片" alt="" coords="5,5,159,31"/>
+<area shape="rect" href="group__xwos__lib__lfq.html#ga1cac1b49ec185ccb135f19401e286166" title="将一个节点推入无锁队列（栈式队列）" alt="" coords="207,5,315,31"/>
+<area shape="poly" title=" " alt="" coords="159,15,193,15,193,21,159,21"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmm__memslice_ga337a549e8b2fc9e95d1e9c240bde1e31_icgraph.png" border="0" usemap="#agroup__xwmm__memslice_ga337a549e8b2fc9e95d1e9c240bde1e31_icgraph" alt=""/></div>
+<map name="agroup__xwmm__memslice_ga337a549e8b2fc9e95d1e9c240bde1e31_icgraph" id="agroup__xwmm__memslice_ga337a549e8b2fc9e95d1e9c240bde1e31_icgraph">
+<area shape="rect" title="XWMM API：释放内存切片" alt="" coords="460,129,613,155"/>
+<area shape="rect" href="xwmq_8c.html#a5a70d91d330701da212249f5728fb5e4" title="释放一个消息槽" alt="" coords="297,129,412,155"/>
+<area shape="poly" title=" " alt="" coords="446,145,412,145,412,139,446,139"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga9b11a75d7c8d792d305154b32c3dedee" title="XWMQ API: 限时等待从消息队列 首端 接收一条消息" alt="" coords="143,5,239,31"/>
+<area shape="poly" title=" " alt="" coords="331,120,294,82,248,44,227,33,229,28,251,40,298,78,335,116"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga98fe6e199b379e49ed413db1435f5b3a" title="XWMQ API: 等待从消息队列 首端 接收一条消息，且等待不可被中断" alt="" coords="132,55,249,80"/>
+<area shape="poly" title=" " alt="" coords="315,126,248,94,223,83,225,78,250,89,317,121"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#gaacdb3c6bfb639e6d2444f479e9557c38" title="XWMQ API: 限时等待从消息队列 尾端 接收一条消息" alt="" coords="144,104,237,129"/>
+<area shape="poly" title=" " alt="" coords="283,134,237,126,238,121,284,128"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga1ebf67fde973c23ec718d35258dd7ee1" title="XWMQ API: 等待从消息队列 尾端 接收一条消息，且等待不可被中断" alt="" coords="133,153,248,179"/>
+<area shape="poly" title=" " alt="" coords="284,155,249,160,248,155,283,150"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga113bc97ec8121f3eb884e8da900497eb" title="XWMQ API: 尝试从消息队列 首端 接收一条消息" alt="" coords="144,203,237,228"/>
+<area shape="poly" title=" " alt="" coords="315,163,250,192,222,205,220,200,248,188,312,158"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga7c48b58030cf580f089d2cb42bc644fd" title="XWMQ API: 尝试从消息队列 尾端 接收一条消息" alt="" coords="145,252,236,277"/>
+<area shape="poly" title=" " alt="" coords="335,167,298,204,251,242,228,254,225,249,248,237,294,200,331,163"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga6dac123dd10ceaf0f24181b66d49d39a" title="XWMQ API: 等待从消息队列 首端 接收一条消息" alt="" coords="5,5,84,31"/>
+<area shape="poly" title=" " alt="" coords="129,21,84,21,84,15,129,15"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga79b5a6769a655a4e5946f3d60729b342" title="XWMQ API: 等待从消息队列 尾端 接收一条消息" alt="" coords="7,104,82,129"/>
+<area shape="poly" title=" " alt="" coords="131,119,82,119,82,114,131,114"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga56a8e2e7b5977d6fdd53fa8946d92368" name="ga56a8e2e7b5977d6fdd53fa8946d92368"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga56a8e2e7b5977d6fdd53fa8946d92368">&#9670;&#160;</a></span>xwmm_memslice_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwmm_memslice_init </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwmm__memslice.html">xwmm_memslice</a> *&#160;</td>
+          <td class="paramname"><em>msa</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a>&#160;</td>
+          <td class="paramname"><em>origin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a>&#160;</td>
+          <td class="paramname"><em>total_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a>&#160;</td>
+          <td class="paramname"><em>card_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#gaf7d6db44108764f9cbaea53c923d2736">ctor_f</a>&#160;</td>
+          <td class="paramname"><em>ctor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#gafe80dfa42b558589ad7ebce2bea43946">dtor_f</a>&#160;</td>
+          <td class="paramname"><em>dtor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWMM API：静态方式初始化内存切片分配器 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">msa</td><td>内存切片分配器对象的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">origin</td><td>建立内存切片分配算法的内存区域首地址 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">total_size</td><td>建立内存切片分配算法的内存区域大小 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">card_size</td><td>切片大小 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>名字 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ctor</td><td>切片的构造函数 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dtor</td><td>切片的析构函数 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-E2SMALL</td><td>内存区域太小 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>同步/异步：同步</li>
+<li>上下文：中断、中断底半部、线程</li>
+<li>重入性：不可重入 </li>
+</ul>
+</dd></dl>
+<p>&lt; 内存管理对齐的字节数</p>
+<p>&lt; 内存管理对齐的字节数</p>
+<p>&lt;Too small</p>
+<p>&lt;No error</p>
+
+<p class="definition">在文件 <a class="el" href="memslice_8c_source.html">memslice.c</a> 第 <a class="el" href="memslice_8c_source.html#l00021">21</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   24</span>{</div>
+<div class="line"><span class="lineno">   25</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num_max;</div>
+<div class="line"><span class="lineno">   26</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> n;</div>
+<div class="line"><span class="lineno">   27</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> nm;</div>
+<div class="line"><span class="lineno">   28</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a> curr;</div>
+<div class="line"><span class="lineno">   29</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a> next;</div>
+<div class="line"><span class="lineno">   30</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">   31</span> </div>
+<div class="line"><span class="lineno">   32</span>        <a class="code hl_define" href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a>((msa), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">   33</span> </div>
+<div class="line"><span class="lineno">   34</span>        <span class="comment">// cppcheck-suppress [misra-c2012-17.8]</span></div>
+<div class="line"><span class="lineno">   35</span>        card_size = <a class="code hl_define" href="group__xwos__lib__xwbop.html#ga9f63c663f101e3b76de2eba319247598">XWBOP_ALIGN</a>(card_size, (<a class="code hl_typedef" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a>)<a class="code hl_define" href="group__xwmm__common.html#ga5fda7561f71a27db613b7fe335ea3259">XWMM_ALIGNMENT</a>);</div>
+<div class="line"><span class="lineno">   36</span>        num_max = total_size / card_size;</div>
+<div class="line"><span class="lineno">   37</span>        <span class="keywordflow">if</span> ((<a class="code hl_typedef" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a>)0 == num_max) {</div>
+<div class="line"><span class="lineno">   38</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#ga4cc6d572c620e6ea7c351d82fcb4ffbb">E2SMALL</a>;</div>
+<div class="line"><span class="lineno">   39</span>                <span class="keywordflow">goto</span> err_mem2small;</div>
+<div class="line"><span class="lineno">   40</span>        }</div>
+<div class="line"><span class="lineno">   41</span> </div>
+<div class="line"><span class="lineno">   42</span>        msa-&gt;<a class="code hl_variable" href="structxwmm__memslice.html#a9cdad0d9b1bc74ba35b027eba7c56875">zone</a>.<a class="code hl_variable" href="structxwmm__zone.html#a6234f16a4f0b8787dfa3fcab0767d9e5">origin</a> = origin;</div>
+<div class="line"><span class="lineno">   43</span>        msa-&gt;<a class="code hl_variable" href="structxwmm__memslice.html#a9cdad0d9b1bc74ba35b027eba7c56875">zone</a>.<a class="code hl_variable" href="structxwmm__zone.html#ae3584b179ee84eeb61c2497617ac877b">size</a> = total_size;</div>
+<div class="line"><span class="lineno">   44</span>        msa-&gt;<a class="code hl_variable" href="structxwmm__memslice.html#a91ff2f31332612e6496f65a8f7302466">name</a> = name;</div>
+<div class="line"><span class="lineno">   45</span>        msa-&gt;<a class="code hl_variable" href="structxwmm__memslice.html#a25b6805c0009bc264a5e090bcc052462">card_size</a> = card_size;</div>
+<div class="line"><span class="lineno">   46</span>        msa-&gt;<a class="code hl_variable" href="structxwmm__memslice.html#a799bbd746b1d6077587d2757f84f443b">num_max</a> = num_max;</div>
+<div class="line"><span class="lineno">   47</span>        msa-&gt;<a class="code hl_variable" href="structxwmm__memslice.html#a4ff9db3f677e4dcdf88c010cc14b4a40">num_free</a> = num_max;</div>
+<div class="line"><span class="lineno">   48</span>        msa-&gt;<a class="code hl_variable" href="structxwmm__memslice.html#a679612df0e5c518ad315f388f578b584">ctor</a> = ctor;</div>
+<div class="line"><span class="lineno">   49</span>        msa-&gt;<a class="code hl_variable" href="structxwmm__memslice.html#a0e5b694aa7441773a568f002de3869e9">dtor</a> = dtor;</div>
+<div class="line"><span class="lineno">   50</span> </div>
+<div class="line"><span class="lineno">   51</span>        <span class="comment">/* 构造所有对象 */</span></div>
+<div class="line"><span class="lineno">   52</span>        <span class="keywordflow">if</span> (<a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a> != ctor) {</div>
+<div class="line"><span class="lineno">   53</span>                curr = origin;</div>
+<div class="line"><span class="lineno">   54</span>                next = curr;</div>
+<div class="line"><span class="lineno">   55</span>                <span class="keywordflow">for</span> (n = 0; n &lt; num_max; n++) {</div>
+<div class="line"><span class="lineno">   56</span>                        next += card_size;</div>
+<div class="line"><span class="lineno">   57</span>                        ctor((<span class="keywordtype">void</span> *)curr);</div>
+<div class="line"><span class="lineno">   58</span>                        curr = next;</div>
+<div class="line"><span class="lineno">   59</span>                }</div>
+<div class="line"><span class="lineno">   60</span>                msa-&gt;<a class="code hl_variable" href="structxwmm__memslice.html#ab6d4c104e52c5aeb5441ca96c360be85">backup</a> = *((<a class="code hl_typedef" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a> *)origin);</div>
+<div class="line"><span class="lineno">   61</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">   62</span>                msa-&gt;<a class="code hl_variable" href="structxwmm__memslice.html#ab6d4c104e52c5aeb5441ca96c360be85">backup</a> = 0;</div>
+<div class="line"><span class="lineno">   63</span>        }</div>
+<div class="line"><span class="lineno">   64</span> </div>
+<div class="line"><span class="lineno">   65</span>        <a class="code hl_function" href="group__xwos__lib__lfq.html#gac87b1137608605a80577abed410ddc1a">xwlib_lfq_init</a>(&amp;msa-&gt;<a class="code hl_variable" href="structxwmm__memslice.html#ab3f918b02f7c37e5d7f46c219092839a">free_list</a>);</div>
+<div class="line"><span class="lineno">   66</span>        curr = origin;</div>
+<div class="line"><span class="lineno">   67</span>        next = origin;</div>
+<div class="line"><span class="lineno">   68</span>        nm = num_max;</div>
+<div class="line"><span class="lineno">   69</span>        <span class="keywordflow">for</span> (n = 0; n &lt; nm; n++) {</div>
+<div class="line"><span class="lineno">   70</span>                next += card_size;</div>
+<div class="line"><span class="lineno">   71</span>                <a class="code hl_function" href="group__xwos__lib__lfq.html#gac87b1137608605a80577abed410ddc1a">xwlib_lfq_init</a>((<a class="code hl_typedef" href="group__xwos__lib__type.html#ga2225ca1f29b430d7c231a07487f1cc06">atomic_xwlfq_t</a> *)curr);</div>
+<div class="line"><span class="lineno">   72</span>                <a class="code hl_function" href="group__xwos__lib__lfq.html#ga1cac1b49ec185ccb135f19401e286166">xwlib_lfq_push</a>(&amp;msa-&gt;<a class="code hl_variable" href="structxwmm__memslice.html#ab3f918b02f7c37e5d7f46c219092839a">free_list</a>, (<a class="code hl_typedef" href="group__xwos__lib__type.html#ga2225ca1f29b430d7c231a07487f1cc06">atomic_xwlfq_t</a> *)curr);</div>
+<div class="line"><span class="lineno">   73</span>                curr = next;</div>
+<div class="line"><span class="lineno">   74</span>        }</div>
+<div class="line"><span class="lineno">   75</span> </div>
+<div class="line"><span class="lineno">   76</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><span class="lineno">   77</span> </div>
+<div class="line"><span class="lineno">   78</span>err_mem2small:</div>
+<div class="line"><span class="lineno">   79</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">   80</span>}</div>
+<div class="ttc" id="agroup__xwmm__common_html_ga5fda7561f71a27db613b7fe335ea3259"><div class="ttname"><a href="group__xwmm__common.html#ga5fda7561f71a27db613b7fe335ea3259">XWMM_ALIGNMENT</a></div><div class="ttdeci">#define XWMM_ALIGNMENT</div><div class="ttdef"><b>Definition</b> <a href="xwos_2mm_2common_8h_source.html#l00029">common.h:29</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga4cc6d572c620e6ea7c351d82fcb4ffbb"><div class="ttname"><a href="group__xwos__lib__errno.html#ga4cc6d572c620e6ea7c351d82fcb4ffbb">E2SMALL</a></div><div class="ttdeci">#define E2SMALL</div><div class="ttdoc">Too small</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00203">errno.h:203</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__lfq_html_gac87b1137608605a80577abed410ddc1a"><div class="ttname"><a href="group__xwos__lib__lfq.html#gac87b1137608605a80577abed410ddc1a">xwlib_lfq_init</a></div><div class="ttdeci">static void xwlib_lfq_init(atomic_xwlfq_t *n)</div><div class="ttdoc">初始化无锁队列节点</div><div class="ttdef"><b>Definition</b> <a href="lfq_8h_source.html#l00031">lfq.h:31</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__xwbop_html_ga9f63c663f101e3b76de2eba319247598"><div class="ttname"><a href="group__xwos__lib__xwbop.html#ga9f63c663f101e3b76de2eba319247598">XWBOP_ALIGN</a></div><div class="ttdeci">#define XWBOP_ALIGN(x, n)</div><div class="ttdef"><b>Definition</b> <a href="xwbop_8h_source.html#l00037">xwbop.h:37</a></div></div>
+<div class="ttc" id="astructxwmm__memslice_html_a25b6805c0009bc264a5e090bcc052462"><div class="ttname"><a href="structxwmm__memslice.html#a25b6805c0009bc264a5e090bcc052462">xwmm_memslice::card_size</a></div><div class="ttdeci">xwsz_t card_size</div><div class="ttdef"><b>Definition</b> <a href="memslice_8h_source.html#l00047">memslice.h:47</a></div></div>
+<div class="ttc" id="astructxwmm__memslice_html_a679612df0e5c518ad315f388f578b584"><div class="ttname"><a href="structxwmm__memslice.html#a679612df0e5c518ad315f388f578b584">xwmm_memslice::ctor</a></div><div class="ttdeci">ctor_f ctor</div><div class="ttdef"><b>Definition</b> <a href="memslice_8h_source.html#l00057">memslice.h:57</a></div></div>
+<div class="ttc" id="astructxwmm__memslice_html_a799bbd746b1d6077587d2757f84f443b"><div class="ttname"><a href="structxwmm__memslice.html#a799bbd746b1d6077587d2757f84f443b">xwmm_memslice::num_max</a></div><div class="ttdeci">atomic_xwsz_t num_max</div><div class="ttdef"><b>Definition</b> <a href="memslice_8h_source.html#l00049">memslice.h:49</a></div></div>
+<div class="ttc" id="astructxwmm__memslice_html_a91ff2f31332612e6496f65a8f7302466"><div class="ttname"><a href="structxwmm__memslice.html#a91ff2f31332612e6496f65a8f7302466">xwmm_memslice::name</a></div><div class="ttdeci">const char * name</div><div class="ttdef"><b>Definition</b> <a href="memslice_8h_source.html#l00046">memslice.h:46</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmm__memslice_ga56a8e2e7b5977d6fdd53fa8946d92368_cgraph.png" border="0" usemap="#agroup__xwmm__memslice_ga56a8e2e7b5977d6fdd53fa8946d92368_cgraph" alt=""/></div>
+<map name="agroup__xwmm__memslice_ga56a8e2e7b5977d6fdd53fa8946d92368_cgraph" id="agroup__xwmm__memslice_ga56a8e2e7b5977d6fdd53fa8946d92368_cgraph">
+<area shape="rect" title="XWMM API：静态方式初始化内存切片分配器" alt="" coords="5,31,153,56"/>
+<area shape="rect" href="group__xwos__lib__lfq.html#gac87b1137608605a80577abed410ddc1a" title="初始化无锁队列节点" alt="" coords="207,5,304,31"/>
+<area shape="poly" title=" " alt="" coords="153,30,192,24,193,30,154,35"/>
+<area shape="rect" href="group__xwos__lib__lfq.html#ga1cac1b49ec185ccb135f19401e286166" title="将一个节点推入无锁队列（栈式队列）" alt="" coords="201,55,309,80"/>
+<area shape="poly" title=" " alt="" coords="154,51,188,56,187,61,153,56"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmm__memslice_ga56a8e2e7b5977d6fdd53fa8946d92368_icgraph.png" border="0" usemap="#agroup__xwmm__memslice_ga56a8e2e7b5977d6fdd53fa8946d92368_icgraph" alt=""/></div>
+<map name="agroup__xwmm__memslice_ga56a8e2e7b5977d6fdd53fa8946d92368_icgraph" id="agroup__xwmm__memslice_ga56a8e2e7b5977d6fdd53fa8946d92368_icgraph">
+<area shape="rect" title="XWMM API：静态方式初始化内存切片分配器" alt="" coords="293,5,441,31"/>
+<area shape="rect" href="xwmq_8c.html#aa0841cf7abe8c4dfd5626a12bf99f72d" title=" " alt="" coords="135,5,245,31"/>
+<area shape="poly" title=" " alt="" coords="279,21,245,21,245,15,279,15"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga51603f04fac6de40ea6726d69b264cc7" title="XWMQ API：静态方式初始化消息队列" alt="" coords="5,5,87,31"/>
+<area shape="poly" title=" " alt="" coords="121,21,87,21,87,15,121,15"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
+  </ul>
+</div>
+</body>
+</html>

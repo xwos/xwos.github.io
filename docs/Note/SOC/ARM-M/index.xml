@@ -1,0 +1,156 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>XWOS – ARM-Cortex-M移植说明</title>
+    <link>/docs/Note/SOC/ARM-M/</link>
+    <description>Recent content in ARM-Cortex-M移植说明 on XWOS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    
+	  <atom:link href="/docs/Note/SOC/ARM-M/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: STM32移植说明</title>
+      <link>/docs/Note/SOC/ARM-M/STM32/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/Note/SOC/ARM-M/STM32/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
+&lt;p&gt;由于ST官方的STM32CubeMX能自动生成初始化芯片的代码，因此
+XWOS中STM32的 &lt;strong&gt;架构描述层(ADL)&lt;/strong&gt; 、 &lt;strong&gt;CPU描述层(CDL)&lt;/strong&gt; 、 &lt;strong&gt;SOC描述层(SDL)&lt;/strong&gt; 的代码几乎
+是一致的，唯一区别是 &lt;strong&gt;链接脚本&lt;/strong&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;链接脚本&#34;&gt;链接脚本&lt;/h2&gt;
+&lt;p&gt;STM32的链接脚本也是按照可复用的方式设计的，分为两部分：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SDL中的链接脚本：描述各个段如何分布在镜像文件中
+&lt;ul&gt;
+&lt;li&gt;STM32F0：&lt;code&gt;XWOS/xwcd/soc/arm/v7m/m0/stm32/f0.lds&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32G0：&lt;code&gt;XWOS/xwcd/soc/arm/v7m/m0p/stm32/g0.lds&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32F1：&lt;code&gt;XWOS/xwcd/soc/arm/v7m/m3/stm32/f1.lds&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32L1：&lt;code&gt;XWOS/xwcd/soc/arm/v7m/m3/stm32/l1.lds&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32F4：&lt;code&gt;XWOS/xwcd/soc/arm/v7m/m4/stm32/f4.lds&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32L4：&lt;code&gt;XWOS/xwcd/soc/arm/v7m/m4/stm32/l4.lds&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32F7：&lt;code&gt;XWOS/xwcd/soc/arm/v7m/m7/stm32/f7.lds&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32H7：&lt;code&gt;XWOS/xwcd/soc/arm/v7m/m7/stm32/h7.lds&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;其他SOC还在持续增加中&amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;电路板目录中的链接脚本：只描述内存区域&lt;/li&gt;
+&lt;li&gt;WeActMiniStm32H750工程： &lt;code&gt;XWOS/xwbd/WeActMiniStm32H750/cfg/brd.lds&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;WeActMiniStm32H750Bootloader工程： &lt;code&gt;XWOS/xwbd/WeActMiniStm32H750Bootloader/cfg/brd.lds&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;其他电路板还在持续增加中&amp;hellip;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;不同的电路板工程，只有Board中链接脚本中的Memory区域不同。&lt;/p&gt;
+&lt;h3 id=&#34;lds的基本语法&#34;&gt;lds的基本语法&lt;/h3&gt;
+&lt;h4 id=&#34;定义存储器区域&#34;&gt;定义存储器区域&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;&#34;&gt;名字&lt;/span&gt; (&lt;span style=&#34;&#34;&gt;属性&lt;/span&gt;)&lt;span style=&#34;color:#666&#34;&gt;:&lt;/span&gt; org &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; xxx, len &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; xxx
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;o&lt;/code&gt; ,  &lt;code&gt;org&lt;/code&gt; ,  &lt;code&gt;ORIGIN&lt;/code&gt; : 表示定义存储器的起始地址&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;l&lt;/code&gt; ,  &lt;code&gt;len&lt;/code&gt; ,  &lt;code&gt;LENGTH&lt;/code&gt; : 表示定义存储器长度&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ORIGIN(x)&lt;/code&gt; : 表示取存储器x的起始地址&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;LENGTH(x)&lt;/code&gt; : 表示取存储器x的长度&lt;/li&gt;
+&lt;li&gt;属性:  &lt;code&gt;r&lt;/code&gt; 表示读， &lt;code&gt;w&lt;/code&gt; 表示写， &lt;code&gt;a&lt;/code&gt; 表示可申请， &lt;code&gt;x&lt;/code&gt; 表示可执行&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;xxx_ivt_lmr--xxx_ivt_vmr&#34;&gt;&lt;code&gt;xxx_ivt_lmr&lt;/code&gt; &amp;amp; &lt;code&gt;xxx_ivt_vmr&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;XWOS的中断向量表区域，其中 &lt;strong&gt;LMR&lt;/strong&gt; 表示中断向量的加载地址区域，
+也即是中断向量在Flash中的存储位置，VMR表示中断向量的运行地址区域，
+也即是上电运行时的中断向量的地址。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如果 &lt;strong&gt;LMR&lt;/strong&gt; 与 &lt;strong&gt;VMR&lt;/strong&gt; 都指向Flash，且起始地址(org)与大小(len)完全一致，表示加载地址
+就是运行地址，XWOS在初始化阶段不会对中断向量执行拷贝操作；&lt;/li&gt;
+&lt;li&gt;如果 &lt;strong&gt;VMR&lt;/strong&gt; 指向RAM的某个地址，XWOS会在初始化阶段把Flash中的中断向量表拷贝到
+&lt;strong&gt;VMR&lt;/strong&gt; 指定的RAM内，并设置ARM的VTOR寄存器；&lt;/li&gt;
+&lt;li&gt;需要注意ARM的VTOR寄存器低7位(0~6)必须保持为0，因此VMR的起始地址也必须满足
+此规则。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;firmware_info_mr&#34;&gt;&lt;code&gt;firmware_info_mr&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;此段中包含镜像文件的一些基本信息，例如起始位置，结尾标志位置等，可用在升级固件功能中。&lt;/p&gt;
+&lt;h4 id=&#34;code_mr&#34;&gt;&lt;code&gt;code_mr&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;存放代码和常量的地方。&lt;/p&gt;
+&lt;h4 id=&#34;xwos_data_mr&#34;&gt;&lt;code&gt;xwos_data_mr&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;存放xwos全局数据的地方，这些变量在定义时带有修饰符： &lt;code&gt;__xwos_data&lt;/code&gt; ，此段可以
+不存在，若不存在，需要在SDL中的链接脚本中将此段的数据放到 &lt;code&gt;data_mr&lt;/code&gt; 中。&lt;/p&gt;
+&lt;h4 id=&#34;data_mr&#34;&gt;&lt;code&gt;data_mr&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;存放全局变量的地方。当连接器ld安排完全局变量后，剩余的部分会交给XWOS
+的&lt;strong&gt;默认的内核内存分配器&lt;/strong&gt;进行管理，用于为动态创建内核对象的API提供动态内存申请的接口。&lt;/p&gt;
+&lt;h4 id=&#34;xwos_stk_mr&#34;&gt;&lt;code&gt;xwos_stk_mr&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;XWOS内核的栈内存，XWOS内核处理中断时会使用此内存作为函数的栈。&lt;/p&gt;
+&lt;h2 id=&#34;soc的初始化&#34;&gt;SOC的初始化&lt;/h2&gt;
+&lt;p&gt;STM32CubeMX生成的初始化代码，分别由 &lt;code&gt;stm32cube_lowlevel_init()&lt;/code&gt; 与 &lt;code&gt;stm32cube_init()&lt;/code&gt; 执行，
+这两个函数在 &lt;a href=&#34;../../../../TechRefManual/BootFlow&#34;&gt;启动流程&lt;/a&gt;中分别
+被 &lt;code&gt;xows_preinit&lt;/code&gt; 与 &lt;code&gt;xwos_postinit()&lt;/code&gt; 调用。&lt;/p&gt;
+&lt;h2 id=&#34;stm32cubemx&#34;&gt;STM32CubeMX&lt;/h2&gt;
+&lt;p&gt;STM32CubeMX工程是以 &lt;strong&gt;玄武模块&lt;/strong&gt; 中的 &lt;strong&gt;电路板模块&lt;/strong&gt; 的方式进行集成的，
+详细可参考 &lt;a href=&#34;../../../../TechRefManual/BuildSystem&#34;&gt;构建系统&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;各个工程的STM32CubeMX工程如下（可在STM32CubeMX中打开）：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;WeActMiniStm32H750工程： &lt;code&gt;XWOS/xwbd/WeActMiniStm32H750/bm/stm32cube/WeActMiniStm32H750.ioc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;WeActMiniStm32H750Bootloader工程： &lt;code&gt;XWOS/xwbd/WeActMiniStm32H750Bootloader/bm/stm32cube/WeActMiniStm32H750Bootloader.ioc&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;中断优先级&#34;&gt;中断优先级&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;XWOS对中断优先级的要求：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;切换上下文的中断为系统中最低优先级中断
+切换上下文的中断 &amp;lt;= 滴答定时器的中断 &amp;lt;= 调度器服务中断
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;NVIC设置
+&lt;ul&gt;
+&lt;li&gt;设置 &lt;strong&gt;3&lt;/strong&gt; 个抢占优先级位和 &lt;strong&gt;1&lt;/strong&gt; 个子优先级位；&lt;/li&gt;
+&lt;li&gt;SVC中断设置成 &lt;strong&gt;最高&lt;/strong&gt; 优先级，即 &lt;strong&gt;Preemption Priority&lt;/strong&gt; 为 &lt;strong&gt;0&lt;/strong&gt; ；&lt;/li&gt;
+&lt;li&gt;PendSV中断设置成 &lt;strong&gt;最低&lt;/strong&gt; 优先级，即 &lt;strong&gt;Preemption Priority&lt;/strong&gt; 为 &lt;strong&gt;7&lt;/strong&gt; ；&lt;/li&gt;
+&lt;li&gt;Systick中断设置成 &lt;strong&gt;最低&lt;/strong&gt; 优先级，即 &lt;strong&gt;Preemption Priority&lt;/strong&gt; 为 &lt;strong&gt;7&lt;/strong&gt; ；&lt;/li&gt;
+&lt;li&gt;系统Fault的优先级设置为 &lt;strong&gt;0&lt;/strong&gt; ；&lt;/li&gt;
+&lt;li&gt;其他中断的优先级只可在 &lt;strong&gt;1~6&lt;/strong&gt; 之间。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;中断向量表&#34;&gt;中断向量表&lt;/h3&gt;
+&lt;p&gt;STM32CubeMX生成的代码中断向量表是放在 &lt;code&gt;startup.s&lt;/code&gt; 中，XWOS并不使用这个文件，因此需要
+另外增加中断向量表。STM32型号太多，一个一个编辑工作量巨大，但观察STM32寄存器定义的
+头文件（例如： &lt;code&gt;stm32h750xx.h&lt;/code&gt; ），可以发现 &lt;code&gt;IRQn_Type&lt;/code&gt; 这个枚举类型，其中列举了
+所有的中断号，因此可使用脚本自动生成中断向量表的代码。&lt;/p&gt;
+&lt;p&gt;本项目中提供了一个Emacs-Lisp脚本 &lt;code&gt;XWOS/xwbd/WeActMiniStm32H750/bm/stm32cube/Tools/stm32ivt/stm32ivt.el&lt;/code&gt; 来完成这项工作，
+用法：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a2f&#34;&gt;cd&lt;/span&gt; XWOS/xwbd/WeActMiniStm32H750/bm/stm32cube
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;stm32ivt/stm32ivt.el
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;脚本执行完成后，会生成 &lt;code&gt;Core/Src/ivt.c&lt;/code&gt; 。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;xwac&#34;&gt;xwac&lt;/h2&gt;
+&lt;p&gt;电路板模块 &lt;code&gt;xwac&lt;/code&gt; 是适配性质的代码，是连接BSP与XWOS的纽带。
+文件夹名中的 &lt;code&gt;ac&lt;/code&gt; 是 &lt;code&gt;Adaptation Code&lt;/code&gt; 的缩写。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;fatfs&lt;/code&gt; ：fatfs底层设备驱动&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;lua&lt;/code&gt; ：lua的内存池&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;newlib&lt;/code&gt; ：为标准C库newlib提供底层的支持
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;mem.c&lt;/code&gt; ： &lt;code&gt;malloc()&lt;/code&gt; 系列函数的内存池&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;stdio.c&lt;/code&gt; ：定义 &lt;code&gt;stdin&lt;/code&gt; 的输入设备， &lt;code&gt;stdout&lt;/code&gt; 、 &lt;code&gt;stderr&lt;/code&gt; 的输出设备&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;picolibc&lt;/code&gt; ：为标准C库picolibc提供底层的支持
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;mem.c&lt;/code&gt; ： &lt;code&gt;malloc()&lt;/code&gt; 系列函数的内存池&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;stdio.c&lt;/code&gt; ：定义 &lt;code&gt;stdin&lt;/code&gt; 的输入设备， &lt;code&gt;stdout&lt;/code&gt; 、 &lt;code&gt;stderr&lt;/code&gt; 的输出设备&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwds&lt;/code&gt; ：STM32的设备栈&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwlib&lt;/code&gt; ：为XWOS通用库提供底层硬件支持，例如使用硬件CRC模块加速CRC运算、定义Log的输出设备等&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos&lt;/code&gt; ：XWOS内核的Hook函数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwrust&lt;/code&gt; ：Rust的内存池&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,82 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="XWOS RUST：顺序锁"><title>xwrust::xwos::lock::seqlock - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="xwrust" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (b10cfcd65 2023-11-29)" data-channel="nightly" data-search-js="search-56a624991a76cfad.js" data-settings-js="settings-fe03fdc259827cd2.js" ><script src="../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../sidebar-items.js"></script><script defer src="../../../../static.files/main-77dede896d6ac08e.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../../xwrust/index.html">xwrust</a><span class="version">1.0.0</span></h2></div><h2 class="location"><a href="#">Module seqlock</a></h2><div class="sidebar-elems"><section><ul class="block"><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#constants">Constants</a></li></ul></section><h2><a href="../index.html">In xwrust::xwos::lock</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Module <a href="../../../index.html">xwrust</a>::<wbr><a href="../../index.html">xwos</a>::<wbr><a href="../index.html">lock</a>::<wbr><a class="mod" href="#">seqlock</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../../../../src/xwrust/xwos/lock/seqlock.rs.html#1-1154">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="xwos-rust顺序锁"><a href="#xwos-rust顺序锁">XWOS RUST：顺序锁</a></h2>
+<p>顺序锁是对自旋锁改良后的锁，顺序锁中包含一个自旋锁，并且带有一个顺序值。
+顺序锁将临界区分为三种：</p>
+<h5 id="独占写"><a href="#独占写">独占写</a></h5>
+<p>任何对顺序锁临界区的 <strong>写</strong> 操作都是独占的，每次 <strong>写</strong> 操作时，会先上锁自旋锁，
+然后增加顺序值，离开临界区时也会再次增加顺序值。言外之意，顺序值增加两次，顺序值增加的次数是 <strong>偶数</strong> 。</p>
+<p>锁的模式：</p>
+<ul>
+<li>当临界区只被多个线程访问时，需使用关闭抢占的模式： <a href="enum.SeqlockMode.html#variant.WriteLock" title="variant xwrust::xwos::lock::seqlock::SeqlockMode::WriteLock"><code>SeqlockMode::WriteLock</code></a></li>
+<li>当临界区被中断底半部访问时，需使用关闭中断底半部的模式： <a href="enum.SeqlockMode.html#variant.WriteLockBh" title="variant xwrust::xwos::lock::seqlock::SeqlockMode::WriteLockBh"><code>SeqlockMode::WriteLockBh</code></a></li>
+<li>当临界区被多个线程和单一中断访问时，需使用关闭中断的模式： <a href="enum.SeqlockMode.html#variant.WriteLockCpuirq" title="variant xwrust::xwos::lock::seqlock::SeqlockMode::WriteLockCpuirq"><code>SeqlockMode::WriteLockCpuirq</code></a></li>
+<li>当临界区被多个中断上下文访问时，需使用保存中断标志的模式： <a href="enum.SeqlockMode.html#variant.WriteLockCpuirqSave" title="variant xwrust::xwos::lock::seqlock::SeqlockMode::WriteLockCpuirqSave"><code>SeqlockMode::WriteLockCpuirqSave(None)</code></a></li>
+</ul>
+<h5 id="非独占读"><a href="#非独占读">非独占读</a></h5>
+<p>如果多个CPU进行的是 <strong>只读</strong> 操作，它们可以同时进入 <strong>非独占读临界区</strong> 。
+CPU进入非独占读临界区无需获得自旋锁，但需要先测试顺序值是否为 <strong>偶数</strong>，并记录此时的顺序值。
+当退出读临界区时，需要再次读取顺序值，并与之前记录的值进行比较：</p>
+<ul>
+<li>如果相等，表示读的结果有效；</li>
+<li>如果不相等，则表示读的过程中别的CPU进行了写操作，此次的读操作无效。</li>
+</ul>
+<h5 id="独占读"><a href="#独占读">独占读</a></h5>
+<p>如果希望读临界区不会被写操作无效掉，可以使用独占读的方式，
+独占读会排斥其他CPU上的独占写和独占读操作，但不会排斥非独占读，
+其他CPU依然可以进入非独占读临界区。</p>
+<p>锁的模式 ：</p>
+<ul>
+<li>当临界区只被多个线程访问时，需使用关闭抢占的模式： <a href="enum.SeqlockMode.html#variant.ReadExclusiveLock" title="variant xwrust::xwos::lock::seqlock::SeqlockMode::ReadExclusiveLock"><code>SeqlockMode::ReadExclusiveLock</code></a></li>
+<li>当临界区被中断底半部访问时，需使用关闭中断底半部的模式： <a href="enum.SeqlockMode.html#variant.ReadExclusiveLockBh" title="variant xwrust::xwos::lock::seqlock::SeqlockMode::ReadExclusiveLockBh"><code>SeqlockMode::ReadExclusiveLockBh</code></a></li>
+<li>当临界区被多个线程和单一中断访问时，需使用关闭中断的模式： <a href="enum.SeqlockMode.html#variant.ReadExclusiveLockCpuirq" title="variant xwrust::xwos::lock::seqlock::SeqlockMode::ReadExclusiveLockCpuirq"><code>SeqlockMode::ReadExclusiveLockCpuirq</code></a></li>
+<li>当临界区被多个中断上下文访问时，需使用保存中断标志的模式： <a href="enum.SeqlockMode.html#variant.ReadExclusiveLockCpuirqSave" title="variant xwrust::xwos::lock::seqlock::SeqlockMode::ReadExclusiveLockCpuirqSave"><code>SeqlockMode::ReadExclusiveLockCpuirqSave(None)</code></a></li>
+</ul>
+<h2 id="创建"><a href="#创建">创建</a></h2>
+<p>XWOS RUST的互斥锁可使用 <a href="struct.Seqlock.html#method.new" title="associated function xwrust::xwos::lock::seqlock::Seqlock::new"><code>Seqlock::new()</code></a> 创建。</p>
+<ul>
+<li>可以创建具有静态生命周期 <a href="https://doc.rust-lang.org/std/keyword.static.html"><code>static</code></a> 约束的全局变量：</li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwos::lock::seqlock::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>GLOBAL_SEQLOCK: Seqlock&lt;u32&gt; = Seqlock::new(<span class="number">0</span>);</code></pre></div>
+<ul>
+<li>也可以使用 <a href="https://doc.rust-lang.org/alloc/sync/struct.Arc.html"><code>alloc::sync::Arc</code></a> 在heap中创建：</li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>alloc;
+<span class="kw">use </span>alloc::sync::Arc;
+
+<span class="kw">use </span>xwrust::xwos::lock::seqlock::<span class="kw-2">*</span>;
+
+<span class="kw">pub fn </span>xwrust_example_seqlock() {
+    <span class="kw">let </span>seqlock: Arc&lt;Seqlock&lt;u32&gt;&gt; = Arc::new(Seqlock::new(<span class="number">0</span>));
+}</code></pre></div>
+<h2 id="初始化"><a href="#初始化">初始化</a></h2>
+<p>无论以何种方式创建的自旋锁，都必须在使用前调用 <a href="struct.Seqlock.html#method.init" title="method xwrust::xwos::lock::seqlock::Seqlock::init"><code>Seqlock::init()</code></a> 进行初始化：</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">pub fn </span>xwrust_example_seqlock() {
+    GLOBAL_SEQLOCK.init();
+    seqlock.init();
+}</code></pre></div>
+<h2 id="解锁"><a href="#解锁">解锁</a></h2>
+<p>上锁后返回的 <a href="struct.SeqlockGuard.html" title="struct xwrust::xwos::lock::seqlock::SeqlockGuard"><code>SeqlockGuard</code></a> 。 <a href="struct.SeqlockGuard.html" title="struct xwrust::xwos::lock::seqlock::SeqlockGuard"><code>SeqlockGuard</code></a> 的生命周期结束时，会自动解锁。
+也可调用 <a href="struct.Seqlock.html#method.unlock" title="associated function xwrust::xwos::lock::seqlock::Seqlock::unlock"><code>Seqlock::unlock()</code></a> 主动消费掉 <a href="struct.SeqlockGuard.html" title="struct xwrust::xwos::lock::seqlock::SeqlockGuard"><code>SeqlockGuard</code></a> 来解锁。</p>
+<h2 id="上锁"><a href="#上锁">上锁</a></h2>
+<p>上锁的方法 <a href="struct.Seqlock.html#method.lock" title="method xwrust::xwos::lock::seqlock::Seqlock::lock"><code>Seqlock::lock()</code></a> 除了 <strong>自旋</strong> 等待，改变顺序值外，还会根据上锁模式增加额外操作：</p>
+<ul>
+<li>只关闭抢占的模式： <a href="enum.SeqlockMode.html#variant.WriteLock" title="variant xwrust::xwos::lock::seqlock::SeqlockMode::WriteLock"><code>SeqlockMode::WriteLock</code></a> 以及 <a href="enum.SeqlockMode.html#variant.ReadExclusiveLock" title="variant xwrust::xwos::lock::seqlock::SeqlockMode::ReadExclusiveLock"><code>SeqlockMode::ReadExclusiveLock</code></a></li>
+<li>关闭中断底半部的模式： <a href="enum.SeqlockMode.html#variant.WriteLockBh" title="variant xwrust::xwos::lock::seqlock::SeqlockMode::WriteLockBh"><code>SeqlockMode::WriteLockBh</code></a> 以及 <a href="enum.SeqlockMode.html#variant.ReadExclusiveLockBh" title="variant xwrust::xwos::lock::seqlock::SeqlockMode::ReadExclusiveLockBh"><code>SeqlockMode::ReadExclusiveLockBh</code></a></li>
+<li>关闭全局中断的模式： <a href="enum.SeqlockMode.html#variant.WriteLockCpuirq" title="variant xwrust::xwos::lock::seqlock::SeqlockMode::WriteLockCpuirq"><code>SeqlockMode::WriteLockCpuirq</code></a> 以及 <a href="enum.SeqlockMode.html#variant.ReadExclusiveLockCpuirq" title="variant xwrust::xwos::lock::seqlock::SeqlockMode::ReadExclusiveLockCpuirq"><code>SeqlockMode::ReadExclusiveLockCpuirq</code></a></li>
+<li>保存中断全局标志并关闭全局中断的模式： <a href="enum.SeqlockMode.html#variant.WriteLockCpuirqSave" title="variant xwrust::xwos::lock::seqlock::SeqlockMode::WriteLockCpuirqSave"><code>SeqlockMode::WriteLockCpuirqSave(None)</code></a> 以及 <a href="enum.SeqlockMode.html#variant.ReadExclusiveLockCpuirqSave" title="variant xwrust::xwos::lock::seqlock::SeqlockMode::ReadExclusiveLockCpuirqSave"><code>SeqlockMode::ReadExclusiveLockCpuirqSave(None)</code></a></li>
+</ul>
+<h2 id="尝试上锁"><a href="#尝试上锁">尝试上锁</a></h2>
+<p>尝试上锁的方法 <a href="struct.Seqlock.html#method.trylock" title="method xwrust::xwos::lock::seqlock::Seqlock::trylock"><code>Seqlock::trylock()</code></a> 只会测试一下锁，不会 <strong>自旋</strong> 等待，上锁成功后还会根据上锁模式增加额外操作：</p>
+<ul>
+<li>只关闭抢占的模式： <a href="enum.SeqlockMode.html#variant.WriteLock" title="variant xwrust::xwos::lock::seqlock::SeqlockMode::WriteLock"><code>SeqlockMode::WriteLock</code></a> 以及 <a href="enum.SeqlockMode.html#variant.ReadExclusiveLock" title="variant xwrust::xwos::lock::seqlock::SeqlockMode::ReadExclusiveLock"><code>SeqlockMode::ReadExclusiveLock</code></a></li>
+<li>关闭中断底半部的模式： <a href="enum.SeqlockMode.html#variant.WriteLockBh" title="variant xwrust::xwos::lock::seqlock::SeqlockMode::WriteLockBh"><code>SeqlockMode::WriteLockBh</code></a> 以及 <a href="enum.SeqlockMode.html#variant.ReadExclusiveLockBh" title="variant xwrust::xwos::lock::seqlock::SeqlockMode::ReadExclusiveLockBh"><code>SeqlockMode::ReadExclusiveLockBh</code></a></li>
+<li>关闭全局中断的模式： <a href="enum.SeqlockMode.html#variant.WriteLockCpuirq" title="variant xwrust::xwos::lock::seqlock::SeqlockMode::WriteLockCpuirq"><code>SeqlockMode::WriteLockCpuirq</code></a> 以及 <a href="enum.SeqlockMode.html#variant.ReadExclusiveLockCpuirq" title="variant xwrust::xwos::lock::seqlock::SeqlockMode::ReadExclusiveLockCpuirq"><code>SeqlockMode::ReadExclusiveLockCpuirq</code></a></li>
+<li>保存中断全局标志并关闭全局中断的模式： <a href="enum.SeqlockMode.html#variant.WriteLockCpuirqSave" title="variant xwrust::xwos::lock::seqlock::SeqlockMode::WriteLockCpuirqSave"><code>SeqlockMode::WriteLockCpuirqSave(None)</code></a> 以及 <a href="enum.SeqlockMode.html#variant.ReadExclusiveLockCpuirqSave" title="variant xwrust::xwos::lock::seqlock::SeqlockMode::ReadExclusiveLockCpuirqSave"><code>SeqlockMode::ReadExclusiveLockCpuirqSave(None)</code></a></li>
+</ul>
+<h2 id="示例"><a href="#示例">示例</a></h2>
+<p><a href="https://gitee.com/xwos/XWOS/blob/main/xwam/xwrust-example/xwrust_example_seqlock/src/lib.rs">XWOS/xwam/xwrust-example/xwrust_example_seqlock</a></p>
+</div></details><h2 id="structs" class="small-section-header"><a href="#structs">Structs</a></h2><ul class="item-table"><li><div class="item-name"><a class="struct" href="struct.Seqlock.html" title="struct xwrust::xwos::lock::seqlock::Seqlock">Seqlock</a></div><div class="desc docblock-short">顺序锁结构体</div></li><li><div class="item-name"><a class="struct" href="struct.SeqlockGuard.html" title="struct xwrust::xwos::lock::seqlock::SeqlockGuard">SeqlockGuard</a></div><div class="desc docblock-short">顺序锁的RAII Guard</div></li><li><div class="item-name"><a class="struct" href="struct.SeqlockReadGuard.html" title="struct xwrust::xwos::lock::seqlock::SeqlockReadGuard">SeqlockReadGuard</a></div><div class="desc docblock-short">顺序锁共享读临界区的守卫</div></li></ul><h2 id="enums" class="small-section-header"><a href="#enums">Enums</a></h2><ul class="item-table"><li><div class="item-name"><a class="enum" href="enum.SeqlockError.html" title="enum xwrust::xwos::lock::seqlock::SeqlockError">SeqlockError</a></div><div class="desc docblock-short">顺序锁的错误码</div></li><li><div class="item-name"><a class="enum" href="enum.SeqlockMode.html" title="enum xwrust::xwos::lock::seqlock::SeqlockMode">SeqlockMode</a></div><div class="desc docblock-short">顺序锁的上锁模式</div></li></ul><h2 id="constants" class="small-section-header"><a href="#constants">Constants</a></h2><ul class="item-table"><li><div class="item-name"><a class="constant" href="constant.SIZEOF_XWOS_SQLK.html" title="constant xwrust::xwos::lock::seqlock::SIZEOF_XWOS_SQLK">SIZEOF_XWOS_SQLK</a></div><div class="desc docblock-short">XWOS顺序锁占用的内存大小</div></li></ul></section></div></main></body></html>

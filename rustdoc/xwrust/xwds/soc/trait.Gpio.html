@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="SOC的特性：GPIO"><title>Gpio in xwrust::xwds::soc - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="xwrust" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (b10cfcd65 2023-11-29)" data-channel="nightly" data-search-js="search-56a624991a76cfad.js" data-settings-js="settings-fe03fdc259827cd2.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../../static.files/main-77dede896d6ac08e.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc trait"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../xwrust/index.html">xwrust</a><span class="version">1.0.0</span></h2></div><h2 class="location"><a href="#">Gpio</a></h2><div class="sidebar-elems"><section><h3><a href="#required-methods">Required Methods</a></h3><ul class="block"><li><a href="#tymethod.gpio_cfg">gpio_cfg</a></li><li><a href="#tymethod.gpio_input">gpio_input</a></li><li><a href="#tymethod.gpio_output">gpio_output</a></li><li><a href="#tymethod.gpio_req">gpio_req</a></li><li><a href="#tymethod.gpio_reset">gpio_reset</a></li><li><a href="#tymethod.gpio_rls">gpio_rls</a></li><li><a href="#tymethod.gpio_set">gpio_set</a></li><li><a href="#tymethod.gpio_toggle">gpio_toggle</a></li></ul><h3><a href="#implementors">Implementors</a></h3></section><h2><a href="index.html">In xwrust::xwds::soc</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Trait <a href="../../index.html">xwrust</a>::<wbr><a href="../index.html">xwds</a>::<wbr><a href="index.html">soc</a>::<wbr><a class="trait" href="#">Gpio</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../../../src/xwrust/xwds/soc.rs.html#115-269">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>pub trait Gpio {
+    // Required methods
+    fn <a href="#tymethod.gpio_req" class="fn">gpio_req</a>(&amp;self, port: <a class="enum" href="enum.GpioPort.html" title="enum xwrust::xwds::soc::GpioPort">GpioPort</a>, pinmsk: <a class="type" href="../../types/type.XwSq.html" title="type xwrust::types::XwSq">XwSq</a>) -&gt; <a class="type" href="../../types/type.XwEr.html" title="type xwrust::types::XwEr">XwEr</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.gpio_rls" class="fn">gpio_rls</a>(&amp;self, port: <a class="enum" href="enum.GpioPort.html" title="enum xwrust::xwds::soc::GpioPort">GpioPort</a>, pinmsk: <a class="type" href="../../types/type.XwSq.html" title="type xwrust::types::XwSq">XwSq</a>) -&gt; <a class="type" href="../../types/type.XwEr.html" title="type xwrust::types::XwEr">XwEr</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.gpio_cfg" class="fn">gpio_cfg</a>(&amp;self, port: <a class="enum" href="enum.GpioPort.html" title="enum xwrust::xwds::soc::GpioPort">GpioPort</a>, pinmsk: <a class="type" href="../../types/type.XwSq.html" title="type xwrust::types::XwSq">XwSq</a>, cfg: *mut c_void) -&gt; <a class="type" href="../../types/type.XwEr.html" title="type xwrust::types::XwEr">XwEr</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.gpio_set" class="fn">gpio_set</a>(&amp;self, port: <a class="enum" href="enum.GpioPort.html" title="enum xwrust::xwds::soc::GpioPort">GpioPort</a>, pinmsk: <a class="type" href="../../types/type.XwSq.html" title="type xwrust::types::XwSq">XwSq</a>) -&gt; <a class="type" href="../../types/type.XwEr.html" title="type xwrust::types::XwEr">XwEr</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.gpio_reset" class="fn">gpio_reset</a>(&amp;self, port: <a class="enum" href="enum.GpioPort.html" title="enum xwrust::xwds::soc::GpioPort">GpioPort</a>, pinmsk: <a class="type" href="../../types/type.XwSq.html" title="type xwrust::types::XwSq">XwSq</a>) -&gt; <a class="type" href="../../types/type.XwEr.html" title="type xwrust::types::XwEr">XwEr</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.gpio_toggle" class="fn">gpio_toggle</a>(&amp;self, port: <a class="enum" href="enum.GpioPort.html" title="enum xwrust::xwds::soc::GpioPort">GpioPort</a>, pinmsk: <a class="type" href="../../types/type.XwSq.html" title="type xwrust::types::XwSq">XwSq</a>) -&gt; <a class="type" href="../../types/type.XwEr.html" title="type xwrust::types::XwEr">XwEr</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.gpio_output" class="fn">gpio_output</a>(&amp;self, port: <a class="enum" href="enum.GpioPort.html" title="enum xwrust::xwds::soc::GpioPort">GpioPort</a>, pinmsk: <a class="type" href="../../types/type.XwSq.html" title="type xwrust::types::XwSq">XwSq</a>, out: <a class="type" href="../../types/type.XwSq.html" title="type xwrust::types::XwSq">XwSq</a>) -&gt; <a class="type" href="../../types/type.XwEr.html" title="type xwrust::types::XwEr">XwEr</a>;
+<span class="item-spacer"></span>    fn <a href="#tymethod.gpio_input" class="fn">gpio_input</a>(&amp;self, port: <a class="enum" href="enum.GpioPort.html" title="enum xwrust::xwds::soc::GpioPort">GpioPort</a>, pinmsk: <a class="type" href="../../types/type.XwSq.html" title="type xwrust::types::XwSq">XwSq</a>) -&gt; (<a class="type" href="../../types/type.XwEr.html" title="type xwrust::types::XwEr">XwEr</a>, <a class="type" href="../../types/type.XwSq.html" title="type xwrust::types::XwSq">XwSq</a>);
+}</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>SOC的特性：GPIO</p>
+</div></details><h2 id="required-methods" class="small-section-header">Required Methods<a href="#required-methods" class="anchor">§</a></h2><div class="methods"><details class="toggle method-toggle" open><summary><section id="tymethod.gpio_req" class="method"><a class="src rightside" href="../../../src/xwrust/xwds/soc.rs.html#131">source</a><h4 class="code-header">fn <a href="#tymethod.gpio_req" class="fn">gpio_req</a>(&amp;self, port: <a class="enum" href="enum.GpioPort.html" title="enum xwrust::xwds::soc::GpioPort">GpioPort</a>, pinmsk: <a class="type" href="../../types/type.XwSq.html" title="type xwrust::types::XwSq">XwSq</a>) -&gt; <a class="type" href="../../types/type.XwEr.html" title="type xwrust::types::XwEr">XwEr</a></h4></section></summary><div class="docblock"><p>申请GPIO</p>
+<h5 id="参数说明"><a href="#参数说明">参数说明</a></h5>
+<ul>
+<li>port: GPIO端口，取值 <a href="enum.GpioPort.html" title="enum xwrust::xwds::soc::GpioPort"><code>GpioPort</code></a></li>
+<li>pinmsk: GPIO引脚掩码，每一位代表一个引脚，可通过 <a href="../../macro.pin.html" title="macro xwrust::pin"><code>pin!()</code></a> 宏生成</li>
+</ul>
+<h5 id="错误码"><a href="#错误码">错误码</a></h5>
+<ul>
+<li><a href="../../errno/constant.ERANGE.html" title="constant xwrust::errno::ERANGE"><code>-ERANGE</code></a> GPIO端口错误</li>
+<li><a href="../../errno/constant.EBUSY.html" title="constant xwrust::errno::EBUSY"><code>-EBUSY</code></a> GPIO引脚被占用</li>
+</ul>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.gpio_rls" class="method"><a class="src rightside" href="../../../src/xwrust/xwds/soc.rs.html#148">source</a><h4 class="code-header">fn <a href="#tymethod.gpio_rls" class="fn">gpio_rls</a>(&amp;self, port: <a class="enum" href="enum.GpioPort.html" title="enum xwrust::xwds::soc::GpioPort">GpioPort</a>, pinmsk: <a class="type" href="../../types/type.XwSq.html" title="type xwrust::types::XwSq">XwSq</a>) -&gt; <a class="type" href="../../types/type.XwEr.html" title="type xwrust::types::XwEr">XwEr</a></h4></section></summary><div class="docblock"><p>释放GPIO</p>
+<h5 id="参数说明-1"><a href="#参数说明-1">参数说明</a></h5>
+<ul>
+<li>port: GPIO端口，取值 <a href="enum.GpioPort.html" title="enum xwrust::xwds::soc::GpioPort"><code>GpioPort</code></a></li>
+<li>pinmsk: GPIO引脚掩码，每一位代表一个引脚，可通过 <a href="../../macro.pin.html" title="macro xwrust::pin"><code>pin!()</code></a> 宏生成</li>
+</ul>
+<h5 id="错误码-1"><a href="#错误码-1">错误码</a></h5>
+<ul>
+<li><a href="../../errno/constant.ERANGE.html" title="constant xwrust::errno::ERANGE"><code>-ERANGE</code></a> GPIO端口错误</li>
+<li><a href="../../errno/constant.EPERM.html" title="constant xwrust::errno::EPERM"><code>-EPERM</code></a> GPIO引脚未被申请</li>
+</ul>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.gpio_cfg" class="method"><a class="src rightside" href="../../../src/xwrust/xwds/soc.rs.html#168">source</a><h4 class="code-header">fn <a href="#tymethod.gpio_cfg" class="fn">gpio_cfg</a>(&amp;self, port: <a class="enum" href="enum.GpioPort.html" title="enum xwrust::xwds::soc::GpioPort">GpioPort</a>, pinmsk: <a class="type" href="../../types/type.XwSq.html" title="type xwrust::types::XwSq">XwSq</a>, cfg: *mut c_void) -&gt; <a class="type" href="../../types/type.XwEr.html" title="type xwrust::types::XwEr">XwEr</a></h4></section></summary><div class="docblock"><p>配置GPIO</p>
+<h5 id="参数说明-2"><a href="#参数说明-2">参数说明</a></h5>
+<ul>
+<li>port: GPIO端口，取值 <a href="enum.GpioPort.html" title="enum xwrust::xwds::soc::GpioPort"><code>GpioPort</code></a></li>
+<li>pinmsk: GPIO引脚掩码，每一位代表一个引脚，可通过 <a href="../../macro.pin.html" title="macro xwrust::pin"><code>pin!()</code></a> 宏生成</li>
+<li>cfg: 配置数据，配置结构体的定义与平台相关</li>
+</ul>
+<h5 id="错误码-2"><a href="#错误码-2">错误码</a></h5>
+<ul>
+<li><a href="../../errno/constant.ERANGE.html" title="constant xwrust::errno::ERANGE"><code>-ERANGE</code></a> GPIO端口错误</li>
+<li><a href="../../errno/constant.EPERM.html" title="constant xwrust::errno::EPERM"><code>-EPERM</code></a> GPIO引脚未被申请</li>
+<li><a href="../../errno/constant.ENOSYS.html" title="constant xwrust::errno::ENOSYS"><code>-ENOSYS</code></a> 芯片不支持此方法</li>
+</ul>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.gpio_set" class="method"><a class="src rightside" href="../../../src/xwrust/xwds/soc.rs.html#187">source</a><h4 class="code-header">fn <a href="#tymethod.gpio_set" class="fn">gpio_set</a>(&amp;self, port: <a class="enum" href="enum.GpioPort.html" title="enum xwrust::xwds::soc::GpioPort">GpioPort</a>, pinmsk: <a class="type" href="../../types/type.XwSq.html" title="type xwrust::types::XwSq">XwSq</a>) -&gt; <a class="type" href="../../types/type.XwEr.html" title="type xwrust::types::XwEr">XwEr</a></h4></section></summary><div class="docblock"><p>将GPIO设置为高电平</p>
+<h5 id="参数说明-3"><a href="#参数说明-3">参数说明</a></h5>
+<ul>
+<li>port: GPIO端口，取值 <a href="enum.GpioPort.html" title="enum xwrust::xwds::soc::GpioPort"><code>GpioPort</code></a></li>
+<li>pinmsk: GPIO引脚掩码，每一位代表一个引脚，可通过 <a href="../../macro.pin.html" title="macro xwrust::pin"><code>pin!()</code></a> 宏生成</li>
+</ul>
+<h5 id="错误码-3"><a href="#错误码-3">错误码</a></h5>
+<ul>
+<li><a href="../../errno/constant.ERANGE.html" title="constant xwrust::errno::ERANGE"><code>-ERANGE</code></a> GPIO端口错误</li>
+<li><a href="../../errno/constant.EPERM.html" title="constant xwrust::errno::EPERM"><code>-EPERM</code></a> GPIO引脚未被申请</li>
+<li><a href="../../errno/constant.ENOSYS.html" title="constant xwrust::errno::ENOSYS"><code>-ENOSYS</code></a> 芯片不支持此方法</li>
+</ul>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.gpio_reset" class="method"><a class="src rightside" href="../../../src/xwrust/xwds/soc.rs.html#206">source</a><h4 class="code-header">fn <a href="#tymethod.gpio_reset" class="fn">gpio_reset</a>(&amp;self, port: <a class="enum" href="enum.GpioPort.html" title="enum xwrust::xwds::soc::GpioPort">GpioPort</a>, pinmsk: <a class="type" href="../../types/type.XwSq.html" title="type xwrust::types::XwSq">XwSq</a>) -&gt; <a class="type" href="../../types/type.XwEr.html" title="type xwrust::types::XwEr">XwEr</a></h4></section></summary><div class="docblock"><p>将GPIO设置为低电平</p>
+<h5 id="参数说明-4"><a href="#参数说明-4">参数说明</a></h5>
+<ul>
+<li>port: GPIO端口，取值 <a href="enum.GpioPort.html" title="enum xwrust::xwds::soc::GpioPort"><code>GpioPort</code></a></li>
+<li>pinmsk: GPIO引脚掩码，每一位代表一个引脚，可通过 <a href="../../macro.pin.html" title="macro xwrust::pin"><code>pin!()</code></a> 宏生成</li>
+</ul>
+<h5 id="错误码-4"><a href="#错误码-4">错误码</a></h5>
+<ul>
+<li><a href="../../errno/constant.ERANGE.html" title="constant xwrust::errno::ERANGE"><code>-ERANGE</code></a> GPIO端口错误</li>
+<li><a href="../../errno/constant.EPERM.html" title="constant xwrust::errno::EPERM"><code>-EPERM</code></a> GPIO引脚未被申请</li>
+<li><a href="../../errno/constant.ENOSYS.html" title="constant xwrust::errno::ENOSYS"><code>-ENOSYS</code></a> 芯片不支持此方法</li>
+</ul>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.gpio_toggle" class="method"><a class="src rightside" href="../../../src/xwrust/xwds/soc.rs.html#225">source</a><h4 class="code-header">fn <a href="#tymethod.gpio_toggle" class="fn">gpio_toggle</a>(&amp;self, port: <a class="enum" href="enum.GpioPort.html" title="enum xwrust::xwds::soc::GpioPort">GpioPort</a>, pinmsk: <a class="type" href="../../types/type.XwSq.html" title="type xwrust::types::XwSq">XwSq</a>) -&gt; <a class="type" href="../../types/type.XwEr.html" title="type xwrust::types::XwEr">XwEr</a></h4></section></summary><div class="docblock"><p>翻转GPIO的电平</p>
+<h5 id="参数说明-5"><a href="#参数说明-5">参数说明</a></h5>
+<ul>
+<li>port: GPIO端口，取值 <a href="enum.GpioPort.html" title="enum xwrust::xwds::soc::GpioPort"><code>GpioPort</code></a></li>
+<li>pinmsk: GPIO引脚掩码，每一位代表一个引脚，可通过 <a href="../../macro.pin.html" title="macro xwrust::pin"><code>pin!()</code></a> 宏生成</li>
+</ul>
+<h5 id="错误码-5"><a href="#错误码-5">错误码</a></h5>
+<ul>
+<li><a href="../../errno/constant.ERANGE.html" title="constant xwrust::errno::ERANGE"><code>-ERANGE</code></a> GPIO端口错误</li>
+<li><a href="../../errno/constant.EPERM.html" title="constant xwrust::errno::EPERM"><code>-EPERM</code></a> GPIO引脚未被申请</li>
+<li><a href="../../errno/constant.ENOSYS.html" title="constant xwrust::errno::ENOSYS"><code>-ENOSYS</code></a> 芯片不支持此方法</li>
+</ul>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.gpio_output" class="method"><a class="src rightside" href="../../../src/xwrust/xwds/soc.rs.html#247">source</a><h4 class="code-header">fn <a href="#tymethod.gpio_output" class="fn">gpio_output</a>(&amp;self, port: <a class="enum" href="enum.GpioPort.html" title="enum xwrust::xwds::soc::GpioPort">GpioPort</a>, pinmsk: <a class="type" href="../../types/type.XwSq.html" title="type xwrust::types::XwSq">XwSq</a>, out: <a class="type" href="../../types/type.XwSq.html" title="type xwrust::types::XwSq">XwSq</a>) -&gt; <a class="type" href="../../types/type.XwEr.html" title="type xwrust::types::XwEr">XwEr</a></h4></section></summary><div class="docblock"><p>写GPIO</p>
+<p>输出的值 = <code>pinmsk</code> &amp; <code>out</code></p>
+<h5 id="参数说明-6"><a href="#参数说明-6">参数说明</a></h5>
+<ul>
+<li>port: GPIO端口，取值 <a href="enum.GpioPort.html" title="enum xwrust::xwds::soc::GpioPort"><code>GpioPort</code></a></li>
+<li>pinmsk: GPIO引脚掩码，每一位代表一个引脚，可通过 <a href="../../macro.pin.html" title="macro xwrust::pin"><code>pin!()</code></a> 宏生成</li>
+<li>out: 输出值，可通过 <a href="../../macro.pin.html" title="macro xwrust::pin"><code>pin!()</code></a> 宏生成</li>
+</ul>
+<h5 id="错误码-6"><a href="#错误码-6">错误码</a></h5>
+<ul>
+<li><a href="../../errno/constant.ERANGE.html" title="constant xwrust::errno::ERANGE"><code>-ERANGE</code></a> GPIO端口错误</li>
+<li><a href="../../errno/constant.EPERM.html" title="constant xwrust::errno::EPERM"><code>-EPERM</code></a> GPIO引脚未被申请</li>
+<li><a href="../../errno/constant.ENOSYS.html" title="constant xwrust::errno::ENOSYS"><code>-ENOSYS</code></a> 芯片不支持此方法</li>
+</ul>
+</div></details><details class="toggle method-toggle" open><summary><section id="tymethod.gpio_input" class="method"><a class="src rightside" href="../../../src/xwrust/xwds/soc.rs.html#268">source</a><h4 class="code-header">fn <a href="#tymethod.gpio_input" class="fn">gpio_input</a>(&amp;self, port: <a class="enum" href="enum.GpioPort.html" title="enum xwrust::xwds::soc::GpioPort">GpioPort</a>, pinmsk: <a class="type" href="../../types/type.XwSq.html" title="type xwrust::types::XwSq">XwSq</a>) -&gt; (<a class="type" href="../../types/type.XwEr.html" title="type xwrust::types::XwEr">XwEr</a>, <a class="type" href="../../types/type.XwSq.html" title="type xwrust::types::XwSq">XwSq</a>)</h4></section></summary><div class="docblock"><p>读取GPIO</p>
+<p>读取的值 = <code>pinmsk</code> &amp; GPIO的端口电平状态</p>
+<h5 id="参数说明-7"><a href="#参数说明-7">参数说明</a></h5>
+<ul>
+<li>port: GPIO端口，取值 <a href="enum.GpioPort.html" title="enum xwrust::xwds::soc::GpioPort"><code>GpioPort</code></a></li>
+<li>pinmsk: GPIO引脚掩码，每一位代表一个引脚，可通过 <a href="../../macro.pin.html" title="macro xwrust::pin"><code>pin!()</code></a> 宏生成</li>
+</ul>
+<h5 id="错误码-7"><a href="#错误码-7">错误码</a></h5>
+<ul>
+<li><a href="../../errno/constant.ERANGE.html" title="constant xwrust::errno::ERANGE"><code>-ERANGE</code></a> GPIO端口错误</li>
+<li><a href="../../errno/constant.EPERM.html" title="constant xwrust::errno::EPERM"><code>-EPERM</code></a> GPIO引脚未被申请</li>
+<li><a href="../../errno/constant.ENOSYS.html" title="constant xwrust::errno::ENOSYS"><code>-ENOSYS</code></a> 芯片不支持此方法</li>
+</ul>
+</div></details></div><h2 id="implementors" class="small-section-header">Implementors<a href="#implementors" class="anchor">§</a></h2><div id="implementors-list"><section id="impl-Gpio-for-Soc" class="impl"><a class="src rightside" href="../../../src/xwrust/xwds/soc.rs.html#271-329">source</a><a href="#impl-Gpio-for-Soc" class="anchor">§</a><h3 class="code-header">impl <a class="trait" href="trait.Gpio.html" title="trait xwrust::xwds::soc::Gpio">Gpio</a> for <a class="struct" href="struct.Soc.html" title="struct xwrust::xwds::soc::Soc">Soc</a></h3></section></div><script src="../../../trait.impl/xwrust/xwds/soc/trait.Gpio.js" async></script></section></div></main></body></html>

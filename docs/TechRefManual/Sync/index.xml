@@ -1,0 +1,693 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>XWOS – 同步</title>
+    <link>/docs/TechRefManual/Sync/</link>
+    <description>Recent content in 同步 on XWOS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    
+	  <atom:link href="/docs/TechRefManual/Sync/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: 信号量</title>
+      <link>/docs/TechRefManual/Sync/Sem/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/TechRefManual/Sync/Sem/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
+&lt;p&gt;信号量是操作系统比较底层的同步机制，是一个带有 &lt;strong&gt;等待队列&lt;/strong&gt; 的计数器。&lt;/p&gt;
+&lt;p&gt;信号量中包含一个整数计数器：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;当信号量的值等于 &lt;strong&gt;0&lt;/strong&gt; 时，线程们就在 &lt;strong&gt;等待队列&lt;/strong&gt; 中等待信号量的值大于 &lt;strong&gt;0&lt;/strong&gt; ；&lt;/li&gt;
+&lt;li&gt;当信号量的值大于 &lt;strong&gt;0&lt;/strong&gt; 时，可以唤醒一个正在等待的线程。线程被唤醒后会取走一个值，信号量的值减少 &lt;strong&gt;1&lt;/strong&gt; ；&lt;/li&gt;
+&lt;li&gt;当信号量的值小于 &lt;strong&gt;0&lt;/strong&gt; ，信号量处于 &lt;strong&gt;冻结&lt;/strong&gt; 状态，理论中的信号量不存在此状态，这是XWOS的扩张。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;任意上下文都可增加信号量的值，这个操作被称为 &lt;strong&gt;发布&lt;/strong&gt; 。&lt;/p&gt;
+&lt;p&gt;信号量常常用于在中断中唤醒一个线程，并将耗时较长的操作放在线程中执行。可减少中断上下文的执行时间，增加中断吞吐量，降低中断延迟。&lt;/p&gt;
+&lt;p&gt;XWOS内核的信号量有两种：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;管道信号量(PipelineSemaphore)：对所有阻塞在其等待队列中的线程按照先进先出(FIFO)的策略调度，
+即当信号量可用时，最先进入等待队列中的线程将优先获得信号量。&lt;/li&gt;
+&lt;li&gt;实时信号量(ReltimeSemaphore)：对所有阻塞在其等待队列中的线程按照优先级进行调度，即高优先级
+的线程总是最先获得信号量，同优先级的线程按先进先出(FIFO)的策略调度。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;操作系统抽象层(OSAL)的CAPI只封装了一种信号量，当系统配置文件中同时配置了管道信号量与实时信号量时， &lt;strong&gt;优先使用实时信号量&lt;/strong&gt; 。&lt;/p&gt;
+&lt;h3 id=&#34;信号量对象与对象描述符描述符&#34;&gt;信号量对象与对象描述符描述符&lt;/h3&gt;
+&lt;p&gt;信号量对象是 &lt;a href=&#34;../../Xwobj&#34;&gt;XWOS对象&lt;/a&gt; &lt;a href=&#34;../../../../api/structxwos__object.html&#34;&gt;&lt;code&gt;struct xwos_object&lt;/code&gt;&lt;/a&gt; 的派生类 。
+类似的，信号量对象也用 &lt;strong&gt;信号量对象描述符&lt;/strong&gt; &lt;a href=&#34;../../../../api/structxwos__sem__d.html&#34;&gt;&lt;code&gt;xwos_sem_d&lt;/code&gt;&lt;/a&gt;
+来解决有效性和身份合法性的问题。&lt;/p&gt;
+&lt;p&gt;信号量对象描述符由 &lt;strong&gt;信号量对象的指针&lt;/strong&gt; 和 &lt;strong&gt;标签&lt;/strong&gt; 组成：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;typedef&lt;/span&gt; &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;struct&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;struct&lt;/span&gt; xwos_sem &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; sem; &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/**&amp;lt; 信号量对象的指针 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;xwsq_t&lt;/span&gt; tik; &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/**&amp;lt; 标签 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;} xwos_sem_d;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;通过对象描述符引用对象时，首先检测 &lt;code&gt;obj-&amp;gt;magic&lt;/code&gt; 的值，是否为 &lt;code&gt;0x58574F53U&lt;/code&gt; ，由此可确定指针 &lt;code&gt;obj&lt;/code&gt; 指向一个有效的 &lt;strong&gt;XWOS的对象&lt;/strong&gt; 。
+然后对比标签 &lt;code&gt;obj-&amp;gt;tik&lt;/code&gt; 和 &lt;code&gt;tik&lt;/code&gt; 是否相等，由此可以确定对象的 &lt;strong&gt;身份&lt;/strong&gt; 。
+因为对象的 &lt;code&gt;tik&lt;/code&gt; 是全局唯一的，当对象被释放后，它的 &lt;code&gt;tik&lt;/code&gt; 会被析构函数析构为 &lt;strong&gt;0&lt;/strong&gt; 。
+当内存地址被重新构建为新的对象，那么它的 &lt;code&gt;tik&lt;/code&gt; 一定与对象描述符的 &lt;code&gt;tik&lt;/code&gt; 不一致。&lt;/p&gt;
+&lt;h2 id=&#34;信号量的初始化销毁与动态创建删除&#34;&gt;信号量的初始化、销毁与动态创建、删除&lt;/h2&gt;
+&lt;p&gt;信号量创建时需要指定两个参数： &lt;strong&gt;初始值&lt;/strong&gt; 和 &lt;strong&gt;最大值&lt;/strong&gt; 。&lt;/p&gt;
+&lt;h3 id=&#34;静态初始化销毁&#34;&gt;静态初始化、销毁&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;静态初始化： &lt;a href=&#34;../../../../capi/group__xwos__sync__sem.html#gaef37596ed9c49312579530b2218150ad&#34;&gt;&lt;code&gt;xwos_sem_init()&lt;/code&gt;&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;静态&lt;/strong&gt; 是指用户预先定义线程结构体对象，这些对象在编译期由编译器分配内存。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;销毁静态初始化的信号量： &lt;a href=&#34;../../../../capi/group__xwos__sync__sem.html#ga91a3f44977a865f10e9a46f13e261d3a&#34;&gt;&lt;code&gt;xwos_sem_fini()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;动态创建删除&#34;&gt;动态创建、删除&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;动态创建： &lt;a href=&#34;../../../../capi/group__xwos__sync__sem.html#gadebdd16a61933d67d2702355fcd543e2&#34;&gt;&lt;code&gt;xwos_sem_create()&lt;/code&gt;&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;动态&lt;/strong&gt; 是指程序在运行时，通过内存分配函数申请内存，并在申请的内存上构造对象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;删除动态创建的信号量： &lt;a href=&#34;../../../../capi/group__xwos__sync__sem.html#ga5bac50165dee16acce035f3a88d96d1b&#34;&gt;&lt;code&gt;xwos_sem_delete()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;发布信号量&#34;&gt;发布信号量&lt;/h2&gt;
+&lt;p&gt;可以通过 &lt;a href=&#34;../../../../capi/group__xwos__sync__sem.html#gaf6f291eaa8c268dccb6ebc675a24755b&#34;&gt;&lt;code&gt;xwos_sem_post()&lt;/code&gt;&lt;/a&gt; 在 &lt;strong&gt;任意&lt;/strong&gt; 上下文增加信号量的值。
+当信号量的值大与 &lt;strong&gt;0&lt;/strong&gt; 时，会唤醒信号量等待队列中的一个线程。被唤醒的线程会取走一个值，使得信号量的计数器减1。&lt;/p&gt;
+&lt;h2 id=&#34;等待信号量&#34;&gt;等待信号量&lt;/h2&gt;
+&lt;p&gt;当信号量的值大于 &lt;strong&gt;0&lt;/strong&gt; 时，可以直接取走一个，此时信号量的值减 &lt;strong&gt;1&lt;/strong&gt; ；
+当信号量的值等于 &lt;strong&gt;0&lt;/strong&gt; 时，获取信号量的线程就只能阻塞等待，XWOS提供四种方式：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__sem.html#ga5a7b38f68e2fc5159909a1eb4b7db7a2&#34;&gt;&lt;code&gt;xwos_sem_wait()&lt;/code&gt;&lt;/a&gt; ：等待并获取信号量，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__sem.html#gab9fce6b4dc3add4c714dfa1c8041593f&#34;&gt;&lt;code&gt;xwos_sem_wait_to()&lt;/code&gt;&lt;/a&gt; ：限时等待并获取信号量，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__sem.html#ga794e05587874027d02d0e4c87f9c2893&#34;&gt;&lt;code&gt;xwos_sem_wait_unintr()&lt;/code&gt;&lt;/a&gt; ：不可中断等待并获取信号量，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__sem.html#ga453bbb4747cdd5cc94ddb9b988ee0866&#34;&gt;&lt;code&gt;xwos_sem_trywait()&lt;/code&gt;&lt;/a&gt; ：尝试获取信号量，可在 &lt;strong&gt;任意&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;读取信号量的状态&#34;&gt;读取信号量的状态&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;信号量中计数器的最大值可以通过 &lt;a href=&#34;../../../../capi/group__xwos__sync__sem.html#ga31696885ee6e7bfe699273225f061a7e&#34;&gt;&lt;code&gt;xwos_sem_get_max()&lt;/code&gt;&lt;/a&gt; 读取。这个最大值是在信号量初始化或创建时设置的。&lt;/li&gt;
+&lt;li&gt;信号量中计数器的值可以通过 &lt;a href=&#34;../../../../capi/group__xwos__sync__sem.html#ga25b85b8a30ba1f3f1453feecd7a71343&#34;&gt;&lt;code&gt;xwos_sem_get_value()&lt;/code&gt;&lt;/a&gt; 读取。此CAPI只读取，不会改变信号量的值，也不会等待信号量。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;冻结与解冻&#34;&gt;冻结与解冻&lt;/h2&gt;
+&lt;h3 id=&#34;冻结&#34;&gt;冻结&lt;/h3&gt;
+&lt;p&gt;信号量可以使用 &lt;a href=&#34;../../../../capi/group__xwos__sync__sem.html#ga9f215ee967e9f3dbd1d7e34402109849&#34;&gt;&lt;code&gt;xwos_sem_freeze()&lt;/code&gt;&lt;/a&gt; 进行 &lt;strong&gt;冻结&lt;/strong&gt;，
+被冻结的信号量的值为负数，不影响对信号量的 &lt;strong&gt;等待&lt;/strong&gt; 操作。但不能 &lt;strong&gt;发布&lt;/strong&gt; 信号量。&lt;/p&gt;
+&lt;h3 id=&#34;解冻&#34;&gt;解冻&lt;/h3&gt;
+&lt;p&gt;通过 &lt;a href=&#34;../../../../capi/group__xwos__sync__sem.html#gadbbb35963b95d865ddb392a97639ec87&#34;&gt;&lt;code&gt;xwos_sem_thaw()&lt;/code&gt;&lt;/a&gt; 可将已经冻结的信号量 &lt;strong&gt;解冻&lt;/strong&gt; 。
+信号量 &lt;strong&gt;解冻&lt;/strong&gt; 后，值被重置为0，此时可重新开始发布信号量。&lt;/p&gt;
+&lt;h2 id=&#34;绑定与解绑信号选择器&#34;&gt;绑定与解绑信号选择器&lt;/h2&gt;
+&lt;p&gt;可以通过 &lt;a href=&#34;../../../../capi/group__xwos__sync__sem.html#ga4a04b2c6003ed59a0f82c7b8ed8c7f68&#34;&gt;&lt;code&gt;xwos_sem_bind()&lt;/code&gt;&lt;/a&gt; 将信号量绑定到 &lt;a href=&#34;../Sel&#34;&gt;&lt;strong&gt;信号选择器&lt;/strong&gt;&lt;/a&gt; 上。
+当 &lt;strong&gt;发布&lt;/strong&gt; 信号量时，信号量会向 &lt;strong&gt;信号选择器&lt;/strong&gt; 发送一个 &lt;strong&gt;选择信号&lt;/strong&gt; 。此时 &lt;strong&gt;信号选择器&lt;/strong&gt; 会唤醒正在等待的线程。&lt;/p&gt;
+&lt;p&gt;绑定后的信号量可以通过 &lt;a href=&#34;../../../../capi/group__xwos__sync__sem.html#ga4aab3913939aa6cfa040af1039e564d5&#34;&gt;&lt;code&gt;xwos_sem_unbind()&lt;/code&gt;&lt;/a&gt; 解绑。&lt;/p&gt;
+&lt;h2 id=&#34;信号量对象的生命周期管理&#34;&gt;信号量对象的生命周期管理&lt;/h2&gt;
+&lt;p&gt;信号量对象的基类是 &lt;a href=&#34;../../Xwobj&#34;&gt;XWOS对象&lt;/a&gt; &lt;a href=&#34;../../../../api/structxwos__object.html&#34;&gt;&lt;code&gt;struct xwos_object&lt;/code&gt;&lt;/a&gt; 。
+信号量对象也有两组生命周期管理的CAPI：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;使用 &lt;strong&gt;对象指针&lt;/strong&gt; 访问生命周期管理的CAPI：需要确保调用CAPI时，对象一定是有效的，且不存在 &lt;strong&gt;释放-又被申请&lt;/strong&gt; 为另一个对象的情况。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__sem.html#ga70b16e65e7f3b8bbb87435804f1829d3&#34;&gt;&lt;code&gt;xwos_sem_grab()&lt;/code&gt;&lt;/a&gt; ：增加引用计数。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__sem.html#ga83a3b567eb40632d954a35b98ecf1950&#34;&gt;&lt;code&gt;xwos_sem_put()&lt;/code&gt;&lt;/a&gt; ：减少引用计数，当引用计数减少为 &lt;strong&gt;0&lt;/strong&gt; 时，调用垃圾回收函数释放对象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 &lt;strong&gt;对象描述符&lt;/strong&gt; 访问生命周期管理的CAPI：用户无法确保对象一定有效或无法确保对象不会变成另一个对象时使用。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__sem.html#gabd6b221831f9154af4061281e4de3bbe&#34;&gt;&lt;code&gt;xwos_sem_acquire()&lt;/code&gt;&lt;/a&gt; ：通过对象描述符确定对象有效且合法，再增加引用计数。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__sem.html#ga2fd69e5ea645814fa3a52241167a9e1e&#34;&gt;&lt;code&gt;xwos_sem_release()&lt;/code&gt;&lt;/a&gt; ：通过对象描述符确定对象有效且合法，再减少引用计数。
+当引用计数减少为 &lt;strong&gt;0&lt;/strong&gt; 时，调用垃圾回收函数释放对象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;capi参考&#34;&gt;CAPI参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../../capi/group__xwos__sync__sem.html&#34;&gt;&lt;strong&gt;头文件 &amp;lt;xwos/osal/sync/sem.h&amp;gt;&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 条件量</title>
+      <link>/docs/TechRefManual/Sync/Cond/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/TechRefManual/Sync/Cond/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
+&lt;p&gt;条件量是操作系统比较底层的同步机制，可以同时阻塞多个线程。当条件成立，条件量可以唤醒一个或所有正在等待的线程。&lt;/p&gt;
+&lt;p&gt;操作系统或语言库都提供了条件量的功能，例如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;POSIX的 &lt;code&gt;pthread_cond_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;C++的 &lt;code&gt;std::condition_variable&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Java的 &lt;code&gt;java.util.concurrent.locks.Condition&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Python的 &lt;code&gt;threading.Condition&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Rust的 &lt;code&gt;std::sync::condvar&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;线程需要在持有 &lt;strong&gt;互斥锁&lt;/strong&gt; 的情况下去等待条件量，
+条件量阻塞线程时会同步释放 &lt;strong&gt;互斥锁&lt;/strong&gt; 。当条件成立，线程被唤醒时，条件量会自动上锁 &lt;strong&gt;互斥锁&lt;/strong&gt; 。
+等待条件量发生错误时，条件量也会自动上锁 &lt;strong&gt;互斥锁&lt;/strong&gt; 后再返回。&lt;/p&gt;
+&lt;p&gt;XWOS的条件量的功能类似，主要包括以下操作：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;线程 &lt;strong&gt;A&lt;/strong&gt; 等待条件量的 &lt;strong&gt;条件成立&lt;/strong&gt; 而阻塞；&lt;/li&gt;
+&lt;li&gt;另一个线程 &lt;strong&gt;B&lt;/strong&gt; 或中断上下文或其他上下文通过 &lt;strong&gt;单播&lt;/strong&gt; 或 &lt;strong&gt;广播&lt;/strong&gt; 使 &lt;strong&gt;条件成立&lt;/strong&gt; ，并唤醒条件量上阻塞的线程 &lt;strong&gt;A&lt;/strong&gt; 。&lt;/li&gt;
+&lt;li&gt;线程 &lt;strong&gt;A&lt;/strong&gt; 持有 &lt;strong&gt;锁&lt;/strong&gt; 的情况下去等待条件量，会自动解锁；&lt;/li&gt;
+&lt;li&gt;线程 &lt;strong&gt;A&lt;/strong&gt; 持有 &lt;strong&gt;锁&lt;/strong&gt; 的情况下去等待条件量，当等到 &lt;strong&gt;条件成立&lt;/strong&gt; 时，会自动上锁；&lt;/li&gt;
+&lt;li&gt;线程 &lt;strong&gt;A&lt;/strong&gt; 持有 &lt;strong&gt;锁&lt;/strong&gt; 的情况下去等待条件量，当发生错误返回时， &lt;strong&gt;不会&lt;/strong&gt; 自动上锁；&lt;/li&gt;
+&lt;li&gt;支持多种锁类型：
+&lt;ul&gt;
+&lt;li&gt;互斥锁&lt;/li&gt;
+&lt;li&gt;自旋锁&lt;/li&gt;
+&lt;li&gt;顺序锁&lt;/li&gt;
+&lt;li&gt;自定义的加锁与解锁函数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;支持没有伴生锁的情况下操作。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;条件量对象与对象描述符描述符&#34;&gt;条件量对象与对象描述符描述符&lt;/h3&gt;
+&lt;p&gt;条件量对象是 &lt;a href=&#34;../../Xwobj&#34;&gt;XWOS对象&lt;/a&gt; &lt;a href=&#34;../../../../api/structxwos__object.html&#34;&gt;&lt;code&gt;struct xwos_object&lt;/code&gt;&lt;/a&gt; 的派生类 。
+类似的，条件量对象也用 &lt;strong&gt;条件量对象描述符&lt;/strong&gt; &lt;a href=&#34;../../../../api/structxwos__cond__d.html&#34;&gt;&lt;code&gt;xwos_cond_d&lt;/code&gt;&lt;/a&gt;
+来解决有效性和身份合法性的问题。&lt;/p&gt;
+&lt;p&gt;条件量对象描述符由 &lt;strong&gt;条件量对象的指针&lt;/strong&gt; 和 &lt;strong&gt;标签&lt;/strong&gt; 组成：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;typedef&lt;/span&gt; &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;struct&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;struct&lt;/span&gt; xwos_cond &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; cond; &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/**&amp;lt; 条件量对象的指针 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;xwsq_t&lt;/span&gt; tik; &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/**&amp;lt; 标签 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;} xwos_cond_d;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;通过对象描述符引用对象时，首先检测 &lt;code&gt;obj-&amp;gt;magic&lt;/code&gt; 的值，是否为 &lt;code&gt;0x58574F53U&lt;/code&gt; ，由此可确定指针 &lt;code&gt;obj&lt;/code&gt; 指向一个有效的 &lt;strong&gt;XWOS的对象&lt;/strong&gt; 。
+然后对比标签 &lt;code&gt;obj-&amp;gt;tik&lt;/code&gt; 和 &lt;code&gt;tik&lt;/code&gt; 是否相等，由此可以确定对象的 &lt;strong&gt;身份&lt;/strong&gt; 。
+因为对象的 &lt;code&gt;tik&lt;/code&gt; 是全局唯一的，当对象被释放后，它的 &lt;code&gt;tik&lt;/code&gt; 会被析构函数析构为 &lt;strong&gt;0&lt;/strong&gt; 。
+当内存地址被重新构建为新的对象，那么它的 &lt;code&gt;tik&lt;/code&gt; 一定与对象描述符的 &lt;code&gt;tik&lt;/code&gt; 不一致。&lt;/p&gt;
+&lt;h2 id=&#34;条件量的初始化销毁与动态创建删除&#34;&gt;条件量的初始化、销毁与动态创建、删除&lt;/h2&gt;
+&lt;h3 id=&#34;静态初始化销毁&#34;&gt;静态初始化、销毁&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;静态初始化： &lt;a href=&#34;../../../../capi/group__xwos__sync__cond.html#ga02154ceda2ebb3198e0f452d05e84fe8&#34;&gt;&lt;code&gt;xwos_cond_init()&lt;/code&gt;&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;静态&lt;/strong&gt; 是指用户预先定义线程结构体对象，这些对象在编译期由编译器分配内存。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;销毁静态初始化的条件量： &lt;a href=&#34;../../../../capi/group__xwos__sync__cond.html#ga2007c32a3bc08294a77ab09ac17e2e20&#34;&gt;&lt;code&gt;xwos_cond_fini()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;动态创建删除&#34;&gt;动态创建、删除&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;动态创建： &lt;a href=&#34;../../../../capi/group__xwos__sync__cond.html#ga8d6ff09dee39723571220a7f25d04eb3&#34;&gt;&lt;code&gt;xwos_cond_create()&lt;/code&gt;&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;动态&lt;/strong&gt; 是指程序在运行时，通过内存分配函数申请内存，并在申请的内存上构造对象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;删除动态创建的条件量： &lt;a href=&#34;../../../../capi/group__xwos__sync__cond.html#ga6921e0eb38b073d68cb4af77ecc71c85&#34;&gt;&lt;code&gt;xwos_cond_delete()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;单播&#34;&gt;单播&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__cond.html#gafe8a5951b17d91fe378756815abc8b9b&#34;&gt;&lt;code&gt;xwos_cond_unicast()&lt;/code&gt;&lt;/a&gt; 可用来在 &lt;strong&gt;任意&lt;/strong&gt; 上下文使得条件量的条件成立，但只唤醒一个线程。
+单播不会产生 &lt;strong&gt;选者信号&lt;/strong&gt; 。&lt;/p&gt;
+&lt;h2 id=&#34;广播&#34;&gt;广播&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__cond.html#ga6a85c4b4f0a48d8f7af6d1eb9edf5828&#34;&gt;&lt;code&gt;xwos_cond_broadcast()&lt;/code&gt;&lt;/a&gt; 可用来在 &lt;strong&gt;任意&lt;/strong&gt; 上下文使得条件量的条件成立，唤醒全部线程。
+&lt;strong&gt;广播&lt;/strong&gt; 还会使得条件量向绑定的 &lt;a href=&#34;../sel&#34;&gt;信号选择器&lt;/a&gt; 发送 &lt;strong&gt;选择信号&lt;/strong&gt; 。&lt;/p&gt;
+&lt;h2 id=&#34;等待条件量&#34;&gt;等待条件量&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__cond.html#ga5e036562855a7585904903a707f19ca7&#34;&gt;&lt;code&gt;xwos_cond_wait()&lt;/code&gt;&lt;/a&gt; ：等待条件量，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__cond.html#gad8c1310da94bd715059fef8521264cfa&#34;&gt;&lt;code&gt;xwos_cond_wait_to()&lt;/code&gt;&lt;/a&gt; ：限时等待条件量，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__cond.html#ga176a4bfcec1f402e0e8e127354e58911&#34;&gt;&lt;code&gt;xwos_cond_wait_unintr()&lt;/code&gt;&lt;/a&gt; ：不可中断等待条件量，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;当使用了带附作用的上锁函数时，例如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos_splk_lock_cpuirq()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos_splk_lock_cpuirqsv()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos_splk_lock_irqs()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos_splk_lock_bh()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos_sqlk_wr_lock_cpuirq()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos_sqlk_wr_lock_cpuirqsv()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos_sqlk_wr_lock_irqs()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos_sqlk_wr_lock_bh()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos_sqlk_rdex_lock_cpuirq()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos_sqlk_rdex_lock_cpuirqsv()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos_sqlk_rdex_lock_irqs()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos_sqlk_rdex_lock_bh()&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;等待条件量&lt;/strong&gt; 不会管理调度器开关、中断开关以及中断底半部开关。
+等待之前是什么状态，无论返回值是 &lt;code&gt;XWOK&lt;/code&gt; 还是错误码，等待之后还是什么状态。&lt;/p&gt;
+&lt;p&gt;XWOS的条件量与 &lt;code&gt;pthread_cond_t&lt;/code&gt; 不同：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;XWOS的条件量， &lt;strong&gt;等待条件量&lt;/strong&gt; 返回值为 &lt;code&gt;XWOK&lt;/code&gt; 时才会对锁进行上锁，如果返回错误码，是否上锁不确定。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pthread_cond_wait()&lt;/code&gt; 无论如何都会等待互斥锁被上锁时才返回。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;冻结与解冻&#34;&gt;冻结与解冻&lt;/h2&gt;
+&lt;h3 id=&#34;冻结&#34;&gt;冻结&lt;/h3&gt;
+&lt;p&gt;条件量可以使用 &lt;a href=&#34;../../../../capi/group__xwos__sync__cond.html#gae28d45933a9a1cd5fbb282533f3a96d5&#34;&gt;&lt;code&gt;xwos_cond_freeze()&lt;/code&gt;&lt;/a&gt; 进行 &lt;strong&gt;冻结&lt;/strong&gt;，
+被冻结的条件量不能被 &lt;strong&gt;单播&lt;/strong&gt; 和 &lt;strong&gt;广播&lt;/strong&gt; ，但不影响 &lt;strong&gt;等待&lt;/strong&gt; 操作。&lt;/p&gt;
+&lt;h3 id=&#34;解冻&#34;&gt;解冻&lt;/h3&gt;
+&lt;p&gt;通过 &lt;a href=&#34;../../../../capi/group__xwos__sync__cond.html#gab932d4d14e734f2f413783512b0b10ac&#34;&gt;&lt;code&gt;xwos_cond_thaw()&lt;/code&gt;&lt;/a&gt; 可将已经冻结的条件量 &lt;strong&gt;解冻&lt;/strong&gt; 。
+条件量 &lt;strong&gt;解冻&lt;/strong&gt; 后，可重新 &lt;strong&gt;单播&lt;/strong&gt; 和 &lt;strong&gt;广播&lt;/strong&gt; 。&lt;/p&gt;
+&lt;h2 id=&#34;绑定与解绑信号选择器&#34;&gt;绑定与解绑信号选择器&lt;/h2&gt;
+&lt;p&gt;可以通过 &lt;a href=&#34;../../../../capi/group__xwos__sync__cond.html#gae2675cc244078d9ba58e9d8ae24faa4b&#34;&gt;&lt;code&gt;xwos_cond_bind()&lt;/code&gt;&lt;/a&gt; 将条件量绑定到 &lt;a href=&#34;../sel&#34;&gt;&lt;strong&gt;信号选择器&lt;/strong&gt;&lt;/a&gt; 上。
+当 &lt;strong&gt;广播&lt;/strong&gt; 条件量时，条件量会向 &lt;strong&gt;信号选择器&lt;/strong&gt; 发送一个 &lt;strong&gt;选择信号&lt;/strong&gt; 。此时 &lt;strong&gt;信号选择器&lt;/strong&gt; 会唤醒正在等待的线程。此外， &lt;strong&gt;单播&lt;/strong&gt; 不会产生 &lt;strong&gt;选者信号&lt;/strong&gt; 。&lt;/p&gt;
+&lt;p&gt;绑定后的条件量可以通过 &lt;a href=&#34;../../../../capi/group__xwos__sync__cond.html#gafaf7f192db151d1f3759a2dc8f5e7157&#34;&gt;&lt;code&gt;xwos_cond_unbind()&lt;/code&gt;&lt;/a&gt; 解绑。&lt;/p&gt;
+&lt;h2 id=&#34;条件量对象的生命周期管理&#34;&gt;条件量对象的生命周期管理&lt;/h2&gt;
+&lt;p&gt;条件量对象的基类是 &lt;a href=&#34;../../Xwobj&#34;&gt;XWOS对象&lt;/a&gt; &lt;a href=&#34;../../../../api/structxwos__object.html&#34;&gt;&lt;code&gt;struct xwos_object&lt;/code&gt;&lt;/a&gt; 。
+条件量对象也有两组生命周期管理的CAPI：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;使用 &lt;strong&gt;对象指针&lt;/strong&gt; 访问生命周期管理的CAPI：需要确保调用CAPI时，对象一定是有效的，且不存在 &lt;strong&gt;释放-又被申请&lt;/strong&gt; 为另一个对象的情况。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__cond.html#gab8acb77604393deba20d8511707bd820&#34;&gt;&lt;code&gt;xwos_cond_grab()&lt;/code&gt;&lt;/a&gt; ：增加引用计数。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__cond.html#gae52e6bcefc86df3fd676534010c3d2b2&#34;&gt;&lt;code&gt;xwos_cond_put()&lt;/code&gt;&lt;/a&gt; ：减少引用计数，当引用计数减少为 &lt;strong&gt;0&lt;/strong&gt; 时，调用垃圾回收函数释放对象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 &lt;strong&gt;对象描述符&lt;/strong&gt; 访问生命周期管理的CAPI：用户无法确保对象一定有效或无法确保对象不会变成另一个对象时使用。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__cond.html#ga0b954974711ff4689398312f2861e578&#34;&gt;&lt;code&gt;xwos_cond_acquire()&lt;/code&gt;&lt;/a&gt; ：通过对象描述符确定对象有效且合法，再增加引用计数。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__cond.html#gad2319939fb53002f58ac0cd1d32bc2b2&#34;&gt;&lt;code&gt;xwos_cond_release()&lt;/code&gt;&lt;/a&gt; ：通过对象描述符确定对象有效且合法，再减少引用计数。
+当引用计数减少为 &lt;strong&gt;0&lt;/strong&gt; 时，调用垃圾回收函数释放对象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;api参考&#34;&gt;API参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../../capi/group__xwos__sync__cond.html&#34;&gt;&lt;strong&gt;头文件 &amp;lt;xwos/osal/sync/cond.h&amp;gt;&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 事件标志</title>
+      <link>/docs/TechRefManual/Sync/Flg/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/TechRefManual/Sync/Flg/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
+&lt;p&gt;当系统需要处理很多事件，如果每个事件都绑定一个特定的条件量，
+每个条件量又由一个线程进行等待处理，会导致系统需要大量内存来创建条件量和线程。&lt;/p&gt;
+&lt;p&gt;事件标志使用位图来管理一组事件，位图中的每个位代表一个事件，
+当一个或多个事件状态发生变化时，事件对应的位也会发生变化，并唤醒正在等待的线程。
+线程唤醒后，就可从事件位图中获取事件的状态。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;线程可以等待位图中的事件位被置 &lt;strong&gt;1&lt;/strong&gt; ，也可以等待事件位被清 &lt;strong&gt;0&lt;/strong&gt; 。&lt;/li&gt;
+&lt;li&gt;线程可以等待位图中的事件位同时被置 &lt;strong&gt;1&lt;/strong&gt; （事件与事件之间是逻辑 &lt;strong&gt;与&lt;/strong&gt; 的关系），也可以等待其中任意一个位被置 &lt;strong&gt;1&lt;/strong&gt; （事件与事件之间是逻辑 &lt;strong&gt;或&lt;/strong&gt; 的关系）。&lt;/li&gt;
+&lt;li&gt;线程可以等待位图中的事件位同时被清 &lt;strong&gt;0&lt;/strong&gt; （事件与事件之间是逻辑 &lt;strong&gt;与&lt;/strong&gt; 的关系），也可以等待其中任意一个位被清 &lt;strong&gt;0&lt;/strong&gt; （事件与事件之间是逻辑 &lt;strong&gt;或&lt;/strong&gt; 的关系）。&lt;/li&gt;
+&lt;li&gt;线程可以选择是否 &lt;strong&gt;消费&lt;/strong&gt; 事件。 &lt;strong&gt;消费&lt;/strong&gt; 事件是指，当事件到来，线程被唤醒时，可以选择是否 &lt;strong&gt;清除&lt;/strong&gt; 事件。&lt;/li&gt;
+&lt;li&gt;线程可以等待事件标志位发生 &lt;strong&gt;翻转&lt;/strong&gt; ， &lt;strong&gt;翻转&lt;/strong&gt; 是指事件标志位由 &lt;strong&gt;1&lt;/strong&gt; 变为 &lt;strong&gt;0&lt;/strong&gt; ，或由 &lt;strong&gt;0&lt;/strong&gt; 变为 &lt;strong&gt;1&lt;/strong&gt; 。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;事件标志对象与对象描述符描述符&#34;&gt;事件标志对象与对象描述符描述符&lt;/h3&gt;
+&lt;p&gt;事件标志对象是 &lt;a href=&#34;../../Xwobj&#34;&gt;XWOS对象&lt;/a&gt; &lt;a href=&#34;../../../../api/structxwos__object.html&#34;&gt;&lt;code&gt;struct xwos_object&lt;/code&gt;&lt;/a&gt; 的派生类 。
+类似的，事件标志对象也用 &lt;strong&gt;事件标志对象描述符&lt;/strong&gt; &lt;a href=&#34;../../../../api/structxwos__flg__d.html&#34;&gt;&lt;code&gt;xwos_flg_d&lt;/code&gt;&lt;/a&gt;
+来解决有效性和身份合法性的问题。&lt;/p&gt;
+&lt;p&gt;事件标志对象描述符由 &lt;strong&gt;事件标志对象的指针&lt;/strong&gt; 和 &lt;strong&gt;标签&lt;/strong&gt; 组成：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;typedef&lt;/span&gt; &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;struct&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;struct&lt;/span&gt; xwos_flg &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; flg; &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/**&amp;lt; 事件标志对象的指针 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;xwsq_t&lt;/span&gt; tik; &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/**&amp;lt; 标签 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;} xwos_flg_d;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;通过对象描述符引用对象时，首先检测 &lt;code&gt;obj-&amp;gt;magic&lt;/code&gt; 的值，是否为 &lt;code&gt;0x58574F53U&lt;/code&gt; ，由此可确定指针 &lt;code&gt;obj&lt;/code&gt; 指向一个有效的 &lt;strong&gt;XWOS的对象&lt;/strong&gt; 。
+然后对比标签 &lt;code&gt;obj-&amp;gt;tik&lt;/code&gt; 和 &lt;code&gt;tik&lt;/code&gt; 是否相等，由此可以确定对象的 &lt;strong&gt;身份&lt;/strong&gt; 。
+因为对象的 &lt;code&gt;tik&lt;/code&gt; 是全局唯一的，当对象被释放后，它的 &lt;code&gt;tik&lt;/code&gt; 会被析构函数析构为 &lt;strong&gt;0&lt;/strong&gt; 。
+当内存地址被重新构建为新的对象，那么它的 &lt;code&gt;tik&lt;/code&gt; 一定与对象描述符的 &lt;code&gt;tik&lt;/code&gt; 不一致。&lt;/p&gt;
+&lt;h2 id=&#34;事件标志的初始化销毁与动态创建删除&#34;&gt;事件标志的初始化、销毁与动态创建、删除&lt;/h2&gt;
+&lt;h3 id=&#34;静态初始化销毁&#34;&gt;静态初始化、销毁&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;静态初始化： &lt;a href=&#34;../../../../capi/group__xwos__sync__flg.html#gab4131ef9b03a02111a64c57801259ab9&#34;&gt;&lt;code&gt;xwos_flg_init()&lt;/code&gt;&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;静态&lt;/strong&gt; 是指用户预先定义线程结构体对象，这些对象在编译期由编译器分配内存。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;销毁静态初始化的事件标志 &lt;a href=&#34;../../../../capi/group__xwos__sync__flg.html#ga27de7560274252b37eef3e99c450342c&#34;&gt;&lt;code&gt;xwos_flg_fini()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;动态创建删除&#34;&gt;动态创建、删除&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;动态创建： &lt;a href=&#34;../../../../capi/group__xwos__sync__flg.html#gaf47e42024bad241bc993108f79bc5676&#34;&gt;&lt;code&gt;xwos_flg_create()&lt;/code&gt;&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;动态&lt;/strong&gt; 是指程序在运行时，通过内存分配函数申请内存，并在申请的内存上构造对象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;删除动态创建的事件标志 &lt;a href=&#34;../../../../capi/group__xwos__sync__flg.html#gafb29743a2107ec5829a372546fe8478d&#34;&gt;&lt;code&gt;xwos_flg_delete()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;产生事件&#34;&gt;产生事件&lt;/h2&gt;
+&lt;p&gt;XWOS提供6个CAPI产生触发事件：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__flg.html#ga4bbbb700f8945d8a477ecdf8f48e1be3&#34;&gt;&lt;code&gt;xwos_flg_s1m()&lt;/code&gt;&lt;/a&gt; ：同时设置多个事件标志位，可在 &lt;strong&gt;任意&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__flg.html#gaa512cf8063cc538dbb431dbc680b1d78&#34;&gt;&lt;code&gt;xwos_flg_s1i()&lt;/code&gt;&lt;/a&gt; ：设置单个事件标志位，可在 &lt;strong&gt;任意&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__flg.html#gad9d0bd13e3b0c853597b982d348fd6dd&#34;&gt;&lt;code&gt;xwos_flg_c0m()&lt;/code&gt;&lt;/a&gt; ：同时清除多个事件标志位，可在 &lt;strong&gt;任意&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__flg.html#ga48c1627edd80a59ad4f88c3a91fb8bf0&#34;&gt;&lt;code&gt;xwos_flg_c0i()&lt;/code&gt;&lt;/a&gt; ：清除单个事件标志位，可在 &lt;strong&gt;任意&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__flg.html#ga422b4ec657c8baf31cf35a141ae0bff1&#34;&gt;&lt;code&gt;xwos_flg_x1m()&lt;/code&gt;&lt;/a&gt; ：同时翻转多个事件标志位，可在 &lt;strong&gt;任意&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__flg.html#ga42d2e3e4536d53490ba1590aefdcaac2&#34;&gt;&lt;code&gt;xwos_flg_x1i()&lt;/code&gt;&lt;/a&gt; ：翻转单个事件标志位，可在 &lt;strong&gt;任意&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这些CAPI除了会修改事件标志位图的状态，还会通过 &lt;strong&gt;广播&lt;/strong&gt; 唤醒所有正在等待的线程。
+然后，线程通过比对位图状态，确定事件是否已经满足触发条件。
+若满足触发条件，就退出等待；若未满足触发条件，重新进入阻塞等待状态。&lt;/p&gt;
+&lt;h2 id=&#34;获取事件的状态&#34;&gt;获取事件的状态&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__flg.html#gaae27fd46b8558b5e820e8bc5ffcddcdd&#34;&gt;&lt;code&gt;xwos_flg_get_num()&lt;/code&gt;&lt;/a&gt; 获取事件标志中总共有多少个事件&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__flg.html#gac47087827b24b63dc82d2998713c61be&#34;&gt;&lt;code&gt;xwos_flg_read()&lt;/code&gt;&lt;/a&gt; 直接读取事件的位图状态。此函数立即返回，不会阻塞&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;等待事件&#34;&gt;等待事件&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__flg.html#gaf64305d0e0c927adb6344e1f3c144c13&#34;&gt;&lt;code&gt;xwos_flg_wait()&lt;/code&gt;&lt;/a&gt; ：等待事件，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__flg.html#ga560ad75ecf3593fbd5a947adcdf4d9da&#34;&gt;&lt;code&gt;xwos_flg_wait_to()&lt;/code&gt;&lt;/a&gt; ：限时等待事件，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__flg.html#ga3c65f8d4b4dc03c97881a07dfdeb33dc&#34;&gt;&lt;code&gt;xwos_flg_trywait()&lt;/code&gt;&lt;/a&gt; ：检查事件，可在 &lt;strong&gt;任意&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;触发条件&#34;&gt;触发条件&lt;/h3&gt;
+&lt;p&gt;当调用等待事件的CAPI时，需要指定触发条件（参数： &lt;code&gt;trigger&lt;/code&gt; ）。触发条件分为 &lt;strong&gt;电平触发&lt;/strong&gt; 和 &lt;strong&gt;边沿触发&lt;/strong&gt; 。&lt;/p&gt;
+&lt;h5 id=&#34;电平触发&#34;&gt;电平触发&lt;/h5&gt;
+&lt;p&gt;&lt;strong&gt;电平触发&lt;/strong&gt; 源于数字电路，是一种类比概念，是指事件位的特定的状态（ &lt;strong&gt;1&lt;/strong&gt; 或 &lt;strong&gt;0&lt;/strong&gt; ）所产生的触发信号，下面的触发条件均为电平触发：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__flg__trigger__em.html#gac1bba82f45d1fb1796550b88b646c93b&#34;&gt;&lt;code&gt;XWOS_FLG_TRIGGER_SET_ALL&lt;/code&gt;&lt;/a&gt; ：所有事件位被置 &lt;strong&gt;1&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__flg__trigger__em.html#gaaf92bdb3000f9b8c8981153560c126f7&#34;&gt;&lt;code&gt;XWOS_FLG_TRIGGER_SET_ANY&lt;/code&gt;&lt;/a&gt; ：任意事件位被置 &lt;strong&gt;1&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__flg__trigger__em.html#ga2ac150517b9920b96d30085dab3c0385&#34;&gt;&lt;code&gt;XWOS_FLG_TRIGGER_CLR_ALL&lt;/code&gt;&lt;/a&gt; ：所有事件位被清 &lt;strong&gt;0&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__flg__trigger__em.html#ga7d1b859f2f363c78e413255244b0b023&#34;&gt;&lt;code&gt;XWOS_FLG_TRIGGER_CLR_ANY&lt;/code&gt;&lt;/a&gt; ：任意事件位被清 &lt;strong&gt;0&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;边沿触发&#34;&gt;边沿触发&lt;/h5&gt;
+&lt;p&gt;&lt;strong&gt;边沿触发&lt;/strong&gt; 源于数字电路，是一种类比概念，是指事件状态发生改变（ &lt;strong&gt;1&lt;/strong&gt; 变 &lt;strong&gt;0&lt;/strong&gt; 或 &lt;strong&gt;0&lt;/strong&gt; 变 &lt;strong&gt;1&lt;/strong&gt; ）时产生的唤醒信号，下面的触发条件为边沿触发：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__flg__trigger__em.html#ga790d7ae9a4ce53ffe53db0be8e1395a3&#34;&gt;&lt;code&gt;XWOS_FLG_TRIGGER_TGL_ALL&lt;/code&gt;&lt;/a&gt; ：所有事件位发生翻转&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__flg__trigger__em.html#gad3ddf23fa1fa775bf577bf1c69184ead&#34;&gt;&lt;code&gt;XWOS_FLG_TRIGGER_TGL_ANY&lt;/code&gt;&lt;/a&gt; ：任意事件位发生翻转&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;边沿触发时，必须要有一个初始状态，就像数字电路一样：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;当位的初始值为 &lt;strong&gt;0&lt;/strong&gt; (低电平)，然后跳变到 &lt;strong&gt;1&lt;/strong&gt; (高电平)的瞬间被称为上升沿。此时触发的事件被称为上升沿触发。&lt;/li&gt;
+&lt;li&gt;当位的初始值为 &lt;strong&gt;1&lt;/strong&gt; (高电平)，然后跳变到 &lt;strong&gt;0&lt;/strong&gt; (低电平)的瞬间被称为下降沿。此时触发的事件被称为下降沿触发。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;清除事件&#34;&gt;清除事件&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;当采用 &lt;strong&gt;电平触发&lt;/strong&gt; 时，需要在读取事件位图后 &lt;strong&gt;清除&lt;/strong&gt; 事件标志位，否则事件会一直处于触发状态。
+可以在调用CAPI时，指定参数 &lt;code&gt;action&lt;/code&gt; 为 &lt;a href=&#34;../../../../capi/group__xwos__flg__action__em.html#gad5dda65f6fb9b3c9ef0586356569039a&#34;&gt;&lt;code&gt;XWOS_FLG_ACTION_CONSUMPTION&lt;/code&gt;&lt;/a&gt; 。 &lt;strong&gt;清除&lt;/strong&gt; 的含义是：
+&lt;ul&gt;
+&lt;li&gt;当线程等待的是位图中的事件位被置 &lt;strong&gt;1&lt;/strong&gt; ， &lt;strong&gt;清除&lt;/strong&gt; 是指将这些位清 &lt;strong&gt;0&lt;/strong&gt; ；&lt;/li&gt;
+&lt;li&gt;当线程等待的是位图中的事件位被清 &lt;strong&gt;0&lt;/strong&gt; ， &lt;strong&gt;清除&lt;/strong&gt; 是指将这些位置 &lt;strong&gt;1&lt;/strong&gt; ；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;当采用 &lt;strong&gt;边沿触发&lt;/strong&gt; 时，不需要 &lt;strong&gt;清除&lt;/strong&gt; 事件的触发条件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;绑定与解绑信号选择器&#34;&gt;绑定与解绑信号选择器&lt;/h2&gt;
+&lt;p&gt;可以通过 &lt;a href=&#34;../../../../capi/group__xwos__sync__flg.html#ga534a3b72742f053a82aa431765bdf63b&#34;&gt;&lt;code&gt;xwos_flg_bind()&lt;/code&gt;&lt;/a&gt; 将事件标志绑定到 &lt;a href=&#34;../Sel&#34;&gt;&lt;strong&gt;信号选择器&lt;/strong&gt;&lt;/a&gt; 上。
+当等待的事件发生时，事件标志会向 &lt;strong&gt;信号选择器&lt;/strong&gt; 发送一个 &lt;strong&gt;选择信号&lt;/strong&gt; 。此时 &lt;strong&gt;信号选择器&lt;/strong&gt; 会唤醒正在等待的线程。&lt;/p&gt;
+&lt;p&gt;绑定后的事件标志可以通过 &lt;a href=&#34;../../../../capi/group__xwos__sync__flg.html#ga7f2340c7a08c61f3ae440b66675543aa&#34;&gt;&lt;code&gt;xwos_flg_unbind()&lt;/code&gt;&lt;/a&gt; 解绑。&lt;/p&gt;
+&lt;h2 id=&#34;事件标志对象的生命周期管理&#34;&gt;事件标志对象的生命周期管理&lt;/h2&gt;
+&lt;p&gt;事件标志对象的基类是 &lt;a href=&#34;../../Xwobj&#34;&gt;XWOS对象&lt;/a&gt; &lt;a href=&#34;../../../../api/structxwos__object.html&#34;&gt;&lt;code&gt;struct xwos_object&lt;/code&gt;&lt;/a&gt; 。
+事件标志对象也有两组生命周期管理的CAPI：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;使用 &lt;strong&gt;对象指针&lt;/strong&gt; 访问生命周期管理的CAPI：需要确保调用CAPI时，对象一定是有效的，且不存在 &lt;strong&gt;释放-又被申请&lt;/strong&gt; 为另一个对象的情况。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__flg.html#ga6f4e9f7fc6eedef1b768d630793b24ce&#34;&gt;&lt;code&gt;xwos_flg_grab()&lt;/code&gt;&lt;/a&gt; ：增加引用计数。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__flg.html#ga59586743a7e9812eb867adb21f9f93d6&#34;&gt;&lt;code&gt;xwos_flg_put()&lt;/code&gt;&lt;/a&gt; ：减少引用计数，当引用计数减少为 &lt;strong&gt;0&lt;/strong&gt; 时，调用垃圾回收函数释放对象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 &lt;strong&gt;对象描述符&lt;/strong&gt; 访问生命周期管理的CAPI：用户无法确保对象一定有效或无法确保对象不会变成另一个对象时使用。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__flg.html#gab5e8cd7ee6255280140a8b3375baf85f&#34;&gt;&lt;code&gt;xwos_flg_acquire()&lt;/code&gt;&lt;/a&gt; ：通过对象描述符确定对象有效且合法，再增加引用计数。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__flg.html#ga2d62426ddce0d88a8a3e495319d64df1&#34;&gt;&lt;code&gt;xwos_flg_release()&lt;/code&gt;&lt;/a&gt; ：通过对象描述符确定对象有效且合法，再减少引用计数。
+当引用计数减少为 &lt;strong&gt;0&lt;/strong&gt; 时，调用垃圾回收函数释放对象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;api参考&#34;&gt;API参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__flg.html&#34;&gt;&lt;strong&gt;头文件 &amp;lt;xwos/osal/sync/flg.h&amp;gt;&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 线程栅栏</title>
+      <link>/docs/TechRefManual/Sync/Br/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/TechRefManual/Sync/Br/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
+&lt;p&gt;XWOS的线程栅栏是用于协调多个线程并行工作的同步机制。&lt;/p&gt;
+&lt;p&gt;线程栅栏在创建时，会指明有多少个线程槽。
+当线程到达线程栅栏时会阻塞并等待，直到指定数量的线程都达到线程栅栏，所有线程被同时唤醒。&lt;/p&gt;
+&lt;h3 id=&#34;线程栅栏对象与对象描述符描述符&#34;&gt;线程栅栏对象与对象描述符描述符&lt;/h3&gt;
+&lt;p&gt;线程栅栏对象是 &lt;a href=&#34;../../Xwobj&#34;&gt;XWOS对象&lt;/a&gt; &lt;a href=&#34;../../../../api/structxwos__object.html&#34;&gt;&lt;code&gt;struct xwos_object&lt;/code&gt;&lt;/a&gt; 的派生类 。
+类似的，线程栅栏对象也用 &lt;strong&gt;线程栅栏对象描述符&lt;/strong&gt; &lt;a href=&#34;../../../../api/structxwos__br__d.html&#34;&gt;&lt;code&gt;xwos_br_d&lt;/code&gt;&lt;/a&gt;
+来解决有效性和身份合法性的问题。&lt;/p&gt;
+&lt;p&gt;线程栅栏对象描述符由 &lt;strong&gt;线程栅栏对象的指针&lt;/strong&gt; 和 &lt;strong&gt;标签&lt;/strong&gt; 组成：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;typedef&lt;/span&gt; &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;struct&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;struct&lt;/span&gt; xwos_br &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; br; &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/**&amp;lt; 线程栅栏对象的指针 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;xwsq_t&lt;/span&gt; tik; &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/**&amp;lt; 标签 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;} xwos_br_d;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;通过对象描述符引用对象时，首先检测 &lt;code&gt;obj-&amp;gt;magic&lt;/code&gt; 的值，是否为 &lt;code&gt;0x58574F53U&lt;/code&gt; ，由此可确定指针 &lt;code&gt;obj&lt;/code&gt; 指向一个有效的 &lt;strong&gt;XWOS的对象&lt;/strong&gt; 。
+然后对比标签 &lt;code&gt;obj-&amp;gt;tik&lt;/code&gt; 和 &lt;code&gt;tik&lt;/code&gt; 是否相等，由此可以确定对象的 &lt;strong&gt;身份&lt;/strong&gt; 。
+因为对象的 &lt;code&gt;tik&lt;/code&gt; 是全局唯一的，当对象被释放后，它的 &lt;code&gt;tik&lt;/code&gt; 会被析构函数析构为 &lt;strong&gt;0&lt;/strong&gt; 。
+当内存地址被重新构建为新的对象，那么它的 &lt;code&gt;tik&lt;/code&gt; 一定与对象描述符的 &lt;code&gt;tik&lt;/code&gt; 不一致。&lt;/p&gt;
+&lt;h2 id=&#34;线程栅栏的初始化销毁与动态创建删除&#34;&gt;线程栅栏的初始化、销毁与动态创建、删除&lt;/h2&gt;
+&lt;h3 id=&#34;静态初始化销毁&#34;&gt;静态初始化、销毁&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;静态初始化： &lt;a href=&#34;../../../../capi/group__xwos__sync__br.html#ga14263f3e94d189d110eb62bdceca51b5&#34;&gt;&lt;code&gt;xwos_br_init()&lt;/code&gt;&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;静态&lt;/strong&gt; 是指用户预先定义线程结构体对象，这些对象在编译期由编译器分配内存。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;销毁静态初始化的线程栅栏： &lt;a href=&#34;../../../../capi/group__xwos__sync__br.html#gadf0ab06127734021e54209b8fb9b8cf1&#34;&gt;&lt;code&gt;xwos_br_fini()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;动态创建删除&#34;&gt;动态创建、删除&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;动态创建： &lt;a href=&#34;../../../../capi/group__xwos__sync__br.html#ga01340bc335a510cde0aea244ae6e55b0&#34;&gt;&lt;code&gt;xwos_br_create()&lt;/code&gt;&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;动态&lt;/strong&gt; 是指程序在运行时，通过内存分配函数申请内存，并在申请的内存上构造对象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;删除动态创建的线程栅栏： &lt;a href=&#34;../../../../capi/group__xwos__sync__br.html#ga0562246ab3c7f893323c9103b93bdaba&#34;&gt;&lt;code&gt;xwos_br_delete()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;通过线程栅栏同步线程&#34;&gt;通过线程栅栏同步线程&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__br.html#ga6b28c7fe0cb6e0569f5bdc93fa7f0afe&#34;&gt;&lt;code&gt;xwos_br_wait()&lt;/code&gt;&lt;/a&gt; ：等待所有线程到达栅栏，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__br.html#ga22bb233fcefa640a3d3e196eac1c5753&#34;&gt;&lt;code&gt;xwos_br_wait_to()&lt;/code&gt;&lt;/a&gt; ：限时等待所有线程到达栅栏，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;绑定与解绑信号选择器&#34;&gt;绑定与解绑信号选择器&lt;/h2&gt;
+&lt;p&gt;可以通过 &lt;a href=&#34;../../../../capi/group__xwos__sync__br.html#gae2675cc244078d9ba58e9d8ae24faa4b&#34;&gt;&lt;code&gt;xwos_br_bind()&lt;/code&gt;&lt;/a&gt; 将线程栅栏绑定到 &lt;a href=&#34;../Sel&#34;&gt;&lt;strong&gt;信号选择器&lt;/strong&gt;&lt;/a&gt; 上。
+当指定数量的线程抵达线程栅栏时，线程栅栏会向 &lt;strong&gt;信号选择器&lt;/strong&gt; 发送一个 &lt;strong&gt;选择信号&lt;/strong&gt; 。此时 &lt;strong&gt;信号选择器&lt;/strong&gt; 会唤醒正在等待的线程。&lt;/p&gt;
+&lt;p&gt;绑定后的线程栅栏可以通过 &lt;a href=&#34;../../../../capi/group__xwos__sync__br.html#gafaf7f192db151d1f3759a2dc8f5e7157&#34;&gt;&lt;code&gt;xwos_br_unbind()&lt;/code&gt;&lt;/a&gt; 解绑。&lt;/p&gt;
+&lt;h2 id=&#34;线程栅栏对象的生命周期管理&#34;&gt;线程栅栏对象的生命周期管理&lt;/h2&gt;
+&lt;p&gt;线程栅栏对象的基类是 &lt;a href=&#34;../../Xwobj&#34;&gt;XWOS对象&lt;/a&gt; &lt;a href=&#34;../../../../api/structxwos__object.html&#34;&gt;&lt;code&gt;struct xwos_object&lt;/code&gt;&lt;/a&gt; 。
+线程栅栏对象也有两组生命周期管理的CAPI：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;使用 &lt;strong&gt;对象指针&lt;/strong&gt; 访问生命周期管理的CAPI：需要确保调用CAPI时，对象一定是有效的，且不存在 &lt;strong&gt;释放-又被申请&lt;/strong&gt; 为另一个对象的情况。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__br.html#ga7402fda20860499d41f347a0b69ded8b&#34;&gt;&lt;code&gt;xwos_br_grab()&lt;/code&gt;&lt;/a&gt; ：增加引用计数。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__br.html#gae9d7efa29affa54491a5bc59e12f5691&#34;&gt;&lt;code&gt;xwos_br_put()&lt;/code&gt;&lt;/a&gt; ：减少引用计数，当引用计数减少为 &lt;strong&gt;0&lt;/strong&gt; 时，调用垃圾回收函数释放对象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 &lt;strong&gt;对象描述符&lt;/strong&gt; 访问生命周期管理的CAPI：用户无法确保对象一定有效或无法确保对象不会变成另一个对象时使用。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__br.html#ga5ad53ec7b82b801714b872f580896db4&#34;&gt;&lt;code&gt;xwos_br_acquire()&lt;/code&gt;&lt;/a&gt; ：通过对象描述符确定对象有效且合法，再增加引用计数。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__br.html#gafd544bdd7b0b78a883ecb7eb66b7ea31&#34;&gt;&lt;code&gt;xwos_br_release()&lt;/code&gt;&lt;/a&gt; ：通过对象描述符确定对象有效且合法，再减少引用计数。
+当引用计数减少为 &lt;strong&gt;0&lt;/strong&gt; 时，调用垃圾回收函数释放对象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;api参考&#34;&gt;API参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__br.html&#34;&gt;&lt;strong&gt;头文件 &amp;lt;xwos/osal/sync/br.h&amp;gt;&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 信号选择器</title>
+      <link>/docs/TechRefManual/Sync/Sel/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/TechRefManual/Sync/Sel/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
+&lt;p&gt;信号选择器类似于事件标志，使用位图来管理一组 &lt;strong&gt;同步对象&lt;/strong&gt; 。使得单一线程可以同时等待多个 &lt;strong&gt;同步对象&lt;/strong&gt; 。&lt;/p&gt;
+&lt;p&gt;每个 &lt;strong&gt;同步对象&lt;/strong&gt; 在信号选择器位图中都绑定一个特定的 &lt;strong&gt;位&lt;/strong&gt; ，&lt;/p&gt;
+&lt;p&gt;当这些 &lt;strong&gt;同步对象&lt;/strong&gt; 发送 &lt;strong&gt;选择信号&lt;/strong&gt; 时，信号选择器位图中特定的 &lt;strong&gt;位&lt;/strong&gt; 被置 &lt;strong&gt;1&lt;/strong&gt; ，同时唤醒正在等待信号选择器的线程。
+线程唤醒后可以通过检测哪些 &lt;strong&gt;位&lt;/strong&gt; 被置 &lt;strong&gt;1&lt;/strong&gt; 来判断哪些 &lt;strong&gt;同步对象&lt;/strong&gt; 发送了 &lt;strong&gt;选择信号&lt;/strong&gt; 。&lt;/p&gt;
+&lt;h3 id=&#34;信号选择器对象与对象描述符描述符&#34;&gt;信号选择器对象与对象描述符描述符&lt;/h3&gt;
+&lt;p&gt;信号选择器对象是 &lt;a href=&#34;../../Xwobj&#34;&gt;XWOS对象&lt;/a&gt; &lt;a href=&#34;../../../../api/structxwos__object.html&#34;&gt;&lt;code&gt;struct xwos_object&lt;/code&gt;&lt;/a&gt; 的派生类 。
+类似的，信号选择器对象也用 &lt;strong&gt;信号选择器对象描述符&lt;/strong&gt; &lt;a href=&#34;../../../../api/structxwos__sel__d.html&#34;&gt;&lt;code&gt;xwos_sel_d&lt;/code&gt;&lt;/a&gt;
+来解决有效性和身份合法性的问题。&lt;/p&gt;
+&lt;p&gt;信号选择器对象描述符由 &lt;strong&gt;信号选择器对象的指针&lt;/strong&gt; 和 &lt;strong&gt;标签&lt;/strong&gt; 组成：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;typedef&lt;/span&gt; &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;struct&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;struct&lt;/span&gt; xwos_sel &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; sel; &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/**&amp;lt; 信号选择器对象的指针 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;xwsq_t&lt;/span&gt; tik; &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/**&amp;lt; 标签 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;} xwos_sel_d;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;通过对象描述符引用对象时，首先检测 &lt;code&gt;obj-&amp;gt;magic&lt;/code&gt; 的值，是否为 &lt;code&gt;0x58574F53U&lt;/code&gt; ，由此可确定指针 &lt;code&gt;obj&lt;/code&gt; 指向一个有效的 &lt;strong&gt;XWOS的对象&lt;/strong&gt; 。
+然后对比标签 &lt;code&gt;obj-&amp;gt;tik&lt;/code&gt; 和 &lt;code&gt;tik&lt;/code&gt; 是否相等，由此可以确定对象的 &lt;strong&gt;身份&lt;/strong&gt; 。
+因为对象的 &lt;code&gt;tik&lt;/code&gt; 是全局唯一的，当对象被释放后，它的 &lt;code&gt;tik&lt;/code&gt; 会被析构函数析构为 &lt;strong&gt;0&lt;/strong&gt; 。
+当内存地址被重新构建为新的对象，那么它的 &lt;code&gt;tik&lt;/code&gt; 一定与对象描述符的 &lt;code&gt;tik&lt;/code&gt; 不一致。&lt;/p&gt;
+&lt;h2 id=&#34;同步对象的绑定与解绑&#34;&gt;同步对象的绑定与解绑&lt;/h2&gt;
+&lt;p&gt;XWOS中所有 &lt;strong&gt;同步对象&lt;/strong&gt; 都带有两个相似的CAPI：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;绑定
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__sem.html#ga4a04b2c6003ed59a0f82c7b8ed8c7f68&#34;&gt;&lt;code&gt;xwos_sem_bind()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__cond.html#gae2675cc244078d9ba58e9d8ae24faa4b&#34;&gt;&lt;code&gt;xwos_cond_bind()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__flg.html#ga534a3b72742f053a82aa431765bdf63b&#34;&gt;&lt;code&gt;xwos_flg_bind()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__br.html#gae2675cc244078d9ba58e9d8ae24faa4b&#34;&gt;&lt;code&gt;xwos_br_bind()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__sel.html#ga55059a1edf93b0554bf89112a884acb3&#34;&gt;&lt;code&gt;xwos_sel_bind()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;解绑
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__sem.html#ga4aab3913939aa6cfa040af1039e564d5&#34;&gt;&lt;code&gt;xwos_sem_unbind()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__cond.html#gafaf7f192db151d1f3759a2dc8f5e7157&#34;&gt;&lt;code&gt;xwos_cond_unbind()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__flg.html#ga7f2340c7a08c61f3ae440b66675543aa&#34;&gt;&lt;code&gt;xwos_flg_unbind()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__br.html#gafaf7f192db151d1f3759a2dc8f5e7157&#34;&gt;&lt;code&gt;xwos_br_unbind()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__sel.html#ga5adbc4dcb319feccd63056cbf3d76e0c&#34;&gt;&lt;code&gt;xwos_sel_unbind()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;同步对象&lt;/strong&gt; 绑定操作又分为 &lt;strong&gt;独占绑定&lt;/strong&gt; 与 &lt;strong&gt;非独占绑定&lt;/strong&gt; ：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;独占绑定：是指 &lt;strong&gt;同步对象&lt;/strong&gt; 一旦绑定了信号选择器位图中的某一位后，其他 &lt;strong&gt;同步对象&lt;/strong&gt; 不可再绑定此位，发送的 &lt;strong&gt;选择信号&lt;/strong&gt; 也被称为 &lt;strong&gt;独占&lt;/strong&gt; 方式的 &lt;strong&gt;选择信号&lt;/strong&gt; ；&lt;/li&gt;
+&lt;li&gt;非独占绑定：是指 &lt;strong&gt;同步对象&lt;/strong&gt; 一旦绑定了信号选择器位图中的某一位后，其他 &lt;strong&gt;同步对象&lt;/strong&gt; 还可继续再绑定此位，发送的 &lt;strong&gt;选择信号&lt;/strong&gt; 也被称为 &lt;strong&gt;非独占&lt;/strong&gt; 方式的 &lt;strong&gt;选择信号&lt;/strong&gt; 。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;同步对象&lt;/strong&gt; 采用的绑定方式：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;信号量：独占绑定&lt;/li&gt;
+&lt;li&gt;条件量：非独占绑定&lt;/li&gt;
+&lt;li&gt;事件标志：非独占绑定&lt;/li&gt;
+&lt;li&gt;线程栅栏：非独占绑定&lt;/li&gt;
+&lt;li&gt;信号选择器：非独占绑定&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;选择信号&#34;&gt;选择信号&lt;/h2&gt;
+&lt;h3 id=&#34;选择信号的设置&#34;&gt;选择信号的设置&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;选择信号&lt;/strong&gt; 的设置，对于不同的 &lt;strong&gt;同步对象&lt;/strong&gt; 有不同解释：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;信号量
+&lt;ul&gt;
+&lt;li&gt;计数器的值大于 &lt;strong&gt;0&lt;/strong&gt; 时就会被设置。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;条件量
+&lt;ul&gt;
+&lt;li&gt;广播操作： &lt;a href=&#34;../../../../capi/group__xwos__sync__cond.html#ga6a85c4b4f0a48d8f7af6d1eb9edf5828&#34;&gt;&lt;code&gt;xwos_cond_broadcast()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;事件标志
+&lt;ul&gt;
+&lt;li&gt;事件标志位图中任何一位发生改变的操作：
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__flg.html#ga4bbbb700f8945d8a477ecdf8f48e1be3&#34;&gt;&lt;code&gt;xwos_flg_s1m()&lt;/code&gt;&lt;/a&gt; ：同时设置多个事件标志位&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__flg.html#gaa512cf8063cc538dbb431dbc680b1d78&#34;&gt;&lt;code&gt;xwos_flg_s1i()&lt;/code&gt;&lt;/a&gt; ：设置单个事件标志位&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__flg.html#gad9d0bd13e3b0c853597b982d348fd6dd&#34;&gt;&lt;code&gt;xwos_flg_c0m()&lt;/code&gt;&lt;/a&gt; ：同时清除多个事件标志位&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__flg.html#ga48c1627edd80a59ad4f88c3a91fb8bf0&#34;&gt;&lt;code&gt;xwos_flg_c0i()&lt;/code&gt;&lt;/a&gt; ：清除单个事件标志位&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__flg.html#ga422b4ec657c8baf31cf35a141ae0bff1&#34;&gt;&lt;code&gt;xwos_flg_x1m()&lt;/code&gt;&lt;/a&gt; ：同时翻转多个事件标志位&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__flg.html#ga42d2e3e4536d53490ba1590aefdcaac2&#34;&gt;&lt;code&gt;xwos_flg_x1i()&lt;/code&gt;&lt;/a&gt; ：翻转单个事件标志位&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;线程栅栏
+&lt;ul&gt;
+&lt;li&gt;所有线程抵达栅栏处，并同时被唤醒；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;信号选择器
+&lt;ul&gt;
+&lt;li&gt;信号选择器本身也是 &lt;strong&gt;同步对象&lt;/strong&gt; ，也可绑定在另一个信号选择器上。当源信号选择器收到了 &lt;strong&gt;选择信号&lt;/strong&gt; ，会将其传递到绑定的另一个目的信号选择器上。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+
+
+
+
+&lt;div class=&#34;card rounded p-2 td-post-card mb-4 mt-4&#34; style=&#34;max-width: 810px&#34;&gt;
+	&lt;img class=&#34;card-img-top&#34; src=&#34;/docs/TechRefManual/Sync/Sel/xwos-sel_hudcf9cb7156ebc4dfb2218a5a4fe7da02_94248_800x600_fill_catmullrom_smart1_3.png&#34; width=&#34;800&#34; height=&#34;600&#34;&gt;
+	
+	&lt;div class=&#34;card-body px-0 pt-2 pb-0 text-center&#34;&gt;
+		&lt;p class=&#34;card-text&#34;&gt;
+XWOS信号选择器示意图
+&lt;small class=&#34;text-muted&#34;&gt;&lt;br/&gt;Photo: xwos.tech / CC-BY&lt;/small&gt;&lt;/p&gt;
+	&lt;/div&gt;
+	
+&lt;/div&gt;
+
+&lt;h3 id=&#34;选择信号的清除&#34;&gt;选择信号的清除&lt;/h3&gt;
+&lt;h4 id=&#34;独占-方式的-选择信号&#34;&gt;&lt;strong&gt;独占&lt;/strong&gt; 方式的 &lt;strong&gt;选择信号&lt;/strong&gt;&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;信号量：当信号量中的计数器的值小于等于 &lt;strong&gt;0&lt;/strong&gt; 时， &lt;strong&gt;选择信号&lt;/strong&gt; 才会被清除。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;非独占-方式的-选择信号&#34;&gt;&lt;strong&gt;非独占&lt;/strong&gt; 方式的 &lt;strong&gt;选择信号&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;非独占&lt;/strong&gt; 方式绑定的 &lt;strong&gt;同步对象&lt;/strong&gt; 向信号选择器发送 &lt;strong&gt;选择信号&lt;/strong&gt; 后，其位图中的位置会被置 &lt;strong&gt;1&lt;/strong&gt; 。
+同时会唤醒所有等待的线程，此时线程们会竞争进入信号选择器的临界区。&lt;/p&gt;
+&lt;p&gt;最先进入的线程会读取信号选择器的 &lt;strong&gt;选择信号&lt;/strong&gt; 位图，并与调用函数时传递的 &lt;strong&gt;掩码&lt;/strong&gt; 进行比较，判断是否有 &lt;strong&gt;掩码&lt;/strong&gt; 中的 &lt;strong&gt;选择信号&lt;/strong&gt; ：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如果有，会清除信号选择器位图中 &lt;strong&gt;所有&lt;/strong&gt; 的 &lt;strong&gt;非独占&lt;/strong&gt; 方式的 &lt;strong&gt;选择信号&lt;/strong&gt; ，包括 &lt;strong&gt;掩码&lt;/strong&gt; 中没有设置的 &lt;strong&gt;选择信号&lt;/strong&gt; 。
+因此后续线程将无法再检测到任何 &lt;strong&gt;非独占&lt;/strong&gt; 方式的 &lt;strong&gt;选择信号&lt;/strong&gt; ，会重新阻塞等待。
+XWOS不推荐在信号选择器上，多于一个线程等待。&lt;/li&gt;
+&lt;li&gt;如果没有，线程会重新阻塞等待，然后下一个线程进入临界区检测。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;信号选择器的初始化销毁与动态创建删除&#34;&gt;信号选择器的初始化、销毁与动态创建、删除&lt;/h2&gt;
+&lt;h3 id=&#34;静态初始化销毁&#34;&gt;静态初始化、销毁&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;静态初始化： &lt;a href=&#34;../../../../capi/group__xwos__sync__sel.html#gaae37e3a4348e0dbee6118df0a0e91b64&#34;&gt;&lt;code&gt;xwos_sel_init()&lt;/code&gt;&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;静态&lt;/strong&gt; 是指用户预先定义线程结构体对象，这些对象在编译期由编译器分配内存。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;销毁静态初始化的信号选择器： &lt;a href=&#34;../../../../capi/group__xwos__sync__sel.html#ga3a847008f0f8c6ced37e20de38ab8a1b&#34;&gt;&lt;code&gt;xwos_sel_fini()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;动态创建删除&#34;&gt;动态创建、删除&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;动态创建： &lt;a href=&#34;../../../../capi/group__xwos__sync__sel.html#ga42a5404828d0a9185276be474f9b9e46&#34;&gt;&lt;code&gt;xwos_sel_create()&lt;/code&gt;&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;动态&lt;/strong&gt; 是指程序在运行时，通过内存分配函数申请内存，并在申请的内存上构造对象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;删除动态创建的信号选择器： &lt;a href=&#34;../../../../capi/group__xwos__sync__sel.html#ga6c9034f4c09265ed282c8039e665f23d&#34;&gt;&lt;code&gt;xwos_sel_delete()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;等待选择信号&#34;&gt;等待选择信号&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__sel.html#gac2107de7d97466c5f6fde732b86fe0c0&#34;&gt;&lt;code&gt;xwos_sel_select()&lt;/code&gt;&lt;/a&gt; ：等待信号选择器中的 &lt;strong&gt;选择信号&lt;/strong&gt; ，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__sel.html#ga070fb02f1220d6257b1e98a54990e2f7&#34;&gt;&lt;code&gt;xwos_sel_select_to()&lt;/code&gt;&lt;/a&gt; ：限时等待信号选择器中的 &lt;strong&gt;选择信号&lt;/strong&gt; ，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__sel.html#ga9c635b47293e77b2d1012d6e66b3053d&#34;&gt;&lt;code&gt;xwos_sel_tryselect()&lt;/code&gt;&lt;/a&gt; ：检测信号选择器中是否有 &lt;strong&gt;选择信号&lt;/strong&gt; ，可在 &lt;strong&gt;任意&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;绑定与解绑其他信号选择器&#34;&gt;绑定与解绑其他信号选择器&lt;/h2&gt;
+&lt;p&gt;可以通过 &lt;a href=&#34;../../../../capi/group__xwos__sync__sel.html#ga55059a1edf93b0554bf89112a884acb3&#34;&gt;&lt;code&gt;xwos_sel_bind()&lt;/code&gt;&lt;/a&gt; 将信号选择器绑定到另一个 &lt;strong&gt;信号选择器&lt;/strong&gt; 上，形成传递链。
+但信号选择器不可相互绑定形成循环链，否则会造成无限传递。&lt;/p&gt;
+&lt;p&gt;绑定后的信号选择器可以通过 &lt;a href=&#34;../../../../capi/group__xwos__sync__sel.html#ga5adbc4dcb319feccd63056cbf3d76e0c&#34;&gt;&lt;code&gt;xwos_sel_unbind()&lt;/code&gt;&lt;/a&gt; 解绑。&lt;/p&gt;
+&lt;h2 id=&#34;信号选择器对象的生命周期管理&#34;&gt;信号选择器对象的生命周期管理&lt;/h2&gt;
+&lt;p&gt;信号选择器对象的基类是 &lt;a href=&#34;../../Xwobj&#34;&gt;XWOS对象&lt;/a&gt; &lt;a href=&#34;../../../../api/structxwos__object.html&#34;&gt;&lt;code&gt;struct xwos_object&lt;/code&gt;&lt;/a&gt; 。
+信号选择器对象也有两组生命周期管理的CAPI：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;使用 &lt;strong&gt;对象指针&lt;/strong&gt; 访问生命周期管理的CAPI：需要确保调用CAPI时，对象一定是有效的，且不存在 &lt;strong&gt;释放-又被申请&lt;/strong&gt; 为另一个对象的情况。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__sel.html#ga3b26f1ae6f050c2251b81ad992b7edc3&#34;&gt;&lt;code&gt;xwos_sel_grab()&lt;/code&gt;&lt;/a&gt; ：增加引用计数。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__sel.html#gad4f2be2d1f0e894957b2491b540c44d2&#34;&gt;&lt;code&gt;xwos_sel_put()&lt;/code&gt;&lt;/a&gt; ：减少引用计数，当引用计数减少为 &lt;strong&gt;0&lt;/strong&gt; 时，调用垃圾回收函数释放对象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 &lt;strong&gt;对象描述符&lt;/strong&gt; 访问生命周期管理的CAPI：用户无法确保对象一定有效或无法确保对象不会变成另一个对象时使用。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__sel.html#ga73d231bc26cb34ce5cda1d39c33f6dfc&#34;&gt;&lt;code&gt;xwos_sel_acquire()&lt;/code&gt;&lt;/a&gt; ：通过对象描述符确定对象有效且合法，再增加引用计数。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__sel.html#ga8bb0a86f605e1dd71cfcd7b18afb0c4c&#34;&gt;&lt;code&gt;xwos_sel_release()&lt;/code&gt;&lt;/a&gt; ：通过对象描述符确定对象有效且合法，再减少引用计数。
+当引用计数减少为 &lt;strong&gt;0&lt;/strong&gt; 时，调用垃圾回收函数释放对象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;capi参考&#34;&gt;CAPI参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__sync__sel.html&#34;&gt;&lt;strong&gt;头文件 &amp;lt;xwos/osal/sync/sel.h&amp;gt;&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

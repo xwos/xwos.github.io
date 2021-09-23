@@ -1,0 +1,289 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>XWOS API: xwos/lib/map.c 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<a href="/" class="github-corner" title="返回首页">
+  <svg viewBox="0 0 250 250" style="position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path
+      d="M 0 0 L 250 250 L 250 0 L 0 0 z M 181.19336 6.25 A 18.281986 19.638775 0 0 1 192.79297 10.798828 L 241.54492 54.201172 A 6.0939954 6.5462585 0 0 1 237.64453 65.787109 L 233.13477 65.787109 A 3.0469979 3.2731292 0 0 0 230.08789 69.060547 L 230.08789 111.61133 A 18.281986 19.638775 0 0 1 211.80664 131.25 L 205.71289 131.25 A 12.187991 13.092517 0 0 1 193.52344 118.1582 L 193.52344 98.519531 A 12.187991 13.092517 0 0 0 181.33594 85.425781 A 12.187991 13.092517 0 0 0 169.14844 98.519531 L 169.14844 118.1582 A 12.187991 13.092517 0 0 1 156.95898 131.25 L 150.86523 131.25 A 18.281986 19.638775 0 0 1 132.58398 111.61133 L 132.58398 68.994141 A 3.0469979 3.2731292 0 0 0 129.29297 65.722656 L 124.7832 65.722656 A 6.0939954 6.5462585 0 0 1 120.88281 54.201172 L 169.39258 10.798828 A 18.281986 19.638775 0 0 1 181.19336 6.25 z "/>
+  </svg>
+</a>
+<style>.github-corner:hover</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">XWOS API
+   &#160;<span id="projectnumber">3.0</span>
+   </div>
+   <div id="projectbrief">XWOS API参考手册</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('map_8c_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">map.c</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="map_8c.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;<a class="code" href="xwos_2standard_8h.html">xwos/standard.h</a>&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;<a class="code" href="map_8h.html">xwos/lib/map.h</a>&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><a class="code hl_define" href="group__xwos__lib__compiler.html#gab363819592f47f26b77fa892c13c0015">__xwlib_code</a></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="group__xwos__lib__map.html#ga99035462773a66c0872014a1419193f5">   17</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__lib__map.html#ga99035462773a66c0872014a1419193f5">xwlib_map_insert</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwlib__map.html">xwlib_map</a> * map, <span class="keyword">struct</span> <a class="code hl_struct" href="structxwlib__map__container.html">xwlib_map_container</a> * newmc)</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>{</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwlib__rbtree__node.html">xwlib_rbtree_node</a> ** <a class="code hl_variable" href="structxwlib__rbtree__node.html#a7ce1873c40a33e7f01adf04f3525ff64">pos</a>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwlib__rbtree__node.html">xwlib_rbtree_node</a> * rbn;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwlib__map__container.html">xwlib_map_container</a> * mc;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwlib__map__container.html">xwlib_map_container</a> * parent;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a> lpc;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga89fd1295e4575443671eb9ae21c34567">xwssq_t</a> cmprc;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>        pos = &amp;map-&gt;<a class="code hl_variable" href="structxwlib__map.html#af07f4919370c51533535fb4192810cd6">rbtree</a>.<a class="code hl_variable" href="structxwlib__rbtree.html#a05d1bdd1cf62a0a083a576d914250270">root</a>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        lpc = (<a class="code hl_typedef" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a>)pos;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>        <a class="code hl_variable" href="structxwlib__map__container.html#abe0186a3c5545c7ec1b8d2708f217aad">rbn</a> = *pos;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        <span class="keywordflow">while</span> (<a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a> != <a class="code hl_variable" href="structxwlib__map__container.html#abe0186a3c5545c7ec1b8d2708f217aad">rbn</a>) {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>                mc = <a class="code hl_define" href="group__xwos__lib__rbtree.html#gac30e6ddb8969df315ef5bad0d3276852">xwlib_rbtree_entry</a>(<a class="code hl_variable" href="structxwlib__map__container.html#abe0186a3c5545c7ec1b8d2708f217aad">rbn</a>, <span class="keyword">struct</span> <a class="code hl_struct" href="structxwlib__map__container.html">xwlib_map_container</a>, <a class="code hl_variable" href="structxwlib__map__container.html#abe0186a3c5545c7ec1b8d2708f217aad">rbn</a>);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>                cmprc = map-&gt;<a class="code hl_variable" href="structxwlib__map.html#a0d016fb6cbcf260e457866da9d200ac7">cmp</a>(newmc-&gt;<a class="code hl_variable" href="structxwlib__map__container.html#a94a3f0bd26904ad4bee9f2b40242a0ea">key</a>, mc-&gt;<a class="code hl_variable" href="structxwlib__map__container.html#a94a3f0bd26904ad4bee9f2b40242a0ea">key</a>);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>                <span class="keywordflow">if</span> (cmprc &lt; 0) {</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>                        pos = &amp;<a class="code hl_variable" href="structxwlib__map__container.html#abe0186a3c5545c7ec1b8d2708f217aad">rbn</a>-&gt;<a class="code hl_variable" href="structxwlib__rbtree__node.html#a305d52ccf12a4bffa8d7e8a346a5ef2d">left</a>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>                        lpc = (<a class="code hl_typedef" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a>)pos;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>                        <a class="code hl_variable" href="structxwlib__map__container.html#abe0186a3c5545c7ec1b8d2708f217aad">rbn</a> = <a class="code hl_variable" href="structxwlib__map__container.html#abe0186a3c5545c7ec1b8d2708f217aad">rbn</a>-&gt;<a class="code hl_variable" href="structxwlib__rbtree__node.html#a305d52ccf12a4bffa8d7e8a346a5ef2d">left</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>                } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (cmprc &gt; 0) {</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>                        pos = &amp;<a class="code hl_variable" href="structxwlib__map__container.html#abe0186a3c5545c7ec1b8d2708f217aad">rbn</a>-&gt;<a class="code hl_variable" href="structxwlib__rbtree__node.html#a5a64519a3b225248f1d7321ecc5295fd">right</a>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>                        lpc = (<a class="code hl_typedef" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a>)pos | (<a class="code hl_typedef" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a>)<a class="code hl_enumvalue" href="group__xwos__lib__rbtree.html#gga24db3abd791e1b31e4147f1aea0dda5fa80511d7804ed626c9b0a6f571e69fab7">XWLIB_RBTREE_POS_RIGHT</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>                        <a class="code hl_variable" href="structxwlib__map__container.html#abe0186a3c5545c7ec1b8d2708f217aad">rbn</a> = <a class="code hl_variable" href="structxwlib__map__container.html#abe0186a3c5545c7ec1b8d2708f217aad">rbn</a>-&gt;<a class="code hl_variable" href="structxwlib__rbtree__node.html#a5a64519a3b225248f1d7321ecc5295fd">right</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>                } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>                        lpc = (<a class="code hl_typedef" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a>)0;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>                }</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        }</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        <span class="keywordflow">if</span> ((<a class="code hl_typedef" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a>)0 != lpc) {</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>                <span class="keywordflow">if</span> (<a class="code hl_function" href="group__xwos__lib__rbtree.html#ga23349674f77ef164e1771a3244c766ab">xwlib_rbtree_tst_link_root</a>(&amp;map-&gt;<a class="code hl_variable" href="structxwlib__map.html#af07f4919370c51533535fb4192810cd6">rbtree</a>,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>                                               <a class="code hl_define" href="group__xwos__lib__rbtree.html#ga55c3b92f4fbb4b8b429f2f2fa62697f7">xwlib_rbtree_get_link</a>(lpc))) {</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>                        <a class="code hl_function" href="group__xwos__lib__bclst.html#ga942be8d64e19cb8efb4dd1cf10e6e706">xwlib_bclst_add_head</a>(&amp;map-&gt;<a class="code hl_variable" href="structxwlib__map.html#af4ea26a144cb1ec3ad80132bbd285f24">bclh</a>, &amp;newmc-&gt;<a class="code hl_variable" href="structxwlib__map__container.html#a70ea6ca60e3804052046c8dfd276004f">bcln</a>);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>                } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>                        <a class="code hl_variable" href="structxwlib__map__container.html#abe0186a3c5545c7ec1b8d2708f217aad">rbn</a> = <a class="code hl_function" href="group__xwos__lib__rbtree.html#gab2c329630cce359161595f69c34ac827">xwlib_rbtree_get_parent_from_lpc</a>(lpc);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>                        parent = <a class="code hl_define" href="group__xwos__lib__rbtree.html#gac30e6ddb8969df315ef5bad0d3276852">xwlib_rbtree_entry</a>(<a class="code hl_variable" href="structxwlib__map__container.html#abe0186a3c5545c7ec1b8d2708f217aad">rbn</a>, <span class="keyword">struct</span> <a class="code hl_struct" href="structxwlib__map__container.html">xwlib_map_container</a>,</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>                                                    <a class="code hl_variable" href="structxwlib__map__container.html#abe0186a3c5545c7ec1b8d2708f217aad">rbn</a>);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>                        <span class="keywordflow">if</span> (<a class="code hl_define" href="group__xwos__lib__rbtree.html#ga1c53da794f7029070219d3e6de37d899">xwlib_rbtree_tst_left</a>(lpc)) {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>                                <a class="code hl_function" href="group__xwos__lib__bclst.html#ga844c5db26e3d1e2de63b8a8afb54101a">xwlib_bclst_add_front</a>(&amp;newmc-&gt;<a class="code hl_variable" href="structxwlib__map__container.html#a70ea6ca60e3804052046c8dfd276004f">bcln</a>, &amp;parent-&gt;<a class="code hl_variable" href="structxwlib__map__container.html#a70ea6ca60e3804052046c8dfd276004f">bcln</a>);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>                        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>                                <a class="code hl_function" href="group__xwos__lib__bclst.html#gad8aa590ba068244e420b3c128be16fdf">xwlib_bclst_add_behind</a>(&amp;newmc-&gt;<a class="code hl_variable" href="structxwlib__map__container.html#a70ea6ca60e3804052046c8dfd276004f">bcln</a>, &amp;parent-&gt;<a class="code hl_variable" href="structxwlib__map__container.html#a70ea6ca60e3804052046c8dfd276004f">bcln</a>);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>                        }</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>                }</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>                <a class="code hl_function" href="group__xwos__lib__rbtree.html#gaef7f6608cd37a0fb765adb003428ec38">xwlib_rbtree_link</a>(&amp;newmc-&gt;<a class="code hl_variable" href="structxwlib__map__container.html#abe0186a3c5545c7ec1b8d2708f217aad">rbn</a>, lpc);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>                <a class="code hl_function" href="group__xwos__lib__rbtree.html#gaa09f90f7792b00240a3cecef84946d88">xwlib_rbtree_insert_color</a>(&amp;map-&gt;<a class="code hl_variable" href="structxwlib__map.html#af07f4919370c51533535fb4192810cd6">rbtree</a>, &amp;newmc-&gt;<a class="code hl_variable" href="structxwlib__map__container.html#abe0186a3c5545c7ec1b8d2708f217aad">rbn</a>);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>                rc = <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#ga0a3bef9e5c47e42917692b5dae3b5498">EEXIST</a>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        }</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>}</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><a class="code hl_define" href="group__xwos__lib__compiler.html#gab363819592f47f26b77fa892c13c0015">__xwlib_code</a></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="group__xwos__lib__map.html#gae0a9e603da5733ebdf899a7969227cf8">   70</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__lib__map.html#gae0a9e603da5733ebdf899a7969227cf8">xwlib_map_erase</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwlib__map.html">xwlib_map</a> * map, <span class="keyword">struct</span> <a class="code hl_struct" href="structxwlib__map__container.html">xwlib_map_container</a> * mc)</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>{</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="group__xwos__lib__rbtree.html#ga34948173cd9da4b654370873eb4f73d6">xwlib_rbtree_tst_node_unlinked</a>(&amp;mc-&gt;<a class="code hl_variable" href="structxwlib__map__container.html#abe0186a3c5545c7ec1b8d2708f217aad">rbn</a>)) {</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#ga462e47a8af6288232a5df548221ada4c">ESRCH</a>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>                <a class="code hl_function" href="group__xwos__lib__rbtree.html#gac57fdaeef6a9dc2ee2bedbf5ac885f96">xwlib_rbtree_remove</a>(&amp;map-&gt;<a class="code hl_variable" href="structxwlib__map.html#af07f4919370c51533535fb4192810cd6">rbtree</a>, &amp;mc-&gt;<a class="code hl_variable" href="structxwlib__map__container.html#abe0186a3c5545c7ec1b8d2708f217aad">rbn</a>);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>                <a class="code hl_function" href="group__xwos__lib__rbtree.html#ga528f2863f2774a2f948db55c73ce6ee7">xwlib_rbtree_init_node</a>(&amp;mc-&gt;<a class="code hl_variable" href="structxwlib__map__container.html#abe0186a3c5545c7ec1b8d2708f217aad">rbn</a>);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>                <a class="code hl_function" href="group__xwos__lib__bclst.html#gab12f3ce1a4e53de3112b10c9ffb06cae">xwlib_bclst_del_init</a>(&amp;mc-&gt;<a class="code hl_variable" href="structxwlib__map__container.html#a70ea6ca60e3804052046c8dfd276004f">bcln</a>);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>                rc = <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        }</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>}</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><a class="code hl_define" href="group__xwos__lib__compiler.html#gab363819592f47f26b77fa892c13c0015">__xwlib_code</a></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="group__xwos__lib__map.html#ga80d17f38d304e7b7d6b2046c54120867">   86</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__lib__map.html#ga80d17f38d304e7b7d6b2046c54120867">xwlib_map_find</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwlib__map.html">xwlib_map</a> * map, <span class="keywordtype">void</span> * <a class="code hl_variable" href="structxwlib__map__container.html#a94a3f0bd26904ad4bee9f2b40242a0ea">key</a>,</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                      <span class="keyword">struct</span> <a class="code hl_struct" href="structxwlib__map__container.html">xwlib_map_container</a> ** mcbuf)</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>{</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwlib__rbtree__node.html">xwlib_rbtree_node</a> * rbn;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwlib__map__container.html">xwlib_map_container</a> * mc;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga89fd1295e4575443671eb9ae21c34567">xwssq_t</a> cmprc;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        <a class="code hl_variable" href="structxwlib__map__container.html#abe0186a3c5545c7ec1b8d2708f217aad">rbn</a> = map-&gt;<a class="code hl_variable" href="structxwlib__map.html#af07f4919370c51533535fb4192810cd6">rbtree</a>.<a class="code hl_variable" href="structxwlib__rbtree.html#a05d1bdd1cf62a0a083a576d914250270">root</a>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <span class="keywordflow">while</span> (<a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a> != <a class="code hl_variable" href="structxwlib__map__container.html#abe0186a3c5545c7ec1b8d2708f217aad">rbn</a>) {</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>                mc = <a class="code hl_define" href="group__xwos__lib__rbtree.html#gac30e6ddb8969df315ef5bad0d3276852">xwlib_rbtree_entry</a>(<a class="code hl_variable" href="structxwlib__map__container.html#abe0186a3c5545c7ec1b8d2708f217aad">rbn</a>, <span class="keyword">struct</span> <a class="code hl_struct" href="structxwlib__map__container.html">xwlib_map_container</a>, <a class="code hl_variable" href="structxwlib__map__container.html#abe0186a3c5545c7ec1b8d2708f217aad">rbn</a>);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>                cmprc = map-&gt;<a class="code hl_variable" href="structxwlib__map.html#a0d016fb6cbcf260e457866da9d200ac7">cmp</a>(<a class="code hl_variable" href="structxwlib__map__container.html#a94a3f0bd26904ad4bee9f2b40242a0ea">key</a>, mc-&gt;<a class="code hl_variable" href="structxwlib__map__container.html#a94a3f0bd26904ad4bee9f2b40242a0ea">key</a>);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>                <span class="keywordflow">if</span> (cmprc &lt; 0) {</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>                        <a class="code hl_variable" href="structxwlib__map__container.html#abe0186a3c5545c7ec1b8d2708f217aad">rbn</a> = <a class="code hl_variable" href="structxwlib__map__container.html#abe0186a3c5545c7ec1b8d2708f217aad">rbn</a>-&gt;<a class="code hl_variable" href="structxwlib__rbtree__node.html#a305d52ccf12a4bffa8d7e8a346a5ef2d">left</a>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>                } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (cmprc &gt; 0) {</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>                        <a class="code hl_variable" href="structxwlib__map__container.html#abe0186a3c5545c7ec1b8d2708f217aad">rbn</a> = <a class="code hl_variable" href="structxwlib__map__container.html#abe0186a3c5545c7ec1b8d2708f217aad">rbn</a>-&gt;<a class="code hl_variable" href="structxwlib__rbtree__node.html#a5a64519a3b225248f1d7321ecc5295fd">right</a>;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>                } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>                        <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>                }</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        }</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        <span class="keywordflow">if</span> (<a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a> != <a class="code hl_variable" href="structxwlib__map__container.html#abe0186a3c5545c7ec1b8d2708f217aad">rbn</a>) {</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>                *mcbuf = <a class="code hl_define" href="group__xwos__lib__rbtree.html#gac30e6ddb8969df315ef5bad0d3276852">xwlib_rbtree_entry</a>(<a class="code hl_variable" href="structxwlib__map__container.html#abe0186a3c5545c7ec1b8d2708f217aad">rbn</a>, <span class="keyword">struct</span> <a class="code hl_struct" href="structxwlib__map__container.html">xwlib_map_container</a>, <a class="code hl_variable" href="structxwlib__map__container.html#abe0186a3c5545c7ec1b8d2708f217aad">rbn</a>);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>                rc = <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                *mcbuf = <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#ga462e47a8af6288232a5df548221ada4c">ESRCH</a>;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        }</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>}</div>
+<div class="ttc" id="agroup__xwos__lib__bclst_html_ga844c5db26e3d1e2de63b8a8afb54101a"><div class="ttname"><a href="group__xwos__lib__bclst.html#ga844c5db26e3d1e2de63b8a8afb54101a">xwlib_bclst_add_front</a></div><div class="ttdeci">static void xwlib_bclst_add_front(struct xwlib_bclst_node *newn, struct xwlib_bclst_node *next)</div><div class="ttdoc">将一个节点加入到另一个节点的前面</div><div class="ttdef"><b>Definition</b> <a href="bclst_8h_source.html#l00320">bclst.h:320</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__bclst_html_ga942be8d64e19cb8efb4dd1cf10e6e706"><div class="ttname"><a href="group__xwos__lib__bclst.html#ga942be8d64e19cb8efb4dd1cf10e6e706">xwlib_bclst_add_head</a></div><div class="ttdeci">static void xwlib_bclst_add_head(struct xwlib_bclst_node *head, struct xwlib_bclst_node *newn)</div><div class="ttdoc">将一个节点加入链表头部（链表头的后面）</div><div class="ttdef"><b>Definition</b> <a href="bclst_8h_source.html#l00345">bclst.h:345</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__bclst_html_gab12f3ce1a4e53de3112b10c9ffb06cae"><div class="ttname"><a href="group__xwos__lib__bclst.html#gab12f3ce1a4e53de3112b10c9ffb06cae">xwlib_bclst_del_init</a></div><div class="ttdeci">static void xwlib_bclst_del_init(struct xwlib_bclst_node *node)</div><div class="ttdoc">删除一个节点，并重新初始化它</div><div class="ttdef"><b>Definition</b> <a href="bclst_8h_source.html#l00391">bclst.h:391</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__bclst_html_gad8aa590ba068244e420b3c128be16fdf"><div class="ttname"><a href="group__xwos__lib__bclst.html#gad8aa590ba068244e420b3c128be16fdf">xwlib_bclst_add_behind</a></div><div class="ttdeci">static void xwlib_bclst_add_behind(struct xwlib_bclst_node *newn, struct xwlib_bclst_node *prev)</div><div class="ttdoc">将一个节点加入到另一个节点的后面</div><div class="ttdef"><b>Definition</b> <a href="bclst_8h_source.html#l00333">bclst.h:333</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__compiler_html_gab363819592f47f26b77fa892c13c0015"><div class="ttname"><a href="group__xwos__lib__compiler.html#gab363819592f47f26b77fa892c13c0015">__xwlib_code</a></div><div class="ttdeci">#define __xwlib_code</div><div class="ttdef"><b>Definition</b> <a href="compiler_8h_source.html#l00199">compiler.h:199</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga0a3bef9e5c47e42917692b5dae3b5498"><div class="ttname"><a href="group__xwos__lib__errno.html#ga0a3bef9e5c47e42917692b5dae3b5498">EEXIST</a></div><div class="ttdeci">#define EEXIST</div><div class="ttdoc">File exists</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00047">errno.h:47</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga462e47a8af6288232a5df548221ada4c"><div class="ttname"><a href="group__xwos__lib__errno.html#ga462e47a8af6288232a5df548221ada4c">ESRCH</a></div><div class="ttdeci">#define ESRCH</div><div class="ttdoc">No such process</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00033">errno.h:33</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga6a72d49d869215a02342eb465166537b"><div class="ttname"><a href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a></div><div class="ttdeci">#define XWOK</div><div class="ttdoc">No error</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00182">errno.h:182</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__map_html_ga80d17f38d304e7b7d6b2046c54120867"><div class="ttname"><a href="group__xwos__lib__map.html#ga80d17f38d304e7b7d6b2046c54120867">xwlib_map_find</a></div><div class="ttdeci">xwer_t xwlib_map_find(struct xwlib_map *map, void *key, struct xwlib_map_container **mcbuf)</div><div class="ttdoc">根据 键值 查找容器</div><div class="ttdef"><b>Definition</b> <a href="map_8c_source.html#l00086">map.c:86</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__map_html_ga99035462773a66c0872014a1419193f5"><div class="ttname"><a href="group__xwos__lib__map.html#ga99035462773a66c0872014a1419193f5">xwlib_map_insert</a></div><div class="ttdeci">xwer_t xwlib_map_insert(struct xwlib_map *map, struct xwlib_map_container *newmc)</div><div class="ttdoc">插入键值对容器</div><div class="ttdef"><b>Definition</b> <a href="map_8c_source.html#l00017">map.c:17</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__map_html_gae0a9e603da5733ebdf899a7969227cf8"><div class="ttname"><a href="group__xwos__lib__map.html#gae0a9e603da5733ebdf899a7969227cf8">xwlib_map_erase</a></div><div class="ttdeci">xwer_t xwlib_map_erase(struct xwlib_map *map, struct xwlib_map_container *mc)</div><div class="ttdoc">删除键值对容器</div><div class="ttdef"><b>Definition</b> <a href="map_8c_source.html#l00070">map.c:70</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__rbtree_html_ga1c53da794f7029070219d3e6de37d899"><div class="ttname"><a href="group__xwos__lib__rbtree.html#ga1c53da794f7029070219d3e6de37d899">xwlib_rbtree_tst_left</a></div><div class="ttdeci">#define xwlib_rbtree_tst_left(lpc)</div><div class="ttdoc">测试当前lpc中的位置信息是否为左侧</div><div class="ttdef"><b>Definition</b> <a href="rbtree_8h_source.html#l00159">rbtree.h:159</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__rbtree_html_ga23349674f77ef164e1771a3244c766ab"><div class="ttname"><a href="group__xwos__lib__rbtree.html#ga23349674f77ef164e1771a3244c766ab">xwlib_rbtree_tst_link_root</a></div><div class="ttdeci">static bool xwlib_rbtree_tst_link_root(struct xwlib_rbtree *rbt, struct xwlib_rbtree_node **link)</div><div class="ttdoc">测试是否连接到根节点（是否为根节点的子节点）</div><div class="ttdef"><b>Definition</b> <a href="rbtree_8h_source.html#l00308">rbtree.h:308</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__rbtree_html_ga34948173cd9da4b654370873eb4f73d6"><div class="ttname"><a href="group__xwos__lib__rbtree.html#ga34948173cd9da4b654370873eb4f73d6">xwlib_rbtree_tst_node_unlinked</a></div><div class="ttdeci">static bool xwlib_rbtree_tst_node_unlinked(struct xwlib_rbtree_node *n)</div><div class="ttdoc">测试红黑树节点是否已经链接到红黑树中</div><div class="ttdef"><b>Definition</b> <a href="rbtree_8h_source.html#l00449">rbtree.h:449</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__rbtree_html_ga528f2863f2774a2f948db55c73ce6ee7"><div class="ttname"><a href="group__xwos__lib__rbtree.html#ga528f2863f2774a2f948db55c73ce6ee7">xwlib_rbtree_init_node</a></div><div class="ttdeci">static void xwlib_rbtree_init_node(struct xwlib_rbtree_node *rbn)</div><div class="ttdoc">初始化红黑树节点</div><div class="ttdef"><b>Definition</b> <a href="rbtree_8h_source.html#l00114">rbtree.h:114</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__rbtree_html_ga55c3b92f4fbb4b8b429f2f2fa62697f7"><div class="ttname"><a href="group__xwos__lib__rbtree.html#ga55c3b92f4fbb4b8b429f2f2fa62697f7">xwlib_rbtree_get_link</a></div><div class="ttdeci">#define xwlib_rbtree_get_link(lpc)</div><div class="ttdoc">获取lpc信息中的link指针</div><div class="ttdef"><b>Definition</b> <a href="rbtree_8h_source.html#l00126">rbtree.h:126</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__rbtree_html_gaa09f90f7792b00240a3cecef84946d88"><div class="ttname"><a href="group__xwos__lib__rbtree.html#gaa09f90f7792b00240a3cecef84946d88">xwlib_rbtree_insert_color</a></div><div class="ttdeci">void xwlib_rbtree_insert_color(struct xwlib_rbtree *tree, struct xwlib_rbtree_node *node)</div><div class="ttdoc">插入一个红色节点后修正红黑树的颜色</div><div class="ttdef"><b>Definition</b> <a href="rbtree_8c_source.html#l00017">rbtree.c:17</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__rbtree_html_gab2c329630cce359161595f69c34ac827"><div class="ttname"><a href="group__xwos__lib__rbtree.html#gab2c329630cce359161595f69c34ac827">xwlib_rbtree_get_parent_from_lpc</a></div><div class="ttdeci">static struct xwlib_rbtree_node * xwlib_rbtree_get_parent_from_lpc(xwptr_t lpc)</div><div class="ttdoc">从lpc信息返回父节点指针</div><div class="ttdef"><b>Definition</b> <a href="rbtree_8h_source.html#l00271">rbtree.h:271</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__rbtree_html_gac30e6ddb8969df315ef5bad0d3276852"><div class="ttname"><a href="group__xwos__lib__rbtree.html#gac30e6ddb8969df315ef5bad0d3276852">xwlib_rbtree_entry</a></div><div class="ttdeci">#define xwlib_rbtree_entry(ptr, type, member)</div><div class="ttdoc">从红黑树节点指针值计算出包含该节点成员的外层结构体的指针值</div><div class="ttdef"><b>Definition</b> <a href="rbtree_8h_source.html#l00236">rbtree.h:236</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__rbtree_html_gac57fdaeef6a9dc2ee2bedbf5ac885f96"><div class="ttname"><a href="group__xwos__lib__rbtree.html#gac57fdaeef6a9dc2ee2bedbf5ac885f96">xwlib_rbtree_remove</a></div><div class="ttdeci">void xwlib_rbtree_remove(struct xwlib_rbtree *tree, struct xwlib_rbtree_node *node)</div><div class="ttdoc">删除一个节点，并修正红黑树的颜色</div><div class="ttdef"><b>Definition</b> <a href="rbtree_8c_source.html#l00320">rbtree.c:320</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__rbtree_html_gaef7f6608cd37a0fb765adb003428ec38"><div class="ttname"><a href="group__xwos__lib__rbtree.html#gaef7f6608cd37a0fb765adb003428ec38">xwlib_rbtree_link</a></div><div class="ttdeci">static void xwlib_rbtree_link(struct xwlib_rbtree_node *node, xwptr_t lpc)</div><div class="ttdoc">链接节点，并设置位置及颜色信息</div><div class="ttdef"><b>Definition</b> <a href="rbtree_8h_source.html#l00350">rbtree.h:350</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__rbtree_html_gga24db3abd791e1b31e4147f1aea0dda5fa80511d7804ed626c9b0a6f571e69fab7"><div class="ttname"><a href="group__xwos__lib__rbtree.html#gga24db3abd791e1b31e4147f1aea0dda5fa80511d7804ed626c9b0a6f571e69fab7">XWLIB_RBTREE_POS_RIGHT</a></div><div class="ttdeci">@ XWLIB_RBTREE_POS_RIGHT</div><div class="ttdef"><b>Definition</b> <a href="rbtree_8h_source.html#l00067">rbtree.h:67</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga06847ea8c7edb2b1f166288b230f251f"><div class="ttname"><a href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a></div><div class="ttdeci">signed long xwer_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00554">type.h:554</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00028">type.h:28</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga89fd1295e4575443671eb9ae21c34567"><div class="ttname"><a href="group__xwos__lib__type.html#ga89fd1295e4575443671eb9ae21c34567">xwssq_t</a></div><div class="ttdeci">signed long xwssq_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00461">type.h:461</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_gacef49946313c8d1985a8279bb40e31c4"><div class="ttname"><a href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a></div><div class="ttdeci">unsigned long xwptr_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00375">type.h:375</a></div></div>
+<div class="ttc" id="amap_8h_html"><div class="ttname"><a href="map_8h.html">map.h</a></div><div class="ttdoc">XWOS通用库：键值对容器</div></div>
+<div class="ttc" id="astructxwlib__map__container_html"><div class="ttname"><a href="structxwlib__map__container.html">xwlib_map_container</a></div><div class="ttdoc">键值对容器</div><div class="ttdef"><b>Definition</b> <a href="map_8h_source.html#l00032">map.h:32</a></div></div>
+<div class="ttc" id="astructxwlib__map__container_html_a70ea6ca60e3804052046c8dfd276004f"><div class="ttname"><a href="structxwlib__map__container.html#a70ea6ca60e3804052046c8dfd276004f">xwlib_map_container::bcln</a></div><div class="ttdeci">struct xwlib_bclst_node bcln</div><div class="ttdef"><b>Definition</b> <a href="map_8h_source.html#l00034">map.h:34</a></div></div>
+<div class="ttc" id="astructxwlib__map__container_html_a94a3f0bd26904ad4bee9f2b40242a0ea"><div class="ttname"><a href="structxwlib__map__container.html#a94a3f0bd26904ad4bee9f2b40242a0ea">xwlib_map_container::key</a></div><div class="ttdeci">void * key</div><div class="ttdef"><b>Definition</b> <a href="map_8h_source.html#l00035">map.h:35</a></div></div>
+<div class="ttc" id="astructxwlib__map__container_html_abe0186a3c5545c7ec1b8d2708f217aad"><div class="ttname"><a href="structxwlib__map__container.html#abe0186a3c5545c7ec1b8d2708f217aad">xwlib_map_container::rbn</a></div><div class="ttdeci">struct xwlib_rbtree_node rbn</div><div class="ttdef"><b>Definition</b> <a href="map_8h_source.html#l00033">map.h:33</a></div></div>
+<div class="ttc" id="astructxwlib__map_html"><div class="ttname"><a href="structxwlib__map.html">xwlib_map</a></div><div class="ttdoc">键值对集合</div><div class="ttdef"><b>Definition</b> <a href="map_8h_source.html#l00047">map.h:47</a></div></div>
+<div class="ttc" id="astructxwlib__map_html_a0d016fb6cbcf260e457866da9d200ac7"><div class="ttname"><a href="structxwlib__map.html#a0d016fb6cbcf260e457866da9d200ac7">xwlib_map::cmp</a></div><div class="ttdeci">xwlib_map_cmp_f cmp</div><div class="ttdef"><b>Definition</b> <a href="map_8h_source.html#l00050">map.h:50</a></div></div>
+<div class="ttc" id="astructxwlib__map_html_af07f4919370c51533535fb4192810cd6"><div class="ttname"><a href="structxwlib__map.html#af07f4919370c51533535fb4192810cd6">xwlib_map::rbtree</a></div><div class="ttdeci">struct xwlib_rbtree rbtree</div><div class="ttdef"><b>Definition</b> <a href="map_8h_source.html#l00048">map.h:48</a></div></div>
+<div class="ttc" id="astructxwlib__map_html_af4ea26a144cb1ec3ad80132bbd285f24"><div class="ttname"><a href="structxwlib__map.html#af4ea26a144cb1ec3ad80132bbd285f24">xwlib_map::bclh</a></div><div class="ttdeci">struct xwlib_bclst_node bclh</div><div class="ttdef"><b>Definition</b> <a href="map_8h_source.html#l00049">map.h:49</a></div></div>
+<div class="ttc" id="astructxwlib__rbtree__node_html"><div class="ttname"><a href="structxwlib__rbtree__node.html">xwlib_rbtree_node</a></div><div class="ttdoc">红黑树节点</div><div class="ttdef"><b>Definition</b> <a href="rbtree_8h_source.html#l00081">rbtree.h:81</a></div></div>
+<div class="ttc" id="astructxwlib__rbtree__node_html_a305d52ccf12a4bffa8d7e8a346a5ef2d"><div class="ttname"><a href="structxwlib__rbtree__node.html#a305d52ccf12a4bffa8d7e8a346a5ef2d">xwlib_rbtree_node::left</a></div><div class="ttdeci">struct xwlib_rbtree_node * left</div><div class="ttdef"><b>Definition</b> <a href="rbtree_8h_source.html#l00082">rbtree.h:82</a></div></div>
+<div class="ttc" id="astructxwlib__rbtree__node_html_a5a64519a3b225248f1d7321ecc5295fd"><div class="ttname"><a href="structxwlib__rbtree__node.html#a5a64519a3b225248f1d7321ecc5295fd">xwlib_rbtree_node::right</a></div><div class="ttdeci">struct xwlib_rbtree_node * right</div><div class="ttdef"><b>Definition</b> <a href="rbtree_8h_source.html#l00083">rbtree.h:83</a></div></div>
+<div class="ttc" id="astructxwlib__rbtree__node_html_a7ce1873c40a33e7f01adf04f3525ff64"><div class="ttname"><a href="structxwlib__rbtree__node.html#a7ce1873c40a33e7f01adf04f3525ff64">xwlib_rbtree_node::pos</a></div><div class="ttdeci">xwptr_t pos</div><div class="ttdef"><b>Definition</b> <a href="rbtree_8h_source.html#l00086">rbtree.h:86</a></div></div>
+<div class="ttc" id="astructxwlib__rbtree_html_a05d1bdd1cf62a0a083a576d914250270"><div class="ttname"><a href="structxwlib__rbtree.html#a05d1bdd1cf62a0a083a576d914250270">xwlib_rbtree::root</a></div><div class="ttdeci">struct xwlib_rbtree_node * root</div><div class="ttdef"><b>Definition</b> <a href="rbtree_8h_source.html#l00096">rbtree.h:96</a></div></div>
+<div class="ttc" id="axwos_2standard_8h_html"><div class="ttname"><a href="xwos_2standard_8h.html">standard.h</a></div><div class="ttdoc">XWOS的标准头文件</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_43a52829888b753087a6774748486ed5.html">xwos</a></li><li class="navelem"><a class="el" href="dir_661654454d33f46b32a0e119e0a883df.html">lib</a></li><li class="navelem"><a class="el" href="map_8c.html">map.c</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>XWOS – 应用手册</title>
+    <link>/docs/UserManual/App/</link>
+    <description>Recent content in 应用手册 on XWOS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    
+	  <atom:link href="/docs/UserManual/App/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: 编译</title>
+      <link>/docs/UserManual/App/Build/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/UserManual/App/Build/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;编译流程概述&#34;&gt;编译流程概述&lt;/h2&gt;
+&lt;p&gt;XWOS使用自己的 &lt;a href=&#34;../../../TechRefManual/BuildSystem&#34;&gt;构建系统&lt;/a&gt; 进行构建，
+构建是从 &lt;strong&gt;电路板目录&lt;/strong&gt; 下执行命令 &lt;code&gt;make&lt;/code&gt; 开始的，以 &lt;code&gt;$(XWOS_BRD_DIR)&lt;/code&gt; 代表此目录。
+编译流程简单说就是将各个模块单独编译为 &lt;strong&gt;静态库.a&lt;/strong&gt; ，然后再链接为 &lt;strong&gt;ELF文件&lt;/strong&gt; 。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;arch.a&lt;/code&gt; : 由 &lt;code&gt;arch.mk&lt;/code&gt; 描述如何编译；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cpu.a&lt;/code&gt; : 由 &lt;code&gt;cpu.mk&lt;/code&gt; 描述如何编译；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;soc.a&lt;/code&gt; : 由 &lt;code&gt;soc.mk&lt;/code&gt; 描述如何编译；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;brd.a&lt;/code&gt; : 由 &lt;code&gt;brd.mk&lt;/code&gt; 描述如何编译；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos.a&lt;/code&gt; : 由 &lt;code&gt;xwos.mk&lt;/code&gt; 描述如何编译；&lt;/li&gt;
+&lt;li&gt;其他模块均由 &lt;code&gt;xwmo.mk&lt;/code&gt; 描述如何编译，称为 &lt;a href=&#34;../../../TechRefManual/BuildSystem#%E7%8E%84%E6%AD%A6%E6%A8%A1%E5%9D%97&#34;&gt;构建系统&lt;/a&gt; ，包括：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwcd&lt;/code&gt; ：驱动模块&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd&lt;/code&gt; ：中间件模块&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwem&lt;/code&gt; ：第三方软件模块&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwam&lt;/code&gt; ：示例与应用模块&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;$(XWOS_BRD_DIR)/bm&lt;/code&gt; ：电路板模块
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;$(XWOS_BRD_DIR)&lt;/code&gt; 是 &lt;strong&gt;电路板目录&lt;/strong&gt; 。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;$(XWOS_OEM_DIR)&lt;/code&gt; ：OEM模块
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;XWOS_OEM_DIR&lt;/code&gt; 由配置文件 &lt;code&gt;$(XWOS_BRD_DIR)/cfg/project.mk&lt;/code&gt; 中的 &lt;code&gt;XWCFG_OEMPATH&lt;/code&gt; 进行配置 。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;输出文件路径&#34;&gt;输出文件路径&lt;/h2&gt;
+&lt;p&gt;编译的输出，全部位于 &lt;code&gt;$(WKSPC)&lt;/code&gt; 目录，默认值在 &lt;code&gt;$(XWOS_BRD_DIR)/makefile&lt;/code&gt; 定义，为 &lt;code&gt;wkspc&lt;/code&gt; 。&lt;/p&gt;
+&lt;p&gt;这个变量可以在编译前，由用户设置，例如：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a2f&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#b8860b&#34;&gt;WKSPC&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt;../../../Debug
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;编译后，将自动创建目录 &lt;code&gt;$(XWOS_BRD_DIR)/../../../Debug&lt;/code&gt; ，并将所有编译的过程文件放入其中。&lt;/p&gt;
+&lt;h2 id=&#34;查看编译过程&#34;&gt;查看编译过程&lt;/h2&gt;
+&lt;p&gt;用户使用 &lt;code&gt;make V=1&lt;/code&gt; 进行编译时可以查看完整的编译过程。
+也可使用环境变量：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a2f&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#b8860b&#34;&gt;V&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;make
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;设置优化等级&#34;&gt;设置优化等级&lt;/h2&gt;
+&lt;p&gt;用户使用 &lt;code&gt;make O=1&lt;/code&gt; 进行编译时可以设置编译时的优化等级为 &lt;code&gt;1&lt;/code&gt;。
+也可使用环境变量：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a2f&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#b8860b&#34;&gt;O&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;# 不使用任何优化，最有利于调试&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;make
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;默认情况下，优化等级为 &lt;code&gt;g&lt;/code&gt; 。&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: XWOS标准</title>
+      <link>/docs/UserManual/App/XwosStd/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/UserManual/App/XwosStd/</guid>
+      <description>
+        
+        
+        &lt;p&gt;XWOS的顶级头文件为 &lt;code&gt;#include &amp;lt;xwos/standard.h&amp;gt;&lt;/code&gt; ，其中包括了基本的类型定义、宏定义等。
+详细可参考 &lt;a href=&#34;../../../TechRefManual/XwosStd&#34;&gt;&lt;strong&gt;XWOS标准&lt;/strong&gt;&lt;/a&gt;  。&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 配置</title>
+      <link>/docs/UserManual/App/Cfg/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/UserManual/App/Cfg/</guid>
+      <description>
+        
+        
+        &lt;p&gt;XWOS所有配置文件都集中于 &lt;code&gt;电路板名称/cfg&lt;/code&gt; ，以XWOS内置的工程 &lt;strong&gt;WeActMiniStm32H750&lt;/strong&gt; 为例，
+&lt;strong&gt;电路板名称&lt;/strong&gt; 为 &lt;code&gt;XWOS/xwbd/WeActMiniStm32H750&lt;/code&gt; ， &lt;strong&gt;配置&lt;/strong&gt; 位于 &lt;code&gt;XWOS/xwbd/WeActMiniStm32H750/cfg&lt;/code&gt; 。&lt;/p&gt;
+&lt;p&gt;配置的详细说明，参考 &lt;a href=&#34;../../../TechRefManual/Cfg&#34;&gt;&lt;strong&gt;技术参考手册/配置&lt;/strong&gt;&lt;/a&gt; 。&lt;/p&gt;
+&lt;p&gt;XWOS的配置使用C语言的头文件和宏定义来实现。&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 中断</title>
+      <link>/docs/UserManual/App/Irq/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/UserManual/App/Irq/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;capi参考&#34;&gt;CAPI参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__irq.html&#34;&gt;&lt;strong&gt;头文件 &amp;lt;xwos/osal/irq.h&amp;gt;&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 线程</title>
+      <link>/docs/UserManual/App/Thd/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/UserManual/App/Thd/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;capi参考&#34;&gt;CAPI参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__thd.html&#34;&gt;&lt;strong&gt;头文件 &amp;lt;xwos/osal/thd.h&amp;gt;&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 软件定时器</title>
+      <link>/docs/UserManual/App/Swt/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/UserManual/App/Swt/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;capi参考&#34;&gt;CAPI参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__swt.html&#34;&gt;&lt;strong&gt;头文件 &amp;lt;xwos/osal/swt.h&amp;gt;&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 锁</title>
+      <link>/docs/UserManual/App/Lock/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/UserManual/App/Lock/</guid>
+      <description>
+        
+        
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 同步</title>
+      <link>/docs/UserManual/App/Sync/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/UserManual/App/Sync/</guid>
+      <description>
+        
+        
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 电源管理</title>
+      <link>/docs/UserManual/App/Pm/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/UserManual/App/Pm/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;capi参考&#34;&gt;CAPI参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__pm.html&#34;&gt;&lt;strong&gt;头文件 &amp;lt;xwos/osal/pm.h&amp;gt;&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

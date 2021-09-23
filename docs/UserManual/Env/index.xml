@@ -1,0 +1,241 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>XWOS – 开发环境</title>
+    <link>/docs/UserManual/Env/</link>
+    <description>Recent content in 开发环境 on XWOS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    
+	  <atom:link href="/docs/UserManual/Env/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: XWOS编译工具链安装指南</title>
+      <link>/docs/UserManual/Env/XWTC/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/UserManual/Env/XWTC/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;xwtc&#34;&gt;XWTC&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;xwtc&lt;/code&gt; 是XWOS编译的工具集合，可以从百度网盘下载，按照内部 &lt;strong&gt;说明.md&lt;/strong&gt; 安装就可。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://pan.baidu.com/s/1WwSaEajt6JqgMOLOa8iPEQ&#34;&gt;https://pan.baidu.com/s/1WwSaEajt6JqgMOLOa8iPEQ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;提取码：xwos&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;其中包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;arm-none-eabi-gcc&lt;/li&gt;
+&lt;li&gt;armllvm&lt;/li&gt;
+&lt;li&gt;riscv-nuclei-elf-gcc&lt;/li&gt;
+&lt;li&gt;nxp gcc toolchain&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;windows版本还包括&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;windows-build-tools，包括一些工具，例如 &lt;code&gt;make&lt;/code&gt; , &lt;code&gt;sed&lt;/code&gt; , &lt;code&gt;emacs&lt;/code&gt; 等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;ubuntu&#34;&gt;Ubuntu&lt;/h4&gt;
+&lt;p&gt;若用户使用 &lt;strong&gt;Ubuntu&lt;/strong&gt; 作为开发环境，除了按照 &lt;strong&gt;说明.md&lt;/strong&gt; 安装之外，需要额外安装一些工具：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo dpkg-reconfigure dash &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;# 选择“否”&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt install build-essential
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt-add-repository ppa:kelleyk/emacs
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt-get update
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt install emacs28 &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;# 如果是无图形界面的服务器，改为emacs28-nox&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;windows&#34;&gt;windows&lt;/h4&gt;
+&lt;p&gt;若用户使用 &lt;strong&gt;Windows&lt;/strong&gt; 作为开发环境，按照 &lt;strong&gt;说明.md&lt;/strong&gt; 设置环境变量即可。&lt;/p&gt;
+&lt;h2 id=&#34;xwtc工具链的一些改动&#34;&gt;XWTC工具链的一些改动&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;arm-none-eabi-gcc
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;增加了对TLS(Thread Loacl Storage)的支持&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;armllvm
+&lt;ul&gt;
+&lt;li&gt;picolibc
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;使用正常的 &lt;code&gt;stdio&lt;/code&gt; 而非 &lt;code&gt;tinystdio&lt;/code&gt; ；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;格式化字符串增加 &lt;code&gt;%b&lt;/code&gt;, &lt;code&gt;%lld&lt;/code&gt;, &lt;code&gt;%Lf&lt;/code&gt; ；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;将 &lt;code&gt;__errno&lt;/code&gt; 设置为函数 ；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;支持多字节字符。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Rust开发环境指南</title>
+      <link>/docs/UserManual/Env/Rust/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/UserManual/Env/Rust/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;rust的开发工具&#34;&gt;Rust的开发工具&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;根据&lt;a href=&#34;https://www.rust-lang.org/tools/install&#34;&gt;官方指导&lt;/a&gt;安装 &lt;strong&gt;RUST&lt;/strong&gt; ；&lt;/li&gt;
+&lt;li&gt;切换镜像源
+&lt;ul&gt;
+&lt;li&gt;Ubuntu配置文件路径： &lt;code&gt;~/.cargo/config&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Windows配置文件路进： &lt;code&gt;C:\Users\用户名\.cargo\config&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[source.crates-io]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;registry = &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;https://github.com/rust-lang/crates.io-index&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;replace-with = &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;ustc&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[source.ustc]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;registry = &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;http://mirrors.ustc.edu.cn/crates.io-index&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[source.tuna]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;registry = &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;https://mirrors.tuna.tsinghua.edu.cn/git/crates.io-index.git&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[source.sjtu]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;registry = &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;http://mirrors.sjtug.sjtu.edu.cn/git/crates.io-index&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Ubuntu安装unstable版本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup install nightly
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly target add thumbv8m.main-none-eabihf
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly target add thumbv8m.main-none-eabi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly target add thumbv8m.base-none-eabi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly target add thumbv7m-none-eabi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly target add thumbv7em-none-eabihf
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly target add thumbv7em-none-eabi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly target add thumbv6m-none-eabi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly target add riscv32imac-unknown-none-elf
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly target add aarch64-unknown-none
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly component add rust-src
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Windows安装unstable版本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;注意：Windows只支持使用 &lt;code&gt;gnu&lt;/code&gt; 版的工具链&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup install nightly-x86_64-pc-windows-gnu
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly-x86_64-pc-windows-gnu target add thumbv8m.main-none-eabihf
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly-x86_64-pc-windows-gnu target add thumbv8m.main-none-eabi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly-x86_64-pc-windows-gnu target add thumbv8m.base-none-eabi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly-x86_64-pc-windows-gnu target add thumbv7m-none-eabi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly-x86_64-pc-windows-gnu target add thumbv7em-none-eabihf
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly-x86_64-pc-windows-gnu target add thumbv7em-none-eabi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly-x86_64-pc-windows-gnu target add thumbv6m-none-eabi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly-x86_64-pc-windows-gnu target add riscv32imac-unknown-none-elf
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly-x86_64-pc-windows-gnu target add aarch64-unknown-none
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly-x86_64-pc-windows-gnu component add rust-src
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;安装lsp&#34;&gt;安装LSP&lt;/h2&gt;
+&lt;p&gt;LSP（Language Server Protocol，语言服务协议）是新一代查看源码的工具。
+Rust语言的LSP推荐使用 &lt;code&gt;rust-analyzer&lt;/code&gt; 。&lt;/p&gt;
+&lt;p&gt;有两种安装方法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通过命令安装，可获得稳定版&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly component add rust-src
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;通过源码安装，可获得最新版本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git clone https://github.com/rust-analyzer/rust-analyzer.git
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a2f&#34;&gt;cd&lt;/span&gt; rust-analyzer
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cargo xtask install
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 基于Eclipse的IDE设置指南</title>
+      <link>/docs/UserManual/Env/Eclipse/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/UserManual/Env/Eclipse/</guid>
+      <description>
+        
+        
+        &lt;p&gt;基于Eclipse的IDE（例如：STM32CubeIDE、S32DS、NucleiStudio等）的设置方法相似。&lt;/p&gt;
+&lt;h2 id=&#34;编译设置&#34;&gt;编译设置&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;菜单： &lt;strong&gt;Project &amp;ndash;&amp;gt; Properties&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;选择卡： &lt;strong&gt;C/C++ Build&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Build Settings&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;关闭Eclipse自动生成 &lt;code&gt;Makefile&lt;/code&gt; 的功能；&lt;/li&gt;
+&lt;li&gt;设置 &lt;code&gt;buid directory&lt;/code&gt; 为 &lt;strong&gt;电路板目录&lt;/strong&gt; ，使用XWOS自带的编译系统。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;Properties-C_C++_Build-Settings.png&#34; alt=&#34;img&#34; title=&#34;编译设置&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Build Behavior&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;设置 &lt;code&gt;build&lt;/code&gt; 的目标为 &lt;code&gt;all&lt;/code&gt; 或置空；&lt;/li&gt;
+&lt;li&gt;设置 &lt;code&gt;clean&lt;/code&gt; 的目标为 &lt;code&gt;d&lt;/code&gt; 。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;Properties-C_C++_Build-Behavior.png&#34; alt=&#34;img&#34; title=&#34;编译行为&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;环境变量设置&#34;&gt;环境变量设置&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;菜单 &lt;strong&gt;Project &amp;ndash;&amp;gt; Properties&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;选择卡 &lt;strong&gt;C/C++ Build &amp;ndash;&amp;gt; Environment&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;设置
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;WKSPC&lt;/code&gt; ：编译时输出文件的路径；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;V&lt;/code&gt; : 设置为 &lt;code&gt;1&lt;/code&gt; 可在编译时显示指令；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;D&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;设置为 &lt;code&gt;1&lt;/code&gt; 时，编译器的优化不会影响调试；&lt;/li&gt;
+&lt;li&gt;设置为 &lt;code&gt;0&lt;/code&gt; 时，编译器的优化会影响调试。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;Properties-C_C++_Build-Environment.png&#34; alt=&#34;img&#34; title=&#34;环境变量&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;rust插件&#34;&gt;Rust插件&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;菜单： &lt;code&gt;&amp;quot;Help&amp;quot; -&amp;gt; &amp;quot;Install New Software...&amp;quot; -&amp;gt; &amp;quot;Add...&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;仓库： &lt;code&gt;http://mirrors.ustc.edu.cn/eclipse/corrosion/releases/1.2.3/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;插件： &lt;code&gt;Corrosion: Rust edition in Eclipse IDE&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;不同版本的Eclipse与插件存在兼容性问题，需要尝试不同版本的插件。
+一般选择 &lt;code&gt;1.2.3&lt;/code&gt; 版本的插件即可，不要选择最新的 &lt;code&gt;1.2.4&lt;/code&gt; 版本的插件。&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

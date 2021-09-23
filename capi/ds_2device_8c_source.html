@@ -1,0 +1,624 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>XWOS API: xwcd/ds/device.c 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<a href="/" class="github-corner" title="返回首页">
+  <svg viewBox="0 0 250 250" style="position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path
+      d="M 0 0 L 250 250 L 250 0 L 0 0 z M 181.19336 6.25 A 18.281986 19.638775 0 0 1 192.79297 10.798828 L 241.54492 54.201172 A 6.0939954 6.5462585 0 0 1 237.64453 65.787109 L 233.13477 65.787109 A 3.0469979 3.2731292 0 0 0 230.08789 69.060547 L 230.08789 111.61133 A 18.281986 19.638775 0 0 1 211.80664 131.25 L 205.71289 131.25 A 12.187991 13.092517 0 0 1 193.52344 118.1582 L 193.52344 98.519531 A 12.187991 13.092517 0 0 0 181.33594 85.425781 A 12.187991 13.092517 0 0 0 169.14844 98.519531 L 169.14844 118.1582 A 12.187991 13.092517 0 0 1 156.95898 131.25 L 150.86523 131.25 A 18.281986 19.638775 0 0 1 132.58398 111.61133 L 132.58398 68.994141 A 3.0469979 3.2731292 0 0 0 129.29297 65.722656 L 124.7832 65.722656 A 6.0939954 6.5462585 0 0 1 120.88281 54.201172 L 169.39258 10.798828 A 18.281986 19.638775 0 0 1 181.19336 6.25 z "/>
+  </svg>
+</a>
+<style>.github-corner:hover</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">XWOS API
+   &#160;<span id="projectnumber">3.0</span>
+   </div>
+   <div id="projectbrief">XWOS API参考手册</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('ds_2device_8c_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">device.c</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="ds_2device_8c.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;<a class="code" href="xwcd_2ds_2standard_8h.html">xwcd/ds/standard.h</a>&gt;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;<a class="code" href="xwaop_8h.html">xwos/lib/xwaop.h</a>&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;<a class="code" href="bclst_8h.html">xwos/lib/bclst.h</a>&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;<a class="code" href="lock_2spinlock_8h.html">xwos/osal/lock/spinlock.h</a>&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;<a class="code" href="lock_2seqlock_8h.html">xwos/osal/lock/seqlock.h</a>&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;<a class="code" href="lock_2mtx_8h.html">xwos/osal/lock/mtx.h</a>&gt;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;<a class="code" href="xwds_8h.html">xwcd/ds/xwds.h</a>&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;<a class="code" href="xwcd_2ds_2object_8h.html">xwcd/ds/object.h</a>&gt;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &lt;<a class="code" href="ds_2device_8h.html">xwcd/ds/device.h</a>&gt;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="ds_2device_8c.html#acb86905a094d923d5969ce191a61f6e9">   35</a></span><a class="code hl_define" href="group__xwcd__ds.html#gab6317ea3e673d7755ef26e5798ddd8c0">__xwds_rodata</a> <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__virtual__operation.html">xwds_virtual_operation</a> <a class="code hl_variable" href="ds_2device_8c.html#acb86905a094d923d5969ce191a61f6e9">xwds_dev_vop</a> = {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        .<a class="code hl_variable" href="structxwds__virtual__operation.html#acf42b4caae0898e31d52d446ee5a93b5">probe</a> = <a class="code hl_function" href="group__xwcd__ds__device.html#gada012caf11d782b5a3c3b8587990ae40">xwds_device_vop_probe</a>,</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        .remove = <a class="code hl_function" href="group__xwcd__ds__device.html#ga9971f3ed17fb65399b5528fa4a4e94c8">xwds_device_vop_remove</a>,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        .start = <a class="code hl_function" href="group__xwcd__ds__device.html#ga0c0a2863095c22abd63f27fd415d8e15">xwds_device_vop_start</a>,</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        .stop = <a class="code hl_function" href="group__xwcd__ds__device.html#ga76d2c2ffbf8a1efc4e7bf1d7ac581fd5">xwds_device_vop_stop</a>,</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#if defined(XWCDCFG_ds_PM) &amp;&amp; (1 == XWCDCFG_ds_PM)</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        .suspend = <a class="code hl_function" href="group__xwcd__ds__device.html#gaebbbeb318c6f7ce466b12eeee7ae2350">xwds_device_vop_suspend</a>,</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        .resume = <a class="code hl_function" href="group__xwcd__ds__device.html#gacd2f8a67386345880905e9099924927c">xwds_device_vop_resume</a>,</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>};</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">/******** ******** ******** constructor &amp; destructor ******** ******** ********/</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><a class="code hl_define" href="group__xwcd__ds.html#ga8dfce3af09db190cd28028a817ae9275">__xwds_api</a></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="group__xwcd__ds__device.html#ga28c4da29c7c95ad0ee437ed6e4a97e9d">   48</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwcd__ds__device.html#ga28c4da29c7c95ad0ee437ed6e4a97e9d">xwds_device_construct</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__device.html">xwds_device</a> * dev)</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>{</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <a class="code hl_function" href="group__xwcd__ds__object.html#ga8159ce4ed1c5c3c8c4f3ab187fac48a0">xwds_obj_construct</a>(&amp;dev-&gt;<a class="code hl_variable" href="structxwds__device.html#abef806e54fe0abc030f2ad1f54824560">obj</a>);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        dev-&gt;<a class="code hl_variable" href="structxwds__device.html#a7d5ba4f809e2fc89a9ea194edc1f2469">vop</a> = &amp;<a class="code hl_variable" href="ds_2device_8c.html#acb86905a094d923d5969ce191a61f6e9">xwds_dev_vop</a>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        dev-&gt;<a class="code hl_variable" href="structxwds__device.html#a9641ef932f0e09465e3bda067210a88a">ds</a> = <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>}</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><a class="code hl_define" href="group__xwcd__ds.html#ga8dfce3af09db190cd28028a817ae9275">__xwds_api</a></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="group__xwcd__ds__device.html#ga40607e48943c7647201065226dc37fa1">   56</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwcd__ds__device.html#ga40607e48943c7647201065226dc37fa1">xwds_device_destruct</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__device.html">xwds_device</a> * dev)</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>{</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <a class="code hl_function" href="group__xwcd__ds__object.html#ga73902a4e27cea5ecf32e7fb39166b49c">xwds_obj_destruct</a>(&amp;dev-&gt;<a class="code hl_variable" href="structxwds__device.html#abef806e54fe0abc030f2ad1f54824560">obj</a>);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>}</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">/******** ******** base virtual operations ******** ********/</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><a class="code hl_define" href="group__xwcd__ds.html#ga60d990e5df4266fbb1b7dada9160c698">__xwds_vop</a></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="group__xwcd__ds__device.html#gada012caf11d782b5a3c3b8587990ae40">   67</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwcd__ds__device.html#gada012caf11d782b5a3c3b8587990ae40">xwds_device_vop_probe</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__device.html">xwds_device</a> * dev)</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>{</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__driver.html">xwds_driver</a> * drv;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        drv = dev-&gt;<a class="code hl_variable" href="structxwds__device.html#a1d485436e69d8cd8f38bcd2eb467a640">drv</a>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="keywordflow">if</span> ((drv) &amp;&amp; (drv-&gt;<a class="code hl_variable" href="structxwds__driver.html#a84d4c39d18101ea5ee8925cc1a0a6097">probe</a>)) {</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>                rc = drv-&gt;<a class="code hl_variable" href="structxwds__driver.html#a84d4c39d18101ea5ee8925cc1a0a6097">probe</a>(dev);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>                rc = <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        }</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>}</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><a class="code hl_define" href="group__xwcd__ds.html#ga60d990e5df4266fbb1b7dada9160c698">__xwds_vop</a></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="group__xwcd__ds__device.html#ga9971f3ed17fb65399b5528fa4a4e94c8">   86</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwcd__ds__device.html#ga9971f3ed17fb65399b5528fa4a4e94c8">xwds_device_vop_remove</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__device.html">xwds_device</a> * dev)</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>{</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__driver.html">xwds_driver</a> * drv;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        drv = dev-&gt;<a class="code hl_variable" href="structxwds__device.html#a1d485436e69d8cd8f38bcd2eb467a640">drv</a>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        <span class="keywordflow">if</span> ((drv) &amp;&amp; (drv-&gt;<a class="code hl_variable" href="structxwds__driver.html#af9af2e3d5979911933c8a8934ff653ca">remove</a>)) {</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>                rc = drv-&gt;<a class="code hl_variable" href="structxwds__driver.html#af9af2e3d5979911933c8a8934ff653ca">remove</a>(dev);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>                rc = <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        }</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>}</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><a class="code hl_define" href="group__xwcd__ds.html#ga60d990e5df4266fbb1b7dada9160c698">__xwds_vop</a></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="group__xwcd__ds__device.html#ga0c0a2863095c22abd63f27fd415d8e15">  105</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwcd__ds__device.html#ga0c0a2863095c22abd63f27fd415d8e15">xwds_device_vop_start</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__device.html">xwds_device</a> * dev)</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>{</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__driver.html">xwds_driver</a> * drv;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>        drv = dev-&gt;<a class="code hl_variable" href="structxwds__device.html#a1d485436e69d8cd8f38bcd2eb467a640">drv</a>;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        <span class="keywordflow">if</span> ((drv) &amp;&amp; (drv-&gt;<a class="code hl_variable" href="structxwds__driver.html#a19bba46b1a43ec0a920c64b791d567b4">start</a>)) {</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>                rc = drv-&gt;<a class="code hl_variable" href="structxwds__driver.html#a19bba46b1a43ec0a920c64b791d567b4">start</a>(dev);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>                rc = <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        }</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>}</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><a class="code hl_define" href="group__xwcd__ds.html#ga60d990e5df4266fbb1b7dada9160c698">__xwds_vop</a></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="group__xwcd__ds__device.html#ga76d2c2ffbf8a1efc4e7bf1d7ac581fd5">  124</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwcd__ds__device.html#ga76d2c2ffbf8a1efc4e7bf1d7ac581fd5">xwds_device_vop_stop</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__device.html">xwds_device</a> * dev)</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>{</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__driver.html">xwds_driver</a> * drv;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        drv = dev-&gt;<a class="code hl_variable" href="structxwds__device.html#a1d485436e69d8cd8f38bcd2eb467a640">drv</a>;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        <span class="keywordflow">if</span> ((drv) &amp;&amp; (drv-&gt;<a class="code hl_variable" href="structxwds__driver.html#aee863134e45140336f467b29a1fcf7cf">stop</a>)) {</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>                rc = drv-&gt;<a class="code hl_variable" href="structxwds__driver.html#aee863134e45140336f467b29a1fcf7cf">stop</a>(dev);</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>                rc = <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        }</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>}</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="preprocessor">#if defined(XWCDCFG_ds_PM) &amp;&amp; (1 == XWCDCFG_ds_PM)</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><a class="code hl_define" href="group__xwcd__ds.html#ga60d990e5df4266fbb1b7dada9160c698">__xwds_vop</a></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="group__xwcd__ds__device.html#gaebbbeb318c6f7ce466b12eeee7ae2350">  144</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwcd__ds__device.html#gaebbbeb318c6f7ce466b12eeee7ae2350">xwds_device_vop_suspend</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__device.html">xwds_device</a> * dev)</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>{</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__driver.html">xwds_driver</a> * drv;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        drv = dev-&gt;<a class="code hl_variable" href="structxwds__device.html#a1d485436e69d8cd8f38bcd2eb467a640">drv</a>;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        <span class="keywordflow">if</span> ((drv) &amp;&amp; (drv-&gt;<a class="code hl_variable" href="structxwds__driver.html#ab9c20f931a97de61dad55861afae5548">suspend</a>)) {</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>                rc = drv-&gt;<a class="code hl_variable" href="structxwds__driver.html#ab9c20f931a97de61dad55861afae5548">suspend</a>(dev);</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>                rc = <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        }</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>}</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><a class="code hl_define" href="group__xwcd__ds.html#ga60d990e5df4266fbb1b7dada9160c698">__xwds_vop</a></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="group__xwcd__ds__device.html#gacd2f8a67386345880905e9099924927c">  163</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwcd__ds__device.html#gacd2f8a67386345880905e9099924927c">xwds_device_vop_resume</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__device.html">xwds_device</a> * dev)</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>{</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__driver.html">xwds_driver</a> * drv;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>        drv = dev-&gt;<a class="code hl_variable" href="structxwds__device.html#a1d485436e69d8cd8f38bcd2eb467a640">drv</a>;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>        <span class="keywordflow">if</span> ((drv) &amp;&amp; (drv-&gt;<a class="code hl_variable" href="structxwds__driver.html#a392738290b2230fdbbd7216afca6425c">resume</a>)) {</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>                rc = drv-&gt;<a class="code hl_variable" href="structxwds__driver.html#a392738290b2230fdbbd7216afca6425c">resume</a>(dev);</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>                rc = <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>        }</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>}</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="comment">/******** ******** ******** APIs ******** ******** ********/</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><a class="code hl_define" href="group__xwcd__ds.html#ga692dd5d25ab7dd82b9622c1ea3757a8b">__xwds_code</a></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="ds_2device_8c.html#ac11be54fe947c11d6106bb4b96c83ecd">  180</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="ds_2device_8c.html#ac11be54fe947c11d6106bb4b96c83ecd">xwds_device_gc</a>(<span class="keywordtype">void</span> * obj)</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>{</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__device.html">xwds_device</a> * dev;</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwds.html">xwds</a> * ds;</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__virtual__operation.html">xwds_virtual_operation</a> * vop;</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span> </div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>        dev = obj;</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>        ds = dev-&gt;<a class="code hl_variable" href="structxwds__device.html#a9641ef932f0e09465e3bda067210a88a">ds</a>;</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>        <span class="keywordflow">if</span> (ds) {</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>                <a class="code hl_function" href="group__xwcd__ds__object.html#ga8337fdb117da22692b705436a3e9da1b">xwds_obj_del</a>(ds, &amp;dev-&gt;<a class="code hl_variable" href="structxwds__device.html#abef806e54fe0abc030f2ad1f54824560">obj</a>);</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>        }</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>        dev-&gt;<a class="code hl_variable" href="structxwds__device.html#a9641ef932f0e09465e3bda067210a88a">ds</a> = <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>        <span class="comment">/* remove device */</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>        vop = dev-&gt;<a class="code hl_variable" href="structxwds__device.html#a7d5ba4f809e2fc89a9ea194edc1f2469">vop</a>;</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        <span class="keywordflow">if</span> (vop &amp;&amp; vop-&gt;<a class="code hl_variable" href="structxwds__virtual__operation.html#a7161bf9059d427e44faefacebd501bf7">remove</a>) {</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>                rc = vop-&gt;<a class="code hl_variable" href="structxwds__virtual__operation.html#a7161bf9059d427e44faefacebd501bf7">remove</a>(dev);</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>                rc = <a class="code hl_function" href="group__xwcd__ds__device.html#ga9971f3ed17fb65399b5528fa4a4e94c8">xwds_device_vop_remove</a>(dev);</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>        }</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>                <span class="keywordflow">goto</span> err_dev_vop_remove;</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>        }</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>err_dev_vop_remove:</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>        <a class="code hl_function" href="group__xwcd__ds__object.html#ga363c8876465d0a27c986389c308adc0d">xwds_obj_add</a>(ds, &amp;dev-&gt;<a class="code hl_variable" href="structxwds__device.html#abef806e54fe0abc030f2ad1f54824560">obj</a>);</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        dev-&gt;<a class="code hl_variable" href="structxwds__device.html#a9641ef932f0e09465e3bda067210a88a">ds</a> = ds;</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>}</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span><a class="code hl_define" href="group__xwcd__ds.html#ga8dfce3af09db190cd28028a817ae9275">__xwds_api</a></div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno"><a class="line" href="group__xwcd__ds__device.html#ga4e79fb45ce2cfa76dc2c44636c323ac5">  213</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwcd__ds__device.html#ga4e79fb45ce2cfa76dc2c44636c323ac5">xwds_device_probe</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds.html">xwds</a> * ds, <span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__device.html">xwds_device</a> * dev,</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>                         <a class="code hl_typedef" href="group__xwos__lib__xwobj.html#ga4f918c2e483fca291aef63abae16b970">xwobj_gc_f</a> gcfunc)</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>{</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__virtual__operation.html">xwds_virtual_operation</a> * vop;</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>(ds, <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>(dev, <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span> </div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>        rc = <a class="code hl_function" href="group__xwcd__ds__object.html#ga5a7a2486e7685a918786d2ae4c86f528">xwds_obj_probe</a>(&amp;dev-&gt;<a class="code hl_variable" href="structxwds__device.html#abef806e54fe0abc030f2ad1f54824560">obj</a>, gcfunc);</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>                <span class="keywordflow">goto</span> err_obj_probe;</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>        }</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>        <span class="comment">/* refcnt == XWDS_OBJ_REF_SHUTDOWN */</span></div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>        <span class="comment">/* probe device */</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>        vop = dev-&gt;<a class="code hl_variable" href="structxwds__device.html#a7d5ba4f809e2fc89a9ea194edc1f2469">vop</a>;</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>        <span class="keywordflow">if</span> (vop &amp;&amp; vop-&gt;<a class="code hl_variable" href="structxwds__virtual__operation.html#acf42b4caae0898e31d52d446ee5a93b5">probe</a>) {</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>                rc = vop-&gt;<a class="code hl_variable" href="structxwds__virtual__operation.html#acf42b4caae0898e31d52d446ee5a93b5">probe</a>(dev);</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>                rc = <a class="code hl_function" href="group__xwcd__ds__device.html#gada012caf11d782b5a3c3b8587990ae40">xwds_device_vop_probe</a>(dev);</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>        }</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>                <span class="keywordflow">goto</span> err_dev_vop_probe;</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>        }</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span> </div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>        <span class="comment">/* add to device stack */</span></div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>        rc = <a class="code hl_function" href="group__xwcd__ds__object.html#ga363c8876465d0a27c986389c308adc0d">xwds_obj_add</a>(ds, &amp;dev-&gt;<a class="code hl_variable" href="structxwds__device.html#abef806e54fe0abc030f2ad1f54824560">obj</a>);</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>                <span class="keywordflow">goto</span> err_xwds_obj_add;</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        }</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        dev-&gt;<a class="code hl_variable" href="structxwds__device.html#a9641ef932f0e09465e3bda067210a88a">ds</a> = ds;</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span> </div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span> </div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>err_xwds_obj_add:</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>        <span class="keywordflow">if</span> ((vop) &amp;&amp; (vop-&gt;<a class="code hl_variable" href="structxwds__virtual__operation.html#a7161bf9059d427e44faefacebd501bf7">remove</a>)) {</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>                vop-&gt;<a class="code hl_variable" href="structxwds__virtual__operation.html#a7161bf9059d427e44faefacebd501bf7">remove</a>(dev);</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>                <a class="code hl_function" href="group__xwcd__ds__device.html#gada012caf11d782b5a3c3b8587990ae40">xwds_device_vop_probe</a>(dev);</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>        }</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>err_dev_vop_probe:</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>        <a class="code hl_function" href="group__xwos__lib__xwobj.html#ga33f685c358784c30a9f1fb8a5ca11d3d">xwos_object_rawput</a>(&amp;dev-&gt;<a class="code hl_variable" href="structxwds__device.html#abef806e54fe0abc030f2ad1f54824560">obj</a>.<a class="code hl_variable" href="structxwds__object.html#a723dd56e626d07e83a3662b80f1e30e4">xwobj</a>);</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>err_obj_probe:</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>}</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span> </div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span><a class="code hl_define" href="group__xwcd__ds.html#ga8dfce3af09db190cd28028a817ae9275">__xwds_api</a></div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno"><a class="line" href="group__xwcd__ds__device.html#gaa430f6ccd508993a90ae8fc12e459b6b">  261</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwcd__ds__device.html#gaa430f6ccd508993a90ae8fc12e459b6b">xwds_device_remove</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__device.html">xwds_device</a> * dev)</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>{</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>(dev, <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span> </div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="group__xwcd__ds__object.html#ga5f8e32fd317b8c104d38bfab33e10fd4">xwds_obj_remove</a>(&amp;dev-&gt;<a class="code hl_variable" href="structxwds__device.html#abef806e54fe0abc030f2ad1f54824560">obj</a>);</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>}</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span> </div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span><a class="code hl_define" href="group__xwcd__ds.html#ga8dfce3af09db190cd28028a817ae9275">__xwds_api</a></div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno"><a class="line" href="group__xwcd__ds__device.html#gad2639ec170b4caf5f9b9a83d22543db7">  269</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwcd__ds__device.html#gad2639ec170b4caf5f9b9a83d22543db7">xwds_device_start</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__device.html">xwds_device</a> * dev)</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>{</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__virtual__operation.html">xwds_virtual_operation</a> * vop;</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span> </div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>(dev, <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span> </div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>        rc = <a class="code hl_function" href="group__xwcd__ds__object.html#ga98f63a3bfadc65b35359e10bd6e837f1">xwds_obj_start</a>(&amp;dev-&gt;<a class="code hl_variable" href="structxwds__device.html#abef806e54fe0abc030f2ad1f54824560">obj</a>);</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>                <span class="keywordflow">goto</span> err_obj_start;</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>        }</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>        <span class="comment">/* refcnt == XWDS_OBJ_REF_RUNNING */</span></div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span> </div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>        <span class="comment">/* start device */</span></div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>        vop = dev-&gt;<a class="code hl_variable" href="structxwds__device.html#a7d5ba4f809e2fc89a9ea194edc1f2469">vop</a>;</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>        <span class="keywordflow">if</span> (vop &amp;&amp; vop-&gt;<a class="code hl_variable" href="structxwds__virtual__operation.html#a0fffb818007739a49c223e6057be5739">start</a>) {</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>                rc = vop-&gt;<a class="code hl_variable" href="structxwds__virtual__operation.html#a0fffb818007739a49c223e6057be5739">start</a>(dev);</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>                rc = <a class="code hl_function" href="group__xwcd__ds__device.html#ga0c0a2863095c22abd63f27fd415d8e15">xwds_device_vop_start</a>(dev);</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>        }</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>                <span class="keywordflow">goto</span> err_dev_vop_start;</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>        }</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>err_dev_vop_start:</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>        <a class="code hl_function" href="group__xwcd__ds__object.html#gafe586c4a2af8116bce0b5791f9e2eaa9">xwds_obj_stop</a>(&amp;dev-&gt;<a class="code hl_variable" href="structxwds__device.html#abef806e54fe0abc030f2ad1f54824560">obj</a>);</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>err_obj_start:</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>}</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span> </div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span><a class="code hl_define" href="group__xwcd__ds.html#ga8dfce3af09db190cd28028a817ae9275">__xwds_api</a></div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno"><a class="line" href="group__xwcd__ds__device.html#ga5717af8ef9c530519b97380887de5cce">  301</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwcd__ds__device.html#ga5717af8ef9c530519b97380887de5cce">xwds_device_stop</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__device.html">xwds_device</a> * dev)</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>{</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__virtual__operation.html">xwds_virtual_operation</a> * vop;</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span> </div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>(dev, <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span> </div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>        rc = <a class="code hl_function" href="group__xwcd__ds__object.html#gafe586c4a2af8116bce0b5791f9e2eaa9">xwds_obj_stop</a>(&amp;dev-&gt;<a class="code hl_variable" href="structxwds__device.html#abef806e54fe0abc030f2ad1f54824560">obj</a>);</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>                <span class="keywordflow">goto</span> err_obj_stop;</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>        }</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>        <span class="comment">/* refcnt == XWDS_OBJ_REF_SHUTDOWN */</span></div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span> </div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>        <span class="comment">/* stop device */</span></div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>        vop = dev-&gt;<a class="code hl_variable" href="structxwds__device.html#a7d5ba4f809e2fc89a9ea194edc1f2469">vop</a>;</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>        <span class="keywordflow">if</span> (vop &amp;&amp; vop-&gt;<a class="code hl_variable" href="structxwds__virtual__operation.html#a662775f25eaaeec5a3c285ff83b9aa49">stop</a>) {</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>                rc = vop-&gt;<a class="code hl_variable" href="structxwds__virtual__operation.html#a662775f25eaaeec5a3c285ff83b9aa49">stop</a>(dev);</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>                rc = <a class="code hl_function" href="group__xwcd__ds__device.html#ga76d2c2ffbf8a1efc4e7bf1d7ac581fd5">xwds_device_vop_stop</a>(dev);</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>        }</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>                <span class="keywordflow">goto</span> err_dev_vop_stop;</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>        }</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span> </div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>err_dev_vop_stop:</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>        <a class="code hl_function" href="group__xwcd__ds__object.html#ga98f63a3bfadc65b35359e10bd6e837f1">xwds_obj_start</a>(&amp;dev-&gt;<a class="code hl_variable" href="structxwds__device.html#abef806e54fe0abc030f2ad1f54824560">obj</a>);</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>err_obj_stop:</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>}</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span> </div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span><span class="preprocessor">#if defined(XWCDCFG_ds_PM) &amp;&amp; (1 == XWCDCFG_ds_PM)</span></div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span><a class="code hl_define" href="group__xwcd__ds.html#ga8dfce3af09db190cd28028a817ae9275">__xwds_api</a></div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno"><a class="line" href="group__xwcd__ds__device.html#ga8cd7ad446467218dda708ac19a7f33c6">  334</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwcd__ds__device.html#ga8cd7ad446467218dda708ac19a7f33c6">xwds_device_suspend</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__device.html">xwds_device</a> * dev)</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>{</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__virtual__operation.html">xwds_virtual_operation</a> * vop;</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span> </div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>(dev, <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span> </div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>        rc = <a class="code hl_function" href="group__xwcd__ds__object.html#gafaf0b4645fa9112444bb598aef70defd">xwds_obj_suspend</a>(&amp;dev-&gt;<a class="code hl_variable" href="structxwds__device.html#abef806e54fe0abc030f2ad1f54824560">obj</a>);</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>                <span class="keywordflow">goto</span> err_obj_suspend;</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>        }</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>        <span class="comment">/* refcnt == XWDS_OBJ_REF_SUSPEND */</span></div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span> </div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>        <span class="comment">/* suspend device */</span></div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>        vop = dev-&gt;<a class="code hl_variable" href="structxwds__device.html#a7d5ba4f809e2fc89a9ea194edc1f2469">vop</a>;</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>        <span class="keywordflow">if</span> (vop &amp;&amp; vop-&gt;<a class="code hl_variable" href="structxwds__virtual__operation.html#a0687ca01dcc51a15b6777448bf39a148">suspend</a>) {</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>                rc = vop-&gt;<a class="code hl_variable" href="structxwds__virtual__operation.html#a0687ca01dcc51a15b6777448bf39a148">suspend</a>(dev);</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>                rc = <a class="code hl_function" href="group__xwcd__ds__device.html#gaebbbeb318c6f7ce466b12eeee7ae2350">xwds_device_vop_suspend</a>(dev);</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>        }</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>                <span class="keywordflow">goto</span> err_dev_vop_suspend;</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>        }</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span> </div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>err_dev_vop_suspend:</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>        <a class="code hl_function" href="group__xwcd__ds__object.html#gaf2741db5b239d0ea2ca855d3a0354014">xwds_obj_resume</a>(&amp;dev-&gt;<a class="code hl_variable" href="structxwds__device.html#abef806e54fe0abc030f2ad1f54824560">obj</a>);</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>err_obj_suspend:</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>}</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span> </div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span><a class="code hl_define" href="group__xwcd__ds.html#ga8dfce3af09db190cd28028a817ae9275">__xwds_api</a></div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno"><a class="line" href="group__xwcd__ds__device.html#gacd7b5d33766fcf4e16e19151b0e0c457">  366</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwcd__ds__device.html#gacd7b5d33766fcf4e16e19151b0e0c457">xwds_device_resume</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__device.html">xwds_device</a> * dev)</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>{</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__virtual__operation.html">xwds_virtual_operation</a> * vop;</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span> </div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>(dev, <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span> </div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span>        rc = <a class="code hl_function" href="group__xwcd__ds__object.html#gaf2741db5b239d0ea2ca855d3a0354014">xwds_obj_resume</a>(&amp;dev-&gt;<a class="code hl_variable" href="structxwds__device.html#abef806e54fe0abc030f2ad1f54824560">obj</a>);</div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>                <span class="keywordflow">goto</span> err_obj_resume;</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>        }</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>        <span class="comment">/* refcnt == XWDS_OBJ_REF_RUNNING */</span></div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span> </div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>        <span class="comment">/* resume device */</span></div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>        vop = dev-&gt;<a class="code hl_variable" href="structxwds__device.html#a7d5ba4f809e2fc89a9ea194edc1f2469">vop</a>;</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>        <span class="keywordflow">if</span> (vop &amp;&amp; vop-&gt;<a class="code hl_variable" href="structxwds__virtual__operation.html#ae755d965bd86d231a3fe69dd115d3ad4">resume</a>) {</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>                rc = vop-&gt;<a class="code hl_variable" href="structxwds__virtual__operation.html#ae755d965bd86d231a3fe69dd115d3ad4">resume</a>(dev);</div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>                rc = <a class="code hl_function" href="group__xwcd__ds__device.html#gacd2f8a67386345880905e9099924927c">xwds_device_vop_resume</a>(dev);</div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>        }</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>                <span class="keywordflow">goto</span> err_dev_vop_resume;</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>        }</div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span> </div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span>err_dev_vop_resume:</div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span>        <a class="code hl_function" href="group__xwcd__ds__object.html#gafaf0b4645fa9112444bb598aef70defd">xwds_obj_suspend</a>(&amp;dev-&gt;<a class="code hl_variable" href="structxwds__device.html#abef806e54fe0abc030f2ad1f54824560">obj</a>);</div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>err_obj_resume:</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span>}</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span> </div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span><a class="code hl_define" href="group__xwcd__ds.html#ga8dfce3af09db190cd28028a817ae9275">__xwds_api</a></div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno"><a class="line" href="group__xwcd__ds__device.html#ga0f74d8ac4f60d7e9dcd104a8117409ac">  398</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwcd__ds__device.html#ga0f74d8ac4f60d7e9dcd104a8117409ac">xwds_device_suspend_all</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds.html">xwds</a> * ds, <span class="keywordtype">bool</span> ign_err)</div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>{</div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__device.html">xwds_device</a> * c, * n;</div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> cpuirq;</div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span> </div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>(<a class="code hl_variable" href="structxwds__device.html#a9641ef932f0e09465e3bda067210a88a">ds</a>, <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span> </div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>        rc = <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>        <a class="code hl_function" href="group__xwos__lock__seqlock.html#gabc138d69277ba1017ade0f27c6c282cb">xwos_sqlk_wr_lock_cpuirqsv</a>(&amp;<a class="code hl_variable" href="structxwds__device.html#a9641ef932f0e09465e3bda067210a88a">ds</a>-&gt;<a class="code hl_variable" href="structxwds.html#a46989c2d36412fcaf6ef4b0fccb027a8">devlistlock</a>, &amp;cpuirq);</div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>        <a class="code hl_define" href="group__xwcd__ds__device.html#ga9723a8fef736440b9067461386f71133">xwds_itr_prev_device_safe</a>(<a class="code hl_variable" href="structxwds__device.html#a9641ef932f0e09465e3bda067210a88a">ds</a>, c, n) {</div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>                <a class="code hl_function" href="group__xwos__lock__seqlock.html#gadcb38d5d6dad7969e1231c47c131f3c8">xwos_sqlk_wr_unlock_cpuirqrs</a>(&amp;<a class="code hl_variable" href="structxwds__device.html#a9641ef932f0e09465e3bda067210a88a">ds</a>-&gt;<a class="code hl_variable" href="structxwds.html#a46989c2d36412fcaf6ef4b0fccb027a8">devlistlock</a>, cpuirq);</div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>                rc = <a class="code hl_function" href="group__xwcd__ds__device.html#ga8cd7ad446467218dda708ac19a7f33c6">xwds_device_suspend</a>(c);</div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>                <a class="code hl_function" href="group__xwos__lock__seqlock.html#gabc138d69277ba1017ade0f27c6c282cb">xwos_sqlk_wr_lock_cpuirqsv</a>(&amp;<a class="code hl_variable" href="structxwds__device.html#a9641ef932f0e09465e3bda067210a88a">ds</a>-&gt;<a class="code hl_variable" href="structxwds.html#a46989c2d36412fcaf6ef4b0fccb027a8">devlistlock</a>, &amp;cpuirq);</div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>                <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>                        <span class="keywordflow">if</span> (ign_err) {</div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span>                                rc = <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>                        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>                                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span>                        }</div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span>                }</div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>        }</div>
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span>        <a class="code hl_function" href="group__xwos__lock__seqlock.html#gadcb38d5d6dad7969e1231c47c131f3c8">xwos_sqlk_wr_unlock_cpuirqrs</a>(&amp;<a class="code hl_variable" href="structxwds__device.html#a9641ef932f0e09465e3bda067210a88a">ds</a>-&gt;<a class="code hl_variable" href="structxwds.html#a46989c2d36412fcaf6ef4b0fccb027a8">devlistlock</a>, cpuirq);</div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span>}</div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span> </div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span><a class="code hl_define" href="group__xwcd__ds.html#ga8dfce3af09db190cd28028a817ae9275">__xwds_api</a></div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno"><a class="line" href="group__xwcd__ds__device.html#ga6e104468484f0b03c7ba7b9794a616d4">  425</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwcd__ds__device.html#ga6e104468484f0b03c7ba7b9794a616d4">xwds_device_resume_all</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds.html">xwds</a> * <a class="code hl_variable" href="structxwds__device.html#a9641ef932f0e09465e3bda067210a88a">ds</a>, <span class="keywordtype">bool</span> ign_err)</div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>{</div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__device.html">xwds_device</a> * c, * n;</div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> cpuirq;</div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span> </div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>(<a class="code hl_variable" href="structxwds__device.html#a9641ef932f0e09465e3bda067210a88a">ds</a>, <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span> </div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span>        rc = <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span>        <a class="code hl_function" href="group__xwos__lock__seqlock.html#gabc138d69277ba1017ade0f27c6c282cb">xwos_sqlk_wr_lock_cpuirqsv</a>(&amp;<a class="code hl_variable" href="structxwds__device.html#a9641ef932f0e09465e3bda067210a88a">ds</a>-&gt;<a class="code hl_variable" href="structxwds.html#a46989c2d36412fcaf6ef4b0fccb027a8">devlistlock</a>, &amp;cpuirq);</div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span>        <a class="code hl_define" href="group__xwcd__ds__device.html#ga4c8b8e6bb2781008cb652c92ed645515">xwds_itr_next_device_safe</a>(<a class="code hl_variable" href="structxwds__device.html#a9641ef932f0e09465e3bda067210a88a">ds</a>, c, n) {</div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span>                <a class="code hl_function" href="group__xwos__lock__seqlock.html#gadcb38d5d6dad7969e1231c47c131f3c8">xwos_sqlk_wr_unlock_cpuirqrs</a>(&amp;<a class="code hl_variable" href="structxwds__device.html#a9641ef932f0e09465e3bda067210a88a">ds</a>-&gt;<a class="code hl_variable" href="structxwds.html#a46989c2d36412fcaf6ef4b0fccb027a8">devlistlock</a>, cpuirq);</div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span>                rc = <a class="code hl_function" href="group__xwcd__ds__device.html#gacd7b5d33766fcf4e16e19151b0e0c457">xwds_device_resume</a>(c);</div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span>                <a class="code hl_function" href="group__xwos__lock__seqlock.html#gabc138d69277ba1017ade0f27c6c282cb">xwos_sqlk_wr_lock_cpuirqsv</a>(&amp;<a class="code hl_variable" href="structxwds__device.html#a9641ef932f0e09465e3bda067210a88a">ds</a>-&gt;<a class="code hl_variable" href="structxwds.html#a46989c2d36412fcaf6ef4b0fccb027a8">devlistlock</a>, &amp;cpuirq);</div>
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span>                <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span>                        <span class="keywordflow">if</span> (ign_err) {</div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span>                                rc = <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span>                        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span>                                <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span>                        }</div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span>                }</div>
+<div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span>        }</div>
+<div class="line"><a id="l00447" name="l00447"></a><span class="lineno">  447</span>        <a class="code hl_function" href="group__xwos__lock__seqlock.html#gadcb38d5d6dad7969e1231c47c131f3c8">xwos_sqlk_wr_unlock_cpuirqrs</a>(&amp;<a class="code hl_variable" href="structxwds__device.html#a9641ef932f0e09465e3bda067210a88a">ds</a>-&gt;<a class="code hl_variable" href="structxwds.html#a46989c2d36412fcaf6ef4b0fccb027a8">devlistlock</a>, cpuirq);</div>
+<div class="line"><a id="l00448" name="l00448"></a><span class="lineno">  448</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00449" name="l00449"></a><span class="lineno">  449</span>}</div>
+<div class="line"><a id="l00450" name="l00450"></a><span class="lineno">  450</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="abclst_8h_html"><div class="ttname"><a href="bclst_8h.html">bclst.h</a></div><div class="ttdoc">XWOS通用库：双循环链表</div></div>
+<div class="ttc" id="ads_2device_8c_html_ac11be54fe947c11d6106bb4b96c83ecd"><div class="ttname"><a href="ds_2device_8c.html#ac11be54fe947c11d6106bb4b96c83ecd">xwds_device_gc</a></div><div class="ttdeci">xwer_t xwds_device_gc(void *obj)</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8c_source.html#l00180">device.c:180</a></div></div>
+<div class="ttc" id="ads_2device_8c_html_acb86905a094d923d5969ce191a61f6e9"><div class="ttname"><a href="ds_2device_8c.html#acb86905a094d923d5969ce191a61f6e9">xwds_dev_vop</a></div><div class="ttdeci">const struct xwds_virtual_operation xwds_dev_vop</div><div class="ttdoc">实现面向对象“多态”的函数表</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8c_source.html#l00035">device.c:35</a></div></div>
+<div class="ttc" id="ads_2device_8h_html"><div class="ttname"><a href="ds_2device_8h.html">device.h</a></div><div class="ttdoc">玄武设备栈：设备基类</div></div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_ga0c0a2863095c22abd63f27fd415d8e15"><div class="ttname"><a href="group__xwcd__ds__device.html#ga0c0a2863095c22abd63f27fd415d8e15">xwds_device_vop_start</a></div><div class="ttdeci">xwer_t xwds_device_vop_start(struct xwds_device *dev)</div><div class="ttdoc">设备基本操作函数：启动设备</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8c_source.html#l00105">device.c:105</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_ga0f74d8ac4f60d7e9dcd104a8117409ac"><div class="ttname"><a href="group__xwcd__ds__device.html#ga0f74d8ac4f60d7e9dcd104a8117409ac">xwds_device_suspend_all</a></div><div class="ttdeci">xwer_t xwds_device_suspend_all(struct xwds *ds, bool ign_err)</div><div class="ttdoc">XWDS API：暂停所有设备</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8c_source.html#l00398">device.c:398</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_ga28c4da29c7c95ad0ee437ed6e4a97e9d"><div class="ttname"><a href="group__xwcd__ds__device.html#ga28c4da29c7c95ad0ee437ed6e4a97e9d">xwds_device_construct</a></div><div class="ttdeci">void xwds_device_construct(struct xwds_device *dev)</div><div class="ttdoc">XWDS API：设备的构造函数</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8c_source.html#l00048">device.c:48</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_ga40607e48943c7647201065226dc37fa1"><div class="ttname"><a href="group__xwcd__ds__device.html#ga40607e48943c7647201065226dc37fa1">xwds_device_destruct</a></div><div class="ttdeci">void xwds_device_destruct(struct xwds_device *dev)</div><div class="ttdoc">XWDS API：设备的析构函数</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8c_source.html#l00056">device.c:56</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_ga4c8b8e6bb2781008cb652c92ed645515"><div class="ttname"><a href="group__xwcd__ds__device.html#ga4c8b8e6bb2781008cb652c92ed645515">xwds_itr_next_device_safe</a></div><div class="ttdeci">#define xwds_itr_next_device_safe(ds, p, n)</div><div class="ttdoc">向前迭代每个设备（可安全删除设备）</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8h_source.html#l00058">device.h:58</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_ga4e79fb45ce2cfa76dc2c44636c323ac5"><div class="ttname"><a href="group__xwcd__ds__device.html#ga4e79fb45ce2cfa76dc2c44636c323ac5">xwds_device_probe</a></div><div class="ttdeci">xwer_t xwds_device_probe(struct xwds *ds, struct xwds_device *dev, xwobj_gc_f gcfunc)</div><div class="ttdoc">XWDS API：探测设备</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8c_source.html#l00213">device.c:213</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_ga5717af8ef9c530519b97380887de5cce"><div class="ttname"><a href="group__xwcd__ds__device.html#ga5717af8ef9c530519b97380887de5cce">xwds_device_stop</a></div><div class="ttdeci">xwer_t xwds_device_stop(struct xwds_device *dev)</div><div class="ttdoc">XWDS API：停止设备</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8c_source.html#l00301">device.c:301</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_ga6e104468484f0b03c7ba7b9794a616d4"><div class="ttname"><a href="group__xwcd__ds__device.html#ga6e104468484f0b03c7ba7b9794a616d4">xwds_device_resume_all</a></div><div class="ttdeci">xwer_t xwds_device_resume_all(struct xwds *ds, bool ign_err)</div><div class="ttdoc">XWDS API：继续所有设备</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8c_source.html#l00425">device.c:425</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_ga76d2c2ffbf8a1efc4e7bf1d7ac581fd5"><div class="ttname"><a href="group__xwcd__ds__device.html#ga76d2c2ffbf8a1efc4e7bf1d7ac581fd5">xwds_device_vop_stop</a></div><div class="ttdeci">xwer_t xwds_device_vop_stop(struct xwds_device *dev)</div><div class="ttdoc">设备基本操作函数：停止设备</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8c_source.html#l00124">device.c:124</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_ga8cd7ad446467218dda708ac19a7f33c6"><div class="ttname"><a href="group__xwcd__ds__device.html#ga8cd7ad446467218dda708ac19a7f33c6">xwds_device_suspend</a></div><div class="ttdeci">xwer_t xwds_device_suspend(struct xwds_device *dev)</div><div class="ttdoc">XWDS API：暂停设备</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8c_source.html#l00334">device.c:334</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_ga9723a8fef736440b9067461386f71133"><div class="ttname"><a href="group__xwcd__ds__device.html#ga9723a8fef736440b9067461386f71133">xwds_itr_prev_device_safe</a></div><div class="ttdeci">#define xwds_itr_prev_device_safe(ds, p, n)</div><div class="ttdoc">向后迭代每个设备（可安全删除设备）</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8h_source.html#l00065">device.h:65</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_ga9971f3ed17fb65399b5528fa4a4e94c8"><div class="ttname"><a href="group__xwcd__ds__device.html#ga9971f3ed17fb65399b5528fa4a4e94c8">xwds_device_vop_remove</a></div><div class="ttdeci">xwer_t xwds_device_vop_remove(struct xwds_device *dev)</div><div class="ttdoc">设备基本操作函数：删除设备</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8c_source.html#l00086">device.c:86</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_gaa430f6ccd508993a90ae8fc12e459b6b"><div class="ttname"><a href="group__xwcd__ds__device.html#gaa430f6ccd508993a90ae8fc12e459b6b">xwds_device_remove</a></div><div class="ttdeci">xwer_t xwds_device_remove(struct xwds_device *dev)</div><div class="ttdoc">XWDS API：删除设备</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8c_source.html#l00261">device.c:261</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_gacd2f8a67386345880905e9099924927c"><div class="ttname"><a href="group__xwcd__ds__device.html#gacd2f8a67386345880905e9099924927c">xwds_device_vop_resume</a></div><div class="ttdeci">xwer_t xwds_device_vop_resume(struct xwds_device *dev)</div><div class="ttdoc">设备基本操作函数：继续设备</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8c_source.html#l00163">device.c:163</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_gacd7b5d33766fcf4e16e19151b0e0c457"><div class="ttname"><a href="group__xwcd__ds__device.html#gacd7b5d33766fcf4e16e19151b0e0c457">xwds_device_resume</a></div><div class="ttdeci">xwer_t xwds_device_resume(struct xwds_device *dev)</div><div class="ttdoc">XWDS API：继续设备</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8c_source.html#l00366">device.c:366</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_gad2639ec170b4caf5f9b9a83d22543db7"><div class="ttname"><a href="group__xwcd__ds__device.html#gad2639ec170b4caf5f9b9a83d22543db7">xwds_device_start</a></div><div class="ttdeci">xwer_t xwds_device_start(struct xwds_device *dev)</div><div class="ttdoc">XWDS API：启动设备</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8c_source.html#l00269">device.c:269</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_gada012caf11d782b5a3c3b8587990ae40"><div class="ttname"><a href="group__xwcd__ds__device.html#gada012caf11d782b5a3c3b8587990ae40">xwds_device_vop_probe</a></div><div class="ttdeci">xwer_t xwds_device_vop_probe(struct xwds_device *dev)</div><div class="ttdoc">设备基本操作函数：探测设备</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8c_source.html#l00067">device.c:67</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_gaebbbeb318c6f7ce466b12eeee7ae2350"><div class="ttname"><a href="group__xwcd__ds__device.html#gaebbbeb318c6f7ce466b12eeee7ae2350">xwds_device_vop_suspend</a></div><div class="ttdeci">xwer_t xwds_device_vop_suspend(struct xwds_device *dev)</div><div class="ttdoc">设备基本操作函数：暂停设备</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8c_source.html#l00144">device.c:144</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__object_html_ga363c8876465d0a27c986389c308adc0d"><div class="ttname"><a href="group__xwcd__ds__object.html#ga363c8876465d0a27c986389c308adc0d">xwds_obj_add</a></div><div class="ttdeci">xwer_t xwds_obj_add(struct xwds *ds, struct xwds_object *obj)</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2object_8c_source.html#l00172">object.c:172</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__object_html_ga5a7a2486e7685a918786d2ae4c86f528"><div class="ttname"><a href="group__xwcd__ds__object.html#ga5a7a2486e7685a918786d2ae4c86f528">xwds_obj_probe</a></div><div class="ttdeci">xwer_t xwds_obj_probe(struct xwds_object *obj, xwobj_gc_f gcfunc)</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2object_8c_source.html#l00058">object.c:58</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__object_html_ga5f8e32fd317b8c104d38bfab33e10fd4"><div class="ttname"><a href="group__xwcd__ds__object.html#ga5f8e32fd317b8c104d38bfab33e10fd4">xwds_obj_remove</a></div><div class="ttdeci">xwer_t xwds_obj_remove(struct xwds_object *obj)</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2object_8c_source.html#l00064">object.c:64</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__object_html_ga73902a4e27cea5ecf32e7fb39166b49c"><div class="ttname"><a href="group__xwcd__ds__object.html#ga73902a4e27cea5ecf32e7fb39166b49c">xwds_obj_destruct</a></div><div class="ttdeci">void xwds_obj_destruct(struct xwds_object *obj)</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2object_8c_source.html#l00038">object.c:38</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__object_html_ga8159ce4ed1c5c3c8c4f3ab187fac48a0"><div class="ttname"><a href="group__xwcd__ds__object.html#ga8159ce4ed1c5c3c8c4f3ab187fac48a0">xwds_obj_construct</a></div><div class="ttdeci">void xwds_obj_construct(struct xwds_object *obj)</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2object_8c_source.html#l00030">object.c:30</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__object_html_ga8337fdb117da22692b705436a3e9da1b"><div class="ttname"><a href="group__xwcd__ds__object.html#ga8337fdb117da22692b705436a3e9da1b">xwds_obj_del</a></div><div class="ttdeci">xwer_t xwds_obj_del(struct xwds *ds, struct xwds_object *obj)</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2object_8c_source.html#l00190">object.c:190</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__object_html_ga98f63a3bfadc65b35359e10bd6e837f1"><div class="ttname"><a href="group__xwcd__ds__object.html#ga98f63a3bfadc65b35359e10bd6e837f1">xwds_obj_start</a></div><div class="ttdeci">xwer_t xwds_obj_start(struct xwds_object *obj)</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2object_8c_source.html#l00082">object.c:82</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__object_html_gaf2741db5b239d0ea2ca855d3a0354014"><div class="ttname"><a href="group__xwcd__ds__object.html#gaf2741db5b239d0ea2ca855d3a0354014">xwds_obj_resume</a></div><div class="ttdeci">xwer_t xwds_obj_resume(struct xwds_object *obj)</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2object_8c_source.html#l00124">object.c:124</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__object_html_gafaf0b4645fa9112444bb598aef70defd"><div class="ttname"><a href="group__xwcd__ds__object.html#gafaf0b4645fa9112444bb598aef70defd">xwds_obj_suspend</a></div><div class="ttdeci">xwer_t xwds_obj_suspend(struct xwds_object *obj)</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2object_8c_source.html#l00110">object.c:110</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__object_html_gafe586c4a2af8116bce0b5791f9e2eaa9"><div class="ttname"><a href="group__xwcd__ds__object.html#gafe586c4a2af8116bce0b5791f9e2eaa9">xwds_obj_stop</a></div><div class="ttdeci">xwer_t xwds_obj_stop(struct xwds_object *obj)</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2object_8c_source.html#l00096">object.c:96</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds_html_ga60d990e5df4266fbb1b7dada9160c698"><div class="ttname"><a href="group__xwcd__ds.html#ga60d990e5df4266fbb1b7dada9160c698">__xwds_vop</a></div><div class="ttdeci">#define __xwds_vop</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2standard_8h_source.html#l00036">standard.h:36</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds_html_ga692dd5d25ab7dd82b9622c1ea3757a8b"><div class="ttname"><a href="group__xwcd__ds.html#ga692dd5d25ab7dd82b9622c1ea3757a8b">__xwds_code</a></div><div class="ttdeci">#define __xwds_code</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2standard_8h_source.html#l00031">standard.h:31</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds_html_ga8dfce3af09db190cd28028a817ae9275"><div class="ttname"><a href="group__xwcd__ds.html#ga8dfce3af09db190cd28028a817ae9275">__xwds_api</a></div><div class="ttdeci">#define __xwds_api</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2standard_8h_source.html#l00033">standard.h:33</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds_html_ga9541a62248e32dc84221e1f55d11c2b3"><div class="ttname"><a href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a></div><div class="ttdeci">#define XWDS_VALIDATE(exp, errstr,...)</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2standard_8h_source.html#l00051">standard.h:51</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds_html_gab6317ea3e673d7755ef26e5798ddd8c0"><div class="ttname"><a href="group__xwcd__ds.html#gab6317ea3e673d7755ef26e5798ddd8c0">__xwds_rodata</a></div><div class="ttdeci">#define __xwds_rodata</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2standard_8h_source.html#l00038">standard.h:38</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga3f317946e043623f9d6b93dbf60e6316"><div class="ttname"><a href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a></div><div class="ttdeci">#define EFAULT</div><div class="ttdoc">Bad address</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00044">errno.h:44</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga6a72d49d869215a02342eb465166537b"><div class="ttname"><a href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a></div><div class="ttdeci">#define XWOK</div><div class="ttdoc">No error</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00182">errno.h:182</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga06847ea8c7edb2b1f166288b230f251f"><div class="ttname"><a href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a></div><div class="ttdeci">signed long xwer_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00554">type.h:554</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00028">type.h:28</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_gad21f70aa6f1364b63b1165784448bc16"><div class="ttname"><a href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a></div><div class="ttdeci">xwptr_t xwreg_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00409">type.h:409</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__xwobj_html_ga33f685c358784c30a9f1fb8a5ca11d3d"><div class="ttname"><a href="group__xwos__lib__xwobj.html#ga33f685c358784c30a9f1fb8a5ca11d3d">xwos_object_rawput</a></div><div class="ttdeci">xwer_t xwos_object_rawput(struct xwos_object *obj)</div><div class="ttdoc">减少对象的引用计数，不触发垃圾回收函数</div><div class="ttdef"><b>Definition</b> <a href="xwos_2lib_2object_8c_source.html#l00344">object.c:344</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__xwobj_html_ga4f918c2e483fca291aef63abae16b970"><div class="ttname"><a href="group__xwos__lib__xwobj.html#ga4f918c2e483fca291aef63abae16b970">xwobj_gc_f</a></div><div class="ttdeci">xwer_t(* xwobj_gc_f)(struct xwos_object *)</div><div class="ttdoc">垃圾回收函数指针类型</div><div class="ttdef"><b>Definition</b> <a href="xwos_2lib_2object_8h_source.html#l00042">object.h:42</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_gabc138d69277ba1017ade0f27c6c282cb"><div class="ttname"><a href="group__xwos__lock__seqlock.html#gabc138d69277ba1017ade0f27c6c282cb">xwos_sqlk_wr_lock_cpuirqsv</a></div><div class="ttdeci">static void xwos_sqlk_wr_lock_cpuirqsv(struct xwos_sqlk *sql, xwreg_t *cpuirq)</div><div class="ttdoc">XWOS API：开启写临界区，保存本地CPU的中断标志并关闭</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00575">seqlock.h:575</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_gadcb38d5d6dad7969e1231c47c131f3c8"><div class="ttname"><a href="group__xwos__lock__seqlock.html#gadcb38d5d6dad7969e1231c47c131f3c8">xwos_sqlk_wr_unlock_cpuirqrs</a></div><div class="ttdeci">static void xwos_sqlk_wr_unlock_cpuirqrs(struct xwos_sqlk *sql, xwreg_t cpuirq)</div><div class="ttdoc">XWOS API：关闭写临界区，恢复本地CPU的中断标志</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00608">seqlock.h:608</a></div></div>
+<div class="ttc" id="alock_2mtx_8h_html"><div class="ttname"><a href="lock_2mtx_8h.html">mtx.h</a></div><div class="ttdoc">操作系统抽象层：互斥锁</div></div>
+<div class="ttc" id="alock_2seqlock_8h_html"><div class="ttname"><a href="lock_2seqlock_8h.html">seqlock.h</a></div><div class="ttdoc">操作系统抽象层：顺序锁</div></div>
+<div class="ttc" id="alock_2spinlock_8h_html"><div class="ttname"><a href="lock_2spinlock_8h.html">spinlock.h</a></div><div class="ttdoc">操作系统抽象层：自旋锁</div></div>
+<div class="ttc" id="astructxwds__device_html"><div class="ttname"><a href="structxwds__device.html">xwds_device</a></div><div class="ttdoc">设备（所有设备的基类）</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8h_source.html#l00127">device.h:127</a></div></div>
+<div class="ttc" id="astructxwds__device_html_a1d485436e69d8cd8f38bcd2eb467a640"><div class="ttname"><a href="structxwds__device.html#a1d485436e69d8cd8f38bcd2eb467a640">xwds_device::drv</a></div><div class="ttdeci">const struct xwds_driver * drv</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8h_source.html#l00133">device.h:133</a></div></div>
+<div class="ttc" id="astructxwds__device_html_a7d5ba4f809e2fc89a9ea194edc1f2469"><div class="ttname"><a href="structxwds__device.html#a7d5ba4f809e2fc89a9ea194edc1f2469">xwds_device::vop</a></div><div class="ttdeci">const struct xwds_virtual_operation * vop</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8h_source.html#l00138">device.h:138</a></div></div>
+<div class="ttc" id="astructxwds__device_html_a9641ef932f0e09465e3bda067210a88a"><div class="ttname"><a href="structxwds__device.html#a9641ef932f0e09465e3bda067210a88a">xwds_device::ds</a></div><div class="ttdeci">struct xwds * ds</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8h_source.html#l00137">device.h:137</a></div></div>
+<div class="ttc" id="astructxwds__device_html_abef806e54fe0abc030f2ad1f54824560"><div class="ttname"><a href="structxwds__device.html#abef806e54fe0abc030f2ad1f54824560">xwds_device::obj</a></div><div class="ttdeci">struct xwds_object obj</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8h_source.html#l00128">device.h:128</a></div></div>
+<div class="ttc" id="astructxwds__driver_html"><div class="ttname"><a href="structxwds__driver.html">xwds_driver</a></div><div class="ttdoc">基本驱动函数表（所有设备驱动的基类）</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8h_source.html#l00113">device.h:113</a></div></div>
+<div class="ttc" id="astructxwds__driver_html_a19bba46b1a43ec0a920c64b791d567b4"><div class="ttname"><a href="structxwds__driver.html#a19bba46b1a43ec0a920c64b791d567b4">xwds_driver::start</a></div><div class="ttdeci">xwer_t(* start)(struct xwds_device *)</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8h_source.html#l00118">device.h:118</a></div></div>
+<div class="ttc" id="astructxwds__driver_html_a392738290b2230fdbbd7216afca6425c"><div class="ttname"><a href="structxwds__driver.html#a392738290b2230fdbbd7216afca6425c">xwds_driver::resume</a></div><div class="ttdeci">xwer_t(* resume)(struct xwds_device *)</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8h_source.html#l00121">device.h:121</a></div></div>
+<div class="ttc" id="astructxwds__driver_html_a84d4c39d18101ea5ee8925cc1a0a6097"><div class="ttname"><a href="structxwds__driver.html#a84d4c39d18101ea5ee8925cc1a0a6097">xwds_driver::probe</a></div><div class="ttdeci">xwer_t(* probe)(struct xwds_device *)</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8h_source.html#l00116">device.h:116</a></div></div>
+<div class="ttc" id="astructxwds__driver_html_ab9c20f931a97de61dad55861afae5548"><div class="ttname"><a href="structxwds__driver.html#ab9c20f931a97de61dad55861afae5548">xwds_driver::suspend</a></div><div class="ttdeci">xwer_t(* suspend)(struct xwds_device *)</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8h_source.html#l00120">device.h:120</a></div></div>
+<div class="ttc" id="astructxwds__driver_html_aee863134e45140336f467b29a1fcf7cf"><div class="ttname"><a href="structxwds__driver.html#aee863134e45140336f467b29a1fcf7cf">xwds_driver::stop</a></div><div class="ttdeci">xwer_t(* stop)(struct xwds_device *)</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8h_source.html#l00119">device.h:119</a></div></div>
+<div class="ttc" id="astructxwds__driver_html_af9af2e3d5979911933c8a8934ff653ca"><div class="ttname"><a href="structxwds__driver.html#af9af2e3d5979911933c8a8934ff653ca">xwds_driver::remove</a></div><div class="ttdeci">xwer_t(* remove)(struct xwds_device *)</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8h_source.html#l00117">device.h:117</a></div></div>
+<div class="ttc" id="astructxwds__object_html_a723dd56e626d07e83a3662b80f1e30e4"><div class="ttname"><a href="structxwds__object.html#a723dd56e626d07e83a3662b80f1e30e4">xwds_object::xwobj</a></div><div class="ttdeci">struct xwos_object xwobj</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2object_8h_source.html#l00050">object.h:50</a></div></div>
+<div class="ttc" id="astructxwds__virtual__operation_html"><div class="ttname"><a href="structxwds__virtual__operation.html">xwds_virtual_operation</a></div><div class="ttdoc">基本操作的虚函数表（类似C++的虚函数表）</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8h_source.html#l00099">device.h:99</a></div></div>
+<div class="ttc" id="astructxwds__virtual__operation_html_a0687ca01dcc51a15b6777448bf39a148"><div class="ttname"><a href="structxwds__virtual__operation.html#a0687ca01dcc51a15b6777448bf39a148">xwds_virtual_operation::suspend</a></div><div class="ttdeci">xwer_t(* suspend)(struct xwds_device *)</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8h_source.html#l00105">device.h:105</a></div></div>
+<div class="ttc" id="astructxwds__virtual__operation_html_a0fffb818007739a49c223e6057be5739"><div class="ttname"><a href="structxwds__virtual__operation.html#a0fffb818007739a49c223e6057be5739">xwds_virtual_operation::start</a></div><div class="ttdeci">xwer_t(* start)(struct xwds_device *)</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8h_source.html#l00102">device.h:102</a></div></div>
+<div class="ttc" id="astructxwds__virtual__operation_html_a662775f25eaaeec5a3c285ff83b9aa49"><div class="ttname"><a href="structxwds__virtual__operation.html#a662775f25eaaeec5a3c285ff83b9aa49">xwds_virtual_operation::stop</a></div><div class="ttdeci">xwer_t(* stop)(struct xwds_device *)</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8h_source.html#l00103">device.h:103</a></div></div>
+<div class="ttc" id="astructxwds__virtual__operation_html_a7161bf9059d427e44faefacebd501bf7"><div class="ttname"><a href="structxwds__virtual__operation.html#a7161bf9059d427e44faefacebd501bf7">xwds_virtual_operation::remove</a></div><div class="ttdeci">xwer_t(* remove)(struct xwds_device *)</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8h_source.html#l00101">device.h:101</a></div></div>
+<div class="ttc" id="astructxwds__virtual__operation_html_acf42b4caae0898e31d52d446ee5a93b5"><div class="ttname"><a href="structxwds__virtual__operation.html#acf42b4caae0898e31d52d446ee5a93b5">xwds_virtual_operation::probe</a></div><div class="ttdeci">xwer_t(* probe)(struct xwds_device *)</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8h_source.html#l00100">device.h:100</a></div></div>
+<div class="ttc" id="astructxwds__virtual__operation_html_ae755d965bd86d231a3fe69dd115d3ad4"><div class="ttname"><a href="structxwds__virtual__operation.html#ae755d965bd86d231a3fe69dd115d3ad4">xwds_virtual_operation::resume</a></div><div class="ttdeci">xwer_t(* resume)(struct xwds_device *)</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8h_source.html#l00106">device.h:106</a></div></div>
+<div class="ttc" id="astructxwds_html"><div class="ttname"><a href="structxwds.html">xwds</a></div><div class="ttdoc">设备栈</div><div class="ttdef"><b>Definition</b> <a href="xwds_8h_source.html#l00037">xwds.h:37</a></div></div>
+<div class="ttc" id="astructxwds_html_a46989c2d36412fcaf6ef4b0fccb027a8"><div class="ttname"><a href="structxwds.html#a46989c2d36412fcaf6ef4b0fccb027a8">xwds::devlistlock</a></div><div class="ttdeci">struct xwos_sqlk devlistlock</div><div class="ttdef"><b>Definition</b> <a href="xwds_8h_source.html#l00039">xwds.h:39</a></div></div>
+<div class="ttc" id="axwaop_8h_html"><div class="ttname"><a href="xwaop_8h.html">xwaop.h</a></div><div class="ttdoc">XWOS通用库：原子操作</div></div>
+<div class="ttc" id="axwcd_2ds_2object_8h_html"><div class="ttname"><a href="xwcd_2ds_2object_8h.html">object.h</a></div><div class="ttdoc">玄武设备栈：对象</div></div>
+<div class="ttc" id="axwcd_2ds_2standard_8h_html"><div class="ttname"><a href="xwcd_2ds_2standard_8h.html">standard.h</a></div><div class="ttdoc">玄武设备栈：顶级头文件</div></div>
+<div class="ttc" id="axwds_8h_html"><div class="ttname"><a href="xwds_8h.html">xwds.h</a></div><div class="ttdoc">玄武设备栈：电源管理框架</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_91e37f1231cf9910bfa2c11be57d8122.html">xwcd</a></li><li class="navelem"><a class="el" href="dir_7e7acccef388183555cf60cdd0da09f6.html">ds</a></li><li class="navelem"><a class="el" href="ds_2device_8c.html">device.c</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
+  </ul>
+</div>
+</body>
+</html>

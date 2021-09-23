@@ -1,0 +1,417 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>XWLUA参考手册</title>
+    <link rel="stylesheet" href="../ldoc_new.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>XWLUA</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/xwtm.html">xwtm</a></li>
+  <li><a href="../modules/xwvm.html">xwvm</a></li>
+  <li><a href="../modules/xwxt.html">xwxt</a></li>
+  <li><a href="../modules/xwos.skd.html">xwos.skd</a></li>
+  <li><strong>xwos.thd</strong></li>
+  <li><a href="../modules/xwos.cthd.html">xwos.cthd</a></li>
+  <li><a href="../modules/xwos.lock.mtx.html">xwos.lock.mtx</a></li>
+  <li><a href="../modules/xwos.lock.splk.html">xwos.lock.splk</a></li>
+  <li><a href="../modules/xwos.lock.sqlk.html">xwos.lock.sqlk</a></li>
+  <li><a href="../modules/xwos.sync.sem.html">xwos.sync.sem</a></li>
+  <li><a href="../modules/xwos.sync.cond.html">xwos.sync.cond</a></li>
+  <li><a href="../modules/xwos.sync.flg.html">xwos.sync.flg</a></li>
+  <li><a href="../modules/xwos.sync.br.html">xwos.sync.br</a></li>
+  <li><a href="../modules/xwos.sync.sel.html">xwos.sync.sel</a></li>
+  <li><a href="../modules/xwos.pm.html">xwos.pm</a></li>
+</ul>
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><a href="../classes/xwlib.bmp.html">xwlib.bmp</a></li>
+  <li><a href="../classes/thdsp.html">thdsp</a></li>
+  <li><a href="../classes/mtxsp.html">mtxsp</a></li>
+  <li><a href="../classes/splksp.html">splksp</a></li>
+  <li><a href="../classes/sqlksp.html">sqlksp</a></li>
+  <li><a href="../classes/semsp.html">semsp</a></li>
+  <li><a href="../classes/condsp.html">condsp</a></li>
+  <li><a href="../classes/flgsp.html">flgsp</a></li>
+  <li><a href="../classes/brsp.html">brsp</a></li>
+  <li><a href="../classes/selsp.html">selsp</a></li>
+  <li><a href="../classes/xwds.soc.html">xwds.soc</a></li>
+  <li><a href="../classes/xwds.uart.html">xwds.uart</a></li>
+  <li><a href="../classes/xwds.i2cm.html">xwds.i2cm</a></li>
+  <li><a href="../classes/xwds.spim.html">xwds.spim</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>xwos.thd</code></h1>
+<p>XWLUA模块：线程</p>
+<p>原生的Lua语言不支持多线程（Lua中的类型 <strong>thread</strong> 并不是真正的线程，而是协程。），
+脚本中的全局变量只能由执行脚本的线程自身访问。
+XWLUA在C语言层面开发了多线程的功能，每个线程都拥有一个 <strong>独立的Lua虚拟机</strong> 。</p>
+
+<p>XWLUA线程分为</p>
+
+<ul>
+    <li>Detached线程：线程结束后由系统自动回收资源，抛出的返回值不可被获取；</li>
+    <li>Joinable线程：线程结束后需要由另一个线程进行 <code>thdsp::join()</code> ， <code>thdsp::join()</code> 后可回收其资源，并捕获其返回值。</li>
+</ul>
+
+<p>XWLUA线程的三种形式：</p>
+
+<ul>
+    <li>文件线程：基于脚本文件创建线程</li>
+    <li>字符串线程：基于脚本字符串创建线程</li>
+    <li>函数线程：基于函数创建线程</li>
+</ul>
+
+
+<h2>XWLUA线程的返回值</h2>
+
+<p>Joinable线程可以 <code>return</code> 多个值，这些返回值可被另一个线程 <code>thdsp::join()</code> 捕获。
+值的类型支持：</p>
+
+<ul>
+    <li>boolean</li>
+    <li>lightuserdata</li>
+    <li>userdata</li>
+    <li>number</li>
+    <li>string</li>
+    <li>function</li>
+    <li>table</li>
+</ul>
+
+<p>Lua中的协程类型 <code>LUA_TTHREAD</code> <strong>不支持</strong> 在线程之间传递。</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#dofile">dofile (file, joinable, name, unprivileged)</a></td>
+	<td class="summary">从文件系统中读取脚本文件 <strong>file</strong> ，然后新建一个线程运行脚本</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#dostring">dostring (str, joinable, name, unprivileged)</a></td>
+	<td class="summary">建立一个新的线程执行字符串</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#call">call (func, joinable, name, unprivileged)</a></td>
+	<td class="summary">建立一个新的线程调用函数</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "dofile"></a>
+    <strong>dofile (file, joinable, name, unprivileged)</strong>
+    </dt>
+    <dd>
+    从文件系统中读取脚本文件 <strong>file</strong> ，然后新建一个线程运行脚本
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">file</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+         (<strong>in</strong>) lua脚本文件的路径
+        </li>
+        <li><span class="parameter">joinable</span>
+            <span class="types"><span class="type">boolean</span></span>
+         (<strong>in</strong> , <strong>optional</strong>) 是否创建 Joinable 的线程，默认值：false
+        </li>
+        <li><span class="parameter">name</span>
+            <span class="types"><span class="type">boolean</span></span>
+         (<strong>in</strong> , <strong>optional</strong>) 线程名，默认值：lua脚本文件的路径
+        </li>
+        <li><span class="parameter">unprivileged</span>
+            <span class="types"><span class="type">boolean</span></span>
+         (<strong>in</strong> , <strong>optional</strong>) 是否创建不具有系统权限的线程，默认值：false
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">userdata</span></span>
+         新的线程对象的强指针 <a href="../classes/thdsp.html#">thdsp</a> 或 <code>nil</code><br>
+ ● 当 <code>joinable</code> 为 <code>true</code> 时，此函数一定返回线程对象的强指针 <a href="../classes/thdsp.html#">thdsp</a> 。<br>
+ ● 当 <code>joinable</code> 为 <code>false</code> 时，此函数不一定返回线程对象的强指针 <a href="../classes/thdsp.html#">thdsp</a> 。因为 <strong>Detached</strong> 的线程可能先运行结束，此时将返回 <code>nil</code> 。
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <li><pre class="example">&gt; xwos.thd.<span class="global">dofile</span>(<span class="string">"sd:/hw.lua"</span>) <span class="comment">-- 创建 Detached 线程
+</span>
+<span class="backtick"><code>终端输出：</code></span>
+<span class="backtick"><code>XWLUA Test Script
+
+Thread strong pointer:	{0x20000880, 63}
+pi =	3.1415926535898
+2^11 =	-2.5060358315688e-94
+exp(10) =	22026.465794807
+t1 = 5
+t1[5] = 5
+1	1
+2	2
+3	false
+4	4
+5	5
+6	6
+7	7
+c	c
+b	b
+a	a</code></span></pre></li>
+        <li><pre class="example">&gt; childsp = xwos.thd.<span class="global">dofile</span>(<span class="string">"sd:/hw.lua"</span>, <span class="keyword">true</span>)
+&gt; rc, rcmsg = xwxt.childsp:<span class="function-name">join</span>()
+&gt; <span class="global">print</span>(rcmsg)
+&gt; childsp = <span class="keyword">nil</span>
+&gt; <span class="global">collectgarbage</span>()
+
+<span class="backtick"><code>终端输出：</code></span>
+<span class="backtick"><code>XWLUA Test Script
+
+Thread strong pointer:	{0x20000880, 63}
+pi =	3.1415926535898
+2^11 =	-2.5060358315688e-94
+exp(10) =	22026.465794807
+t1 = 5
+t1[5] = 5
+1	1
+2	2
+3	false
+4	4
+5	5
+6	6
+7	7
+c	c
+b	b
+a	a</code></span>
+
+&gt; rc, rcmsg = xwxt.childsp:<span class="function-name">join</span>()
+&gt; <span class="global">print</span>(rcmsg)
+<span class="backtick"><code>OK</code></span></pre></li>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "dostring"></a>
+    <strong>dostring (str, joinable, name, unprivileged)</strong>
+    </dt>
+    <dd>
+    建立一个新的线程执行字符串
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">str</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+         (<strong>in</strong>) 字符串
+        </li>
+        <li><span class="parameter">joinable</span>
+            <span class="types"><span class="type">boolean</span></span>
+         (<strong>in</strong> , <strong>optional</strong>) 是否创建 Joinable 的线程，默认值：false
+        </li>
+        <li><span class="parameter">name</span>
+            <span class="types"><span class="type">boolean</span></span>
+         (<strong>in</strong> , <strong>optional</strong>) 线程名，默认值：lua脚本文件的路径
+        </li>
+        <li><span class="parameter">unprivileged</span>
+            <span class="types"><span class="type">boolean</span></span>
+         (<strong>in</strong> , <strong>optional</strong>) 是否创建不具有系统权限的线程，默认值：false
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">userdata</span></span>
+        新的线程对象的强指针 <a href="../classes/thdsp.html#">thdsp</a>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">script = <span class="string">[[
+print("Child Thread:", xwos.cthd.sp())
+rcfunc = function ()
+  print("OK")
+end
+return rcfunc, "Hi", 1
+]]</span>
+childsp = xwos.thd.<span class="function-name">dostring</span>(script, <span class="keyword">true</span>)
+rc, rcfunc, msg, num = childsp:<span class="function-name">join</span>()
+<span class="function-name">rcfunc</span>()
+<span class="global">print</span>(msg)
+<span class="global">print</span>(num)
+childsp = <span class="keyword">nil</span>
+<span class="global">collectgarbage</span>()
+
+
+<span class="backtick"><code>终端输出：</code></span>
+&gt; script = <span class="string">[[
+&gt; print("Child Thread:", xwos.cthd.sp())
+&gt; rcfunc = function ()
+&gt;   print("OK")
+&gt; end
+&gt; return rcfunc, "Hi", 1
+&gt; ]]</span>
+&gt; childsp = xwos.thd.<span class="function-name">dostring</span>(script, <span class="keyword">true</span>)
+<span class="backtick"><code>Child Thread:	{0x20000660, 67}</code></span>
+
+&gt; rc, rcfunc, msg, num = childsp:<span class="function-name">join</span>()
+&gt; <span class="function-name">rcfunc</span>()
+<span class="backtick"><code>OK</code></span>
+&gt; <span class="global">print</span>(msg)
+<span class="backtick"><code>Hi</code></span>
+&gt; <span class="global">print</span>(num)
+<span class="backtick"><code>1</code></span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "call"></a>
+    <strong>call (func, joinable, name, unprivileged)</strong>
+    </dt>
+    <dd>
+    建立一个新的线程调用函数
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">func</span>
+            <span class="types"><span class="type">function</span></span>
+         (<strong>in</strong>) 函数
+        </li>
+        <li><span class="parameter">joinable</span>
+            <span class="types"><span class="type">boolean</span></span>
+         (<strong>in</strong>) 是否创建 Joinable 的线程，默认值：false
+        </li>
+        <li><span class="parameter">name</span>
+            <span class="types"><span class="type">boolean</span></span>
+         (<strong>in</strong> , <strong>optional</strong>) 线程名，默认值：lua脚本文件的路径
+        </li>
+        <li><span class="parameter">unprivileged</span>
+            <span class="types"><span class="type">boolean</span></span>
+         (<strong>in</strong> , <strong>optional</strong>) 是否创建不具有系统权限的线程，默认值：false
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">userdata</span></span>
+        新的线程对象的强指针 <a href="../classes/thdsp.html#">thdsp</a>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">function</span> <span class="function-name">childthd_main</span> ()
+  <span class="global">print</span>(<span class="string">"Child Thread:"</span>, xwos.cthd.<span class="function-name">sp</span>())
+  result = {}
+  result.func = <span class="keyword">function</span> ()
+    <span class="global">print</span>(<span class="string">"OK"</span>)
+  <span class="keyword">end</span>
+  result.msg = <span class="string">"OK"</span>
+  result.tab = {<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>}
+  result[{<span class="string">"0"</span>, <span class="string">"1"</span>, <span class="string">"2"</span>}] = {<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>}
+  mt = {
+    [<span class="string">"__os"</span>] = <span class="string">"XWOS"</span>
+  }
+  <span class="global">setmetatable</span>(result, mt);
+  <span class="keyword">return</span> result
+<span class="keyword">end</span>
+childsp = xwos.thd.<span class="function-name">call</span>(childthd_main, <span class="keyword">true</span>)
+rc, rctab = childsp:<span class="function-name">join</span>()
+<span class="global">print</span>(rctab.msg)
+rctab.<span class="function-name">func</span>()
+mt = <span class="global">getmetatable</span>(rctab)
+<span class="global">print</span>(mt.__os)
+childsp = <span class="keyword">nil</span>
+<span class="global">collectgarbage</span>()
+
+<span class="backtick"><code>终端输出：</code></span>
+&gt; <span class="keyword">function</span> <span class="function-name">childthd_main</span> ()
+&gt;   <span class="global">print</span>(<span class="string">"Child Thread:"</span>, xwos.cthd.<span class="function-name">sp</span>())
+&gt;   result = {}
+&gt;   result.func = <span class="keyword">function</span> ()
+&gt;     <span class="global">print</span>(<span class="string">"OK"</span>)
+&gt;   <span class="keyword">end</span>
+&gt;   result.msg = <span class="string">"OK"</span>
+&gt;   result.tab = {<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>}
+&gt;   result[{<span class="string">"0"</span>, <span class="string">"1"</span>, <span class="string">"2"</span>}] = {<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>}
+&gt;   mt = {
+&gt;     [<span class="string">"__os"</span>] = <span class="string">"XWOS"</span>
+&gt;   }
+&gt;   <span class="global">setmetatable</span>(result, mt);
+&gt;   <span class="keyword">return</span> result
+&gt; <span class="keyword">end</span>
+&gt; childsp = xwos.thd.<span class="function-name">call</span>(childthd_main, <span class="keyword">true</span>)
+<span class="backtick"><code>Child Thread:	{0x20000550, 69}</code></span>
+
+&gt; rc, rctab = childsp:<span class="function-name">join</span>()
+&gt; <span class="global">print</span>(rctab.msg)
+<span class="backtick"><code>OK</code></span>
+&gt; rctab.<span class="function-name">func</span>()
+<span class="backtick"><code>OK</code></span>
+&gt; mt = <span class="global">getmetatable</span>(rctab)
+&gt; <span class="global">print</span>(mt.__os)
+<span class="backtick"><code>XWOS</code></span></pre>
+    </ul>
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/lunarmodules/LDoc">LDoc 1.5.0</a></i>
+<i style="float:right;">Last updated 2024-01-12 20:06:58 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["xwrust_main"],"static":["GLOBAL_ALLOCATOR"]};

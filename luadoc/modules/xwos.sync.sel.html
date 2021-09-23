@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>XWLUA参考手册</title>
+    <link rel="stylesheet" href="../ldoc_new.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>XWLUA</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/xwtm.html">xwtm</a></li>
+  <li><a href="../modules/xwvm.html">xwvm</a></li>
+  <li><a href="../modules/xwxt.html">xwxt</a></li>
+  <li><a href="../modules/xwos.skd.html">xwos.skd</a></li>
+  <li><a href="../modules/xwos.thd.html">xwos.thd</a></li>
+  <li><a href="../modules/xwos.cthd.html">xwos.cthd</a></li>
+  <li><a href="../modules/xwos.lock.mtx.html">xwos.lock.mtx</a></li>
+  <li><a href="../modules/xwos.lock.splk.html">xwos.lock.splk</a></li>
+  <li><a href="../modules/xwos.lock.sqlk.html">xwos.lock.sqlk</a></li>
+  <li><a href="../modules/xwos.sync.sem.html">xwos.sync.sem</a></li>
+  <li><a href="../modules/xwos.sync.cond.html">xwos.sync.cond</a></li>
+  <li><a href="../modules/xwos.sync.flg.html">xwos.sync.flg</a></li>
+  <li><a href="../modules/xwos.sync.br.html">xwos.sync.br</a></li>
+  <li><strong>xwos.sync.sel</strong></li>
+  <li><a href="../modules/xwos.pm.html">xwos.pm</a></li>
+</ul>
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><a href="../classes/xwlib.bmp.html">xwlib.bmp</a></li>
+  <li><a href="../classes/thdsp.html">thdsp</a></li>
+  <li><a href="../classes/mtxsp.html">mtxsp</a></li>
+  <li><a href="../classes/splksp.html">splksp</a></li>
+  <li><a href="../classes/sqlksp.html">sqlksp</a></li>
+  <li><a href="../classes/semsp.html">semsp</a></li>
+  <li><a href="../classes/condsp.html">condsp</a></li>
+  <li><a href="../classes/flgsp.html">flgsp</a></li>
+  <li><a href="../classes/brsp.html">brsp</a></li>
+  <li><a href="../classes/selsp.html">selsp</a></li>
+  <li><a href="../classes/xwds.soc.html">xwds.soc</a></li>
+  <li><a href="../classes/xwds.uart.html">xwds.uart</a></li>
+  <li><a href="../classes/xwds.i2cm.html">xwds.i2cm</a></li>
+  <li><a href="../classes/xwds.spim.html">xwds.spim</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>xwos.sync.sel</code></h1>
+<p>XWLUA模块：信号选择器</p>
+<p>信号选择器类似于事件标志，使用位图来管理一组 <strong>同步对象</strong> 。使得单一线程可以同时等待一组不同的 <strong>同步对象</strong> 。</p>
+
+<p>每个 <strong>同步对象</strong> 在信号选择器位图中都绑定一个特定的 <strong>位</strong> ，
+当这些 <strong>同步对象</strong> 发送 <strong>选择信号</strong> 时，信号选择器位图中特定的 <strong>位</strong> 被设置，同时使得等待信号选择器的线程被唤醒。</p>
+
+
+<h2>选择信号</h2>
+
+<p><strong>选择信号</strong> 对于不同的 <strong>同步对象</strong> 有不同解释：</p>
+
+<h3>信号量</h3>
+
+<p>指发布操作 <a href="../classes/semsp.html#semsp:post">semsp:post</a>() ；</p>
+
+<h3>条件量</h3>
+
+<p>指广播操作 <a href="../classes/condsp.html#condsp:broadcast">condsp:broadcast</a>() ，单播 <a href="../classes/condsp.html#condsp:unicast">condsp:unicast</a>() 不会向信号选择器发送 <strong>选择信号</strong> ；</p>
+
+<h3>事件标志</h3>
+
+<p>指事件标志位图中任何一位发生改变：</p>
+
+<ul>
+    <li><a href="../classes/flgsp.html#flgsp:s1m">flgsp:s1m</a>()</li>
+    <li><a href="../classes/flgsp.html#flgsp:s1i">flgsp:s1i</a>()</li>
+    <li><a href="../classes/flgsp.html#flgsp:c0m">flgsp:c0m</a>()</li>
+    <li><a href="../classes/flgsp.html#flgsp:c0i">flgsp:c0i</a>()</li>
+    <li><a href="../classes/flgsp.html#flgsp:x1m">flgsp:x1m</a>()</li>
+    <li><a href="../classes/flgsp.html#flgsp:x1i">flgsp:x1i</a>()</li>
+</ul>
+
+<h3>线程栅栏</h3>
+
+<p>指所有线程抵达同步点，并调用 <a href="../classes/brsp.html#brsp:wait">brsp:wait</a>() 或 <a href="../classes/brsp.html#brsp:wait_to">brsp:wait_to</a>() ；</p>
+
+<h3>信号选择器</h3>
+
+<p>信号选择器本身也是 <strong>同步对象</strong> ，也可绑定在另一个信号选择器上。当源信号选择器收到了 <strong>选择信号</strong> ，会将其传递到绑定的另一个目的信号选择器上。</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#new">new (num)</a></td>
+	<td class="summary">新建信号选择器</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "new"></a>
+    <strong>new (num)</strong>
+    </dt>
+    <dd>
+    新建信号选择器
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">num</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) 信号槽的数量
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">userdata</span></span>
+        新的信号选择器对象的强指针 <a href="../classes/selsp.html#">selsp</a>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">sel = xwos.sel.<span class="function-name">new</span>(<span class="number">32</span>) <span class="comment">-- 创建拥有32个槽的信号选择器</span></pre>
+    </ul>
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/lunarmodules/LDoc">LDoc 1.5.0</a></i>
+<i style="float:right;">Last updated 2024-01-12 20:06:58 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

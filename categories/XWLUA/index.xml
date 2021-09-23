@@ -1,0 +1,120 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>XWOS – XWLUA</title>
+    <link>/categories/XWLUA/</link>
+    <description>Recent content in XWLUA on XWOS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    
+	  <atom:link href="/categories/XWLUA/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: Lua语言</title>
+      <link>/docs/TechRefManual/Lua/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/TechRefManual/Lua/</guid>
+      <description>
+        
+        
+        &lt;p&gt;现代的MCU已经有足够的性能运行解释型语言。XWOS集成了Lua语言 —— 一种轻量小巧的脚本语言。
+Lua语言在XWOS中的移植被称为 &lt;strong&gt;XWLUA&lt;/strong&gt; ， &lt;strong&gt;XWLUA&lt;/strong&gt; 有以下特性：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;交互式解释器：一个独立的线程，用户通过串口终端，可在线运行Lua语言的函数，也可运行文件系统中的脚本；&lt;/li&gt;
+&lt;li&gt;多线程：Lua语言并不支持多线程，XWLUA扩展了Lua语言，实现了多线程的功能；&lt;/li&gt;
+&lt;li&gt;锁机制：支持互斥锁、自旋锁、顺序锁；&lt;/li&gt;
+&lt;li&gt;同步机制：支持信号量、条件量、事件标志、信号选择器、线程栅栏；&lt;/li&gt;
+&lt;li&gt;驱动库：已经完成部分驱动的封装。
+&lt;ul&gt;
+&lt;li&gt;GPIO&lt;/li&gt;
+&lt;li&gt;I2C&lt;/li&gt;
+&lt;li&gt;SPI&lt;/li&gt;
+&lt;li&gt;UART&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+
+
+
+
+&lt;div class=&#34;card rounded p-2 td-post-card mb-4 mt-4&#34; style=&#34;max-width: 780px&#34;&gt;
+	&lt;img class=&#34;card-img-top&#34; src=&#34;/docs/TechRefManual/Lua/xwlua-repl_huba7457b0b89d1acb56e6b6901db3c0e1_79894_770x623_fill_catmullrom_smart1_3.png&#34; width=&#34;770&#34; height=&#34;623&#34;&gt;
+	
+	&lt;div class=&#34;card-body px-0 pt-2 pb-0 text-center&#34;&gt;
+		&lt;p class=&#34;card-text&#34;&gt;
+XWLUA交互式解释器
+&lt;/p&gt;
+	&lt;/div&gt;
+	
+&lt;/div&gt;
+
+&lt;p&gt;运行Lua虚拟机需要有足够的内存和浮点运算单元，因此只能在资源比较丰富的MCU上开启Lua语言，
+XWOS自带的参考工程中，以下工程开启了Lua语言：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://gitee.com/xwos/EmbedFireStm32H743XWOS.git&#34;&gt;EmbedFireStm32H743XWOS&lt;/a&gt;：野火STM32H743-Pro开发板&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://gitee.com/xwos/AtkApolloH743XWOS.git&#34;&gt;AtkApolloH743XWOS&lt;/a&gt;：正点原子阿波罗STM32H743开发板&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://gitee.com/xwos/FK429M1XWOS.git&#34;&gt;FK429M1XWOS&lt;/a&gt;：反客STM32F429-M1开发板&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://gitee.com/xwos/WeActMiniStm32H750XWOS.git&#34;&gt;WeActMiniStm32H750XWOS&lt;/a&gt;：微行电子MiniStm32H750开发板&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;工程结构&#34;&gt;工程结构&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;工程路径： &lt;code&gt;xwem/vm/lua&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;目录结构
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;src&lt;/code&gt; ：lua的官方源码&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwlua&lt;/code&gt; ：xwlua的实现
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;port.h, port.c, prefix.h, readline.c&lt;/code&gt; ：Lua语言在XWOS上的移植代码&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;lua.c&lt;/code&gt; ：以XWOS线程方式运行的交互式解释器(REPL)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwvm&lt;/code&gt; ：虚拟机库：虚拟机之间的数据交换&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos&lt;/code&gt; ：XWOS内核的binding库：包括线程、信号量、条件量、事件标志、信号选择器、线程栅栏、互斥锁、自旋锁、顺序锁、电源管理&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwlib&lt;/code&gt; ：XWOS基本C函数的binding库&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwds&lt;/code&gt; ：玄武设备栈的binding库&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwxt&lt;/code&gt; ：多线程共享数据的全局导出表&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mif.h, mif.c&lt;/code&gt; ：玄武模块的启动接口，交互式解释器(REPL)线程在此处启动&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmo.mk&lt;/code&gt; ：玄武模块的编译规则&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;xwlua的扩展&#34;&gt;XWLUA的扩展&lt;/h2&gt;
+&lt;h3 id=&#34;多线程&#34;&gt;多线程&lt;/h3&gt;
+&lt;p&gt;原生的Lua语言不支持多线程（Lua中的类型 &lt;code&gt;thread&lt;/code&gt; 并不是真正的线程，而是协程。），脚本中的全局变量只能由执行脚本的线程自身访问。
+XWLUA在C语言层面开发了多线程的功能，每个线程都拥有一个 &lt;strong&gt;独立的Lua虚拟机&lt;/strong&gt; 。&lt;/p&gt;
+&lt;h3 id=&#34;全局导出表&#34;&gt;全局导出表&lt;/h3&gt;
+&lt;p&gt;为了实现多线程共享数据，XWLUA中实现了一个 &lt;strong&gt;全局导出表(xwxt)&lt;/strong&gt; ，全局导出表中的数据对所有线程可见，并且是线程安全的。
+全局导出表也是Lua中的一个独立的虚拟机。&lt;/p&gt;
+&lt;h3 id=&#34;新的metamethod__copy&#34;&gt;新的Metamethod：&lt;code&gt;__copy&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;元方法 &lt;code&gt;__copy()&lt;/code&gt; 用于将用户数据从一个虚拟机（全局导出表、线程） &lt;strong&gt;深拷贝&lt;/strong&gt; 到另一个虚拟机（线程、全局导出表）中。
+只有 &lt;strong&gt;userdata&lt;/strong&gt; 可以定义 &lt;code&gt;__copy()&lt;/code&gt; 元方法。&lt;/p&gt;
+&lt;p&gt;元方法 &lt;code&gt;__copy()&lt;/code&gt; 有两个参数，第一个参数是 &lt;strong&gt;数据&lt;/strong&gt; ，第二参数是 &lt;strong&gt;目的虚拟机&lt;/strong&gt; ，无返回值。
+元方法 &lt;code&gt;__copy()&lt;/code&gt; 运行在 &lt;strong&gt;保护模式&lt;/strong&gt; ，可以 &lt;strong&gt;抛出错误&lt;/strong&gt; 。&lt;/p&gt;
+&lt;p&gt;实现元方法 &lt;code&gt;__copy()&lt;/code&gt; 时，若拷贝失败，应该在 &lt;strong&gt;目的虚拟机&lt;/strong&gt; 中压入一个 &lt;strong&gt;nil&lt;/strong&gt; 。&lt;/p&gt;
+&lt;p&gt;XWLUA的对象都提供了元方法 &lt;code&gt;__copy()&lt;/code&gt; 。&lt;/p&gt;
+&lt;h3 id=&#34;对象强指针&#34;&gt;对象强指针&lt;/h3&gt;
+&lt;p&gt;XWLUA使用 &lt;strong&gt;对象强指针&lt;/strong&gt; 管理XWOS内核中的对象（线程、信号量、条件量、事件标志、信号选择器、线程栅栏、互斥锁、自旋锁、顺序锁）。
+&lt;strong&gt;对象强指针&lt;/strong&gt; 是一种 &lt;strong&gt;userdata&lt;/strong&gt; 。 &lt;strong&gt;对象强指针&lt;/strong&gt; 就是对XWOS中的 &lt;a href=&#34;../XwosStd#%E5%AF%B9%E8%B1%A1%E6%8F%8F%E8%BF%B0%E7%AC%A6&#34;&gt;对象描述符&lt;/a&gt; 的封装。
+再借助于Lua虚拟机的GC机制，可实现对象的生命周期自动管理：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Lua虚拟机每引用一个 &lt;strong&gt;对象强指针&lt;/strong&gt; ，都会增加相关联对象的引用计数；&lt;/li&gt;
+&lt;li&gt;Lua虚拟机每 &lt;strong&gt;&amp;ldquo;GC&amp;rdquo;&lt;/strong&gt; 一个 &lt;strong&gt;对象强指针&lt;/strong&gt; ，都会减少相关联对象的引用计数；&lt;/li&gt;
+&lt;li&gt;当相关联对象的引用计数为 &lt;strong&gt;0&lt;/strong&gt; 时，就会执行C语言层面对象的 &lt;code&gt;GC&lt;/code&gt; 函数 。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;对象强指针&lt;/strong&gt; 的概念源于Lua语言的 &lt;strong&gt;强引用&lt;/strong&gt; 。&lt;/p&gt;
+&lt;h2 id=&#34;luaapi参考手册luadoc&#34;&gt;&lt;a href=&#34;../../../luadoc&#34;&gt;LuaAPI参考手册&lt;/a&gt;&lt;/h2&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

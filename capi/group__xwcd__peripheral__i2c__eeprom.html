@@ -1,0 +1,385 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>XWOS API: I2C EEPROM</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<a href="/" class="github-corner" title="返回首页">
+  <svg viewBox="0 0 250 250" style="position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path
+      d="M 0 0 L 250 250 L 250 0 L 0 0 z M 181.19336 6.25 A 18.281986 19.638775 0 0 1 192.79297 10.798828 L 241.54492 54.201172 A 6.0939954 6.5462585 0 0 1 237.64453 65.787109 L 233.13477 65.787109 A 3.0469979 3.2731292 0 0 0 230.08789 69.060547 L 230.08789 111.61133 A 18.281986 19.638775 0 0 1 211.80664 131.25 L 205.71289 131.25 A 12.187991 13.092517 0 0 1 193.52344 118.1582 L 193.52344 98.519531 A 12.187991 13.092517 0 0 0 181.33594 85.425781 A 12.187991 13.092517 0 0 0 169.14844 98.519531 L 169.14844 118.1582 A 12.187991 13.092517 0 0 1 156.95898 131.25 L 150.86523 131.25 A 18.281986 19.638775 0 0 1 132.58398 111.61133 L 132.58398 68.994141 A 3.0469979 3.2731292 0 0 0 129.29297 65.722656 L 124.7832 65.722656 A 6.0939954 6.5462585 0 0 1 120.88281 54.201172 L 169.39258 10.798828 A 18.281986 19.638775 0 0 1 181.19336 6.25 z "/>
+  </svg>
+</a>
+<style>.github-corner:hover</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">XWOS API
+   &#160;<span id="projectnumber">3.0</span>
+   </div>
+   <div id="projectbrief">XWOS API参考手册</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('group__xwcd__peripheral__i2c__eeprom.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">结构体</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">I2C EEPROM<div class="ingroups"><a class="el" href="group__xwcd.html">芯片与设备</a> &raquo; <a class="el" href="group__xwcd__peripheral.html">外设驱动</a> &raquo; <a class="el" href="group__xwcd__peripheral__i2c.html">I2C总线</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+I2C EEPROM 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwcd__peripheral__i2c__eeprom.png" border="0" usemap="#agroup____xwcd____peripheral____i2c____eeprom" alt=""/></div>
+<map name="agroup____xwcd____peripheral____i2c____eeprom" id="agroup____xwcd____peripheral____i2c____eeprom">
+<area shape="rect" href="group__xwcd__peripheral__i2c.html" title=" " alt="" coords="5,5,75,31"/>
+<area shape="rect" title=" " alt="" coords="123,5,228,31"/>
+</map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+结构体</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structxwds__eeprom__parameter.html">xwds_eeprom_parameter</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structxwds__eeprom.html">xwds_eeprom</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structxwds__eeprom__driver.html">xwds_eeprom_driver</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">EEPROM驱动函数表  <a href="structxwds__eeprom__driver.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:gaa7d70d0e4c2db4dd23a89e966e734ea8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwcd__peripheral__i2c__eeprom.html#gaa7d70d0e4c2db4dd23a89e966e734ea8">xwds_eeprom_construct</a> (struct <a class="el" href="structxwds__eeprom.html">xwds_eeprom</a> *eeprom)</td></tr>
+<tr class="separator:gaa7d70d0e4c2db4dd23a89e966e734ea8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafe18e1a06a03480d6a8a6eae85de81fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwcd__peripheral__i2c__eeprom.html#gafe18e1a06a03480d6a8a6eae85de81fd">xwds_eeprom_destruct</a> (struct <a class="el" href="structxwds__eeprom.html">xwds_eeprom</a> *eeprom)</td></tr>
+<tr class="separator:gafe18e1a06a03480d6a8a6eae85de81fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0ef1a52c67ddf76342044242ee002548"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwcd__peripheral__i2c__eeprom.html#ga0ef1a52c67ddf76342044242ee002548">xwds_eeprom_grab</a> (struct <a class="el" href="structxwds__eeprom.html">xwds_eeprom</a> *eeprom)</td></tr>
+<tr class="memdesc:ga0ef1a52c67ddf76342044242ee002548"><td class="mdescLeft">&#160;</td><td class="mdescRight">EEPROM API：增加对象的引用计数  <br /></td></tr>
+<tr class="separator:ga0ef1a52c67ddf76342044242ee002548"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga12cf3c286b342fc7b10b16f6bc82f970"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwcd__peripheral__i2c__eeprom.html#ga12cf3c286b342fc7b10b16f6bc82f970">xwds_eeprom_put</a> (struct <a class="el" href="structxwds__eeprom.html">xwds_eeprom</a> *eeprom)</td></tr>
+<tr class="memdesc:ga12cf3c286b342fc7b10b16f6bc82f970"><td class="mdescLeft">&#160;</td><td class="mdescRight">EEPROM API：减少对象的引用计数  <br /></td></tr>
+<tr class="separator:ga12cf3c286b342fc7b10b16f6bc82f970"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<h2 class="groupheader">函数说明</h2>
+<a id="gaa7d70d0e4c2db4dd23a89e966e734ea8" name="gaa7d70d0e4c2db4dd23a89e966e734ea8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa7d70d0e4c2db4dd23a89e966e734ea8">&#9670;&#160;</a></span>xwds_eeprom_construct()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void xwds_eeprom_construct </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwds__eeprom.html">xwds_eeprom</a> *&#160;</td>
+          <td class="paramname"><em>eeprom</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="peripheral_2i2c_2eeprom_2device_8c_source.html">device.c</a> 第 <a class="el" href="peripheral_2i2c_2eeprom_2device_8c_source.html#l00026">26</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   27</span>{</div>
+<div class="line"><span class="lineno">   28</span>        <a class="code hl_function" href="group__xwcd__ds__i2c__peripheral.html#gad1ddd90a4b497dbab69a9955d425be3d">xwds_i2cp_construct</a>(&amp;eeprom-&gt;<a class="code hl_variable" href="structxwds__eeprom.html#ac0d69a37031ba09618fa1e33e91395d2">i2cp</a>);</div>
+<div class="line"><span class="lineno">   29</span>}</div>
+<div class="ttc" id="agroup__xwcd__ds__i2c__peripheral_html_gad1ddd90a4b497dbab69a9955d425be3d"><div class="ttname"><a href="group__xwcd__ds__i2c__peripheral.html#gad1ddd90a4b497dbab69a9955d425be3d">xwds_i2cp_construct</a></div><div class="ttdeci">void xwds_i2cp_construct(struct xwds_i2cp *i2cp)</div><div class="ttdoc">XWDS API：I2C外设的构造函数</div><div class="ttdef"><b>Definition</b> <a href="i2c_2peripheral_8c_source.html#l00057">peripheral.c:57</a></div></div>
+<div class="ttc" id="astructxwds__eeprom_html_ac0d69a37031ba09618fa1e33e91395d2"><div class="ttname"><a href="structxwds__eeprom.html#ac0d69a37031ba09618fa1e33e91395d2">xwds_eeprom::i2cp</a></div><div class="ttdeci">struct xwds_i2cp i2cp</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2i2c_2eeprom_2device_8h_source.html#l00039">device.h:39</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwcd__peripheral__i2c__eeprom_gaa7d70d0e4c2db4dd23a89e966e734ea8_cgraph.png" border="0" usemap="#agroup__xwcd__peripheral__i2c__eeprom_gaa7d70d0e4c2db4dd23a89e966e734ea8_cgraph" alt=""/></div>
+<map name="agroup__xwcd__peripheral__i2c__eeprom_gaa7d70d0e4c2db4dd23a89e966e734ea8_cgraph" id="agroup__xwcd__peripheral__i2c__eeprom_gaa7d70d0e4c2db4dd23a89e966e734ea8_cgraph">
+<area shape="rect" title=" " alt="" coords="5,31,169,56"/>
+<area shape="rect" href="group__xwcd__ds__i2c__peripheral.html#gad1ddd90a4b497dbab69a9955d425be3d" title="XWDS API：I2C外设的构造函数" alt="" coords="217,31,363,56"/>
+<area shape="poly" title=" " alt="" coords="169,41,204,41,204,46,169,46"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga28c4da29c7c95ad0ee437ed6e4a97e9d" title="XWDS API：设备的构造函数" alt="" coords="411,31,569,56"/>
+<area shape="poly" title=" " alt="" coords="363,41,397,41,397,46,363,46"/>
+<area shape="rect" href="group__xwcd__ds__object.html#ga8159ce4ed1c5c3c8c4f3ab187fac48a0" title=" " alt="" coords="617,31,756,56"/>
+<area shape="poly" title=" " alt="" coords="570,41,604,41,604,46,570,46"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga3286c94ae92265dea90fd52bfdb85569" title="初始化一个链表节点。" alt="" coords="809,5,955,31"/>
+<area shape="poly" title=" " alt="" coords="756,32,795,27,795,32,757,37"/>
+<area shape="rect" href="group__xwos__lib__xwobj.html#ga908c48f09f38f5be9d69758fe30c5d3f" title="XWOS对象的构造函数" alt="" coords="804,55,960,80"/>
+<area shape="poly" title=" " alt="" coords="757,49,791,53,790,59,756,55"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="gafe18e1a06a03480d6a8a6eae85de81fd" name="gafe18e1a06a03480d6a8a6eae85de81fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafe18e1a06a03480d6a8a6eae85de81fd">&#9670;&#160;</a></span>xwds_eeprom_destruct()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void xwds_eeprom_destruct </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwds__eeprom.html">xwds_eeprom</a> *&#160;</td>
+          <td class="paramname"><em>eeprom</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="peripheral_2i2c_2eeprom_2device_8c_source.html">device.c</a> 第 <a class="el" href="peripheral_2i2c_2eeprom_2device_8c_source.html#l00032">32</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   33</span>{</div>
+<div class="line"><span class="lineno">   34</span>        <a class="code hl_function" href="group__xwcd__ds__i2c__peripheral.html#gac3f443c10af6bfb8b82aa72f758b92c0">xwds_i2cp_destruct</a>(&amp;eeprom-&gt;<a class="code hl_variable" href="structxwds__eeprom.html#ac0d69a37031ba09618fa1e33e91395d2">i2cp</a>);</div>
+<div class="line"><span class="lineno">   35</span>}</div>
+<div class="ttc" id="agroup__xwcd__ds__i2c__peripheral_html_gac3f443c10af6bfb8b82aa72f758b92c0"><div class="ttname"><a href="group__xwcd__ds__i2c__peripheral.html#gac3f443c10af6bfb8b82aa72f758b92c0">xwds_i2cp_destruct</a></div><div class="ttdeci">void xwds_i2cp_destruct(struct xwds_i2cp *i2cp)</div><div class="ttdoc">XWDS API：I2C外设的构造函数</div><div class="ttdef"><b>Definition</b> <a href="i2c_2peripheral_8c_source.html#l00064">peripheral.c:64</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwcd__peripheral__i2c__eeprom_gafe18e1a06a03480d6a8a6eae85de81fd_cgraph.png" border="0" usemap="#agroup__xwcd__peripheral__i2c__eeprom_gafe18e1a06a03480d6a8a6eae85de81fd_cgraph" alt=""/></div>
+<map name="agroup__xwcd__peripheral__i2c__eeprom_gafe18e1a06a03480d6a8a6eae85de81fd_cgraph" id="agroup__xwcd__peripheral__i2c__eeprom_gafe18e1a06a03480d6a8a6eae85de81fd_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,163,31"/>
+<area shape="rect" href="group__xwcd__ds__i2c__peripheral.html#gac3f443c10af6bfb8b82aa72f758b92c0" title="XWDS API：I2C外设的构造函数" alt="" coords="211,5,349,31"/>
+<area shape="poly" title=" " alt="" coords="163,15,197,15,197,21,163,21"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga40607e48943c7647201065226dc37fa1" title="XWDS API：设备的析构函数" alt="" coords="397,5,549,31"/>
+<area shape="poly" title=" " alt="" coords="350,15,384,15,384,21,350,21"/>
+<area shape="rect" href="group__xwcd__ds__object.html#ga73902a4e27cea5ecf32e7fb39166b49c" title=" " alt="" coords="597,5,728,31"/>
+<area shape="poly" title=" " alt="" coords="550,15,584,15,584,21,550,21"/>
+<area shape="rect" href="group__xwos__lib__xwobj.html#gaaaa2a74387092ee01a9e495a2994d1fa" title="XWOS对象的析构函数" alt="" coords="776,5,925,31"/>
+<area shape="poly" title=" " alt="" coords="728,15,762,15,762,21,728,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga0ef1a52c67ddf76342044242ee002548" name="ga0ef1a52c67ddf76342044242ee002548"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0ef1a52c67ddf76342044242ee002548">&#9670;&#160;</a></span>xwds_eeprom_grab()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwds_eeprom_grab </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwds__eeprom.html">xwds_eeprom</a> *&#160;</td>
+          <td class="paramname"><em>eeprom</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>EEPROM API：增加对象的引用计数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">eeprom</td><td>I2C EEPROM对象指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"></td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>ref <a class="el" href="group__xwcd__ds__i2c__peripheral.html#ga956c23f5b3a8feeaf757164c072f4f2e" title="XWDS API：增加对象的引用计数">xwds_i2cp_grab()</a> </p>
+
+<p class="definition">在文件 <a class="el" href="peripheral_2i2c_2eeprom_2device_8h_source.html">device.h</a> 第 <a class="el" href="peripheral_2i2c_2eeprom_2device_8h_source.html#l00055">55</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   56</span>{</div>
+<div class="line"><span class="lineno">   57</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="group__xwcd__ds__i2c__peripheral.html#ga956c23f5b3a8feeaf757164c072f4f2e">xwds_i2cp_grab</a>(&amp;eeprom-&gt;<a class="code hl_variable" href="structxwds__eeprom.html#ac0d69a37031ba09618fa1e33e91395d2">i2cp</a>);</div>
+<div class="line"><span class="lineno">   58</span>}</div>
+<div class="ttc" id="agroup__xwcd__ds__i2c__peripheral_html_ga956c23f5b3a8feeaf757164c072f4f2e"><div class="ttname"><a href="group__xwcd__ds__i2c__peripheral.html#ga956c23f5b3a8feeaf757164c072f4f2e">xwds_i2cp_grab</a></div><div class="ttdeci">xwer_t xwds_i2cp_grab(struct xwds_i2cp *i2cp)</div><div class="ttdoc">XWDS API：增加对象的引用计数</div><div class="ttdef"><b>Definition</b> <a href="i2c_2peripheral_8c_source.html#l00070">peripheral.c:70</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwcd__peripheral__i2c__eeprom_ga0ef1a52c67ddf76342044242ee002548_cgraph.png" border="0" usemap="#agroup__xwcd__peripheral__i2c__eeprom_ga0ef1a52c67ddf76342044242ee002548_cgraph" alt=""/></div>
+<map name="agroup__xwcd__peripheral__i2c__eeprom_ga0ef1a52c67ddf76342044242ee002548_cgraph" id="agroup__xwcd__peripheral__i2c__eeprom_ga0ef1a52c67ddf76342044242ee002548_cgraph">
+<area shape="rect" title="EEPROM API：增加对象的引用计数" alt="" coords="5,5,140,31"/>
+<area shape="rect" href="group__xwcd__ds__i2c__peripheral.html#ga956c23f5b3a8feeaf757164c072f4f2e" title="XWDS API：增加对象的引用计数" alt="" coords="188,5,304,31"/>
+<area shape="poly" title=" " alt="" coords="140,15,174,15,174,21,140,21"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga00553482e152b68af626de972e2187d7" title="XWDS API：增加对象的引用计数" alt="" coords="352,5,483,31"/>
+<area shape="poly" title=" " alt="" coords="304,15,339,15,339,21,304,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga12cf3c286b342fc7b10b16f6bc82f970" name="ga12cf3c286b342fc7b10b16f6bc82f970"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga12cf3c286b342fc7b10b16f6bc82f970">&#9670;&#160;</a></span>xwds_eeprom_put()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwds_eeprom_put </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwds__eeprom.html">xwds_eeprom</a> *&#160;</td>
+          <td class="paramname"><em>eeprom</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>EEPROM API：减少对象的引用计数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">eeprom</td><td>I2C EEPROM对象指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"></td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>ref <a class="el" href="group__xwcd__ds__i2c__peripheral.html#ga804982010d0516845970641cd7ac7082" title="XWDS API：减少对象的引用计数">xwds_i2cp_put()</a> </p>
+
+<p class="definition">在文件 <a class="el" href="peripheral_2i2c_2eeprom_2device_8h_source.html">device.h</a> 第 <a class="el" href="peripheral_2i2c_2eeprom_2device_8h_source.html#l00067">67</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   68</span>{</div>
+<div class="line"><span class="lineno">   69</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="group__xwcd__ds__i2c__peripheral.html#ga804982010d0516845970641cd7ac7082">xwds_i2cp_put</a>(&amp;eeprom-&gt;<a class="code hl_variable" href="structxwds__eeprom.html#ac0d69a37031ba09618fa1e33e91395d2">i2cp</a>);</div>
+<div class="line"><span class="lineno">   70</span>}</div>
+<div class="ttc" id="agroup__xwcd__ds__i2c__peripheral_html_ga804982010d0516845970641cd7ac7082"><div class="ttname"><a href="group__xwcd__ds__i2c__peripheral.html#ga804982010d0516845970641cd7ac7082">xwds_i2cp_put</a></div><div class="ttdeci">xwer_t xwds_i2cp_put(struct xwds_i2cp *i2cp)</div><div class="ttdoc">XWDS API：减少对象的引用计数</div><div class="ttdef"><b>Definition</b> <a href="i2c_2peripheral_8c_source.html#l00076">peripheral.c:76</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwcd__peripheral__i2c__eeprom_ga12cf3c286b342fc7b10b16f6bc82f970_cgraph.png" border="0" usemap="#agroup__xwcd__peripheral__i2c__eeprom_ga12cf3c286b342fc7b10b16f6bc82f970_cgraph" alt=""/></div>
+<map name="agroup__xwcd__peripheral__i2c__eeprom_ga12cf3c286b342fc7b10b16f6bc82f970_cgraph" id="agroup__xwcd__peripheral__i2c__eeprom_ga12cf3c286b342fc7b10b16f6bc82f970_cgraph">
+<area shape="rect" title="EEPROM API：减少对象的引用计数" alt="" coords="5,5,133,31"/>
+<area shape="rect" href="group__xwcd__ds__i2c__peripheral.html#ga804982010d0516845970641cd7ac7082" title="XWDS API：减少对象的引用计数" alt="" coords="181,5,291,31"/>
+<area shape="poly" title=" " alt="" coords="134,15,168,15,168,21,134,21"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga69eb284bb145032e408adea3131b9d36" title="XWDS API：减少对象的引用计数" alt="" coords="339,5,461,31"/>
+<area shape="poly" title=" " alt="" coords="291,15,325,15,325,21,291,21"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,553 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>XWOS – 锁</title>
+    <link>/docs/TechRefManual/Lock/</link>
+    <description>Recent content in 锁 on XWOS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    
+	  <atom:link href="/docs/TechRefManual/Lock/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: 自旋锁</title>
+      <link>/docs/TechRefManual/Lock/Spinlock/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/TechRefManual/Lock/Spinlock/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
+&lt;p&gt;自旋锁是多核系统中为防止多个处理器同时访问公共的内存区域（称为临界区）而引入的一种锁。
+当一个CPU获得自旋锁并访问临界区时，其他CPU只能 &lt;strong&gt;自旋&lt;/strong&gt; 等待锁。
+所谓 &lt;strong&gt;自旋&lt;/strong&gt; ，是指不断循环测试 &lt;strong&gt;锁&lt;/strong&gt; 是否已经解开。&lt;/p&gt;
+&lt;p&gt;自旋锁只是为SMP的场景设计的一种锁机制。在单核(UP)系统中，并不需要自旋锁。
+但为了软件接口的统一，实现了虚假的自旋锁，只是对关闭抢占、中断底半部或中断的封装。&lt;/p&gt;
+&lt;p&gt;自旋锁还伴随其他操作：内存屏障，关闭调度器的抢占，关闭中断底半部，关闭中断等。&lt;/p&gt;
+&lt;h3 id=&#34;局限性&#34;&gt;局限性&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;自旋锁内包含内存内存屏障操作，内存屏障会降低CPU的性能；&lt;/li&gt;
+&lt;li&gt;自旋锁不区分读和写的情况。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;使用自旋锁&#34;&gt;使用自旋锁&lt;/h2&gt;
+&lt;h3 id=&#34;自旋锁的初始化&#34;&gt;自旋锁的初始化&lt;/h3&gt;
+&lt;p&gt;自旋锁是基于原子操作指令实现的，自旋锁结构体很小，核心数据是一个CPU指令能操作的基本数据类型，因此不提供动态创建和删除方法。
+用户可以通过 &lt;a href=&#34;../../../../capi/group__xwos__lock__spinlock.html#gac8bbb82a3177f919e10ef3c3d21c7608&#34;&gt;&lt;code&gt;xwos_splk_init()&lt;/code&gt;&lt;/a&gt; 初始化自旋锁。&lt;/p&gt;
+&lt;h3 id=&#34;多锁&#34;&gt;多锁&lt;/h3&gt;
+&lt;p&gt;当使用 &lt;strong&gt;多个&lt;/strong&gt; 自旋锁保护临界区时，上锁和解锁顺序必须 &lt;strong&gt;保持一致&lt;/strong&gt; ，否则会导致死锁。&lt;/p&gt;
+&lt;h3 id=&#34;锁模式&#34;&gt;锁模式&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;临界区只对 &lt;strong&gt;线程&lt;/strong&gt; 上下文是安全的。临界区内，只会关闭抢占。
+可以理解为在线程层面，临界区内的操作是 &lt;strong&gt;原子的&lt;/strong&gt; 。临界区内的数据只能被 &lt;strong&gt;线程&lt;/strong&gt; 上下文访问。
+临界区内不能发生 &lt;strong&gt;调度&lt;/strong&gt; ，用户不可在临界区内使用会导致 &lt;strong&gt;睡眠&lt;/strong&gt; 与 &lt;strong&gt;阻塞&lt;/strong&gt; 的CAPI。
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__spinlock.html#ga80e1248f482959ad664f367dd6a2123e&#34;&gt;&lt;code&gt;xwos_splk_lock()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占，进入临界区&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__spinlock.html#gad8cae0c2e4a9956f9df7b3118b6db534&#34;&gt;&lt;code&gt;xwos_splk_trylock()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占，尝试进入临界区&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__spinlock.html#ga7c45ee96acf66e3ab1aba48a0f49f1c4&#34;&gt;&lt;code&gt;xwos_splk_unlock()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占，退出临界区&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_lock&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_unlock&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;临界区对 &lt;strong&gt;任意&lt;/strong&gt; 上下文都是安全的。临界区内，不但会关闭抢占，还会把CPU中断也关了。
+可以理解为在临界区内的操作是 &lt;strong&gt;原子的&lt;/strong&gt; ，临界区内的数据能被 &lt;strong&gt;任意&lt;/strong&gt; 上下文访问。
+临界区内不会发生中断，也不可能发生 &lt;strong&gt;调度&lt;/strong&gt; ，但用户依然不能在临界区内使用会导致 &lt;strong&gt;睡眠&lt;/strong&gt; 与 &lt;strong&gt;阻塞&lt;/strong&gt; 的CAPI。
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__spinlock.html#ga3011217ec5d1cba45824484f507dce77&#34;&gt;&lt;code&gt;xwos_splk_lock_cpuirq()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占、CPU中断，进入临界区&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__spinlock.html#ga5a37d2c7c27a7507392f15eeb03d2a02&#34;&gt;&lt;code&gt;xwos_splk_trylock_cpuirq()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占、CPU中断，尝试进入临界区&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__spinlock.html#gaba92901efc65f4e61a3e364b29d6e10c&#34;&gt;&lt;code&gt;xwos_splk_unlock_cpuirq()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占、CPU中断，退出临界区&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_lock_cpuirq&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_unlock_cpuirq&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;当使用 &lt;strong&gt;多个&lt;/strong&gt; 自旋锁时，嵌套的临界区对 &lt;strong&gt;任意&lt;/strong&gt; 上下文都是安全的。临界区内，不但会关闭抢占，还会把CPU中断也关了。
+可以理解为在临界区内的操作是 &lt;strong&gt;原子的&lt;/strong&gt; ，临界区内的数据只能被 &lt;strong&gt;任意&lt;/strong&gt; 上下文访问。
+临界区内不会发生中断，也不可能发生 &lt;strong&gt;调度&lt;/strong&gt; ，但用户依然不能在临界区内使用会导致 &lt;strong&gt;睡眠&lt;/strong&gt; 与 &lt;strong&gt;阻塞&lt;/strong&gt; 的CAPI。
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__spinlock.html#gad393963b449be923d8af40538b9befdf&#34;&gt;&lt;code&gt;xwos_splk_lock_cpuirqsv()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占，保存CPU中断标志并关闭，进入临界区&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__spinlock.html#ga74fc2498076cc0f1b4810bd1ad9d4bff&#34;&gt;&lt;code&gt;xwos_splk_trylock_cpuirqsv()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占，保存CPU中断标志并关闭，尝试进入临界区&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__spinlock.html#gaa83b4a8f3340ddf35346dbedf9ce3979&#34;&gt;&lt;code&gt;xwos_splk_unlock_cpuirqrs()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占，恢复CPU中断，退出临界区&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_lock_cpuirqsv&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock1, &lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;cpuirq1);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区1 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_lock_cpuirqsv&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock2, &lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;cpuirq2);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区2 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_unlock_cpuirqrs&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;loc2, cpuirq2);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区1 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_unlock_cpuirqrs&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;loc1, cpuirq1);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;临界区对 &lt;strong&gt;线程&lt;/strong&gt; 、 &lt;strong&gt;指定的外设中断&lt;/strong&gt; 是安全的。临界区内，只关闭抢占和指定的中断。
+可以理解为在线程和指定的中断函数层面，临界区内的操作是 &lt;strong&gt;原子的&lt;/strong&gt; ，临界区内的数据只能被 &lt;strong&gt;线程&lt;/strong&gt; 和 &lt;strong&gt;指定的外设中断&lt;/strong&gt; 上下文访问。
+临界区内不会发生指定的中断，也不会发生 &lt;strong&gt;调度&lt;/strong&gt; ，但用户依然不能在临界区内使用会导致 &lt;strong&gt;睡眠&lt;/strong&gt; 与 &lt;strong&gt;阻塞&lt;/strong&gt; 的CAPI。
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__spinlock.html#ga7e50b3ee8f605b1963bf7223c249da28&#34;&gt;&lt;code&gt;xwos_splk_lock_irqs()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占，关闭部分中断，进入临界区&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__spinlock.html#ga1946f1240fb699cb9d6a252c76b0eb77&#34;&gt;&lt;code&gt;xwos_splk_trylock_irqs()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占，关闭部分中断，尝试进入临界区&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__spinlock.html#ga94b35ab4ed1799807411bcfdcd1a3950&#34;&gt;&lt;code&gt;xwos_splk_unlock_irqs()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占、开启部分中断，退出临界区&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_lock_irqs&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock, irq_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_unlock_irqs&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock, irq_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;当使用 &lt;strong&gt;多个&lt;/strong&gt; 自旋锁时，嵌套的临界区对 &lt;strong&gt;线程&lt;/strong&gt; 、 &lt;strong&gt;指定的外设中断&lt;/strong&gt; 是安全的。临界区内，只关闭抢占和指定的中断。
+可以理解为在线程和指定的中断函数层面，临界区内的操作是 &lt;strong&gt;原子的&lt;/strong&gt; ，临界区内的数据只能被 &lt;strong&gt;线程&lt;/strong&gt; 和 &lt;strong&gt;指定的外设中断&lt;/strong&gt; 上下文访问。
+临界区内不会发生指定的中断，也不会发生 &lt;strong&gt;调度&lt;/strong&gt; ，但用户依然不能在临界区内使用会导致 &lt;strong&gt;睡眠&lt;/strong&gt; 与 &lt;strong&gt;阻塞&lt;/strong&gt; 的CAPI。
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__spinlock.html#ga92a795c788a274e6fb545b6d4226b01b&#34;&gt;&lt;code&gt;xwos_splk_lock_irqssv()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占，保存部分中断标志并关闭，进入临界区&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__spinlock.html#ga17b92af6dfcf155366f46bb83f1b8ff5&#34;&gt;&lt;code&gt;xwos_splk_trylock_irqssv()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占，保存部分中断标志并关闭，尝试进入临界区&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__spinlock.html#ga58441e6006fe5d402e06f5caaab42092&#34;&gt;&lt;code&gt;xwos_splk_unlock_irqsrs()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占、恢复部分中断，退出临界区&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_lock_irqssv&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock1, irq_array, flag1_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区1 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_lock_irqssv&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock2, irq_array, flag2_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区2 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_unlock_irqsrs&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock2, irq_array, flag2_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区1 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_unlock_irqsrs&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock1, irq_array, flag1_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;临界区对 &lt;strong&gt;线程&lt;/strong&gt; 、 &lt;strong&gt;中断底半部&lt;/strong&gt; 是安全的。临界区内，只关闭抢占和中断底半部。
+可以理解为在线程和中断底半部层面，临界区内的操作是 &lt;strong&gt;原子的&lt;/strong&gt; ，临界区内的数据只能被 &lt;strong&gt;线程&lt;/strong&gt; 和 &lt;strong&gt;中断底半部&lt;/strong&gt; 上下文访问。
+临界区内不会发生 &lt;strong&gt;调度&lt;/strong&gt; ，但用户依然不能在临界区内使用会导致 &lt;strong&gt;睡眠&lt;/strong&gt; 与 &lt;strong&gt;阻塞&lt;/strong&gt; 的CAPI。
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__spinlock.html#ga3c50609a0c759cb526502a27937aab47&#34;&gt;&lt;code&gt;xwos_splk_lock_bh()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占、中断底半部，进入临界区&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__spinlock.html#ga6d6a918600518b0ed891937ec378087a&#34;&gt;&lt;code&gt;xwos_splk_trylock_bh()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占、中断底半部，尝试进入临界区&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__spinlock.html#gafbf75863c2f6323d6de84e4b1ce6c18a&#34;&gt;&lt;code&gt;xwos_splk_unlock_bh()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占、中断底半部，退出临界区&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_lock_bh&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_unlock_bh&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;为什么没有 &lt;strong&gt;保存与恢复抢占&lt;/strong&gt; 和 &lt;strong&gt;保存与恢复中断底半部&lt;/strong&gt; 形式的CAPI ？
+因为 &lt;strong&gt;关闭与打开抢占&lt;/strong&gt; 和 &lt;strong&gt;保存与恢复中断底半部&lt;/strong&gt; 是一种可重入的的 &lt;strong&gt;锁&lt;/strong&gt; ， &lt;strong&gt;关闭&lt;/strong&gt; 了多少次，对应的就要 &lt;strong&gt;打开&lt;/strong&gt; 多少次。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;capi参考&#34;&gt;CAPI参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__spinlock.html&#34;&gt;&lt;strong&gt;头文件 &amp;lt;xwos/osal/lock/spinlock.h&amp;gt;&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 顺序锁</title>
+      <link>/docs/TechRefManual/Lock/Seqlock/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/TechRefManual/Lock/Seqlock/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
+&lt;p&gt;顺序锁是对 &lt;a href=&#34;../Spinlock&#34;&gt;自旋锁&lt;/a&gt; 改良后的锁。主要是对读和写的情况进行区分。
+顺序锁中包含一个自旋锁和一个顺序值。顺序锁将临界区分为三种：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;独占写：任何对顺序锁临界区的 &lt;strong&gt;写&lt;/strong&gt; 操作都是独占的，每次 &lt;strong&gt;写&lt;/strong&gt; 操作时，会先上锁自旋锁，
+然后增加顺序值，离开临界区时也会再次增加顺序值。言外之意，顺序值增加两次，顺序值增加的次数是 &lt;strong&gt;偶数&lt;/strong&gt; 。&lt;/li&gt;
+&lt;li&gt;非独占读：如果多个CPU进行的是 &lt;strong&gt;只读&lt;/strong&gt; 操作，它们可以同时进入 &lt;strong&gt;非独占读临界区&lt;/strong&gt; 。
+CPU进入非独占读临界区无需获得自旋锁，但需要先测试顺序值是否为 &lt;strong&gt;偶数&lt;/strong&gt; ，并记录此时的顺序值。
+当退出读临界区时，需要再次读取顺序值，并与之前记录的值进行比较：
+&lt;ul&gt;
+&lt;li&gt;如果相等，表示读的结果有效；&lt;/li&gt;
+&lt;li&gt;如果不相等，则表示读的过程中别的CPU进行了写操作，此次的读操作无效。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;独占读：如果希望读临界区不会被写操作无效掉，可以使用独占读的方式，
+独占读会排斥其他CPU上的独占写和独占读操作，但不会排斥非独占读，
+其他CPU依然可以进入非独占读临界区。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;局限性&#34;&gt;局限性&lt;/h3&gt;
+&lt;p&gt;顺序锁有个缺陷： &lt;strong&gt;写&lt;/strong&gt; 者将数据写为空指针时，有可能导致 &lt;strong&gt;非独占读&lt;/strong&gt; 者引用空指针而崩溃。&lt;/p&gt;
+&lt;h2 id=&#34;使用顺序锁&#34;&gt;使用顺序锁&lt;/h2&gt;
+&lt;h3 id=&#34;顺序锁的初始化&#34;&gt;顺序锁的初始化&lt;/h3&gt;
+&lt;p&gt;同自旋锁一样，顺序锁结构体很小，不提供动态创建和删除方法。
+用户可以通过 &lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#ga230119b86fd51047f83cbe1e74982892&#34;&gt;&lt;code&gt;xwos_sqlk_init()&lt;/code&gt;&lt;/a&gt; 初始化顺序锁。&lt;/p&gt;
+&lt;h3 id=&#34;多锁&#34;&gt;多锁&lt;/h3&gt;
+&lt;p&gt;当使用 &lt;strong&gt;多个&lt;/strong&gt; 自旋锁保护 &lt;strong&gt;写临界区&lt;/strong&gt; 或 &lt;strong&gt;独占读临界区&lt;/strong&gt; 时，上锁和解锁顺序必须 &lt;strong&gt;保持一致&lt;/strong&gt; ，否则会导致死锁。&lt;/p&gt;
+&lt;h3 id=&#34;非独占读临界区&#34;&gt;非独占读临界区&lt;/h3&gt;
+&lt;p&gt;如果多个CPU进行的是 &lt;strong&gt;只读&lt;/strong&gt; 操作，它们可以同时进入 &lt;strong&gt;非独占读临界区&lt;/strong&gt; 。
+CPU进入非独占读临界区无需获得自旋锁，但需要先测试顺序值是否为 &lt;strong&gt;偶数&lt;/strong&gt;，并记录此时的顺序值。
+此操作可通过 &lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#ga7cd1c5a34e6c318d537e4780f3ae85f4&#34;&gt;&lt;code&gt;xwos_sqlk_rd_begin()&lt;/code&gt;&lt;/a&gt; 来完成。&lt;/p&gt;
+&lt;p&gt;当退出读临界区时，需要再次读取顺序值，并与之前记录的值进行比较。
+此操作可通过 &lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#gabcf1bae603513b049184fe2179d1301e&#34;&gt;&lt;code&gt;xwos_sqlk_rd_retry()&lt;/code&gt;&lt;/a&gt; 完成。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如果相等，表示读的结果有效；&lt;/li&gt;
+&lt;li&gt;如果不相等，则表示读的过程中别的CPU进行了写操作，此次的读操作无效。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        seq &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;xwos_sqlk_rd_begin&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock); &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 进入临界区前先获取顺序值 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;do&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 非独占读临界区 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        } &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;while&lt;/span&gt; (&lt;span style=&#34;color:#00a000&#34;&gt;xwos_sqlk_rd_retry&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock&lt;span style=&#34;&#34;&gt;，&lt;/span&gt; seq)); &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 测试顺序值是否发生了变化 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;用户也可以通过 &lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#ga40da988fa2376c706f8cab79dc4dab7c&#34;&gt;&lt;code&gt;xwos_sqlk_get_seq()&lt;/code&gt;&lt;/a&gt; 读取顺序值，自行比较。&lt;/p&gt;
+&lt;h3 id=&#34;写临界区&#34;&gt;写临界区&lt;/h3&gt;
+&lt;p&gt;任何对顺序锁临界区的 &lt;strong&gt;写&lt;/strong&gt; 操作都是独占的，每次进入 &lt;strong&gt;写临界区&lt;/strong&gt; 时，会先上锁自旋锁，
+然后增加顺序值，离开临界区时也会再次增加顺序值。言外之意，顺序值增加两次，顺序值增加的次数是 &lt;strong&gt;偶数&lt;/strong&gt; 。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;写临界区&lt;/strong&gt; 只对 &lt;strong&gt;线程&lt;/strong&gt; 上下文是安全的。 &lt;strong&gt;写临界区&lt;/strong&gt; 内，只会关闭抢占。
+可以理解为在线程层面， &lt;strong&gt;写临界区&lt;/strong&gt; 内的操作是 &lt;strong&gt;原子的&lt;/strong&gt; ， &lt;strong&gt;写临界区&lt;/strong&gt; 内的数据只能被 &lt;strong&gt;线程&lt;/strong&gt; 上下文访问。
+&lt;strong&gt;写临界区&lt;/strong&gt; 内不能发生 &lt;strong&gt;调度&lt;/strong&gt; ，用户不可在 &lt;strong&gt;写临界区&lt;/strong&gt; 内使用会导致 &lt;strong&gt;睡眠&lt;/strong&gt; 与 &lt;strong&gt;阻塞&lt;/strong&gt; 的CAPI。
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#ga16274374f2eeac631149433d1cf3491a&#34;&gt;&lt;code&gt;xwos_splk_wr_lock()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占，进入写临界区&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#ga5cc1e68a7d23ca6b7210de17b950e64b&#34;&gt;&lt;code&gt;xwos_splk_wr_trylock()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占，尝试进入写临界区&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#ga1320e69104e26e1a79b5459e7607584c&#34;&gt;&lt;code&gt;xwos_splk_wr_unlock()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占，退出写临界区&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_wr_lock&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 写临界区 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_wr_unlock&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;写临界区&lt;/strong&gt; 对 &lt;strong&gt;任意&lt;/strong&gt; 上下文都是安全的。 &lt;strong&gt;写临界区&lt;/strong&gt; 内，不但会关闭抢占，还会把CPU中断也关了。
+可以理解为在 &lt;strong&gt;写临界区&lt;/strong&gt; 内的操作是 &lt;strong&gt;原子的&lt;/strong&gt; ， &lt;strong&gt;写临界区&lt;/strong&gt; 内的数据只能被 &lt;strong&gt;任意&lt;/strong&gt; 上下文访问。
+&lt;strong&gt;写临界区&lt;/strong&gt; 内不会发生中断，也不可能发生 &lt;strong&gt;调度&lt;/strong&gt; ，但用户依然不能在 &lt;strong&gt;写临界区&lt;/strong&gt; 内使用会导致 &lt;strong&gt;睡眠&lt;/strong&gt; 与 &lt;strong&gt;阻塞&lt;/strong&gt; 的CAPI。
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#ga61fbffa6ca444335dbf3a4c2d2fd79b5&#34;&gt;&lt;code&gt;xwos_splk_wr_lock_cpuirq()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占、CPU中断，进入写临界区&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#gaa46493b921777da3bc92fd5e91cf2388&#34;&gt;&lt;code&gt;xwos_splk_wr_trylock_cpuirq()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占、CPU中断，尝试进入写临界区&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#ga694c4ac137e605fd951a3e3c1d37c855&#34;&gt;&lt;code&gt;xwos_splk_wr_unlock_cpuirq()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占、CPU中断，退出写临界区&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_wr_lock_cpuirq&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 写临界区 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_wr_unlock_cpuirq&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;当使用 &lt;strong&gt;多个&lt;/strong&gt; 顺序锁时，嵌套的 &lt;strong&gt;写临界区&lt;/strong&gt; 对 &lt;strong&gt;任意&lt;/strong&gt; 上下文都是安全的。 &lt;strong&gt;写临界区&lt;/strong&gt; 内，不但会关闭抢占，还会把CPU中断也关了。
+可以理解为在 &lt;strong&gt;写临界区&lt;/strong&gt; 内的操作是 &lt;strong&gt;原子的&lt;/strong&gt; ， &lt;strong&gt;写临界区&lt;/strong&gt; 内的数据只能被 &lt;strong&gt;线程&lt;/strong&gt; 上下文访问。
+&lt;strong&gt;写临界区&lt;/strong&gt; 内不会发生中断，也不可能发生 &lt;strong&gt;调度&lt;/strong&gt; ，但用户依然不能在 &lt;strong&gt;写临界区&lt;/strong&gt; 内使用会导致 &lt;strong&gt;睡眠&lt;/strong&gt; 与 &lt;strong&gt;阻塞&lt;/strong&gt; 的CAPI。
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#gabc138d69277ba1017ade0f27c6c282cb&#34;&gt;&lt;code&gt;xwos_splk_wr_lock_cpuirqsv()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占，保存CPU中断标志并关闭，进入写临界区&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#ga065396cb9c428d0e6234ade20506ff2a&#34;&gt;&lt;code&gt;xwos_splk_wr_trylock_cpuirqsv()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占，保存CPU中断标志并关闭，尝试进入写临界区&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#gadcb38d5d6dad7969e1231c47c131f3c8&#34;&gt;&lt;code&gt;xwos_splk_wr_unlock_cpuirqrs()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占，恢复CPU中断，退出写临界区&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_wr_lock_cpuirqsv&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock1, &lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;cpuirq1);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 写临界区1 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_wr_lock_cpuirqsv&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock2, &lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;cpuirq2);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 写临界区2 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_wr_unlock_cpuirqrs&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;loc2, cpuirq2);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 写临界区1 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_wr_unlock_cpuirqrs&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;loc1, cpuirq1);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;写临界区&lt;/strong&gt; 对 &lt;strong&gt;线程&lt;/strong&gt; 、 &lt;strong&gt;指定的外设中断&lt;/strong&gt; 是安全的。&lt;strong&gt;写临界区&lt;/strong&gt; 内，只关闭抢占和指定的中断。
+可以理解为在线程和指定的中断函数层面， &lt;strong&gt;写临界区&lt;/strong&gt; 内的操作是 &lt;strong&gt;原子的&lt;/strong&gt; ， &lt;strong&gt;写临界区&lt;/strong&gt; 内的数据只能被 &lt;strong&gt;线程&lt;/strong&gt; 和 &lt;strong&gt;指定的外设中断&lt;/strong&gt; 上下文访问。
+&lt;strong&gt;写临界区&lt;/strong&gt; 内不会发生指定的中断，也不会发生 &lt;strong&gt;调度&lt;/strong&gt; ，但用户依然不能在 &lt;strong&gt;写临界区&lt;/strong&gt; 内使用会导致 &lt;strong&gt;睡眠&lt;/strong&gt; 与 &lt;strong&gt;阻塞&lt;/strong&gt; 的CAPI。
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#gaac8a682117d914620347320e9f560152&#34;&gt;&lt;code&gt;xwos_splk_wr_lock_irqs()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占，关闭部分中断，进入写临界区&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#ga3eb1f6f9a6a1feda5569757540b01df6&#34;&gt;&lt;code&gt;xwos_splk_wr_trylock_irqs()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占，关闭部分中断，尝试进入写临界区&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#ga2e5a2faac19775d37f6f5ccde32a7313&#34;&gt;&lt;code&gt;xwos_splk_wr_unlock_irqs()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占、开启部分中断，退出写临界区&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_wr_lock_irqs&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock, irq_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 写临界区 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_wr_unlock_irqs&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock, irq_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;当使用 &lt;strong&gt;多个&lt;/strong&gt; 顺序锁时，嵌套的 &lt;strong&gt;写临界区&lt;/strong&gt; 对 &lt;strong&gt;线程&lt;/strong&gt; 、 &lt;strong&gt;指定的外设中断&lt;/strong&gt; 是安全的。 &lt;strong&gt;写临界区&lt;/strong&gt; 内，只关闭抢占和指定的中断。
+可以理解为在线程和指定的中断函数层面， &lt;strong&gt;写临界区&lt;/strong&gt; 内的操作是 &lt;strong&gt;原子的&lt;/strong&gt; ， &lt;strong&gt;写临界区&lt;/strong&gt; 内的数据只能被 &lt;strong&gt;线程&lt;/strong&gt; 和 &lt;strong&gt;指定的外设中断&lt;/strong&gt; 上下文访问。
+&lt;strong&gt;写临界区&lt;/strong&gt; 内不会发生指定的中断，也不会发生 &lt;strong&gt;调度&lt;/strong&gt; ，但用户依然不能在 &lt;strong&gt;写临界区&lt;/strong&gt; 内使用会导致 &lt;strong&gt;睡眠&lt;/strong&gt; 与 &lt;strong&gt;阻塞&lt;/strong&gt; 的CAPI。
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#ga3f5f4b0151aa7b01887270f15a13818c&#34;&gt;&lt;code&gt;xwos_splk_wr_lock_irqssv()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占，保存部分中断标志并关闭，进入写临界区&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#ga21e971d6ca670922416042f7ecc4d063&#34;&gt;&lt;code&gt;xwos_splk_wr_trylock_irqssv()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占，保存部分中断标志并关闭，尝试进入写临界区&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#ga0fe331dfdb5fa645618cc74a90278d03&#34;&gt;&lt;code&gt;xwos_splk_wr_unlock_irqsrs()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占、恢复部分中断，退出写临界区&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_wr_lock_irqssv&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock1, irq_array, flag1_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 写临界区1 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_wr_lock_irqssv&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock2, irq_array, flag2_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 写临界区2 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_wr_unlock_irqsrs&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock2, irq_array, flag2_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 写临界区1 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_wr_unlock_irqsrs&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock1, irq_array, flag1_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;写临界区&lt;/strong&gt; 对 &lt;strong&gt;线程&lt;/strong&gt; 、 &lt;strong&gt;中断底半部&lt;/strong&gt; 是安全的。 &lt;strong&gt;写临界区&lt;/strong&gt; 内，只关闭抢占和中断底半部。
+可以理解为在线程和中断底半部层面， &lt;strong&gt;写临界区&lt;/strong&gt; 内的操作是 &lt;strong&gt;原子的&lt;/strong&gt; ， &lt;strong&gt;写临界区&lt;/strong&gt; 内的数据只能被 &lt;strong&gt;线程&lt;/strong&gt; 和 &lt;strong&gt;中断底半部&lt;/strong&gt; 上下文访问。
+&lt;strong&gt;写临界区&lt;/strong&gt; 内不会发生 &lt;strong&gt;调度&lt;/strong&gt; ，但用户依然不能在 &lt;strong&gt;写临界区&lt;/strong&gt; 内使用会导致 &lt;strong&gt;睡眠&lt;/strong&gt; 与 &lt;strong&gt;阻塞&lt;/strong&gt; 的CAPI。
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#gaffbc56b927fa504cad49f737a8be68d1&#34;&gt;&lt;code&gt;xwos_splk_wr_lock_bh()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占、中断底半部，进入写临界区&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#ga4771dca2b7e1f58df3fea5dc0278bd0a&#34;&gt;&lt;code&gt;xwos_splk_wr_trylock_bh()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占、中断底半部，尝试进入写临界区&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#ga3e2867fefe9d28031957e563ffc76ff5&#34;&gt;&lt;code&gt;xwos_splk_wr_unlock_bh()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占、中断底半部，退出写临界区&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_wr_lock_bh&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 写临界区 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_wr_unlock_bh&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;独占读临界区&#34;&gt;独占读临界区&lt;/h3&gt;
+&lt;p&gt;如果希望读临界区不会被写操作无效掉，可以使用独占读的方式，
+独占读会排斥其他CPU上的独占写和独占读操作，但不会排斥 &lt;strong&gt;非独占读&lt;/strong&gt; ，
+其他CPU依然可以进入非独占读临界区。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;独占读临界区&lt;/strong&gt; 只对 &lt;strong&gt;线程&lt;/strong&gt; 上下文是安全的。 &lt;strong&gt;独占读临界区&lt;/strong&gt; 内，只会关闭抢占。
+可以理解为在线程层面， &lt;strong&gt;独占读临界区&lt;/strong&gt; 内的操作是 &lt;strong&gt;原子的&lt;/strong&gt; ， &lt;strong&gt;独占读临界区&lt;/strong&gt; 内的数据只能被 &lt;strong&gt;线程&lt;/strong&gt; 上下文访问。
+&lt;strong&gt;独占读临界区&lt;/strong&gt; 内不能发生 &lt;strong&gt;调度&lt;/strong&gt; ，用户不可在 &lt;strong&gt;独占读临界区&lt;/strong&gt; 内使用会导致 &lt;strong&gt;睡眠&lt;/strong&gt; 与 &lt;strong&gt;阻塞&lt;/strong&gt; 的CAPI。
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#ga0bc2e7584ad91b0c250ff029b25d70bd&#34;&gt;&lt;code&gt;xwos_splk_rdex_lock()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#gaa870ff02e389c6f9d61ee4119fc38204&#34;&gt;&lt;code&gt;xwos_splk_rdex_trylock()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#ga390316c0f4e02e92669a87fefe0a0bb4&#34;&gt;&lt;code&gt;xwos_splk_rdex_unlock()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_rdex_lock&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 独占读临界区 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_rdex_unlock&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;独占读临界区&lt;/strong&gt; 对 &lt;strong&gt;任意&lt;/strong&gt; 上下文都是安全的。 &lt;strong&gt;独占读临界区&lt;/strong&gt; 内，不但会关闭抢占，还会把CPU中断也关了。
+可以理解为在 &lt;strong&gt;独占读临界区&lt;/strong&gt; 内的操作是 &lt;strong&gt;原子的&lt;/strong&gt; ， &lt;strong&gt;独占读临界区&lt;/strong&gt; 内的数据只能被 &lt;strong&gt;任意&lt;/strong&gt; 上下文访问。
+&lt;strong&gt;独占读临界区&lt;/strong&gt; 内不会发生中断，也不可能发生 &lt;strong&gt;调度&lt;/strong&gt; ，但用户依然不能在 &lt;strong&gt;独占读临界区&lt;/strong&gt; 内使用会导致 &lt;strong&gt;睡眠&lt;/strong&gt; 与 &lt;strong&gt;阻塞&lt;/strong&gt; 的CAPI。
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#ga24cf158c1835abd6bacdcd846b1ba787&#34;&gt;&lt;code&gt;xwos_splk_rdex_lock_cpuirq()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占、CPU中断&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#ga5cd525a876d961a541876ba9a217e77e&#34;&gt;&lt;code&gt;xwos_splk_rdex_trylock_cpuirq()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占、CPU中断&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#gadd1ae7af48feae2d216dc588d2789490&#34;&gt;&lt;code&gt;xwos_splk_rdex_unlock_cpuirq()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占、CPU中断&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_rdex_lock_cpuirq&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 独占读临界区 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_rdex_unlock_cpuirq&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;当使用 &lt;strong&gt;多个&lt;/strong&gt; 顺序锁时，嵌套的 &lt;strong&gt;独占读临界区&lt;/strong&gt; 对 &lt;strong&gt;任意&lt;/strong&gt; 上下文都是安全的。 &lt;strong&gt;独占读临界区&lt;/strong&gt; 内，不但会关闭抢占，还会把CPU中断也关了。
+可以理解为在 &lt;strong&gt;独占读临界区&lt;/strong&gt; 内的操作是 &lt;strong&gt;原子的&lt;/strong&gt; ， &lt;strong&gt;独占读临界区&lt;/strong&gt; 内的数据只能被 &lt;strong&gt;线程&lt;/strong&gt; 上下文访问。
+&lt;strong&gt;独占读临界区&lt;/strong&gt; 内不会发生中断，也不可能发生 &lt;strong&gt;调度&lt;/strong&gt; ，但用户依然不能在 &lt;strong&gt;独占读临界区&lt;/strong&gt; 内使用会导致 &lt;strong&gt;睡眠&lt;/strong&gt; 与 &lt;strong&gt;阻塞&lt;/strong&gt; 的CAPI。
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#ga9c906f30b85d221d21be57fe2ff79410&#34;&gt;&lt;code&gt;xwos_splk_rdex_lock_cpuirqsv()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占，保存CPU中断标志并关闭&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#ga7466ec4b9fede25fce836c3e0f718661&#34;&gt;&lt;code&gt;xwos_splk_rdex_trylock_cpuirqsv()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占，保存CPU中断标志并关闭&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#ga6eb881e1a1c6e73879053a45e7af20cc&#34;&gt;&lt;code&gt;xwos_splk_rdex_unlock_cpuirqrs()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占，恢复CPU中断&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_rdex_lock_cpuirqsv&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock1, &lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;cpuirq1);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 独占读临界区1 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_rdex_lock_cpuirqsv&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock2, &lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;cpuirq2);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 独占读临界区2 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_rdex_unlock_cpuirqrs&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;loc2, cpuirq2);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 独占读临界区1 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_rdex_unlock_cpuirqrs&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;loc1, cpuirq1);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;独占读临界区&lt;/strong&gt; 对 &lt;strong&gt;线程&lt;/strong&gt; 、 &lt;strong&gt;指定的外设中断&lt;/strong&gt; 是安全的。&lt;strong&gt;独占读临界区&lt;/strong&gt; 内，只关闭抢占和指定的中断。
+可以理解为在线程和指定的中断函数层面， &lt;strong&gt;独占读临界区&lt;/strong&gt; 内的操作是 &lt;strong&gt;原子的&lt;/strong&gt; ， &lt;strong&gt;独占读临界区&lt;/strong&gt; 内的数据只能被 &lt;strong&gt;线程&lt;/strong&gt; 和 &lt;strong&gt;指定的外设中断&lt;/strong&gt; 上下文访问。
+&lt;strong&gt;独占读临界区&lt;/strong&gt; 内不会发生指定的中断，也不会发生 &lt;strong&gt;调度&lt;/strong&gt; ，但用户依然不能在 &lt;strong&gt;独占读临界区&lt;/strong&gt; 内使用会导致 &lt;strong&gt;睡眠&lt;/strong&gt; 与 &lt;strong&gt;阻塞&lt;/strong&gt; 的CAPI。
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#gad67dfd2f001aab35f69cf99d9831ba8c&#34;&gt;&lt;code&gt;xwos_splk_rdex_lock_irqs()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占，关闭部分中断&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#ga2fb086d3289975531800d2633542c7a8&#34;&gt;&lt;code&gt;xwos_splk_rdex_trylock_irqs()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占，关闭部分中断&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#ga868886500d9e33300b0fbccd032ff449&#34;&gt;&lt;code&gt;xwos_splk_rdex_unlock_irqs()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占、开启部分中断&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_rdex_lock_irqs&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock, irq_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 独占读临界区 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_rdex_unlock_irqs&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock, irq_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;当使用 &lt;strong&gt;多个&lt;/strong&gt; 顺序锁时，嵌套的 &lt;strong&gt;独占读临界区&lt;/strong&gt; 对 &lt;strong&gt;线程&lt;/strong&gt; 、 &lt;strong&gt;指定的外设中断&lt;/strong&gt; 是安全的。 &lt;strong&gt;独占读临界区&lt;/strong&gt; 内，只关闭抢占和指定的中断。
+可以理解为在线程和指定的中断函数层面， &lt;strong&gt;独占读临界区&lt;/strong&gt; 内的操作是 &lt;strong&gt;原子的&lt;/strong&gt; ， &lt;strong&gt;独占读临界区&lt;/strong&gt; 内的数据只能被 &lt;strong&gt;线程&lt;/strong&gt; 和 &lt;strong&gt;指定的外设中断&lt;/strong&gt; 上下文访问。
+&lt;strong&gt;独占读临界区&lt;/strong&gt; 内不会发生指定的中断，也不会发生 &lt;strong&gt;调度&lt;/strong&gt; ，但用户依然不能在 &lt;strong&gt;独占读临界区&lt;/strong&gt; 内使用会导致 &lt;strong&gt;睡眠&lt;/strong&gt; 与 &lt;strong&gt;阻塞&lt;/strong&gt; 的CAPI。
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#ga8f7f5fa7a0103fb2bc89d69a6afbcdab&#34;&gt;&lt;code&gt;xwos_splk_rdex_lock_irqssv()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占，保存部分中断标志并关闭&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#gaf80962b3c0731f34615604c6dbe30839&#34;&gt;&lt;code&gt;xwos_splk_rdex_trylock_irqssv()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占，保存部分中断标志并关闭&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#ga62dff199b6143032fe9bd5a03f51067c&#34;&gt;&lt;code&gt;xwos_splk_rdex_unlock_irqsrs()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占、恢复部分中断&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_rdex_lock_irqssv&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock1, irq_array, flag1_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 独占读临界区1 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_rdex_lock_irqssv&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock2, irq_array, flag2_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 独占读临界区2 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_rdex_unlock_irqsrs&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock2, irq_array, flag2_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 独占读临界区1 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_rdex_unlock_irqsrs&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock1, irq_array, flag1_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;独占读临界区&lt;/strong&gt; 对 &lt;strong&gt;线程&lt;/strong&gt; 、 &lt;strong&gt;中断底半部&lt;/strong&gt; 是安全的。 &lt;strong&gt;独占读临界区&lt;/strong&gt; 内，只关闭抢占和中断底半部。
+可以理解为在线程和中断底半部层面， &lt;strong&gt;独占读临界区&lt;/strong&gt; 内的操作是 &lt;strong&gt;原子的&lt;/strong&gt; ， &lt;strong&gt;独占读临界区&lt;/strong&gt; 内的数据只能被 &lt;strong&gt;线程&lt;/strong&gt; 和 &lt;strong&gt;中断底半部&lt;/strong&gt; 上下文访问。
+&lt;strong&gt;独占读临界区&lt;/strong&gt; 内不会发生 &lt;strong&gt;调度&lt;/strong&gt; ，但用户依然不能在 &lt;strong&gt;独占读临界区&lt;/strong&gt; 内使用会导致 &lt;strong&gt;睡眠&lt;/strong&gt; 与 &lt;strong&gt;阻塞&lt;/strong&gt; 的CAPI。
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#gad649d232c24bbbf43fb9d9f163381692&#34;&gt;&lt;code&gt;xwos_splk_rdex_lock_bh()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占、中断底半部&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#gab71ec7bec664746455b4f5c3ffaf5505&#34;&gt;&lt;code&gt;xwos_splk_rdex_trylock_bh()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占、中断底半部&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html#ga56e9f3261d8966ac1dfc51619cd5f48d&#34;&gt;&lt;code&gt;xwos_splk_rdex_unlock_bh()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占、中断底半部&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_rdex_lock_bh&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 独占读临界区 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;xwos_splk_rdex_unlock_bh&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;capi参考&#34;&gt;CAPI参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__seqlock.html&#34;&gt;&lt;strong&gt;头文件 &amp;lt;xwos/osal/lock/seqlock.h&amp;gt;&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 互斥锁</title>
+      <link>/docs/TechRefManual/Lock/Mutex/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/TechRefManual/Lock/Mutex/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
+&lt;p&gt;互斥锁是用来保证不同线程正确访问共享数据的机制。访问共享数据的代码片段被称为临界区。
+互斥锁 &lt;strong&gt;不可&lt;/strong&gt; 用在 &lt;strong&gt;除线程以外&lt;/strong&gt; 的其他上下文(Context)。&lt;/p&gt;
+&lt;p&gt;当线程等待互斥锁时，线程会被阻塞，并让出CPU的使用权。
+互斥锁存在优先级反转问题：&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;div class=&#34;card rounded p-2 td-post-card mb-4 mt-4&#34; style=&#34;max-width: 810px&#34;&gt;
+	&lt;img class=&#34;card-img-top&#34; src=&#34;/docs/TechRefManual/Lock/Mutex/priority-inversion_hu06d113db6caaf8381d16863409fb983c_97009_800x800_fill_catmullrom_smart1_3.png&#34; width=&#34;800&#34; height=&#34;800&#34;&gt;
+	
+	&lt;div class=&#34;card-body px-0 pt-2 pb-0 text-center&#34;&gt;
+		&lt;p class=&#34;card-text&#34;&gt;
+XWOS互斥锁的优先级反转问题
+&lt;small class=&#34;text-muted&#34;&gt;&lt;br/&gt;Photo: xwos.tech / CC-BY&lt;/small&gt;&lt;/p&gt;
+	&lt;/div&gt;
+	
+&lt;/div&gt;
+
+&lt;h3 id=&#34;优先级策略&#34;&gt;优先级策略&lt;/h3&gt;
+&lt;p&gt;XWOS内核采取优先级天花板和优先级继承的混会策略解决此问题：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;线程和互斥锁都拥有优先级，它们在创建时需要指定一个 &lt;strong&gt;静态优先级&lt;/strong&gt; ，
+当线程持有互斥锁时，线程可以获取互斥锁的优先级作为 &lt;strong&gt;动态优先级&lt;/strong&gt; ，
+当互斥锁被线程等待时，互斥锁可以获取线程的优先级作为 &lt;strong&gt;动态优先级&lt;/strong&gt; ，
+最终的优先级取 &lt;strong&gt;静态优先级&lt;/strong&gt; 和 &lt;strong&gt;动态优先级&lt;/strong&gt; 较大的一个；&lt;/li&gt;
+&lt;li&gt;假设线程A优先级低，线程B的优先级中，线程C的优先级高。
+线程A已经获得锁的情况下，线程C等待锁。线程C的优先级会传递给锁，
+锁的优先级再传递给线程A。线程A的优先级被临时提高至和线程C的优先级一样，线程A不会被线程B抢占。&lt;/li&gt;
+&lt;li&gt;优先级可以无限继承：假设线程A的优先级最低，线程 &lt;strong&gt;&lt;code&gt;T1、T2、...、Tn&lt;/code&gt;&lt;/strong&gt; 的优先级依次递增。
+系统中有互斥锁 &lt;strong&gt;&lt;code&gt;L、M1、M2、...、Mn&lt;/code&gt;&lt;/strong&gt; 。
+假设A持有L，T1持有M1去等待L，T2持有M2去等待M1，T3持有M3去等待M2，以此类推，Tn持有Mn去等待Mn-1。
+由此形成优先级传递链： &lt;strong&gt;&lt;code&gt;Tn-&amp;gt;Mn-1-&amp;gt;Tn-1-&amp;gt;...-&amp;gt;M3-&amp;gt;T3-&amp;gt;M2-&amp;gt;T2-&amp;gt;M1-&amp;gt;T1-&amp;gt;L-&amp;gt;A&lt;/code&gt;&lt;/strong&gt; ，
+Tn的优先级将会依次传递到 &lt;strong&gt;&lt;code&gt;Mn-1、Tn-1、... 、M3、T3、M2、T2、M1、T1、L、A&lt;/code&gt;&lt;/strong&gt; 。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;互斥锁树与实时等待队列&#34;&gt;互斥锁树与实时等待队列&lt;/h3&gt;
+&lt;p&gt;如何寻找互斥锁与线程的 &lt;strong&gt;动态优先级&lt;/strong&gt; ，是寻找最大值的问题，因此可以采用与 &lt;a href=&#34;../../Skd#%E6%97%B6%E9%97%B4%E6%A0%91&#34;&gt;时间树&lt;/a&gt; 类似的方法，使用红黑树解决此问题。
+节点为互斥锁并查找最大优先级算法被称为 &lt;strong&gt;互斥锁树&lt;/strong&gt; ；节点为线程并查找最大优先级算法被称为 &lt;strong&gt;实时等待队列&lt;/strong&gt; 。&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;div class=&#34;card rounded p-2 td-post-card mb-4 mt-4&#34; style=&#34;max-width: 690px&#34;&gt;
+	&lt;img class=&#34;card-img-top&#34; src=&#34;/docs/TechRefManual/Lock/Mutex/rightmost-rbtree_hu6bb0500ec3a7cabe3ed4a4195feadcf6_94587_680x491_fill_catmullrom_smart1_3.png&#34; width=&#34;680&#34; height=&#34;491&#34;&gt;
+	
+	&lt;div class=&#34;card-body px-0 pt-2 pb-0 text-center&#34;&gt;
+		&lt;p class=&#34;card-text&#34;&gt;
+带有最大值指针的红黑树
+&lt;small class=&#34;text-muted&#34;&gt;&lt;br/&gt;Photo: xwos.tech / CC-BY&lt;/small&gt;&lt;/p&gt;
+	&lt;/div&gt;
+	
+&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;使用一个 &lt;strong&gt;rightmost&lt;/strong&gt; 指针指向最大值，可直接从 &lt;strong&gt;rightmost&lt;/strong&gt; 快速获取最大值，时间复杂度为 &lt;strong&gt;O(1)&lt;/strong&gt; ；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;rightmost&lt;/strong&gt; 从红黑树中删除时，按照二叉树的性质，下一任 &lt;strong&gt;rightmost&lt;/strong&gt; 是前任的左孩子（即前驱）。
+如果前任的前驱为叶子，下一任 &lt;strong&gt;rightmost&lt;/strong&gt; 一定是前任的父节点，算法时间复杂度为 &lt;strong&gt;O(1)&lt;/strong&gt; ；&lt;/li&gt;
+&lt;li&gt;删除 &lt;strong&gt;rightmost&lt;/strong&gt; 在系统中是一个高频次的操作，但由于 &lt;strong&gt;rightmost&lt;/strong&gt; 缺少右子树，根据红黑树性质，左子树也不可能太复杂，
+意味着删除 &lt;strong&gt;rightmost&lt;/strong&gt; 后，调整红黑树的代价不会太大；&lt;/li&gt;
+&lt;li&gt;插入操作需要遍历树，时间复杂度为 &lt;strong&gt;O(logn)&lt;/strong&gt; ；&lt;/li&gt;
+&lt;li&gt;红黑树中不允许存在关键字相等的节点，因此拥有相同优先级的节点相互连接成链表；&lt;/li&gt;
+&lt;li&gt;互斥锁解锁时，从等待队列中选择最高优先级的线程获取互斥锁，若最高优先级的线程不止一个，按照先进先出的方法选取线程。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;互斥锁对象与对象描述符描述符&#34;&gt;互斥锁对象与对象描述符描述符&lt;/h3&gt;
+&lt;p&gt;互斥锁对象是 &lt;a href=&#34;../../Xwobj&#34;&gt;XWOS对象&lt;/a&gt; &lt;a href=&#34;../../../../api/structxwos__object.html&#34;&gt;&lt;code&gt;struct xwos_object&lt;/code&gt;&lt;/a&gt; 的派生类 。
+类似的，互斥锁对象也用 &lt;strong&gt;互斥锁对象描述符&lt;/strong&gt; &lt;a href=&#34;../../../../api/structxwos__mtx__d.html&#34;&gt;&lt;code&gt;xwos_mtx_d&lt;/code&gt;&lt;/a&gt;
+来解决有效性和身份合法性的问题。&lt;/p&gt;
+&lt;p&gt;互斥锁对象描述符由 &lt;strong&gt;互斥锁对象的指针&lt;/strong&gt; 和 &lt;strong&gt;标签&lt;/strong&gt; 组成：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;typedef&lt;/span&gt; &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;struct&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;struct&lt;/span&gt; xwos_mtx &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; mtx; &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/**&amp;lt; 互斥锁对象的指针 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;xwsq_t&lt;/span&gt; tik; &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/**&amp;lt; 标签 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;} xwos_mtx_d;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;通过对象描述符引用对象时，首先检测 &lt;code&gt;obj-&amp;gt;magic&lt;/code&gt; 的值，是否为 &lt;code&gt;0x58574F53U&lt;/code&gt; ，由此可确定指针 &lt;code&gt;obj&lt;/code&gt; 指向一个有效的 &lt;strong&gt;XWOS的对象&lt;/strong&gt; 。
+然后对比标签 &lt;code&gt;obj-&amp;gt;tik&lt;/code&gt; 和 &lt;code&gt;tik&lt;/code&gt; 是否相等，由此可以确定对象的 &lt;strong&gt;身份&lt;/strong&gt; 。
+因为对象的 &lt;code&gt;tik&lt;/code&gt; 是全局唯一的，当对象被释放后，它的 &lt;code&gt;tik&lt;/code&gt; 会被析构函数析构为 &lt;strong&gt;0&lt;/strong&gt; 。
+当内存地址被重新构建为新的对象，那么它的 &lt;code&gt;tik&lt;/code&gt; 一定与对象描述符的 &lt;code&gt;tik&lt;/code&gt; 不一致。&lt;/p&gt;
+&lt;h2 id=&#34;使用互斥锁&#34;&gt;使用互斥锁&lt;/h2&gt;
+&lt;h3 id=&#34;静态初始化和销毁互斥锁&#34;&gt;静态初始化和销毁互斥锁&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;静态初始化： &lt;a href=&#34;../../../../capi/group__xwos__lock__mtx.html#ga05ea2a9762a817291b0ae6d76586e022&#34;&gt;&lt;code&gt;xwos_mtx_init()&lt;/code&gt;&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;静态&lt;/strong&gt; 是指用户预先定义线程结构体对象，这些对象在编译期由编译器分配内存。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;销毁静态初始化的互斥锁： &lt;a href=&#34;../../../../capi/group__xwos__lock__mtx.html#ga7b2464babb829bdc7fd0e433ff54bdca&#34;&gt;&lt;code&gt;xwos_mtx_fini()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;动态创建和删除互斥锁&#34;&gt;动态创建和删除互斥锁&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;动态创建： &lt;a href=&#34;../../../../capi/group__xwos__lock__mtx.html#ga815282818f9a5ed5c1cd580e097a868b&#34;&gt;&lt;code&gt;xwos_mtx_create()&lt;/code&gt;&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;动态&lt;/strong&gt; 是指程序在运行时，通过内存分配函数申请内存，并在申请的内存上构造对象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;删除动态创建的互斥锁： &lt;a href=&#34;../../../../capi/group__xwos__lock__mtx.html#ga8f76d838298d8b5e1ae06889c7a5c3e0&#34;&gt;&lt;code&gt;xwos_mtx_delete()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;上锁&#34;&gt;上锁&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__mtx.html#gabd23c15c16510525e6a91fc3fcfa20f3&#34;&gt;&lt;code&gt;xwos_mtx_lock()&lt;/code&gt;&lt;/a&gt; 等待并上锁互斥锁，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__mtx.html#ga5fd796bb80d4d1dfa65bf60741f05241&#34;&gt;&lt;code&gt;xwos_mtx_trylock()&lt;/code&gt;&lt;/a&gt; 尝试上锁互斥锁，不会阻塞调用线程，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__mtx.html#ga37eb46fa1271ff0ecebd4e0ceb0f4420&#34;&gt;&lt;code&gt;xwos_mtx_lock_to()&lt;/code&gt;&lt;/a&gt; 限时等待上锁互斥锁，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__mtx.html#gac72f69bffd93d6d8fa7dcc6bf0302574&#34;&gt;&lt;code&gt;xwos_mtx_lock_unintr()&lt;/code&gt;&lt;/a&gt; 等待并上锁互斥锁，且等待不可被中断，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;解锁&#34;&gt;解锁&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__mtx.html#gaa6b3a2ce561acc043d826e47a9470919&#34;&gt;&lt;code&gt;xwos_mtx_unlock()&lt;/code&gt;&lt;/a&gt; 解锁互斥锁，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;获取锁的状态&#34;&gt;获取锁的状态&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__mtx.html#group__xwos__lock__mtx.html#ga3cddd729ac8dad2a6e9657ae72532354&#34;&gt;&lt;code&gt;xwos_mtx_get_lkst()&lt;/code&gt;&lt;/a&gt; 获取锁的状态&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;互斥锁对象的生命周期管理&#34;&gt;互斥锁对象的生命周期管理&lt;/h3&gt;
+&lt;p&gt;互斥锁对象的基类是 &lt;a href=&#34;../../Xwobj&#34;&gt;XWOS对象&lt;/a&gt; &lt;a href=&#34;../../../../api/structxwos__object.html&#34;&gt;&lt;code&gt;struct xwos_object&lt;/code&gt;&lt;/a&gt; 。
+互斥锁对象也有两组生命周期管理的CAPI：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;使用 &lt;strong&gt;对象指针&lt;/strong&gt; 访问生命周期管理的CAPI：需要确保调用CAPI时，对象一定是有效的，且不存在 &lt;strong&gt;释放-又被申请&lt;/strong&gt; 为另一个对象的情况。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__mtx.html#ga2a560b50a5329f098f2a4cdd4331fef6&#34;&gt;&lt;code&gt;xwos_mtx_grab()&lt;/code&gt;&lt;/a&gt; ：增加引用计数。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__mtx.html#gafaef1dadab1c11783c1aab9a7ffff589&#34;&gt;&lt;code&gt;xwos_mtx_put()&lt;/code&gt;&lt;/a&gt; ：减少引用计数，当引用计数减少为 &lt;strong&gt;0&lt;/strong&gt; 时，调用垃圾回收函数释放对象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 &lt;strong&gt;对象描述符&lt;/strong&gt; 访问生命周期管理的CAPI：用户无法确保对象一定有效或无法确保对象不会变成另一个对象时使用。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__mtx.html#ga84e1bbb7833198a00678b9a3e5f83941&#34;&gt;&lt;code&gt;xwos_mtx_acquire()&lt;/code&gt;&lt;/a&gt; ：通过对象描述符确定对象有效且合法，再增加引用计数。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__mtx.html#ga698748b62131af5a434bfa5dae6dcda2&#34;&gt;&lt;code&gt;xwos_mtx_release()&lt;/code&gt;&lt;/a&gt; ：通过对象描述符确定对象有效且合法，再减少引用计数。
+当引用计数减少为 &lt;strong&gt;0&lt;/strong&gt; 时，调用垃圾回收函数释放对象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;capi参考&#34;&gt;CAPI参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lock__mtx.html&#34;&gt;&lt;strong&gt;头文件 &amp;lt;xwos/osal/lock/mtx.h&amp;gt;&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

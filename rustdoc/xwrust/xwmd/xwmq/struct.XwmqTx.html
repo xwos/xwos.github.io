@@ -1,0 +1,327 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `XwmqTx` struct in crate `xwrust`."><title>XwmqTx in xwrust::xwmd::xwmq - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="xwrust" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (b10cfcd65 2023-11-29)" data-channel="nightly" data-search-js="search-56a624991a76cfad.js" data-settings-js="settings-fe03fdc259827cd2.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../../static.files/main-77dede896d6ac08e.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc struct"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../xwrust/index.html">xwrust</a><span class="version">1.0.0</span></h2></div><h2 class="location"><a href="#">XwmqTx</a></h2><div class="sidebar-elems"><section><h3><a href="#implementations">Methods</a></h3><ul class="block method"><li><a href="#method.eq">eq</a></li><li><a href="#method.eq_to">eq_to</a></li><li><a href="#method.eq_unintr">eq_unintr</a></li><li><a href="#method.jq">jq</a></li><li><a href="#method.jq_to">jq_to</a></li><li><a href="#method.jq_unintr">jq_unintr</a></li><li><a href="#method.tryeq">tryeq</a></li><li><a href="#method.tryjq">tryjq</a></li></ul><h3><a href="#trait-implementations">Trait Implementations</a></h3><ul class="block trait-implementation"><li><a href="#impl-Sync-for-XwmqTx%3C'a,+N,+T%3E">!Sync</a></li><li><a href="#impl-Clone-for-XwmqTx%3C'a,+N,+T%3E">Clone</a></li><li><a href="#impl-Send-for-XwmqTx%3C'a,+N,+T%3E">Send</a></li></ul><h3><a href="#synthetic-implementations">Auto Trait Implementations</a></h3><ul class="block synthetic-implementation"><li><a href="#impl-RefUnwindSafe-for-XwmqTx%3C'a,+N,+T%3E">!RefUnwindSafe</a></li><li><a href="#impl-UnwindSafe-for-XwmqTx%3C'a,+N,+T%3E">!UnwindSafe</a></li><li><a href="#impl-Unpin-for-XwmqTx%3C'a,+N,+T%3E">Unpin</a></li></ul><h3><a href="#blanket-implementations">Blanket Implementations</a></h3><ul class="block blanket-implementation"><li><a href="#impl-Any-for-T">Any</a></li><li><a href="#impl-Borrow%3CT%3E-for-T">Borrow&lt;T&gt;</a></li><li><a href="#impl-BorrowMut%3CT%3E-for-T">BorrowMut&lt;T&gt;</a></li><li><a href="#impl-From%3CT%3E-for-T">From&lt;T&gt;</a></li><li><a href="#impl-Into%3CU%3E-for-T">Into&lt;U&gt;</a></li><li><a href="#impl-ToOwned-for-T">ToOwned</a></li><li><a href="#impl-TryFrom%3CU%3E-for-T">TryFrom&lt;U&gt;</a></li><li><a href="#impl-TryInto%3CU%3E-for-T">TryInto&lt;U&gt;</a></li></ul></section><h2><a href="index.html">In xwrust::xwmd::xwmq</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Struct <a href="../../index.html">xwrust</a>::<wbr><a href="../index.html">xwmd</a>::<wbr><a href="index.html">xwmq</a>::<wbr><a class="struct" href="#">XwmqTx</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../../../src/xwrust/xwmd/xwmq.rs.html#527-532">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>pub struct XwmqTx&lt;'a, const N: <a class="type" href="../../types/type.XwSz.html" title="type xwrust::types::XwSz">XwSz</a>, T&gt;<span class="where fmt-newline">where
+    [u8; { _ }]: Sized,</span>{ /* private fields */ }</code></pre><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor">§</a></h2><div id="implementations-list"><details class="toggle implementors-toggle" open><summary><section id="impl-XwmqTx%3C'a,+N,+T%3E" class="impl"><a class="src rightside" href="../../../src/xwrust/xwmd/xwmq.rs.html#561-1118">source</a><a href="#impl-XwmqTx%3C'a,+N,+T%3E" class="anchor">§</a><h3 class="code-header">impl&lt;'a, const N: <a class="type" href="../../types/type.XwSz.html" title="type xwrust::types::XwSz">XwSz</a>, T&gt; <a class="struct" href="struct.XwmqTx.html" title="struct xwrust::xwmd::xwmq::XwmqTx">XwmqTx</a>&lt;'a, N, T&gt;<span class="where fmt-newline">where
+    [u8; { _ }]: Sized,</span></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.eq" class="method"><a class="src rightside" href="../../../src/xwrust/xwmd/xwmq.rs.html#609-634">source</a><h4 class="code-header">pub fn <a href="#method.eq" class="fn">eq</a>(&amp;self, data: T) -&gt; <a class="enum" href="enum.XwmqError.html" title="enum xwrust::xwmd::xwmq::XwmqError">XwmqError</a></h4></section></summary><div class="docblock"><p>等待消息槽，成功后将消息发送到消息队列的 <strong>尾端</strong> （入队）</p>
+<ul>
+<li>当消息队列中没有可用的消息槽可用时，发送线程会阻塞等待。</li>
+<li>当消息队列中有可用的消息槽时，发送线程被唤醒，并取走一个消息槽，用于发送数据。</li>
+<li>消息 <strong>入队</strong> 时，会通过 <a href="https://doc.rust-lang.org/alloc/boxed/struct.Box.html"><code>Box</code></a> 将数据放入heap中，然后进行发送。</li>
+<li>当发送线程阻塞等待被中断时，返回 <a href="enum.XwmqError.html#variant.Interrupt" title="variant xwrust::xwmd::xwmq::XwmqError::Interrupt"><code>XwmqError::Interrupt</code></a> 。</li>
+</ul>
+<h5 id="参数说明"><a href="#参数说明">参数说明</a></h5>
+<ul>
+<li>data: 类型为 <code>T</code> 的数据</li>
+</ul>
+<h5 id="上下文"><a href="#上下文">上下文</a></h5>
+<ul>
+<li>线程</li>
+</ul>
+<h5 id="错误码"><a href="#错误码">错误码</a></h5>
+<ul>
+<li><a href="enum.XwmqError.html#variant.Ok" title="variant xwrust::xwmd::xwmq::XwmqError::Ok"><code>XwmqError::Ok</code></a> 没有错误</li>
+<li><a href="enum.XwmqError.html#variant.NotInit" title="variant xwrust::xwmd::xwmq::XwmqError::NotInit"><code>XwmqError::NotInit</code></a> 消息队列没有初始化</li>
+<li><a href="enum.XwmqError.html#variant.Interrupt" title="variant xwrust::xwmd::xwmq::XwmqError::Interrupt"><code>XwmqError::Interrupt</code></a> 等待被中断</li>
+<li><a href="enum.XwmqError.html#variant.NotThreadContext" title="variant xwrust::xwmd::xwmq::XwmqError::NotThreadContext"><code>XwmqError::NotThreadContext</code></a> 不在线程上下文内</li>
+<li><a href="enum.XwmqError.html#variant.CannotPmpt" title="variant xwrust::xwmd::xwmq::XwmqError::CannotPmpt"><code>XwmqError::CannotPmpt</code></a> 抢占被关闭</li>
+<li><a href="enum.XwmqError.html#variant.CannotBh" title="variant xwrust::xwmd::xwmq::XwmqError::CannotBh"><code>XwmqError::CannotBh</code></a> 中断底半部被关闭</li>
+</ul>
+<h5 id="示例"><a href="#示例">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>alloc;
+<span class="kw">use </span>alloc::string::String;
+<span class="kw">use </span>alloc::string::ToString;
+
+<span class="kw">use </span>xwrust::xwmd::xwmq::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>MQ: Xwmq&lt;<span class="number">16</span>, String&gt; = Xwmq::new();
+
+<span class="kw">pub fn </span>xwrust_example_xwmq() {
+    <span class="kw">let </span>(tx, rx) = MQ.init();
+    <span class="comment">// ...省略...
+    </span>tx.eq(<span class="string">&quot;message&quot;</span>.to_string());
+    <span class="comment">// ...省略...
+</span>}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.eq_to" class="method"><a class="src rightside" href="../../../src/xwrust/xwmd/xwmq.rs.html#684-711">source</a><h4 class="code-header">pub fn <a href="#method.eq_to" class="fn">eq_to</a>(&amp;self, data: T, to: <a class="type" href="../../types/type.XwTm.html" title="type xwrust::types::XwTm">XwTm</a>) -&gt; <a class="enum" href="enum.XwmqError.html" title="enum xwrust::xwmd::xwmq::XwmqError">XwmqError</a></h4></section></summary><div class="docblock"><p>限时等待消息槽，成功后将消息发送到消息队列的 <strong>尾端</strong> （入队）</p>
+<ul>
+<li>当消息队列中没有可用的消息槽可用时，发送线程会阻塞等待，等待时会指定一个唤醒时间点。</li>
+<li>当消息队列中有可用的消息槽时，发送线程被唤醒，并取走一个消息槽，用于发送数据。</li>
+<li>消息 <strong>入队</strong> 时，会通过 <a href="https://doc.rust-lang.org/alloc/boxed/struct.Box.html"><code>Box</code></a> 将数据放入heap中，然后进行发送。</li>
+<li>当发送线程阻塞等待被中断时，返回 <a href="enum.XwmqError.html#variant.Interrupt" title="variant xwrust::xwmd::xwmq::XwmqError::Interrupt"><code>XwmqError::Interrupt</code></a> 。</li>
+<li>当到达指定的唤醒时间点，线程被唤醒，并返回 <a href="enum.XwmqError.html#variant.Timedout" title="variant xwrust::xwmd::xwmq::XwmqError::Timedout"><code>XwmqError::Timedout</code></a> 。</li>
+</ul>
+<h5 id="参数说明-1"><a href="#参数说明-1">参数说明</a></h5>
+<ul>
+<li>data: 类型为 <code>T</code> 的数据</li>
+<li>to: 期望唤醒的时间点</li>
+</ul>
+<h5 id="上下文-1"><a href="#上下文-1">上下文</a></h5>
+<ul>
+<li>线程</li>
+</ul>
+<h5 id="错误码-1"><a href="#错误码-1">错误码</a></h5>
+<ul>
+<li><a href="enum.XwmqError.html#variant.Ok" title="variant xwrust::xwmd::xwmq::XwmqError::Ok"><code>XwmqError::Ok</code></a> 没有错误</li>
+<li><a href="enum.XwmqError.html#variant.NotInit" title="variant xwrust::xwmd::xwmq::XwmqError::NotInit"><code>XwmqError::NotInit</code></a> 消息队列没有初始化</li>
+<li><a href="enum.XwmqError.html#variant.Interrupt" title="variant xwrust::xwmd::xwmq::XwmqError::Interrupt"><code>XwmqError::Interrupt</code></a> 等待被中断</li>
+<li><a href="enum.XwmqError.html#variant.Timedout" title="variant xwrust::xwmd::xwmq::XwmqError::Timedout"><code>XwmqError::Timedout</code></a> 等待超时</li>
+<li><a href="enum.XwmqError.html#variant.NotThreadContext" title="variant xwrust::xwmd::xwmq::XwmqError::NotThreadContext"><code>XwmqError::NotThreadContext</code></a> 不在线程上下文内</li>
+<li><a href="enum.XwmqError.html#variant.CannotPmpt" title="variant xwrust::xwmd::xwmq::XwmqError::CannotPmpt"><code>XwmqError::CannotPmpt</code></a> 抢占被关闭</li>
+<li><a href="enum.XwmqError.html#variant.CannotBh" title="variant xwrust::xwmd::xwmq::XwmqError::CannotBh"><code>XwmqError::CannotBh</code></a> 中断底半部被关闭</li>
+</ul>
+<h5 id="示例-1"><a href="#示例-1">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>alloc;
+<span class="kw">use </span>alloc::string::String;
+<span class="kw">use </span>alloc::string::ToString;
+
+<span class="kw">use </span>xwrust::xwtm;
+<span class="kw">use </span>xwrust::xwmd::xwmq::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>MQ: Xwmq&lt;<span class="number">16</span>, String&gt; = Xwmq::new();
+
+<span class="kw">pub fn </span>xwrust_example_xwmq() {
+    <span class="kw">let </span>(tx, rx) = MQ.init();
+    <span class="comment">// ...省略...
+    </span>tx.eq_to(<span class="string">&quot;message&quot;</span>.to_string(), xwtm::ft(xwtm::s(<span class="number">1</span>)));
+    <span class="comment">// ...省略...
+</span>}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.eq_unintr" class="method"><a class="src rightside" href="../../../src/xwrust/xwmd/xwmq.rs.html#756-779">source</a><h4 class="code-header">pub fn <a href="#method.eq_unintr" class="fn">eq_unintr</a>(&amp;self, data: T) -&gt; <a class="enum" href="enum.XwmqError.html" title="enum xwrust::xwmd::xwmq::XwmqError">XwmqError</a></h4></section></summary><div class="docblock"><p>等待消息槽，且等待不可被中断，成功后将消息发送到消息队列的 <strong>尾端</strong> （入队）</p>
+<ul>
+<li>当消息队列中没有可用的消息槽可用时，发送线程会阻塞等待。</li>
+<li>发送线程的阻塞等待不可被中断。</li>
+<li>当消息队列中有可用的消息槽时，发送线程被唤醒，并取走一个消息槽，用于发送数据。</li>
+<li>消息 <strong>入队</strong> 时，会通过 <a href="https://doc.rust-lang.org/alloc/boxed/struct.Box.html"><code>Box</code></a> 将数据放入heap中，然后进行发送。</li>
+</ul>
+<h5 id="参数说明-2"><a href="#参数说明-2">参数说明</a></h5>
+<ul>
+<li>data: 类型为 <code>T</code> 的数据</li>
+</ul>
+<h5 id="上下文-2"><a href="#上下文-2">上下文</a></h5>
+<ul>
+<li>线程</li>
+</ul>
+<h5 id="错误码-2"><a href="#错误码-2">错误码</a></h5>
+<ul>
+<li><a href="enum.XwmqError.html#variant.Ok" title="variant xwrust::xwmd::xwmq::XwmqError::Ok"><code>XwmqError::Ok</code></a> 没有错误</li>
+<li><a href="enum.XwmqError.html#variant.NotInit" title="variant xwrust::xwmd::xwmq::XwmqError::NotInit"><code>XwmqError::NotInit</code></a> 消息队列没有初始化</li>
+<li><a href="enum.XwmqError.html#variant.NotThreadContext" title="variant xwrust::xwmd::xwmq::XwmqError::NotThreadContext"><code>XwmqError::NotThreadContext</code></a> 不在线程上下文内</li>
+<li><a href="enum.XwmqError.html#variant.CannotPmpt" title="variant xwrust::xwmd::xwmq::XwmqError::CannotPmpt"><code>XwmqError::CannotPmpt</code></a> 抢占被关闭</li>
+<li><a href="enum.XwmqError.html#variant.CannotBh" title="variant xwrust::xwmd::xwmq::XwmqError::CannotBh"><code>XwmqError::CannotBh</code></a> 中断底半部被关闭</li>
+</ul>
+<h5 id="示例-2"><a href="#示例-2">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>alloc;
+<span class="kw">use </span>alloc::string::String;
+<span class="kw">use </span>alloc::string::ToString;
+
+<span class="kw">use </span>xwrust::xwmd::xwmq::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>MQ: Xwmq&lt;<span class="number">16</span>, String&gt; = Xwmq::new();
+
+<span class="kw">pub fn </span>xwrust_example_xwmq() {
+    <span class="kw">let </span>(tx, rx) = MQ.init();
+    <span class="comment">// ...省略...
+    </span>tx.eq_unintr(<span class="string">&quot;message&quot;</span>.to_string());
+    <span class="comment">// ...省略...
+</span>}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.tryeq" class="method"><a class="src rightside" href="../../../src/xwrust/xwmd/xwmq.rs.html#821-840">source</a><h4 class="code-header">pub fn <a href="#method.tryeq" class="fn">tryeq</a>(&amp;self, data: T) -&gt; <a class="enum" href="enum.XwmqError.html" title="enum xwrust::xwmd::xwmq::XwmqError">XwmqError</a></h4></section></summary><div class="docblock"><p>尝试获取消息槽，成功后将消息发送到消息队列的 <strong>尾端</strong> （入队）</p>
+<ul>
+<li>当消息队列中没有可用的消息槽可用时，立即返回 <a href="enum.XwmqError.html#variant.NoSlot" title="variant xwrust::xwmd::xwmq::XwmqError::NoSlot"><code>XwmqError::NoSlot</code></a> 。</li>
+<li>当消息队列中有可用的消息槽时，取走一个消息槽，用于发送数据。</li>
+<li>消息 <strong>入队</strong> 时，会通过 <a href="https://doc.rust-lang.org/alloc/boxed/struct.Box.html"><code>Box</code></a> 将数据放入heap中，然后进行发送。</li>
+</ul>
+<h5 id="参数说明-3"><a href="#参数说明-3">参数说明</a></h5>
+<ul>
+<li>data: 类型为 <code>T</code> 的数据</li>
+</ul>
+<h5 id="上下文-3"><a href="#上下文-3">上下文</a></h5>
+<ul>
+<li>任意</li>
+</ul>
+<h5 id="错误码-3"><a href="#错误码-3">错误码</a></h5>
+<ul>
+<li><a href="enum.XwmqError.html#variant.Ok" title="variant xwrust::xwmd::xwmq::XwmqError::Ok"><code>XwmqError::Ok</code></a> 没有错误</li>
+<li><a href="enum.XwmqError.html#variant.NotInit" title="variant xwrust::xwmd::xwmq::XwmqError::NotInit"><code>XwmqError::NotInit</code></a> 消息队列没有初始化</li>
+<li><a href="enum.XwmqError.html#variant.NoSlot" title="variant xwrust::xwmd::xwmq::XwmqError::NoSlot"><code>XwmqError::NoSlot</code></a> 消息队列中没有可用的消息槽</li>
+</ul>
+<h5 id="示例-3"><a href="#示例-3">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>alloc;
+<span class="kw">use </span>alloc::string::String;
+<span class="kw">use </span>alloc::string::ToString;
+
+<span class="kw">use </span>xwrust::xwmd::xwmq::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>MQ: Xwmq&lt;<span class="number">16</span>, String&gt; = Xwmq::new();
+
+<span class="kw">pub fn </span>xwrust_example_xwmq() {
+    <span class="kw">let </span>(tx, rx) = MQ.init();
+    <span class="comment">// ...省略...
+    </span>tx.tryeq(<span class="string">&quot;message&quot;</span>.to_string());
+    <span class="comment">// ...省略...
+</span>}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.jq" class="method"><a class="src rightside" href="../../../src/xwrust/xwmd/xwmq.rs.html#886-911">source</a><h4 class="code-header">pub fn <a href="#method.jq" class="fn">jq</a>(&amp;self, data: T) -&gt; <a class="enum" href="enum.XwmqError.html" title="enum xwrust::xwmd::xwmq::XwmqError">XwmqError</a></h4></section></summary><div class="docblock"><p>等待消息槽，成功后将消息发送到消息队列的 <strong>首端</strong> （插队）</p>
+<ul>
+<li>当消息队列中没有可用的消息槽可用时，发送线程会阻塞等待。</li>
+<li>当消息队列中有可用的消息槽时，发送线程被唤醒，并取走一个消息槽，用于发送数据。</li>
+<li>消息 <strong>入队</strong> 时，会通过 <a href="https://doc.rust-lang.org/alloc/boxed/struct.Box.html"><code>Box</code></a> 将数据放入heap中，然后进行发送。</li>
+<li>当发送线程阻塞等待被中断时，返回 <a href="enum.XwmqError.html#variant.Interrupt" title="variant xwrust::xwmd::xwmq::XwmqError::Interrupt"><code>XwmqError::Interrupt</code></a> 。</li>
+</ul>
+<h5 id="参数说明-4"><a href="#参数说明-4">参数说明</a></h5>
+<ul>
+<li>data: 类型为 <code>T</code> 的数据</li>
+</ul>
+<h5 id="上下文-4"><a href="#上下文-4">上下文</a></h5>
+<ul>
+<li>线程</li>
+</ul>
+<h5 id="错误码-4"><a href="#错误码-4">错误码</a></h5>
+<ul>
+<li><a href="enum.XwmqError.html#variant.Ok" title="variant xwrust::xwmd::xwmq::XwmqError::Ok"><code>XwmqError::Ok</code></a> 没有错误</li>
+<li><a href="enum.XwmqError.html#variant.NotInit" title="variant xwrust::xwmd::xwmq::XwmqError::NotInit"><code>XwmqError::NotInit</code></a> 消息队列没有初始化</li>
+<li><a href="enum.XwmqError.html#variant.Interrupt" title="variant xwrust::xwmd::xwmq::XwmqError::Interrupt"><code>XwmqError::Interrupt</code></a> 等待被中断</li>
+<li><a href="enum.XwmqError.html#variant.NotThreadContext" title="variant xwrust::xwmd::xwmq::XwmqError::NotThreadContext"><code>XwmqError::NotThreadContext</code></a> 不在线程上下文内</li>
+<li><a href="enum.XwmqError.html#variant.CannotPmpt" title="variant xwrust::xwmd::xwmq::XwmqError::CannotPmpt"><code>XwmqError::CannotPmpt</code></a> 抢占被关闭</li>
+<li><a href="enum.XwmqError.html#variant.CannotBh" title="variant xwrust::xwmd::xwmq::XwmqError::CannotBh"><code>XwmqError::CannotBh</code></a> 中断底半部被关闭</li>
+</ul>
+<h5 id="示例-4"><a href="#示例-4">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>alloc;
+<span class="kw">use </span>alloc::string::String;
+<span class="kw">use </span>alloc::string::ToString;
+
+<span class="kw">use </span>xwrust::xwmd::xwmq::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>MQ: Xwmq&lt;<span class="number">16</span>, String&gt; = Xwmq::new();
+
+<span class="kw">pub fn </span>xwrust_example_xwmq() {
+    <span class="kw">let </span>(tx, rx) = MQ.init();
+    <span class="comment">// ...省略...
+    </span>tx.jq(<span class="string">&quot;message&quot;</span>.to_string());
+    <span class="comment">// ...省略...
+</span>}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.jq_to" class="method"><a class="src rightside" href="../../../src/xwrust/xwmd/xwmq.rs.html#961-988">source</a><h4 class="code-header">pub fn <a href="#method.jq_to" class="fn">jq_to</a>(&amp;self, data: T, to: <a class="type" href="../../types/type.XwTm.html" title="type xwrust::types::XwTm">XwTm</a>) -&gt; <a class="enum" href="enum.XwmqError.html" title="enum xwrust::xwmd::xwmq::XwmqError">XwmqError</a></h4></section></summary><div class="docblock"><p>限时等待消息槽，成功后将消息发送到消息队列的 <strong>首端</strong> （插队）</p>
+<ul>
+<li>当消息队列中没有可用的消息槽可用时，发送线程会阻塞等待，等待时会指定一个唤醒时间点。</li>
+<li>当消息队列中有可用的消息槽时，发送线程被唤醒，并取走一个消息槽，用于发送数据。</li>
+<li>消息 <strong>入队</strong> 时，会通过 <a href="https://doc.rust-lang.org/alloc/boxed/struct.Box.html"><code>Box</code></a> 将数据放入heap中，然后进行发送。</li>
+<li>当发送线程阻塞等待被中断时，返回 <a href="enum.XwmqError.html#variant.Interrupt" title="variant xwrust::xwmd::xwmq::XwmqError::Interrupt"><code>XwmqError::Interrupt</code></a> 。</li>
+<li>当到达指定的唤醒时间点，线程被唤醒，并返回 <a href="enum.XwmqError.html#variant.Timedout" title="variant xwrust::xwmd::xwmq::XwmqError::Timedout"><code>XwmqError::Timedout</code></a> 。</li>
+</ul>
+<h5 id="参数说明-5"><a href="#参数说明-5">参数说明</a></h5>
+<ul>
+<li>data: 类型为 <code>T</code> 的数据</li>
+<li>to: 期望唤醒的时间点</li>
+</ul>
+<h5 id="上下文-5"><a href="#上下文-5">上下文</a></h5>
+<ul>
+<li>线程</li>
+</ul>
+<h5 id="错误码-5"><a href="#错误码-5">错误码</a></h5>
+<ul>
+<li><a href="enum.XwmqError.html#variant.Ok" title="variant xwrust::xwmd::xwmq::XwmqError::Ok"><code>XwmqError::Ok</code></a> 没有错误</li>
+<li><a href="enum.XwmqError.html#variant.NotInit" title="variant xwrust::xwmd::xwmq::XwmqError::NotInit"><code>XwmqError::NotInit</code></a> 消息队列没有初始化</li>
+<li><a href="enum.XwmqError.html#variant.Interrupt" title="variant xwrust::xwmd::xwmq::XwmqError::Interrupt"><code>XwmqError::Interrupt</code></a> 等待被中断</li>
+<li><a href="enum.XwmqError.html#variant.Timedout" title="variant xwrust::xwmd::xwmq::XwmqError::Timedout"><code>XwmqError::Timedout</code></a> 等待超时</li>
+<li><a href="enum.XwmqError.html#variant.NotThreadContext" title="variant xwrust::xwmd::xwmq::XwmqError::NotThreadContext"><code>XwmqError::NotThreadContext</code></a> 不在线程上下文内</li>
+<li><a href="enum.XwmqError.html#variant.CannotPmpt" title="variant xwrust::xwmd::xwmq::XwmqError::CannotPmpt"><code>XwmqError::CannotPmpt</code></a> 抢占被关闭</li>
+<li><a href="enum.XwmqError.html#variant.CannotBh" title="variant xwrust::xwmd::xwmq::XwmqError::CannotBh"><code>XwmqError::CannotBh</code></a> 中断底半部被关闭</li>
+</ul>
+<h5 id="示例-5"><a href="#示例-5">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>alloc;
+<span class="kw">use </span>alloc::string::String;
+<span class="kw">use </span>alloc::string::ToString;
+
+<span class="kw">use </span>xwrust::xwtm;
+<span class="kw">use </span>xwrust::xwmd::xwmq::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>MQ: Xwmq&lt;<span class="number">16</span>, String&gt; = Xwmq::new();
+
+<span class="kw">pub fn </span>xwrust_example_xwmq() {
+    <span class="kw">let </span>(tx, rx) = MQ.init();
+    <span class="comment">// ...省略...
+    </span>tx.jq_to(<span class="string">&quot;message&quot;</span>.to_string(), xwtm::ft(xwtm::s(<span class="number">1</span>)));
+    <span class="comment">// ...省略...
+</span>}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.jq_unintr" class="method"><a class="src rightside" href="../../../src/xwrust/xwmd/xwmq.rs.html#1033-1056">source</a><h4 class="code-header">pub fn <a href="#method.jq_unintr" class="fn">jq_unintr</a>(&amp;self, data: T) -&gt; <a class="enum" href="enum.XwmqError.html" title="enum xwrust::xwmd::xwmq::XwmqError">XwmqError</a></h4></section></summary><div class="docblock"><p>等待消息槽，且等待不可被中断，成功后将消息发送到消息队列的 <strong>首端</strong> （插队）</p>
+<ul>
+<li>当消息队列中没有可用的消息槽可用时，发送线程会阻塞等待。</li>
+<li>发送线程的阻塞等待不可被中断。</li>
+<li>当消息队列中有可用的消息槽时，发送线程被唤醒，并取走一个消息槽，用于发送数据。</li>
+<li>消息 <strong>入队</strong> 时，会通过 <a href="https://doc.rust-lang.org/alloc/boxed/struct.Box.html"><code>Box</code></a> 将数据放入heap中，然后进行发送。</li>
+</ul>
+<h5 id="参数说明-6"><a href="#参数说明-6">参数说明</a></h5>
+<ul>
+<li>data: 类型为 <code>T</code> 的数据</li>
+</ul>
+<h5 id="上下文-6"><a href="#上下文-6">上下文</a></h5>
+<ul>
+<li>线程</li>
+</ul>
+<h5 id="错误码-6"><a href="#错误码-6">错误码</a></h5>
+<ul>
+<li><a href="enum.XwmqError.html#variant.Ok" title="variant xwrust::xwmd::xwmq::XwmqError::Ok"><code>XwmqError::Ok</code></a> 没有错误</li>
+<li><a href="enum.XwmqError.html#variant.NotInit" title="variant xwrust::xwmd::xwmq::XwmqError::NotInit"><code>XwmqError::NotInit</code></a> 消息队列没有初始化</li>
+<li><a href="enum.XwmqError.html#variant.NotThreadContext" title="variant xwrust::xwmd::xwmq::XwmqError::NotThreadContext"><code>XwmqError::NotThreadContext</code></a> 不在线程上下文内</li>
+<li><a href="enum.XwmqError.html#variant.CannotPmpt" title="variant xwrust::xwmd::xwmq::XwmqError::CannotPmpt"><code>XwmqError::CannotPmpt</code></a> 抢占被关闭</li>
+<li><a href="enum.XwmqError.html#variant.CannotBh" title="variant xwrust::xwmd::xwmq::XwmqError::CannotBh"><code>XwmqError::CannotBh</code></a> 中断底半部被关闭</li>
+</ul>
+<h5 id="示例-6"><a href="#示例-6">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>alloc;
+<span class="kw">use </span>alloc::string::String;
+<span class="kw">use </span>alloc::string::ToString;
+
+<span class="kw">use </span>xwrust::xwmd::xwmq::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>MQ: Xwmq&lt;<span class="number">16</span>, String&gt; = Xwmq::new();
+
+<span class="kw">pub fn </span>xwrust_example_xwmq() {
+    <span class="kw">let </span>(tx, rx) = MQ.init();
+    <span class="comment">// ...省略...
+    </span>tx.jq_unintr(<span class="string">&quot;message&quot;</span>.to_string());
+    <span class="comment">// ...省略...
+</span>}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.tryjq" class="method"><a class="src rightside" href="../../../src/xwrust/xwmd/xwmq.rs.html#1098-1117">source</a><h4 class="code-header">pub fn <a href="#method.tryjq" class="fn">tryjq</a>(&amp;self, data: T) -&gt; <a class="enum" href="enum.XwmqError.html" title="enum xwrust::xwmd::xwmq::XwmqError">XwmqError</a></h4></section></summary><div class="docblock"><p>尝试获取消息槽，成功后将消息发送到消息队列的 <strong>首端</strong> （插队）</p>
+<ul>
+<li>当消息队列中没有可用的消息槽可用时，立即返回 <a href="enum.XwmqError.html#variant.NoSlot" title="variant xwrust::xwmd::xwmq::XwmqError::NoSlot"><code>XwmqError::NoSlot</code></a> 。</li>
+<li>当消息队列中有可用的消息槽时，取走一个消息槽，用于发送数据。</li>
+<li>消息 <strong>入队</strong> 时，会通过 <a href="https://doc.rust-lang.org/alloc/boxed/struct.Box.html"><code>Box</code></a> 将数据放入heap中，然后进行发送。</li>
+</ul>
+<h5 id="参数说明-7"><a href="#参数说明-7">参数说明</a></h5>
+<ul>
+<li>data: 类型为 <code>T</code> 的数据</li>
+</ul>
+<h5 id="上下文-7"><a href="#上下文-7">上下文</a></h5>
+<ul>
+<li>任意</li>
+</ul>
+<h5 id="错误码-7"><a href="#错误码-7">错误码</a></h5>
+<ul>
+<li><a href="enum.XwmqError.html#variant.Ok" title="variant xwrust::xwmd::xwmq::XwmqError::Ok"><code>XwmqError::Ok</code></a> 没有错误</li>
+<li><a href="enum.XwmqError.html#variant.NotInit" title="variant xwrust::xwmd::xwmq::XwmqError::NotInit"><code>XwmqError::NotInit</code></a> 消息队列没有初始化</li>
+<li><a href="enum.XwmqError.html#variant.NoSlot" title="variant xwrust::xwmd::xwmq::XwmqError::NoSlot"><code>XwmqError::NoSlot</code></a> 消息队列中没有可用的消息槽</li>
+</ul>
+<h5 id="示例-7"><a href="#示例-7">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>alloc;
+<span class="kw">use </span>alloc::string::String;
+<span class="kw">use </span>alloc::string::ToString;
+
+<span class="kw">use </span>xwrust::xwmd::xwmq::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>MQ: Xwmq&lt;<span class="number">16</span>, String&gt; = Xwmq::new();
+
+<span class="kw">pub fn </span>xwrust_example_xwmq() {
+    <span class="kw">let </span>(tx, rx) = MQ.init();
+    <span class="comment">// ...省略...
+    </span>tx.tryjq(<span class="string">&quot;message&quot;</span>.to_string());
+    <span class="comment">// ...省略...
+</span>}</code></pre></div>
+</div></details></div></details></div><h2 id="trait-implementations" class="small-section-header">Trait Implementations<a href="#trait-implementations" class="anchor">§</a></h2><div id="trait-implementations-list"><details class="toggle implementors-toggle" open><summary><section id="impl-Clone-for-XwmqTx%3C'a,+N,+T%3E" class="impl"><a class="src rightside" href="../../../src/xwrust/xwmd/xwmq.rs.html#526">source</a><a href="#impl-Clone-for-XwmqTx%3C'a,+N,+T%3E" class="anchor">§</a><h3 class="code-header">impl&lt;'a, const N: <a class="type" href="../../types/type.XwSz.html" title="type xwrust::types::XwSz">XwSz</a>, T: Clone&gt; Clone for <a class="struct" href="struct.XwmqTx.html" title="struct xwrust::xwmd::xwmq::XwmqTx">XwmqTx</a>&lt;'a, N, T&gt;<span class="where fmt-newline">where
+    [u8; { _ }]: Sized,</span></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.clone" class="method trait-impl"><a class="src rightside" href="../../../src/xwrust/xwmd/xwmq.rs.html#526">source</a><a href="#method.clone" class="anchor">§</a><h4 class="code-header">fn <a class="fn">clone</a>(&amp;self) -&gt; <a class="struct" href="struct.XwmqTx.html" title="struct xwrust::xwmd::xwmq::XwmqTx">XwmqTx</a>&lt;'a, N, T&gt;</h4></section></summary><div class='docblock'>Returns a copy of the value. <a>Read more</a></div></details><details class="toggle method-toggle" open><summary><section id="method.clone_from" class="method trait-impl"><span class="since rightside" title="Stable since Rust version 1.0.0">1.0.0</span><a href="#method.clone_from" class="anchor">§</a><h4 class="code-header">fn <a class="fn">clone_from</a>(&amp;mut self, source: &amp;Self)</h4></section></summary><div class='docblock'>Performs copy-assignment from <code>source</code>. <a>Read more</a></div></details></div></details><section id="impl-Send-for-XwmqTx%3C'a,+N,+T%3E" class="impl"><a class="src rightside" href="../../../src/xwrust/xwmd/xwmq.rs.html#541-544">source</a><a href="#impl-Send-for-XwmqTx%3C'a,+N,+T%3E" class="anchor">§</a><h3 class="code-header">impl&lt;'a, const N: <a class="type" href="../../types/type.XwSz.html" title="type xwrust::types::XwSz">XwSz</a>, T&gt; Send for <a class="struct" href="struct.XwmqTx.html" title="struct xwrust::xwmd::xwmq::XwmqTx">XwmqTx</a>&lt;'a, N, T&gt;<span class="where fmt-newline">where
+    [u8; { _ }]: Sized,</span></h3></section><section id="impl-Sync-for-XwmqTx%3C'a,+N,+T%3E" class="impl"><a class="src rightside" href="../../../src/xwrust/xwmd/xwmq.rs.html#546-549">source</a><a href="#impl-Sync-for-XwmqTx%3C'a,+N,+T%3E" class="anchor">§</a><h3 class="code-header">impl&lt;'a, const N: <a class="type" href="../../types/type.XwSz.html" title="type xwrust::types::XwSz">XwSz</a>, T&gt; !Sync for <a class="struct" href="struct.XwmqTx.html" title="struct xwrust::xwmd::xwmq::XwmqTx">XwmqTx</a>&lt;'a, N, T&gt;<span class="where fmt-newline">where
+    [u8; { _ }]: Sized,</span></h3></section></div><h2 id="synthetic-implementations" class="small-section-header">Auto Trait Implementations<a href="#synthetic-implementations" class="anchor">§</a></h2><div id="synthetic-implementations-list"><section id="impl-RefUnwindSafe-for-XwmqTx%3C'a,+N,+T%3E" class="impl"><a href="#impl-RefUnwindSafe-for-XwmqTx%3C'a,+N,+T%3E" class="anchor">§</a><h3 class="code-header">impl&lt;'a, const N: usize, T&gt; !RefUnwindSafe for <a class="struct" href="struct.XwmqTx.html" title="struct xwrust::xwmd::xwmq::XwmqTx">XwmqTx</a>&lt;'a, N, T&gt;</h3></section><section id="impl-Unpin-for-XwmqTx%3C'a,+N,+T%3E" class="impl"><a href="#impl-Unpin-for-XwmqTx%3C'a,+N,+T%3E" class="anchor">§</a><h3 class="code-header">impl&lt;'a, const N: usize, T&gt; Unpin for <a class="struct" href="struct.XwmqTx.html" title="struct xwrust::xwmd::xwmq::XwmqTx">XwmqTx</a>&lt;'a, N, T&gt;</h3></section><section id="impl-UnwindSafe-for-XwmqTx%3C'a,+N,+T%3E" class="impl"><a href="#impl-UnwindSafe-for-XwmqTx%3C'a,+N,+T%3E" class="anchor">§</a><h3 class="code-header">impl&lt;'a, const N: usize, T&gt; !UnwindSafe for <a class="struct" href="struct.XwmqTx.html" title="struct xwrust::xwmd::xwmq::XwmqTx">XwmqTx</a>&lt;'a, N, T&gt;</h3></section></div><h2 id="blanket-implementations" class="small-section-header">Blanket Implementations<a href="#blanket-implementations" class="anchor">§</a></h2><div id="blanket-implementations-list"><details class="toggle implementors-toggle"><summary><section id="impl-Any-for-T" class="impl"><a href="#impl-Any-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; Any for T<span class="where fmt-newline">where
+    T: 'static + ?Sized,</span></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.type_id" class="method trait-impl"><a href="#method.type_id" class="anchor">§</a><h4 class="code-header">fn <a class="fn">type_id</a>(&amp;self) -&gt; TypeId</h4></section></summary><div class='docblock'>Gets the <code>TypeId</code> of <code>self</code>. <a>Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-Borrow%3CT%3E-for-T" class="impl"><a href="#impl-Borrow%3CT%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; Borrow&lt;T&gt; for T<span class="where fmt-newline">where
+    T: ?Sized,</span></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.borrow" class="method trait-impl"><a href="#method.borrow" class="anchor">§</a><h4 class="code-header">fn <a class="fn">borrow</a>(&amp;self) -&gt; &amp;T</h4></section></summary><div class='docblock'>Immutably borrows from an owned value. <a>Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-BorrowMut%3CT%3E-for-T" class="impl"><a href="#impl-BorrowMut%3CT%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; BorrowMut&lt;T&gt; for T<span class="where fmt-newline">where
+    T: ?Sized,</span></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.borrow_mut" class="method trait-impl"><a href="#method.borrow_mut" class="anchor">§</a><h4 class="code-header">fn <a class="fn">borrow_mut</a>(&amp;mut self) -&gt; &amp;mut T</h4></section></summary><div class='docblock'>Mutably borrows from an owned value. <a>Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-From%3CT%3E-for-T" class="impl"><a href="#impl-From%3CT%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; From&lt;T&gt; for T</h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.from" class="method trait-impl"><a href="#method.from" class="anchor">§</a><h4 class="code-header">fn <a class="fn">from</a>(t: T) -&gt; T</h4></section></summary><div class="docblock"><p>Returns the argument unchanged.</p>
+</div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-Into%3CU%3E-for-T" class="impl"><a href="#impl-Into%3CU%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T, U&gt; Into&lt;U&gt; for T<span class="where fmt-newline">where
+    U: From&lt;T&gt;,</span></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.into" class="method trait-impl"><a href="#method.into" class="anchor">§</a><h4 class="code-header">fn <a class="fn">into</a>(self) -&gt; U</h4></section></summary><div class="docblock"><p>Calls <code>U::from(self)</code>.</p>
+<p>That is, this conversion is whatever the implementation of
+<code>[From]&lt;T&gt; for U</code> chooses to do.</p>
+</div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-ToOwned-for-T" class="impl"><a href="#impl-ToOwned-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; ToOwned for T<span class="where fmt-newline">where
+    T: Clone,</span></h3></section></summary><div class="impl-items"><details class="toggle" open><summary><section id="associatedtype.Owned" class="associatedtype trait-impl"><a href="#associatedtype.Owned" class="anchor">§</a><h4 class="code-header">type <a class="associatedtype">Owned</a> = T</h4></section></summary><div class='docblock'>The resulting type after obtaining ownership.</div></details><details class="toggle method-toggle" open><summary><section id="method.to_owned" class="method trait-impl"><a href="#method.to_owned" class="anchor">§</a><h4 class="code-header">fn <a class="fn">to_owned</a>(&amp;self) -&gt; T</h4></section></summary><div class='docblock'>Creates owned data from borrowed data, usually by cloning. <a>Read more</a></div></details><details class="toggle method-toggle" open><summary><section id="method.clone_into" class="method trait-impl"><a href="#method.clone_into" class="anchor">§</a><h4 class="code-header">fn <a class="fn">clone_into</a>(&amp;self, target: &amp;mut T)</h4></section></summary><div class='docblock'>Uses borrowed data to replace owned data, usually by cloning. <a>Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-TryFrom%3CU%3E-for-T" class="impl"><a href="#impl-TryFrom%3CU%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T, U&gt; TryFrom&lt;U&gt; for T<span class="where fmt-newline">where
+    U: Into&lt;T&gt;,</span></h3></section></summary><div class="impl-items"><details class="toggle" open><summary><section id="associatedtype.Error-1" class="associatedtype trait-impl"><a href="#associatedtype.Error-1" class="anchor">§</a><h4 class="code-header">type <a class="associatedtype">Error</a> = Infallible</h4></section></summary><div class='docblock'>The type returned in the event of a conversion error.</div></details><details class="toggle method-toggle" open><summary><section id="method.try_from" class="method trait-impl"><a href="#method.try_from" class="anchor">§</a><h4 class="code-header">fn <a class="fn">try_from</a>(value: U) -&gt; Result&lt;T, &lt;T as TryFrom&lt;U&gt;&gt;::Error&gt;</h4></section></summary><div class='docblock'>Performs the conversion.</div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-TryInto%3CU%3E-for-T" class="impl"><a href="#impl-TryInto%3CU%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T, U&gt; TryInto&lt;U&gt; for T<span class="where fmt-newline">where
+    U: TryFrom&lt;T&gt;,</span></h3></section></summary><div class="impl-items"><details class="toggle" open><summary><section id="associatedtype.Error" class="associatedtype trait-impl"><a href="#associatedtype.Error" class="anchor">§</a><h4 class="code-header">type <a class="associatedtype">Error</a> = &lt;U as TryFrom&lt;T&gt;&gt;::Error</h4></section></summary><div class='docblock'>The type returned in the event of a conversion error.</div></details><details class="toggle method-toggle" open><summary><section id="method.try_into" class="method trait-impl"><a href="#method.try_into" class="anchor">§</a><h4 class="code-header">fn <a class="fn">try_into</a>(self) -&gt; Result&lt;U, &lt;U as TryFrom&lt;T&gt;&gt;::Error&gt;</h4></section></summary><div class='docblock'>Performs the conversion.</div></details></div></details></div></section></div></main></body></html>

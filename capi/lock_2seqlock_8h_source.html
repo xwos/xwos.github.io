@@ -1,0 +1,482 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>XWOS API: xwos/osal/lock/seqlock.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<a href="/" class="github-corner" title="返回首页">
+  <svg viewBox="0 0 250 250" style="position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path
+      d="M 0 0 L 250 250 L 250 0 L 0 0 z M 181.19336 6.25 A 18.281986 19.638775 0 0 1 192.79297 10.798828 L 241.54492 54.201172 A 6.0939954 6.5462585 0 0 1 237.64453 65.787109 L 233.13477 65.787109 A 3.0469979 3.2731292 0 0 0 230.08789 69.060547 L 230.08789 111.61133 A 18.281986 19.638775 0 0 1 211.80664 131.25 L 205.71289 131.25 A 12.187991 13.092517 0 0 1 193.52344 118.1582 L 193.52344 98.519531 A 12.187991 13.092517 0 0 0 181.33594 85.425781 A 12.187991 13.092517 0 0 0 169.14844 98.519531 L 169.14844 118.1582 A 12.187991 13.092517 0 0 1 156.95898 131.25 L 150.86523 131.25 A 18.281986 19.638775 0 0 1 132.58398 111.61133 L 132.58398 68.994141 A 3.0469979 3.2731292 0 0 0 129.29297 65.722656 L 124.7832 65.722656 A 6.0939954 6.5462585 0 0 1 120.88281 54.201172 L 169.39258 10.798828 A 18.281986 19.638775 0 0 1 181.19336 6.25 z "/>
+  </svg>
+</a>
+<style>.github-corner:hover</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">XWOS API
+   &#160;<span id="projectnumber">3.0</span>
+   </div>
+   <div id="projectbrief">XWOS API参考手册</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('lock_2seqlock_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">seqlock.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="lock_2seqlock_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#ifndef __xwos_osal_lock_seqlock_h__</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#define __xwos_osal_lock_seqlock_h__</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;<a class="code" href="xwos_2standard_8h.html">xwos/standard.h</a>&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;<a class="code" href="jack_2lock_2seqlock_8h.html">xwos/osal/jack/lock/seqlock.h</a>&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;<a class="code" href="irq_8h.html">xwos/osal/irq.h</a>&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno"><a class="line" href="structxwos__sqlk.html">  112</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> {</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">  113</a></span>        xwosdl_sqlk_t <a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>};</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#ga1571ce94b440f18564e0fd3c6850942e">  119</a></span><span class="preprocessor">#define XWOS_SQLK_GRANULARITY   XWOSDL_SQLK_GRANULARITY</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#ga230119b86fd51047f83cbe1e74982892">  128</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwos__lock__seqlock.html#ga230119b86fd51047f83cbe1e74982892">xwos_sqlk_init</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql)</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>{</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        xwosdl_sqlk_init(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>);</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>}</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#ga7cd1c5a34e6c318d537e4780f3ae85f4">  143</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> <a class="code hl_function" href="group__xwos__lock__seqlock.html#ga7cd1c5a34e6c318d537e4780f3ae85f4">xwos_sqlk_rd_begin</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql)</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>{</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>        <span class="keywordflow">return</span> xwosdl_sqlk_rd_begin(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>);</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>}</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#gabcf1bae603513b049184fe2179d1301e">  158</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__xwos__lock__seqlock.html#gabcf1bae603513b049184fe2179d1301e">xwos_sqlk_rd_retry</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql, <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> start)</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>{</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>        <span class="keywordflow">return</span> xwosdl_sqlk_rd_retry(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>, start);</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>}</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#ga40da988fa2376c706f8cab79dc4dab7c">  170</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> <a class="code hl_function" href="group__xwos__lock__seqlock.html#ga40da988fa2376c706f8cab79dc4dab7c">xwos_sqlk_get_seq</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql)</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>{</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        <span class="keywordflow">return</span> xwosdl_sqlk_get_seq(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>);</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>}</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#ga0bc2e7584ad91b0c250ff029b25d70bd">  184</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwos__lock__seqlock.html#ga0bc2e7584ad91b0c250ff029b25d70bd">xwos_sqlk_rdex_lock</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql)</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>{</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>        xwosdl_sqlk_rdex_lock(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>);</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>}</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#gaa870ff02e389c6f9d61ee4119fc38204">  201</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__lock__seqlock.html#gaa870ff02e389c6f9d61ee4119fc38204">xwos_sqlk_rdex_trylock</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql)</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>{</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>        <span class="keywordflow">return</span> xwosdl_sqlk_rdex_trylock(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>);</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>}</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#ga390316c0f4e02e92669a87fefe0a0bb4">  213</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwos__lock__seqlock.html#ga390316c0f4e02e92669a87fefe0a0bb4">xwos_sqlk_rdex_unlock</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql)</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>{</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>        xwosdl_sqlk_rdex_unlock(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>);</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>}</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span> </div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#ga24cf158c1835abd6bacdcd846b1ba787">  228</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwos__lock__seqlock.html#ga24cf158c1835abd6bacdcd846b1ba787">xwos_sqlk_rdex_lock_cpuirq</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql)</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>{</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>        xwosdl_sqlk_rdex_lock_cpuirq(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>);</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>}</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span> </div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#ga5cd525a876d961a541876ba9a217e77e">  245</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__lock__seqlock.html#ga5cd525a876d961a541876ba9a217e77e">xwos_sqlk_rdex_trylock_cpuirq</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql)</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>{</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>        <span class="keywordflow">return</span> xwosdl_sqlk_rdex_trylock_cpuirq(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>);</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>}</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#gadd1ae7af48feae2d216dc588d2789490">  257</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwos__lock__seqlock.html#gadd1ae7af48feae2d216dc588d2789490">xwos_sqlk_rdex_unlock_cpuirq</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql)</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>{</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>        xwosdl_sqlk_rdex_unlock_cpuirq(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>);</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>}</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span> </div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#ga9c906f30b85d221d21be57fe2ff79410">  273</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwos__lock__seqlock.html#ga9c906f30b85d221d21be57fe2ff79410">xwos_sqlk_rdex_lock_cpuirqsv</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql,</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>                                  <a class="code hl_typedef" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> * cpuirq)</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>{</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>        xwosdl_sqlk_rdex_lock_cpuirqsv(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>, cpuirq);</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>}</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span> </div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#ga7466ec4b9fede25fce836c3e0f718661">  292</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__lock__seqlock.html#ga7466ec4b9fede25fce836c3e0f718661">xwos_sqlk_rdex_trylock_cpuirqsv</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql,</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>                                       <a class="code hl_typedef" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> * cpuirq)</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>{</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>        <span class="keywordflow">return</span> xwosdl_sqlk_rdex_trylock_cpuirqsv(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>, cpuirq);</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>}</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span> </div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#ga6eb881e1a1c6e73879053a45e7af20cc">  306</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwos__lock__seqlock.html#ga6eb881e1a1c6e73879053a45e7af20cc">xwos_sqlk_rdex_unlock_cpuirqrs</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql,</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>                                    <a class="code hl_typedef" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> cpuirq)</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>{</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>        xwosdl_sqlk_rdex_unlock_cpuirqrs(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>, cpuirq);</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>}</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span> </div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#ga38e747a975b3a967fd1d8bb97b0690ab">  325</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwos__lock__seqlock.html#ga38e747a975b3a967fd1d8bb97b0690ab">xwos_sqlk_rdex_lock_irqs</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql,</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>                              <span class="keyword">const</span> <a class="code hl_typedef" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a> irqs[],</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>                              <a class="code hl_typedef" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num)</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>{</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>        xwosdl_sqlk_rdex_lock_irqs(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>, irqs, num);</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>}</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span> </div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#gad600ec3b981231083a11a7aacc6ad5bd">  347</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__lock__seqlock.html#gad600ec3b981231083a11a7aacc6ad5bd">xwos_sqlk_rdex_trylock_irqs</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql,</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>                                   <span class="keyword">const</span> <a class="code hl_typedef" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a> irqs[],</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>                                   <a class="code hl_typedef" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num)</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>{</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>        <span class="keywordflow">return</span> xwosdl_sqlk_rdex_trylock_irqs(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>, irqs, num);</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>}</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span> </div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#ga1e7b772397b51c8ae3dbc98b7846ce67">  363</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwos__lock__seqlock.html#ga1e7b772397b51c8ae3dbc98b7846ce67">xwos_sqlk_rdex_unlock_irqs</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql,</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>                                <span class="keyword">const</span> <a class="code hl_typedef" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a> irqs[],</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>                                <a class="code hl_typedef" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num)</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>{</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>        xwosdl_sqlk_rdex_unlock_irqs(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>, irqs, num);</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>}</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span> </div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#ga737a8a2ed864bc21731376570ee89e3e">  384</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwos__lock__seqlock.html#ga737a8a2ed864bc21731376570ee89e3e">xwos_sqlk_rdex_lock_irqssv</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql,</div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>                                <span class="keyword">const</span> <a class="code hl_typedef" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a> irqs[],</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>                                <a class="code hl_typedef" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> flags[], <a class="code hl_typedef" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num)</div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>{</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>        xwosdl_sqlk_rdex_lock_irqssv(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>, irqs, flags, num);</div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>}</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span> </div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#gaf11b33323fd18b7b436de8a790fb869e">  407</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__lock__seqlock.html#gaf11b33323fd18b7b436de8a790fb869e">xwos_sqlk_rdex_trylock_irqssv</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql,</div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>                                     <span class="keyword">const</span> <a class="code hl_typedef" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a> irqs[],</div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>                                     <a class="code hl_typedef" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> flags[], <a class="code hl_typedef" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num)</div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>{</div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>        <span class="keywordflow">return</span> xwosdl_sqlk_rdex_trylock_irqssv(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>, irqs, flags, num);</div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>}</div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span> </div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#ga13a66c991ce2e6104752449c4b6c6d4e">  424</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwos__lock__seqlock.html#ga13a66c991ce2e6104752449c4b6c6d4e">xwos_sqlk_rdex_unlock_irqsrs</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql,</div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span>                                  <span class="keyword">const</span> <a class="code hl_typedef" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a> irqs[],</div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>                                  <a class="code hl_typedef" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> flags[], <a class="code hl_typedef" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num)</div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>{</div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span>        xwosdl_sqlk_rdex_unlock_irqsrs(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>, irqs, flags, num);</div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>}</div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span> </div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#gad649d232c24bbbf43fb9d9f163381692">  442</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwos__lock__seqlock.html#gad649d232c24bbbf43fb9d9f163381692">xwos_sqlk_rdex_lock_bh</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql)</div>
+<div class="line"><a id="l00443" name="l00443"></a><span class="lineno">  443</span>{</div>
+<div class="line"><a id="l00444" name="l00444"></a><span class="lineno">  444</span>        xwosdl_sqlk_rdex_lock_bh(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>);</div>
+<div class="line"><a id="l00445" name="l00445"></a><span class="lineno">  445</span>}</div>
+<div class="line"><a id="l00446" name="l00446"></a><span class="lineno">  446</span> </div>
+<div class="line"><a id="l00459" name="l00459"></a><span class="lineno">  459</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00460" name="l00460"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#gab71ec7bec664746455b4f5c3ffaf5505">  460</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__lock__seqlock.html#gab71ec7bec664746455b4f5c3ffaf5505">xwos_sqlk_rdex_trylock_bh</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql)</div>
+<div class="line"><a id="l00461" name="l00461"></a><span class="lineno">  461</span>{</div>
+<div class="line"><a id="l00462" name="l00462"></a><span class="lineno">  462</span>        <span class="keywordflow">return</span> xwosdl_sqlk_rdex_trylock_bh(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>);</div>
+<div class="line"><a id="l00463" name="l00463"></a><span class="lineno">  463</span>}</div>
+<div class="line"><a id="l00464" name="l00464"></a><span class="lineno">  464</span> </div>
+<div class="line"><a id="l00471" name="l00471"></a><span class="lineno">  471</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00472" name="l00472"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#ga56e9f3261d8966ac1dfc51619cd5f48d">  472</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwos__lock__seqlock.html#ga56e9f3261d8966ac1dfc51619cd5f48d">xwos_sqlk_rdex_unlock_bh</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql)</div>
+<div class="line"><a id="l00473" name="l00473"></a><span class="lineno">  473</span>{</div>
+<div class="line"><a id="l00474" name="l00474"></a><span class="lineno">  474</span>        xwosdl_sqlk_rdex_unlock_bh(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>);</div>
+<div class="line"><a id="l00475" name="l00475"></a><span class="lineno">  475</span>}</div>
+<div class="line"><a id="l00476" name="l00476"></a><span class="lineno">  476</span> </div>
+<div class="line"><a id="l00485" name="l00485"></a><span class="lineno">  485</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00486" name="l00486"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#ga16274374f2eeac631149433d1cf3491a">  486</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwos__lock__seqlock.html#ga16274374f2eeac631149433d1cf3491a">xwos_sqlk_wr_lock</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql)</div>
+<div class="line"><a id="l00487" name="l00487"></a><span class="lineno">  487</span>{</div>
+<div class="line"><a id="l00488" name="l00488"></a><span class="lineno">  488</span>        xwosdl_sqlk_wr_lock(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>);</div>
+<div class="line"><a id="l00489" name="l00489"></a><span class="lineno">  489</span>}</div>
+<div class="line"><a id="l00490" name="l00490"></a><span class="lineno">  490</span> </div>
+<div class="line"><a id="l00500" name="l00500"></a><span class="lineno">  500</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00501" name="l00501"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#ga5cc1e68a7d23ca6b7210de17b950e64b">  501</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__lock__seqlock.html#ga5cc1e68a7d23ca6b7210de17b950e64b">xwos_sqlk_wr_trylock</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql)</div>
+<div class="line"><a id="l00502" name="l00502"></a><span class="lineno">  502</span>{</div>
+<div class="line"><a id="l00503" name="l00503"></a><span class="lineno">  503</span>        <span class="keywordflow">return</span> xwosdl_sqlk_wr_trylock(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>);</div>
+<div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span>}</div>
+<div class="line"><a id="l00505" name="l00505"></a><span class="lineno">  505</span> </div>
+<div class="line"><a id="l00514" name="l00514"></a><span class="lineno">  514</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00515" name="l00515"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#ga1320e69104e26e1a79b5459e7607584c">  515</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwos__lock__seqlock.html#ga1320e69104e26e1a79b5459e7607584c">xwos_sqlk_wr_unlock</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql)</div>
+<div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span>{</div>
+<div class="line"><a id="l00517" name="l00517"></a><span class="lineno">  517</span>        xwosdl_sqlk_wr_unlock(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>);</div>
+<div class="line"><a id="l00518" name="l00518"></a><span class="lineno">  518</span>}</div>
+<div class="line"><a id="l00519" name="l00519"></a><span class="lineno">  519</span> </div>
+<div class="line"><a id="l00529" name="l00529"></a><span class="lineno">  529</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00530" name="l00530"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#ga61fbffa6ca444335dbf3a4c2d2fd79b5">  530</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwos__lock__seqlock.html#ga61fbffa6ca444335dbf3a4c2d2fd79b5">xwos_sqlk_wr_lock_cpuirq</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql)</div>
+<div class="line"><a id="l00531" name="l00531"></a><span class="lineno">  531</span>{</div>
+<div class="line"><a id="l00532" name="l00532"></a><span class="lineno">  532</span>        xwosdl_sqlk_wr_lock_cpuirq(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>);</div>
+<div class="line"><a id="l00533" name="l00533"></a><span class="lineno">  533</span>}</div>
+<div class="line"><a id="l00534" name="l00534"></a><span class="lineno">  534</span> </div>
+<div class="line"><a id="l00546" name="l00546"></a><span class="lineno">  546</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00547" name="l00547"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#gaa46493b921777da3bc92fd5e91cf2388">  547</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__lock__seqlock.html#gaa46493b921777da3bc92fd5e91cf2388">xwos_sqlk_wr_trylock_cpuirq</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql)</div>
+<div class="line"><a id="l00548" name="l00548"></a><span class="lineno">  548</span>{</div>
+<div class="line"><a id="l00549" name="l00549"></a><span class="lineno">  549</span>        <span class="keywordflow">return</span> xwosdl_sqlk_wr_trylock_cpuirq(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>);</div>
+<div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span>}</div>
+<div class="line"><a id="l00551" name="l00551"></a><span class="lineno">  551</span> </div>
+<div class="line"><a id="l00558" name="l00558"></a><span class="lineno">  558</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00559" name="l00559"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#ga694c4ac137e605fd951a3e3c1d37c855">  559</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwos__lock__seqlock.html#ga694c4ac137e605fd951a3e3c1d37c855">xwos_sqlk_wr_unlock_cpuirq</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql)</div>
+<div class="line"><a id="l00560" name="l00560"></a><span class="lineno">  560</span>{</div>
+<div class="line"><a id="l00561" name="l00561"></a><span class="lineno">  561</span>        xwosdl_sqlk_wr_unlock_cpuirq(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>);</div>
+<div class="line"><a id="l00562" name="l00562"></a><span class="lineno">  562</span>}</div>
+<div class="line"><a id="l00563" name="l00563"></a><span class="lineno">  563</span> </div>
+<div class="line"><a id="l00574" name="l00574"></a><span class="lineno">  574</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00575" name="l00575"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#gabc138d69277ba1017ade0f27c6c282cb">  575</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwos__lock__seqlock.html#gabc138d69277ba1017ade0f27c6c282cb">xwos_sqlk_wr_lock_cpuirqsv</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql,</div>
+<div class="line"><a id="l00576" name="l00576"></a><span class="lineno">  576</span>                                <a class="code hl_typedef" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> * cpuirq)</div>
+<div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span>{</div>
+<div class="line"><a id="l00578" name="l00578"></a><span class="lineno">  578</span>        xwosdl_sqlk_wr_lock_cpuirqsv(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>, cpuirq);</div>
+<div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span>}</div>
+<div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span> </div>
+<div class="line"><a id="l00593" name="l00593"></a><span class="lineno">  593</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00594" name="l00594"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#ga065396cb9c428d0e6234ade20506ff2a">  594</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__lock__seqlock.html#ga065396cb9c428d0e6234ade20506ff2a">xwos_sqlk_wr_trylock_cpuirqsv</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql,</div>
+<div class="line"><a id="l00595" name="l00595"></a><span class="lineno">  595</span>                                     <a class="code hl_typedef" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> * cpuirq)</div>
+<div class="line"><a id="l00596" name="l00596"></a><span class="lineno">  596</span>{</div>
+<div class="line"><a id="l00597" name="l00597"></a><span class="lineno">  597</span>        <span class="keywordflow">return</span> xwosdl_sqlk_wr_trylock_cpuirqsv(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>, cpuirq);</div>
+<div class="line"><a id="l00598" name="l00598"></a><span class="lineno">  598</span>}</div>
+<div class="line"><a id="l00599" name="l00599"></a><span class="lineno">  599</span> </div>
+<div class="line"><a id="l00607" name="l00607"></a><span class="lineno">  607</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00608" name="l00608"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#gadcb38d5d6dad7969e1231c47c131f3c8">  608</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwos__lock__seqlock.html#gadcb38d5d6dad7969e1231c47c131f3c8">xwos_sqlk_wr_unlock_cpuirqrs</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql,</div>
+<div class="line"><a id="l00609" name="l00609"></a><span class="lineno">  609</span>                                  <a class="code hl_typedef" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> cpuirq)</div>
+<div class="line"><a id="l00610" name="l00610"></a><span class="lineno">  610</span>{</div>
+<div class="line"><a id="l00611" name="l00611"></a><span class="lineno">  611</span>        xwosdl_sqlk_wr_unlock_cpuirqrs(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>, cpuirq);</div>
+<div class="line"><a id="l00612" name="l00612"></a><span class="lineno">  612</span>}</div>
+<div class="line"><a id="l00613" name="l00613"></a><span class="lineno">  613</span> </div>
+<div class="line"><a id="l00626" name="l00626"></a><span class="lineno">  626</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00627" name="l00627"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#ga5a01a4628ee3c22ac836908b6365662a">  627</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwos__lock__seqlock.html#ga5a01a4628ee3c22ac836908b6365662a">xwos_sqlk_wr_lock_irqs</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql,</div>
+<div class="line"><a id="l00628" name="l00628"></a><span class="lineno">  628</span>                            <span class="keyword">const</span> <a class="code hl_typedef" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a> irqs[],</div>
+<div class="line"><a id="l00629" name="l00629"></a><span class="lineno">  629</span>                            <a class="code hl_typedef" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num)</div>
+<div class="line"><a id="l00630" name="l00630"></a><span class="lineno">  630</span>{</div>
+<div class="line"><a id="l00631" name="l00631"></a><span class="lineno">  631</span>        xwosdl_sqlk_wr_lock_irqs(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>, irqs, num);</div>
+<div class="line"><a id="l00632" name="l00632"></a><span class="lineno">  632</span>}</div>
+<div class="line"><a id="l00633" name="l00633"></a><span class="lineno">  633</span> </div>
+<div class="line"><a id="l00648" name="l00648"></a><span class="lineno">  648</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00649" name="l00649"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#gacdfe6dcc69521399e50da59e117f3be9">  649</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__lock__seqlock.html#gacdfe6dcc69521399e50da59e117f3be9">xwos_sqlk_wr_trylock_irqs</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql,</div>
+<div class="line"><a id="l00650" name="l00650"></a><span class="lineno">  650</span>                                 <span class="keyword">const</span> <a class="code hl_typedef" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a> irqs[],</div>
+<div class="line"><a id="l00651" name="l00651"></a><span class="lineno">  651</span>                                 <a class="code hl_typedef" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num)</div>
+<div class="line"><a id="l00652" name="l00652"></a><span class="lineno">  652</span>{</div>
+<div class="line"><a id="l00653" name="l00653"></a><span class="lineno">  653</span>        <span class="keywordflow">return</span> xwosdl_sqlk_wr_trylock_irqs(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>, irqs, num);</div>
+<div class="line"><a id="l00654" name="l00654"></a><span class="lineno">  654</span>}</div>
+<div class="line"><a id="l00655" name="l00655"></a><span class="lineno">  655</span> </div>
+<div class="line"><a id="l00664" name="l00664"></a><span class="lineno">  664</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00665" name="l00665"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#ga3e2cca7ca59ae3694cfe8a00538bb7e7">  665</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwos__lock__seqlock.html#ga3e2cca7ca59ae3694cfe8a00538bb7e7">xwos_sqlk_wr_unlock_irqs</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql,</div>
+<div class="line"><a id="l00666" name="l00666"></a><span class="lineno">  666</span>                              <span class="keyword">const</span> <a class="code hl_typedef" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a> irqs[],</div>
+<div class="line"><a id="l00667" name="l00667"></a><span class="lineno">  667</span>                              <a class="code hl_typedef" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num)</div>
+<div class="line"><a id="l00668" name="l00668"></a><span class="lineno">  668</span>{</div>
+<div class="line"><a id="l00669" name="l00669"></a><span class="lineno">  669</span>        xwosdl_sqlk_wr_unlock_irqs(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>, irqs, num);</div>
+<div class="line"><a id="l00670" name="l00670"></a><span class="lineno">  670</span>}</div>
+<div class="line"><a id="l00671" name="l00671"></a><span class="lineno">  671</span> </div>
+<div class="line"><a id="l00672" name="l00672"></a><span class="lineno">  672</span> </div>
+<div class="line"><a id="l00686" name="l00686"></a><span class="lineno">  686</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00687" name="l00687"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#ga63ec03db8a4c6247f55059b9d4c23d59">  687</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwos__lock__seqlock.html#ga63ec03db8a4c6247f55059b9d4c23d59">xwos_sqlk_wr_lock_irqssv</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql,</div>
+<div class="line"><a id="l00688" name="l00688"></a><span class="lineno">  688</span>                              <span class="keyword">const</span> <a class="code hl_typedef" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a> irqs[],</div>
+<div class="line"><a id="l00689" name="l00689"></a><span class="lineno">  689</span>                              <a class="code hl_typedef" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> flags[], <a class="code hl_typedef" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num)</div>
+<div class="line"><a id="l00690" name="l00690"></a><span class="lineno">  690</span>{</div>
+<div class="line"><a id="l00691" name="l00691"></a><span class="lineno">  691</span>        xwosdl_sqlk_wr_lock_irqssv(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>, irqs, flags, num);</div>
+<div class="line"><a id="l00692" name="l00692"></a><span class="lineno">  692</span>}</div>
+<div class="line"><a id="l00693" name="l00693"></a><span class="lineno">  693</span> </div>
+<div class="line"><a id="l00709" name="l00709"></a><span class="lineno">  709</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00710" name="l00710"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#ga2bb44600dd09d2e72180f823cfb757a9">  710</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__lock__seqlock.html#ga2bb44600dd09d2e72180f823cfb757a9">xwos_sqlk_wr_trylock_irqssv</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql,</div>
+<div class="line"><a id="l00711" name="l00711"></a><span class="lineno">  711</span>                                   <span class="keyword">const</span> <a class="code hl_typedef" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a> irqs[],</div>
+<div class="line"><a id="l00712" name="l00712"></a><span class="lineno">  712</span>                                   <a class="code hl_typedef" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> flags[], <a class="code hl_typedef" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num)</div>
+<div class="line"><a id="l00713" name="l00713"></a><span class="lineno">  713</span>{</div>
+<div class="line"><a id="l00714" name="l00714"></a><span class="lineno">  714</span>        <span class="keywordflow">return</span> xwosdl_sqlk_wr_trylock_irqssv(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>, irqs, flags, num);</div>
+<div class="line"><a id="l00715" name="l00715"></a><span class="lineno">  715</span>}</div>
+<div class="line"><a id="l00716" name="l00716"></a><span class="lineno">  716</span> </div>
+<div class="line"><a id="l00726" name="l00726"></a><span class="lineno">  726</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00727" name="l00727"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#gac551b46f85ab0e0db8585633019c4e80">  727</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwos__lock__seqlock.html#gac551b46f85ab0e0db8585633019c4e80">xwos_sqlk_wr_unlock_irqsrs</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql,</div>
+<div class="line"><a id="l00728" name="l00728"></a><span class="lineno">  728</span>                                <span class="keyword">const</span> <a class="code hl_typedef" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a> irqs[],</div>
+<div class="line"><a id="l00729" name="l00729"></a><span class="lineno">  729</span>                                <a class="code hl_typedef" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> flags[], <a class="code hl_typedef" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num)</div>
+<div class="line"><a id="l00730" name="l00730"></a><span class="lineno">  730</span>{</div>
+<div class="line"><a id="l00731" name="l00731"></a><span class="lineno">  731</span>        xwosdl_sqlk_wr_unlock_irqsrs(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>, irqs, flags, num);</div>
+<div class="line"><a id="l00732" name="l00732"></a><span class="lineno">  732</span>}</div>
+<div class="line"><a id="l00733" name="l00733"></a><span class="lineno">  733</span> </div>
+<div class="line"><a id="l00744" name="l00744"></a><span class="lineno">  744</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00745" name="l00745"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#gaffbc56b927fa504cad49f737a8be68d1">  745</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwos__lock__seqlock.html#gaffbc56b927fa504cad49f737a8be68d1">xwos_sqlk_wr_lock_bh</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql)</div>
+<div class="line"><a id="l00746" name="l00746"></a><span class="lineno">  746</span>{</div>
+<div class="line"><a id="l00747" name="l00747"></a><span class="lineno">  747</span>        xwosdl_sqlk_wr_lock_bh(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>);</div>
+<div class="line"><a id="l00748" name="l00748"></a><span class="lineno">  748</span>}</div>
+<div class="line"><a id="l00749" name="l00749"></a><span class="lineno">  749</span> </div>
+<div class="line"><a id="l00762" name="l00762"></a><span class="lineno">  762</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00763" name="l00763"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#ga4771dca2b7e1f58df3fea5dc0278bd0a">  763</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__lock__seqlock.html#ga4771dca2b7e1f58df3fea5dc0278bd0a">xwos_sqlk_wr_trylock_bh</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql)</div>
+<div class="line"><a id="l00764" name="l00764"></a><span class="lineno">  764</span>{</div>
+<div class="line"><a id="l00765" name="l00765"></a><span class="lineno">  765</span>        <span class="keywordflow">return</span> xwosdl_sqlk_wr_trylock_bh(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>);</div>
+<div class="line"><a id="l00766" name="l00766"></a><span class="lineno">  766</span>}</div>
+<div class="line"><a id="l00767" name="l00767"></a><span class="lineno">  767</span> </div>
+<div class="line"><a id="l00776" name="l00776"></a><span class="lineno">  776</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00777" name="l00777"></a><span class="lineno"><a class="line" href="group__xwos__lock__seqlock.html#ga3e2867fefe9d28031957e563ffc76ff5">  777</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwos__lock__seqlock.html#ga3e2867fefe9d28031957e563ffc76ff5">xwos_sqlk_wr_unlock_bh</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sqlk.html">xwos_sqlk</a> * sql)</div>
+<div class="line"><a id="l00778" name="l00778"></a><span class="lineno">  778</span>{</div>
+<div class="line"><a id="l00779" name="l00779"></a><span class="lineno">  779</span>        xwosdl_sqlk_wr_unlock_bh(&amp;sql-&gt;<a class="code hl_variable" href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">ossql</a>);</div>
+<div class="line"><a id="l00780" name="l00780"></a><span class="lineno">  780</span>}</div>
+<div class="line"><a id="l00781" name="l00781"></a><span class="lineno">  781</span> </div>
+<div class="line"><a id="l00786" name="l00786"></a><span class="lineno">  786</span><span class="preprocessor">#endif </span><span class="comment">/* xwos/osal/lock/seqlock.h */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__xwos__lib__compiler_html_ga9210398f1f7e1083da5b23f4693e6b89"><div class="ttname"><a href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div><div class="ttdeci">#define __xwos_inline_api</div><div class="ttdef"><b>Definition</b> <a href="compiler_8h_source.html#l00179">compiler.h:179</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga06847ea8c7edb2b1f166288b230f251f"><div class="ttname"><a href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a></div><div class="ttdeci">signed long xwer_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00554">type.h:554</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga1b0baeccce0e5a04640f4ddff4e85fd4"><div class="ttname"><a href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a></div><div class="ttdeci">signed int xwirq_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00517">type.h:517</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga2d00153ecb0cdcc8ea0823c13ee59649"><div class="ttname"><a href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a></div><div class="ttdeci">unsigned long xwsz_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00339">type.h:339</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga59fe68c80516b22de8dccb84275d23f2"><div class="ttname"><a href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a></div><div class="ttdeci">unsigned long xwsq_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00445">type.h:445</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_gad21f70aa6f1364b63b1165784448bc16"><div class="ttname"><a href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a></div><div class="ttdeci">xwptr_t xwreg_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00409">type.h:409</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_ga065396cb9c428d0e6234ade20506ff2a"><div class="ttname"><a href="group__xwos__lock__seqlock.html#ga065396cb9c428d0e6234ade20506ff2a">xwos_sqlk_wr_trylock_cpuirqsv</a></div><div class="ttdeci">static xwer_t xwos_sqlk_wr_trylock_cpuirqsv(struct xwos_sqlk *sql, xwreg_t *cpuirq)</div><div class="ttdoc">XWOS API：尝试开启写临界区，保存本地CPU的中断标志并关闭</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00594">seqlock.h:594</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_ga0bc2e7584ad91b0c250ff029b25d70bd"><div class="ttname"><a href="group__xwos__lock__seqlock.html#ga0bc2e7584ad91b0c250ff029b25d70bd">xwos_sqlk_rdex_lock</a></div><div class="ttdeci">static void xwos_sqlk_rdex_lock(struct xwos_sqlk *sql)</div><div class="ttdoc">XWOS API：开启独占读临界区</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00184">seqlock.h:184</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_ga1320e69104e26e1a79b5459e7607584c"><div class="ttname"><a href="group__xwos__lock__seqlock.html#ga1320e69104e26e1a79b5459e7607584c">xwos_sqlk_wr_unlock</a></div><div class="ttdeci">static void xwos_sqlk_wr_unlock(struct xwos_sqlk *sql)</div><div class="ttdoc">XWOS API：关闭写临界区</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00515">seqlock.h:515</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_ga13a66c991ce2e6104752449c4b6c6d4e"><div class="ttname"><a href="group__xwos__lock__seqlock.html#ga13a66c991ce2e6104752449c4b6c6d4e">xwos_sqlk_rdex_unlock_irqsrs</a></div><div class="ttdeci">static void xwos_sqlk_rdex_unlock_irqsrs(struct xwos_sqlk *sql, const xwirq_t irqs[], xwreg_t flags[], xwsz_t num)</div><div class="ttdoc">XWOS API：关闭独占读临界区，恢复部分中断的中断标志</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00424">seqlock.h:424</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_ga16274374f2eeac631149433d1cf3491a"><div class="ttname"><a href="group__xwos__lock__seqlock.html#ga16274374f2eeac631149433d1cf3491a">xwos_sqlk_wr_lock</a></div><div class="ttdeci">static void xwos_sqlk_wr_lock(struct xwos_sqlk *sql)</div><div class="ttdoc">XWOS API：开启写临界区</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00486">seqlock.h:486</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_ga1e7b772397b51c8ae3dbc98b7846ce67"><div class="ttname"><a href="group__xwos__lock__seqlock.html#ga1e7b772397b51c8ae3dbc98b7846ce67">xwos_sqlk_rdex_unlock_irqs</a></div><div class="ttdeci">static void xwos_sqlk_rdex_unlock_irqs(struct xwos_sqlk *sql, const xwirq_t irqs[], xwsz_t num)</div><div class="ttdoc">XWOS API：关闭独占读临界区，并开启部分中断</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00363">seqlock.h:363</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_ga230119b86fd51047f83cbe1e74982892"><div class="ttname"><a href="group__xwos__lock__seqlock.html#ga230119b86fd51047f83cbe1e74982892">xwos_sqlk_init</a></div><div class="ttdeci">static void xwos_sqlk_init(struct xwos_sqlk *sql)</div><div class="ttdoc">XWOS API：初始化顺序锁</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00128">seqlock.h:128</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_ga24cf158c1835abd6bacdcd846b1ba787"><div class="ttname"><a href="group__xwos__lock__seqlock.html#ga24cf158c1835abd6bacdcd846b1ba787">xwos_sqlk_rdex_lock_cpuirq</a></div><div class="ttdeci">static void xwos_sqlk_rdex_lock_cpuirq(struct xwos_sqlk *sql)</div><div class="ttdoc">XWOS API：开启独占读临界区，并关闭本地CPU的中断</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00228">seqlock.h:228</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_ga2bb44600dd09d2e72180f823cfb757a9"><div class="ttname"><a href="group__xwos__lock__seqlock.html#ga2bb44600dd09d2e72180f823cfb757a9">xwos_sqlk_wr_trylock_irqssv</a></div><div class="ttdeci">static xwer_t xwos_sqlk_wr_trylock_irqssv(struct xwos_sqlk *sql, const xwirq_t irqs[], xwreg_t flags[], xwsz_t num)</div><div class="ttdoc">XWOS API：尝试开启写临界区，保存部分中断的中断标志并关闭</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00710">seqlock.h:710</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_ga38e747a975b3a967fd1d8bb97b0690ab"><div class="ttname"><a href="group__xwos__lock__seqlock.html#ga38e747a975b3a967fd1d8bb97b0690ab">xwos_sqlk_rdex_lock_irqs</a></div><div class="ttdeci">static void xwos_sqlk_rdex_lock_irqs(struct xwos_sqlk *sql, const xwirq_t irqs[], xwsz_t num)</div><div class="ttdoc">XWOS API：开启独占读临界区，并关闭部分中断</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00325">seqlock.h:325</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_ga390316c0f4e02e92669a87fefe0a0bb4"><div class="ttname"><a href="group__xwos__lock__seqlock.html#ga390316c0f4e02e92669a87fefe0a0bb4">xwos_sqlk_rdex_unlock</a></div><div class="ttdeci">static void xwos_sqlk_rdex_unlock(struct xwos_sqlk *sql)</div><div class="ttdoc">XWOS API：关闭独占读临界区</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00213">seqlock.h:213</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_ga3e2867fefe9d28031957e563ffc76ff5"><div class="ttname"><a href="group__xwos__lock__seqlock.html#ga3e2867fefe9d28031957e563ffc76ff5">xwos_sqlk_wr_unlock_bh</a></div><div class="ttdeci">static void xwos_sqlk_wr_unlock_bh(struct xwos_sqlk *sql)</div><div class="ttdoc">XWOS API：关闭写临界区，开启本地CPU的中断底半部</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00777">seqlock.h:777</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_ga3e2cca7ca59ae3694cfe8a00538bb7e7"><div class="ttname"><a href="group__xwos__lock__seqlock.html#ga3e2cca7ca59ae3694cfe8a00538bb7e7">xwos_sqlk_wr_unlock_irqs</a></div><div class="ttdeci">static void xwos_sqlk_wr_unlock_irqs(struct xwos_sqlk *sql, const xwirq_t irqs[], xwsz_t num)</div><div class="ttdoc">XWOS API：关闭写临界区，并开启部分中断</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00665">seqlock.h:665</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_ga40da988fa2376c706f8cab79dc4dab7c"><div class="ttname"><a href="group__xwos__lock__seqlock.html#ga40da988fa2376c706f8cab79dc4dab7c">xwos_sqlk_get_seq</a></div><div class="ttdeci">static xwsq_t xwos_sqlk_get_seq(struct xwos_sqlk *sql)</div><div class="ttdoc">XWOS API：获取顺序锁的顺序值</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00170">seqlock.h:170</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_ga4771dca2b7e1f58df3fea5dc0278bd0a"><div class="ttname"><a href="group__xwos__lock__seqlock.html#ga4771dca2b7e1f58df3fea5dc0278bd0a">xwos_sqlk_wr_trylock_bh</a></div><div class="ttdeci">static xwer_t xwos_sqlk_wr_trylock_bh(struct xwos_sqlk *sql)</div><div class="ttdoc">XWOS API：尝试开启写临界区，关闭本地CPU的中断底半部</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00763">seqlock.h:763</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_ga56e9f3261d8966ac1dfc51619cd5f48d"><div class="ttname"><a href="group__xwos__lock__seqlock.html#ga56e9f3261d8966ac1dfc51619cd5f48d">xwos_sqlk_rdex_unlock_bh</a></div><div class="ttdeci">static void xwos_sqlk_rdex_unlock_bh(struct xwos_sqlk *sql)</div><div class="ttdoc">XWOS API：关闭独占读临界区，开启本地CPU的中断底半部</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00472">seqlock.h:472</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_ga5a01a4628ee3c22ac836908b6365662a"><div class="ttname"><a href="group__xwos__lock__seqlock.html#ga5a01a4628ee3c22ac836908b6365662a">xwos_sqlk_wr_lock_irqs</a></div><div class="ttdeci">static void xwos_sqlk_wr_lock_irqs(struct xwos_sqlk *sql, const xwirq_t irqs[], xwsz_t num)</div><div class="ttdoc">XWOS API：开启写临界区，并关闭部分中断</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00627">seqlock.h:627</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_ga5cc1e68a7d23ca6b7210de17b950e64b"><div class="ttname"><a href="group__xwos__lock__seqlock.html#ga5cc1e68a7d23ca6b7210de17b950e64b">xwos_sqlk_wr_trylock</a></div><div class="ttdeci">static xwer_t xwos_sqlk_wr_trylock(struct xwos_sqlk *sql)</div><div class="ttdoc">XWOS API：尝试开启写临界区</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00501">seqlock.h:501</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_ga5cd525a876d961a541876ba9a217e77e"><div class="ttname"><a href="group__xwos__lock__seqlock.html#ga5cd525a876d961a541876ba9a217e77e">xwos_sqlk_rdex_trylock_cpuirq</a></div><div class="ttdeci">static xwer_t xwos_sqlk_rdex_trylock_cpuirq(struct xwos_sqlk *sql)</div><div class="ttdoc">XWOS API：尝试开启独占读临界区，并关闭本地CPU的中断</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00245">seqlock.h:245</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_ga61fbffa6ca444335dbf3a4c2d2fd79b5"><div class="ttname"><a href="group__xwos__lock__seqlock.html#ga61fbffa6ca444335dbf3a4c2d2fd79b5">xwos_sqlk_wr_lock_cpuirq</a></div><div class="ttdeci">static void xwos_sqlk_wr_lock_cpuirq(struct xwos_sqlk *sql)</div><div class="ttdoc">XWOS API：开启写临界区，并关闭本地CPU的中断</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00530">seqlock.h:530</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_ga63ec03db8a4c6247f55059b9d4c23d59"><div class="ttname"><a href="group__xwos__lock__seqlock.html#ga63ec03db8a4c6247f55059b9d4c23d59">xwos_sqlk_wr_lock_irqssv</a></div><div class="ttdeci">static void xwos_sqlk_wr_lock_irqssv(struct xwos_sqlk *sql, const xwirq_t irqs[], xwreg_t flags[], xwsz_t num)</div><div class="ttdoc">XWOS API：开启写临界区，保存部分中断的中断标志并关闭</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00687">seqlock.h:687</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_ga694c4ac137e605fd951a3e3c1d37c855"><div class="ttname"><a href="group__xwos__lock__seqlock.html#ga694c4ac137e605fd951a3e3c1d37c855">xwos_sqlk_wr_unlock_cpuirq</a></div><div class="ttdeci">static void xwos_sqlk_wr_unlock_cpuirq(struct xwos_sqlk *sql)</div><div class="ttdoc">XWOS API：关闭写临界区，并开启本地CPU的中断</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00559">seqlock.h:559</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_ga6eb881e1a1c6e73879053a45e7af20cc"><div class="ttname"><a href="group__xwos__lock__seqlock.html#ga6eb881e1a1c6e73879053a45e7af20cc">xwos_sqlk_rdex_unlock_cpuirqrs</a></div><div class="ttdeci">static void xwos_sqlk_rdex_unlock_cpuirqrs(struct xwos_sqlk *sql, xwreg_t cpuirq)</div><div class="ttdoc">XWOS API：关闭独占读临界区，恢复本地CPU的中断标志</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00306">seqlock.h:306</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_ga737a8a2ed864bc21731376570ee89e3e"><div class="ttname"><a href="group__xwos__lock__seqlock.html#ga737a8a2ed864bc21731376570ee89e3e">xwos_sqlk_rdex_lock_irqssv</a></div><div class="ttdeci">static void xwos_sqlk_rdex_lock_irqssv(struct xwos_sqlk *sql, const xwirq_t irqs[], xwreg_t flags[], xwsz_t num)</div><div class="ttdoc">XWOS API：开启独占读临界区，保存部分中断的中断标志并关闭</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00384">seqlock.h:384</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_ga7466ec4b9fede25fce836c3e0f718661"><div class="ttname"><a href="group__xwos__lock__seqlock.html#ga7466ec4b9fede25fce836c3e0f718661">xwos_sqlk_rdex_trylock_cpuirqsv</a></div><div class="ttdeci">static xwer_t xwos_sqlk_rdex_trylock_cpuirqsv(struct xwos_sqlk *sql, xwreg_t *cpuirq)</div><div class="ttdoc">XWOS API：尝试开启独占读临界区，保存本地CPU的中断标志并关闭</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00292">seqlock.h:292</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_ga7cd1c5a34e6c318d537e4780f3ae85f4"><div class="ttname"><a href="group__xwos__lock__seqlock.html#ga7cd1c5a34e6c318d537e4780f3ae85f4">xwos_sqlk_rd_begin</a></div><div class="ttdeci">static xwsq_t xwos_sqlk_rd_begin(struct xwos_sqlk *sql)</div><div class="ttdoc">XWOS API：开启共享读临界区</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00143">seqlock.h:143</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_ga9c906f30b85d221d21be57fe2ff79410"><div class="ttname"><a href="group__xwos__lock__seqlock.html#ga9c906f30b85d221d21be57fe2ff79410">xwos_sqlk_rdex_lock_cpuirqsv</a></div><div class="ttdeci">static void xwos_sqlk_rdex_lock_cpuirqsv(struct xwos_sqlk *sql, xwreg_t *cpuirq)</div><div class="ttdoc">XWOS API：开启独占读临界区，保存本地CPU的中断标志并关闭</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00273">seqlock.h:273</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_gaa46493b921777da3bc92fd5e91cf2388"><div class="ttname"><a href="group__xwos__lock__seqlock.html#gaa46493b921777da3bc92fd5e91cf2388">xwos_sqlk_wr_trylock_cpuirq</a></div><div class="ttdeci">static xwer_t xwos_sqlk_wr_trylock_cpuirq(struct xwos_sqlk *sql)</div><div class="ttdoc">XWOS API：尝试开启写临界区，并关闭本地CPU的中断</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00547">seqlock.h:547</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_gaa870ff02e389c6f9d61ee4119fc38204"><div class="ttname"><a href="group__xwos__lock__seqlock.html#gaa870ff02e389c6f9d61ee4119fc38204">xwos_sqlk_rdex_trylock</a></div><div class="ttdeci">static xwer_t xwos_sqlk_rdex_trylock(struct xwos_sqlk *sql)</div><div class="ttdoc">XWOS API：尝试开启独占读临界区</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00201">seqlock.h:201</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_gab71ec7bec664746455b4f5c3ffaf5505"><div class="ttname"><a href="group__xwos__lock__seqlock.html#gab71ec7bec664746455b4f5c3ffaf5505">xwos_sqlk_rdex_trylock_bh</a></div><div class="ttdeci">static xwer_t xwos_sqlk_rdex_trylock_bh(struct xwos_sqlk *sql)</div><div class="ttdoc">XWOS API：尝试开启独占读临界区，关闭本地CPU的中断底半部</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00460">seqlock.h:460</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_gabc138d69277ba1017ade0f27c6c282cb"><div class="ttname"><a href="group__xwos__lock__seqlock.html#gabc138d69277ba1017ade0f27c6c282cb">xwos_sqlk_wr_lock_cpuirqsv</a></div><div class="ttdeci">static void xwos_sqlk_wr_lock_cpuirqsv(struct xwos_sqlk *sql, xwreg_t *cpuirq)</div><div class="ttdoc">XWOS API：开启写临界区，保存本地CPU的中断标志并关闭</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00575">seqlock.h:575</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_gabcf1bae603513b049184fe2179d1301e"><div class="ttname"><a href="group__xwos__lock__seqlock.html#gabcf1bae603513b049184fe2179d1301e">xwos_sqlk_rd_retry</a></div><div class="ttdeci">static bool xwos_sqlk_rd_retry(struct xwos_sqlk *sql, xwsq_t start)</div><div class="ttdoc">XWOS API：关闭共享读临界区，并检查是否需要重试</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00158">seqlock.h:158</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_gac551b46f85ab0e0db8585633019c4e80"><div class="ttname"><a href="group__xwos__lock__seqlock.html#gac551b46f85ab0e0db8585633019c4e80">xwos_sqlk_wr_unlock_irqsrs</a></div><div class="ttdeci">static void xwos_sqlk_wr_unlock_irqsrs(struct xwos_sqlk *sql, const xwirq_t irqs[], xwreg_t flags[], xwsz_t num)</div><div class="ttdoc">XWOS API：关闭写临界区，恢复部分中断的中断标志</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00727">seqlock.h:727</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_gacdfe6dcc69521399e50da59e117f3be9"><div class="ttname"><a href="group__xwos__lock__seqlock.html#gacdfe6dcc69521399e50da59e117f3be9">xwos_sqlk_wr_trylock_irqs</a></div><div class="ttdeci">static xwer_t xwos_sqlk_wr_trylock_irqs(struct xwos_sqlk *sql, const xwirq_t irqs[], xwsz_t num)</div><div class="ttdoc">XWOS API：尝试开启写临界区，并关闭部分中断</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00649">seqlock.h:649</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_gad600ec3b981231083a11a7aacc6ad5bd"><div class="ttname"><a href="group__xwos__lock__seqlock.html#gad600ec3b981231083a11a7aacc6ad5bd">xwos_sqlk_rdex_trylock_irqs</a></div><div class="ttdeci">static xwer_t xwos_sqlk_rdex_trylock_irqs(struct xwos_sqlk *sql, const xwirq_t irqs[], xwsz_t num)</div><div class="ttdoc">XWOS API：尝试开启独占读临界区，并关闭部分中断</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00347">seqlock.h:347</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_gad649d232c24bbbf43fb9d9f163381692"><div class="ttname"><a href="group__xwos__lock__seqlock.html#gad649d232c24bbbf43fb9d9f163381692">xwos_sqlk_rdex_lock_bh</a></div><div class="ttdeci">static void xwos_sqlk_rdex_lock_bh(struct xwos_sqlk *sql)</div><div class="ttdoc">XWOS API：开启独占读临界区，关闭本地CPU的中断底半部</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00442">seqlock.h:442</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_gadcb38d5d6dad7969e1231c47c131f3c8"><div class="ttname"><a href="group__xwos__lock__seqlock.html#gadcb38d5d6dad7969e1231c47c131f3c8">xwos_sqlk_wr_unlock_cpuirqrs</a></div><div class="ttdeci">static void xwos_sqlk_wr_unlock_cpuirqrs(struct xwos_sqlk *sql, xwreg_t cpuirq)</div><div class="ttdoc">XWOS API：关闭写临界区，恢复本地CPU的中断标志</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00608">seqlock.h:608</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_gadd1ae7af48feae2d216dc588d2789490"><div class="ttname"><a href="group__xwos__lock__seqlock.html#gadd1ae7af48feae2d216dc588d2789490">xwos_sqlk_rdex_unlock_cpuirq</a></div><div class="ttdeci">static void xwos_sqlk_rdex_unlock_cpuirq(struct xwos_sqlk *sql)</div><div class="ttdoc">XWOS API：关闭独占读临界区，并开启本地CPU的中断</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00257">seqlock.h:257</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_gaf11b33323fd18b7b436de8a790fb869e"><div class="ttname"><a href="group__xwos__lock__seqlock.html#gaf11b33323fd18b7b436de8a790fb869e">xwos_sqlk_rdex_trylock_irqssv</a></div><div class="ttdeci">static xwer_t xwos_sqlk_rdex_trylock_irqssv(struct xwos_sqlk *sql, const xwirq_t irqs[], xwreg_t flags[], xwsz_t num)</div><div class="ttdoc">XWOS API：尝试开启独占读临界区，保存部分中断的中断标志并关闭</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00407">seqlock.h:407</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__seqlock_html_gaffbc56b927fa504cad49f737a8be68d1"><div class="ttname"><a href="group__xwos__lock__seqlock.html#gaffbc56b927fa504cad49f737a8be68d1">xwos_sqlk_wr_lock_bh</a></div><div class="ttdeci">static void xwos_sqlk_wr_lock_bh(struct xwos_sqlk *sql)</div><div class="ttdoc">XWOS API：开启写临界区，关闭本地CPU的中断底半部</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00745">seqlock.h:745</a></div></div>
+<div class="ttc" id="airq_8h_html"><div class="ttname"><a href="irq_8h.html">irq.h</a></div><div class="ttdoc">操作系统抽象层：异常与中断</div></div>
+<div class="ttc" id="ajack_2lock_2seqlock_8h_html"><div class="ttname"><a href="jack_2lock_2seqlock_8h.html">seqlock.h</a></div><div class="ttdoc">操作系统抽象层：顺序锁接口描述</div></div>
+<div class="ttc" id="astructxwos__sqlk_html"><div class="ttname"><a href="structxwos__sqlk.html">xwos_sqlk</a></div><div class="ttdoc">XWOS API：顺序锁</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00112">seqlock.h:112</a></div></div>
+<div class="ttc" id="astructxwos__sqlk_html_a33e89954585668f177b4adb4120ba3d0"><div class="ttname"><a href="structxwos__sqlk.html#a33e89954585668f177b4adb4120ba3d0">xwos_sqlk::ossql</a></div><div class="ttdeci">xwosdl_sqlk_t ossql</div><div class="ttdef"><b>Definition</b> <a href="lock_2seqlock_8h_source.html#l00113">seqlock.h:113</a></div></div>
+<div class="ttc" id="axwos_2standard_8h_html"><div class="ttname"><a href="xwos_2standard_8h.html">standard.h</a></div><div class="ttdoc">XWOS的标准头文件</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_43a52829888b753087a6774748486ed5.html">xwos</a></li><li class="navelem"><a class="el" href="dir_acf86ca9b9e1693a183c44f1acf6992c.html">osal</a></li><li class="navelem"><a class="el" href="dir_af632170ae816756fb8ad9f54592dcb5.html">lock</a></li><li class="navelem"><a class="el" href="lock_2seqlock_8h.html">seqlock.h</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
+  </ul>
+</div>
+</body>
+</html>

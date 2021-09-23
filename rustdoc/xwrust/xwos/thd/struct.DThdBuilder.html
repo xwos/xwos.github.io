@@ -1,0 +1,160 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="动态线程的工厂模式结构体，可用于配置新线程的属性"><title>DThdBuilder in xwrust::xwos::thd - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="xwrust" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (b10cfcd65 2023-11-29)" data-channel="nightly" data-search-js="search-56a624991a76cfad.js" data-settings-js="settings-fe03fdc259827cd2.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../../static.files/main-77dede896d6ac08e.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc struct"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../xwrust/index.html">xwrust</a><span class="version">1.0.0</span></h2></div><h2 class="location"><a href="#">DThdBuilder</a></h2><div class="sidebar-elems"><section><h3><a href="#implementations">Methods</a></h3><ul class="block method"><li><a href="#method.name">name</a></li><li><a href="#method.new">new</a></li><li><a href="#method.privileged">privileged</a></li><li><a href="#method.spawn">spawn</a></li><li><a href="#method.spawn_unchecked">spawn_unchecked</a></li><li><a href="#method.stack_size">stack_size</a></li></ul><h3><a href="#synthetic-implementations">Auto Trait Implementations</a></h3><ul class="block synthetic-implementation"><li><a href="#impl-RefUnwindSafe-for-DThdBuilder">RefUnwindSafe</a></li><li><a href="#impl-Send-for-DThdBuilder">Send</a></li><li><a href="#impl-Sync-for-DThdBuilder">Sync</a></li><li><a href="#impl-Unpin-for-DThdBuilder">Unpin</a></li><li><a href="#impl-UnwindSafe-for-DThdBuilder">UnwindSafe</a></li></ul><h3><a href="#blanket-implementations">Blanket Implementations</a></h3><ul class="block blanket-implementation"><li><a href="#impl-Any-for-T">Any</a></li><li><a href="#impl-Borrow%3CT%3E-for-T">Borrow&lt;T&gt;</a></li><li><a href="#impl-BorrowMut%3CT%3E-for-T">BorrowMut&lt;T&gt;</a></li><li><a href="#impl-From%3CT%3E-for-T">From&lt;T&gt;</a></li><li><a href="#impl-Into%3CU%3E-for-T">Into&lt;U&gt;</a></li><li><a href="#impl-TryFrom%3CU%3E-for-T">TryFrom&lt;U&gt;</a></li><li><a href="#impl-TryInto%3CU%3E-for-T">TryInto&lt;U&gt;</a></li></ul></section><h2><a href="index.html">In xwrust::xwos::thd</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Struct <a href="../../index.html">xwrust</a>::<wbr><a href="../index.html">xwos</a>::<wbr><a href="index.html">thd</a>::<wbr><a class="struct" href="#">DThdBuilder</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../../../src/xwrust/xwos/thd.rs.html#594-601">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>pub struct DThdBuilder { /* private fields */ }</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>动态线程的工厂模式结构体，可用于配置新线程的属性</p>
+<ul>
+<li><a href="struct.DThdBuilder.html#method.name" title="method xwrust::xwos::thd::DThdBuilder::name"><code>name</code></a> 设置线程的名字</li>
+<li><a href="struct.DThdBuilder.html#method.stack_size" title="method xwrust::xwos::thd::DThdBuilder::stack_size"><code>stack_size</code></a> 设置线程的栈大小</li>
+<li><a href="struct.DThdBuilder.html#method.privileged" title="method xwrust::xwos::thd::DThdBuilder::privileged"><code>privileged</code></a> 设置线程的系统权限</li>
+</ul>
+<p><a href="struct.DThdBuilder.html#method.spawn" title="method xwrust::xwos::thd::DThdBuilder::spawn"><code>spawn</code></a> 方法将获取构建器的所有权，并使用给定的配置创建线程，返回 <a href="https://doc.rust-lang.org/core/result/enum.Result.html"><code>Result</code></a> 。</p>
+<p><a href="fn.spawn.html" title="fn xwrust::xwos::thd::spawn"><code>thd::spawn</code></a> 独立的函数，并使用默认配置的 <code>DThdBuilder</code>创建线程，返回 <a href="https://doc.rust-lang.org/core/result/enum.Result.html"><code>Result</code></a> 。</p>
+<h2 id="示例"><a href="#示例">示例</a></h2>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwos::thd;
+
+<span class="kw">let </span>builder = thd::DThdBuilder::new();
+
+builder.spawn(|<span class="kw">_</span>| {
+    <span class="comment">// 线程代码;
+    // 返回值
+</span>});</code></pre></div>
+</div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor">§</a></h2><div id="implementations-list"><details class="toggle implementors-toggle" open><summary><section id="impl-DThdBuilder" class="impl"><a class="src rightside" href="../../../src/xwrust/xwos/thd.rs.html#603-829">source</a><a href="#impl-DThdBuilder" class="anchor">§</a><h3 class="code-header">impl <a class="struct" href="struct.DThdBuilder.html" title="struct xwrust::xwos::thd::DThdBuilder">DThdBuilder</a></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.new" class="method"><a class="src rightside" href="../../../src/xwrust/xwos/thd.rs.html#621-627">source</a><h4 class="code-header">pub fn <a href="#method.new" class="fn">new</a>() -&gt; <a class="struct" href="struct.DThdBuilder.html" title="struct xwrust::xwos::thd::DThdBuilder">DThdBuilder</a></h4></section></summary><div class="docblock"><p>新建用于创建动态线程的工厂</p>
+<h5 id="示例-1"><a href="#示例-1">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwos::thd;
+
+<span class="kw">let </span>builder = thd::DThdBuilder::new()
+                               .name(<span class="string">&quot;foo&quot;</span>.into()) <span class="comment">// 设置线程的名称
+                               </span>.stack_size(<span class="number">8 </span>* <span class="number">1024</span>) <span class="comment">// 设置线程栈大小
+                               </span>.privileged(<span class="bool-val">true</span>); <span class="comment">// 设置系统权限
+
+</span>builder.spawn(|<span class="kw">_</span>| {
+    <span class="comment">// 线程代码;
+    // 返回值
+</span>});</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.name" class="method"><a class="src rightside" href="../../../src/xwrust/xwos/thd.rs.html#646-649">source</a><h4 class="code-header">pub fn <a href="#method.name" class="fn">name</a>(self, name: String) -&gt; <a class="struct" href="struct.DThdBuilder.html" title="struct xwrust::xwos::thd::DThdBuilder">DThdBuilder</a></h4></section></summary><div class="docblock"><p>设置动态线程的名称</p>
+<h5 id="示例-2"><a href="#示例-2">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwos::thd;
+<span class="kw">use </span>libc_print::std_name::println;
+
+<span class="kw">let </span>builder = thd::DThdBuilder::new()
+                               .name(<span class="string">&quot;foo&quot;</span>.into()); <span class="comment">// 设置线程的名称
+
+</span>builder.spawn(|ele| {
+    <span class="macro">println!</span>(<span class="string">&quot;My name is {}.&quot;</span>, ele.name().unwrap());
+    <span class="comment">// 线程代码;
+    // 返回值
+</span>});</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.stack_size" class="method"><a class="src rightside" href="../../../src/xwrust/xwos/thd.rs.html#666-669">source</a><h4 class="code-header">pub fn <a href="#method.stack_size" class="fn">stack_size</a>(self, size: <a class="type" href="../../types/type.XwSz.html" title="type xwrust::types::XwSz">XwSz</a>) -&gt; <a class="struct" href="struct.DThdBuilder.html" title="struct xwrust::xwos::thd::DThdBuilder">DThdBuilder</a></h4></section></summary><div class="docblock"><p>设置动态线程栈的大小</p>
+<h5 id="示例-3"><a href="#示例-3">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwos::thd;
+
+<span class="kw">let </span>builder = thd::DThdBuilder::new()
+                               .stack_size(<span class="number">8 </span>* <span class="number">1024</span>); <span class="comment">// 设置线程栈大小
+
+</span>builder.spawn(|<span class="kw">_</span>| {
+    <span class="comment">// 线程代码;
+    // 返回值
+</span>});</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.privileged" class="method"><a class="src rightside" href="../../../src/xwrust/xwos/thd.rs.html#686-689">source</a><h4 class="code-header">pub fn <a href="#method.privileged" class="fn">privileged</a>(self, privileged: bool) -&gt; <a class="struct" href="struct.DThdBuilder.html" title="struct xwrust::xwos::thd::DThdBuilder">DThdBuilder</a></h4></section></summary><div class="docblock"><p>设置动态线程栈的系统权限</p>
+<h5 id="示例-4"><a href="#示例-4">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwos::thd;
+
+<span class="kw">let </span>builder = thd::DThdBuilder::new()
+                               .privileged(<span class="bool-val">true</span>); <span class="comment">// 设置系统权限
+
+</span>builder.spawn(|<span class="kw">_</span>| {
+    <span class="comment">// 线程代码;
+    // 返回值
+</span>});</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.spawn" class="method"><a class="src rightside" href="../../../src/xwrust/xwos/thd.rs.html#738-745">source</a><h4 class="code-header">pub fn <a href="#method.spawn" class="fn">spawn</a>&lt;F, R&gt;(self, f: F) -&gt; Result&lt;<a class="struct" href="struct.DThdHandle.html" title="struct xwrust::xwos::thd::DThdHandle">DThdHandle</a>&lt;R&gt;, <a class="type" href="../../types/type.XwEr.html" title="type xwrust::types::XwEr">XwEr</a>&gt;<span class="where fmt-newline">where
+    F: FnOnce(Arc&lt;<a class="struct" href="struct.DThdElement.html" title="struct xwrust::xwos::thd::DThdElement">DThdElement</a>&gt;) -&gt; R + Send + 'static,
+    R: Send + 'static,</span></h4></section></summary><div class="docblock"><p>消费 <code>DThdBuilder</code> ，并新建一个动态线程</p>
+<ul>
+<li>创建线程成功，返回一个包含 <a href="struct.DThdHandle.html" title="struct xwrust::xwos::thd::DThdHandle"><code>DThdHandle</code></a> 的 <a href="https://doc.rust-lang.org/core/result/enum.Result.html"><code>Result</code></a> ；</li>
+<li>创建线程失败，返回一个包含 <a href="../../types/type.XwEr.html" title="type xwrust::types::XwEr"><code>XwEr</code></a> 的 <a href="https://doc.rust-lang.org/core/result/enum.Result.html"><code>Result</code></a> ， <a href="../../types/type.XwEr.html" title="type xwrust::types::XwEr"><code>XwEr</code></a> 指示错误的原因。</li>
+</ul>
+<p>方法的签名：</p>
+<ul>
+<li><a href="https://doc.rust-lang.org/std/keyword.static.html"><code>'static</code></a> 约束是因为新建的线程可能比调用者的生命周期更长，因此线程的闭包和返回值的生命周期限定为静态生命周期；</li>
+<li><a href="https://doc.rust-lang.org/core/marker/trait.Send.html"><code>Send</code></a> 约束是因为闭包和返回值需要在线程之间进行转移。并且被移动到 <a href="https://doc.rust-lang.org/core/marker/trait.Send.html"><code>Send</code></a> 约束的闭包的变量也必须是 <a href="https://doc.rust-lang.org/core/marker/trait.Send.html"><code>Send</code></a> 的，否则编译器会报错。
+RUSTC是通过 <a href="https://doc.rust-lang.org/core/marker/trait.Send.html"><code>Send</code></a> 约束来区分闭包是不是另一线程的代码的。</li>
+</ul>
+<h5 id="参数说明"><a href="#参数说明">参数说明</a></h5>
+<ul>
+<li>f: 线程的闭包</li>
+</ul>
+<h5 id="示例-5"><a href="#示例-5">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwos::thd;
+
+<span class="kw">let </span>builder = thd::DThdBuilder::new()
+    .name(<span class="string">&quot;foo&quot;</span>.into()) <span class="comment">// 设置线程的名称
+    </span>.stack_size(<span class="number">8 </span>* <span class="number">1024</span>) <span class="comment">// 设置线程栈大小
+    </span>.privileged(<span class="bool-val">true</span>); <span class="comment">// 设置系统权限
+</span><span class="kw">match </span>builder.spawn(|<span class="kw">_</span>| {
+    <span class="comment">// 线程代码;
+    // 返回值
+</span>}) {
+    <span class="prelude-val">Ok</span>(handler) =&gt; {
+        <span class="kw">match </span>handler.join() {
+            <span class="prelude-val">Ok</span>(r) =&gt; {
+                <span class="comment">// r 是线程闭包的返回值。
+            </span>},
+            <span class="prelude-val">Err</span>(e) =&gt; {
+                <span class="comment">// `join()` 失败的错误码可通过 `e.state()` 获取。
+                // `e` 是 `DThdHandle&lt;R&gt;` ，重新被返回。
+            </span>},
+        };
+    },
+    <span class="prelude-val">Err</span>(rc) =&gt; {
+        <span class="comment">// `rc` 是 `spawn()` 失败时的错误码。
+    </span>}
+};</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.spawn_unchecked" class="method"><a class="src rightside" href="../../../src/xwrust/xwos/thd.rs.html#788-795">source</a><h4 class="code-header">pub unsafe fn <a href="#method.spawn_unchecked" class="fn">spawn_unchecked</a>&lt;'a, F, R&gt;(
+    self,
+    f: F
+) -&gt; Result&lt;<a class="struct" href="struct.DThdHandle.html" title="struct xwrust::xwos::thd::DThdHandle">DThdHandle</a>&lt;R&gt;, <a class="type" href="../../types/type.XwEr.html" title="type xwrust::types::XwEr">XwEr</a>&gt;<span class="where fmt-newline">where
+    F: FnOnce(Arc&lt;<a class="struct" href="struct.DThdElement.html" title="struct xwrust::xwos::thd::DThdElement">DThdElement</a>&gt;) -&gt; R + Send + 'a,
+    R: Send + 'a,</span></h4></section></summary><div class="docblock"><p>消费 <code>DThdBuilder</code> ，并产生一个新的动态线程</p>
+<ul>
+<li>创建线程成功，返回一个包含 <a href="struct.DThdHandle.html" title="struct xwrust::xwos::thd::DThdHandle"><code>DThdHandle</code></a> 的 <a href="https://doc.rust-lang.org/core/result/enum.Result.html"><code>Result</code></a> ；</li>
+<li>创建线程失败，返回一个包含 <a href="../../types/type.XwEr.html" title="type xwrust::types::XwEr"><code>XwEr</code></a> 的 <a href="https://doc.rust-lang.org/core/result/enum.Result.html"><code>Result</code></a> ， <a href="../../types/type.XwEr.html" title="type xwrust::types::XwEr"><code>XwEr</code></a> 指示错误的原因。</li>
+</ul>
+<p>此方法只要求闭包 <code>F</code> 和 返回值 <code>R</code> 的生命周期一样长，然后不做其他限制，因此是 <code>unsafe</code> 的。</p>
+<h5 id="参数说明-1"><a href="#参数说明-1">参数说明</a></h5>
+<ul>
+<li>f: 线程的闭包</li>
+</ul>
+<h5 id="示例-6"><a href="#示例-6">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwos::thd;
+
+<span class="kw">let </span>builder = thd::DThdBuilder::new()
+    .name(<span class="string">&quot;foo&quot;</span>.into()) <span class="comment">// 设置线程的名称
+    </span>.stack_size(<span class="number">8 </span>* <span class="number">1024</span>) <span class="comment">// 设置线程栈大小
+    </span>.privileged(<span class="bool-val">true</span>); <span class="comment">// 设置系统权限
+</span><span class="kw">match unsafe </span>{ builder.spawn_unchecked(|<span class="kw">_</span>| {
+    <span class="comment">// 线程代码;
+    // 返回值
+</span>})} {
+    <span class="prelude-val">Ok</span>(handler) =&gt; {
+        <span class="kw">match </span>handler.join() {
+            <span class="prelude-val">Ok</span>(r) =&gt; {
+                <span class="comment">// r 是线程闭包的返回值。
+            </span>},
+            <span class="prelude-val">Err</span>(e) =&gt; {
+                <span class="comment">// join() 失败时的错误码可通过 e.state() 获取。
+                // e 是 DThdHandle&lt;R&gt; ，重新被返回。
+            </span>},
+        };
+    },
+    <span class="prelude-val">Err</span>(rc) =&gt; {
+        <span class="comment">// rc 是 spawn() 失败时的错误码。
+    </span>}
+};</code></pre></div>
+</div></details></div></details></div><h2 id="synthetic-implementations" class="small-section-header">Auto Trait Implementations<a href="#synthetic-implementations" class="anchor">§</a></h2><div id="synthetic-implementations-list"><section id="impl-RefUnwindSafe-for-DThdBuilder" class="impl"><a href="#impl-RefUnwindSafe-for-DThdBuilder" class="anchor">§</a><h3 class="code-header">impl RefUnwindSafe for <a class="struct" href="struct.DThdBuilder.html" title="struct xwrust::xwos::thd::DThdBuilder">DThdBuilder</a></h3></section><section id="impl-Send-for-DThdBuilder" class="impl"><a href="#impl-Send-for-DThdBuilder" class="anchor">§</a><h3 class="code-header">impl Send for <a class="struct" href="struct.DThdBuilder.html" title="struct xwrust::xwos::thd::DThdBuilder">DThdBuilder</a></h3></section><section id="impl-Sync-for-DThdBuilder" class="impl"><a href="#impl-Sync-for-DThdBuilder" class="anchor">§</a><h3 class="code-header">impl Sync for <a class="struct" href="struct.DThdBuilder.html" title="struct xwrust::xwos::thd::DThdBuilder">DThdBuilder</a></h3></section><section id="impl-Unpin-for-DThdBuilder" class="impl"><a href="#impl-Unpin-for-DThdBuilder" class="anchor">§</a><h3 class="code-header">impl Unpin for <a class="struct" href="struct.DThdBuilder.html" title="struct xwrust::xwos::thd::DThdBuilder">DThdBuilder</a></h3></section><section id="impl-UnwindSafe-for-DThdBuilder" class="impl"><a href="#impl-UnwindSafe-for-DThdBuilder" class="anchor">§</a><h3 class="code-header">impl UnwindSafe for <a class="struct" href="struct.DThdBuilder.html" title="struct xwrust::xwos::thd::DThdBuilder">DThdBuilder</a></h3></section></div><h2 id="blanket-implementations" class="small-section-header">Blanket Implementations<a href="#blanket-implementations" class="anchor">§</a></h2><div id="blanket-implementations-list"><details class="toggle implementors-toggle"><summary><section id="impl-Any-for-T" class="impl"><a href="#impl-Any-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; Any for T<span class="where fmt-newline">where
+    T: 'static + ?Sized,</span></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.type_id" class="method trait-impl"><a href="#method.type_id" class="anchor">§</a><h4 class="code-header">fn <a class="fn">type_id</a>(&amp;self) -&gt; TypeId</h4></section></summary><div class='docblock'>Gets the <code>TypeId</code> of <code>self</code>. <a>Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-Borrow%3CT%3E-for-T" class="impl"><a href="#impl-Borrow%3CT%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; Borrow&lt;T&gt; for T<span class="where fmt-newline">where
+    T: ?Sized,</span></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.borrow" class="method trait-impl"><a href="#method.borrow" class="anchor">§</a><h4 class="code-header">fn <a class="fn">borrow</a>(&amp;self) -&gt; &amp;T</h4></section></summary><div class='docblock'>Immutably borrows from an owned value. <a>Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-BorrowMut%3CT%3E-for-T" class="impl"><a href="#impl-BorrowMut%3CT%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; BorrowMut&lt;T&gt; for T<span class="where fmt-newline">where
+    T: ?Sized,</span></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.borrow_mut" class="method trait-impl"><a href="#method.borrow_mut" class="anchor">§</a><h4 class="code-header">fn <a class="fn">borrow_mut</a>(&amp;mut self) -&gt; &amp;mut T</h4></section></summary><div class='docblock'>Mutably borrows from an owned value. <a>Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-From%3CT%3E-for-T" class="impl"><a href="#impl-From%3CT%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; From&lt;T&gt; for T</h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.from" class="method trait-impl"><a href="#method.from" class="anchor">§</a><h4 class="code-header">fn <a class="fn">from</a>(t: T) -&gt; T</h4></section></summary><div class="docblock"><p>Returns the argument unchanged.</p>
+</div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-Into%3CU%3E-for-T" class="impl"><a href="#impl-Into%3CU%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T, U&gt; Into&lt;U&gt; for T<span class="where fmt-newline">where
+    U: From&lt;T&gt;,</span></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.into" class="method trait-impl"><a href="#method.into" class="anchor">§</a><h4 class="code-header">fn <a class="fn">into</a>(self) -&gt; U</h4></section></summary><div class="docblock"><p>Calls <code>U::from(self)</code>.</p>
+<p>That is, this conversion is whatever the implementation of
+<code>[From]&lt;T&gt; for U</code> chooses to do.</p>
+</div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-TryFrom%3CU%3E-for-T" class="impl"><a href="#impl-TryFrom%3CU%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T, U&gt; TryFrom&lt;U&gt; for T<span class="where fmt-newline">where
+    U: Into&lt;T&gt;,</span></h3></section></summary><div class="impl-items"><details class="toggle" open><summary><section id="associatedtype.Error-1" class="associatedtype trait-impl"><a href="#associatedtype.Error-1" class="anchor">§</a><h4 class="code-header">type <a class="associatedtype">Error</a> = Infallible</h4></section></summary><div class='docblock'>The type returned in the event of a conversion error.</div></details><details class="toggle method-toggle" open><summary><section id="method.try_from" class="method trait-impl"><a href="#method.try_from" class="anchor">§</a><h4 class="code-header">fn <a class="fn">try_from</a>(value: U) -&gt; Result&lt;T, &lt;T as TryFrom&lt;U&gt;&gt;::Error&gt;</h4></section></summary><div class='docblock'>Performs the conversion.</div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-TryInto%3CU%3E-for-T" class="impl"><a href="#impl-TryInto%3CU%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T, U&gt; TryInto&lt;U&gt; for T<span class="where fmt-newline">where
+    U: TryFrom&lt;T&gt;,</span></h3></section></summary><div class="impl-items"><details class="toggle" open><summary><section id="associatedtype.Error" class="associatedtype trait-impl"><a href="#associatedtype.Error" class="anchor">§</a><h4 class="code-header">type <a class="associatedtype">Error</a> = &lt;U as TryFrom&lt;T&gt;&gt;::Error</h4></section></summary><div class='docblock'>The type returned in the event of a conversion error.</div></details><details class="toggle method-toggle" open><summary><section id="method.try_into" class="method trait-impl"><a href="#method.try_into" class="anchor">§</a><h4 class="code-header">fn <a class="fn">try_into</a>(self) -&gt; Result&lt;U, &lt;U as TryFrom&lt;T&gt;&gt;::Error&gt;</h4></section></summary><div class='docblock'>Performs the conversion.</div></details></div></details></div></section></div></main></body></html>

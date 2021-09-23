@@ -1,0 +1,10 @@
+var crc8_8c =
+[
+    [ "soc_crc8_cal", "crc8_8c.html#afd00c9dd1214e510a39c31ea520b277b", null ],
+    [ "xwlib_crc8_cal", "group__xwos__lib__crc8.html#gac2e3426f477d74c3f1f3eb29b0094d5d", null ],
+    [ "xwlib_crc8_calms", "group__xwos__lib__crc8.html#ga76842807657d90835b7ea536e3fbd084", null ],
+    [ "xwlib_crc8_swcal", "crc8_8c.html#a1467f9449de123d12a44c64141651f70", null ],
+    [ "xwlib_crc8tbl_0x07", "group__xwos__lib__crc8.html#gacdf55e1128fa185c9f077aa01b450252", null ],
+    [ "xwlib_crc8tbl_0x31", "group__xwos__lib__crc8.html#gaeebec62fed74723eafe35397e807d3e1", null ],
+    [ "xwlib_crc8tbl_0x9B", "group__xwos__lib__crc8.html#gae98035735332b48f7c46edf1d4cb0290", null ]
+];

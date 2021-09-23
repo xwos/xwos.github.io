@@ -1,0 +1,393 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>XWOS API: xwos/osal/lock/seqlock.h 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<a href="/" class="github-corner" title="返回首页">
+  <svg viewBox="0 0 250 250" style="position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path
+      d="M 0 0 L 250 250 L 250 0 L 0 0 z M 181.19336 6.25 A 18.281986 19.638775 0 0 1 192.79297 10.798828 L 241.54492 54.201172 A 6.0939954 6.5462585 0 0 1 237.64453 65.787109 L 233.13477 65.787109 A 3.0469979 3.2731292 0 0 0 230.08789 69.060547 L 230.08789 111.61133 A 18.281986 19.638775 0 0 1 211.80664 131.25 L 205.71289 131.25 A 12.187991 13.092517 0 0 1 193.52344 118.1582 L 193.52344 98.519531 A 12.187991 13.092517 0 0 0 181.33594 85.425781 A 12.187991 13.092517 0 0 0 169.14844 98.519531 L 169.14844 118.1582 A 12.187991 13.092517 0 0 1 156.95898 131.25 L 150.86523 131.25 A 18.281986 19.638775 0 0 1 132.58398 111.61133 L 132.58398 68.994141 A 3.0469979 3.2731292 0 0 0 129.29297 65.722656 L 124.7832 65.722656 A 6.0939954 6.5462585 0 0 1 120.88281 54.201172 L 169.39258 10.798828 A 18.281986 19.638775 0 0 1 181.19336 6.25 z "/>
+  </svg>
+</a>
+<style>.github-corner:hover</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">XWOS API
+   &#160;<span id="projectnumber">3.0</span>
+   </div>
+   <div id="projectbrief">XWOS API参考手册</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('lock_2seqlock_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">结构体</a> &#124;
+<a href="#define-members">宏定义</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">seqlock.h 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>操作系统抽象层：顺序锁  
+<a href="#details">更多...</a></p>
+<div class="textblock"><code>#include &lt;<a class="el" href="xwos_2standard_8h_source.html">xwos/standard.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="jack_2lock_2seqlock_8h_source.html">xwos/osal/jack/lock/seqlock.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="irq_8h_source.html">xwos/osal/irq.h</a>&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+seqlock.h 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="lock_2seqlock_8h__incl.png" border="0" usemap="#axwos_2osal_2lock_2seqlock_8h" alt=""/></div>
+<map name="axwos_2osal_2lock_2seqlock_8h" id="axwos_2osal_2lock_2seqlock_8h">
+<area shape="rect" title="操作系统抽象层：顺序锁" alt="" coords="539,5,708,31"/>
+<area shape="rect" href="xwos_2standard_8h.html" title="XWOS的标准头文件" alt="" coords="508,167,627,192"/>
+<area shape="poly" title=" " alt="" coords="598,33,568,52,555,65,545,80,540,98,541,117,555,153,550,155,536,118,535,98,540,78,551,61,565,48,595,29"/>
+<area shape="rect" href="jack_2lock_2seqlock_8h.html" title="操作系统抽象层：顺序锁接口描述" alt="" coords="555,79,692,119"/>
+<area shape="poly" title=" " alt="" coords="626,31,626,65,621,65,621,31"/>
+<area shape="rect" href="irq_8h.html" title="操作系统抽象层：异常与中断" alt="" coords="716,86,827,111"/>
+<area shape="poly" title=" " alt="" coords="647,28,739,77,736,82,644,33"/>
+<area shape="rect" title=" " alt="" coords="371,387,466,412"/>
+<area shape="poly" title=" " alt="" coords="512,194,470,212,452,225,437,242,421,273,414,309,414,343,416,373,411,373,408,344,409,308,416,272,432,238,448,221,468,208,510,190"/>
+<area shape="rect" href="rule_8h.html" title="XWOS通用库：编译规则" alt="" coords="26,240,133,265"/>
+<area shape="poly" title=" " alt="" coords="509,192,147,244,146,239,508,187"/>
+<area shape="rect" href="compiler_8h.html" title="XWOS通用库：编译器宏定义" alt="" coords="228,240,363,265"/>
+<area shape="poly" title=" " alt="" coords="525,195,354,239,352,234,523,189"/>
+<area shape="rect" href="version_8h.html" title="XWOS版本号" alt="" coords="447,240,558,265"/>
+<area shape="poly" title=" " alt="" coords="559,194,524,232,520,228,555,191"/>
+<area shape="rect" href="type_8h.html" title="XWOS通用库：基本类型定义" alt="" coords="863,313,974,339"/>
+<area shape="poly" title=" " alt="" coords="628,186,781,210,848,224,885,238,898,251,907,267,917,299,912,301,902,270,894,255,882,242,847,229,780,216,627,191"/>
+<area shape="rect" href="error_8h.html" title="XWOS通用库：错误" alt="" coords="760,240,871,265"/>
+<area shape="poly" title=" " alt="" coords="608,189,763,234,762,239,607,195"/>
+<area shape="rect" title=" " alt="" coords="561,313,700,339"/>
+<area shape="poly" title=" " alt="" coords="626,190,667,208,685,221,699,239,704,258,697,277,682,294,664,308,661,304,678,290,692,274,699,258,695,241,681,225,664,212,624,195"/>
+<area shape="rect" href="mb_8h.html" title="XWOS通用库：内存屏障" alt="" coords="582,240,684,265"/>
+<area shape="poly" title=" " alt="" coords="580,191,615,228,611,232,577,194"/>
+<area shape="poly" title=" " alt="" coords="60,268,39,282,19,300,9,319,9,328,14,337,36,353,71,367,114,377,163,385,266,393,357,396,357,401,266,399,162,390,113,382,69,372,34,358,10,340,4,330,3,318,15,297,35,278,57,263"/>
+<area shape="rect" title=" " alt="" coords="24,313,135,339"/>
+<area shape="poly" title=" " alt="" coords="82,266,82,300,77,300,77,266"/>
+<area shape="poly" title=" " alt="" coords="265,268,236,281,210,298,196,317,196,327,200,337,224,354,264,368,358,387,357,392,262,373,222,358,196,340,190,328,191,316,207,294,233,277,262,263"/>
+<area shape="rect" title=" " alt="" coords="210,313,381,339"/>
+<area shape="poly" title=" " alt="" coords="298,266,298,300,293,300,293,266"/>
+<area shape="poly" title=" " alt="" coords="863,339,851,341,479,393,479,388,850,336,862,334"/>
+<area shape="rect" title=" " alt="" coords="910,387,1057,412"/>
+<area shape="poly" title=" " alt="" coords="931,337,966,375,962,378,927,341"/>
+<area shape="rect" title=" " alt="" coords="817,387,886,412"/>
+<area shape="poly" title=" " alt="" coords="909,341,874,378,870,375,905,337"/>
+<area shape="poly" title=" " alt="" coords="834,263,892,303,889,307,831,268"/>
+<area shape="rect" href="errno_8h.html" title="XWOS通用库：错误码" alt="" coords="724,313,838,339"/>
+<area shape="poly" title=" " alt="" coords="812,267,795,302,790,300,808,264"/>
+<area shape="poly" title=" " alt="" coords="617,268,449,381,446,376,614,263"/>
+<area shape="poly" title=" " alt="" coords="635,266,634,300,629,300,630,266"/>
+<area shape="poly" title=" " alt="" coords="743,114,611,164,609,159,741,109"/>
+<area shape="rect" href="jack_2irq_8h.html" title="操作系统抽象层：中断接口描述" alt="" coords="702,167,841,192"/>
+<area shape="poly" title=" " alt="" coords="774,112,774,153,769,153,769,112"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+此图展示该文件直接或间接的被哪些文件引用了:</div>
+<div class="dyncontent">
+<div class="center"><img src="lock_2seqlock_8h__dep__incl.png" border="0" usemap="#axwos_2osal_2lock_2seqlock_8hdep" alt=""/></div>
+<map name="axwos_2osal_2lock_2seqlock_8hdep" id="axwos_2osal_2lock_2seqlock_8hdep">
+<area shape="rect" title="操作系统抽象层：顺序锁" alt="" coords="371,5,540,31"/>
+<area shape="rect" href="ds_2device_8c.html" title="玄武设备栈：设备基类" alt="" coords="5,152,129,177"/>
+<area shape="poly" title=" " alt="" coords="358,33,272,51,227,64,184,81,154,98,125,117,81,154,78,149,122,113,151,93,182,76,225,59,270,46,357,28"/>
+<area shape="rect" href="xwcd_2ds_2object_8c.html" title="玄武设备栈：对象" alt="" coords="296,152,417,177"/>
+<area shape="poly" title=" " alt="" coords="442,44,367,153,362,150,437,41"/>
+<area shape="rect" href="xwds_8h.html" title="玄武设备栈：电源管理框架" alt="" coords="195,79,313,104"/>
+<area shape="poly" title=" " alt="" coords="411,38,288,81,286,76,409,33"/>
+<area shape="rect" href="objcache_8c.html" title="XWOS内存管理：内存池：对象缓存" alt="" coords="370,225,573,251"/>
+<area shape="poly" title=" " alt="" coords="460,45,473,225,468,225,455,45"/>
+<area shape="rect" href="objcache_8h.html" title="XWOS内存管理：内存池：对象缓存" alt="" coords="493,152,695,177"/>
+<area shape="poly" title=" " alt="" coords="478,39,585,150,581,154,474,43"/>
+<area shape="rect" href="page_8c.html" title="XWOS内存管理：内存池：页分配器" alt="" coords="871,152,1050,177"/>
+<area shape="poly" title=" " alt="" coords="554,16,624,21,702,31,783,49,860,76,889,93,915,113,953,150,949,154,912,117,886,97,858,81,782,54,701,36,623,26,554,22"/>
+<area shape="rect" href="page_8h.html" title="XWOS内存管理：内存池：页分配器" alt="" coords="669,79,847,104"/>
+<area shape="poly" title=" " alt="" coords="518,31,710,76,708,81,516,36"/>
+<area shape="poly" title=" " alt="" coords="212,111,99,154,97,149,211,106"/>
+<area shape="poly" title=" " alt="" coords="283,110,341,150,338,154,280,114"/>
+<area shape="rect" href="xwds_8c.html" title="玄武设备栈：电源管理框架" alt="" coords="154,152,271,177"/>
+<area shape="poly" title=" " alt="" coords="243,117,222,153,217,151,238,115"/>
+<area shape="poly" title=" " alt="" coords="564,186,493,227,490,223,561,182"/>
+<area shape="rect" href="allocator_8h.html" title="XWOS内存管理：内存池：页分配器" alt="" coords="597,225,797,251"/>
+<area shape="poly" title=" " alt="" coords="623,183,681,223,678,227,620,187"/>
+<area shape="rect" href="allocator_8c.html" title="XWOS内存管理：内存池：页分配器" alt="" coords="665,299,865,324"/>
+<area shape="poly" title=" " alt="" coords="719,259,756,297,752,300,715,262"/>
+<area shape="poly" title=" " alt="" coords="752,118,735,150,709,179,680,194,637,207,541,228,540,223,636,202,678,189,706,175,731,147,747,116"/>
+<area shape="poly" title=" " alt="" coords="720,112,622,154,620,149,718,107"/>
+<area shape="poly" title=" " alt="" coords="763,118,762,147,754,178,735,206,714,227,710,223,731,203,749,176,756,147,758,118"/>
+<area shape="poly" title=" " alt="" coords="777,114,793,141,808,176,816,213,811,251,797,279,779,300,775,297,792,276,806,250,810,214,803,177,788,144,772,117"/>
+<area shape="poly" title=" " alt="" coords="804,106,929,149,927,154,802,111"/>
+</map>
+</div>
+</div>
+<p><a href="lock_2seqlock_8h_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+结构体</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structxwos__sqlk.html">xwos_sqlk</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：顺序锁  <a href="structxwos__sqlk.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:ga1571ce94b440f18564e0fd3c6850942e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#ga1571ce94b440f18564e0fd3c6850942e">XWOS_SQLK_GRANULARITY</a>&#160;&#160;&#160;XWOSDL_SQLK_GRANULARITY</td></tr>
+<tr class="memdesc:ga1571ce94b440f18564e0fd3c6850942e"><td class="mdescLeft">&#160;</td><td class="mdescRight">操作系统抽象层：顺序锁顺序值的粒度  <br /></td></tr>
+<tr class="separator:ga1571ce94b440f18564e0fd3c6850942e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:ga230119b86fd51047f83cbe1e74982892"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#ga230119b86fd51047f83cbe1e74982892">xwos_sqlk_init</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql)</td></tr>
+<tr class="memdesc:ga230119b86fd51047f83cbe1e74982892"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：初始化顺序锁  <br /></td></tr>
+<tr class="separator:ga230119b86fd51047f83cbe1e74982892"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7cd1c5a34e6c318d537e4780f3ae85f4"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#ga7cd1c5a34e6c318d537e4780f3ae85f4">xwos_sqlk_rd_begin</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql)</td></tr>
+<tr class="memdesc:ga7cd1c5a34e6c318d537e4780f3ae85f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：开启共享读临界区  <br /></td></tr>
+<tr class="separator:ga7cd1c5a34e6c318d537e4780f3ae85f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabcf1bae603513b049184fe2179d1301e"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#gabcf1bae603513b049184fe2179d1301e">xwos_sqlk_rd_retry</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> start)</td></tr>
+<tr class="memdesc:gabcf1bae603513b049184fe2179d1301e"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：关闭共享读临界区，并检查是否需要重试  <br /></td></tr>
+<tr class="separator:gabcf1bae603513b049184fe2179d1301e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga40da988fa2376c706f8cab79dc4dab7c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#ga40da988fa2376c706f8cab79dc4dab7c">xwos_sqlk_get_seq</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql)</td></tr>
+<tr class="memdesc:ga40da988fa2376c706f8cab79dc4dab7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：获取顺序锁的顺序值  <br /></td></tr>
+<tr class="separator:ga40da988fa2376c706f8cab79dc4dab7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0bc2e7584ad91b0c250ff029b25d70bd"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#ga0bc2e7584ad91b0c250ff029b25d70bd">xwos_sqlk_rdex_lock</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql)</td></tr>
+<tr class="memdesc:ga0bc2e7584ad91b0c250ff029b25d70bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：开启独占读临界区  <br /></td></tr>
+<tr class="separator:ga0bc2e7584ad91b0c250ff029b25d70bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa870ff02e389c6f9d61ee4119fc38204"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#gaa870ff02e389c6f9d61ee4119fc38204">xwos_sqlk_rdex_trylock</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql)</td></tr>
+<tr class="memdesc:gaa870ff02e389c6f9d61ee4119fc38204"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：尝试开启独占读临界区  <br /></td></tr>
+<tr class="separator:gaa870ff02e389c6f9d61ee4119fc38204"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga390316c0f4e02e92669a87fefe0a0bb4"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#ga390316c0f4e02e92669a87fefe0a0bb4">xwos_sqlk_rdex_unlock</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql)</td></tr>
+<tr class="memdesc:ga390316c0f4e02e92669a87fefe0a0bb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：关闭独占读临界区  <br /></td></tr>
+<tr class="separator:ga390316c0f4e02e92669a87fefe0a0bb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga24cf158c1835abd6bacdcd846b1ba787"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#ga24cf158c1835abd6bacdcd846b1ba787">xwos_sqlk_rdex_lock_cpuirq</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql)</td></tr>
+<tr class="memdesc:ga24cf158c1835abd6bacdcd846b1ba787"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：开启独占读临界区，并关闭本地CPU的中断  <br /></td></tr>
+<tr class="separator:ga24cf158c1835abd6bacdcd846b1ba787"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5cd525a876d961a541876ba9a217e77e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#ga5cd525a876d961a541876ba9a217e77e">xwos_sqlk_rdex_trylock_cpuirq</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql)</td></tr>
+<tr class="memdesc:ga5cd525a876d961a541876ba9a217e77e"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：尝试开启独占读临界区，并关闭本地CPU的中断  <br /></td></tr>
+<tr class="separator:ga5cd525a876d961a541876ba9a217e77e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadd1ae7af48feae2d216dc588d2789490"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#gadd1ae7af48feae2d216dc588d2789490">xwos_sqlk_rdex_unlock_cpuirq</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql)</td></tr>
+<tr class="memdesc:gadd1ae7af48feae2d216dc588d2789490"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：关闭独占读临界区，并开启本地CPU的中断  <br /></td></tr>
+<tr class="separator:gadd1ae7af48feae2d216dc588d2789490"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9c906f30b85d221d21be57fe2ff79410"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#ga9c906f30b85d221d21be57fe2ff79410">xwos_sqlk_rdex_lock_cpuirqsv</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql, <a class="el" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> *cpuirq)</td></tr>
+<tr class="memdesc:ga9c906f30b85d221d21be57fe2ff79410"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：开启独占读临界区，保存本地CPU的中断标志并关闭  <br /></td></tr>
+<tr class="separator:ga9c906f30b85d221d21be57fe2ff79410"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7466ec4b9fede25fce836c3e0f718661"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#ga7466ec4b9fede25fce836c3e0f718661">xwos_sqlk_rdex_trylock_cpuirqsv</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql, <a class="el" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> *cpuirq)</td></tr>
+<tr class="memdesc:ga7466ec4b9fede25fce836c3e0f718661"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：尝试开启独占读临界区，保存本地CPU的中断标志并关闭  <br /></td></tr>
+<tr class="separator:ga7466ec4b9fede25fce836c3e0f718661"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6eb881e1a1c6e73879053a45e7af20cc"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#ga6eb881e1a1c6e73879053a45e7af20cc">xwos_sqlk_rdex_unlock_cpuirqrs</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql, <a class="el" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> cpuirq)</td></tr>
+<tr class="memdesc:ga6eb881e1a1c6e73879053a45e7af20cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：关闭独占读临界区，恢复本地CPU的中断标志  <br /></td></tr>
+<tr class="separator:ga6eb881e1a1c6e73879053a45e7af20cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga38e747a975b3a967fd1d8bb97b0690ab"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#ga38e747a975b3a967fd1d8bb97b0690ab">xwos_sqlk_rdex_lock_irqs</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql, const <a class="el" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a> irqs[], <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num)</td></tr>
+<tr class="memdesc:ga38e747a975b3a967fd1d8bb97b0690ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：开启独占读临界区，并关闭部分中断  <br /></td></tr>
+<tr class="separator:ga38e747a975b3a967fd1d8bb97b0690ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad600ec3b981231083a11a7aacc6ad5bd"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#gad600ec3b981231083a11a7aacc6ad5bd">xwos_sqlk_rdex_trylock_irqs</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql, const <a class="el" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a> irqs[], <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num)</td></tr>
+<tr class="memdesc:gad600ec3b981231083a11a7aacc6ad5bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：尝试开启独占读临界区，并关闭部分中断  <br /></td></tr>
+<tr class="separator:gad600ec3b981231083a11a7aacc6ad5bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1e7b772397b51c8ae3dbc98b7846ce67"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#ga1e7b772397b51c8ae3dbc98b7846ce67">xwos_sqlk_rdex_unlock_irqs</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql, const <a class="el" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a> irqs[], <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num)</td></tr>
+<tr class="memdesc:ga1e7b772397b51c8ae3dbc98b7846ce67"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：关闭独占读临界区，并开启部分中断  <br /></td></tr>
+<tr class="separator:ga1e7b772397b51c8ae3dbc98b7846ce67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga737a8a2ed864bc21731376570ee89e3e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#ga737a8a2ed864bc21731376570ee89e3e">xwos_sqlk_rdex_lock_irqssv</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql, const <a class="el" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a> irqs[], <a class="el" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> flags[], <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num)</td></tr>
+<tr class="memdesc:ga737a8a2ed864bc21731376570ee89e3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：开启独占读临界区，保存部分中断的中断标志并关闭  <br /></td></tr>
+<tr class="separator:ga737a8a2ed864bc21731376570ee89e3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf11b33323fd18b7b436de8a790fb869e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#gaf11b33323fd18b7b436de8a790fb869e">xwos_sqlk_rdex_trylock_irqssv</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql, const <a class="el" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a> irqs[], <a class="el" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> flags[], <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num)</td></tr>
+<tr class="memdesc:gaf11b33323fd18b7b436de8a790fb869e"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：尝试开启独占读临界区，保存部分中断的中断标志并关闭  <br /></td></tr>
+<tr class="separator:gaf11b33323fd18b7b436de8a790fb869e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga13a66c991ce2e6104752449c4b6c6d4e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#ga13a66c991ce2e6104752449c4b6c6d4e">xwos_sqlk_rdex_unlock_irqsrs</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql, const <a class="el" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a> irqs[], <a class="el" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> flags[], <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num)</td></tr>
+<tr class="memdesc:ga13a66c991ce2e6104752449c4b6c6d4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：关闭独占读临界区，恢复部分中断的中断标志  <br /></td></tr>
+<tr class="separator:ga13a66c991ce2e6104752449c4b6c6d4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad649d232c24bbbf43fb9d9f163381692"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#gad649d232c24bbbf43fb9d9f163381692">xwos_sqlk_rdex_lock_bh</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql)</td></tr>
+<tr class="memdesc:gad649d232c24bbbf43fb9d9f163381692"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：开启独占读临界区，关闭本地CPU的中断底半部  <br /></td></tr>
+<tr class="separator:gad649d232c24bbbf43fb9d9f163381692"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab71ec7bec664746455b4f5c3ffaf5505"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#gab71ec7bec664746455b4f5c3ffaf5505">xwos_sqlk_rdex_trylock_bh</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql)</td></tr>
+<tr class="memdesc:gab71ec7bec664746455b4f5c3ffaf5505"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：尝试开启独占读临界区，关闭本地CPU的中断底半部  <br /></td></tr>
+<tr class="separator:gab71ec7bec664746455b4f5c3ffaf5505"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga56e9f3261d8966ac1dfc51619cd5f48d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#ga56e9f3261d8966ac1dfc51619cd5f48d">xwos_sqlk_rdex_unlock_bh</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql)</td></tr>
+<tr class="memdesc:ga56e9f3261d8966ac1dfc51619cd5f48d"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：关闭独占读临界区，开启本地CPU的中断底半部  <br /></td></tr>
+<tr class="separator:ga56e9f3261d8966ac1dfc51619cd5f48d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga16274374f2eeac631149433d1cf3491a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#ga16274374f2eeac631149433d1cf3491a">xwos_sqlk_wr_lock</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql)</td></tr>
+<tr class="memdesc:ga16274374f2eeac631149433d1cf3491a"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：开启写临界区  <br /></td></tr>
+<tr class="separator:ga16274374f2eeac631149433d1cf3491a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5cc1e68a7d23ca6b7210de17b950e64b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#ga5cc1e68a7d23ca6b7210de17b950e64b">xwos_sqlk_wr_trylock</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql)</td></tr>
+<tr class="memdesc:ga5cc1e68a7d23ca6b7210de17b950e64b"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：尝试开启写临界区  <br /></td></tr>
+<tr class="separator:ga5cc1e68a7d23ca6b7210de17b950e64b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1320e69104e26e1a79b5459e7607584c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#ga1320e69104e26e1a79b5459e7607584c">xwos_sqlk_wr_unlock</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql)</td></tr>
+<tr class="memdesc:ga1320e69104e26e1a79b5459e7607584c"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：关闭写临界区  <br /></td></tr>
+<tr class="separator:ga1320e69104e26e1a79b5459e7607584c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga61fbffa6ca444335dbf3a4c2d2fd79b5"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#ga61fbffa6ca444335dbf3a4c2d2fd79b5">xwos_sqlk_wr_lock_cpuirq</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql)</td></tr>
+<tr class="memdesc:ga61fbffa6ca444335dbf3a4c2d2fd79b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：开启写临界区，并关闭本地CPU的中断  <br /></td></tr>
+<tr class="separator:ga61fbffa6ca444335dbf3a4c2d2fd79b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa46493b921777da3bc92fd5e91cf2388"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#gaa46493b921777da3bc92fd5e91cf2388">xwos_sqlk_wr_trylock_cpuirq</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql)</td></tr>
+<tr class="memdesc:gaa46493b921777da3bc92fd5e91cf2388"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：尝试开启写临界区，并关闭本地CPU的中断  <br /></td></tr>
+<tr class="separator:gaa46493b921777da3bc92fd5e91cf2388"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga694c4ac137e605fd951a3e3c1d37c855"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#ga694c4ac137e605fd951a3e3c1d37c855">xwos_sqlk_wr_unlock_cpuirq</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql)</td></tr>
+<tr class="memdesc:ga694c4ac137e605fd951a3e3c1d37c855"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：关闭写临界区，并开启本地CPU的中断  <br /></td></tr>
+<tr class="separator:ga694c4ac137e605fd951a3e3c1d37c855"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabc138d69277ba1017ade0f27c6c282cb"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#gabc138d69277ba1017ade0f27c6c282cb">xwos_sqlk_wr_lock_cpuirqsv</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql, <a class="el" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> *cpuirq)</td></tr>
+<tr class="memdesc:gabc138d69277ba1017ade0f27c6c282cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：开启写临界区，保存本地CPU的中断标志并关闭  <br /></td></tr>
+<tr class="separator:gabc138d69277ba1017ade0f27c6c282cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga065396cb9c428d0e6234ade20506ff2a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#ga065396cb9c428d0e6234ade20506ff2a">xwos_sqlk_wr_trylock_cpuirqsv</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql, <a class="el" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> *cpuirq)</td></tr>
+<tr class="memdesc:ga065396cb9c428d0e6234ade20506ff2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：尝试开启写临界区，保存本地CPU的中断标志并关闭  <br /></td></tr>
+<tr class="separator:ga065396cb9c428d0e6234ade20506ff2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadcb38d5d6dad7969e1231c47c131f3c8"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#gadcb38d5d6dad7969e1231c47c131f3c8">xwos_sqlk_wr_unlock_cpuirqrs</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql, <a class="el" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> cpuirq)</td></tr>
+<tr class="memdesc:gadcb38d5d6dad7969e1231c47c131f3c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：关闭写临界区，恢复本地CPU的中断标志  <br /></td></tr>
+<tr class="separator:gadcb38d5d6dad7969e1231c47c131f3c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5a01a4628ee3c22ac836908b6365662a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#ga5a01a4628ee3c22ac836908b6365662a">xwos_sqlk_wr_lock_irqs</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql, const <a class="el" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a> irqs[], <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num)</td></tr>
+<tr class="memdesc:ga5a01a4628ee3c22ac836908b6365662a"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：开启写临界区，并关闭部分中断  <br /></td></tr>
+<tr class="separator:ga5a01a4628ee3c22ac836908b6365662a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacdfe6dcc69521399e50da59e117f3be9"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#gacdfe6dcc69521399e50da59e117f3be9">xwos_sqlk_wr_trylock_irqs</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql, const <a class="el" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a> irqs[], <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num)</td></tr>
+<tr class="memdesc:gacdfe6dcc69521399e50da59e117f3be9"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：尝试开启写临界区，并关闭部分中断  <br /></td></tr>
+<tr class="separator:gacdfe6dcc69521399e50da59e117f3be9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3e2cca7ca59ae3694cfe8a00538bb7e7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#ga3e2cca7ca59ae3694cfe8a00538bb7e7">xwos_sqlk_wr_unlock_irqs</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql, const <a class="el" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a> irqs[], <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num)</td></tr>
+<tr class="memdesc:ga3e2cca7ca59ae3694cfe8a00538bb7e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：关闭写临界区，并开启部分中断  <br /></td></tr>
+<tr class="separator:ga3e2cca7ca59ae3694cfe8a00538bb7e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga63ec03db8a4c6247f55059b9d4c23d59"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#ga63ec03db8a4c6247f55059b9d4c23d59">xwos_sqlk_wr_lock_irqssv</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql, const <a class="el" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a> irqs[], <a class="el" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> flags[], <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num)</td></tr>
+<tr class="memdesc:ga63ec03db8a4c6247f55059b9d4c23d59"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：开启写临界区，保存部分中断的中断标志并关闭  <br /></td></tr>
+<tr class="separator:ga63ec03db8a4c6247f55059b9d4c23d59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2bb44600dd09d2e72180f823cfb757a9"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#ga2bb44600dd09d2e72180f823cfb757a9">xwos_sqlk_wr_trylock_irqssv</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql, const <a class="el" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a> irqs[], <a class="el" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> flags[], <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num)</td></tr>
+<tr class="memdesc:ga2bb44600dd09d2e72180f823cfb757a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：尝试开启写临界区，保存部分中断的中断标志并关闭  <br /></td></tr>
+<tr class="separator:ga2bb44600dd09d2e72180f823cfb757a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac551b46f85ab0e0db8585633019c4e80"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#gac551b46f85ab0e0db8585633019c4e80">xwos_sqlk_wr_unlock_irqsrs</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql, const <a class="el" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a> irqs[], <a class="el" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> flags[], <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num)</td></tr>
+<tr class="memdesc:gac551b46f85ab0e0db8585633019c4e80"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：关闭写临界区，恢复部分中断的中断标志  <br /></td></tr>
+<tr class="separator:gac551b46f85ab0e0db8585633019c4e80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaffbc56b927fa504cad49f737a8be68d1"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#gaffbc56b927fa504cad49f737a8be68d1">xwos_sqlk_wr_lock_bh</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql)</td></tr>
+<tr class="memdesc:gaffbc56b927fa504cad49f737a8be68d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：开启写临界区，关闭本地CPU的中断底半部  <br /></td></tr>
+<tr class="separator:gaffbc56b927fa504cad49f737a8be68d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4771dca2b7e1f58df3fea5dc0278bd0a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#ga4771dca2b7e1f58df3fea5dc0278bd0a">xwos_sqlk_wr_trylock_bh</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql)</td></tr>
+<tr class="memdesc:ga4771dca2b7e1f58df3fea5dc0278bd0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：尝试开启写临界区，关闭本地CPU的中断底半部  <br /></td></tr>
+<tr class="separator:ga4771dca2b7e1f58df3fea5dc0278bd0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3e2867fefe9d28031957e563ffc76ff5"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__seqlock.html#ga3e2867fefe9d28031957e563ffc76ff5">xwos_sqlk_wr_unlock_bh</a> (struct <a class="el" href="structxwos__sqlk.html">xwos_sqlk</a> *sql)</td></tr>
+<tr class="memdesc:ga3e2867fefe9d28031957e563ffc76ff5"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：关闭写临界区，开启本地CPU的中断底半部  <br /></td></tr>
+<tr class="separator:ga3e2867fefe9d28031957e563ffc76ff5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>操作系统抽象层：顺序锁 </p>
+<dl class="section author"><dt>作者</dt><dd><ul>
+<li>隐星魂 (Roy Sun) <a href="#" onclick="location.href='mai'+'lto:'+'xwo'+'s@'+'xwo'+'s.'+'tec'+'h'; return false;">xwos@<span class="obfuscator">.nosp@m.</span>xwos<span class="obfuscator">.nosp@m.</span>.tech</a> </li>
+</ul>
+</dd></dl>
+<dl class="section copyright"><dt>版权所有</dt><dd><ul>
+<li>Copyright © 2015 xwos.tech, All Rights Reserved. <blockquote class="doxtable">
+<p>&zwj;This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at <a href="http://mozilla.org/MPL/2.0/">http://mozilla.org/MPL/2.0/</a>. </p>
+</blockquote>
+</li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="lock_2seqlock_8h_source.html">seqlock.h</a> 中定义.</p>
+</div></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_43a52829888b753087a6774748486ed5.html">xwos</a></li><li class="navelem"><a class="el" href="dir_acf86ca9b9e1693a183c44f1acf6992c.html">osal</a></li><li class="navelem"><a class="el" href="dir_af632170ae816756fb8ad9f54592dcb5.html">lock</a></li><li class="navelem"><a class="el" href="lock_2seqlock_8h.html">seqlock.h</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
+  </ul>
+</div>
+</body>
+</html>

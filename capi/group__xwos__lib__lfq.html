@@ -1,0 +1,423 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>XWOS API: 无锁队列</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<a href="/" class="github-corner" title="返回首页">
+  <svg viewBox="0 0 250 250" style="position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path
+      d="M 0 0 L 250 250 L 250 0 L 0 0 z M 181.19336 6.25 A 18.281986 19.638775 0 0 1 192.79297 10.798828 L 241.54492 54.201172 A 6.0939954 6.5462585 0 0 1 237.64453 65.787109 L 233.13477 65.787109 A 3.0469979 3.2731292 0 0 0 230.08789 69.060547 L 230.08789 111.61133 A 18.281986 19.638775 0 0 1 211.80664 131.25 L 205.71289 131.25 A 12.187991 13.092517 0 0 1 193.52344 118.1582 L 193.52344 98.519531 A 12.187991 13.092517 0 0 0 181.33594 85.425781 A 12.187991 13.092517 0 0 0 169.14844 98.519531 L 169.14844 118.1582 A 12.187991 13.092517 0 0 1 156.95898 131.25 L 150.86523 131.25 A 18.281986 19.638775 0 0 1 132.58398 111.61133 L 132.58398 68.994141 A 3.0469979 3.2731292 0 0 0 129.29297 65.722656 L 124.7832 65.722656 A 6.0939954 6.5462585 0 0 1 120.88281 54.201172 L 169.39258 10.798828 A 18.281986 19.638775 0 0 1 181.19336 6.25 z "/>
+  </svg>
+</a>
+<style>.github-corner:hover</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">XWOS API
+   &#160;<span id="projectnumber">3.0</span>
+   </div>
+   <div id="projectbrief">XWOS API参考手册</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('group__xwos__lib__lfq.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">无锁队列<div class="ingroups"><a class="el" href="group__xwos.html">XWOS内核</a> &raquo; <a class="el" href="group__xwos__lib.html">XWOS的通用库</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+无锁队列 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwos__lib__lfq.png" border="0" usemap="#agroup____xwos____lib____lfq" alt=""/></div>
+<map name="agroup____xwos____lib____lfq" id="agroup____xwos____lib____lfq">
+<area shape="rect" href="group__xwos__lib.html" title=" " alt="" coords="5,5,120,31"/>
+<area shape="rect" title=" " alt="" coords="168,5,243,31"/>
+</map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:gac87b1137608605a80577abed410ddc1a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lib__lfq.html#gac87b1137608605a80577abed410ddc1a">xwlib_lfq_init</a> (<a class="el" href="group__xwos__lib__type.html#ga2225ca1f29b430d7c231a07487f1cc06">atomic_xwlfq_t</a> *n)</td></tr>
+<tr class="memdesc:gac87b1137608605a80577abed410ddc1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化无锁队列节点  <br /></td></tr>
+<tr class="separator:gac87b1137608605a80577abed410ddc1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1cac1b49ec185ccb135f19401e286166"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lib__lfq.html#ga1cac1b49ec185ccb135f19401e286166">xwlib_lfq_push</a> (<a class="el" href="group__xwos__lib__type.html#ga2225ca1f29b430d7c231a07487f1cc06">atomic_xwlfq_t</a> *h, <a class="el" href="group__xwos__lib__type.html#ga2225ca1f29b430d7c231a07487f1cc06">atomic_xwlfq_t</a> *n)</td></tr>
+<tr class="memdesc:ga1cac1b49ec185ccb135f19401e286166"><td class="mdescLeft">&#160;</td><td class="mdescRight">将一个节点推入无锁队列（栈式队列）  <br /></td></tr>
+<tr class="separator:ga1cac1b49ec185ccb135f19401e286166"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacbe43c237a9c7c6f21baa98daaf49e68"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga862eb6a46e40b94681ec41a99f4fcb7e">xwlfq_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lib__lfq.html#gacbe43c237a9c7c6f21baa98daaf49e68">xwlib_lfq_pop</a> (<a class="el" href="group__xwos__lib__type.html#ga2225ca1f29b430d7c231a07487f1cc06">atomic_xwlfq_t</a> *h)</td></tr>
+<tr class="memdesc:gacbe43c237a9c7c6f21baa98daaf49e68"><td class="mdescLeft">&#160;</td><td class="mdescRight">弹出无锁队列中的第一个节点（栈式队列）  <br /></td></tr>
+<tr class="separator:gacbe43c237a9c7c6f21baa98daaf49e68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<h2 class="groupheader">函数说明</h2>
+<a id="gac87b1137608605a80577abed410ddc1a" name="gac87b1137608605a80577abed410ddc1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac87b1137608605a80577abed410ddc1a">&#9670;&#160;</a></span>xwlib_lfq_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void xwlib_lfq_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga2225ca1f29b430d7c231a07487f1cc06">atomic_xwlfq_t</a> *&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>初始化无锁队列节点 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>队列节点指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="lfq_8h_source.html">lfq.h</a> 第 <a class="el" href="lfq_8h_source.html#l00031">31</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   32</span>{</div>
+<div class="line"><span class="lineno">   33</span>        *n = (<a class="code hl_typedef" href="group__xwos__lib__type.html#ga862eb6a46e40b94681ec41a99f4fcb7e">xwlfq_t</a>)0;</div>
+<div class="line"><span class="lineno">   34</span>}</div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga862eb6a46e40b94681ec41a99f4fcb7e"><div class="ttname"><a href="group__xwos__lib__type.html#ga862eb6a46e40b94681ec41a99f4fcb7e">xwlfq_t</a></div><div class="ttdeci">xwptr_t xwlfq_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00591">type.h:591</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwos__lib__lfq_gac87b1137608605a80577abed410ddc1a_icgraph.png" border="0" usemap="#agroup__xwos__lib__lfq_gac87b1137608605a80577abed410ddc1a_icgraph" alt=""/></div>
+<map name="agroup__xwos__lib__lfq_gac87b1137608605a80577abed410ddc1a_icgraph" id="agroup__xwos__lib__lfq_gac87b1137608605a80577abed410ddc1a_icgraph">
+<area shape="rect" title="初始化无锁队列节点" alt="" coords="1593,106,1691,131"/>
+<area shape="rect" href="objcache_8c.html#a75c1bbc6602c82f1cc906c65303ee59d" title="初始化新页" alt="" coords="1365,69,1545,109"/>
+<area shape="poly" title=" " alt="" coords="1580,112,1545,106,1546,101,1581,106"/>
+<area shape="rect" href="group__xwmm__memslice.html#ga56a8e2e7b5977d6fdd53fa8946d92368" title="XWMM API：静态方式初始化内存切片分配器" alt="" coords="1381,134,1529,159"/>
+<area shape="poly" title=" " alt="" coords="1580,131,1530,138,1529,133,1579,125"/>
+<area shape="rect" href="objcache_8c.html#a23e4915feeaf7a05d46ec2affe504642" title="获取一页，准备从页内存中分配对象" alt="" coords="1137,5,1317,45"/>
+<area shape="poly" title=" " alt="" coords="1370,68,1298,48,1300,43,1371,63"/>
+<area shape="rect" href="group__xwmm__mempool.html#gaa72ed546dbddbbb8dd035c01c6334a24" title="XWMM API：预留对象到对象缓存中" alt="" coords="1137,69,1317,109"/>
+<area shape="poly" title=" " alt="" coords="1351,92,1317,92,1317,87,1351,87"/>
+<area shape="rect" href="group__xwmm__mempool.html#ga86e445faf7ecf95130e042fa9b96a41b" title="XWMM API：从对象缓存中申请一个对象" alt="" coords="909,5,1089,45"/>
+<area shape="poly" title=" " alt="" coords="1123,28,1089,28,1089,23,1123,23"/>
+<area shape="rect" href="objcache_8c.html#a27d6631115c7033bfb49d22d5d3d992d" title="i_allocator接口函数：申请内存" alt="" coords="681,5,861,45"/>
+<area shape="poly" title=" " alt="" coords="895,28,861,28,861,23,895,23"/>
+<area shape="rect" href="group__xwmm__mempool.html#ga15d8fc6d72d2ef920927bd6702174c3a" title="XWMM API：初始化对象缓存" alt="" coords="429,13,633,38"/>
+<area shape="poly" title=" " alt="" coords="668,28,634,28,634,23,668,23"/>
+<area shape="rect" href="allocator_8c.html#a6e1f6748cc378d09e931897b69231d0d" title="构建内存池" alt="" coords="199,13,381,38"/>
+<area shape="poly" title=" " alt="" coords="416,28,382,28,382,23,416,23"/>
+<area shape="rect" href="group__xwmm__mempool.html#gaad8340a12043c383e489a786788e89af" title="XWMM API：初始化内存池" alt="" coords="5,13,151,38"/>
+<area shape="poly" title=" " alt="" coords="184,28,151,28,151,23,184,23"/>
+<area shape="rect" href="xwmq_8c.html#aa0841cf7abe8c4dfd5626a12bf99f72d" title=" " alt="" coords="1172,134,1283,159"/>
+<area shape="poly" title=" " alt="" coords="1367,149,1283,149,1283,144,1367,144"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga51603f04fac6de40ea6726d69b264cc7" title="XWMQ API：静态方式初始化消息队列" alt="" coords="959,134,1040,159"/>
+<area shape="poly" title=" " alt="" coords="1158,149,1040,149,1040,144,1158,144"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="gacbe43c237a9c7c6f21baa98daaf49e68" name="gacbe43c237a9c7c6f21baa98daaf49e68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacbe43c237a9c7c6f21baa98daaf49e68">&#9670;&#160;</a></span>xwlib_lfq_pop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga862eb6a46e40b94681ec41a99f4fcb7e">xwlfq_t</a> * xwlib_lfq_pop </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga2225ca1f29b430d7c231a07487f1cc06">atomic_xwlfq_t</a> *&#160;</td>
+          <td class="paramname"><em>h</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>弹出无锁队列中的第一个节点（栈式队列） </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">h</td><td>无锁队列头的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>被弹出的节点 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="lfq_8h_source.html">lfq.h</a> 第 <a class="el" href="lfq_8h_source.html#l00053">53</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   54</span>{</div>
+<div class="line"><span class="lineno">   55</span>        <span class="keywordflow">return</span> soc_lfq_pop(h);</div>
+<div class="line"><span class="lineno">   56</span>}</div>
+</div><!-- fragment --><div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwos__lib__lfq_gacbe43c237a9c7c6f21baa98daaf49e68_icgraph.png" border="0" usemap="#agroup__xwos__lib__lfq_gacbe43c237a9c7c6f21baa98daaf49e68_icgraph" alt=""/></div>
+<map name="agroup__xwos__lib__lfq_gacbe43c237a9c7c6f21baa98daaf49e68_icgraph" id="agroup__xwos__lib__lfq_gacbe43c237a9c7c6f21baa98daaf49e68_icgraph">
+<area shape="rect" title="弹出无锁队列中的第一个节点（栈式队列）" alt="" coords="1137,125,1239,151"/>
+<area shape="rect" href="group__xwmm__mempool.html#ga86e445faf7ecf95130e042fa9b96a41b" title="XWMM API：从对象缓存中申请一个对象" alt="" coords="909,89,1089,129"/>
+<area shape="poly" title=" " alt="" coords="1124,131,1089,125,1090,120,1125,125"/>
+<area shape="rect" href="group__xwmm__memslice.html#ga6b9a1ff8b0ea0720d3e684a6b673dbe6" title="XWMM API：申请内存切片" alt="" coords="920,153,1079,179"/>
+<area shape="poly" title=" " alt="" coords="1124,150,1079,157,1078,152,1123,145"/>
+<area shape="rect" href="objcache_8c.html#a27d6631115c7033bfb49d22d5d3d992d" title="i_allocator接口函数：申请内存" alt="" coords="681,43,861,83"/>
+<area shape="poly" title=" " alt="" coords="895,91,861,84,862,79,896,85"/>
+<area shape="rect" href="group__xwmm__mempool.html#ga15d8fc6d72d2ef920927bd6702174c3a" title="XWMM API：初始化对象缓存" alt="" coords="429,5,633,31"/>
+<area shape="poly" title=" " alt="" coords="667,46,599,33,600,28,668,41"/>
+<area shape="rect" href="allocator_8c.html#a6e1f6748cc378d09e931897b69231d0d" title="构建内存池" alt="" coords="199,5,381,31"/>
+<area shape="poly" title=" " alt="" coords="416,21,382,21,382,15,416,15"/>
+<area shape="rect" href="group__xwmm__mempool.html#gaad8340a12043c383e489a786788e89af" title="XWMM API：初始化内存池" alt="" coords="5,5,151,31"/>
+<area shape="poly" title=" " alt="" coords="184,21,151,21,151,15,184,15"/>
+<area shape="rect" href="xwmq_8c.html#a266a048d37f3f16990f8d6bcf3ac2828" title="获取一个消息槽" alt="" coords="714,153,829,179"/>
+<area shape="poly" title=" " alt="" coords="906,169,829,169,829,163,906,163"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga8359c9ba02c8fb2a74e6c4c6094d94cc" title="XWMQ API：限时等待消息槽，成功后将消息发送到消息队列的 尾端 （入队）" alt="" coords="483,55,579,80"/>
+<area shape="poly" title=" " alt="" coords="737,149,689,121,632,95,579,79,580,74,634,90,691,116,740,144"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga8a32f1b107baef4bc25957bca4d4bddd" title="XWMQ API：等待消息槽，且等待不可被中断， 成功后将消息发送到消息队列的 尾端 （入队）" alt="" coords="473,104,590,129"/>
+<area shape="poly" title=" " alt="" coords="700,154,590,131,591,126,701,149"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga0eb1aa3f3e83b696612a7cd9cc90a6f2" title="XWMQ API：限时等待消息槽，成功后将消息发送到消息队列的 首端 （插队）" alt="" coords="485,153,577,179"/>
+<area shape="poly" title=" " alt="" coords="700,169,577,169,577,163,700,163"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga3c6e22dce3a927f790d95f1e294c5789" title="XWMQ API：等待消息槽，且等待不可被中断， 成功后将消息发送到消息队列的 首端 （插队）" alt="" coords="475,203,588,228"/>
+<area shape="poly" title=" " alt="" coords="701,183,589,206,588,201,700,178"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga30b3fc4cf9323d3597eb8a383bdf611f" title="XWMQ API：尝试获取消息槽，成功后将消息发送到消息队列的 尾端 （入队）" alt="" coords="485,252,578,277"/>
+<area shape="poly" title=" " alt="" coords="740,188,692,216,634,243,579,259,577,254,632,238,689,212,738,184"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga706a753c885996d85ec7fbf6d7461385" title="XWMQ API：尝试获取消息槽，成功后将消息发送到消息队列的 首端 （插队）" alt="" coords="487,301,576,327"/>
+<area shape="poly" title=" " alt="" coords="753,191,703,243,670,270,635,292,606,304,577,311,576,306,604,299,632,288,667,265,699,239,749,187"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#gad8d2b0b29234d2959a05eeb67a23ff45" title="XWMQ API：等待消息槽，成功后将消息发送到消息队列的 尾端 （入队）" alt="" coords="251,55,329,80"/>
+<area shape="poly" title=" " alt="" coords="469,70,329,70,329,65,469,65"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga18b4d97f9de46feb6eebd197738aabf6" title="XWMQ API：等待消息槽，成功后将消息发送到消息队列的 首端 （插队）" alt="" coords="253,153,327,179"/>
+<area shape="poly" title=" " alt="" coords="472,169,327,169,327,163,472,163"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga1cac1b49ec185ccb135f19401e286166" name="ga1cac1b49ec185ccb135f19401e286166"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1cac1b49ec185ccb135f19401e286166">&#9670;&#160;</a></span>xwlib_lfq_push()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void xwlib_lfq_push </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga2225ca1f29b430d7c231a07487f1cc06">atomic_xwlfq_t</a> *&#160;</td>
+          <td class="paramname"><em>h</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga2225ca1f29b430d7c231a07487f1cc06">atomic_xwlfq_t</a> *&#160;</td>
+          <td class="paramname"><em>n</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>将一个节点推入无锁队列（栈式队列） </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">h</td><td>无锁队列头的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>入队节点的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="lfq_8h_source.html">lfq.h</a> 第 <a class="el" href="lfq_8h_source.html#l00042">42</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   43</span>{</div>
+<div class="line"><span class="lineno">   44</span>        soc_lfq_push(h, n);</div>
+<div class="line"><span class="lineno">   45</span>}</div>
+</div><!-- fragment --><div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwos__lib__lfq_ga1cac1b49ec185ccb135f19401e286166_icgraph.png" border="0" usemap="#agroup__xwos__lib__lfq_ga1cac1b49ec185ccb135f19401e286166_icgraph" alt=""/></div>
+<map name="agroup__xwos__lib__lfq_ga1cac1b49ec185ccb135f19401e286166_icgraph" id="agroup__xwos__lib__lfq_ga1cac1b49ec185ccb135f19401e286166_icgraph">
+<area shape="rect" title="将一个节点推入无锁队列（栈式队列）" alt="" coords="1623,183,1731,209"/>
+<area shape="rect" href="group__xwmm__mempool.html#gae7d39e7ba00cc3926284e6ba8775121b" title="XWMM API：释放对象到对象缓存中" alt="" coords="1365,74,1575,99"/>
+<area shape="poly" title=" " alt="" coords="1638,179,1494,102,1496,97,1641,174"/>
+<area shape="rect" href="objcache_8c.html#a75c1bbc6602c82f1cc906c65303ee59d" title="初始化新页" alt="" coords="1380,159,1560,199"/>
+<area shape="poly" title=" " alt="" coords="1609,193,1560,189,1560,184,1609,188"/>
+<area shape="rect" href="group__xwmm__memslice.html#ga337a549e8b2fc9e95d1e9c240bde1e31" title="XWMM API：释放内存切片" alt="" coords="1393,229,1547,254"/>
+<area shape="poly" title=" " alt="" coords="1610,213,1529,231,1528,226,1608,208"/>
+<area shape="rect" href="group__xwmm__memslice.html#ga56a8e2e7b5977d6fdd53fa8946d92368" title="XWMM API：静态方式初始化内存切片分配器" alt="" coords="1396,278,1544,303"/>
+<area shape="poly" title=" " alt="" coords="1652,220,1617,246,1576,269,1543,280,1542,275,1574,264,1614,241,1649,215"/>
+<area shape="rect" href="objcache_8c.html#a7214f0b448c3680b68f84d3bb6d7155a" title="i_allocator接口函数：释放内存" alt="" coords="681,5,861,45"/>
+<area shape="poly" title=" " alt="" coords="1372,75,1317,68,1070,46,861,33,862,27,1070,41,1318,63,1373,70"/>
+<area shape="rect" href="group__xwmm__mempool.html#ga15d8fc6d72d2ef920927bd6702174c3a" title="XWMM API：初始化对象缓存" alt="" coords="429,45,633,70"/>
+<area shape="poly" title=" " alt="" coords="668,42,627,47,626,42,667,36"/>
+<area shape="rect" href="allocator_8c.html#a6e1f6748cc378d09e931897b69231d0d" title="构建内存池" alt="" coords="199,45,381,70"/>
+<area shape="poly" title=" " alt="" coords="416,60,382,60,382,55,416,55"/>
+<area shape="rect" href="group__xwmm__mempool.html#gaad8340a12043c383e489a786788e89af" title="XWMM API：初始化内存池" alt="" coords="5,45,151,70"/>
+<area shape="poly" title=" " alt="" coords="184,60,151,60,151,55,184,55"/>
+<area shape="rect" href="objcache_8c.html#a23e4915feeaf7a05d46ec2affe504642" title="获取一页，准备从页内存中分配对象" alt="" coords="1137,77,1317,117"/>
+<area shape="poly" title=" " alt="" coords="1396,157,1287,120,1289,115,1397,152"/>
+<area shape="rect" href="group__xwmm__mempool.html#gaa72ed546dbddbbb8dd035c01c6334a24" title="XWMM API：预留对象到对象缓存中" alt="" coords="1137,159,1317,199"/>
+<area shape="poly" title=" " alt="" coords="1366,181,1317,181,1317,176,1366,176"/>
+<area shape="rect" href="group__xwmm__mempool.html#ga86e445faf7ecf95130e042fa9b96a41b" title="XWMM API：从对象缓存中申请一个对象" alt="" coords="909,69,1089,109"/>
+<area shape="poly" title=" " alt="" coords="1123,96,1089,95,1090,90,1123,91"/>
+<area shape="rect" href="objcache_8c.html#a27d6631115c7033bfb49d22d5d3d992d" title="i_allocator接口函数：申请内存" alt="" coords="681,69,861,109"/>
+<area shape="poly" title=" " alt="" coords="895,92,861,92,861,87,895,87"/>
+<area shape="poly" title=" " alt="" coords="667,78,626,73,627,67,668,73"/>
+<area shape="rect" href="xwmq_8c.html#a5a70d91d330701da212249f5728fb5e4" title="释放一个消息槽" alt="" coords="1170,233,1285,258"/>
+<area shape="poly" title=" " alt="" coords="1379,245,1285,247,1285,242,1379,240"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga9b11a75d7c8d792d305154b32c3dedee" title="XWMQ API: 限时等待从消息队列 首端 接收一条消息" alt="" coords="951,134,1047,159"/>
+<area shape="poly" title=" " alt="" coords="1172,230,1136,213,1112,192,1102,182,1088,173,1047,158,1049,153,1091,168,1106,178,1115,188,1139,208,1174,225"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga98fe6e199b379e49ed413db1435f5b3a" title="XWMQ API: 等待从消息队列 首端 接收一条消息，且等待不可被中断" alt="" coords="941,183,1058,209"/>
+<area shape="poly" title=" " alt="" coords="1156,233,1058,211,1059,206,1157,228"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#gaacdb3c6bfb639e6d2444f479e9557c38" title="XWMQ API: 限时等待从消息队列 尾端 接收一条消息" alt="" coords="953,233,1046,258"/>
+<area shape="poly" title=" " alt="" coords="1156,248,1046,248,1046,243,1156,243"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga1ebf67fde973c23ec718d35258dd7ee1" title="XWMQ API: 等待从消息队列 尾端 接收一条消息，且等待不可被中断" alt="" coords="942,282,1057,307"/>
+<area shape="poly" title=" " alt="" coords="1157,263,1058,285,1056,280,1156,258"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga113bc97ec8121f3eb884e8da900497eb" title="XWMQ API: 尝试从消息队列 首端 接收一条消息" alt="" coords="953,331,1046,357"/>
+<area shape="poly" title=" " alt="" coords="1196,267,1147,295,1090,322,1047,336,1046,331,1088,318,1145,291,1194,263"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga7c48b58030cf580f089d2cb42bc644fd" title="XWMQ API: 尝试从消息队列 尾端 接收一条消息" alt="" coords="954,381,1045,406"/>
+<area shape="poly" title=" " alt="" coords="1208,271,1158,322,1126,349,1091,372,1046,388,1044,383,1088,367,1123,344,1155,318,1205,267"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga6dac123dd10ceaf0f24181b66d49d39a" title="XWMQ API: 等待从消息队列 首端 接收一条消息" alt="" coords="732,134,811,159"/>
+<area shape="poly" title=" " alt="" coords="938,149,811,149,811,144,938,144"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga79b5a6769a655a4e5946f3d60729b342" title="XWMQ API: 等待从消息队列 尾端 接收一条消息" alt="" coords="734,233,809,258"/>
+<area shape="poly" title=" " alt="" coords="939,248,809,248,809,243,939,243"/>
+<area shape="rect" href="xwmq_8c.html#aa0841cf7abe8c4dfd5626a12bf99f72d" title=" " alt="" coords="1172,355,1283,381"/>
+<area shape="poly" title=" " alt="" coords="1417,310,1269,358,1268,353,1415,305"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga51603f04fac6de40ea6726d69b264cc7" title="XWMQ API：静态方式初始化消息队列" alt="" coords="959,430,1040,455"/>
+<area shape="poly" title=" " alt="" coords="1182,388,1090,421,1041,435,1039,430,1089,416,1181,383"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
+  </ul>
+</div>
+</body>
+</html>

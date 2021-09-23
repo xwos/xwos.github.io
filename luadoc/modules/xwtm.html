@@ -1,0 +1,528 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>XWLUA参考手册</title>
+    <link rel="stylesheet" href="../ldoc_new.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>XWLUA</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><strong>xwtm</strong></li>
+  <li><a href="../modules/xwvm.html">xwvm</a></li>
+  <li><a href="../modules/xwxt.html">xwxt</a></li>
+  <li><a href="../modules/xwos.skd.html">xwos.skd</a></li>
+  <li><a href="../modules/xwos.thd.html">xwos.thd</a></li>
+  <li><a href="../modules/xwos.cthd.html">xwos.cthd</a></li>
+  <li><a href="../modules/xwos.lock.mtx.html">xwos.lock.mtx</a></li>
+  <li><a href="../modules/xwos.lock.splk.html">xwos.lock.splk</a></li>
+  <li><a href="../modules/xwos.lock.sqlk.html">xwos.lock.sqlk</a></li>
+  <li><a href="../modules/xwos.sync.sem.html">xwos.sync.sem</a></li>
+  <li><a href="../modules/xwos.sync.cond.html">xwos.sync.cond</a></li>
+  <li><a href="../modules/xwos.sync.flg.html">xwos.sync.flg</a></li>
+  <li><a href="../modules/xwos.sync.br.html">xwos.sync.br</a></li>
+  <li><a href="../modules/xwos.sync.sel.html">xwos.sync.sel</a></li>
+  <li><a href="../modules/xwos.pm.html">xwos.pm</a></li>
+</ul>
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><a href="../classes/xwlib.bmp.html">xwlib.bmp</a></li>
+  <li><a href="../classes/thdsp.html">thdsp</a></li>
+  <li><a href="../classes/mtxsp.html">mtxsp</a></li>
+  <li><a href="../classes/splksp.html">splksp</a></li>
+  <li><a href="../classes/sqlksp.html">sqlksp</a></li>
+  <li><a href="../classes/semsp.html">semsp</a></li>
+  <li><a href="../classes/condsp.html">condsp</a></li>
+  <li><a href="../classes/flgsp.html">flgsp</a></li>
+  <li><a href="../classes/brsp.html">brsp</a></li>
+  <li><a href="../classes/selsp.html">selsp</a></li>
+  <li><a href="../classes/xwds.soc.html">xwds.soc</a></li>
+  <li><a href="../classes/xwds.uart.html">xwds.uart</a></li>
+  <li><a href="../classes/xwds.i2cm.html">xwds.i2cm</a></li>
+  <li><a href="../classes/xwds.spim.html">xwds.spim</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>xwtm</code></h1>
+<p>XWLUA模块：系统时间</p>
+<p>XWOS使用64位有符号整数作为系统时间的类型，单位为纳秒。</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#now">now ()</a></td>
+	<td class="summary">获取当前CPU的 <strong>系统时间</strong> 点</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ft">ft (xwtm)</a></td>
+	<td class="summary">获取当前CPU未来的 <strong>系统时间</strong> 点</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#nowts">nowts ()</a></td>
+	<td class="summary">获取当前CPU的 <strong>系统时间戳</strong></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#fts">fts (xwtm)</a></td>
+	<td class="summary">获取当前CPU的未来 <strong>系统时间戳</strong></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#nowtc">nowtc ()</a></td>
+	<td class="summary">获取当前CPU的 <strong>系统滴答计数</strong></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ns">ns (ns)</a></td>
+	<td class="summary">返回以纳秒为单位的系统时间</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#us">us (us)</a></td>
+	<td class="summary">返回以微秒为单位的系统时间</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ms">ms (ms)</a></td>
+	<td class="summary">返回以毫秒为单位的系统时间</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#s">s (s)</a></td>
+	<td class="summary">返回以秒为单位的系统时间</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#m">m (m)</a></td>
+	<td class="summary">返回以分为单位的系统时间</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#h">h (h)</a></td>
+	<td class="summary">返回以时为单位的系统时间</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#d">d (d)</a></td>
+	<td class="summary">返回以天为单位的系统时间</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "now"></a>
+    <strong>now ()</strong>
+    </dt>
+    <dd>
+    获取当前CPU的 <strong>系统时间</strong> 点 </p>
+
+<p>XWOS中，每个CPU都有一个私有的滴答定时器，产生周期性的定时中断。 <strong>系统时间</strong> 在每次中断时都会增加一次。</p>
+
+<p><strong>系统时间</strong> 是个每CPU私有变量。代码运行在哪个CPU，访问的就是哪个私有变量。</p>
+
+<p>XWOS的系统时间 = 滴答时间定时器中断的次数 * 中断的周期（以纳秒为单位）
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        当前系统滴答时间
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">xwtm.<span class="function-name">now</span>()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "ft"></a>
+    <strong>ft (xwtm)</strong>
+    </dt>
+    <dd>
+    获取当前CPU未来的 <strong>系统时间</strong> 点 </p>
+
+<p>未来时间点 = 当前时间点 + xwtm
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">xwtm</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) 从现在开始到未来的时间
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        未来时间点
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">xwtm.<span class="function-name">ft</span>(xwtm)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "nowts"></a>
+    <strong>nowts ()</strong>
+    </dt>
+    <dd>
+    获取当前CPU的 <strong>系统时间戳</strong> </p>
+
+<p><strong>系统时间戳</strong> 类似于 <strong>系统时间</strong> 。但是 <strong>系统时间</strong> 只会在每次定时器中断时才增加一次，两次中断之间不会发生变化。</p>
+
+<p>通过获取滴答定时器的计数器的值，计算出上一次中断后经过了多少时间，再累加到 <strong>系统时间</strong> 上，即为 <strong>系统时间戳</strong> 。</p>
+
+<p><strong>系统时间戳</strong> 是个每CPU私有变量。代码运行在哪个CPU，访问的就是哪个私有变量。</p>
+
+<p>XWOS的系统时间戳 = XWOS的系统时间 + 滴答定时器距离下一次中断还有多少时间
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        当前系统时间戳
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">xwtm.<span class="function-name">nowts</span>()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "fts"></a>
+    <strong>fts (xwtm)</strong>
+    </dt>
+    <dd>
+    获取当前CPU的未来 <strong>系统时间戳</strong> </p>
+
+<p>未来时间戳 = 当前时间戳 + xwtm
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">xwtm</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) 从现在开始到未来的时间
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        未来时间点
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">xwtm.<span class="function-name">fts</span>(xwtm)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "nowtc"></a>
+    <strong>nowtc ()</strong>
+    </dt>
+    <dd>
+    获取当前CPU的 <strong>系统滴答计数</strong> </p>
+
+<p><strong>系统滴答计数</strong> 表示滴答定时器中断了多少次。</p>
+
+<p><strong>系统滴答计数</strong> 是个每CPU私有变量。代码运行在哪个CPU，访问的就是哪个私有变量。
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        滴答计数
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">xwtm.<span class="function-name">nowtc</span>()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "ns"></a>
+    <strong>ns (ns)</strong>
+    </dt>
+    <dd>
+    返回以纳秒为单位的系统时间
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">ns</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) 纳秒
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        系统时间
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">xwtm.<span class="function-name">ns</span>(ns)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "us"></a>
+    <strong>us (us)</strong>
+    </dt>
+    <dd>
+    返回以微秒为单位的系统时间
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">us</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) 微秒
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        系统时间
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">xwtm.<span class="function-name">us</span>(us)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "ms"></a>
+    <strong>ms (ms)</strong>
+    </dt>
+    <dd>
+    返回以毫秒为单位的系统时间
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">ms</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) 毫秒
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        系统时间
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">xwtm.<span class="function-name">ms</span>(ms)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "s"></a>
+    <strong>s (s)</strong>
+    </dt>
+    <dd>
+    返回以秒为单位的系统时间
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">s</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) 秒
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        系统时间
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">xwtm.<span class="function-name">s</span>(s)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "m"></a>
+    <strong>m (m)</strong>
+    </dt>
+    <dd>
+    返回以分为单位的系统时间
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">m</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) 分
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        系统时间
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">xwtm.<span class="function-name">m</span>(m)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "h"></a>
+    <strong>h (h)</strong>
+    </dt>
+    <dd>
+    返回以时为单位的系统时间
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">h</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) 时
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        系统时间
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">xwtm.<span class="function-name">h</span>(h)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "d"></a>
+    <strong>d (d)</strong>
+    </dt>
+    <dd>
+    返回以天为单位的系统时间
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">d</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) 天
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        系统时间
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">xwtm.<span class="function-name">d</span>(d)</pre>
+    </ul>
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/lunarmodules/LDoc">LDoc 1.5.0</a></i>
+<i style="float:right;">Last updated 2024-01-12 20:06:58 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

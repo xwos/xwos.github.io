@@ -1,0 +1,159 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>XWOS – RISC-V移植说明</title>
+    <link>/docs/Note/SOC/RISC-V/</link>
+    <description>Recent content in RISC-V移植说明 on XWOS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    
+	  <atom:link href="/docs/Note/SOC/RISC-V/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: GD32V移植说明</title>
+      <link>/docs/Note/SOC/RISC-V/GD32V/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/Note/SOC/RISC-V/GD32V/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
+&lt;p&gt;GD32V相关的代码：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;架构描述层(ADL)： &lt;code&gt;XWOS/xwcd/soc/riscv/nuclei/gcc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;CPU描述层(CDL)： &lt;code&gt;XWOS/xwcd/soc/riscv/nuclei/gcc/bumblebee&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;SOC描述层(SDL)
+&lt;ul&gt;
+&lt;li&gt;GD32V： &lt;code&gt;XWOS/xwcd/soc/riscv/nuclei/gcc/bumblebee/gd32v&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;启动流程&#34;&gt;启动流程&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;程序入口： &lt;code&gt;XWOS/xwcd/soc/riscv/nuclei/gcc/bumblebee/gd32v/soc.S: soc_boot&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;中断&#34;&gt;中断&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;采用 &lt;strong&gt;非向量模式&lt;/strong&gt; ，统一的入口： &lt;code&gt;XWOS/xwcd/soc/riscv/nuclei/gcc/bumblebee/gd32v/soc.S: soc_isr_entry&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;使用RISC-V标准寄存器 &lt;code&gt;mscratch&lt;/code&gt; 来实现ARM-Cortex-M类似的双栈结构的工作方式&lt;/li&gt;
+&lt;li&gt;异常统一的入口 &lt;code&gt;XWOS/xwcd/soc/riscv/nuclei/gcc/bumblebee/gd32v/soc.S: soc_esr_entry&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;源码：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;XWOS/xwcd/soc/riscv/nuclei/gcc/bumblebee/gd32v/xwosimpl_soc_irq.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;XWOS/xwcd/soc/riscv/nuclei/gcc/bumblebee/gd32v/xwosimpl_irq.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;XWOS/xwcd/soc/riscv/nuclei/gcc/bumblebee/gd32v/xwosimpl_irq.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;XWOS/xwcd/soc/riscv/nuclei/gcc/bumblebee/gd32v/soc.S&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;调度&#34;&gt;调度&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;源码：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;XWOS/xwcd/soc/riscv/nuclei/gcc/bumblebee/gd32v/xwosimpl_skd.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;XWOS/xwcd/soc/riscv/nuclei/gcc/bumblebee/gd32v/xwosimpl_skd.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;XWOS/xwcd/soc/riscv/nuclei/gcc/bumblebee/gd32v/xwosasmimpl_skd.S&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;栈结构&#34;&gt;栈结构&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;RISC-V要求栈必须按 &lt;strong&gt;16字节&lt;/strong&gt; 对齐；&lt;/li&gt;
+&lt;li&gt;RISC-V只使用 &lt;strong&gt;满递减栈&lt;/strong&gt; ；&lt;/li&gt;
+&lt;li&gt;RISC-V的ABI文档中将寄存器分为两类：caller-saved (即volatile)和callee-saved (即non-volatile) 。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;caller-saved栈结构&#34;&gt;caller-saved栈结构&lt;/h4&gt;
+&lt;p&gt;从线程进入中断时，中断入口程序会自动将caller-saved寄存器保存到栈中：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  __caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#00a000&#34;&gt;saved&lt;/span&gt; (&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt;) context__
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;19&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;      &lt;span style=&#34;color:#00a000&#34;&gt;t6&lt;/span&gt; (x31) &lt;span style=&#34;color:#666&#34;&gt;----------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;18&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;      &lt;span style=&#34;color:#00a000&#34;&gt;t5&lt;/span&gt; (x30)          &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;17&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;      &lt;span style=&#34;color:#00a000&#34;&gt;t4&lt;/span&gt; (x29)          &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;16&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;      &lt;span style=&#34;color:#00a000&#34;&gt;t3&lt;/span&gt; (x28)          &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;15&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;      &lt;span style=&#34;color:#00a000&#34;&gt;a7&lt;/span&gt; (x17)          &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;14&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;      &lt;span style=&#34;color:#00a000&#34;&gt;a6&lt;/span&gt; (x16)          &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;13&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;      msubm &lt;span style=&#34;color:#666&#34;&gt;--------+&lt;/span&gt;   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;12&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;      mepc          &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;11&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;      mcause        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;10&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;      mscratch      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;9&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;       &lt;span style=&#34;color:#00a000&#34;&gt;a5&lt;/span&gt; (x15)      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; RV32I
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;8&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;       &lt;span style=&#34;color:#00a000&#34;&gt;a4&lt;/span&gt; (x14)      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;7&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;       &lt;span style=&#34;color:#00a000&#34;&gt;a3&lt;/span&gt; (x13)      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;6&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;       &lt;span style=&#34;color:#00a000&#34;&gt;a2&lt;/span&gt; (x12)    RV32E &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;5&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;       &lt;span style=&#34;color:#00a000&#34;&gt;a1&lt;/span&gt; (x11)      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;       &lt;span style=&#34;color:#00a000&#34;&gt;a0&lt;/span&gt; (x10)      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;3&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;       &lt;span style=&#34;color:#00a000&#34;&gt;t2&lt;/span&gt; (x7)       &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;       &lt;span style=&#34;color:#00a000&#34;&gt;t1&lt;/span&gt; (x6)       &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;       &lt;span style=&#34;color:#00a000&#34;&gt;t0&lt;/span&gt; (x5)       &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;       &lt;span style=&#34;color:#00a000&#34;&gt;ra&lt;/span&gt; (x1)       &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  __caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#00a000&#34;&gt;saved&lt;/span&gt; (&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt;) context__
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;callee-saved栈结构&#34;&gt;callee-saved栈结构&lt;/h4&gt;
+&lt;p&gt;切换上下文时，需要保存与恢复callee-saved寄存器栈结构如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  __callee&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#00a000&#34;&gt;saved&lt;/span&gt; (non&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt;) context__
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;13&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;      &lt;span style=&#34;color:#00a000&#34;&gt;s11&lt;/span&gt; (x27)         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;12&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;      &lt;span style=&#34;color:#00a000&#34;&gt;s10&lt;/span&gt; (x26)         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;11&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;      &lt;span style=&#34;color:#00a000&#34;&gt;s9&lt;/span&gt; (x25)          &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;10&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;      &lt;span style=&#34;color:#00a000&#34;&gt;s8&lt;/span&gt; (x24)          &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;9&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;       &lt;span style=&#34;color:#00a000&#34;&gt;s7&lt;/span&gt; (x23)          &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;8&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;       &lt;span style=&#34;color:#00a000&#34;&gt;s6&lt;/span&gt; (x22)          &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;7&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;       &lt;span style=&#34;color:#00a000&#34;&gt;s5&lt;/span&gt; (x21)        RV32I
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;6&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;       &lt;span style=&#34;color:#00a000&#34;&gt;s4&lt;/span&gt; (x20)          &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;5&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;       &lt;span style=&#34;color:#00a000&#34;&gt;s3&lt;/span&gt; (x19)          &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;       &lt;span style=&#34;color:#00a000&#34;&gt;s2&lt;/span&gt; (x18)          &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;3&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;       mstatus &lt;span style=&#34;color:#666&#34;&gt;------+&lt;/span&gt;   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;2&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;       &lt;span style=&#34;color:#00a000&#34;&gt;s1&lt;/span&gt; (x9)       &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;1&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;       &lt;span style=&#34;color:#00a000&#34;&gt;s0&lt;/span&gt; (x8)     RV32E &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;       &lt;span style=&#34;color:#00a000&#34;&gt;tp&lt;/span&gt; (x4)       &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt;  __callee&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#00a000&#34;&gt;saved&lt;/span&gt; (non&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt;) context__
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;滴答定时器&#34;&gt;滴答定时器&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;使用RISC-V标准中定义的定时器来产生滴答中断。&lt;/li&gt;
+&lt;li&gt;源码：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwcd/soc/riscv/nuclei/gcc/bumblebee/gd32v/xwosimpl_syshwt.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwcd/soc/riscv/nuclei/gcc/bumblebee/gd32v/xwosimpl_syshwt.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;tls&#34;&gt;TLS&lt;/h2&gt;
+&lt;p&gt;TLS是C11标准开始引入的语言特性。XWOS支持TLS：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;XWOS/xwcd/soc/riscv/nuclei/xwosimpl_tls.c
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;XWOS将TLS数据段放在线程栈内存起始的位置。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; Thread Stack Memmory &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;+----------------------+&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   SP &lt;span style=&#34;color:#666&#34;&gt;---&amp;gt;&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;     Stack Region     &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;+----------------------+&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;     Stack Guard      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;+----------------------+&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;      TLS Region      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;RISC-V有专门用于TLS的寄存器x4(tp)，在线程初始化时，需要让x4指向TLS的起始位置。
+切换上下文时也要切换x4的值。&lt;/p&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

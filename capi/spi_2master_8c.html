@@ -1,0 +1,708 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>XWOS API: xwcd/ds/spi/master.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<a href="/" class="github-corner" title="返回首页">
+  <svg viewBox="0 0 250 250" style="position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path
+      d="M 0 0 L 250 250 L 250 0 L 0 0 z M 181.19336 6.25 A 18.281986 19.638775 0 0 1 192.79297 10.798828 L 241.54492 54.201172 A 6.0939954 6.5462585 0 0 1 237.64453 65.787109 L 233.13477 65.787109 A 3.0469979 3.2731292 0 0 0 230.08789 69.060547 L 230.08789 111.61133 A 18.281986 19.638775 0 0 1 211.80664 131.25 L 205.71289 131.25 A 12.187991 13.092517 0 0 1 193.52344 118.1582 L 193.52344 98.519531 A 12.187991 13.092517 0 0 0 181.33594 85.425781 A 12.187991 13.092517 0 0 0 169.14844 98.519531 L 169.14844 118.1582 A 12.187991 13.092517 0 0 1 156.95898 131.25 L 150.86523 131.25 A 18.281986 19.638775 0 0 1 132.58398 111.61133 L 132.58398 68.994141 A 3.0469979 3.2731292 0 0 0 129.29297 65.722656 L 124.7832 65.722656 A 6.0939954 6.5462585 0 0 1 120.88281 54.201172 L 169.39258 10.798828 A 18.281986 19.638775 0 0 1 181.19336 6.25 z "/>
+  </svg>
+</a>
+<style>.github-corner:hover</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">XWOS API
+   &#160;<span id="projectnumber">3.0</span>
+   </div>
+   <div id="projectbrief">XWOS API参考手册</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('spi_2master_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a> &#124;
+<a href="#var-members">变量</a>  </div>
+  <div class="headertitle"><div class="title">master.c 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>玄武设备栈：SPI：主机模式控制器  
+<a href="#details">更多...</a></p>
+<div class="textblock"><code>#include &lt;<a class="el" href="xwcd_2ds_2standard_8h_source.html">xwcd/ds/standard.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="xwlog_8h_source.html">xwos/lib/xwlog.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="lock_2mtx_8h_source.html">xwos/osal/lock/mtx.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="spi_2master_8h_source.html">xwcd/ds/spi/master.h</a>&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+master.c 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="spi_2master_8c__incl.png" border="0" usemap="#axwcd_2ds_2spi_2master_8c" alt=""/></div>
+<map name="axwcd_2ds_2spi_2master_8c" id="axwcd_2ds_2spi_2master_8c">
+<area shape="rect" title="玄武设备栈：SPI：主机模式控制器" alt="" coords="398,5,545,31"/>
+<area shape="rect" href="xwcd_2ds_2standard_8h.html" title="玄武设备栈：顶级头文件" alt="" coords="125,306,261,331"/>
+<area shape="poly" title=" " alt="" coords="414,33,362,51,336,64,313,81,289,104,268,131,236,190,214,247,201,293,195,292,208,246,231,188,264,128,285,101,310,77,334,60,360,46,412,28"/>
+<area shape="rect" href="xwlog_8h.html" title="XWOS通用库：日志" alt="" coords="833,152,952,177"/>
+<area shape="poly" title=" " alt="" coords="513,28,671,76,853,144,851,149,669,81,512,33"/>
+<area shape="rect" href="lock_2mtx_8h.html" title="操作系统抽象层：互斥锁" alt="" coords="613,225,759,251"/>
+<area shape="poly" title=" " alt="" coords="485,29,667,213,663,217,481,33"/>
+<area shape="rect" href="spi_2master_8h.html" title="玄武设备栈：SPI：主机模式控制器" alt="" coords="323,79,470,104"/>
+<area shape="poly" title=" " alt="" coords="461,33,421,71,417,67,458,29"/>
+<area shape="rect" href="xwos_2standard_8h.html" title="XWOS的标准头文件" alt="" coords="532,533,651,559"/>
+<area shape="poly" title=" " alt="" coords="195,331,198,362,206,404,222,447,235,467,250,483,269,495,296,505,366,521,445,531,518,538,518,543,444,537,365,526,294,510,267,500,247,487,231,470,218,450,201,405,193,363,190,332"/>
+<area shape="rect" title=" " alt="" coords="385,753,480,779"/>
+<area shape="poly" title=" " alt="" coords="537,561,495,579,476,592,460,608,443,640,434,676,432,710,433,740,427,740,426,710,429,675,438,638,456,605,473,588,493,574,535,556"/>
+<area shape="rect" href="rule_8h.html" title="XWOS通用库：编译规则" alt="" coords="289,607,395,632"/>
+<area shape="poly" title=" " alt="" coords="552,561,396,605,395,600,551,556"/>
+<area shape="rect" href="compiler_8h.html" title="XWOS通用库：编译器宏定义" alt="" coords="56,607,191,632"/>
+<area shape="poly" title=" " alt="" coords="532,559,205,608,204,603,531,554"/>
+<area shape="rect" href="version_8h.html" title="XWOS版本号" alt="" coords="471,607,581,632"/>
+<area shape="poly" title=" " alt="" coords="583,561,548,598,544,595,579,557"/>
+<area shape="rect" href="type_8h.html" title="XWOS通用库：基本类型定义" alt="" coords="885,680,996,705"/>
+<area shape="poly" title=" " alt="" coords="651,549,795,567,863,583,890,593,909,605,921,618,930,633,940,665,935,666,925,636,917,621,906,609,887,598,862,588,794,573,650,554"/>
+<area shape="rect" href="error_8h.html" title="XWOS通用库：错误" alt="" coords="784,607,895,632"/>
+<area shape="poly" title=" " alt="" coords="632,556,787,600,785,605,630,561"/>
+<area shape="rect" title=" " alt="" coords="583,680,722,705"/>
+<area shape="poly" title=" " alt="" coords="650,556,690,574,708,588,723,605,728,625,720,644,705,661,687,675,684,670,701,657,716,641,722,625,718,608,705,592,687,579,648,561"/>
+<area shape="rect" href="mb_8h.html" title="XWOS通用库：内存屏障" alt="" coords="605,607,708,632"/>
+<area shape="poly" title=" " alt="" coords="604,557,639,595,635,598,600,561"/>
+<area shape="poly" title=" " alt="" coords="352,631,420,740,416,743,347,634"/>
+<area shape="rect" title=" " alt="" coords="233,680,344,705"/>
+<area shape="poly" title=" " alt="" coords="335,634,308,671,303,668,331,631"/>
+<area shape="poly" title=" " alt="" coords="93,635,64,648,37,665,23,684,23,694,28,704,51,720,85,733,128,744,177,751,281,760,371,762,371,768,280,765,176,757,127,749,83,739,48,725,24,707,17,695,18,683,34,661,61,643,91,630"/>
+<area shape="rect" title=" " alt="" coords="38,680,209,705"/>
+<area shape="poly" title=" " alt="" coords="126,632,126,666,121,666,121,632"/>
+<area shape="poly" title=" " alt="" coords="885,706,873,708,494,760,493,754,872,703,885,701"/>
+<area shape="rect" title=" " alt="" coords="801,753,947,779"/>
+<area shape="poly" title=" " alt="" coords="932,707,896,745,892,741,928,704"/>
+<area shape="rect" title=" " alt="" coords="971,753,1041,779"/>
+<area shape="poly" title=" " alt="" coords="953,704,988,741,984,745,949,707"/>
+<area shape="poly" title=" " alt="" coords="857,630,914,670,911,674,854,634"/>
+<area shape="rect" href="errno_8h.html" title="XWOS通用库：错误码" alt="" coords="746,680,861,705"/>
+<area shape="poly" title=" " alt="" coords="836,634,818,669,813,666,831,631"/>
+<area shape="poly" title=" " alt="" coords="640,634,464,748,461,743,637,630"/>
+<area shape="poly" title=" " alt="" coords="659,632,657,667,651,666,653,632"/>
+<area shape="poly" title=" " alt="" coords="918,175,955,197,994,228,1012,247,1026,268,1036,292,1039,317,1039,401,1033,433,1017,455,992,471,960,488,906,506,828,521,665,541,664,536,828,516,905,501,958,483,989,467,1013,451,1028,431,1034,400,1034,318,1031,293,1021,271,1008,250,990,232,952,201,916,180"/>
+<area shape="poly" title=" " alt="" coords="760,247,860,266,904,280,933,297,956,323,967,349,968,378,963,412,956,454,949,471,933,487,913,499,886,509,816,525,738,536,665,543,664,538,737,531,815,520,884,504,911,494,930,483,944,468,951,453,958,412,963,378,961,350,951,325,930,301,902,285,859,272,759,252"/>
+<area shape="rect" href="jack_2lock_2mtx_8h.html" title="操作系统抽象层：互斥锁接口描述" alt="" coords="617,299,755,339"/>
+<area shape="poly" title=" " alt="" coords="689,251,689,285,683,285,683,251"/>
+<area shape="rect" href="time_8h.html" title="操作系统抽象层：时间" alt="" coords="827,387,948,412"/>
+<area shape="poly" title=" " alt="" coords="760,247,850,266,887,280,911,297,919,316,919,337,905,375,900,373,913,336,914,317,907,300,884,285,848,271,759,252"/>
+<area shape="rect" href="skd_8h.html" title="操作系统抽象层：调度器" alt="" coords="779,306,897,331"/>
+<area shape="poly" title=" " alt="" coords="710,248,805,297,802,302,707,253"/>
+<area shape="poly" title=" " alt="" coords="899,411,917,447,920,468,912,487,896,500,871,511,808,528,734,538,665,544,664,539,734,533,807,523,870,506,893,496,908,484,914,467,912,448,894,414"/>
+<area shape="rect" href="jack_2skd_8h.html" title="操作系统抽象层：调度接口描述" alt="" coords="752,460,897,485"/>
+<area shape="poly" title=" " alt="" coords="879,414,846,451,842,448,875,411"/>
+<area shape="poly" title=" " alt="" coords="828,333,662,487,617,526,614,522,659,483,824,329"/>
+<area shape="poly" title=" " alt="" coords="848,330,875,374,871,376,843,333"/>
+<area shape="poly" title=" " alt="" coords="835,332,826,357,818,387,817,418,821,446,816,447,812,418,813,386,821,356,830,331"/>
+<area shape="poly" title=" " alt="" coords="382,106,319,155,282,189,248,227,225,262,206,295,202,292,220,259,244,224,278,186,315,151,378,102"/>
+<area shape="poly" title=" " alt="" coords="421,102,652,217,650,222,419,107"/>
+<area shape="rect" href="xwbop_8h.html" title="XWOS通用库：位操作" alt="" coords="23,460,146,485"/>
+<area shape="poly" title=" " alt="" coords="351,107,273,129,187,160,149,178,118,197,97,217,90,237,90,320,88,446,83,446,85,320,85,236,93,214,115,193,146,173,185,155,272,124,349,101"/>
+<area shape="rect" href="ds_2device_8h.html" title="玄武设备栈：设备基类" alt="" coords="335,152,459,177"/>
+<area shape="poly" title=" " alt="" coords="399,104,399,138,394,138,394,104"/>
+<area shape="poly" title=" " alt="" coords="147,480,165,483,519,532,518,537,164,488,146,485"/>
+<area shape="rect" title=" " alt="" coords="5,533,164,559"/>
+<area shape="poly" title=" " alt="" coords="87,486,87,520,82,520,82,486"/>
+<area shape="poly" title=" " alt="" coords="369,180,326,200,281,227,242,262,212,297,208,294,238,259,278,223,323,195,366,175"/>
+<area shape="poly" title=" " alt="" coords="444,175,627,219,625,225,443,180"/>
+<area shape="rect" href="xwaop_8h.html" title="XWOS通用库：原子操作" alt="" coords="237,387,359,412"/>
+<area shape="poly" title=" " alt="" coords="376,180,349,199,326,227,310,264,302,304,299,373,294,373,297,303,305,262,321,224,345,195,373,175"/>
+<area shape="rect" href="bclst_8h.html" title="XWOS通用库：双循环链表" alt="" coords="480,306,593,331"/>
+<area shape="poly" title=" " alt="" coords="415,176,471,223,500,259,524,293,520,296,496,262,467,227,411,180"/>
+<area shape="rect" href="xwcd_2ds_2object_8h.html" title="玄武设备栈：对象" alt="" coords="336,225,457,251"/>
+<area shape="poly" title=" " alt="" coords="399,178,399,212,394,212,394,178"/>
+<area shape="poly" title=" " alt="" coords="287,414,273,429,261,448,256,467,262,484,278,496,302,507,368,524,446,534,518,540,518,545,445,539,367,529,300,512,275,501,257,487,250,467,256,446,269,426,283,410"/>
+<area shape="poly" title=" " alt="" coords="265,415,133,458,131,453,263,409"/>
+<area shape="rect" title=" " alt="" coords="272,460,431,485"/>
+<area shape="poly" title=" " alt="" coords="309,411,337,448,332,451,305,414"/>
+<area shape="poly" title=" " alt="" coords="570,329,608,351,626,366,640,385,651,412,654,435,650,459,640,486,630,507,616,525,612,522,625,504,636,484,644,457,649,435,646,413,636,388,622,370,605,355,567,334"/>
+<area shape="poly" title=" " alt="" coords="368,253,236,304,234,299,366,248"/>
+<area shape="poly" title=" " alt="" coords="419,249,505,297,503,302,416,253"/>
+<area shape="rect" href="xwos_2lib_2object_8h.html" title="XWOS通用库：XWOS的对象" alt="" coords="335,306,455,331"/>
+<area shape="poly" title=" " alt="" coords="399,251,398,292,393,292,394,251"/>
+<area shape="poly" title=" " alt="" coords="406,330,472,410,539,484,574,522,570,525,535,487,468,414,402,333"/>
+<area shape="poly" title=" " alt="" coords="383,334,325,380,321,376,379,329"/>
+<area shape="rect" href="xwos_2mm_2common_8h.html" title="XWOS内存管理：通用定义" alt="" coords="482,387,626,412"/>
+<area shape="poly" title=" " alt="" coords="420,329,520,378,517,383,417,334"/>
+<area shape="poly" title=" " alt="" coords="552,413,544,446,544,466,547,484,557,504,571,522,567,525,553,507,542,486,538,466,539,446,547,412"/>
+<area shape="rect" title=" " alt="" coords="557,460,626,485"/>
+<area shape="poly" title=" " alt="" coords="563,411,581,447,577,449,558,414"/>
+</map>
+</div>
+</div>
+<p><a href="spi_2master_8c_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a2ceb9182b43a56ee378a37514631338c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="spi_2master_8c.html#a2ceb9182b43a56ee378a37514631338c">xwds_spim_vop_probe</a> (struct <a class="el" href="structxwds__spim.html">xwds_spim</a> *spim)</td></tr>
+<tr class="memdesc:a2ceb9182b43a56ee378a37514631338c"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWDS VOP：探测设备  <br /></td></tr>
+<tr class="separator:a2ceb9182b43a56ee378a37514631338c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64bd571fc7794625ff6667a4d57cb528"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="spi_2master_8c.html#a64bd571fc7794625ff6667a4d57cb528">xwds_spim_vop_remove</a> (struct <a class="el" href="structxwds__spim.html">xwds_spim</a> *spim)</td></tr>
+<tr class="memdesc:a64bd571fc7794625ff6667a4d57cb528"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWDS VOP：删除设备  <br /></td></tr>
+<tr class="separator:a64bd571fc7794625ff6667a4d57cb528"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c044f8f02e99be4cf02f364a4ad382b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="spi_2master_8c.html#a0c044f8f02e99be4cf02f364a4ad382b">xwds_spim_vop_start</a> (struct <a class="el" href="structxwds__spim.html">xwds_spim</a> *spim)</td></tr>
+<tr class="memdesc:a0c044f8f02e99be4cf02f364a4ad382b"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWDS VOP：启动设备  <br /></td></tr>
+<tr class="separator:a0c044f8f02e99be4cf02f364a4ad382b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a626abf166266e5c47ec5677d2285a790"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="spi_2master_8c.html#a626abf166266e5c47ec5677d2285a790">xwds_spim_vop_stop</a> (struct <a class="el" href="structxwds__spim.html">xwds_spim</a> *spim)</td></tr>
+<tr class="memdesc:a626abf166266e5c47ec5677d2285a790"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWDS VOP：停止设备  <br /></td></tr>
+<tr class="separator:a626abf166266e5c47ec5677d2285a790"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1fa8aae344db411c0ec833a9cbf7798d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="spi_2master_8c.html#a1fa8aae344db411c0ec833a9cbf7798d">xwds_spim_vop_suspend</a> (struct <a class="el" href="structxwds__spim.html">xwds_spim</a> *spim)</td></tr>
+<tr class="memdesc:a1fa8aae344db411c0ec833a9cbf7798d"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWDS VOP：暂停设备  <br /></td></tr>
+<tr class="separator:a1fa8aae344db411c0ec833a9cbf7798d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19a0a75bc586757d3d750d369bf0081b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="spi_2master_8c.html#a19a0a75bc586757d3d750d369bf0081b">xwds_spim_vop_resume</a> (struct <a class="el" href="structxwds__spim.html">xwds_spim</a> *spim)</td></tr>
+<tr class="memdesc:a19a0a75bc586757d3d750d369bf0081b"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWDS VOP：继续设备  <br /></td></tr>
+<tr class="separator:a19a0a75bc586757d3d750d369bf0081b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga21ca5c4e51b15465ff1e957177860957"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwcd__ds__spi__master.html#ga21ca5c4e51b15465ff1e957177860957">xwds_spim_construct</a> (struct <a class="el" href="structxwds__spim.html">xwds_spim</a> *spim)</td></tr>
+<tr class="memdesc:ga21ca5c4e51b15465ff1e957177860957"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWDS API：SPI主机模式控制器对象的构造函数  <br /></td></tr>
+<tr class="separator:ga21ca5c4e51b15465ff1e957177860957"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac1ed4ff5ec0c7ee91333aa6ea9a40141"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwcd__ds__spi__master.html#gac1ed4ff5ec0c7ee91333aa6ea9a40141">xwds_spim_destruct</a> (struct <a class="el" href="structxwds__spim.html">xwds_spim</a> *spim)</td></tr>
+<tr class="memdesc:gac1ed4ff5ec0c7ee91333aa6ea9a40141"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWDS API：SPI主机模式控制器对象的析构函数  <br /></td></tr>
+<tr class="separator:gac1ed4ff5ec0c7ee91333aa6ea9a40141"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga825316dabf9b450fbd8da2220f772e33"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwcd__ds__spi__master.html#ga825316dabf9b450fbd8da2220f772e33">xwds_spim_grab</a> (struct <a class="el" href="structxwds__spim.html">xwds_spim</a> *spim)</td></tr>
+<tr class="memdesc:ga825316dabf9b450fbd8da2220f772e33"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWDS API：增加对象的引用计数  <br /></td></tr>
+<tr class="separator:ga825316dabf9b450fbd8da2220f772e33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga16c153a768f81ed6acc2e0e7315f0d9e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwcd__ds__spi__master.html#ga16c153a768f81ed6acc2e0e7315f0d9e">xwds_spim_put</a> (struct <a class="el" href="structxwds__spim.html">xwds_spim</a> *spim)</td></tr>
+<tr class="memdesc:ga16c153a768f81ed6acc2e0e7315f0d9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWDS API：减少对象的引用计数  <br /></td></tr>
+<tr class="separator:ga16c153a768f81ed6acc2e0e7315f0d9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf9ab6498cd9e304ba08dbcee4cf803ff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwcd__ds__spi__master.html#gaf9ab6498cd9e304ba08dbcee4cf803ff">xwds_spim_xfer</a> (struct <a class="el" href="structxwds__spim.html">xwds_spim</a> *spim, <a class="el" href="group__xwos__lib__type.html#ga0bb4d847ba02675e5264444479899532">xwid_t</a> cfgid, const <a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a> txd[], <a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a> *rxb, <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> *size, <a class="el" href="group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a> to)</td></tr>
+<tr class="memdesc:gaf9ab6498cd9e304ba08dbcee4cf803ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWDS API：启动SPI总线传输  <br /></td></tr>
+<tr class="separator:gaf9ab6498cd9e304ba08dbcee4cf803ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad099af03d2ae6e5628bb051cae11d279"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwcd__ds__spi__master.html#gad099af03d2ae6e5628bb051cae11d279">xwds_spim_abort</a> (struct <a class="el" href="structxwds__spim.html">xwds_spim</a> *spim, <a class="el" href="group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a> to)</td></tr>
+<tr class="memdesc:gad099af03d2ae6e5628bb051cae11d279"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWDS API：中止SPI总线传输  <br /></td></tr>
+<tr class="separator:gad099af03d2ae6e5628bb051cae11d279"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+变量</h2></td></tr>
+<tr class="memitem:a6f9dd211fdc438f99dc078ff02569ef9"><td class="memItemLeft" align="right" valign="top">const struct <a class="el" href="structxwds__virtual__operation.html">xwds_virtual_operation</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="spi_2master_8c.html#a6f9dd211fdc438f99dc078ff02569ef9">xwds_spim_vop</a></td></tr>
+<tr class="separator:a6f9dd211fdc438f99dc078ff02569ef9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>玄武设备栈：SPI：主机模式控制器 </p>
+<dl class="section author"><dt>作者</dt><dd><ul>
+<li>隐星魂 (Roy Sun) <a href="#" onclick="location.href='mai'+'lto:'+'xwo'+'s@'+'xwo'+'s.'+'tec'+'h'; return false;">xwos@<span class="obfuscator">.nosp@m.</span>xwos<span class="obfuscator">.nosp@m.</span>.tech</a> </li>
+</ul>
+</dd></dl>
+<dl class="section copyright"><dt>版权所有</dt><dd><ul>
+<li>Copyright © 2015 xwos.tech, All Rights Reserved. <blockquote class="doxtable">
+<p>&zwj;Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at </p><pre class="fragment">  http://www.apache.org/licenses/LICENSE-2.0
+</pre><p> Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. </p>
+</blockquote>
+</li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="spi_2master_8c_source.html">master.c</a> 中定义.</p>
+</div><h2 class="groupheader">函数说明</h2>
+<a id="a2ceb9182b43a56ee378a37514631338c" name="a2ceb9182b43a56ee378a37514631338c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ceb9182b43a56ee378a37514631338c">&#9670;&#160;</a></span>xwds_spim_vop_probe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwds_spim_vop_probe </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwds__spim.html">xwds_spim</a> *&#160;</td>
+          <td class="paramname"><em>spim</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWDS VOP：探测设备 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">spim</td><td>SPI主机模式控制器对象指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<p>&lt;No error</p>
+
+<p class="definition">在文件 <a class="el" href="spi_2master_8c_source.html">master.c</a> 第 <a class="el" href="spi_2master_8c_source.html#l00093">93</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   94</span>{</div>
+<div class="line"><span class="lineno">   95</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">   96</span> </div>
+<div class="line"><span class="lineno">   97</span>        rc = <a class="code hl_function" href="group__xwos__lock__mtx.html#ga05ea2a9762a817291b0ae6d76586e022">xwos_mtx_init</a>(&amp;spim-&gt;<a class="code hl_variable" href="structxwds__spim.html#a3d2838b8003949e939542ce54a459b4d">xfer</a>.<a class="code hl_variable" href="structxwds__spim.html#a86e274f7224daa010005f67725e7db30">apimtx</a>, <a class="code hl_define" href="group__xwos__skd__priority.html#ga440d65baefaf78c6d4d2ac4a817470bd">XWOS_SKD_PRIORITY_RT_MIN</a>);</div>
+<div class="line"><span class="lineno">   98</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">   99</span>                <span class="keywordflow">goto</span> err_xfer_apimtx_init;</div>
+<div class="line"><span class="lineno">  100</span>        }</div>
+<div class="line"><span class="lineno">  101</span>        rc = <a class="code hl_function" href="group__xwcd__ds__device.html#gada012caf11d782b5a3c3b8587990ae40">xwds_device_vop_probe</a>(&amp;spim-&gt;<a class="code hl_variable" href="structxwds__spim.html#a3030cc57123a72c37e0dcd58b8bde205">dev</a>);</div>
+<div class="line"><span class="lineno">  102</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  103</span>                <span class="keywordflow">goto</span> err_dev_probe;</div>
+<div class="line"><span class="lineno">  104</span>        }</div>
+<div class="line"><span class="lineno">  105</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><span class="lineno">  106</span> </div>
+<div class="line"><span class="lineno">  107</span>err_dev_probe:</div>
+<div class="line"><span class="lineno">  108</span>        <a class="code hl_function" href="group__xwos__lock__mtx.html#ga7b2464babb829bdc7fd0e433ff54bdca">xwos_mtx_fini</a>(&amp;spim-&gt;<a class="code hl_variable" href="structxwds__spim.html#a3d2838b8003949e939542ce54a459b4d">xfer</a>.<a class="code hl_variable" href="structxwds__spim.html#a86e274f7224daa010005f67725e7db30">apimtx</a>);</div>
+<div class="line"><span class="lineno">  109</span>err_xfer_apimtx_init:</div>
+<div class="line"><span class="lineno">  110</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  111</span>}</div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_gada012caf11d782b5a3c3b8587990ae40"><div class="ttname"><a href="group__xwcd__ds__device.html#gada012caf11d782b5a3c3b8587990ae40">xwds_device_vop_probe</a></div><div class="ttdeci">xwer_t xwds_device_vop_probe(struct xwds_device *dev)</div><div class="ttdoc">设备基本操作函数：探测设备</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8c_source.html#l00067">device.c:67</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga6a72d49d869215a02342eb465166537b"><div class="ttname"><a href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a></div><div class="ttdeci">#define XWOK</div><div class="ttdoc">No error</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00182">errno.h:182</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga06847ea8c7edb2b1f166288b230f251f"><div class="ttname"><a href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a></div><div class="ttdeci">signed long xwer_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00554">type.h:554</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__mtx_html_ga05ea2a9762a817291b0ae6d76586e022"><div class="ttname"><a href="group__xwos__lock__mtx.html#ga05ea2a9762a817291b0ae6d76586e022">xwos_mtx_init</a></div><div class="ttdeci">static xwer_t xwos_mtx_init(struct xwos_mtx *mtx, xwpr_t sprio)</div><div class="ttdoc">XWOS API：静态方式初始化互斥锁</div><div class="ttdef"><b>Definition</b> <a href="lock_2mtx_8h_source.html#l00111">mtx.h:111</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__mtx_html_ga7b2464babb829bdc7fd0e433ff54bdca"><div class="ttname"><a href="group__xwos__lock__mtx.html#ga7b2464babb829bdc7fd0e433ff54bdca">xwos_mtx_fini</a></div><div class="ttdeci">static xwer_t xwos_mtx_fini(struct xwos_mtx *mtx)</div><div class="ttdoc">XWOS API：销毁静态方式初始化的互斥锁</div><div class="ttdef"><b>Definition</b> <a href="lock_2mtx_8h_source.html#l00126">mtx.h:126</a></div></div>
+<div class="ttc" id="agroup__xwos__skd__priority_html_ga440d65baefaf78c6d4d2ac4a817470bd"><div class="ttname"><a href="group__xwos__skd__priority.html#ga440d65baefaf78c6d4d2ac4a817470bd">XWOS_SKD_PRIORITY_RT_MIN</a></div><div class="ttdeci">#define XWOS_SKD_PRIORITY_RT_MIN</div><div class="ttdoc">XWOS API：最小实时优先级</div><div class="ttdef"><b>Definition</b> <a href="skd_8h_source.html#l00089">skd.h:89</a></div></div>
+<div class="ttc" id="astructxwds__spim_html_a3030cc57123a72c37e0dcd58b8bde205"><div class="ttname"><a href="structxwds__spim.html#a3030cc57123a72c37e0dcd58b8bde205">xwds_spim::dev</a></div><div class="ttdeci">struct xwds_device dev</div><div class="ttdef"><b>Definition</b> <a href="spi_2master_8h_source.html#l00058">master.h:58</a></div></div>
+<div class="ttc" id="astructxwds__spim_html_a3d2838b8003949e939542ce54a459b4d"><div class="ttname"><a href="structxwds__spim.html#a3d2838b8003949e939542ce54a459b4d">xwds_spim::xfer</a></div><div class="ttdeci">struct xwds_spim::@25 xfer</div></div>
+<div class="ttc" id="astructxwds__spim_html_a86e274f7224daa010005f67725e7db30"><div class="ttname"><a href="structxwds__spim.html#a86e274f7224daa010005f67725e7db30">xwds_spim::apimtx</a></div><div class="ttdeci">struct xwos_mtx apimtx</div><div class="ttdef"><b>Definition</b> <a href="spi_2master_8h_source.html#l00066">master.h:66</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="spi_2master_8c_a2ceb9182b43a56ee378a37514631338c_cgraph.png" border="0" usemap="#aspi_2master_8c_a2ceb9182b43a56ee378a37514631338c_cgraph" alt=""/></div>
+<map name="aspi_2master_8c_a2ceb9182b43a56ee378a37514631338c_cgraph" id="aspi_2master_8c_a2ceb9182b43a56ee378a37514631338c_cgraph">
+<area shape="rect" title="XWDS VOP：探测设备" alt="" coords="5,55,160,80"/>
+<area shape="rect" href="group__xwcd__ds__device.html#gada012caf11d782b5a3c3b8587990ae40" title="设备基本操作函数：探测设备" alt="" coords="208,5,373,31"/>
+<area shape="poly" title=" " alt="" coords="136,52,222,31,224,37,138,57"/>
+<area shape="rect" href="group__xwos__lock__mtx.html#ga7b2464babb829bdc7fd0e433ff54bdca" title="XWOS API：销毁静态方式初始化的互斥锁" alt="" coords="237,55,344,80"/>
+<area shape="poly" title=" " alt="" coords="160,65,224,65,224,70,160,70"/>
+<area shape="rect" href="group__xwos__lock__mtx.html#ga05ea2a9762a817291b0ae6d76586e022" title="XWOS API：静态方式初始化互斥锁" alt="" coords="237,104,344,129"/>
+<area shape="poly" title=" " alt="" coords="138,77,225,98,223,104,136,83"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a64bd571fc7794625ff6667a4d57cb528" name="a64bd571fc7794625ff6667a4d57cb528"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64bd571fc7794625ff6667a4d57cb528">&#9670;&#160;</a></span>xwds_spim_vop_remove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwds_spim_vop_remove </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwds__spim.html">xwds_spim</a> *&#160;</td>
+          <td class="paramname"><em>spim</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWDS VOP：删除设备 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">spim</td><td>SPI主机模式控制器对象指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<p>&lt;No error</p>
+
+<p class="definition">在文件 <a class="el" href="spi_2master_8c_source.html">master.c</a> 第 <a class="el" href="spi_2master_8c_source.html#l00119">119</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  120</span>{</div>
+<div class="line"><span class="lineno">  121</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">  122</span> </div>
+<div class="line"><span class="lineno">  123</span>        rc = <a class="code hl_function" href="group__xwcd__ds__device.html#ga9971f3ed17fb65399b5528fa4a4e94c8">xwds_device_vop_remove</a>(&amp;spim-&gt;<a class="code hl_variable" href="structxwds__spim.html#a3030cc57123a72c37e0dcd58b8bde205">dev</a>);</div>
+<div class="line"><span class="lineno">  124</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  125</span>                <span class="keywordflow">goto</span> err_dev_vop_remove;</div>
+<div class="line"><span class="lineno">  126</span>        }</div>
+<div class="line"><span class="lineno">  127</span>        <a class="code hl_function" href="group__xwos__lock__mtx.html#ga7b2464babb829bdc7fd0e433ff54bdca">xwos_mtx_fini</a>(&amp;spim-&gt;<a class="code hl_variable" href="structxwds__spim.html#a3d2838b8003949e939542ce54a459b4d">xfer</a>.<a class="code hl_variable" href="structxwds__spim.html#a86e274f7224daa010005f67725e7db30">apimtx</a>);</div>
+<div class="line"><span class="lineno">  128</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><span class="lineno">  129</span> </div>
+<div class="line"><span class="lineno">  130</span>err_dev_vop_remove:</div>
+<div class="line"><span class="lineno">  131</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  132</span>}</div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_ga9971f3ed17fb65399b5528fa4a4e94c8"><div class="ttname"><a href="group__xwcd__ds__device.html#ga9971f3ed17fb65399b5528fa4a4e94c8">xwds_device_vop_remove</a></div><div class="ttdeci">xwer_t xwds_device_vop_remove(struct xwds_device *dev)</div><div class="ttdoc">设备基本操作函数：删除设备</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8c_source.html#l00086">device.c:86</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="spi_2master_8c_a64bd571fc7794625ff6667a4d57cb528_cgraph.png" border="0" usemap="#aspi_2master_8c_a64bd571fc7794625ff6667a4d57cb528_cgraph" alt=""/></div>
+<map name="aspi_2master_8c_a64bd571fc7794625ff6667a4d57cb528_cgraph" id="aspi_2master_8c_a64bd571fc7794625ff6667a4d57cb528_cgraph">
+<area shape="rect" title="XWDS VOP：删除设备" alt="" coords="5,31,172,56"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga9971f3ed17fb65399b5528fa4a4e94c8" title="设备基本操作函数：删除设备" alt="" coords="220,5,396,31"/>
+<area shape="poly" title=" " alt="" coords="172,31,206,27,206,32,173,36"/>
+<area shape="rect" href="group__xwos__lock__mtx.html#ga7b2464babb829bdc7fd0e433ff54bdca" title="XWOS API：销毁静态方式初始化的互斥锁" alt="" coords="255,55,361,80"/>
+<area shape="poly" title=" " alt="" coords="173,50,241,57,240,63,172,55"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a19a0a75bc586757d3d750d369bf0081b" name="a19a0a75bc586757d3d750d369bf0081b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19a0a75bc586757d3d750d369bf0081b">&#9670;&#160;</a></span>xwds_spim_vop_resume()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwds_spim_vop_resume </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwds__spim.html">xwds_spim</a> *&#160;</td>
+          <td class="paramname"><em>spim</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWDS VOP：继续设备 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">spim</td><td>SPI主机模式控制器对象指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="spi_2master_8c_source.html">master.c</a> 第 <a class="el" href="spi_2master_8c_source.html#l00184">184</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  185</span>{</div>
+<div class="line"><span class="lineno">  186</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">  187</span> </div>
+<div class="line"><span class="lineno">  188</span>        rc = <a class="code hl_function" href="group__xwcd__ds__device.html#gacd2f8a67386345880905e9099924927c">xwds_device_vop_resume</a>(&amp;spim-&gt;<a class="code hl_variable" href="structxwds__spim.html#a3030cc57123a72c37e0dcd58b8bde205">dev</a>);</div>
+<div class="line"><span class="lineno">  189</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  190</span>}</div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_gacd2f8a67386345880905e9099924927c"><div class="ttname"><a href="group__xwcd__ds__device.html#gacd2f8a67386345880905e9099924927c">xwds_device_vop_resume</a></div><div class="ttdeci">xwer_t xwds_device_vop_resume(struct xwds_device *dev)</div><div class="ttdoc">设备基本操作函数：继续设备</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8c_source.html#l00163">device.c:163</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="spi_2master_8c_a19a0a75bc586757d3d750d369bf0081b_cgraph.png" border="0" usemap="#aspi_2master_8c_a19a0a75bc586757d3d750d369bf0081b_cgraph" alt=""/></div>
+<map name="aspi_2master_8c_a19a0a75bc586757d3d750d369bf0081b_cgraph" id="aspi_2master_8c_a19a0a75bc586757d3d750d369bf0081b_cgraph">
+<area shape="rect" title="XWDS VOP：继续设备" alt="" coords="5,5,172,31"/>
+<area shape="rect" href="group__xwcd__ds__device.html#gacd2f8a67386345880905e9099924927c" title="设备基本操作函数：继续设备" alt="" coords="220,5,396,31"/>
+<area shape="poly" title=" " alt="" coords="173,15,206,15,206,21,173,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0c044f8f02e99be4cf02f364a4ad382b" name="a0c044f8f02e99be4cf02f364a4ad382b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c044f8f02e99be4cf02f364a4ad382b">&#9670;&#160;</a></span>xwds_spim_vop_start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwds_spim_vop_start </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwds__spim.html">xwds_spim</a> *&#160;</td>
+          <td class="paramname"><em>spim</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWDS VOP：启动设备 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">spim</td><td>SPI主机模式控制器对象指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="spi_2master_8c_source.html">master.c</a> 第 <a class="el" href="spi_2master_8c_source.html#l00140">140</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  141</span>{</div>
+<div class="line"><span class="lineno">  142</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">  143</span> </div>
+<div class="line"><span class="lineno">  144</span>        rc = <a class="code hl_function" href="group__xwcd__ds__device.html#ga0c0a2863095c22abd63f27fd415d8e15">xwds_device_vop_start</a>(&amp;spim-&gt;<a class="code hl_variable" href="structxwds__spim.html#a3030cc57123a72c37e0dcd58b8bde205">dev</a>);</div>
+<div class="line"><span class="lineno">  145</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  146</span>}</div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_ga0c0a2863095c22abd63f27fd415d8e15"><div class="ttname"><a href="group__xwcd__ds__device.html#ga0c0a2863095c22abd63f27fd415d8e15">xwds_device_vop_start</a></div><div class="ttdeci">xwer_t xwds_device_vop_start(struct xwds_device *dev)</div><div class="ttdoc">设备基本操作函数：启动设备</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8c_source.html#l00105">device.c:105</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="spi_2master_8c_a0c044f8f02e99be4cf02f364a4ad382b_cgraph.png" border="0" usemap="#aspi_2master_8c_a0c044f8f02e99be4cf02f364a4ad382b_cgraph" alt=""/></div>
+<map name="aspi_2master_8c_a0c044f8f02e99be4cf02f364a4ad382b_cgraph" id="aspi_2master_8c_a0c044f8f02e99be4cf02f364a4ad382b_cgraph">
+<area shape="rect" title="XWDS VOP：启动设备" alt="" coords="5,5,155,31"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga0c0a2863095c22abd63f27fd415d8e15" title="设备基本操作函数：启动设备" alt="" coords="203,5,361,31"/>
+<area shape="poly" title=" " alt="" coords="155,15,189,15,189,21,155,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a626abf166266e5c47ec5677d2285a790" name="a626abf166266e5c47ec5677d2285a790"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a626abf166266e5c47ec5677d2285a790">&#9670;&#160;</a></span>xwds_spim_vop_stop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwds_spim_vop_stop </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwds__spim.html">xwds_spim</a> *&#160;</td>
+          <td class="paramname"><em>spim</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWDS VOP：停止设备 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">spim</td><td>SPI主机模式控制器对象指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="spi_2master_8c_source.html">master.c</a> 第 <a class="el" href="spi_2master_8c_source.html#l00154">154</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  155</span>{</div>
+<div class="line"><span class="lineno">  156</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">  157</span> </div>
+<div class="line"><span class="lineno">  158</span>        rc = <a class="code hl_function" href="group__xwcd__ds__device.html#ga76d2c2ffbf8a1efc4e7bf1d7ac581fd5">xwds_device_vop_stop</a>(&amp;spim-&gt;<a class="code hl_variable" href="structxwds__spim.html#a3030cc57123a72c37e0dcd58b8bde205">dev</a>);</div>
+<div class="line"><span class="lineno">  159</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  160</span>}</div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_ga76d2c2ffbf8a1efc4e7bf1d7ac581fd5"><div class="ttname"><a href="group__xwcd__ds__device.html#ga76d2c2ffbf8a1efc4e7bf1d7ac581fd5">xwds_device_vop_stop</a></div><div class="ttdeci">xwer_t xwds_device_vop_stop(struct xwds_device *dev)</div><div class="ttdoc">设备基本操作函数：停止设备</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8c_source.html#l00124">device.c:124</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="spi_2master_8c_a626abf166266e5c47ec5677d2285a790_cgraph.png" border="0" usemap="#aspi_2master_8c_a626abf166266e5c47ec5677d2285a790_cgraph" alt=""/></div>
+<map name="aspi_2master_8c_a626abf166266e5c47ec5677d2285a790_cgraph" id="aspi_2master_8c_a626abf166266e5c47ec5677d2285a790_cgraph">
+<area shape="rect" title="XWDS VOP：停止设备" alt="" coords="5,5,153,31"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga76d2c2ffbf8a1efc4e7bf1d7ac581fd5" title="设备基本操作函数：停止设备" alt="" coords="201,5,360,31"/>
+<area shape="poly" title=" " alt="" coords="154,15,188,15,188,21,154,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a1fa8aae344db411c0ec833a9cbf7798d" name="a1fa8aae344db411c0ec833a9cbf7798d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1fa8aae344db411c0ec833a9cbf7798d">&#9670;&#160;</a></span>xwds_spim_vop_suspend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwds_spim_vop_suspend </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwds__spim.html">xwds_spim</a> *&#160;</td>
+          <td class="paramname"><em>spim</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWDS VOP：暂停设备 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">spim</td><td>SPI主机模式控制器对象指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="spi_2master_8c_source.html">master.c</a> 第 <a class="el" href="spi_2master_8c_source.html#l00170">170</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  171</span>{</div>
+<div class="line"><span class="lineno">  172</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">  173</span> </div>
+<div class="line"><span class="lineno">  174</span>        rc = <a class="code hl_function" href="group__xwcd__ds__device.html#gaebbbeb318c6f7ce466b12eeee7ae2350">xwds_device_vop_suspend</a>(&amp;spim-&gt;<a class="code hl_variable" href="structxwds__spim.html#a3030cc57123a72c37e0dcd58b8bde205">dev</a>);</div>
+<div class="line"><span class="lineno">  175</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  176</span>}</div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_gaebbbeb318c6f7ce466b12eeee7ae2350"><div class="ttname"><a href="group__xwcd__ds__device.html#gaebbbeb318c6f7ce466b12eeee7ae2350">xwds_device_vop_suspend</a></div><div class="ttdeci">xwer_t xwds_device_vop_suspend(struct xwds_device *dev)</div><div class="ttdoc">设备基本操作函数：暂停设备</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8c_source.html#l00144">device.c:144</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="spi_2master_8c_a1fa8aae344db411c0ec833a9cbf7798d_cgraph.png" border="0" usemap="#aspi_2master_8c_a1fa8aae344db411c0ec833a9cbf7798d_cgraph" alt=""/></div>
+<map name="aspi_2master_8c_a1fa8aae344db411c0ec833a9cbf7798d_cgraph" id="aspi_2master_8c_a1fa8aae344db411c0ec833a9cbf7798d_cgraph">
+<area shape="rect" title="XWDS VOP：暂停设备" alt="" coords="5,5,177,31"/>
+<area shape="rect" href="group__xwcd__ds__device.html#gaebbbeb318c6f7ce466b12eeee7ae2350" title="设备基本操作函数：暂停设备" alt="" coords="225,5,408,31"/>
+<area shape="poly" title=" " alt="" coords="177,15,212,15,212,21,177,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">变量说明</h2>
+<a id="a6f9dd211fdc438f99dc078ff02569ef9" name="a6f9dd211fdc438f99dc078ff02569ef9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f9dd211fdc438f99dc078ff02569ef9">&#9670;&#160;</a></span>xwds_spim_vop</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const struct <a class="el" href="structxwds__virtual__operation.html">xwds_virtual_operation</a> xwds_spim_vop</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>初始值:</b><div class="fragment"><div class="line">= {</div>
+<div class="line">        .probe = (<span class="keywordtype">void</span> *)<a class="code hl_function" href="spi_2master_8c.html#a2ceb9182b43a56ee378a37514631338c">xwds_spim_vop_probe</a>,</div>
+<div class="line">        .remove = (<span class="keywordtype">void</span> *)<a class="code hl_function" href="spi_2master_8c.html#a64bd571fc7794625ff6667a4d57cb528">xwds_spim_vop_remove</a>,</div>
+<div class="line">        .start = (<span class="keywordtype">void</span> *)<a class="code hl_function" href="spi_2master_8c.html#a0c044f8f02e99be4cf02f364a4ad382b">xwds_spim_vop_start</a>,</div>
+<div class="line">        .stop = (<span class="keywordtype">void</span> *)<a class="code hl_function" href="spi_2master_8c.html#a626abf166266e5c47ec5677d2285a790">xwds_spim_vop_stop</a>,</div>
+<div class="line"> </div>
+<div class="line">        .suspend = (<span class="keywordtype">void</span> *)<a class="code hl_function" href="spi_2master_8c.html#a1fa8aae344db411c0ec833a9cbf7798d">xwds_spim_vop_suspend</a>,</div>
+<div class="line">        .resume = (<span class="keywordtype">void</span> *)<a class="code hl_function" href="spi_2master_8c.html#a19a0a75bc586757d3d750d369bf0081b">xwds_spim_vop_resume</a>,</div>
+<div class="line"> </div>
+<div class="line">}</div>
+<div class="ttc" id="aspi_2master_8c_html_a0c044f8f02e99be4cf02f364a4ad382b"><div class="ttname"><a href="spi_2master_8c.html#a0c044f8f02e99be4cf02f364a4ad382b">xwds_spim_vop_start</a></div><div class="ttdeci">static xwer_t xwds_spim_vop_start(struct xwds_spim *spim)</div><div class="ttdoc">XWDS VOP：启动设备</div><div class="ttdef"><b>Definition</b> <a href="spi_2master_8c_source.html#l00140">master.c:140</a></div></div>
+<div class="ttc" id="aspi_2master_8c_html_a19a0a75bc586757d3d750d369bf0081b"><div class="ttname"><a href="spi_2master_8c.html#a19a0a75bc586757d3d750d369bf0081b">xwds_spim_vop_resume</a></div><div class="ttdeci">static xwer_t xwds_spim_vop_resume(struct xwds_spim *spim)</div><div class="ttdoc">XWDS VOP：继续设备</div><div class="ttdef"><b>Definition</b> <a href="spi_2master_8c_source.html#l00184">master.c:184</a></div></div>
+<div class="ttc" id="aspi_2master_8c_html_a1fa8aae344db411c0ec833a9cbf7798d"><div class="ttname"><a href="spi_2master_8c.html#a1fa8aae344db411c0ec833a9cbf7798d">xwds_spim_vop_suspend</a></div><div class="ttdeci">static xwer_t xwds_spim_vop_suspend(struct xwds_spim *spim)</div><div class="ttdoc">XWDS VOP：暂停设备</div><div class="ttdef"><b>Definition</b> <a href="spi_2master_8c_source.html#l00170">master.c:170</a></div></div>
+<div class="ttc" id="aspi_2master_8c_html_a2ceb9182b43a56ee378a37514631338c"><div class="ttname"><a href="spi_2master_8c.html#a2ceb9182b43a56ee378a37514631338c">xwds_spim_vop_probe</a></div><div class="ttdeci">static xwer_t xwds_spim_vop_probe(struct xwds_spim *spim)</div><div class="ttdoc">XWDS VOP：探测设备</div><div class="ttdef"><b>Definition</b> <a href="spi_2master_8c_source.html#l00093">master.c:93</a></div></div>
+<div class="ttc" id="aspi_2master_8c_html_a626abf166266e5c47ec5677d2285a790"><div class="ttname"><a href="spi_2master_8c.html#a626abf166266e5c47ec5677d2285a790">xwds_spim_vop_stop</a></div><div class="ttdeci">static xwer_t xwds_spim_vop_stop(struct xwds_spim *spim)</div><div class="ttdoc">XWDS VOP：停止设备</div><div class="ttdef"><b>Definition</b> <a href="spi_2master_8c_source.html#l00154">master.c:154</a></div></div>
+<div class="ttc" id="aspi_2master_8c_html_a64bd571fc7794625ff6667a4d57cb528"><div class="ttname"><a href="spi_2master_8c.html#a64bd571fc7794625ff6667a4d57cb528">xwds_spim_vop_remove</a></div><div class="ttdeci">static xwer_t xwds_spim_vop_remove(struct xwds_spim *spim)</div><div class="ttdoc">XWDS VOP：删除设备</div><div class="ttdef"><b>Definition</b> <a href="spi_2master_8c_source.html#l00119">master.c:119</a></div></div>
+</div><!-- fragment -->
+<p class="definition">在文件 <a class="el" href="spi_2master_8c_source.html">master.c</a> 第 <a class="el" href="spi_2master_8c_source.html#l00046">46</a> 行定义.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_91e37f1231cf9910bfa2c11be57d8122.html">xwcd</a></li><li class="navelem"><a class="el" href="dir_7e7acccef388183555cf60cdd0da09f6.html">ds</a></li><li class="navelem"><a class="el" href="dir_2709ca21d061943eeaff456ce24c90c1.html">spi</a></li><li class="navelem"><a class="el" href="spi_2master_8c.html">master.c</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
+  </ul>
+</div>
+</body>
+</html>

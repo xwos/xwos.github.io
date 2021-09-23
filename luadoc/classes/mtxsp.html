@@ -1,0 +1,495 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>XWLUA参考手册</title>
+    <link rel="stylesheet" href="../ldoc_new.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>XWLUA</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#MetaMethods">MetaMethods</a></li>
+<li><a href="#Methods">Methods</a></li>
+</ul>
+
+
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><a href="../classes/xwlib.bmp.html">xwlib.bmp</a></li>
+  <li><a href="../classes/thdsp.html">thdsp</a></li>
+  <li><strong>mtxsp</strong></li>
+  <li><a href="../classes/splksp.html">splksp</a></li>
+  <li><a href="../classes/sqlksp.html">sqlksp</a></li>
+  <li><a href="../classes/semsp.html">semsp</a></li>
+  <li><a href="../classes/condsp.html">condsp</a></li>
+  <li><a href="../classes/flgsp.html">flgsp</a></li>
+  <li><a href="../classes/brsp.html">brsp</a></li>
+  <li><a href="../classes/selsp.html">selsp</a></li>
+  <li><a href="../classes/xwds.soc.html">xwds.soc</a></li>
+  <li><a href="../classes/xwds.uart.html">xwds.uart</a></li>
+  <li><a href="../classes/xwds.i2cm.html">xwds.i2cm</a></li>
+  <li><a href="../classes/xwds.spim.html">xwds.spim</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/xwtm.html">xwtm</a></li>
+  <li><a href="../modules/xwvm.html">xwvm</a></li>
+  <li><a href="../modules/xwxt.html">xwxt</a></li>
+  <li><a href="../modules/xwos.skd.html">xwos.skd</a></li>
+  <li><a href="../modules/xwos.thd.html">xwos.thd</a></li>
+  <li><a href="../modules/xwos.cthd.html">xwos.cthd</a></li>
+  <li><a href="../modules/xwos.lock.mtx.html">xwos.lock.mtx</a></li>
+  <li><a href="../modules/xwos.lock.splk.html">xwos.lock.splk</a></li>
+  <li><a href="../modules/xwos.lock.sqlk.html">xwos.lock.sqlk</a></li>
+  <li><a href="../modules/xwos.sync.sem.html">xwos.sync.sem</a></li>
+  <li><a href="../modules/xwos.sync.cond.html">xwos.sync.cond</a></li>
+  <li><a href="../modules/xwos.sync.flg.html">xwos.sync.flg</a></li>
+  <li><a href="../modules/xwos.sync.br.html">xwos.sync.br</a></li>
+  <li><a href="../modules/xwos.sync.sel.html">xwos.sync.sel</a></li>
+  <li><a href="../modules/xwos.pm.html">xwos.pm</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Class <code>mtxsp</code></h1>
+<p>XWLUA类：互斥锁对象强指针</p>
+<p>互斥锁对象强指针是Lua语言中的一种 <code>userdata</code> ，用于 <strong>强引用</strong> XWOS的互斥锁对象。</p>
+
+<p><strong>强引用</strong> 表示会增加XWOS的互斥锁对象的 <strong>引用计数</strong> 。</p>
+
+
+<h2><a href="#MetaMethods">MetaMethods</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#mtxsp:metatable.__copy">mtxsp:metatable.__copy (mtxsp, vm)</a></td>
+	<td class="summary">元方法：__copy</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#mtxsp:metatable.__gc">mtxsp:metatable.__gc (mtxsp)</a></td>
+	<td class="summary">元方法：__gc</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#mtxsp:metatable.__close">mtxsp:metatable.__close (mtxsp)</a></td>
+	<td class="summary">元方法：__close</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#mtxsp:metatable.__tostring">mtxsp:metatable.__tostring (mtxsp)</a></td>
+	<td class="summary">元方法：__tostring</td>
+	</tr>
+</table>
+<h2><a href="#Methods">Methods</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#mtxsp:lock">mtxsp:lock (mtxsp)</a></td>
+	<td class="summary">等待上锁互斥锁</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#mtxsp:trylock">mtxsp:trylock (mtxsp)</a></td>
+	<td class="summary">尝试上锁互斥锁</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#mtxsp:lock_to">mtxsp:lock_to (mtxsp, to)</a></td>
+	<td class="summary">限时等待上锁互斥锁</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#mtxsp:unlock">mtxsp:unlock (mtxsp)</a></td>
+	<td class="summary">解锁互斥锁</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#mtxsp:get_lkst">mtxsp:get_lkst (mtxsp)</a></td>
+	<td class="summary">获取互斥锁状态</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="MetaMethods"></a>MetaMethods</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "mtxsp:metatable.__copy"></a>
+    <strong>mtxsp:metatable.__copy (mtxsp, vm)</strong>
+    </dt>
+    <dd>
+    元方法：__copy </p>
+
+<p>将互斥锁对象强指针拷贝到全局导出表 <a href="../modules/xwxt.html#">xwxt</a> 中。</p>
+
+<p>此元方法意味着互斥锁对象的强引用多了一个，<strong>引用计数</strong> 加 <strong>1</strong> 。
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">mtxsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 互斥锁对象强指针
+        </li>
+        <li><span class="parameter">vm</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 目标虚拟机
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">mtxsp = ... <span class="comment">-- 创建互斥锁的代码（省略）
+</span>xwxt.somemtx = mtxsp <span class="comment">-- 互斥锁对象的引用计数加1
+</span>mtxsp2 = xwxt.somemtx <span class="comment">-- 互斥锁对象的引用计数加1
+</span>xwxt.somemtx = <span class="keyword">nil</span> <span class="comment">-- 互斥锁对象的引用计数减1</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "mtxsp:metatable.__gc"></a>
+    <strong>mtxsp:metatable.__gc (mtxsp)</strong>
+    </dt>
+    <dd>
+    元方法：__gc </p>
+
+<p>互斥锁对象强指针的垃圾回收方法。</p>
+
+<p>此元方法意味着互斥锁对象的强引用少了一个，<strong>引用计数</strong> 减 <strong>1</strong> 。</p>
+
+<p>如果互斥锁对象被销毁时还处于上锁状态，将自动被解锁。
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">mtxsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 互斥锁对象强指针
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">mtxsp = <span class="keyword">nil</span> <span class="comment">-- 删除引用
+</span><span class="global">collectgarbage</span>() <span class="comment">-- 强制垃圾回收，将调用__gc()函数</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "mtxsp:metatable.__close"></a>
+    <strong>mtxsp:metatable.__close (mtxsp)</strong>
+    </dt>
+    <dd>
+    元方法：__close </p>
+
+<p>互斥锁对象强指针的 <strong>to-be-close</strong> 特性函数。</p>
+
+<p>当互斥锁对象强指针离开其作用域时，将自动解锁关联的互斥锁。
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">mtxsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 互斥锁对象强指针
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">mymtx = xwos.mtx.<span class="function-name">new</span>()
+<span class="keyword">function</span> <span class="function-name">test</span>()
+  <span class="keyword">local</span> scopelock&lt;close&gt; = mymtx
+  rc = scopelock:<span class="function-name">lock</span>()
+  <span class="keyword">if</span> (rc == <span class="number">0</span>) <span class="keyword">then</span>
+    <span class="comment">-- 临界区
+</span>  <span class="keyword">end</span>
+<span class="keyword">end</span> <span class="comment">-- 自动解锁互斥锁</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "mtxsp:metatable.__tostring"></a>
+    <strong>mtxsp:metatable.__tostring (mtxsp)</strong>
+    </dt>
+    <dd>
+    元方法：__tostring </p>
+
+<p>将互斥锁对象强指针格式化成字符串，可用于终端打印调试。
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">mtxsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 互斥锁对象强指针
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="global">print</span>(mtxsp)</pre>
+    </ul>
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Methods"></a>Methods</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "mtxsp:lock"></a>
+    <strong>mtxsp:lock (mtxsp)</strong>
+    </dt>
+    <dd>
+    等待上锁互斥锁 </p>
+
+<p>如果互斥锁无法上锁，就会阻塞当前线程。
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">mtxsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 互斥锁对象强指针
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+         错误码<br>
+　● <strong>0</strong> 没有错误<br>
+　● <strong>-EINTR</strong> 等待被中断<br>
+　● <strong>-ENOTTHDCTX</strong> 不在线程上下文中
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">lock = xwos.mtx.<span class="function-name">new</span>()
+rc = lock:<span class="function-name">lock</span>()
+<span class="keyword">if</span> (rc == <span class="number">0</span>) <span class="keyword">then</span>
+  <span class="comment">-- 临界区
+</span>  lock:<span class="function-name">unlock</span>()
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "mtxsp:trylock"></a>
+    <strong>mtxsp:trylock (mtxsp)</strong>
+    </dt>
+    <dd>
+    尝试上锁互斥锁 </p>
+
+<p>如果互斥锁无法上锁，不会阻塞调用线程。
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">mtxsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 互斥锁对象强指针
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+         错误码<br>
+　● <strong>0</strong> 没有错误<br>
+　● <strong>-EINTR</strong> 等待被中断<br>
+　● <strong>-ENOTTHDCTX</strong> 不在线程上下文中<br>
+　● <strong>-ENODATA</strong> 尝试上锁失败
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">lock = xwos.mtx.<span class="function-name">new</span>()
+rc = lock:<span class="function-name">trylock</span>() <span class="comment">-- 尝试获取互斥锁，失败直接返回-ENODATA
+</span><span class="keyword">if</span> (rc == <span class="number">0</span>) <span class="keyword">then</span>
+  <span class="comment">-- 临界区
+</span>  lock:<span class="function-name">unlock</span>()
+<span class="keyword">elseif</span> (rc == -<span class="number">61</span>) <span class="keyword">then</span>
+  <span class="global">print</span>(<span class="string">"Can't lock!"</span>)
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "mtxsp:lock_to"></a>
+    <strong>mtxsp:lock_to (mtxsp, to)</strong>
+    </dt>
+    <dd>
+    限时等待上锁互斥锁 </p>
+
+<p>如果互斥锁无法上锁，就会阻塞当前线程。
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">mtxsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 互斥锁对象强指针
+        </li>
+        <li><span class="parameter">to</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) 期望唤醒的时间点
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+         错误码<br>
+　● <strong>0</strong> 没有错误<br>
+　● <strong>-EINTR</strong> 等待被中断<br>
+　● <strong>-ENOTTHDCTX</strong> 不在线程上下文中<br>
+　● <strong>-ETIMEDOUT</strong> 超时
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">lock = xwos.mtx.<span class="function-name">new</span>()
+rc = lock:<span class="function-name">lock_to</span>(xwtm.<span class="function-name">ft</span>(xwtm.<span class="function-name">s</span>(<span class="number">1</span>))) <span class="comment">-- 最多等待互斥锁1s，超时返回-ETIMEDOUT
+</span><span class="keyword">if</span> (rc == <span class="number">0</span>) <span class="keyword">then</span>
+  <span class="comment">-- 临界区
+</span>  lock:<span class="function-name">unlock</span>()
+<span class="keyword">elseif</span> (rc == -<span class="number">116</span>) <span class="keyword">then</span>
+  <span class="global">print</span>(<span class="string">"Timeout!"</span>)
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "mtxsp:unlock"></a>
+    <strong>mtxsp:unlock (mtxsp)</strong>
+    </dt>
+    <dd>
+    解锁互斥锁
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">mtxsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 互斥锁对象强指针
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+         错误码<br>
+　● <strong>0</strong> 没有错误<br>
+　● <strong>-EOWNER</strong> 线程并没有锁定此互斥锁<br>
+　● <strong>-ENOTTHDCTX</strong> 不在线程上下文中
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">lock = xwos.mtx.<span class="function-name">new</span>()
+rc = lock:<span class="function-name">lock</span>()
+<span class="keyword">if</span> (rc == <span class="number">0</span>) <span class="keyword">then</span>
+  <span class="comment">-- 临界区
+</span>  lock:<span class="function-name">unlock</span>()
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "mtxsp:get_lkst"></a>
+    <strong>mtxsp:get_lkst (mtxsp)</strong>
+    </dt>
+    <dd>
+    获取互斥锁状态
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">mtxsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 互斥锁对象强指针
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+         锁状态<br>
+　● <strong>0</strong> 未锁定<br>
+　● <strong>1</strong> 锁定
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">lock = xwos.mtx.<span class="function-name">new</span>()
+rc = lock:<span class="function-name">lock</span>()
+<span class="keyword">if</span> (rc == <span class="number">0</span>) <span class="keyword">then</span>
+  <span class="comment">-- 临界区
+</span>  lkst = lock:<span class="function-name">get_lkst</span>()
+  lock:<span class="function-name">unlock</span>()
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/lunarmodules/LDoc">LDoc 1.5.0</a></i>
+<i style="float:right;">Last updated 2024-01-12 20:06:58 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

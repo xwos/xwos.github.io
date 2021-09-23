@@ -1,0 +1,3 @@
+(function() {var implementors = {
+"xwrust":[["impl Clone for <a class=\"enum\" href=\"xwrust/xwos/skd/enum.Context.html\" title=\"enum xwrust::xwos::skd::Context\">Context</a>"],["impl&lt;'a, const N: <a class=\"type\" href=\"xwrust/types/type.XwSz.html\" title=\"type xwrust::types::XwSz\">XwSz</a>, T: Clone&gt; Clone for <a class=\"struct\" href=\"xwrust/xwmd/xwmq/struct.XwmqTx.html\" title=\"struct xwrust::xwmd::xwmq::XwmqTx\">XwmqTx</a>&lt;'a, N, T&gt;<span class=\"where fmt-newline\">where\n    [u8; { _ }]: Sized,</span>"]]
+};if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

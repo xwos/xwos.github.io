@@ -1,0 +1,46 @@
+var xwssc_2mif_8h =
+[
+    [ "XWSSC_DEF_MEMPOOL", "group__xwmd__isc__xwssc__mif.html#ga6d405b11c99394857ac5bf900709cd9e", null ],
+    [ "XWSSC_INVALID_PRI", "group__xwmd__isc__xwssc__mif.html#gab0696bf189259c343df08fa3015ee759", null ],
+    [ "XWSSC_MAX_PRI", "group__xwmd__isc__xwssc__mif.html#gaea3f05252fa0d5ff0758ccf5955c407c", null ],
+    [ "XWSSC_MEMBLK_NUM", "group__xwmd__isc__xwssc__mif.html#gaf62eb995bdab72be583a71eef36ee4c9", null ],
+    [ "XWSSC_MEMBLK_ODR", "group__xwmd__isc__xwssc__mif.html#ga9b4b154b636d78ed99b6c1bc1bd1e32f", null ],
+    [ "XWSSC_MEMBLK_SIZE", "group__xwmd__isc__xwssc__mif.html#gab721c86205184972ab832c726c152d08", null ],
+    [ "XWSSC_MEMPOOL_SIZE", "group__xwmd__isc__xwssc__mif.html#gadb9a0d052b2bd9c0f7f73d2660b60b7a", null ],
+    [ "XWSSC_PORT_NUM", "group__xwmd__isc__xwssc__mif.html#gaaf170c70a0b6e173aaf2c668fdeb3f8a", null ],
+    [ "XWSSC_PRI_NUM", "group__xwmd__isc__xwssc__mif.html#ga753c84b6b0386086ee076754bee3d66d", null ],
+    [ "XWSSC_RETRY_NUM", "group__xwmd__isc__xwssc__mif.html#ga85a0738599201d8fd7be68424ec67674", null ],
+    [ "XWSSC_RETRY_PERIOD", "group__xwmd__isc__xwssc__mif.html#gae0e5c0d75e21a30c65878d9834aa8699", null ],
+    [ "XWSSC_VERSION", "group__xwmd__isc__xwssc__mif.html#ga4a5c404189a64514496bb871b9d193eb", null ],
+    [ "XWSSC_VERSION_MAJOR", "group__xwmd__isc__xwssc__mif.html#ga6c7515d77a1791292a50a704a38dfbbb", null ],
+    [ "XWSSC_VERSION_MINOR", "group__xwmd__isc__xwssc__mif.html#gac22a9835f16b9b63271f88160d4e4216", null ],
+    [ "XWSSC_VERSION_REVISION", "group__xwmd__isc__xwssc__mif.html#gad93af78f09e62f78ba2f6166cf08ece8", null ],
+    [ "xwssc_ntf_f", "group__xwmd__isc__xwssc__mif.html#gaa3743a5a0b56f08bac0b4d33c493f1b9", null ],
+    [ "xwssc_txh_t", "group__xwmd__isc__xwssc__mif.html#ga54a48e70d06eb4e6a9c87f7c711c0616", null ],
+    [ "xwssc_carrier_state_em", "group__xwmd__isc__xwssc__mif.html#ga79aacce854ddf82f8488f0c5b02480f0", [
+      [ "XWSSC_CRS_IDLE", "xwssc_2mif_8h.html#ga79aacce854ddf82f8488f0c5b02480f0af3b0f8fbe1a2f1de09251e761f156b55", null ],
+      [ "XWSSC_CRS_READY", "xwssc_2mif_8h.html#ga79aacce854ddf82f8488f0c5b02480f0a2bd158dc82eaf68c9a57978c50dcaf88", null ],
+      [ "XWSSC_CRS_INPROGRESS", "xwssc_2mif_8h.html#ga79aacce854ddf82f8488f0c5b02480f0a6a71543e588a4d6ad2135b41899e5f7d", null ],
+      [ "XWSSC_CRS_ABORT", "xwssc_2mif_8h.html#ga79aacce854ddf82f8488f0c5b02480f0a1ac56adc41107ef1b9c7d76cd5b13cff", null ],
+      [ "XWSSC_CRS_FINISH", "xwssc_2mif_8h.html#ga79aacce854ddf82f8488f0c5b02480f0a46b0d564268a47e61c7cadbf4efc8ba0", null ]
+    ] ],
+    [ "xwssc_msg_qos_em", "group__xwmd__isc__xwssc__mif.html#ga9a4c12199761da167a9236492296802d", [
+      [ "XWSSC_MSG_QOS_0", "xwssc_2mif_8h.html#ga9a4c12199761da167a9236492296802da1798144eb586d05d0cef47924c649641", null ],
+      [ "XWSSC_MSG_QOS_1", "xwssc_2mif_8h.html#ga9a4c12199761da167a9236492296802da91aa290230f102b76b006b776f712218", null ],
+      [ "XWSSC_MSG_QOS_2", "xwssc_2mif_8h.html#ga9a4c12199761da167a9236492296802dadc0ab75544817ae84307e8619702daf5", null ],
+      [ "XWSSC_MSG_QOS_3", "xwssc_2mif_8h.html#ga9a4c12199761da167a9236492296802dae816fe3a8c013973e80cb6544f5bc86c", null ],
+      [ "XWSSC_MSG_QOS_NUM", "xwssc_2mif_8h.html#ga9a4c12199761da167a9236492296802da16593c11ca8d42d8356a3d207900637b", null ],
+      [ "XWSSC_MSG_QOS_CHKSUM_MSK", "xwssc_2mif_8h.html#ga9a4c12199761da167a9236492296802da9b680d31121a4a52d55e3560ba241cd7", null ],
+      [ "XWSSC_MSG_QOS_RELIABLE_MSK", "xwssc_2mif_8h.html#ga9a4c12199761da167a9236492296802dac441217a3679b62b5ddd59ae61351186", null ],
+      [ "XWSSC_MSG_QOS_MSK", "xwssc_2mif_8h.html#ga9a4c12199761da167a9236492296802da11c1f80bc28737a684b8174a3b5d34dd", null ]
+    ] ],
+    [ "xwssc_abort", "group__xwmd__isc__xwssc__mif.html#ga766e81ee066df69151852fd38fbde0a0", null ],
+    [ "xwssc_eq", "group__xwmd__isc__xwssc__mif.html#gac04e75e70e3c24a536d698c1ff37bcd7", null ],
+    [ "xwssc_get_txstate", "group__xwmd__isc__xwssc__mif.html#ga8a9388689d5436db20aa581b29d8a583", null ],
+    [ "xwssc_rx", "group__xwmd__isc__xwssc__mif.html#gaa6d667ff978bd3a4aac2fdebd0e9ee20", null ],
+    [ "xwssc_start", "group__xwmd__isc__xwssc__mif.html#ga3e07adb50f3154c6ccd4e351159300f2", null ],
+    [ "xwssc_stop", "group__xwmd__isc__xwssc__mif.html#gac53c778273564fc90c7a76a420162cac", null ],
+    [ "xwssc_try_rx", "group__xwmd__isc__xwssc__mif.html#gaa97462ac22b7db3e725ee6c4cc48f79f", null ],
+    [ "xwssc_tst_connected", "group__xwmd__isc__xwssc__mif.html#gabf3e5a218f272f0525b65ee5aad5ecc1", null ],
+    [ "xwssc_tx", "group__xwmd__isc__xwssc__mif.html#ga10ff8ae43dfd33fea62f20bdec94d034", null ]
+];

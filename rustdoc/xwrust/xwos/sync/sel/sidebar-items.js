@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["SIZEOF_XWOS_SEL"],"enum":["SelError"],"struct":["Sel","SelSel"]};

@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['magic_0',['magic',['../structxwos__object.html#a882d44ee4a24ab73b65f2cb6921eb8ba',1,'xwos_object']]],
+  ['malloc_1',['malloc',['../structxwmm__mempool__i__allocator.html#a8338a06dc3dafd768e21d832868be524',1,'xwmm_mempool_i_allocator']]],
+  ['mapping_2',['mapping',['../structxwmm__mempool__page.html#a86aa875179e54032edc2152789309c19',1,'xwmm_mempool_page']]],
+  ['max_5forder_3',['max_order',['../structxwmm__mempool__page__allocator.html#a42bc1ba281df4d37fd294216ebff0c53',1,'xwmm_mempool_page_allocator']]],
+  ['mem_4',['mem',['../structxwds__uartc.html#a0c2083778fbe5cf15841f2f7a802ebe9',1,'xwds_uartc']]],
+  ['mempool_5',['mempool',['../structxwssc.html#adcb02e0e8dd702d47d435dbfcb843c50',1,'xwssc']]],
+  ['mempool_5fbma_5fraw_6',['mempool_bma_raw',['../structxwssc.html#afbeb218c04d87ab805094f3f54b11037',1,'xwssc']]],
+  ['mid_7',['mid',['../structxwds__w25qxx__parameter.html#af172c599e02f439ab31a40ce44a58f3a',1,'xwds_w25qxx_parameter']]],
+  ['misccfg_8',['misccfg',['../structxwds__misc.html#a027f4c943d7f18be5515e5e9a0faf9fa',1,'xwds_misc']]],
+  ['mode_9',['mode',['../structxwds__lin__cfg.html#ae8699a6540e686af8412cfd109b51d39',1,'xwds_lin_cfg::mode'],['../structxwds__uart__cfg.html#a3cf2bb330034f6fe634554e468ec2bdd',1,'xwds_uart_cfg::mode'],['../structxwds__canc.html#a2bf4b21be57bde805ac5eda0a432a670',1,'xwds_canc::mode']]],
+  ['mode_5findication_10',['mode_indication',['../structxwds__canc__cbtbl.html#afd44f3531ba14da50aa6d78e39a649e0',1,'xwds_canc_cbtbl']]],
+  ['mq_11',['mq',['../structxwmq__d.html#acdc8d67b1715bb673876fae39ada51f1',1,'xwmq_d']]],
+  ['msgitable_12',['msgitable',['../structxwds__linc.html#af989306f9836372ccfa4191ba5ee2ea6',1,'xwds_linc']]],
+  ['msgitable_5fitemnum_13',['msgitable_itemnum',['../structxwds__linc.html#a1a4325eb5b1b0bfae4c36b687c547de1',1,'xwds_linc']]],
+  ['msttx_14',['msttx',['../structxwds__linc__driver.html#a22317ca97434a8da7cacc8a235a55c72',1,'xwds_linc_driver']]],
+  ['mtx_15',['mtx',['../structxwos__mtx__d.html#aa9e5d8a213c3fd087623bf5833e17a67',1,'xwos_mtx_d::mtx'],['../unionxwos__ulock.html#a402584f6f2d169251890bd2921721701',1,'xwos_ulock::mtx'],['../unionxwos__ulock.html#a1c9cfe02c5b683b4b19175ba12441ab1',1,'xwos_ulock::mtx'],['../unionxwos__ulock.html#ad5d4a92ace47f3df5e7b991e24ed4319',1,'xwos_ulock::mtx']]]
+];

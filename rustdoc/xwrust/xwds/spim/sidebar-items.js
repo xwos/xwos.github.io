@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["SIZEOF_XWDS_SPIM"],"struct":["Spim","XwdsSpim"]};

@@ -1,0 +1,219 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="自旋锁的RAII Guard"><title>SpinlockGuard in xwrust::xwos::lock::spinlock - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="xwrust" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (b10cfcd65 2023-11-29)" data-channel="nightly" data-search-js="search-56a624991a76cfad.js" data-settings-js="settings-fe03fdc259827cd2.js" ><script src="../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../../../static.files/main-77dede896d6ac08e.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc struct"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../../xwrust/index.html">xwrust</a><span class="version">1.0.0</span></h2></div><h2 class="location"><a href="#">SpinlockGuard</a></h2><div class="sidebar-elems"><section><h3><a href="#implementations">Methods</a></h3><ul class="block method"><li><a href="#method.wait">wait</a></li><li><a href="#method.wait_to">wait_to</a></li><li><a href="#method.wait_unintr">wait_unintr</a></li></ul><h3><a href="#trait-implementations">Trait Implementations</a></h3><ul class="block trait-implementation"><li><a href="#impl-Send-for-SpinlockGuard%3C'_,+T%3E">!Send</a></li><li><a href="#impl-Deref-for-SpinlockGuard%3C'_,+T%3E">Deref</a></li><li><a href="#impl-DerefMut-for-SpinlockGuard%3C'_,+T%3E">DerefMut</a></li><li><a href="#impl-Drop-for-SpinlockGuard%3C'_,+T%3E">Drop</a></li><li><a href="#impl-Sync-for-SpinlockGuard%3C'_,+T%3E">Sync</a></li></ul><h3><a href="#synthetic-implementations">Auto Trait Implementations</a></h3><ul class="block synthetic-implementation"><li><a href="#impl-RefUnwindSafe-for-SpinlockGuard%3C'a,+T%3E">!RefUnwindSafe</a></li><li><a href="#impl-UnwindSafe-for-SpinlockGuard%3C'a,+T%3E">!UnwindSafe</a></li><li><a href="#impl-Unpin-for-SpinlockGuard%3C'a,+T%3E">Unpin</a></li></ul><h3><a href="#blanket-implementations">Blanket Implementations</a></h3><ul class="block blanket-implementation"><li><a href="#impl-Any-for-T">Any</a></li><li><a href="#impl-Borrow%3CT%3E-for-T">Borrow&lt;T&gt;</a></li><li><a href="#impl-BorrowMut%3CT%3E-for-T">BorrowMut&lt;T&gt;</a></li><li><a href="#impl-From%3CT%3E-for-T">From&lt;T&gt;</a></li><li><a href="#impl-Into%3CU%3E-for-T">Into&lt;U&gt;</a></li><li><a href="#impl-TryFrom%3CU%3E-for-T">TryFrom&lt;U&gt;</a></li><li><a href="#impl-TryInto%3CU%3E-for-T">TryInto&lt;U&gt;</a></li></ul></section><h2><a href="index.html">In xwrust::xwos::lock::spinlock</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Struct <a href="../../../index.html">xwrust</a>::<wbr><a href="../../index.html">xwos</a>::<wbr><a href="../index.html">lock</a>::<wbr><a href="index.html">spinlock</a>::<wbr><a class="struct" href="#">SpinlockGuard</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../../../../src/xwrust/xwos/lock/spinlock.rs.html#480-483">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>pub struct SpinlockGuard&lt;'a, T: ?Sized + 'a&gt; { /* private fields */ }</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>自旋锁的RAII Guard</p>
+<p><strong>RAII Guard</strong> 用于提供 <strong>Scoped Lock</strong> 机制。</p>
+<ul>
+<li><a href="struct.SpinlockGuard.html" title="struct xwrust::xwos::lock::spinlock::SpinlockGuard"><code>SpinlockGuard</code></a> 中包含 <a href="struct.Spinlock.html" title="struct xwrust::xwos::lock::spinlock::Spinlock"><code>Spinlock</code></a> 的引用， 当 <a href="struct.SpinlockGuard.html" title="struct xwrust::xwos::lock::spinlock::SpinlockGuard"><code>SpinlockGuard</code></a> 生命周期结束时，会在 <a href="https://doc.rust-lang.org/std/mem/fn.drop.html"><code>drop()</code></a> 方法中自动解锁自旋锁。</li>
+<li><a href="struct.SpinlockGuard.html" title="struct xwrust::xwos::lock::spinlock::SpinlockGuard"><code>SpinlockGuard</code></a> 不可在线程之间转移所有权，因为其 <a href="https://doc.rust-lang.org/std/mem/fn.drop.html"><code>drop()</code></a> 方法包含解锁的语义，上锁和解锁必须在同一线程；</li>
+<li><a href="struct.SpinlockGuard.html" title="struct xwrust::xwos::lock::spinlock::SpinlockGuard"><code>SpinlockGuard</code></a> 虽然可以在多线程中传递引用( <a href="https://doc.rust-lang.org/std/marker/trait.Send.html"><code>Sync</code></a> 约束)，但其实现中没有 <strong>unlock()</strong> 方法，意味着其他线程即便拿到引用也不能解锁。</li>
+</ul>
+</div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor">§</a></h2><div id="implementations-list"><details class="toggle implementors-toggle" open><summary><section id="impl-SpinlockGuard%3C'a,+T%3E" class="impl"><a class="src rightside" href="../../../../src/xwrust/xwos/lock/spinlock.rs.html#488-820">source</a><a href="#impl-SpinlockGuard%3C'a,+T%3E" class="anchor">§</a><h3 class="code-header">impl&lt;'a, T: ?Sized&gt; <a class="struct" href="struct.SpinlockGuard.html" title="struct xwrust::xwos::lock::spinlock::SpinlockGuard">SpinlockGuard</a>&lt;'a, T&gt;</h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.wait" class="method"><a class="src rightside" href="../../../../src/xwrust/xwos/lock/spinlock.rs.html#576-607">source</a><h4 class="code-header">pub fn <a href="#method.wait" class="fn">wait</a>(self, cond: &amp;<a class="struct" href="../../sync/cond/struct.Cond.html" title="struct xwrust::xwos::sync::cond::Cond">Cond</a>) -&gt; Result&lt;<a class="struct" href="struct.SpinlockGuard.html" title="struct xwrust::xwos::lock::spinlock::SpinlockGuard">SpinlockGuard</a>&lt;'a, T&gt;, <a class="enum" href="../../sync/cond/enum.CondError.html" title="enum xwrust::xwos::sync::cond::CondError">CondError</a>&gt;</h4></section></summary><div class="docblock"><p>阻塞当前线程，直到被条件量唤醒</p>
+<p>此方法会消费自旋锁的守卫(Guard)，并当线程阻塞时，在条件量内部释放自旋锁。
+当条件成立，线程被唤醒，会在条件量内部上锁自旋锁，并重新返回自旋锁的守卫(Guard)。</p>
+<ul>
+<li>当返回自旋锁的守卫 <a href="struct.SpinlockGuard.html" title="struct xwrust::xwos::lock::spinlock::SpinlockGuard"><code>SpinlockGuard</code></a> 时，自旋锁已经被重新上锁；</li>
+<li>当返回 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Err"><code>Err</code></a> 时，自旋锁未被上锁。</li>
+</ul>
+<h5 id="参数说明"><a href="#参数说明">参数说明</a></h5>
+<ul>
+<li>cond: 条件量的引用</li>
+</ul>
+<h5 id="错误码"><a href="#错误码">错误码</a></h5>
+<ul>
+<li><a href="../../sync/cond/enum.CondError.html#variant.NotInit" title="variant xwrust::xwos::sync::cond::CondError::NotInit"><code>CondError::NotInit</code></a> 条件量未被初始化</li>
+<li><a href="../../sync/cond/enum.CondError.html#variant.Interrupt" title="variant xwrust::xwos::sync::cond::CondError::Interrupt"><code>CondError::Interrupt</code></a> 等待被中断</li>
+<li><a href="../../sync/cond/enum.CondError.html#variant.NotThreadContext" title="variant xwrust::xwos::sync::cond::CondError::NotThreadContext"><code>CondError::NotThreadContext</code></a> 不在线程上下文中</li>
+</ul>
+<h5 id="示例"><a href="#示例">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwos::thd;
+<span class="kw">use </span>xwrust::xwos::lock::spinlock::<span class="kw-2">*</span>;
+<span class="kw">use </span>xwrust::xwos::sync::cond::<span class="kw-2">*</span>;
+<span class="kw">extern crate </span>alloc;
+<span class="kw">use </span>alloc::sync::Arc;
+
+<span class="kw">pub fn </span>xwrust_example_spinlock() {
+    <span class="kw">let </span>pair = Arc::new((Spinlock::new(<span class="bool-val">true</span>), Cond::new()));
+    pair.<span class="number">0</span>.init();
+    pair.<span class="number">1</span>.init();
+    <span class="kw">let </span>pair_c = pair.clone();
+
+    thd::Builder::new()
+        .name(<span class="string">&quot;child&quot;</span>.into())
+        .spawn(<span class="kw">move </span>|<span class="kw">_</span>| { <span class="comment">// 子线程闭包
+            </span>cthd::sleep(xwtm::ms(<span class="number">500</span>));
+            <span class="kw">let </span>(lock, cvar) = <span class="kw-2">&amp;*</span>pair_c;
+            <span class="kw">match </span>lock_child.lock() {
+                <span class="prelude-val">Ok</span>(<span class="kw-2">mut </span>guard) =&gt; {
+                    <span class="kw-2">*</span>guard = <span class="bool-val">false</span>; <span class="comment">// 设置共享数据
+                    </span>drop(guard); <span class="comment">// 先解锁再触发条件可提高效率
+                    </span>cvar.broadcast();
+                },
+                <span class="prelude-val">Err</span>(e) =&gt; { <span class="comment">// 子线程上锁失败
+                </span>},
+            }
+        });
+    <span class="kw">let </span>(lock, cvar) = <span class="kw-2">&amp;*</span>pair;
+    <span class="kw">let </span><span class="kw-2">mut </span>guard;
+    <span class="kw">match </span>lock.lock() {
+        <span class="prelude-val">Ok</span>(g) =&gt; {
+            guard = g;
+            <span class="kw">while </span><span class="kw-2">*</span>guard {
+                <span class="kw">match </span>guard.wait(cvar) {
+                    <span class="prelude-val">Ok</span>(g) =&gt; { <span class="comment">// 唤醒
+                        </span>guard = g;
+                    },
+                    <span class="prelude-val">Err</span>(e) =&gt; { <span class="comment">// 等待条件量失败
+                        </span><span class="kw">break</span>;
+                    },
+                }
+            }
+        },
+        <span class="prelude-val">Err</span>(e) =&gt; { <span class="comment">// 上锁失败
+        </span>},
+    }
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.wait_to" class="method"><a class="src rightside" href="../../../../src/xwrust/xwos/lock/spinlock.rs.html#683-716">source</a><h4 class="code-header">pub fn <a href="#method.wait_to" class="fn">wait_to</a>(
+    self,
+    cond: &amp;<a class="struct" href="../../sync/cond/struct.Cond.html" title="struct xwrust::xwos::sync::cond::Cond">Cond</a>,
+    to: <a class="type" href="../../../types/type.XwTm.html" title="type xwrust::types::XwTm">XwTm</a>
+) -&gt; Result&lt;<a class="struct" href="struct.SpinlockGuard.html" title="struct xwrust::xwos::lock::spinlock::SpinlockGuard">SpinlockGuard</a>&lt;'a, T&gt;, <a class="enum" href="../../sync/cond/enum.CondError.html" title="enum xwrust::xwos::sync::cond::CondError">CondError</a>&gt;</h4></section></summary><div class="docblock"><p>限时阻塞当前线程，直到被条件量唤醒</p>
+<p>此方法会消费自旋锁的守卫(Guard)，并当线程阻塞时，在条件量内部释放自旋锁。
+当条件成立，线程被唤醒，会在条件量内部上锁自旋锁，并重新返回自旋锁的守卫(Guard)。
+当超时后，将返回错误。</p>
+<ul>
+<li>当返回自旋锁的守卫 <a href="struct.SpinlockGuard.html" title="struct xwrust::xwos::lock::spinlock::SpinlockGuard"><code>SpinlockGuard</code></a> 时，自旋锁已经被重新上锁；</li>
+<li>当返回 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Err"><code>Err</code></a> 时，自旋锁未被上锁。</li>
+</ul>
+<h5 id="参数说明-1"><a href="#参数说明-1">参数说明</a></h5>
+<ul>
+<li>cond: 条件量的引用</li>
+<li>to: 期望唤醒的时间点</li>
+</ul>
+<h5 id="错误码-1"><a href="#错误码-1">错误码</a></h5>
+<ul>
+<li><a href="../../sync/cond/enum.CondError.html#variant.NotInit" title="variant xwrust::xwos::sync::cond::CondError::NotInit"><code>CondError::NotInit</code></a> 条件量未被初始化</li>
+<li><a href="../../sync/cond/enum.CondError.html#variant.Interrupt" title="variant xwrust::xwos::sync::cond::CondError::Interrupt"><code>CondError::Interrupt</code></a> 等待被中断</li>
+<li><a href="../../sync/cond/enum.CondError.html#variant.Timedout" title="variant xwrust::xwos::sync::cond::CondError::Timedout"><code>CondError::Timedout</code></a> 等待超时</li>
+<li><a href="../../sync/cond/enum.CondError.html#variant.NotThreadContext" title="variant xwrust::xwos::sync::cond::CondError::NotThreadContext"><code>CondError::NotThreadContext</code></a> 不在线程上下文中</li>
+</ul>
+<h5 id="示例-1"><a href="#示例-1">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwos::thd;
+<span class="kw">use </span>xwrust::xwos::lock::spinlock::<span class="kw-2">*</span>;
+<span class="kw">use </span>xwrust::xwos::sync::cond::<span class="kw-2">*</span>;
+<span class="kw">extern crate </span>alloc;
+<span class="kw">use </span>alloc::sync::Arc;
+
+<span class="kw">pub fn </span>xwrust_example_spinlock() {
+    <span class="kw">let </span>pair = Arc::new((Spinlock::new(<span class="bool-val">true</span>), Cond::new()));
+    pair.<span class="number">0</span>.init();
+    pair.<span class="number">1</span>.init();
+    <span class="kw">let </span>pair_c = pair.clone();
+
+    thd::Builder::new()
+        .name(<span class="string">&quot;child&quot;</span>.into())
+        .spawn(<span class="kw">move </span>|<span class="kw">_</span>| { <span class="comment">// 子线程闭包
+            </span>cthd::sleep(xwtm::ms(<span class="number">500</span>));
+            <span class="kw">let </span>(lock, cvar) = <span class="kw-2">&amp;*</span>pair_c;
+            <span class="kw">match </span>lock_child.lock() {
+                <span class="prelude-val">Ok</span>(<span class="kw-2">mut </span>guard) =&gt; {
+                    <span class="kw-2">*</span>guard = <span class="bool-val">false</span>; <span class="comment">// 设置共享数据
+                    </span>drop(guard); <span class="comment">// 先解锁再触发条件可提高效率
+                    </span>cvar.broadcast();
+                },
+                <span class="prelude-val">Err</span>(e) =&gt; { <span class="comment">// 子线程上锁失败
+                </span>},
+            }
+        });
+    <span class="kw">let </span>(lock, cvar) = <span class="kw-2">&amp;*</span>pair;
+    <span class="kw">let </span><span class="kw-2">mut </span>guard;
+    <span class="kw">match </span>lock.lock() {
+        <span class="prelude-val">Ok</span>(g) =&gt; {
+            guard = g;
+            <span class="kw">while </span><span class="kw-2">*</span>guard {
+                <span class="kw">match </span>guard.wait_to(cvar, xwtm::ft(xwtm::s(<span class="number">2</span>))) {
+                    <span class="prelude-val">Ok</span>(g) =&gt; { <span class="comment">// 唤醒
+                        </span>guard = g;
+                    },
+                    <span class="prelude-val">Err</span>(e) =&gt; { <span class="comment">// 等待条件量失败
+                        </span><span class="kw">break</span>;
+                    },
+                }
+            }
+        },
+        <span class="prelude-val">Err</span>(e) =&gt; { <span class="comment">// 上锁失败
+        </span>},
+    }
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.wait_unintr" class="method"><a class="src rightside" href="../../../../src/xwrust/xwos/lock/spinlock.rs.html#788-819">source</a><h4 class="code-header">pub fn <a href="#method.wait_unintr" class="fn">wait_unintr</a>(self, cond: &amp;<a class="struct" href="../../sync/cond/struct.Cond.html" title="struct xwrust::xwos::sync::cond::Cond">Cond</a>) -&gt; Result&lt;<a class="struct" href="struct.SpinlockGuard.html" title="struct xwrust::xwos::lock::spinlock::SpinlockGuard">SpinlockGuard</a>&lt;'a, T&gt;, <a class="enum" href="../../sync/cond/enum.CondError.html" title="enum xwrust::xwos::sync::cond::CondError">CondError</a>&gt;</h4></section></summary><div class="docblock"><p>阻塞当前线程，直到被条件量唤醒，且阻塞不可被中断</p>
+<p>此方法会消费自旋锁的守卫(Guard)，并当线程阻塞时，在条件量内部释放自旋锁。
+当条件成立，线程被唤醒，会在条件量内部上锁自旋锁，并重新返回自旋锁的守卫(Guard)。</p>
+<ul>
+<li>当返回自旋锁的守卫 <a href="struct.SpinlockGuard.html" title="struct xwrust::xwos::lock::spinlock::SpinlockGuard"><code>SpinlockGuard</code></a> 时，自旋锁已经被重新上锁；</li>
+<li>当返回 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Err"><code>Err</code></a> 时，自旋锁未被上锁。</li>
+</ul>
+<h5 id="参数说明-2"><a href="#参数说明-2">参数说明</a></h5>
+<ul>
+<li>cond: 条件量的引用</li>
+</ul>
+<h5 id="错误码-2"><a href="#错误码-2">错误码</a></h5>
+<ul>
+<li><a href="../../sync/cond/enum.CondError.html#variant.NotInit" title="variant xwrust::xwos::sync::cond::CondError::NotInit"><code>CondError::NotInit</code></a> 条件量未被初始化</li>
+<li><a href="../../sync/cond/enum.CondError.html#variant.NotThreadContext" title="variant xwrust::xwos::sync::cond::CondError::NotThreadContext"><code>CondError::NotThreadContext</code></a> 不在线程上下文中</li>
+</ul>
+<h5 id="示例-2"><a href="#示例-2">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwos::thd;
+<span class="kw">use </span>xwrust::xwos::lock::spinlock::<span class="kw-2">*</span>;
+<span class="kw">use </span>xwrust::xwos::sync::cond::<span class="kw-2">*</span>;
+<span class="kw">extern crate </span>alloc;
+<span class="kw">use </span>alloc::sync::Arc;
+
+<span class="kw">pub fn </span>xwrust_example_spinlock() {
+    <span class="kw">let </span>pair = Arc::new((Spinlock::new(<span class="bool-val">true</span>), Cond::new()));
+    pair.<span class="number">0</span>.init();
+    pair.<span class="number">1</span>.init();
+    <span class="kw">let </span>pair_c = pair.clone();
+
+    thd::Builder::new()
+        .name(<span class="string">&quot;child&quot;</span>.into())
+        .spawn(<span class="kw">move </span>|<span class="kw">_</span>| { <span class="comment">// 子线程闭包
+            </span>cthd::sleep(xwtm::ms(<span class="number">500</span>));
+            <span class="kw">let </span>(lock, cvar) = <span class="kw-2">&amp;*</span>pair_c;
+            <span class="kw">match </span>lock_child.lock() {
+                <span class="prelude-val">Ok</span>(<span class="kw-2">mut </span>guard) =&gt; {
+                    <span class="kw-2">*</span>guard = <span class="bool-val">false</span>; <span class="comment">// 设置共享数据
+                    </span>drop(guard); <span class="comment">// 先解锁再触发条件可提高效率
+                    </span>cvar.broadcast();
+                },
+                <span class="prelude-val">Err</span>(e) =&gt; { <span class="comment">// 子线程上锁失败
+                </span>},
+            }
+        });
+    <span class="kw">let </span>(lock, cvar) = <span class="kw-2">&amp;*</span>pair;
+    <span class="kw">let </span><span class="kw-2">mut </span>guard;
+    <span class="kw">match </span>lock.lock() {
+        <span class="prelude-val">Ok</span>(g) =&gt; {
+            guard = g;
+            <span class="kw">while </span><span class="kw-2">*</span>guard {
+                <span class="kw">match </span>guard.wait_unintr(cvar) {
+                    <span class="prelude-val">Ok</span>(g) =&gt; { <span class="comment">// 唤醒
+                        </span>guard = g;
+                    },
+                    <span class="prelude-val">Err</span>(e) =&gt; { <span class="comment">// 等待条件量失败
+                        </span><span class="kw">break</span>;
+                    },
+                }
+            }
+        },
+        <span class="prelude-val">Err</span>(e) =&gt; { <span class="comment">// 上锁失败
+        </span>},
+    }
+}</code></pre></div>
+</div></details></div></details></div><h2 id="trait-implementations" class="small-section-header">Trait Implementations<a href="#trait-implementations" class="anchor">§</a></h2><div id="trait-implementations-list"><details class="toggle implementors-toggle" open><summary><section id="impl-Deref-for-SpinlockGuard%3C'_,+T%3E" class="impl"><a class="src rightside" href="../../../../src/xwrust/xwos/lock/spinlock.rs.html#822-828">source</a><a href="#impl-Deref-for-SpinlockGuard%3C'_,+T%3E" class="anchor">§</a><h3 class="code-header">impl&lt;T: ?Sized&gt; Deref for <a class="struct" href="struct.SpinlockGuard.html" title="struct xwrust::xwos::lock::spinlock::SpinlockGuard">SpinlockGuard</a>&lt;'_, T&gt;</h3></section></summary><div class="impl-items"><details class="toggle" open><summary><section id="associatedtype.Target" class="associatedtype trait-impl"><a href="#associatedtype.Target" class="anchor">§</a><h4 class="code-header">type <a class="associatedtype">Target</a> = T</h4></section></summary><div class='docblock'>The resulting type after dereferencing.</div></details><details class="toggle method-toggle" open><summary><section id="method.deref" class="method trait-impl"><a class="src rightside" href="../../../../src/xwrust/xwos/lock/spinlock.rs.html#825-827">source</a><a href="#method.deref" class="anchor">§</a><h4 class="code-header">fn <a class="fn">deref</a>(&amp;self) -&gt; &amp;T</h4></section></summary><div class='docblock'>Dereferences the value.</div></details></div></details><details class="toggle implementors-toggle" open><summary><section id="impl-DerefMut-for-SpinlockGuard%3C'_,+T%3E" class="impl"><a class="src rightside" href="../../../../src/xwrust/xwos/lock/spinlock.rs.html#830-834">source</a><a href="#impl-DerefMut-for-SpinlockGuard%3C'_,+T%3E" class="anchor">§</a><h3 class="code-header">impl&lt;T: ?Sized&gt; DerefMut for <a class="struct" href="struct.SpinlockGuard.html" title="struct xwrust::xwos::lock::spinlock::SpinlockGuard">SpinlockGuard</a>&lt;'_, T&gt;</h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.deref_mut" class="method trait-impl"><a class="src rightside" href="../../../../src/xwrust/xwos/lock/spinlock.rs.html#831-833">source</a><a href="#method.deref_mut" class="anchor">§</a><h4 class="code-header">fn <a class="fn">deref_mut</a>(&amp;mut self) -&gt; &amp;mut T</h4></section></summary><div class='docblock'>Mutably dereferences the value.</div></details></div></details><details class="toggle implementors-toggle" open><summary><section id="impl-Drop-for-SpinlockGuard%3C'_,+T%3E" class="impl"><a class="src rightside" href="../../../../src/xwrust/xwos/lock/spinlock.rs.html#836-855">source</a><a href="#impl-Drop-for-SpinlockGuard%3C'_,+T%3E" class="anchor">§</a><h3 class="code-header">impl&lt;T: ?Sized&gt; Drop for <a class="struct" href="struct.SpinlockGuard.html" title="struct xwrust::xwos::lock::spinlock::SpinlockGuard">SpinlockGuard</a>&lt;'_, T&gt;</h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.drop" class="method trait-impl"><a class="src rightside" href="../../../../src/xwrust/xwos/lock/spinlock.rs.html#837-854">source</a><a href="#method.drop" class="anchor">§</a><h4 class="code-header">fn <a class="fn">drop</a>(&amp;mut self)</h4></section></summary><div class='docblock'>Executes the destructor for this type. <a>Read more</a></div></details></div></details><section id="impl-Send-for-SpinlockGuard%3C'_,+T%3E" class="impl"><a class="src rightside" href="../../../../src/xwrust/xwos/lock/spinlock.rs.html#485">source</a><a href="#impl-Send-for-SpinlockGuard%3C'_,+T%3E" class="anchor">§</a><h3 class="code-header">impl&lt;T: ?Sized&gt; !Send for <a class="struct" href="struct.SpinlockGuard.html" title="struct xwrust::xwos::lock::spinlock::SpinlockGuard">SpinlockGuard</a>&lt;'_, T&gt;</h3></section><section id="impl-Sync-for-SpinlockGuard%3C'_,+T%3E" class="impl"><a class="src rightside" href="../../../../src/xwrust/xwos/lock/spinlock.rs.html#486">source</a><a href="#impl-Sync-for-SpinlockGuard%3C'_,+T%3E" class="anchor">§</a><h3 class="code-header">impl&lt;T: ?Sized + Sync&gt; Sync for <a class="struct" href="struct.SpinlockGuard.html" title="struct xwrust::xwos::lock::spinlock::SpinlockGuard">SpinlockGuard</a>&lt;'_, T&gt;</h3></section></div><h2 id="synthetic-implementations" class="small-section-header">Auto Trait Implementations<a href="#synthetic-implementations" class="anchor">§</a></h2><div id="synthetic-implementations-list"><section id="impl-RefUnwindSafe-for-SpinlockGuard%3C'a,+T%3E" class="impl"><a href="#impl-RefUnwindSafe-for-SpinlockGuard%3C'a,+T%3E" class="anchor">§</a><h3 class="code-header">impl&lt;'a, T&gt; !RefUnwindSafe for <a class="struct" href="struct.SpinlockGuard.html" title="struct xwrust::xwos::lock::spinlock::SpinlockGuard">SpinlockGuard</a>&lt;'a, T&gt;</h3></section><section id="impl-Unpin-for-SpinlockGuard%3C'a,+T%3E" class="impl"><a href="#impl-Unpin-for-SpinlockGuard%3C'a,+T%3E" class="anchor">§</a><h3 class="code-header">impl&lt;'a, T: ?Sized&gt; Unpin for <a class="struct" href="struct.SpinlockGuard.html" title="struct xwrust::xwos::lock::spinlock::SpinlockGuard">SpinlockGuard</a>&lt;'a, T&gt;</h3></section><section id="impl-UnwindSafe-for-SpinlockGuard%3C'a,+T%3E" class="impl"><a href="#impl-UnwindSafe-for-SpinlockGuard%3C'a,+T%3E" class="anchor">§</a><h3 class="code-header">impl&lt;'a, T&gt; !UnwindSafe for <a class="struct" href="struct.SpinlockGuard.html" title="struct xwrust::xwos::lock::spinlock::SpinlockGuard">SpinlockGuard</a>&lt;'a, T&gt;</h3></section></div><h2 id="blanket-implementations" class="small-section-header">Blanket Implementations<a href="#blanket-implementations" class="anchor">§</a></h2><div id="blanket-implementations-list"><details class="toggle implementors-toggle"><summary><section id="impl-Any-for-T" class="impl"><a href="#impl-Any-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; Any for T<span class="where fmt-newline">where
+    T: 'static + ?Sized,</span></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.type_id" class="method trait-impl"><a href="#method.type_id" class="anchor">§</a><h4 class="code-header">fn <a class="fn">type_id</a>(&amp;self) -&gt; TypeId</h4></section></summary><div class='docblock'>Gets the <code>TypeId</code> of <code>self</code>. <a>Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-Borrow%3CT%3E-for-T" class="impl"><a href="#impl-Borrow%3CT%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; Borrow&lt;T&gt; for T<span class="where fmt-newline">where
+    T: ?Sized,</span></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.borrow" class="method trait-impl"><a href="#method.borrow" class="anchor">§</a><h4 class="code-header">fn <a class="fn">borrow</a>(&amp;self) -&gt; &amp;T</h4></section></summary><div class='docblock'>Immutably borrows from an owned value. <a>Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-BorrowMut%3CT%3E-for-T" class="impl"><a href="#impl-BorrowMut%3CT%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; BorrowMut&lt;T&gt; for T<span class="where fmt-newline">where
+    T: ?Sized,</span></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.borrow_mut" class="method trait-impl"><a href="#method.borrow_mut" class="anchor">§</a><h4 class="code-header">fn <a class="fn">borrow_mut</a>(&amp;mut self) -&gt; &amp;mut T</h4></section></summary><div class='docblock'>Mutably borrows from an owned value. <a>Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-From%3CT%3E-for-T" class="impl"><a href="#impl-From%3CT%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; From&lt;T&gt; for T</h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.from" class="method trait-impl"><a href="#method.from" class="anchor">§</a><h4 class="code-header">fn <a class="fn">from</a>(t: T) -&gt; T</h4></section></summary><div class="docblock"><p>Returns the argument unchanged.</p>
+</div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-Into%3CU%3E-for-T" class="impl"><a href="#impl-Into%3CU%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T, U&gt; Into&lt;U&gt; for T<span class="where fmt-newline">where
+    U: From&lt;T&gt;,</span></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.into" class="method trait-impl"><a href="#method.into" class="anchor">§</a><h4 class="code-header">fn <a class="fn">into</a>(self) -&gt; U</h4></section></summary><div class="docblock"><p>Calls <code>U::from(self)</code>.</p>
+<p>That is, this conversion is whatever the implementation of
+<code>[From]&lt;T&gt; for U</code> chooses to do.</p>
+</div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-TryFrom%3CU%3E-for-T" class="impl"><a href="#impl-TryFrom%3CU%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T, U&gt; TryFrom&lt;U&gt; for T<span class="where fmt-newline">where
+    U: Into&lt;T&gt;,</span></h3></section></summary><div class="impl-items"><details class="toggle" open><summary><section id="associatedtype.Error-1" class="associatedtype trait-impl"><a href="#associatedtype.Error-1" class="anchor">§</a><h4 class="code-header">type <a class="associatedtype">Error</a> = Infallible</h4></section></summary><div class='docblock'>The type returned in the event of a conversion error.</div></details><details class="toggle method-toggle" open><summary><section id="method.try_from" class="method trait-impl"><a href="#method.try_from" class="anchor">§</a><h4 class="code-header">fn <a class="fn">try_from</a>(value: U) -&gt; Result&lt;T, &lt;T as TryFrom&lt;U&gt;&gt;::Error&gt;</h4></section></summary><div class='docblock'>Performs the conversion.</div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-TryInto%3CU%3E-for-T" class="impl"><a href="#impl-TryInto%3CU%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T, U&gt; TryInto&lt;U&gt; for T<span class="where fmt-newline">where
+    U: TryFrom&lt;T&gt;,</span></h3></section></summary><div class="impl-items"><details class="toggle" open><summary><section id="associatedtype.Error" class="associatedtype trait-impl"><a href="#associatedtype.Error" class="anchor">§</a><h4 class="code-header">type <a class="associatedtype">Error</a> = &lt;U as TryFrom&lt;T&gt;&gt;::Error</h4></section></summary><div class='docblock'>The type returned in the event of a conversion error.</div></details><details class="toggle method-toggle" open><summary><section id="method.try_into" class="method trait-impl"><a href="#method.try_into" class="anchor">§</a><h4 class="code-header">fn <a class="fn">try_into</a>(self) -&gt; Result&lt;U, &lt;U as TryFrom&lt;T&gt;&gt;::Error&gt;</h4></section></summary><div class='docblock'>Performs the conversion.</div></details></div></details></div></section></div></main></body></html>

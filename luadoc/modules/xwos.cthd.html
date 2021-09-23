@@ -1,0 +1,463 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>XWLUA参考手册</title>
+    <link rel="stylesheet" href="../ldoc_new.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>XWLUA</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/xwtm.html">xwtm</a></li>
+  <li><a href="../modules/xwvm.html">xwvm</a></li>
+  <li><a href="../modules/xwxt.html">xwxt</a></li>
+  <li><a href="../modules/xwos.skd.html">xwos.skd</a></li>
+  <li><a href="../modules/xwos.thd.html">xwos.thd</a></li>
+  <li><strong>xwos.cthd</strong></li>
+  <li><a href="../modules/xwos.lock.mtx.html">xwos.lock.mtx</a></li>
+  <li><a href="../modules/xwos.lock.splk.html">xwos.lock.splk</a></li>
+  <li><a href="../modules/xwos.lock.sqlk.html">xwos.lock.sqlk</a></li>
+  <li><a href="../modules/xwos.sync.sem.html">xwos.sync.sem</a></li>
+  <li><a href="../modules/xwos.sync.cond.html">xwos.sync.cond</a></li>
+  <li><a href="../modules/xwos.sync.flg.html">xwos.sync.flg</a></li>
+  <li><a href="../modules/xwos.sync.br.html">xwos.sync.br</a></li>
+  <li><a href="../modules/xwos.sync.sel.html">xwos.sync.sel</a></li>
+  <li><a href="../modules/xwos.pm.html">xwos.pm</a></li>
+</ul>
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><a href="../classes/xwlib.bmp.html">xwlib.bmp</a></li>
+  <li><a href="../classes/thdsp.html">thdsp</a></li>
+  <li><a href="../classes/mtxsp.html">mtxsp</a></li>
+  <li><a href="../classes/splksp.html">splksp</a></li>
+  <li><a href="../classes/sqlksp.html">sqlksp</a></li>
+  <li><a href="../classes/semsp.html">semsp</a></li>
+  <li><a href="../classes/condsp.html">condsp</a></li>
+  <li><a href="../classes/flgsp.html">flgsp</a></li>
+  <li><a href="../classes/brsp.html">brsp</a></li>
+  <li><a href="../classes/selsp.html">selsp</a></li>
+  <li><a href="../classes/xwds.soc.html">xwds.soc</a></li>
+  <li><a href="../classes/xwds.uart.html">xwds.uart</a></li>
+  <li><a href="../classes/xwds.i2cm.html">xwds.i2cm</a></li>
+  <li><a href="../classes/xwds.spim.html">xwds.spim</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>xwos.cthd</code></h1>
+<p>XWLUA模块：当前线程</p>
+<p>操作线程自己的方法集合</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#sp">sp ()</a></td>
+	<td class="summary">返回当前线程的 <strong>线程对象强指针</strong> <a href="../classes/thdsp.html#">thdsp</a></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#sleep">sleep (xwtm)</a></td>
+	<td class="summary">当前线程睡眠一段时间</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#sleep_to">sleep_to (to)</a></td>
+	<td class="summary">当前线程睡眠到一个时间点</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#sleep_from">sleep_from (origin, inc)</a></td>
+	<td class="summary">当前线程从一个时间起点睡眠到另一个时间点</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#yield">yield ()</a></td>
+	<td class="summary">通知调度器重新选择线程</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#exit">exit (rc)</a></td>
+	<td class="summary">退出当前线程</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#shld_stop">shld_stop ()</a></td>
+	<td class="summary">判断当前线程能否退出</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#frz_shld_stop">frz_shld_stop ()</a></td>
+	<td class="summary">判断当前线程是否可被冻结，如果是，就冻结线程，之后再判断线程是否可以退出</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#shld_frz">shld_frz ()</a></td>
+	<td class="summary">判断当前线程是否可被冻结</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#frz">frz ()</a></td>
+	<td class="summary">冻结当前线程</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "sp"></a>
+    <strong>sp ()</strong>
+    </dt>
+    <dd>
+    返回当前线程的 <strong>线程对象强指针</strong> <a href="../classes/thdsp.html#">thdsp</a>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">userdata</span></span>
+        当前线程的 <strong>线程对象强指针</strong> <a href="../classes/thdsp.html#">thdsp</a>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <li><pre class="example">me = xwos.cthd.<span class="function-name">sp</span>()</pre></li>
+        <li><pre class="example"><span class="backtick"><code>终端输出：</code></span>
+&gt; me = xwos.cthd.<span class="function-name">sp</span>()
+&gt; me
+<span class="backtick"><code>{0x20000660, 67}</code></span></pre></li>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "sleep"></a>
+    <strong>sleep (xwtm)</strong>
+    </dt>
+    <dd>
+    当前线程睡眠一段时间 </p>
+
+<p>调用此函数的线程会睡眠 <strong>xwtm</strong> ，线程会在 <strong>当前时间点 + xwtm</strong> 时被唤醒。
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">xwtm</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) 需要睡眠的时间
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+         错误码<br>
+　● 0 没有错误<br>
+　● -EINTR 睡眠过程被中断<br>
+　● -ETIMEDOUT 输入的时间为负数
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">rc = xwos.cthd.<span class="function-name">sleep</span>(xwtm.<span class="function-name">s</span>(<span class="number">1</span>)) <span class="comment">-- 睡眠1s</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "sleep_to"></a>
+    <strong>sleep_to (to)</strong>
+    </dt>
+    <dd>
+    当前线程睡眠到一个时间点
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">to</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) 期望唤醒的时间点
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+         错误码<br>
+　● 0 没有错误<br>
+　● -EINTR 睡眠过程被中断<br>
+　● -ETIMEDOUT 输入的时间为负数
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">rc = xwos.cthd.<span class="function-name">sleep_to</span>(xwtm.<span class="function-name">ft</span>(xwtm.<span class="function-name">s</span>(<span class="number">1</span>))) <span class="comment">-- 从现在开始1s后唤醒</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "sleep_from"></a>
+    <strong>sleep_from (origin, inc)</strong>
+    </dt>
+    <dd>
+    当前线程从一个时间起点睡眠到另一个时间点 </p>
+
+<p>第一次调用此方法时，需要确定一个时间起点，可以通过 <a href="../modules/xwtm.html#now">xwtm.now</a>() 获取当前CPU调度器的系统时间。</p>
+
+
+<p>此方法每次返回时都会将当前的系统时间返回，可以用作下一次调用的时间起点 <code>origin</code> 。
+若时间增量 <code>inc</code> 保持不变，不断循环调用此方法，可形成较精确的周期性唤醒。
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">origin</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) 时间起点
+        </li>
+        <li><span class="parameter">inc</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) 期望被唤醒的时间相对于起点的增量，单位：纳秒
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+         错误码<br>
+　● <strong>0</strong> 没有错误<br>
+　● <strong>-EINTR</strong> 睡眠过程被中断</li>
+        <li>
+           <span class="types"><span class="type">userdata</span></span>
+        下一次调用的时间起点</li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">origin = xwos.skd.<span class="function-name">tt</span>()
+cnt = <span class="number">30</span> <span class="comment">-- 重复30次
+</span><span class="keyword">repeat</span>
+  rc, origin = xwos.cthd.<span class="function-name">sleep_from</span>(origin, xwtm.<span class="function-name">s</span>(<span class="number">1</span>)) <span class="comment">-- 周期性每1s唤醒一次
+</span>  cnt = cnt - <span class="number">1</span>
+<span class="keyword">until</span> (cnt == <span class="number">0</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "yield"></a>
+    <strong>yield ()</strong>
+    </dt>
+    <dd>
+    通知调度器重新选择线程
+
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">xwos.cthd.<span class="function-name">yield</span>()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "exit"></a>
+    <strong>exit (rc)</strong>
+    </dt>
+    <dd>
+    退出当前线程
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">rc</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) 线程退出时的返回值
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">xwos.cthd.<span class="function-name">exit</span>(<span class="number">0</span>) <span class="comment">-- 线程退出时抛出返回值0</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "shld_stop"></a>
+    <strong>shld_stop ()</strong>
+    </dt>
+    <dd>
+    判断当前线程能否退出
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        当前线程能否退出
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">repeat</span>
+  <span class="function-name">threadLoop</span>() <span class="comment">-- 线程的功能逻辑
+</span>  shldstop = xwos.cthd.<span class="function-name">shld_stop</span>()
+<span class="keyword">until</span> (shldstop)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "frz_shld_stop"></a>
+    <strong>frz_shld_stop ()</strong>
+    </dt>
+    <dd>
+    判断当前线程是否可被冻结，如果是，就冻结线程，之后再判断线程是否可以退出
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">boolean</span></span>
+        当前线程能否退出</li>
+        <li>
+           <span class="types"><span class="type">boolean</span></span>
+        当前线程是否被冻结过</li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">repeat</span>
+  <span class="function-name">threadLoop</span>() <span class="comment">-- 线程的功能逻辑
+</span>  shldstop, froze = xwos.cthd.<span class="function-name">frz_shld_stop</span>()
+<span class="keyword">until</span> (shldstop)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "shld_frz"></a>
+    <strong>shld_frz ()</strong>
+    </dt>
+    <dd>
+    判断当前线程是否可被冻结
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">boolean</span></span>
+        是否可冻结当前线程
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">repeat</span>
+  <span class="keyword">if</span> (xwos.cthd.<span class="function-name">shld_frz</span>()) <span class="keyword">then</span>
+    <span class="function-name">clean_before_freezing</span>() <span class="comment">-- 冻结前清理资源
+</span>    xwos.cthd.<span class="function-name">frz</span>() <span class="comment">-- 冻结
+</span>    <span class="function-name">setup_after_frozen</span>() <span class="comment">-- 解冻后重新获取资源
+</span>  <span class="keyword">end</span>
+  <span class="function-name">threadLoop</span>() <span class="comment">-- 线程的功能逻辑
+</span>  shldstop = xwos.cthd.<span class="function-name">shld_stop</span>()
+<span class="keyword">until</span> (shldstop)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "frz"></a>
+    <strong>frz ()</strong>
+    </dt>
+    <dd>
+    冻结当前线程
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+         错误码<br>
+　● <strong>0</strong> 没有错误<br>
+　● <strong>-EPERM</strong> 当前不需要冻结线程<br>
+　● <strong>-EINVAL</strong> 线程不是 <strong>Joinable</strong> 的
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">repeat</span>
+  <span class="keyword">if</span> (xwos.cthd.<span class="function-name">shld_frz</span>()) <span class="keyword">then</span>
+    <span class="function-name">clean_before_freezing</span>() <span class="comment">-- 冻结前清理资源
+</span>    xwos.cthd.<span class="function-name">frz</span>() <span class="comment">-- 冻结
+</span>    <span class="function-name">setup_after_frozen</span>() <span class="comment">-- 解冻后重新获取资源
+</span>  <span class="keyword">end</span>
+  <span class="function-name">threadLoop</span>() <span class="comment">-- 线程的功能逻辑
+</span>  shldstop = xwos.cthd.<span class="function-name">shld_stop</span>()
+<span class="keyword">until</span> (shldstop)</pre>
+    </ul>
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/lunarmodules/LDoc">LDoc 1.5.0</a></i>
+<i style="float:right;">Last updated 2024-01-12 20:06:58 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

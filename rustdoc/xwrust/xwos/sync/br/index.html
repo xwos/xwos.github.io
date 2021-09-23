@@ -1,0 +1,55 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="XWOS RUST：线程栅栏"><title>xwrust::xwos::sync::br - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="xwrust" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (b10cfcd65 2023-11-29)" data-channel="nightly" data-search-js="search-56a624991a76cfad.js" data-settings-js="settings-fe03fdc259827cd2.js" ><script src="../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../sidebar-items.js"></script><script defer src="../../../../static.files/main-77dede896d6ac08e.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../../xwrust/index.html">xwrust</a><span class="version">1.0.0</span></h2></div><h2 class="location"><a href="#">Module br</a></h2><div class="sidebar-elems"><section><ul class="block"><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#constants">Constants</a></li></ul></section><h2><a href="../index.html">In xwrust::xwos::sync</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Module <a href="../../../index.html">xwrust</a>::<wbr><a href="../../index.html">xwos</a>::<wbr><a href="../index.html">sync</a>::<wbr><a class="mod" href="#">br</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../../../../src/xwrust/xwos/sync/br.rs.html#1-586">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="xwos-rust线程栅栏"><a href="#xwos-rust线程栅栏">XWOS RUST：线程栅栏</a></h2>
+<p>线程栅栏是用于协调多个线程并行工作的同步机制。</p>
+<p>线程栅栏在创建时，会指明有多少个线程槽。
+当线程到达线程栅栏时会阻塞并等待，直到指定数量的线程都达到线程栅栏，所有线程被同时唤醒。</p>
+<h2 id="创建"><a href="#创建">创建</a></h2>
+<p>XWOS RUST的线程栅栏可使用 <a href="struct.Br.html#method.new" title="associated function xwrust::xwos::sync::br::Br::new"><code>Br::new()</code></a> 创建。</p>
+<ul>
+<li>可以创建具有静态生命周期 <a href="https://doc.rust-lang.org/std/keyword.static.html"><code>static</code></a> 约束的全局变量：</li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwos::sync::br::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>GLOBAL_BR: Br&lt;<span class="number">8</span>&gt; = Br::new();</code></pre></div>
+<ul>
+<li>也可以使用 <a href="https://doc.rust-lang.org/alloc/sync/struct.Arc.html"><code>alloc::sync::Arc</code></a> 在heap中创建：</li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>alloc;
+<span class="kw">use </span>alloc::sync::Arc;
+
+<span class="kw">use </span>xwrust::xwos::sync::br::<span class="kw-2">*</span>;
+
+<span class="kw">pub fn </span>xwrust_example_br() {
+    <span class="kw">let </span>br = Arc::new(Br::&lt;<span class="number">8</span>&gt;::new());
+}</code></pre></div>
+<h2 id="初始化"><a href="#初始化">初始化</a></h2>
+<p>无论以何种方式创建的线程栅栏，都必须在使用前调用 <a href="struct.Br.html#method.init" title="method xwrust::xwos::sync::br::Br::init"><code>Br::init()</code></a> 进行初始化：</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">pub fn </span>xwrust_example_br() {
+    GLOBAL_BR.init();
+    br.init();
+}</code></pre></div>
+<h3 id="等待所有线程到达栅栏"><a href="#等待所有线程到达栅栏">等待所有线程到达栅栏</a></h3>
+<p><a href="struct.Br.html#method.wait" title="method xwrust::xwos::sync::br::Br::wait"><code>Br::wait()</code></a> 可用于等待所有线程到达栅栏。</p>
+<ul>
+<li>当线程栅栏中的线程数量小于指定数量，线程会阻塞等待。</li>
+<li>当线程栅栏中的线程数量达到指定数量，全部线程被唤醒，然后返回 <a href="enum.BrError.html#variant.Ok" title="variant xwrust::xwos::sync::br::BrError::Ok"><code>BrError::Ok</code></a> 。</li>
+<li>当线程阻塞等待被中断时，返回 <a href="enum.BrError.html#variant.Interrupt" title="variant xwrust::xwos::sync::br::BrError::Interrupt"><code>BrError::Interrupt</code></a> 。</li>
+</ul>
+<h3 id="限时等待所有线程到达栅栏"><a href="#限时等待所有线程到达栅栏">限时等待所有线程到达栅栏</a></h3>
+<p><a href="struct.Br.html#method.wait_to" title="method xwrust::xwos::sync::br::Br::wait_to"><code>Br::wait_to()</code></a> 可用于限时等待所有线程到达栅栏。</p>
+<ul>
+<li>当线程栅栏中的线程数量小于指定数量，线程会阻塞等待，等待时会指定一个唤醒时间点。</li>
+<li>当线程栅栏中的线程数量达到指定数量，全部线程被唤醒，然后返回 <a href="enum.BrError.html#variant.Ok" title="variant xwrust::xwos::sync::br::BrError::Ok"><code>BrError::Ok</code></a> 。</li>
+<li>当线程阻塞等待被中断时，返回 <a href="enum.BrError.html#variant.Interrupt" title="variant xwrust::xwos::sync::br::BrError::Interrupt"><code>BrError::Interrupt</code></a> 。</li>
+<li>当到达指定的唤醒时间点，线程被唤醒，并返回 <a href="enum.BrError.html#variant.Timedout" title="variant xwrust::xwos::sync::br::BrError::Timedout"><code>BrError::Timedout</code></a> 。</li>
+</ul>
+<h2 id="获取线程栅栏中线程槽的数量"><a href="#获取线程栅栏中线程槽的数量">获取线程栅栏中线程槽的数量</a></h2>
+<p>可以通过方法 <a href="struct.Br.html#method.get_num" title="method xwrust::xwos::sync::br::Br::get_num"><code>Br::get_num()</code></a> 获取线程栅栏中线程槽的数量。</p>
+<h2 id="绑定到信号选择器"><a href="#绑定到信号选择器">绑定到信号选择器</a></h2>
+<p>线程栅栏是 <strong>同步对象</strong> ，可以通过方法 <a href="struct.Br.html#method.bind" title="method xwrust::xwos::sync::br::Br::bind"><code>Br::bind()</code></a> 将线程栅栏绑定到信号选择器 <a href="../sel/struct.Sel.html" title="struct xwrust::xwos::sync::sel::Sel"><code>Sel&lt;M&gt;</code></a> 上，通过 <a href="../sel/struct.Sel.html" title="struct xwrust::xwos::sync::sel::Sel"><code>Sel&lt;M&gt;</code></a> ，单一线程可以同时等待多个不同的 <strong>同步对象</strong> 。</p>
+<p>线程栅栏采用 <strong>非独占</strong> 的方式进行绑定。</p>
+<h2 id="示例"><a href="#示例">示例</a></h2>
+<p><a href="https://gitee.com/xwos/XWOS/blob/main/xwam/xwrust-example/xwrust_example_br/src/lib.rs">XWOS/xwam/xwrust-example/xwrust_example_br</a></p>
+</div></details><h2 id="structs" class="small-section-header"><a href="#structs">Structs</a></h2><ul class="item-table"><li><div class="item-name"><a class="struct" href="struct.Br.html" title="struct xwrust::xwos::sync::br::Br">Br</a></div><div class="desc docblock-short">线程栅栏对象结构体</div></li><li><div class="item-name"><a class="struct" href="struct.BrSel.html" title="struct xwrust::xwos::sync::br::BrSel">BrSel</a></div><div class="desc docblock-short">线程栅栏的选择子</div></li></ul><h2 id="enums" class="small-section-header"><a href="#enums">Enums</a></h2><ul class="item-table"><li><div class="item-name"><a class="enum" href="enum.BrError.html" title="enum xwrust::xwos::sync::br::BrError">BrError</a></div><div class="desc docblock-short">线程栅栏的错误码</div></li></ul><h2 id="constants" class="small-section-header"><a href="#constants">Constants</a></h2><ul class="item-table"><li><div class="item-name"><a class="constant" href="constant.SIZEOF_XWOS_BR.html" title="constant xwrust::xwos::sync::br::SIZEOF_XWOS_BR">SIZEOF_XWOS_BR</a></div><div class="desc docblock-short">XWOS线程栅栏对象占用的内存大小</div></li></ul></section></div></main></body></html>

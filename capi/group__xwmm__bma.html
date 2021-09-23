@@ -1,0 +1,848 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>XWOS API: 伙伴算法内存块分配器</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<a href="/" class="github-corner" title="返回首页">
+  <svg viewBox="0 0 250 250" style="position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path
+      d="M 0 0 L 250 250 L 250 0 L 0 0 z M 181.19336 6.25 A 18.281986 19.638775 0 0 1 192.79297 10.798828 L 241.54492 54.201172 A 6.0939954 6.5462585 0 0 1 237.64453 65.787109 L 233.13477 65.787109 A 3.0469979 3.2731292 0 0 0 230.08789 69.060547 L 230.08789 111.61133 A 18.281986 19.638775 0 0 1 211.80664 131.25 L 205.71289 131.25 A 12.187991 13.092517 0 0 1 193.52344 118.1582 L 193.52344 98.519531 A 12.187991 13.092517 0 0 0 181.33594 85.425781 A 12.187991 13.092517 0 0 0 169.14844 98.519531 L 169.14844 118.1582 A 12.187991 13.092517 0 0 1 156.95898 131.25 L 150.86523 131.25 A 18.281986 19.638775 0 0 1 132.58398 111.61133 L 132.58398 68.994141 A 3.0469979 3.2731292 0 0 0 129.29297 65.722656 L 124.7832 65.722656 A 6.0939954 6.5462585 0 0 1 120.88281 54.201172 L 169.39258 10.798828 A 18.281986 19.638775 0 0 1 181.19336 6.25 z "/>
+  </svg>
+</a>
+<style>.github-corner:hover</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">XWOS API
+   &#160;<span id="projectnumber">3.0</span>
+   </div>
+   <div id="projectbrief">XWOS API参考手册</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('group__xwmm__bma.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">结构体</a> &#124;
+<a href="#define-members">宏定义</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">伙伴算法内存块分配器<div class="ingroups"><a class="el" href="group__xwos.html">XWOS内核</a> &raquo; <a class="el" href="group__xwmm.html">XWOS内存管理</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+伙伴算法内存块分配器 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmm__bma.png" border="0" usemap="#agroup____xwmm____bma" alt=""/></div>
+<map name="agroup____xwmm____bma" id="agroup____xwmm____bma">
+<area shape="rect" href="group__xwmm.html" title=" " alt="" coords="5,5,120,31"/>
+<area shape="rect" title=" " alt="" coords="168,5,320,31"/>
+</map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+结构体</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structxwmm__bma__orderlist.html">xwmm_bma_orderlist</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">阶链表  <a href="structxwmm__bma__orderlist.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structxwmm__bma__bcb.html">xwmm_bma_bcb</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">块控制块  <a href="structxwmm__bma__bcb.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structxwmm__bma.html">xwmm_bma</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">伙伴算法内存块分配器  <a href="structxwmm__bma.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:gad452ec1cd11c6d384739be19676fdd5c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmm__bma.html#gad452ec1cd11c6d384739be19676fdd5c">XWMM_BMA_MAX_ORDER</a>&#160;&#160;&#160;((<a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a>)126)</td></tr>
+<tr class="separator:gad452ec1cd11c6d384739be19676fdd5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaaee8c675c73f326b0fb3d7a5545751e7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmm__bma.html#gaaee8c675c73f326b0fb3d7a5545751e7">XWMM_BMA_COMBINED</a>&#160;&#160;&#160;((<a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a>)127)</td></tr>
+<tr class="separator:gaaee8c675c73f326b0fb3d7a5545751e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga52281f21fdbc92910b7f0e49b2272489"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmm__bma.html#ga52281f21fdbc92910b7f0e49b2272489">XWMM_BMA_ORDER_MASK</a>&#160;&#160;&#160;((<a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a>)0x7F)</td></tr>
+<tr class="separator:ga52281f21fdbc92910b7f0e49b2272489"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa9a7e10746d23bdd8423f3b40e2bd7c5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmm__bma.html#gaa9a7e10746d23bdd8423f3b40e2bd7c5">XWMM_BMA_INUSED</a>&#160;&#160;&#160;((<a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a>)0x80)</td></tr>
+<tr class="separator:gaa9a7e10746d23bdd8423f3b40e2bd7c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac8f9b29f9254604bb4cb531454476b6f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmm__bma.html#gac8f9b29f9254604bb4cb531454476b6f">XWMM_BMA_TYPEDEF</a>(name,  blkodr)</td></tr>
+<tr class="memdesc:gac8f9b29f9254604bb4cb531454476b6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">定义伙伴算法内存块分配器结构体类型  <br /></td></tr>
+<tr class="separator:gac8f9b29f9254604bb4cb531454476b6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga099b605907d00c5ac306d728c011c09e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmm__bma.html#ga099b605907d00c5ac306d728c011c09e">XWMM_BMA_DEF</a>(name,  blkodr)&#160;&#160;&#160;        <a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a> name[sizeof(<a class="el" href="group__xwmm__bma.html#gac8f9b29f9254604bb4cb531454476b6f">XWMM_BMA_TYPEDEF</a>(name, blkodr))]</td></tr>
+<tr class="memdesc:ga099b605907d00c5ac306d728c011c09e"><td class="mdescLeft">&#160;</td><td class="mdescRight">定义伙伴算法内存块分配器结构体的RAW内存空间， 用于初始化伙伴算法内存块分配器结构体  <br /></td></tr>
+<tr class="separator:ga099b605907d00c5ac306d728c011c09e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:ga591aeadbb32ce6e77563d873ecb53b33"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmm__bma.html#ga591aeadbb32ce6e77563d873ecb53b33">xwmm_bma_init</a> (struct <a class="el" href="structxwmm__bma.html">xwmm_bma</a> *bma, const char *name, <a class="el" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a> origin, <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> size, <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> blksize, <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> blkodr)</td></tr>
+<tr class="memdesc:ga591aeadbb32ce6e77563d873ecb53b33"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMM API：初始化伙伴算法内存块分配器  <br /></td></tr>
+<tr class="separator:ga591aeadbb32ce6e77563d873ecb53b33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaeb6fee8b92b2298f0c8519f1144318e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmm__bma.html#gaeb6fee8b92b2298f0c8519f1144318e8">xwmm_bma_alloc</a> (struct <a class="el" href="structxwmm__bma.html">xwmm_bma</a> *bma, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> order, void **membuf)</td></tr>
+<tr class="memdesc:gaeb6fee8b92b2298f0c8519f1144318e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMM API：申请一块连续的内存  <br /></td></tr>
+<tr class="separator:gaeb6fee8b92b2298f0c8519f1144318e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7648b862d8fc0cb4a496d224c0a7f5a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmm__bma.html#ga7648b862d8fc0cb4a496d224c0a7f5a3">xwmm_bma_free</a> (struct <a class="el" href="structxwmm__bma.html">xwmm_bma</a> *bma, void *mem)</td></tr>
+<tr class="memdesc:ga7648b862d8fc0cb4a496d224c0a7f5a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMM API：释放内存块  <br /></td></tr>
+<tr class="separator:ga7648b862d8fc0cb4a496d224c0a7f5a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<p>伙伴算法分配器在分配时，会将内存不断地二等分，直到切割到能满足内存的最小尺寸为止。 释放时会检查与之相邻并等长的内存块（称为伙伴）是否空闲， 如果是，就和“伙伴”合并成更大的内存块， 然后继续检测合并后的内存块是否也存在空闲的伙伴，一直向上合并到不能合并为止。</p>
+<ul>
+<li>优点：<ul>
+<li>支持释放操作；</li>
+<li>支持大小不固定的内存申请操作；</li>
+<li>内存碎片的大小只会是单位内存块大小的2的n次方倍，内存碎片更容易被合并。</li>
+</ul>
+</li>
+<li>缺点：<ul>
+<li>代码稍微复杂；</li>
+<li>因为存在合并与切割的循环，申请与释放操作的所需要的时间不是特别稳定；</li>
+<li>内存大小固定为2的指数，如果申请的内存过小，会造成内存浪费。</li>
+</ul>
+</li>
+<li>适用性：对内存复用性要求高的应用场合。</li>
+<li>上下文的安全性：在任何上下文（中断、中断底半部、线程）都是安全的。 </li>
+</ul>
+<h2 class="groupheader">宏定义说明</h2>
+<a id="gaaee8c675c73f326b0fb3d7a5545751e7" name="gaaee8c675c73f326b0fb3d7a5545751e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaaee8c675c73f326b0fb3d7a5545751e7">&#9670;&#160;</a></span>XWMM_BMA_COMBINED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XWMM_BMA_COMBINED&#160;&#160;&#160;((<a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a>)127)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>块已被合并 </p>
+
+<p class="definition">在文件 <a class="el" href="bma_8h_source.html">bma.h</a> 第 <a class="el" href="bma_8h_source.html#l00045">45</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ga099b605907d00c5ac306d728c011c09e" name="ga099b605907d00c5ac306d728c011c09e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga099b605907d00c5ac306d728c011c09e">&#9670;&#160;</a></span>XWMM_BMA_DEF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XWMM_BMA_DEF</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">name, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">blkodr&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;        <a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a> name[sizeof(<a class="el" href="group__xwmm__bma.html#gac8f9b29f9254604bb4cb531454476b6f">XWMM_BMA_TYPEDEF</a>(name, blkodr))]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>定义伙伴算法内存块分配器结构体的RAW内存空间， 用于初始化伙伴算法内存块分配器结构体 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>内存数组名 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">blkodr</td><td>伙伴算法内存块分配器中单位内存块的数量，以2的blkodr次方形式表示 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="bma_8h_source.html">bma.h</a> 第 <a class="el" href="bma_8h_source.html#l00068">68</a> 行定义.</p>
+
+</div>
+</div>
+<a id="gaa9a7e10746d23bdd8423f3b40e2bd7c5" name="gaa9a7e10746d23bdd8423f3b40e2bd7c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa9a7e10746d23bdd8423f3b40e2bd7c5">&#9670;&#160;</a></span>XWMM_BMA_INUSED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XWMM_BMA_INUSED&#160;&#160;&#160;((<a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a>)0x80)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>块正在被使用 </p>
+
+<p class="definition">在文件 <a class="el" href="bma_8h_source.html">bma.h</a> 第 <a class="el" href="bma_8h_source.html#l00047">47</a> 行定义.</p>
+
+</div>
+</div>
+<a id="gad452ec1cd11c6d384739be19676fdd5c" name="gad452ec1cd11c6d384739be19676fdd5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad452ec1cd11c6d384739be19676fdd5c">&#9670;&#160;</a></span>XWMM_BMA_MAX_ORDER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XWMM_BMA_MAX_ORDER&#160;&#160;&#160;((<a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a>)126)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>最大的阶 </p>
+
+<p class="definition">在文件 <a class="el" href="bma_8h_source.html">bma.h</a> 第 <a class="el" href="bma_8h_source.html#l00044">44</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ga52281f21fdbc92910b7f0e49b2272489" name="ga52281f21fdbc92910b7f0e49b2272489"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga52281f21fdbc92910b7f0e49b2272489">&#9670;&#160;</a></span>XWMM_BMA_ORDER_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XWMM_BMA_ORDER_MASK&#160;&#160;&#160;((<a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a>)0x7F)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>阶的掩码 </p>
+
+<p class="definition">在文件 <a class="el" href="bma_8h_source.html">bma.h</a> 第 <a class="el" href="bma_8h_source.html#l00046">46</a> 行定义.</p>
+
+</div>
+</div>
+<a id="gac8f9b29f9254604bb4cb531454476b6f" name="gac8f9b29f9254604bb4cb531454476b6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac8f9b29f9254604bb4cb531454476b6f">&#9670;&#160;</a></span>XWMM_BMA_TYPEDEF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XWMM_BMA_TYPEDEF</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">name, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">blkodr&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>值:</b><div class="fragment"><div class="line">        <span class="keyword">struct </span>name { \</div>
+<div class="line">                <span class="keyword">struct </span><a class="code hl_struct" href="structxwmm__bma.html">xwmm_bma</a> bma[1U]; \</div>
+<div class="line">                <span class="keyword">struct </span><a class="code hl_struct" href="structxwmm__bma__orderlist.html">xwmm_bma_orderlist</a> orderlists[(blkodr) + 1U]; \</div>
+<div class="line">                <span class="keyword">struct </span><a class="code hl_struct" href="structxwmm__bma__bcb.html">xwmm_bma_bcb</a> bcbs[1U &lt;&lt; (blkodr)]; \</div>
+<div class="line">        }</div>
+<div class="ttc" id="astructxwmm__bma__bcb_html"><div class="ttname"><a href="structxwmm__bma__bcb.html">xwmm_bma_bcb</a></div><div class="ttdoc">块控制块</div><div class="ttdef"><b>Definition</b> <a href="bma_8h_source.html#l00081">bma.h:81</a></div></div>
+<div class="ttc" id="astructxwmm__bma__orderlist_html"><div class="ttname"><a href="structxwmm__bma__orderlist.html">xwmm_bma_orderlist</a></div><div class="ttdoc">阶链表</div><div class="ttdef"><b>Definition</b> <a href="bma_8h_source.html#l00074">bma.h:74</a></div></div>
+<div class="ttc" id="astructxwmm__bma_html"><div class="ttname"><a href="structxwmm__bma.html">xwmm_bma</a></div><div class="ttdoc">伙伴算法内存块分配器</div><div class="ttdef"><b>Definition</b> <a href="bma_8h_source.html#l00091">bma.h:91</a></div></div>
+</div><!-- fragment -->
+<p>定义伙伴算法内存块分配器结构体类型 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>结构体名 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">blkodr</td><td>伙伴算法内存块分配器中单位内存块的数量，以2的blkodr次方形式表示 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="bma_8h_source.html">bma.h</a> 第 <a class="el" href="bma_8h_source.html#l00055">55</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">函数说明</h2>
+<a id="gaeb6fee8b92b2298f0c8519f1144318e8" name="gaeb6fee8b92b2298f0c8519f1144318e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaeb6fee8b92b2298f0c8519f1144318e8">&#9670;&#160;</a></span>xwmm_bma_alloc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwmm_bma_alloc </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwmm__bma.html">xwmm_bma</a> *&#160;</td>
+          <td class="paramname"><em>bma</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>&#160;</td>
+          <td class="paramname"><em>order</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void **&#160;</td>
+          <td class="paramname"><em>membuf</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWMM API：申请一块连续的内存 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">bma</td><td>伙伴算法内存块分配器对象的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">order</td><td>块数量的阶，内存块大小： <code>((1 &lt;&lt; order) * bma-&gt;blksize)</code> </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">membuf</td><td>指向地址缓存的指针，通过此指针缓存返回申请到的内存的首地址 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">-EFAULT</td><td>空指针 </td></tr>
+    <tr><td class="paramname">-ERANGE</td><td>order无效 </td></tr>
+    <tr><td class="paramname">-ENOMEM</td><td>内存不足 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>同步/异步：同步</li>
+<li>上下文：中断、中断底半部、线程</li>
+<li>重入性：可重入 </li>
+</ul>
+</dd></dl>
+<p>&lt;No error</p>
+
+<p class="definition">在文件 <a class="el" href="bma_8c_source.html">bma.c</a> 第 <a class="el" href="bma_8c_source.html#l00311">311</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  312</span>{</div>
+<div class="line"><span class="lineno">  313</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">  314</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> flag;</div>
+<div class="line"><span class="lineno">  315</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> o;</div>
+<div class="line"><span class="lineno">  316</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwmm__bma__orderlist.html">xwmm_bma_orderlist</a> * ol;</div>
+<div class="line"><span class="lineno">  317</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwmm__bma__bcb.html">xwmm_bma_bcb</a> * bcb;</div>
+<div class="line"><span class="lineno">  318</span> </div>
+<div class="line"><span class="lineno">  319</span>        <a class="code hl_define" href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a>((bma), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  320</span>        <a class="code hl_define" href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a>((membuf), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  321</span>        <a class="code hl_define" href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a>((<a class="code hl_variable" href="structxwmm__bma__bcb.html#aa2bc43de36e79a5c9972232204a7e4d0">order</a> &lt;= (<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>)<a class="code hl_define" href="group__xwos__lib__type.html#gaa40e16bfc7385348f6ba19176d68634b">XWSSQ_MAX</a>), <span class="stringliteral">&quot;out-of-range&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#gaa1591a4f3a86360108de5b9ba34980ca">ERANGE</a>);</div>
+<div class="line"><span class="lineno">  322</span> </div>
+<div class="line"><span class="lineno">  323</span>        ol = <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><span class="lineno">  324</span>        bcb = <a class="code hl_function" href="group__xwos__lib__error.html#ga043267bacbf102d87c376e6605228ab6">err_ptr</a>(-<a class="code hl_define" href="group__xwos__lib__errno.html#ga03e689f378f643d16ea7537918528a48">ENOENT</a>);</div>
+<div class="line"><span class="lineno">  325</span>        <a class="code hl_function" href="group__xwos__lock__spinlock.html#gad393963b449be923d8af40538b9befdf">xwos_splk_lock_cpuirqsv</a>(&amp;bma-&gt;<a class="code hl_variable" href="structxwmm__bma.html#a408ac5724ebd0fcdcba3a19a5b1840c7">lock</a>, &amp;flag);</div>
+<div class="line"><span class="lineno">  326</span>        <span class="keywordflow">for</span> (o = <a class="code hl_variable" href="structxwmm__bma__bcb.html#aa2bc43de36e79a5c9972232204a7e4d0">order</a>; o &lt;= bma-&gt;<a class="code hl_variable" href="structxwmm__bma.html#aaf40145eda6128c47a0780bbc03e51e2">blkodr</a>; o++) {</div>
+<div class="line"><span class="lineno">  327</span>                ol = &amp;bma-&gt;<a class="code hl_variable" href="structxwmm__bma.html#a606659b9828e2d6ce8d4d28292f0fb33">orderlists</a>[o];</div>
+<div class="line"><span class="lineno">  328</span>                bcb = <a class="code hl_function" href="bma_8c.html#a9b3258dbb6923b7e1d91da1778e71135">xwmm_bma_orderlist_choose</a>(bma, ol);</div>
+<div class="line"><span class="lineno">  329</span>                <span class="keywordflow">if</span> (!<a class="code hl_function" href="group__xwos__lib__error.html#ga11327d55c644e1604a2563675b4fe6b3">is_err</a>(bcb)) {</div>
+<div class="line"><span class="lineno">  330</span>                        <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  331</span>                }</div>
+<div class="line"><span class="lineno">  332</span>        }</div>
+<div class="line"><span class="lineno">  333</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="group__xwos__lib__error.html#ga11327d55c644e1604a2563675b4fe6b3">is_err</a>(bcb)) { <span class="comment">// cppcheck-suppress [misra-c2012-14.4]</span></div>
+<div class="line"><span class="lineno">  334</span>                <a class="code hl_function" href="group__xwos__lock__spinlock.html#gaa83b4a8f3340ddf35346dbedf9ce3979">xwos_splk_unlock_cpuirqrs</a>(&amp;bma-&gt;<a class="code hl_variable" href="structxwmm__bma.html#a408ac5724ebd0fcdcba3a19a5b1840c7">lock</a>, flag);</div>
+<div class="line"><span class="lineno">  335</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#ga6a05c923dad0c1208043e9c20a58c8e5">ENOMEM</a>;</div>
+<div class="line"><span class="lineno">  336</span>                *membuf = <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><span class="lineno">  337</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  338</span>                <a class="code hl_define" href="bma_8c.html#aa4b118f6cd61a828b533df7a9ef3e2f6">xwmm_bmalogf</a>(DEBUG,</div>
+<div class="line"><span class="lineno">  339</span>                             <span class="stringliteral">&quot;[ALLOC] bcb(idx:0x%lX,odr:0x%X)\n&quot;</span>,</div>
+<div class="line"><span class="lineno">  340</span>                             (((<a class="code hl_typedef" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a>)bcb - (<a class="code hl_typedef" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a>)<a class="code hl_struct" href="structxwmm__bma.html">xwmm_bma</a>-&gt;<a class="code hl_variable" href="structxwmm__bma.html#a960065c30d9d1ab09b38751d3b9936ab">bcbs</a>) /</div>
+<div class="line"><span class="lineno">  341</span>                              <span class="keyword">sizeof</span>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwmm__bma__bcb.html">xwmm_bma_bcb</a>)),</div>
+<div class="line"><span class="lineno">  342</span>                             bcb-&gt;<a class="code hl_variable" href="structxwmm__bma__bcb.html#aa2bc43de36e79a5c9972232204a7e4d0">order</a>);</div>
+<div class="line"><span class="lineno">  343</span>                <a class="code hl_function" href="bma_8c.html#af42265723d027d450f0c9f7dabaadd55">xwmm_bma_divide_block</a>(bma, bcb, <a class="code hl_variable" href="structxwmm__bma__bcb.html#aa2bc43de36e79a5c9972232204a7e4d0">order</a>, ol);</div>
+<div class="line"><span class="lineno">  344</span>                <a class="code hl_function" href="group__xwos__lock__spinlock.html#gaa83b4a8f3340ddf35346dbedf9ce3979">xwos_splk_unlock_cpuirqrs</a>(&amp;bma-&gt;<a class="code hl_variable" href="structxwmm__bma.html#a408ac5724ebd0fcdcba3a19a5b1840c7">lock</a>, flag);</div>
+<div class="line"><span class="lineno">  345</span>                rc = <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><span class="lineno">  346</span>                *membuf = <a class="code hl_function" href="bma_8c.html#aafad73243c00281bd2a0f93cec7667ae">xwmm_bma_bcb_to_mem</a>(bma, bcb);</div>
+<div class="line"><span class="lineno">  347</span>        }</div>
+<div class="line"><span class="lineno">  348</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  349</span>}</div>
+<div class="ttc" id="abma_8c_html_a9b3258dbb6923b7e1d91da1778e71135"><div class="ttname"><a href="bma_8c.html#a9b3258dbb6923b7e1d91da1778e71135">xwmm_bma_orderlist_choose</a></div><div class="ttdeci">static struct xwmm_bma_bcb * xwmm_bma_orderlist_choose(struct xwmm_bma *bma, struct xwmm_bma_orderlist *ol)</div><div class="ttdoc">从阶链表中选择一块内存，并返回其块控制块</div><div class="ttdef"><b>Definition</b> <a href="bma_8c_source.html#l00244">bma.c:244</a></div></div>
+<div class="ttc" id="abma_8c_html_aa4b118f6cd61a828b533df7a9ef3e2f6"><div class="ttname"><a href="bma_8c.html#aa4b118f6cd61a828b533df7a9ef3e2f6">xwmm_bmalogf</a></div><div class="ttdeci">#define xwmm_bmalogf(lv, fmt,...)</div><div class="ttdef"><b>Definition</b> <a href="bma_8c_source.html#l00025">bma.c:25</a></div></div>
+<div class="ttc" id="abma_8c_html_aafad73243c00281bd2a0f93cec7667ae"><div class="ttname"><a href="bma_8c.html#aafad73243c00281bd2a0f93cec7667ae">xwmm_bma_bcb_to_mem</a></div><div class="ttdeci">static void * xwmm_bma_bcb_to_mem(struct xwmm_bma *bma, struct xwmm_bma_bcb *bcb)</div><div class="ttdoc">从内存块的控制块指针获得内存块的首地址</div><div class="ttdef"><b>Definition</b> <a href="bma_8c_source.html#l00138">bma.c:138</a></div></div>
+<div class="ttc" id="abma_8c_html_af42265723d027d450f0c9f7dabaadd55"><div class="ttname"><a href="bma_8c.html#af42265723d027d450f0c9f7dabaadd55">xwmm_bma_divide_block</a></div><div class="ttdeci">static void xwmm_bma_divide_block(struct xwmm_bma *bma, struct xwmm_bma_bcb *bcb, xwsq_t target_odr, struct xwmm_bma_orderlist *curr_ol)</div><div class="ttdoc">将大内存块分割成小块</div><div class="ttdef"><b>Definition</b> <a href="bma_8c_source.html#l00276">bma.c:276</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga03e689f378f643d16ea7537918528a48"><div class="ttname"><a href="group__xwos__lib__errno.html#ga03e689f378f643d16ea7537918528a48">ENOENT</a></div><div class="ttdeci">#define ENOENT</div><div class="ttdoc">No such file or directory</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00032">errno.h:32</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga3f317946e043623f9d6b93dbf60e6316"><div class="ttname"><a href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a></div><div class="ttdeci">#define EFAULT</div><div class="ttdoc">Bad address</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00044">errno.h:44</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga6a05c923dad0c1208043e9c20a58c8e5"><div class="ttname"><a href="group__xwos__lib__errno.html#ga6a05c923dad0c1208043e9c20a58c8e5">ENOMEM</a></div><div class="ttdeci">#define ENOMEM</div><div class="ttdoc">Not enough space</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00042">errno.h:42</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga6a72d49d869215a02342eb465166537b"><div class="ttname"><a href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a></div><div class="ttdeci">#define XWOK</div><div class="ttdoc">No error</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00182">errno.h:182</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_gaa1591a4f3a86360108de5b9ba34980ca"><div class="ttname"><a href="group__xwos__lib__errno.html#gaa1591a4f3a86360108de5b9ba34980ca">ERANGE</a></div><div class="ttdeci">#define ERANGE</div><div class="ttdoc">Result too large</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00064">errno.h:64</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__error_html_ga043267bacbf102d87c376e6605228ab6"><div class="ttname"><a href="group__xwos__lib__error.html#ga043267bacbf102d87c376e6605228ab6">err_ptr</a></div><div class="ttdeci">static __xwcc_inline void *__xwcc_must_check err_ptr(xwer_t err)</div><div class="ttdoc">将错误码转换为指针</div><div class="ttdef"><b>Definition</b> <a href="error_8h_source.html#l00042">error.h:42</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__error_html_ga11327d55c644e1604a2563675b4fe6b3"><div class="ttname"><a href="group__xwos__lib__error.html#ga11327d55c644e1604a2563675b4fe6b3">is_err</a></div><div class="ttdeci">static __xwcc_inline bool __xwcc_must_check is_err(const void *ptr)</div><div class="ttdoc">测试指针的值是否为错误码</div><div class="ttdef"><b>Definition</b> <a href="error_8h_source.html#l00065">error.h:65</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga06847ea8c7edb2b1f166288b230f251f"><div class="ttname"><a href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a></div><div class="ttdeci">signed long xwer_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00554">type.h:554</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00028">type.h:28</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga59fe68c80516b22de8dccb84275d23f2"><div class="ttname"><a href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a></div><div class="ttdeci">unsigned long xwsq_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00445">type.h:445</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_gaa40e16bfc7385348f6ba19176d68634b"><div class="ttname"><a href="group__xwos__lib__type.html#gaa40e16bfc7385348f6ba19176d68634b">XWSSQ_MAX</a></div><div class="ttdeci">#define XWSSQ_MAX</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00473">type.h:473</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_gacef49946313c8d1985a8279bb40e31c4"><div class="ttname"><a href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a></div><div class="ttdeci">unsigned long xwptr_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00375">type.h:375</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_gad21f70aa6f1364b63b1165784448bc16"><div class="ttname"><a href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a></div><div class="ttdeci">xwptr_t xwreg_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00409">type.h:409</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__spinlock_html_gaa83b4a8f3340ddf35346dbedf9ce3979"><div class="ttname"><a href="group__xwos__lock__spinlock.html#gaa83b4a8f3340ddf35346dbedf9ce3979">xwos_splk_unlock_cpuirqrs</a></div><div class="ttdeci">static void xwos_splk_unlock_cpuirqrs(struct xwos_splk *spl, xwreg_t cpuirq)</div><div class="ttdoc">XWOS API：解锁自旋锁，并恢复本地CPU的中断标志</div><div class="ttdef"><b>Definition</b> <a href="lock_2spinlock_8h_source.html#l00219">spinlock.h:219</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__spinlock_html_gad393963b449be923d8af40538b9befdf"><div class="ttname"><a href="group__xwos__lock__spinlock.html#gad393963b449be923d8af40538b9befdf">xwos_splk_lock_cpuirqsv</a></div><div class="ttdeci">static void xwos_splk_lock_cpuirqsv(struct xwos_splk *spl, xwreg_t *cpuirq)</div><div class="ttdoc">XWOS API：上锁自旋锁，保存本地CPU的中断标志并关闭</div><div class="ttdef"><b>Definition</b> <a href="lock_2spinlock_8h_source.html#l00187">spinlock.h:187</a></div></div>
+<div class="ttc" id="agroup__xwos__standard_html_ga0c63a67f52b315298e2be98f79cd0c08"><div class="ttname"><a href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a></div><div class="ttdeci">#define XWOS_VALIDATE(exp, errstr,...)</div><div class="ttdoc">检查函数参数是否有效</div><div class="ttdef"><b>Definition</b> <a href="xwos_2standard_8h_source.html#l00076">standard.h:76</a></div></div>
+<div class="ttc" id="astructxwmm__bma__bcb_html_aa2bc43de36e79a5c9972232204a7e4d0"><div class="ttname"><a href="structxwmm__bma__bcb.html#aa2bc43de36e79a5c9972232204a7e4d0">xwmm_bma_bcb::order</a></div><div class="ttdeci">xwu8_t order</div><div class="ttdef"><b>Definition</b> <a href="bma_8h_source.html#l00082">bma.h:82</a></div></div>
+<div class="ttc" id="astructxwmm__bma_html_a408ac5724ebd0fcdcba3a19a5b1840c7"><div class="ttname"><a href="structxwmm__bma.html#a408ac5724ebd0fcdcba3a19a5b1840c7">xwmm_bma::lock</a></div><div class="ttdeci">struct xwos_splk lock</div><div class="ttdef"><b>Definition</b> <a href="bma_8h_source.html#l00096">bma.h:96</a></div></div>
+<div class="ttc" id="astructxwmm__bma_html_a606659b9828e2d6ce8d4d28292f0fb33"><div class="ttname"><a href="structxwmm__bma.html#a606659b9828e2d6ce8d4d28292f0fb33">xwmm_bma::orderlists</a></div><div class="ttdeci">struct xwmm_bma_orderlist * orderlists</div><div class="ttdef"><b>Definition</b> <a href="bma_8h_source.html#l00097">bma.h:97</a></div></div>
+<div class="ttc" id="astructxwmm__bma_html_a960065c30d9d1ab09b38751d3b9936ab"><div class="ttname"><a href="structxwmm__bma.html#a960065c30d9d1ab09b38751d3b9936ab">xwmm_bma::bcbs</a></div><div class="ttdeci">struct xwmm_bma_bcb * bcbs</div><div class="ttdef"><b>Definition</b> <a href="bma_8h_source.html#l00098">bma.h:98</a></div></div>
+<div class="ttc" id="astructxwmm__bma_html_aaf40145eda6128c47a0780bbc03e51e2"><div class="ttname"><a href="structxwmm__bma.html#aaf40145eda6128c47a0780bbc03e51e2">xwmm_bma::blkodr</a></div><div class="ttdeci">xwsq_t blkodr</div><div class="ttdef"><b>Definition</b> <a href="bma_8h_source.html#l00095">bma.h:95</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmm__bma_gaeb6fee8b92b2298f0c8519f1144318e8_cgraph.png" border="0" usemap="#agroup__xwmm__bma_gaeb6fee8b92b2298f0c8519f1144318e8_cgraph" alt=""/></div>
+<map name="agroup__xwmm__bma_gaeb6fee8b92b2298f0c8519f1144318e8_cgraph" id="agroup__xwmm__bma_gaeb6fee8b92b2298f0c8519f1144318e8_cgraph">
+<area shape="rect" title="XWMM API：申请一块连续的内存" alt="" coords="5,205,132,231"/>
+<area shape="rect" href="group__xwos__lib__error.html#ga043267bacbf102d87c376e6605228ab6" title="将错误码转换为指针" alt="" coords="691,255,750,280"/>
+<area shape="poly" title=" " alt="" coords="111,228,181,247,293,274,381,291,471,296,585,290,678,275,678,280,586,295,471,302,381,296,292,279,179,253,109,233"/>
+<area shape="rect" href="group__xwos__lib__error.html#ga11327d55c644e1604a2563675b4fe6b3" title="测试指针的值是否为错误码" alt="" coords="244,99,299,124"/>
+<area shape="poly" title=" " alt="" coords="82,203,123,168,179,133,230,116,231,121,181,138,127,172,85,207"/>
+<area shape="rect" href="bma_8c.html#aafad73243c00281bd2a0f93cec7667ae" title="从内存块的控制块指针获得内存块的首地址" alt="" coords="633,5,808,31"/>
+<area shape="poly" title=" " alt="" coords="75,203,113,145,143,111,179,84,232,57,289,36,348,22,408,12,522,3,620,5,620,11,522,9,408,17,349,27,291,42,234,62,181,88,146,115,117,148,79,206"/>
+<area shape="rect" href="bma_8c.html#af42265723d027d450f0c9f7dabaadd55" title="将大内存块分割成小块" alt="" coords="185,148,357,173"/>
+<area shape="poly" title=" " alt="" coords="113,203,179,183,211,174,212,180,181,189,114,208"/>
+<area shape="rect" href="bma_8c.html#a9b3258dbb6923b7e1d91da1778e71135" title="从阶链表中选择一块内存，并返回其块控制块" alt="" coords="198,198,345,238"/>
+<area shape="poly" title=" " alt="" coords="132,215,184,215,184,221,132,221"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gad393963b449be923d8af40538b9befdf" title="XWOS API：上锁自旋锁，保存本地CPU的中断标志并关闭" alt="" coords="186,356,357,381"/>
+<area shape="poly" title=" " alt="" coords="81,229,121,280,149,309,181,334,209,349,206,353,179,339,146,313,117,283,77,233"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gaa83b4a8f3340ddf35346dbedf9ce3979" title="XWOS API：解锁自旋锁，并恢复本地CPU的中断标志" alt="" coords="180,405,363,431"/>
+<area shape="poly" title=" " alt="" coords="77,230,90,263,111,307,142,353,182,392,189,397,186,401,178,396,138,356,107,310,85,265,72,232"/>
+<area shape="rect" href="bma_8c.html#a96d4bf13adbddda9f906bba0d13e8bfb" title="将一块内存加入到阶链表" alt="" coords="411,55,585,80"/>
+<area shape="poly" title=" " alt="" coords="332,146,361,133,375,123,385,112,394,100,409,89,423,82,425,87,412,94,398,104,389,115,379,126,364,138,334,150"/>
+<area shape="poly" title=" " alt="" coords="555,52,649,31,650,36,557,57"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga942be8d64e19cb8efb4dd1cf10e6e706" title="将一个节点加入链表头部（链表头的后面）" alt="" coords="645,55,796,80"/>
+<area shape="poly" title=" " alt="" coords="586,65,631,65,631,70,586,70"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga3286c94ae92265dea90fd52bfdb85569" title="初始化一个链表节点。" alt="" coords="647,104,794,129"/>
+<area shape="poly" title=" " alt="" coords="557,77,650,98,649,104,555,83"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga42c09bc0da5cac8327003314056f43b7" title="将一个新节点加入到prev与next之间" alt="" coords="856,55,1027,80"/>
+<area shape="poly" title=" " alt="" coords="796,65,842,65,842,70,796,70"/>
+<area shape="poly" title=" " alt="" coords="345,197,398,187,459,181,523,182,586,191,616,202,645,215,693,244,690,249,642,220,614,206,585,197,523,187,459,187,399,193,346,202"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#gab12f3ce1a4e53de3112b10c9ffb06cae" title="删除一个节点，并重新初始化它" alt="" coords="431,104,565,129"/>
+<area shape="poly" title=" " alt="" coords="336,195,361,184,385,165,409,146,441,132,443,137,412,151,388,170,364,188,338,200"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga54d0d6c4a04b8f3c80891f7d0f5a1e62" title="测试链表是否为空。" alt="" coords="422,205,574,231"/>
+<area shape="poly" title=" " alt="" coords="345,215,408,215,408,221,345,221"/>
+<area shape="rect" href="bma_8c.html#a15e3480a65e5546b1741de53e14642d7" title="从内存块首地址获得其控制块的指针" alt="" coords="411,255,585,280"/>
+<area shape="poly" title=" " alt="" coords="345,231,426,249,425,254,344,236"/>
+<area shape="poly" title=" " alt="" coords="565,114,633,114,633,119,565,119"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#gab7918962f86f86d5c7049922a5173e81" title="删除prev节点与next节点之间的节点" alt="" coords="637,153,804,179"/>
+<area shape="poly" title=" " alt="" coords="557,127,650,148,649,153,555,132"/>
+<area shape="poly" title=" " alt="" coords="586,265,678,265,678,270,586,270"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga7648b862d8fc0cb4a496d224c0a7f5a3" name="ga7648b862d8fc0cb4a496d224c0a7f5a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7648b862d8fc0cb4a496d224c0a7f5a3">&#9670;&#160;</a></span>xwmm_bma_free()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwmm_bma_free </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwmm__bma.html">xwmm_bma</a> *&#160;</td>
+          <td class="paramname"><em>bma</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>mem</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWMM API：释放内存块 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">bma</td><td>伙伴算法内存块分配器对象的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mem</td><td>内存块的首地址指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>参数错误 </td></tr>
+    <tr><td class="paramname">-ERANGE</td><td>内存块不属于指定的伙伴算法内存块分配器对象 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>同步/异步：同步</li>
+<li>上下文：中断、中断底半部、线程</li>
+<li>重入性：可重入 </li>
+</ul>
+</dd></dl>
+<p>&lt; 块正在被使用</p>
+<p>&lt;No error</p>
+
+<p class="definition">在文件 <a class="el" href="bma_8c_source.html">bma.c</a> 第 <a class="el" href="bma_8c_source.html#l00402">402</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  403</span>{</div>
+<div class="line"><span class="lineno">  404</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwmm__bma__bcb.html">xwmm_bma_bcb</a> * bcb;</div>
+<div class="line"><span class="lineno">  405</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> flag;</div>
+<div class="line"><span class="lineno">  406</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">  407</span> </div>
+<div class="line"><span class="lineno">  408</span>        <a class="code hl_define" href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a>((bma), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  409</span>        <a class="code hl_define" href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a>((mem), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  410</span> </div>
+<div class="line"><span class="lineno">  411</span>        <span class="keywordflow">if</span> ((((<a class="code hl_typedef" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a>)mem &lt; bma-&gt;zone.origin) ||</div>
+<div class="line"><span class="lineno">  412</span>             ((<a class="code hl_typedef" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a>)mem &gt;= (bma-&gt;<a class="code hl_variable" href="structxwmm__bma.html#a125adc2f817d937fb8950d817422042c">zone</a>.<a class="code hl_variable" href="structxwmm__zone.html#a6234f16a4f0b8787dfa3fcab0767d9e5">origin</a> + bma-&gt;<a class="code hl_variable" href="structxwmm__bma.html#a125adc2f817d937fb8950d817422042c">zone</a>.<a class="code hl_variable" href="structxwmm__zone.html#ae3584b179ee84eeb61c2497617ac877b">size</a>)))) {</div>
+<div class="line"><span class="lineno">  413</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#gaa1591a4f3a86360108de5b9ba34980ca">ERANGE</a>;</div>
+<div class="line"><span class="lineno">  414</span>                <span class="keywordflow">goto</span> err_range;</div>
+<div class="line"><span class="lineno">  415</span>        }</div>
+<div class="line"><span class="lineno">  416</span>        bcb = <a class="code hl_function" href="bma_8c.html#a15e3480a65e5546b1741de53e14642d7">xwmm_bma_mem_to_bcb</a>(bma, mem);</div>
+<div class="line"><span class="lineno">  417</span>        <span class="keywordflow">if</span> (<a class="code hl_function" href="group__xwos__lib__error.html#ga11327d55c644e1604a2563675b4fe6b3">is_err</a>(bcb)) {  <span class="comment">// cppcheck-suppress [misra-c2012-14.4]</span></div>
+<div class="line"><span class="lineno">  418</span>                rc = <a class="code hl_function" href="group__xwos__lib__error.html#ga83451b4fa6b93e2bfe7f0b70cdf609fd">ptr_err</a>(bcb);</div>
+<div class="line"><span class="lineno">  419</span>                <span class="keywordflow">goto</span> err_invalmem;</div>
+<div class="line"><span class="lineno">  420</span>        }</div>
+<div class="line"><span class="lineno">  421</span>        <a class="code hl_define" href="bma_8c.html#aa4b118f6cd61a828b533df7a9ef3e2f6">xwmm_bmalogf</a>(DEBUG,</div>
+<div class="line"><span class="lineno">  422</span>                     <span class="stringliteral">&quot;[FREE] mem:0x%lX,bcb(idx:0x%lX,odr:0x%X)\n&quot;</span>,</div>
+<div class="line"><span class="lineno">  423</span>                     (<a class="code hl_typedef" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a>)mem,</div>
+<div class="line"><span class="lineno">  424</span>                     (((<a class="code hl_typedef" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a>)bcb - (<a class="code hl_typedef" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a>)<a class="code hl_struct" href="structxwmm__bma.html">xwmm_bma</a>-&gt;<a class="code hl_variable" href="structxwmm__bma.html#a960065c30d9d1ab09b38751d3b9936ab">bcbs</a>) /</div>
+<div class="line"><span class="lineno">  425</span>                      <span class="keyword">sizeof</span>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwmm__bma__bcb.html">xwmm_bma_bcb</a>)),</div>
+<div class="line"><span class="lineno">  426</span>                     bcb-&gt;<a class="code hl_variable" href="structxwmm__bma__bcb.html#aa2bc43de36e79a5c9972232204a7e4d0">order</a>);</div>
+<div class="line"><span class="lineno">  427</span>        <span class="keywordflow">if</span> (0 == (<a class="code hl_define" href="group__xwmm__bma.html#gaa9a7e10746d23bdd8423f3b40e2bd7c5">XWMM_BMA_INUSED</a> &amp; bcb-&gt;<a class="code hl_variable" href="structxwmm__bma__bcb.html#aa2bc43de36e79a5c9972232204a7e4d0">order</a>)) {</div>
+<div class="line"><span class="lineno">  428</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#ga2d1678d5a7cc8ce499643f3b8957def4">EINVAL</a>;</div>
+<div class="line"><span class="lineno">  429</span>                <span class="keywordflow">goto</span> err_invalmem;</div>
+<div class="line"><span class="lineno">  430</span>        }</div>
+<div class="line"><span class="lineno">  431</span>        <a class="code hl_function" href="group__xwos__lock__spinlock.html#gad393963b449be923d8af40538b9befdf">xwos_splk_lock_cpuirqsv</a>(&amp;bma-&gt;<a class="code hl_variable" href="structxwmm__bma.html#a408ac5724ebd0fcdcba3a19a5b1840c7">lock</a>, &amp;flag);</div>
+<div class="line"><span class="lineno">  432</span>        <a class="code hl_function" href="bma_8c.html#a23e3c965cba3a637b375fd6b6076f3ad">xwmm_bma_combine</a>(bma, bcb);</div>
+<div class="line"><span class="lineno">  433</span>        <a class="code hl_function" href="group__xwos__lock__spinlock.html#gaa83b4a8f3340ddf35346dbedf9ce3979">xwos_splk_unlock_cpuirqrs</a>(&amp;bma-&gt;<a class="code hl_variable" href="structxwmm__bma.html#a408ac5724ebd0fcdcba3a19a5b1840c7">lock</a>, flag);</div>
+<div class="line"><span class="lineno">  434</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><span class="lineno">  435</span> </div>
+<div class="line"><span class="lineno">  436</span>err_invalmem:</div>
+<div class="line"><span class="lineno">  437</span>err_range:</div>
+<div class="line"><span class="lineno">  438</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  439</span>}</div>
+<div class="ttc" id="abma_8c_html_a15e3480a65e5546b1741de53e14642d7"><div class="ttname"><a href="bma_8c.html#a15e3480a65e5546b1741de53e14642d7">xwmm_bma_mem_to_bcb</a></div><div class="ttdeci">static struct xwmm_bma_bcb * xwmm_bma_mem_to_bcb(struct xwmm_bma *bma, void *mem)</div><div class="ttdoc">从内存块首地址获得其控制块的指针</div><div class="ttdef"><b>Definition</b> <a href="bma_8c_source.html#l00115">bma.c:115</a></div></div>
+<div class="ttc" id="abma_8c_html_a23e3c965cba3a637b375fd6b6076f3ad"><div class="ttname"><a href="bma_8c.html#a23e3c965cba3a637b375fd6b6076f3ad">xwmm_bma_combine</a></div><div class="ttdeci">static void xwmm_bma_combine(struct xwmm_bma *bma, struct xwmm_bma_bcb *bcb)</div><div class="ttdoc">合并内存块</div><div class="ttdef"><b>Definition</b> <a href="bma_8c_source.html#l00358">bma.c:358</a></div></div>
+<div class="ttc" id="agroup__xwmm__bma_html_gaa9a7e10746d23bdd8423f3b40e2bd7c5"><div class="ttname"><a href="group__xwmm__bma.html#gaa9a7e10746d23bdd8423f3b40e2bd7c5">XWMM_BMA_INUSED</a></div><div class="ttdeci">#define XWMM_BMA_INUSED</div><div class="ttdef"><b>Definition</b> <a href="bma_8h_source.html#l00047">bma.h:47</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga2d1678d5a7cc8ce499643f3b8957def4"><div class="ttname"><a href="group__xwos__lib__errno.html#ga2d1678d5a7cc8ce499643f3b8957def4">EINVAL</a></div><div class="ttdeci">#define EINVAL</div><div class="ttdoc">Invalid argument</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00052">errno.h:52</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__error_html_ga83451b4fa6b93e2bfe7f0b70cdf609fd"><div class="ttname"><a href="group__xwos__lib__error.html#ga83451b4fa6b93e2bfe7f0b70cdf609fd">ptr_err</a></div><div class="ttdeci">static __xwcc_inline xwer_t __xwcc_must_check ptr_err(const void *ptr)</div><div class="ttdoc">将指针的值转换为错误码</div><div class="ttdef"><b>Definition</b> <a href="error_8h_source.html#l00053">error.h:53</a></div></div>
+<div class="ttc" id="astructxwmm__bma_html_a125adc2f817d937fb8950d817422042c"><div class="ttname"><a href="structxwmm__bma.html#a125adc2f817d937fb8950d817422042c">xwmm_bma::zone</a></div><div class="ttdeci">struct xwmm_zone zone</div><div class="ttdef"><b>Definition</b> <a href="bma_8h_source.html#l00092">bma.h:92</a></div></div>
+<div class="ttc" id="astructxwmm__zone_html_a6234f16a4f0b8787dfa3fcab0767d9e5"><div class="ttname"><a href="structxwmm__zone.html#a6234f16a4f0b8787dfa3fcab0767d9e5">xwmm_zone::origin</a></div><div class="ttdeci">xwptr_t origin</div><div class="ttdef"><b>Definition</b> <a href="xwos_2mm_2common_8h_source.html#l00041">common.h:41</a></div></div>
+<div class="ttc" id="astructxwmm__zone_html_ae3584b179ee84eeb61c2497617ac877b"><div class="ttname"><a href="structxwmm__zone.html#ae3584b179ee84eeb61c2497617ac877b">xwmm_zone::size</a></div><div class="ttdeci">xwsz_t size</div><div class="ttdef"><b>Definition</b> <a href="xwos_2mm_2common_8h_source.html#l00042">common.h:42</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmm__bma_ga7648b862d8fc0cb4a496d224c0a7f5a3_cgraph.png" border="0" usemap="#agroup__xwmm__bma_ga7648b862d8fc0cb4a496d224c0a7f5a3_cgraph" alt=""/></div>
+<map name="agroup__xwmm__bma_ga7648b862d8fc0cb4a496d224c0a7f5a3_cgraph" id="agroup__xwmm__bma_ga7648b862d8fc0cb4a496d224c0a7f5a3_cgraph">
+<area shape="rect" title="XWMM API：释放内存块" alt="" coords="5,129,128,155"/>
+<area shape="rect" href="group__xwos__lib__error.html#ga11327d55c644e1604a2563675b4fe6b3" title="测试指针的值是否为错误码" alt="" coords="240,5,295,31"/>
+<area shape="poly" title=" " alt="" coords="76,127,116,84,144,60,175,40,200,29,226,22,228,27,202,34,177,44,147,64,120,88,80,131"/>
+<area shape="rect" href="group__xwos__lib__error.html#ga83451b4fa6b93e2bfe7f0b70cdf609fd" title="将指针的值转换为错误码" alt="" coords="238,55,297,80"/>
+<area shape="poly" title=" " alt="" coords="91,127,175,89,223,74,225,79,177,94,93,132"/>
+<area shape="rect" href="bma_8c.html#a23e3c965cba3a637b375fd6b6076f3ad" title="合并内存块" alt="" coords="193,104,342,129"/>
+<area shape="poly" title=" " alt="" coords="128,132,179,125,179,130,129,137"/>
+<area shape="rect" href="bma_8c.html#a15e3480a65e5546b1741de53e14642d7" title="从内存块首地址获得其控制块的指针" alt="" coords="180,153,355,179"/>
+<area shape="poly" title=" " alt="" coords="129,147,167,151,166,157,128,152"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gad393963b449be923d8af40538b9befdf" title="XWOS API：上锁自旋锁，保存本地CPU的中断标志并关闭" alt="" coords="182,203,353,228"/>
+<area shape="poly" title=" " alt="" coords="95,152,177,188,204,196,202,201,175,192,93,157"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gaa83b4a8f3340ddf35346dbedf9ce3979" title="XWOS API：解锁自旋锁，并恢复本地CPU的中断标志" alt="" coords="176,252,359,277"/>
+<area shape="poly" title=" " alt="" coords="80,153,120,195,147,218,177,238,191,245,189,250,175,243,144,223,116,199,76,157"/>
+<area shape="rect" href="bma_8c.html#aaeba29f4783fafad29d6d68dadd9869b" title="寻找内存块的伙伴" alt="" coords="413,27,575,52"/>
+<area shape="poly" title=" " alt="" coords="321,101,358,89,381,75,406,61,425,54,427,59,408,66,384,80,360,94,323,107"/>
+<area shape="rect" href="bma_8c.html#a96d4bf13adbddda9f906bba0d13e8bfb" title="将一块内存加入到阶链表" alt="" coords="407,76,581,101"/>
+<area shape="poly" title=" " alt="" coords="342,105,392,99,393,104,342,110"/>
+<area shape="rect" href="bma_8c.html#ac3ac44994de282a1379a02e8080c83b0" title="从阶链表中删除一块内存" alt="" coords="421,126,567,166"/>
+<area shape="poly" title=" " alt="" coords="342,124,407,132,406,137,342,129"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga942be8d64e19cb8efb4dd1cf10e6e706" title="将一个节点加入链表头部（链表头的后面）" alt="" coords="641,25,792,51"/>
+<area shape="poly" title=" " alt="" coords="550,73,646,51,647,56,551,78"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga3286c94ae92265dea90fd52bfdb85569" title="初始化一个链表节点。" alt="" coords="864,101,1011,127"/>
+<area shape="poly" title=" " alt="" coords="581,91,850,106,850,112,581,96"/>
+<area shape="rect" href="bma_8c.html#aafad73243c00281bd2a0f93cec7667ae" title="从内存块的控制块指针获得内存块的首地址" alt="" coords="629,127,804,152"/>
+<area shape="poly" title=" " alt="" coords="551,99,647,121,646,126,550,104"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga42c09bc0da5cac8327003314056f43b7" title="将一个新节点加入到prev与next之间" alt="" coords="852,25,1023,51"/>
+<area shape="poly" title=" " alt="" coords="792,35,838,35,838,41,792,41"/>
+<area shape="poly" title=" " alt="" coords="567,141,615,140,616,145,567,146"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#gab12f3ce1a4e53de3112b10c9ffb06cae" title="删除一个节点，并重新初始化它" alt="" coords="649,176,784,201"/>
+<area shape="poly" title=" " alt="" coords="568,157,637,171,636,176,567,163"/>
+<area shape="poly" title=" " alt="" coords="762,173,803,161,890,129,892,134,805,166,764,179"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#gab7918962f86f86d5c7049922a5173e81" title="删除prev节点与next节点之间的节点" alt="" coords="854,176,1021,201"/>
+<area shape="poly" title=" " alt="" coords="785,186,840,186,840,191,785,191"/>
+<area shape="rect" href="group__xwos__lib__error.html#ga043267bacbf102d87c376e6605228ab6" title="将错误码转换为指针" alt="" coords="465,191,523,216"/>
+<area shape="poly" title=" " alt="" coords="346,176,451,194,451,199,345,181"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga591aeadbb32ce6e77563d873ecb53b33" name="ga591aeadbb32ce6e77563d873ecb53b33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga591aeadbb32ce6e77563d873ecb53b33">&#9670;&#160;</a></span>xwmm_bma_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwmm_bma_init </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwmm__bma.html">xwmm_bma</a> *&#160;</td>
+          <td class="paramname"><em>bma</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a>&#160;</td>
+          <td class="paramname"><em>origin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a>&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a>&#160;</td>
+          <td class="paramname"><em>blksize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a>&#160;</td>
+          <td class="paramname"><em>blkodr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWMM API：初始化伙伴算法内存块分配器 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">bma</td><td>伙伴算法内存块分配器的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>名字 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">origin</td><td>内存区域的起始地址 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>内存区域的大小 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">blksize</td><td>伙伴算法内存块分配器中单位内存块的大小 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">blkodr</td><td>伙伴算法内存块分配器中单位内存块的数量，以2的blkodr次方形式表示 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">-ESIZE</td><td>内存区域大小不匹配 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>单位内存块的数量只能是2的n次方，即 <code>2, 4, 8, 16, 32, 64, 128, ...</code> ，对应的 <code>blkodr</code> 分别为 <code>1, 2, 3, 4, 5, 6, 7, ...</code> ；</li>
+<li>内存区域大小必须满足关系： <code>size == (blksize * (1 &lt;&lt; blkodr))</code> 。 </li>
+</ul>
+</dd>
+<dd>
+<ul>
+<li>同步/异步：同步</li>
+<li>上下文：中断、中断底半部、线程</li>
+<li>重入性：不可重入 </li>
+</ul>
+</dd></dl>
+<p>&lt;Size error</p>
+<p>&lt; 块正在被使用</p>
+<p>&lt; 块已被合并</p>
+<p>&lt; 块正在被使用</p>
+<p>&lt;No error</p>
+
+<p class="definition">在文件 <a class="el" href="bma_8c_source.html">bma.c</a> 第 <a class="el" href="bma_8c_source.html#l00062">62</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   65</span>{</div>
+<div class="line"><span class="lineno">   66</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">   67</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num;</div>
+<div class="line"><span class="lineno">   68</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> i;</div>
+<div class="line"><span class="lineno">   69</span> </div>
+<div class="line"><span class="lineno">   70</span>        <a class="code hl_define" href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a>((bma), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">   71</span> </div>
+<div class="line"><span class="lineno">   72</span>        num = 1U &lt;&lt; blkodr;</div>
+<div class="line"><span class="lineno">   73</span>        <span class="keywordflow">if</span> (size != (num * blksize)) {</div>
+<div class="line"><span class="lineno">   74</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#gacb09eefda9ef228712245d1104fe9c89">ESIZE</a>;</div>
+<div class="line"><span class="lineno">   75</span>                <a class="code hl_define" href="bma_8c.html#aa4b118f6cd61a828b533df7a9ef3e2f6">xwmm_bmalogf</a>(ERR, <span class="stringliteral">&quot;Size of memory(0x%lX, 0x%lX) is error!\n&quot;</span>,</div>
+<div class="line"><span class="lineno">   76</span>                             origin, size);</div>
+<div class="line"><span class="lineno">   77</span>                <span class="keywordflow">goto</span> err_size;</div>
+<div class="line"><span class="lineno">   78</span>        }</div>
+<div class="line"><span class="lineno">   79</span>        bma-&gt;<a class="code hl_variable" href="structxwmm__bma.html#a88cfc2a48338da8460a4f802875b4c14">name</a> = name;</div>
+<div class="line"><span class="lineno">   80</span>        bma-&gt;<a class="code hl_variable" href="structxwmm__bma.html#a125adc2f817d937fb8950d817422042c">zone</a>.<a class="code hl_variable" href="structxwmm__zone.html#a6234f16a4f0b8787dfa3fcab0767d9e5">origin</a> = origin;</div>
+<div class="line"><span class="lineno">   81</span>        bma-&gt;<a class="code hl_variable" href="structxwmm__bma.html#a125adc2f817d937fb8950d817422042c">zone</a>.<a class="code hl_variable" href="structxwmm__zone.html#ae3584b179ee84eeb61c2497617ac877b">size</a> = blksize * num;</div>
+<div class="line"><span class="lineno">   82</span>        bma-&gt;<a class="code hl_variable" href="structxwmm__bma.html#af75616bed0d5aca4c06b78a05ebfd318">blksize</a> = blksize;</div>
+<div class="line"><span class="lineno">   83</span>        bma-&gt;<a class="code hl_variable" href="structxwmm__bma.html#aaf40145eda6128c47a0780bbc03e51e2">blkodr</a> = blkodr;</div>
+<div class="line"><span class="lineno">   84</span>        <a class="code hl_function" href="group__xwos__lock__spinlock.html#gac8bbb82a3177f919e10ef3c3d21c7608">xwos_splk_init</a>(&amp;bma-&gt;<a class="code hl_variable" href="structxwmm__bma.html#a408ac5724ebd0fcdcba3a19a5b1840c7">lock</a>);</div>
+<div class="line"><span class="lineno">   85</span>        bma-&gt;<a class="code hl_variable" href="structxwmm__bma.html#a606659b9828e2d6ce8d4d28292f0fb33">orderlists</a> = (<span class="keyword">struct </span><a class="code hl_struct" href="structxwmm__bma__orderlist.html">xwmm_bma_orderlist</a> *)&amp;bma[(<a class="code hl_typedef" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a>)1];</div>
+<div class="line"><span class="lineno">   86</span>        bma-&gt;<a class="code hl_variable" href="structxwmm__bma.html#a960065c30d9d1ab09b38751d3b9936ab">bcbs</a> = (<span class="keyword">struct </span><a class="code hl_struct" href="structxwmm__bma__bcb.html">xwmm_bma_bcb</a> *)&amp;bma-&gt;<a class="code hl_variable" href="structxwmm__bma.html#a606659b9828e2d6ce8d4d28292f0fb33">orderlists</a>[(<a class="code hl_typedef" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a>)1 + blkodr];</div>
+<div class="line"><span class="lineno">   87</span>        <a class="code hl_define" href="bma_8c.html#aa4b118f6cd61a828b533df7a9ef3e2f6">xwmm_bmalogf</a>(DEBUG,</div>
+<div class="line"><span class="lineno">   88</span>                     <span class="stringliteral">&quot;memory:(0x%lX,0x%lX),orderlists:0x%lX,bcbs:0x%lX,&quot;</span></div>
+<div class="line"><span class="lineno">   89</span>                     <span class="stringliteral">&quot;blocksize:0x%lX, blockorder:0x%lX\n&quot;</span>,</div>
+<div class="line"><span class="lineno">   90</span>                     origin, size, (<a class="code hl_typedef" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a>)bma-&gt;<a class="code hl_variable" href="structxwmm__bma.html#a606659b9828e2d6ce8d4d28292f0fb33">orderlists</a>, (<a class="code hl_typedef" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a>)bma-&gt;<a class="code hl_variable" href="structxwmm__bma.html#a960065c30d9d1ab09b38751d3b9936ab">bcbs</a>,</div>
+<div class="line"><span class="lineno">   91</span>                     bma-&gt;<a class="code hl_variable" href="structxwmm__bma.html#af75616bed0d5aca4c06b78a05ebfd318">blksize</a>, bma-&gt;<a class="code hl_variable" href="structxwmm__bma.html#aaf40145eda6128c47a0780bbc03e51e2">blkodr</a>);</div>
+<div class="line"><span class="lineno">   92</span> </div>
+<div class="line"><span class="lineno">   93</span>        <span class="keywordflow">for</span> (i = 0; i &lt; num; i++) {</div>
+<div class="line"><span class="lineno">   94</span>                bma-&gt;<a class="code hl_variable" href="structxwmm__bma.html#a960065c30d9d1ab09b38751d3b9936ab">bcbs</a>[i].<a class="code hl_variable" href="structxwmm__bma__bcb.html#aa2bc43de36e79a5c9972232204a7e4d0">order</a> = <a class="code hl_define" href="group__xwmm__bma.html#gaa9a7e10746d23bdd8423f3b40e2bd7c5">XWMM_BMA_INUSED</a> | <a class="code hl_define" href="group__xwmm__bma.html#gaaee8c675c73f326b0fb3d7a5545751e7">XWMM_BMA_COMBINED</a>;</div>
+<div class="line"><span class="lineno">   95</span>        }</div>
+<div class="line"><span class="lineno">   96</span>        bma-&gt;<a class="code hl_variable" href="structxwmm__bma.html#a960065c30d9d1ab09b38751d3b9936ab">bcbs</a>[0].<a class="code hl_variable" href="structxwmm__bma__bcb.html#aa2bc43de36e79a5c9972232204a7e4d0">order</a> = (<a class="code hl_typedef" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a>)blkodr | <a class="code hl_define" href="group__xwmm__bma.html#gaa9a7e10746d23bdd8423f3b40e2bd7c5">XWMM_BMA_INUSED</a>;</div>
+<div class="line"><span class="lineno">   97</span> </div>
+<div class="line"><span class="lineno">   98</span>        <span class="keywordflow">for</span> (i = 0; i &lt;= blkodr; i++) {</div>
+<div class="line"><span class="lineno">   99</span>                <a class="code hl_function" href="group__xwos__lib__bclst.html#ga08f9a7aec46aaeee30262e4bbdc65c0a">xwlib_bclst_init_head</a>(&amp;bma-&gt;<a class="code hl_variable" href="structxwmm__bma.html#a606659b9828e2d6ce8d4d28292f0fb33">orderlists</a>[i].<a class="code hl_variable" href="structxwmm__bma__orderlist.html#abc2cff33b635c77569673cc062082e58">head</a>);</div>
+<div class="line"><span class="lineno">  100</span>        }</div>
+<div class="line"><span class="lineno">  101</span>        <a class="code hl_function" href="bma_8c.html#a96d4bf13adbddda9f906bba0d13e8bfb">xwmm_bma_orderlist_add</a>(bma, &amp;bma-&gt;<a class="code hl_variable" href="structxwmm__bma.html#a606659b9828e2d6ce8d4d28292f0fb33">orderlists</a>[blkodr], blkodr, &amp;bma-&gt;<a class="code hl_variable" href="structxwmm__bma.html#a960065c30d9d1ab09b38751d3b9936ab">bcbs</a>[0]);</div>
+<div class="line"><span class="lineno">  102</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><span class="lineno">  103</span> </div>
+<div class="line"><span class="lineno">  104</span>err_size:</div>
+<div class="line"><span class="lineno">  105</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  106</span>}</div>
+<div class="ttc" id="abma_8c_html_a96d4bf13adbddda9f906bba0d13e8bfb"><div class="ttname"><a href="bma_8c.html#a96d4bf13adbddda9f906bba0d13e8bfb">xwmm_bma_orderlist_add</a></div><div class="ttdeci">static void xwmm_bma_orderlist_add(struct xwmm_bma *bma, struct xwmm_bma_orderlist *ol, xwu8_t odr, struct xwmm_bma_bcb *bcb)</div><div class="ttdoc">将一块内存加入到阶链表</div><div class="ttdef"><b>Definition</b> <a href="bma_8c_source.html#l00175">bma.c:175</a></div></div>
+<div class="ttc" id="agroup__xwmm__bma_html_gaaee8c675c73f326b0fb3d7a5545751e7"><div class="ttname"><a href="group__xwmm__bma.html#gaaee8c675c73f326b0fb3d7a5545751e7">XWMM_BMA_COMBINED</a></div><div class="ttdeci">#define XWMM_BMA_COMBINED</div><div class="ttdef"><b>Definition</b> <a href="bma_8h_source.html#l00045">bma.h:45</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__bclst_html_ga08f9a7aec46aaeee30262e4bbdc65c0a"><div class="ttname"><a href="group__xwos__lib__bclst.html#ga08f9a7aec46aaeee30262e4bbdc65c0a">xwlib_bclst_init_head</a></div><div class="ttdeci">static void xwlib_bclst_init_head(struct xwlib_bclst_node *h)</div><div class="ttdoc">初始化一个链表头。</div><div class="ttdef"><b>Definition</b> <a href="bclst_8h_source.html#l00229">bclst.h:229</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_gacb09eefda9ef228712245d1104fe9c89"><div class="ttname"><a href="group__xwos__lib__errno.html#gacb09eefda9ef228712245d1104fe9c89">ESIZE</a></div><div class="ttdeci">#define ESIZE</div><div class="ttdoc">Size error</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00202">errno.h:202</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga2d00153ecb0cdcc8ea0823c13ee59649"><div class="ttname"><a href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a></div><div class="ttdeci">unsigned long xwsz_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00339">type.h:339</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga4433c8b2d64a72382ab333d11bfd0093"><div class="ttname"><a href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a></div><div class="ttdeci">uint8_t xwu8_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00194">type.h:194</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__spinlock_html_gac8bbb82a3177f919e10ef3c3d21c7608"><div class="ttname"><a href="group__xwos__lock__spinlock.html#gac8bbb82a3177f919e10ef3c3d21c7608">xwos_splk_init</a></div><div class="ttdeci">static void xwos_splk_init(struct xwos_splk *spl)</div><div class="ttdoc">XWOS API：初始化自旋锁</div><div class="ttdef"><b>Definition</b> <a href="lock_2spinlock_8h_source.html#l00084">spinlock.h:84</a></div></div>
+<div class="ttc" id="astructxwmm__bma__orderlist_html_abc2cff33b635c77569673cc062082e58"><div class="ttname"><a href="structxwmm__bma__orderlist.html#abc2cff33b635c77569673cc062082e58">xwmm_bma_orderlist::head</a></div><div class="ttdeci">struct xwlib_bclst_node head</div><div class="ttdef"><b>Definition</b> <a href="bma_8h_source.html#l00075">bma.h:75</a></div></div>
+<div class="ttc" id="astructxwmm__bma_html_a88cfc2a48338da8460a4f802875b4c14"><div class="ttname"><a href="structxwmm__bma.html#a88cfc2a48338da8460a4f802875b4c14">xwmm_bma::name</a></div><div class="ttdeci">const char * name</div><div class="ttdef"><b>Definition</b> <a href="bma_8h_source.html#l00093">bma.h:93</a></div></div>
+<div class="ttc" id="astructxwmm__bma_html_af75616bed0d5aca4c06b78a05ebfd318"><div class="ttname"><a href="structxwmm__bma.html#af75616bed0d5aca4c06b78a05ebfd318">xwmm_bma::blksize</a></div><div class="ttdeci">xwsz_t blksize</div><div class="ttdef"><b>Definition</b> <a href="bma_8h_source.html#l00094">bma.h:94</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmm__bma_ga591aeadbb32ce6e77563d873ecb53b33_cgraph.png" border="0" usemap="#agroup__xwmm__bma_ga591aeadbb32ce6e77563d873ecb53b33_cgraph" alt=""/></div>
+<map name="agroup__xwmm__bma_ga591aeadbb32ce6e77563d873ecb53b33_cgraph" id="agroup__xwmm__bma_ga591aeadbb32ce6e77563d873ecb53b33_cgraph">
+<area shape="rect" title="XWMM API：初始化伙伴算法内存块分配器" alt="" coords="5,55,123,80"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga08f9a7aec46aaeee30262e4bbdc65c0a" title="初始化一个链表头。" alt="" coords="185,5,331,31"/>
+<area shape="poly" title=" " alt="" coords="114,52,193,32,194,37,115,57"/>
+<area shape="rect" href="bma_8c.html#a96d4bf13adbddda9f906bba0d13e8bfb" title="将一块内存加入到阶链表" alt="" coords="171,55,345,80"/>
+<area shape="poly" title=" " alt="" coords="123,65,157,65,157,70,123,70"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gac8bbb82a3177f919e10ef3c3d21c7608" title="XWOS API：初始化自旋锁" alt="" coords="204,104,312,129"/>
+<area shape="poly" title=" " alt="" coords="115,77,194,98,193,103,114,83"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga942be8d64e19cb8efb4dd1cf10e6e706" title="将一个节点加入链表头部（链表头的后面）" alt="" coords="405,5,556,31"/>
+<area shape="poly" title=" " alt="" coords="315,52,409,31,410,36,317,57"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga3286c94ae92265dea90fd52bfdb85569" title="初始化一个链表节点。" alt="" coords="407,55,554,80"/>
+<area shape="poly" title=" " alt="" coords="346,65,394,65,394,70,346,70"/>
+<area shape="rect" href="bma_8c.html#aafad73243c00281bd2a0f93cec7667ae" title="从内存块的控制块指针获得内存块的首地址" alt="" coords="393,104,568,129"/>
+<area shape="poly" title=" " alt="" coords="317,77,410,98,409,104,315,83"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga42c09bc0da5cac8327003314056f43b7" title="将一个新节点加入到prev与next之间" alt="" coords="616,5,787,31"/>
+<area shape="poly" title=" " alt="" coords="556,15,602,15,602,21,556,21"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
+  </ul>
+</div>
+</body>
+</html>

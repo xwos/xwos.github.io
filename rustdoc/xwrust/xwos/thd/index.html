@@ -1,0 +1,281 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="XWOS RUST：线程"><title>xwrust::xwos::thd - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="xwrust" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (b10cfcd65 2023-11-29)" data-channel="nightly" data-search-js="search-56a624991a76cfad.js" data-settings-js="settings-fe03fdc259827cd2.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../sidebar-items.js"></script><script defer src="../../../static.files/main-77dede896d6ac08e.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../xwrust/index.html">xwrust</a><span class="version">1.0.0</span></h2></div><h2 class="location"><a href="#">Module thd</a></h2><div class="sidebar-elems"><section><ul class="block"><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#constants">Constants</a></li><li><a href="#functions">Functions</a></li></ul></section><h2><a href="../index.html">In xwrust::xwos</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Module <a href="../../index.html">xwrust</a>::<wbr><a href="../index.html">xwos</a>::<wbr><a class="mod" href="#">thd</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../../../src/xwrust/xwos/thd.rs.html#1-1670">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="xwos-rust线程"><a href="#xwos-rust线程">XWOS RUST：线程</a></h2>
+<p>XWOS的线程分为 <strong>分离态</strong> 或 <strong>连接态</strong> ：</p>
+<ul>
+<li><strong>分离态（detached）</strong> ：分离态的线程退出后由操作系统自动回收其内存资源；</li>
+<li><strong>连接态（joinable）</strong> ：连接态的线程退出后需要被其他线程 <code>join()</code> ，之后才会被操作系统回收内存资源。</li>
+</ul>
+<p>XWOS RUST的线程分为 <strong>动态线程</strong> 与 <strong>静态线程</strong> 。无论哪种线程创建时都是 <strong>连接态（joinable）</strong> 的，
+如果未将线程的 <strong>Handle</strong> 绑定到变量上，线程将自动转变为 <strong>分离态（detached）</strong> 。</p>
+<h2 id="动态线程"><a href="#动态线程">动态线程</a></h2>
+<p><strong>动态线程</strong> 是指通过动态内存分配器创建的线程。</p>
+<p>动态线程的对象结构体、栈、线程闭包等资源都是通过内存申请的接口动态创建的。</p>
+<p>XWOS RUST的动态线程库是仿照 <a href="https://doc.rust-lang.org/std/thread/index.html"><code>std::thread</code></a> 的来编写的。</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwos::thd;
+
+thd::spawn(|<span class="kw">_</span>| {
+    <span class="comment">// 线程代码;
+</span>});</code></pre></div>
+<p>在上述代码中，<a href="fn.spawn.html" title="fn xwrust::xwos::thd::spawn"><code>spawn()</code></a> 方法会返回 <a href="struct.DThdHandle.html" title="struct xwrust::xwos::thd::DThdHandle"><code>DThdHandle</code></a> ，但由于 <a href="struct.DThdHandle.html" title="struct xwrust::xwos::thd::DThdHandle"><code>DThdHandle</code></a> 没有被绑定到任何变量名上，
+其生命周期结束后的 <a href="https://doc.rust-lang.org/core/ops/trait.Drop.html#tymethod.drop"><code>drop()</code></a> 方法会自动将动态线程转变为 <strong>分离态(detached)</strong> 。此线程运行结束后，其资源会被操作系统自动回收。</p>
+<p>动态线程也可以是 <strong>可连接的(joinable)</strong> ，可以将返回的 <a href="struct.DThdHandle.html" title="struct xwrust::xwos::thd::DThdHandle"><code>DThdHandle</code></a> 绑定在变量上，防止 <a href="https://doc.rust-lang.org/core/ops/trait.Drop.html#tymethod.drop"><code>drop()</code></a> 方法被调用。
+然后通过 <a href="struct.DThdHandle.html#method.join" title="method xwrust::xwos::thd::DThdHandle::join"><code>DThdHandle::join()</code></a> 方法等待线程运行结束：</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwos::thd;
+
+<span class="kw">let </span>res = thd::spawn(|<span class="kw">_</span>| {
+    <span class="comment">// 线程代码;
+    // 返回值
+</span>});
+<span class="kw">match </span>res {
+    <span class="prelude-val">Ok</span>(handler) =&gt; {
+        <span class="kw">match </span>handler.join() {
+            <span class="prelude-val">Ok</span>(r) =&gt; {
+                <span class="comment">// `r` 是线程闭包的返回值。
+            </span>},
+            <span class="prelude-val">Err</span>(e) =&gt; {
+                <span class="comment">// `join()` 失败时的错误码可通过 `e.state()` 获取。
+                // `e` 是 `DThdHandle&lt;R&gt;` ，重新被返回。
+            </span>},
+        };
+    },
+    <span class="prelude-val">Err</span>(rc) =&gt; {
+        <span class="comment">// `rc` 是 `spawn()` 失败时的错误码。
+    </span>},
+};</code></pre></div>
+<p><a href="struct.DThdHandle.html#method.join" title="method xwrust::xwos::thd::DThdHandle::join"><code>DThdHandle::join()</code></a> 方法会返回 [<code>Result&lt;R, Self&gt;</code>] ， <code>R</code> 是返回值的类型，并放在 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Ok"><code>Ok()</code></a> 中，
+方法调用失败时，会将 <a href="struct.DThdHandle.html" title="struct xwrust::xwos::thd::DThdHandle"><code>DThdHandle</code></a> 放在 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Err"><code>Err()</code></a> 中重新返回。此时，用户可以通过 <a href="struct.DThdHandle.html#method.state" title="method xwrust::xwos::thd::DThdHandle::state"><code>DThdHandle::state()</code></a> 获取失败原因，
+并且在合适的重新调用 <a href="struct.DThdHandle.html#method.join" title="method xwrust::xwos::thd::DThdHandle::join"><code>DThdHandle::join()</code></a> 方法。</p>
+<h3 id="动态线程的线程函数"><a href="#动态线程的线程函数">动态线程的线程函数</a></h3>
+<p>动态线程可以使用 <a href="https://doc.rust-lang.org/core/ops/trait.FnOnce.html"><code>FnOnce()</code></a> 闭包作为线程函数。其原型是： <code>FnOnce(Arc&lt;DThdElement&gt;) -&gt; R</code> ，
+动态线程函数运行时，参数是动态线程的元素 <a href="struct.DThdElement.html" title="struct xwrust::xwos::thd::DThdElement"><code>DThdElement</code></a> ，返回值为泛型 <code>R</code> 。</p>
+<h3 id="动态线程的工厂模式"><a href="#动态线程的工厂模式">动态线程的工厂模式</a></h3>
+<p>可以通过线程工厂 <a href="struct.DThdBuilder.html" title="struct xwrust::xwos::thd::DThdBuilder"><code>DThdBuilder</code></a> 设置线程属性后，再创建动态线程：</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwos::thd;
+
+<span class="kw">let </span>builder = thd::DThdBuilder::new()
+                               .name(<span class="string">&quot;foo&quot;</span>.into()) <span class="comment">// 设置线程的名称
+                               </span>.stack_size(<span class="number">8 </span>* <span class="number">1024</span>) <span class="comment">// 设置线程栈大小
+                               </span>.privileged(<span class="bool-val">true</span>); <span class="comment">// 设置系统权限
+
+</span>builder.spawn(|<span class="kw">_</span>| {
+    <span class="comment">// 线程代码;
+    // 返回值
+</span>});</code></pre></div>
+<h5 id="线程的名称"><a href="#线程的名称">线程的名称</a></h5>
+<p>线程工厂可以通过 <a href="struct.DThdBuilder.html#method.name" title="method xwrust::xwos::thd::DThdBuilder::name"><code>DThdBuilder::name()</code></a> 为线程指定一个字符串名字。可以为空，默认为 <code>&quot;anon&quot;</code> 。</p>
+<h5 id="线程的栈大小"><a href="#线程的栈大小">线程的栈大小</a></h5>
+<p>线程工厂可以通过 <a href="struct.DThdBuilder.html#method.stack_size" title="method xwrust::xwos::thd::DThdBuilder::stack_size"><code>DThdBuilder::stack_size()</code></a> 为线程指定栈内存大小，默认为XWOS的内核配置 <code>XWMMCFG_STACK_SIZE_MIN</code> 。</p>
+<h5 id="线程的系统权限"><a href="#线程的系统权限">线程的系统权限</a></h5>
+<p>某些SOC内部的寄存器，只有拥有系统权限的线程才可以访问。线程工厂可以通过 <a href="struct.DThdBuilder.html#method.privileged" title="method xwrust::xwos::thd::DThdBuilder::privileged"><code>DThdBuilder::privileged()</code></a> 为线程指定是否具有系统特权，默认为拥有系统权限。</p>
+<h3 id="动态线程的元素"><a href="#动态线程的元素">动态线程的元素</a></h3>
+<p>动态线程的元素 <a href="struct.DThdElement.html" title="struct xwrust::xwos::thd::DThdElement"><code>DThdElement</code></a> 是存放与线程相关的信息的内存空间。
+动态线程工厂 <a href="struct.DThdBuilder.html" title="struct xwrust::xwos::thd::DThdBuilder"><code>DThdBuilder</code></a> 中设置的信息会被转移到 <a href="struct.DThdElement.html" title="struct xwrust::xwos::thd::DThdElement"><code>DThdElement</code></a> 中。
+动态线程运行时， <code>Arc&lt;DThdElement&gt;</code> 作为参数被传递到闭包。以 <a href="https://doc.rust-lang.org/alloc/sync/struct.Arc.html"><code>Arc&lt;T&gt;</code></a> 进行封装是因为要将其放在堆中。</p>
+<h3 id="动态线程的句柄"><a href="#动态线程的句柄">动态线程的句柄</a></h3>
+<p>静态线程的句柄 <a href="struct.DThdHandle.html" title="struct xwrust::xwos::thd::DThdHandle"><code>DThdHandle</code></a> 功能类似于 <a href="https://doc.rust-lang.org/std/thread/struct.JoinHandle.html"><code>std::thread::JoinHandle</code></a> ，可用于控制动态子线程的退出。</p>
+<h5 id="中断动态线程的阻塞态和睡眠态"><a href="#中断动态线程的阻塞态和睡眠态">中断动态线程的阻塞态和睡眠态</a></h5>
+<p>方法 <a href="struct.DThdHandle.html#method.intr" title="method xwrust::xwos::thd::DThdHandle::intr"><code>DThdHandle::intr()</code></a> 可用于中断线程的 <strong>阻塞态</strong> 和 <strong>睡眠态</strong> 。
+阻塞和睡眠的方法将以返回值 <strong>负</strong> 的 <a href="../../errno/constant.EINTR.html" title="constant xwrust::errno::EINTR"><code>EINTR</code></a> 退出。错误码 <a href="../../errno/constant.EINTR.html" title="constant xwrust::errno::EINTR"><code>EINTR</code></a> 会被转换为各个可阻塞线程的操作系统对象的错误码：</p>
+<ul>
+<li><a href="../lock/mtx/enum.MutexError.html#variant.Interrupt" title="variant xwrust::xwos::lock::mtx::MutexError::Interrupt"><code>MutexError::Interrupt</code></a></li>
+<li><a href="../sync/sem/enum.SemError.html#variant.Interrupt" title="variant xwrust::xwos::sync::sem::SemError::Interrupt"><code>SemError::Interrupt</code></a></li>
+<li><a href="../sync/cond/enum.CondError.html#variant.Interrupt" title="variant xwrust::xwos::sync::cond::CondError::Interrupt"><code>CondError::Interrupt</code></a></li>
+<li><a href="../sync/flg/enum.FlgError.html#variant.Interrupt" title="variant xwrust::xwos::sync::flg::FlgError::Interrupt"><code>FlgError::Interrupt</code></a></li>
+<li><a href="../sync/br/enum.BrError.html#variant.Interrupt" title="variant xwrust::xwos::sync::br::BrError::Interrupt"><code>BrError::Interrupt</code></a></li>
+<li><a href="../sync/sel/enum.SelError.html#variant.Interrupt" title="variant xwrust::xwos::sync::sel::SelError::Interrupt"><code>SelError::Interrupt</code></a></li>
+</ul>
+<p>但是，当动态线程的 <strong>阻塞状态</strong> 是不可被中断的，不会发生中断。</p>
+<p>方法 <a href="struct.DThdHandle.html#method.intr" title="method xwrust::xwos::thd::DThdHandle::intr"><code>DThdHandle::intr()</code></a> 是基于 <a href="struct.ThdD.html#method.intr" title="method xwrust::xwos::thd::ThdD::intr"><code>ThdD::intr()</code></a> 实现的，调用后者与前者在功能上没有区别。
+动态线程自身的 <a href="struct.ThdD.html" title="struct xwrust::xwos::thd::ThdD"><code>ThdD</code></a> 可通过 <a href="../cthd/fn.i.html" title="fn xwrust::xwos::cthd::i"><code>cthd::i()</code></a> 获取。</p>
+<h5 id="通知动态线程退出"><a href="#通知动态线程退出">通知动态线程退出</a></h5>
+<p>方法 <a href="struct.DThdHandle.html#method.quit" title="method xwrust::xwos::thd::DThdHandle::quit"><code>DThdHandle::quit()</code></a> 可用于父线程通知动态子线程退出。此方法不会等待动态子线程退出。</p>
+<p>方法 <a href="struct.DThdHandle.html#method.quit" title="method xwrust::xwos::thd::DThdHandle::quit"><code>DThdHandle::quit()</code></a> 是基于 <a href="struct.ThdD.html#method.quit" title="method xwrust::xwos::thd::ThdD::quit"><code>ThdD::quit()</code></a> 实现的，调用后者与前者在功能上没有区别。
+动态线程自身的 <a href="struct.ThdD.html" title="struct xwrust::xwos::thd::ThdD"><code>ThdD</code></a> 可通过 <a href="../cthd/fn.i.html" title="fn xwrust::xwos::cthd::i"><code>cthd::i()</code></a> 获取。</p>
+<p>通知动态线程退出的方法会为动态子线程设置 <strong>退出状态</strong> ，并中断 <strong>阻塞状态</strong> 和 <strong>睡眠状态</strong> 。
+阻塞和睡眠的方法将以返回值负的 <a href="../../errno/constant.EINTR.html" title="constant xwrust::errno::EINTR"><code>EINTR</code></a> 退出。错误码 <a href="../../errno/constant.EINTR.html" title="constant xwrust::errno::EINTR"><code>EINTR</code></a> 会被转换为各个可阻塞线程的操作系统对象的错误码：</p>
+<ul>
+<li><a href="../lock/mtx/enum.MutexError.html#variant.Interrupt" title="variant xwrust::xwos::lock::mtx::MutexError::Interrupt"><code>MutexError::Interrupt</code></a></li>
+<li><a href="../sync/sem/enum.SemError.html#variant.Interrupt" title="variant xwrust::xwos::sync::sem::SemError::Interrupt"><code>SemError::Interrupt</code></a></li>
+<li><a href="../sync/cond/enum.CondError.html#variant.Interrupt" title="variant xwrust::xwos::sync::cond::CondError::Interrupt"><code>CondError::Interrupt</code></a></li>
+<li><a href="../sync/flg/enum.FlgError.html#variant.Interrupt" title="variant xwrust::xwos::sync::flg::FlgError::Interrupt"><code>FlgError::Interrupt</code></a></li>
+<li><a href="../sync/br/enum.BrError.html#variant.Interrupt" title="variant xwrust::xwos::sync::br::BrError::Interrupt"><code>BrError::Interrupt</code></a></li>
+<li><a href="../sync/sel/enum.SelError.html#variant.Interrupt" title="variant xwrust::xwos::sync::sel::SelError::Interrupt"><code>SelError::Interrupt</code></a></li>
+</ul>
+<p>但是，当动态子线程的 <strong>阻塞状态</strong> 是不可被中断的，方法 <a href="struct.DThdHandle.html#method.quit" title="method xwrust::xwos::thd::DThdHandle::quit"><code>DThdHandle::quit()</code></a> 只会为动态子线程设置 <strong>退出状态</strong> ，不会发生中断。</p>
+<p>动态子线程可以通过 <a href="../cthd/fn.shld_stop.html" title="fn xwrust::xwos::cthd::shld_stop"><code>cthd::shld_stop()</code></a> 判断是否被设置了 <strong>退出状态</strong> ，可以作为结束线程循环的条件。</p>
+<h5 id="等待动态线程退出"><a href="#等待动态线程退出">等待动态线程退出</a></h5>
+<p>当父线程需要等待动态子线程退出，并捕获其返回值，需要使用方法 <a href="struct.DThdHandle.html#method.join" title="method xwrust::xwos::thd::DThdHandle::join"><code>DThdHandle::join()</code></a> 。</p>
+<ul>
+<li>如果动态子线程还在运行，此方法会阻塞父线程直到动态子线程退出。父线程的阻塞状态可被中断；</li>
+<li>如果动态子线程已经提前运行至退出，此方法可立即返回动态子线程的返回值。</li>
+</ul>
+<p>此方法会消费 <a href="struct.DThdHandle.html" title="struct xwrust::xwos::thd::DThdHandle"><code>DThdHandle</code></a> ：</p>
+<ul>
+<li>如果此方法执行成功，会消费掉 <a href="struct.DThdHandle.html" title="struct xwrust::xwos::thd::DThdHandle"><code>DThdHandle</code></a> ，并将动态子线程的返回值放在 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Ok"><code>Ok()</code></a> 中返回，因为线程已经结束，其 <a href="struct.DThdHandle.html" title="struct xwrust::xwos::thd::DThdHandle"><code>DThdHandle</code></a> 的生命周期也应该结束；</li>
+<li>如果此方法执行失败，会重新在 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Err"><code>Err()</code></a> 中返回 <a href="struct.DThdHandle.html" title="struct xwrust::xwos::thd::DThdHandle"><code>DThdHandle</code></a> ，用户可通过 <a href="struct.DThdHandle.html#method.state" title="method xwrust::xwos::thd::DThdHandle::state"><code>DThdHandle::state()</code></a> 方法获取失败的原因，并且在合适的重新调用 <a href="struct.DThdHandle.html#method.join" title="method xwrust::xwos::thd::DThdHandle::join"><code>DThdHandle::join()</code></a> 方法。</li>
+</ul>
+<h5 id="通知并等待动态线程退出"><a href="#通知并等待动态线程退出">通知并等待动态线程退出</a></h5>
+<p>方法 <a href="struct.DThdHandle.html#method.stop" title="method xwrust::xwos::thd::DThdHandle::stop"><code>DThdHandle::stop()</code></a> 等价于 <a href="struct.DThdHandle.html#method.quit" title="method xwrust::xwos::thd::DThdHandle::quit"><code>DThdHandle::quit()</code></a> + <a href="struct.DThdHandle.html#method.join" title="method xwrust::xwos::thd::DThdHandle::join"><code>DThdHandle::join()</code></a></p>
+<h3 id="动态线程的示例"><a href="#动态线程的示例">动态线程的示例</a></h3>
+<p><a href="https://gitee.com/xwos/XWOS/blob/main/xwam/xwrust-example/xwrust_example_dthd/src/lib.rs">XWOS/xwam/xwrust-example/xwrust_example_dthd</a></p>
+<h3 id="对比-stdthread"><a href="#对比-stdthread">对比 <code>std::thread</code></a></h3><h5 id="闭包原型不同"><a href="#闭包原型不同">闭包原型不同</a></h5>
+<ul>
+<li>
+<p><a href="https://doc.rust-lang.org/std/thread/index.html"><code>std::thread</code></a> 的闭包原型是 <code>FnOnce() -&gt; R</code> ；</p>
+</li>
+<li>
+<p><code>xwrust::xwos::thd</code> 的闭包原型是
+<code>FnOnce(Arc&lt;DThdElement&gt;) -&gt; R</code> ， <a href="struct.DThdElement.html" title="struct xwrust::xwos::thd::DThdElement"><code>DThdElement</code></a> 用于存放与线程相关的元素，例如线程的名称。
+<a href="struct.DThdElement.html" title="struct xwrust::xwos::thd::DThdElement"><code>DThdElement</code></a> 由系统创建，并用作参数传递给闭包，用户可在闭包内直接使用。</p>
+</li>
+<li>
+<p>【举例】 <a href="https://doc.rust-lang.org/std/thread/index.html"><code>std::thread</code></a> 通过 <code>thread::current()</code> 获取线程自己的<code>handle</code>，然后获取线程的名称：</p>
+</li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>std::thread;
+
+<span class="kw">let </span>handler = thread::DThdBuilder::new()
+    .name(<span class="string">&quot;named thread&quot;</span>.into())
+    .spawn(|| {
+        <span class="kw">let </span>handle = thread::current();
+        <span class="macro">assert_eq!</span>(handle.name(), <span class="prelude-val">Some</span>(<span class="string">&quot;named thread&quot;</span>));
+    }).unwrap();
+
+handler.join().unwrap();</code></pre></div>
+<ul>
+<li>【举例】 <code>xwrust::xwos::thd</code> 通过闭包参数 <a href="struct.DThdElement.html#method.name" title="method xwrust::xwos::thd::DThdElement::name"><code>ele.name()</code></a> 获取线程的名称：</li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwos::thd;
+<span class="kw">use </span>libc_print::std_name::println;
+
+thd::DThdBuilder::new()
+    .name(<span class="string">&quot;foo&quot;</span>.into())
+    .spawn(|ele| {
+        <span class="macro">println!</span>(<span class="string">&quot;Thread name: {}&quot;</span>, ele.name());
+    });</code></pre></div>
+<p>若不需要使用 <code>Arc&lt;DThdElement&gt;</code> ，可使用 <code>_</code> 占位。</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwos::thd;
+<span class="kw">use </span>libc_print::std_name::println;
+
+thd::DThdBuilder::new()
+    .name(<span class="string">&quot;foo&quot;</span>.into())
+    .spawn(|<span class="kw">_</span>| {
+        <span class="comment">// 线程闭包
+    </span>});</code></pre></div>
+<h5 id="spawn-失败时的处理方式不同"><a href="#spawn-失败时的处理方式不同"><strong>spawn()</strong> 失败时的处理方式不同</a></h5>
+<ul>
+<li><a href="https://doc.rust-lang.org/std/thread/index.html"><code>std::thread</code></a> <strong>spawn()</strong> 失败时，会直接 <a href="https://doc.rust-lang.org/std/macro.panic.html"><code>panic!()</code></a> ；</li>
+<li>XWOS是RTOS，运行在 <code>#![no_std]</code> 上， <a href="https://doc.rust-lang.org/std/macro.panic.html"><code>panic!()</code></a> 意味着死机，因此需要处理 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Err"><code>Err()</code></a> ；</li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwos::thd;
+
+<span class="kw">match </span>thd::DThdBuilder::new()
+    .name(<span class="string">&quot;child&quot;</span>.into())
+    .spawn(|ele| {
+        <span class="comment">// 子线程闭包
+    </span>}) {
+        <span class="prelude-val">Ok</span>(h) =&gt; { <span class="comment">// 新建子线程成功
+        </span>},
+        <span class="prelude-val">Err</span>(rc) =&gt; { <span class="comment">// 新建子线程失败
+        </span>},
+    };</code></pre></div>
+<h5 id="子线程-panic-的处理方式不同"><a href="#子线程-panic-的处理方式不同">子线程 <code>panic!()</code> 的处理方式不同</a></h5>
+<ul>
+<li><a href="https://doc.rust-lang.org/std/thread/index.html"><code>std::thread</code></a> 可捕获子线程的 <a href="https://doc.rust-lang.org/std/macro.panic.html"><code>panic!()</code></a> 。</li>
+<li><code>xwrust::xwos::thd</code> 的子线程 <a href="https://doc.rust-lang.org/std/macro.panic.html"><code>panic!()</code></a> 后会导致整个系统 <strong>halt</strong> 。
+目前 <code>#![no_std]</code> 环境的 <strong>unwind</strong> 支持还不完善，暂时无法实现类似于 <a href="https://doc.rust-lang.org/std/thread/index.html"><code>std::thread</code></a> 的捕获机制。</li>
+</ul>
+<h2 id="静态线程"><a href="#静态线程">静态线程</a></h2>
+<p><strong>静态线程</strong> 是指 <strong>不</strong> 通过动态内存分配器创建的线程，所需内存全部由编译器在编译连接阶段分配。
+设计 <strong>静态线程</strong> 的目的就是为了避免使用动态内存分配。</p>
+<p>因为无法确定线程会运行多长时间，只能将 <strong>静态线程</strong> 定义为 <strong>静态生命周期</strong> 的全局变量。</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwos::thd::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>STHD: SThd&lt;<span class="number">1024</span>, <span class="kw-2">&amp;</span>str&gt; = SThd::new(<span class="string">&quot;SThd&quot;</span>, <span class="bool-val">true</span>);
+<span class="kw">pub fn </span>xwrust_example_sthd() {
+    <span class="kw">let </span>h = STHD.run(|sthd| { <span class="comment">// 子线程
+        // 线程功能
+        </span><span class="string">&quot;OK&quot; </span><span class="comment">// 返回值
+    </span>});
+    <span class="kw">let </span>res = h.join();
+    <span class="kw">match </span>res {
+        <span class="prelude-val">Ok</span>(r) =&gt; {
+            <span class="comment">// `r` 是线程的返回值。
+        </span>},
+        <span class="prelude-val">Err</span>(e) =&gt; {
+            h = e;
+            <span class="comment">// `join()` 失败时的错误码可通过 `e.state()` 获取。
+            // `e` 是 `SThdHandle` ，重新被返回。
+        </span>},
+    };
+
+}</code></pre></div>
+<p>静态线程可以是 <strong>可连接的(joinable)</strong> 。当另一线程通过 <a href="struct.SThd.html#method.run" title="method xwrust::xwos::thd::SThd::run"><code>SThd::run()</code></a> 启动静态线程后，
+可将返回的 <a href="struct.SThdHandle.html" title="struct xwrust::xwos::thd::SThdHandle"><code>SThdHandle</code></a> 绑定在变量上，然后通过 <a href="struct.SThdHandle.html#method.join" title="method xwrust::xwos::thd::SThdHandle::join"><code>SThdHandle::join()</code></a> 方法等待静态线程运行结束并获取返回值。</p>
+<p>当 <a href="struct.SThdHandle.html" title="struct xwrust::xwos::thd::SThdHandle"><code>SThdHandle</code></a> 生命周期结束前， <a href="struct.SThdHandle.html#method.join" title="method xwrust::xwos::thd::SThdHandle::join"><code>SThdHandle::join()</code></a> 未被调用过，其 <a href="https://doc.rust-lang.org/core/ops/trait.Drop.html#tymethod.drop"><code>drop()</code></a> 方法会将静态线程自动变成 <strong>分离的(detached)</strong> 。</p>
+<h3 id="静态线程的线程函数"><a href="#静态线程的线程函数">静态线程的线程函数</a></h3>
+<p>定义RUST闭包时，实际上会生成一个隐藏的结构体，然后将捕获的环境放在结构体内。
+闭包其实是这个隐藏结构体的变量，并且是在函数栈上建立的，其生命周期只限于函数的局部。
+因此，不能将闭包直接转移到静态线程的线程函数内部，因为生命周期不够长。</p>
+<p>如何延长闭包生命周期？RUST语言的常用技巧是借助于 <a href="https://doc.rust-lang.org/alloc/boxed/struct.Box.html"><code>Box&lt;T&gt;</code></a> 或 <a href="https://doc.rust-lang.org/alloc/sync/struct.Arc.html"><code>Arc&lt;T&gt;</code></a> 将其放入堆中。
+但若使用了 <a href="https://doc.rust-lang.org/alloc/boxed/struct.Box.html"><code>Box&lt;T&gt;</code></a> 或 <a href="https://doc.rust-lang.org/alloc/sync/struct.Arc.html"><code>Arc&lt;T&gt;</code></a> 就违背了“不使用动态内存分配器”的初衷。</p>
+<p>综上，静态线程的线程函数只能是 <strong>普通的函数</strong> 或 <strong>不捕获任何环境的闭包</strong> 。
+只能访问 <strong>静态生命周期的全局变量</strong> 。
+其原型是 <code>fn(&amp;Self) -&gt; R</code> 。其中 <code>&amp;Self</code> 是指向静态线程自身的引用， <code>R</code> 是泛型返回值。</p>
+<h3 id="静态线程的句柄"><a href="#静态线程的句柄">静态线程的句柄</a></h3>
+<p>静态线程的句柄 <a href="struct.SThdHandle.html" title="struct xwrust::xwos::thd::SThdHandle"><code>SThdHandle</code></a> 由方法 <a href="struct.SThd.html#method.run" title="method xwrust::xwos::thd::SThd::run"><code>SThd::run()</code></a> 返回，功能类似于 <a href="https://doc.rust-lang.org/std/thread/struct.JoinHandle.html"><code>std::thread::JoinHandle</code></a> ，可用于控制静态子线程的退出。</p>
+<h5 id="中断静态线程的阻塞态和睡眠态"><a href="#中断静态线程的阻塞态和睡眠态">中断静态线程的阻塞态和睡眠态</a></h5>
+<p>方法 <a href="struct.SThdHandle.html#method.intr" title="method xwrust::xwos::thd::SThdHandle::intr"><code>SThdHandle::intr()</code></a> 可用于中断线程的 <strong>阻塞态</strong> 和 <strong>睡眠态</strong> 。
+阻塞和睡眠的方法将以返回值 <strong>负</strong> 的 <a href="../../errno/constant.EINTR.html" title="constant xwrust::errno::EINTR"><code>EINTR</code></a> 退出。错误码 <a href="../../errno/constant.EINTR.html" title="constant xwrust::errno::EINTR"><code>EINTR</code></a> 会被转换为各个可阻塞线程的操作系统对象的错误码：</p>
+<ul>
+<li><a href="../lock/mtx/enum.MutexError.html#variant.Interrupt" title="variant xwrust::xwos::lock::mtx::MutexError::Interrupt"><code>MutexError::Interrupt</code></a></li>
+<li><a href="../sync/sem/enum.SemError.html#variant.Interrupt" title="variant xwrust::xwos::sync::sem::SemError::Interrupt"><code>SemError::Interrupt</code></a></li>
+<li><a href="../sync/cond/enum.CondError.html#variant.Interrupt" title="variant xwrust::xwos::sync::cond::CondError::Interrupt"><code>CondError::Interrupt</code></a></li>
+<li><a href="../sync/flg/enum.FlgError.html#variant.Interrupt" title="variant xwrust::xwos::sync::flg::FlgError::Interrupt"><code>FlgError::Interrupt</code></a></li>
+<li><a href="../sync/br/enum.BrError.html#variant.Interrupt" title="variant xwrust::xwos::sync::br::BrError::Interrupt"><code>BrError::Interrupt</code></a></li>
+<li><a href="../sync/sel/enum.SelError.html#variant.Interrupt" title="variant xwrust::xwos::sync::sel::SelError::Interrupt"><code>SelError::Interrupt</code></a></li>
+</ul>
+<p>但是，当静态线程的 <strong>阻塞状态</strong> 是不可被中断的，不会发生中断。</p>
+<p>方法 <a href="struct.SThdHandle.html#method.intr" title="method xwrust::xwos::thd::SThdHandle::intr"><code>SThdHandle::intr()</code></a> 是基于 <a href="struct.ThdD.html#method.intr" title="method xwrust::xwos::thd::ThdD::intr"><code>ThdD::intr()</code></a> 实现的，调用后者与前者在功能上没有区别。
+动态线程自身的 <a href="struct.ThdD.html" title="struct xwrust::xwos::thd::ThdD"><code>ThdD</code></a> 可通过 <a href="../cthd/fn.i.html" title="fn xwrust::xwos::cthd::i"><code>cthd::i()</code></a> 获取。</p>
+<h5 id="通知动态线程退出-1"><a href="#通知动态线程退出-1">通知动态线程退出</a></h5>
+<p>方法 <a href="struct.SThdHandle.html#method.quit" title="method xwrust::xwos::thd::SThdHandle::quit"><code>SThdHandle::quit()</code></a> 可用于父线程通知静态子线程退出。此方法不会等待静态子线程退出。</p>
+<p>方法 <a href="struct.SThdHandle.html#method.quit" title="method xwrust::xwos::thd::SThdHandle::quit"><code>SThdHandle::quit()</code></a> 是基于 <a href="struct.SThd.html#method.quit" title="method xwrust::xwos::thd::SThd::quit"><code>SThd::quit()</code></a> 实现的，调用后者与前者在功能上没有区别。后者可以由静态现在自己调用，自己通知自己退出。</p>
+<p>方法 <a href="struct.ThdD.html#method.quit" title="method xwrust::xwos::thd::ThdD::quit"><code>ThdD::quit()</code></a> 也可达到同样的效果。静态态线程自身的 <a href="struct.ThdD.html" title="struct xwrust::xwos::thd::ThdD"><code>ThdD</code></a> 可通过 <a href="../cthd/fn.i.html" title="fn xwrust::xwos::cthd::i"><code>cthd::i()</code></a> 获取。</p>
+<p>通知静态线程退出的方法会为静态子线程设置 <strong>退出状态</strong> ，并中断 <strong>阻塞状态</strong> 和 <strong>睡眠状态</strong> 。
+阻塞和睡眠的方法将以返回值负的 <a href="../../errno/constant.EINTR.html" title="constant xwrust::errno::EINTR"><code>EINTR</code></a> 退出。错误码 <a href="../../errno/constant.EINTR.html" title="constant xwrust::errno::EINTR"><code>EINTR</code></a> 会被转换为各个可阻塞线程的操作系统对象的错误码：</p>
+<ul>
+<li><a href="../lock/mtx/enum.MutexError.html#variant.Interrupt" title="variant xwrust::xwos::lock::mtx::MutexError::Interrupt"><code>MutexError::Interrupt</code></a></li>
+<li><a href="../sync/sem/enum.SemError.html#variant.Interrupt" title="variant xwrust::xwos::sync::sem::SemError::Interrupt"><code>SemError::Interrupt</code></a></li>
+<li><a href="../sync/cond/enum.CondError.html#variant.Interrupt" title="variant xwrust::xwos::sync::cond::CondError::Interrupt"><code>CondError::Interrupt</code></a></li>
+<li><a href="../sync/flg/enum.FlgError.html#variant.Interrupt" title="variant xwrust::xwos::sync::flg::FlgError::Interrupt"><code>FlgError::Interrupt</code></a></li>
+<li><a href="../sync/br/enum.BrError.html#variant.Interrupt" title="variant xwrust::xwos::sync::br::BrError::Interrupt"><code>BrError::Interrupt</code></a></li>
+<li><a href="../sync/sel/enum.SelError.html#variant.Interrupt" title="variant xwrust::xwos::sync::sel::SelError::Interrupt"><code>SelError::Interrupt</code></a></li>
+</ul>
+<p>但是，当静态子线程的 <strong>阻塞状态</strong> 是不可被中断的，方法 <a href="struct.SThdHandle.html#method.quit" title="method xwrust::xwos::thd::SThdHandle::quit"><code>SThdHandle::quit()</code></a> 只会为静态子线程设置 <strong>退出状态</strong> ，不会发生中断。</p>
+<p>静态子线程可以通过 <a href="../cthd/fn.shld_stop.html" title="fn xwrust::xwos::cthd::shld_stop"><code>cthd::shld_stop()</code></a> 判断是否被设置了 <strong>退出状态</strong> ，可以作为结束线程循环的条件。</p>
+<h5 id="等待动态线程退出-1"><a href="#等待动态线程退出-1">等待动态线程退出</a></h5>
+<p>当父线程需要等待静态子线程退出，并捕获其返回值，需要使用方法 <a href="struct.SThdHandle.html#method.join" title="method xwrust::xwos::thd::SThdHandle::join"><code>SThdHandle::join()</code></a> 。</p>
+<ul>
+<li>如果静态子线程还在运行，此方法会阻塞父线程直到静态子线程退出。父线程的阻塞状态可被中断；</li>
+<li>如果静态子线程已经提前运行至退出，此方法可立即返回静态子线程的返回值。</li>
+</ul>
+<p>此方法会消费 <a href="struct.SThdHandle.html" title="struct xwrust::xwos::thd::SThdHandle"><code>SThdHandle</code></a> ：</p>
+<ul>
+<li>如果此方法执行成功，会消费掉 <a href="struct.SThdHandle.html" title="struct xwrust::xwos::thd::SThdHandle"><code>SThdHandle</code></a> ，并将静态子线程的返回值放在 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Ok"><code>Ok()</code></a> 中返回，因为线程已经结束，其 <a href="struct.SThdHandle.html" title="struct xwrust::xwos::thd::SThdHandle"><code>SThdHandle</code></a> 的生命周期也应该结束；</li>
+<li>如果此方法执行失败，会重新在 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Err"><code>Err()</code></a> 中返回 <a href="struct.SThdHandle.html" title="struct xwrust::xwos::thd::SThdHandle"><code>SThdHandle</code></a> ，用户可通过 <a href="struct.SThdHandle.html#method.state" title="method xwrust::xwos::thd::SThdHandle::state"><code>SThdHandle::state()</code></a> 方法获取失败的原因，并且在合适的时机重新调用 <a href="struct.SThdHandle.html#method.join" title="method xwrust::xwos::thd::SThdHandle::join"><code>SThdHandle::join()</code></a> 方法。</li>
+</ul>
+<h5 id="通知并等待动态线程退出-1"><a href="#通知并等待动态线程退出-1">通知并等待动态线程退出</a></h5>
+<p>方法 <a href="struct.SThdHandle.html#method.stop" title="method xwrust::xwos::thd::SThdHandle::stop"><code>SThdHandle::stop()</code></a> 等价于 <a href="struct.SThdHandle.html#method.quit" title="method xwrust::xwos::thd::SThdHandle::quit"><code>SThdHandle::quit()</code></a> + <a href="struct.SThdHandle.html#method.join" title="method xwrust::xwos::thd::SThdHandle::join"><code>SThdHandle::join()</code></a></p>
+<h3 id="静态线程的示例"><a href="#静态线程的示例">静态线程的示例</a></h3>
+<p><a href="https://gitee.com/xwos/XWOS/blob/main/xwam/xwrust-example/xwrust_example_sthd/src/lib.rs">XWOS/xwam/xwrust-example/xwrust_example_sthd</a></p>
+<h2 id="只可在线程自身函数内部调用的方法"><a href="#只可在线程自身函数内部调用的方法">只可在线程自身函数内部调用的方法</a></h2>
+<p>XWOS RUST有一组方法，只会对调用线程自身起作用，被实现在 <a href="../cthd/index.html" title="mod xwrust::xwos::cthd"><code>xwrust::xwos::cthd</code></a> 。命名中的 <strong>c</strong> 是 <strong>current</strong> 的意思。</p>
+</div></details><h2 id="structs" class="small-section-header"><a href="#structs">Structs</a></h2><ul class="item-table"><li><div class="item-name"><a class="struct" href="struct.DThdBuilder.html" title="struct xwrust::xwos::thd::DThdBuilder">DThdBuilder</a></div><div class="desc docblock-short">动态线程的工厂模式结构体，可用于配置新线程的属性</div></li><li><div class="item-name"><a class="struct" href="struct.DThdElement.html" title="struct xwrust::xwos::thd::DThdElement">DThdElement</a></div><div class="desc docblock-short">动态线程的元素</div></li><li><div class="item-name"><a class="struct" href="struct.DThdHandle.html" title="struct xwrust::xwos::thd::DThdHandle">DThdHandle</a></div><div class="desc docblock-short">动态线程的句柄</div></li><li><div class="item-name"><a class="struct" href="struct.SThd.html" title="struct xwrust::xwos::thd::SThd">SThd</a></div><div class="desc docblock-short">静态线程对象结构体</div></li><li><div class="item-name"><a class="struct" href="struct.SThdHandle.html" title="struct xwrust::xwos::thd::SThdHandle">SThdHandle</a></div><div class="desc docblock-short">静态线程的句柄</div></li><li><div class="item-name"><a class="struct" href="struct.ThdD.html" title="struct xwrust::xwos::thd::ThdD">ThdD</a></div><div class="desc docblock-short">XWOS的线程对象描述符</div></li></ul><h2 id="enums" class="small-section-header"><a href="#enums">Enums</a></h2><ul class="item-table"><li><div class="item-name"><a class="enum" href="enum.ThdJoinState.html" title="enum xwrust::xwos::thd::ThdJoinState">ThdJoinState</a></div><div class="desc docblock-short">线程的 <code>join()/stop()</code> 状态</div></li></ul><h2 id="constants" class="small-section-header"><a href="#constants">Constants</a></h2><ul class="item-table"><li><div class="item-name"><a class="constant" href="constant.SIZEOF_XWOS_THD.html" title="constant xwrust::xwos::thd::SIZEOF_XWOS_THD">SIZEOF_XWOS_THD</a></div><div class="desc docblock-short">XWOS线程对象占用的内存大小</div></li></ul><h2 id="functions" class="small-section-header"><a href="#functions">Functions</a></h2><ul class="item-table"><li><div class="item-name"><a class="fn" href="fn.spawn.html" title="fn xwrust::xwos::thd::spawn">spawn</a></div><div class="desc docblock-short">新建一个动态线程</div></li></ul></section></div></main></body></html>

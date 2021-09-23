@@ -1,0 +1,558 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>XWLUA参考手册</title>
+    <link rel="stylesheet" href="../ldoc_new.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>XWLUA</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#MetaMethods">MetaMethods</a></li>
+<li><a href="#Methods">Methods</a></li>
+</ul>
+
+
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><a href="../classes/xwlib.bmp.html">xwlib.bmp</a></li>
+  <li><a href="../classes/thdsp.html">thdsp</a></li>
+  <li><a href="../classes/mtxsp.html">mtxsp</a></li>
+  <li><a href="../classes/splksp.html">splksp</a></li>
+  <li><a href="../classes/sqlksp.html">sqlksp</a></li>
+  <li><a href="../classes/semsp.html">semsp</a></li>
+  <li><a href="../classes/condsp.html">condsp</a></li>
+  <li><a href="../classes/flgsp.html">flgsp</a></li>
+  <li><a href="../classes/brsp.html">brsp</a></li>
+  <li><strong>selsp</strong></li>
+  <li><a href="../classes/xwds.soc.html">xwds.soc</a></li>
+  <li><a href="../classes/xwds.uart.html">xwds.uart</a></li>
+  <li><a href="../classes/xwds.i2cm.html">xwds.i2cm</a></li>
+  <li><a href="../classes/xwds.spim.html">xwds.spim</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/xwtm.html">xwtm</a></li>
+  <li><a href="../modules/xwvm.html">xwvm</a></li>
+  <li><a href="../modules/xwxt.html">xwxt</a></li>
+  <li><a href="../modules/xwos.skd.html">xwos.skd</a></li>
+  <li><a href="../modules/xwos.thd.html">xwos.thd</a></li>
+  <li><a href="../modules/xwos.cthd.html">xwos.cthd</a></li>
+  <li><a href="../modules/xwos.lock.mtx.html">xwos.lock.mtx</a></li>
+  <li><a href="../modules/xwos.lock.splk.html">xwos.lock.splk</a></li>
+  <li><a href="../modules/xwos.lock.sqlk.html">xwos.lock.sqlk</a></li>
+  <li><a href="../modules/xwos.sync.sem.html">xwos.sync.sem</a></li>
+  <li><a href="../modules/xwos.sync.cond.html">xwos.sync.cond</a></li>
+  <li><a href="../modules/xwos.sync.flg.html">xwos.sync.flg</a></li>
+  <li><a href="../modules/xwos.sync.br.html">xwos.sync.br</a></li>
+  <li><a href="../modules/xwos.sync.sel.html">xwos.sync.sel</a></li>
+  <li><a href="../modules/xwos.pm.html">xwos.pm</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Class <code>selsp</code></h1>
+<p>XWLUA类：信号选择器对象强指针</p>
+<p>信号选择器对象强指针是Lua语言中的一种 <code>userdata</code> ，用于 <strong>强引用</strong> XWOS的信号选择器对象。</p>
+
+<p><strong>强引用</strong> 表示会增加XWOS的信号选择器对象的 <strong>引用计数</strong> 。</p>
+
+
+<h2><a href="#MetaMethods">MetaMethods</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#selsp:metatable.__copy">selsp:metatable.__copy (selsp, vm)</a></td>
+	<td class="summary">元方法：__copy</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#selsp:metatable.__gc">selsp:metatable.__gc (selsp)</a></td>
+	<td class="summary">元方法：__gc</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#selsp:metatable.__tostring">selsp:metatable.__tostring (selsp)</a></td>
+	<td class="summary">元方法：__tostring</td>
+	</tr>
+</table>
+<h2><a href="#Methods">Methods</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#selsp:bind">selsp:bind (selsp, dst, pos)</a></td>
+	<td class="summary">绑定 <strong>源</strong> 信号选择器对象到 <strong>目的</strong> 信号选择器</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#selsp:unbind">selsp:unbind (selsp, dst)</a></td>
+	<td class="summary">从 <strong>目的</strong> 信号选择器上解绑 <strong>源</strong> 信号选择器对象</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#selsp:bmp">selsp:bmp (selsp)</a></td>
+	<td class="summary">新建位图，位的数量与信号选择器中的信号槽数量相等</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#selsp:num">selsp:num (selsp)</a></td>
+	<td class="summary">获取信号选择器中信号槽（位）的数量</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#selsp:select">selsp:select (selsp, msk)</a></td>
+	<td class="summary">等待信号选择器中的触发信号</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#selsp:tryselect">selsp:tryselect (selsp, msk)</a></td>
+	<td class="summary">检测信号选择器中是否有同步信号触发</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#selsp:select_to">selsp:select_to (selsp, msk, to)</a></td>
+	<td class="summary">限时等待信号选择器中的同步信号</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="MetaMethods"></a>MetaMethods</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "selsp:metatable.__copy"></a>
+    <strong>selsp:metatable.__copy (selsp, vm)</strong>
+    </dt>
+    <dd>
+    元方法：__copy </p>
+
+<p>将信号选择器对象强指针拷贝到全局导出表 <a href="../modules/xwxt.html#">xwxt</a> 中。</p>
+
+<p>此元方法意味着信号选择器对象的强引用多了一个， <strong>引用计数</strong> 加 <strong>1</strong> 。
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">selsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 信号选择器对象强指针
+        </li>
+        <li><span class="parameter">vm</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 目标虚拟机
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">selsp = ... <span class="comment">-- 创建信号选择器的代码（省略）
+</span>xwxt.somesel = selsp <span class="comment">-- 信号选择器对象的引用计数加1
+</span>selsp2 = xwxt.somesel <span class="comment">-- 信号选择器对象的引用计数加1
+</span>xwxt.somesel = <span class="keyword">nil</span> <span class="comment">-- 信号选择器对象的引用计数减1</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "selsp:metatable.__gc"></a>
+    <strong>selsp:metatable.__gc (selsp)</strong>
+    </dt>
+    <dd>
+    元方法：__gc </p>
+
+<p>信号选择器对象强指针的垃圾回收方法。</p>
+
+<p>此元方法意味着信号选择器对象的强引用少了一个， <strong>引用计数</strong> 减 <strong>1</strong> 。
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">selsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 信号选择器对象强指针
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">selsp = <span class="keyword">nil</span> <span class="comment">-- 删除引用
+</span><span class="global">collectgarbage</span>() <span class="comment">-- 强制垃圾回收，将调用__gc()函数</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "selsp:metatable.__tostring"></a>
+    <strong>selsp:metatable.__tostring (selsp)</strong>
+    </dt>
+    <dd>
+    元方法：__tostring </p>
+
+<p>将信号选择器对象强指针格式化成字符串，可用于终端打印调试。
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">selsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 信号选择器对象强指针
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="global">print</span>(selsp)</pre>
+    </ul>
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Methods"></a>Methods</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "selsp:bind"></a>
+    <strong>selsp:bind (selsp, dst, pos)</strong>
+    </dt>
+    <dd>
+    绑定 <strong>源</strong> 信号选择器对象到 <strong>目的</strong> 信号选择器
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">selsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) <strong>源</strong> 信号选择器对象强指针
+        </li>
+        <li><span class="parameter">dst</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) <strong>目的</strong> 信号选择器对象的强指针
+        </li>
+        <li><span class="parameter">pos</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) 信号选择器对象映射到目的信号选择器位图中的位置，位置从 <strong>0</strong> 开始编号
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+         错误码<br>
+　● <strong>0</strong> 没有错误<br>
+　● <strong>-ECHRNG</strong> 位置超出范围<br>
+　● <strong>-EALREADY</strong> 同步对象已经绑定到事件对象<br>
+　● <strong>-EBUSY</strong> 通道已经被其他同步对象独占
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">sel = xwos.sel.<span class="function-name">new</span>(<span class="number">32</span>)
+<span class="comment">-- ...省略...
+</span>rc = sel:<span class="function-name">bind</span>(dst, <span class="number">3</span>) <span class="comment">-- 绑定到信号选择器的位置3
+</span><span class="keyword">if</span> (rc == <span class="number">0</span>) <span class="keyword">then</span>
+  <span class="comment">-- 绑定成功
+</span><span class="keyword">else</span>
+  <span class="comment">-- 绑定失败
+</span><span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "selsp:unbind"></a>
+    <strong>selsp:unbind (selsp, dst)</strong>
+    </dt>
+    <dd>
+    从 <strong>目的</strong> 信号选择器上解绑 <strong>源</strong> 信号选择器对象
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">selsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) <strong>源</strong> 信号选择器对象强指针
+        </li>
+        <li><span class="parameter">dst</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) <strong>目的</strong> 信号选择器对象的强指针
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+         错误码<br>
+　● <strong>0</strong> 没有错误<br>
+　● <strong>-ENOTCONN</strong> 同步对象没有绑定到事件对象上
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">sel:<span class="function-name">unbind</span>(dst)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "selsp:bmp"></a>
+    <strong>selsp:bmp (selsp)</strong>
+    </dt>
+    <dd>
+    新建位图，位的数量与信号选择器中的信号槽数量相等
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">selsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 信号选择器对象强指针
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">userdata</span></span>
+        位图
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">bmp = sel:<span class="function-name">bmp</span>()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "selsp:num"></a>
+    <strong>selsp:num (selsp)</strong>
+    </dt>
+    <dd>
+    获取信号选择器中信号槽（位）的数量
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">selsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 信号选择器对象强指针
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        数量
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">num = sel:<span class="function-name">num</span>()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "selsp:select"></a>
+    <strong>selsp:select (selsp, msk)</strong>
+    </dt>
+    <dd>
+    等待信号选择器中的触发信号
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">selsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 信号选择器对象强指针
+        </li>
+        <li><span class="parameter">msk</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 待触发的同步对象位图掩码
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+         错误码<br>
+　● <strong>0</strong> 没有错误<br>
+　● <strong>-EINVAL</strong> 参数错误<br>
+　● <strong>-EINTR</strong> 等待被中断<br>
+　● <strong>-ENOTTHDCTX</strong> 不在线程上下文中
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">sel = xwos.sel.<span class="function-name">new</span>(<span class="number">32</span>)
+<span class="comment">-- 绑定操作...
+</span>msk = sel:<span class="function-name">bmp</span>();
+msk:<span class="function-name">zero</span>();
+msk:<span class="function-name">s1i</span>(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>) <span class="comment">-- 掩码：0xFF
+</span>rc = sel:<span class="global">select</span>(msk)
+<span class="keyword">if</span> (rc == <span class="number">0</span>) <span class="keyword">then</span>
+  <span class="comment">-- 同步对象1,2,3,4,5,6,7,8中至少有一个触发了同步信号
+</span><span class="keyword">else</span>
+  <span class="comment">-- 错误发生
+</span><span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "selsp:tryselect"></a>
+    <strong>selsp:tryselect (selsp, msk)</strong>
+    </dt>
+    <dd>
+    检测信号选择器中是否有同步信号触发 </p>
+
+<p>若没有同步信号触发，立即返回，不会等待。
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">selsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 信号选择器对象强指针
+        </li>
+        <li><span class="parameter">msk</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 待触发的同步对象位图掩码
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+         错误码<br>
+　● <strong>0</strong> 没有错误<br>
+　● <strong>-EINVAL</strong> 参数错误<br>
+　● <strong>-EINTR</strong> 等待被中断<br>
+　● <strong>-ENOTTHDCTX</strong> 不在线程上下文中<br>
+　● <strong>-ENODATA</strong> 尝试失败
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">sel = xwos.sel.<span class="function-name">new</span>(<span class="number">32</span>)
+<span class="comment">-- 绑定操作...
+</span>msk = sel:<span class="function-name">bmp</span>();
+msk:<span class="function-name">zero</span>();
+msk:<span class="function-name">s1i</span>(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>) <span class="comment">-- 掩码：0xFF
+</span>rc = sel:<span class="function-name">tryselect</span>(msk) <span class="comment">-- 检测信号选择器中是否有同步信号触发，立即返回，不会等待
+</span><span class="keyword">if</span> (rc == <span class="number">0</span>) <span class="keyword">then</span>
+  <span class="comment">-- 同步对象1,2,3,4,5,6,7,8中至少有一个触发了同步信号
+</span><span class="keyword">elseif</span> (rc == -<span class="number">61</span>)
+  <span class="comment">-- 没有检测到
+</span><span class="keyword">else</span>
+  <span class="comment">-- 错误发生
+</span><span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "selsp:select_to"></a>
+    <strong>selsp:select_to (selsp, msk, to)</strong>
+    </dt>
+    <dd>
+    限时等待信号选择器中的同步信号
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">selsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 信号选择器对象强指针
+        </li>
+        <li><span class="parameter">msk</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 待触发的同步对象位图掩码
+        </li>
+        <li><span class="parameter">to</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) 期望的阻塞等待时间
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+         错误码<br>
+　● <strong>0</strong> 没有错误<br>
+　● <strong>-EINVAL</strong> 参数错误<br>
+　● <strong>-EINTR</strong> 等待被中断<br>
+　● <strong>-ENOTTHDCTX</strong> 不在线程上下文中<br>
+　● <strong>-ETIMEDOUT</strong> 超时
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">sel = xwos.sel.<span class="function-name">new</span>(<span class="number">32</span>)
+<span class="comment">-- 绑定操作...
+</span>msk = sel:<span class="function-name">bmp</span>();
+msk:<span class="function-name">zero</span>();
+msk:<span class="function-name">s1i</span>(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>) <span class="comment">-- 掩码：0xFF
+</span>rc = sel:<span class="function-name">select_to</span>(msk, xwtm.<span class="function-name">ft</span>(xwtm.<span class="function-name">s</span>(<span class="number">1</span>))) <span class="comment">-- 最多等待1s
+</span><span class="keyword">if</span> (rc == <span class="number">0</span>) <span class="keyword">then</span>
+  <span class="comment">-- 同步对象1,2,3,4,5,6,7,8中至少有一个触发了同步信号
+</span><span class="keyword">elseif</span> (rc == -<span class="number">116</span>)
+  <span class="comment">-- 超时
+</span><span class="keyword">else</span>
+  <span class="comment">-- 错误发生
+</span><span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/lunarmodules/LDoc">LDoc 1.5.0</a></i>
+<i style="float:right;">Last updated 2024-01-12 20:06:58 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

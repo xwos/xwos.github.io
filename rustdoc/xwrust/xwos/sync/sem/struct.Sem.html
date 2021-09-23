@@ -1,0 +1,378 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="信号量对象结构体"><title>Sem in xwrust::xwos::sync::sem - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="xwrust" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (b10cfcd65 2023-11-29)" data-channel="nightly" data-search-js="search-56a624991a76cfad.js" data-settings-js="settings-fe03fdc259827cd2.js" ><script src="../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../../../static.files/main-77dede896d6ac08e.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc struct"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../../xwrust/index.html">xwrust</a><span class="version">1.0.0</span></h2></div><h2 class="location"><a href="#">Sem</a></h2><div class="sidebar-elems"><section><h3><a href="#implementations">Methods</a></h3><ul class="block method"><li><a href="#method.bind">bind</a></li><li><a href="#method.freeze">freeze</a></li><li><a href="#method.get_max">get_max</a></li><li><a href="#method.get_value">get_value</a></li><li><a href="#method.init">init</a></li><li><a href="#method.new">new</a></li><li><a href="#method.post">post</a></li><li><a href="#method.thaw">thaw</a></li><li><a href="#method.trywait">trywait</a></li><li><a href="#method.wait">wait</a></li><li><a href="#method.wait_to">wait_to</a></li><li><a href="#method.wait_unintr">wait_unintr</a></li></ul><h3><a href="#trait-implementations">Trait Implementations</a></h3><ul class="block trait-implementation"><li><a href="#impl-Drop-for-Sem">Drop</a></li><li><a href="#impl-Send-for-Sem">Send</a></li><li><a href="#impl-Sync-for-Sem">Sync</a></li></ul><h3><a href="#synthetic-implementations">Auto Trait Implementations</a></h3><ul class="block synthetic-implementation"><li><a href="#impl-RefUnwindSafe-for-Sem">!RefUnwindSafe</a></li><li><a href="#impl-Unpin-for-Sem">Unpin</a></li><li><a href="#impl-UnwindSafe-for-Sem">UnwindSafe</a></li></ul><h3><a href="#blanket-implementations">Blanket Implementations</a></h3><ul class="block blanket-implementation"><li><a href="#impl-Any-for-T">Any</a></li><li><a href="#impl-Borrow%3CT%3E-for-T">Borrow&lt;T&gt;</a></li><li><a href="#impl-BorrowMut%3CT%3E-for-T">BorrowMut&lt;T&gt;</a></li><li><a href="#impl-From%3CT%3E-for-T">From&lt;T&gt;</a></li><li><a href="#impl-Into%3CU%3E-for-T">Into&lt;U&gt;</a></li><li><a href="#impl-TryFrom%3CU%3E-for-T">TryFrom&lt;U&gt;</a></li><li><a href="#impl-TryInto%3CU%3E-for-T">TryInto&lt;U&gt;</a></li></ul></section><h2><a href="index.html">In xwrust::xwos::sync::sem</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Struct <a href="../../../index.html">xwrust</a>::<wbr><a href="../../index.html">xwos</a>::<wbr><a href="../index.html">sync</a>::<wbr><a href="index.html">sem</a>::<wbr><a class="struct" href="#">Sem</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../../../../src/xwrust/xwos/sync/sem.rs.html#253-258">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>pub struct Sem { /* private fields */ }</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>信号量对象结构体</p>
+</div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor">§</a></h2><div id="implementations-list"><details class="toggle implementors-toggle" open><summary><section id="impl-Sem" class="impl"><a class="src rightside" href="../../../../src/xwrust/xwos/sync/sem.rs.html#271-921">source</a><a href="#impl-Sem" class="anchor">§</a><h3 class="code-header">impl <a class="struct" href="struct.Sem.html" title="struct xwrust::xwos::sync::sem::Sem">Sem</a></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.new" class="method"><a class="src rightside" href="../../../../src/xwrust/xwos/sync/sem.rs.html#298-303">source</a><h4 class="code-header">pub const fn <a href="#method.new" class="fn">new</a>() -&gt; Self</h4></section></summary><div class="docblock"><p>新建信号量对象</p>
+<p>此方法是编译期方法。</p>
+<h5 id="示例"><a href="#示例">示例</a></h5>
+<ul>
+<li>具有 <a href="https://doc.rust-lang.org/std/keyword.static.html"><code>static</code></a> 约束的全局变量全局变量：</li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwos::sync::sem::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>GLOBAL_SEM: Sem  = Sem::new();</code></pre></div>
+<ul>
+<li>在heap中创建：</li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>alloc;
+<span class="kw">use </span>alloc::sync::Arc;
+
+<span class="kw">pub fn </span>xwrust_example_sem() {
+    <span class="kw">let </span>sem = Arc::new(Sem::new());
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.init" class="method"><a class="src rightside" href="../../../../src/xwrust/xwos/sync/sem.rs.html#332-342">source</a><h4 class="code-header">pub fn <a href="#method.init" class="fn">init</a>(&amp;self, val: <a class="type" href="../../../types/type.XwSsq.html" title="type xwrust::types::XwSsq">XwSsq</a>, max: <a class="type" href="../../../types/type.XwSsq.html" title="type xwrust::types::XwSsq">XwSsq</a>)</h4></section></summary><div class="docblock"><p>初始化信号量对象</p>
+<p>信号量对象必须调用此方法一次，方可正常使用。</p>
+<h5 id="参数说明"><a href="#参数说明">参数说明</a></h5>
+<ul>
+<li>val: 初始值</li>
+<li>max: 最大值</li>
+</ul>
+<h5 id="上下文"><a href="#上下文">上下文</a></h5>
+<ul>
+<li>任意</li>
+</ul>
+<h5 id="示例-1"><a href="#示例-1">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::types::<span class="kw-2">*</span>;
+<span class="kw">use </span>xwrust::xwos::sync::sem::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>GLOBAL_SEM: Sem = Sem::new();
+
+<span class="kw">pub fn </span>xwrust_example_sem() {
+    <span class="comment">// ...省略...
+    </span>GLOBAL_SEM.init(<span class="number">0</span>, XwSsq::max);
+    <span class="comment">// 从此处开始 GLOBAL_SEM 可正常使用
+</span>}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.freeze" class="method"><a class="src rightside" href="../../../../src/xwrust/xwos/sync/sem.rs.html#372-389">source</a><h4 class="code-header">pub fn <a href="#method.freeze" class="fn">freeze</a>(&amp;self) -&gt; <a class="enum" href="enum.SemError.html" title="enum xwrust::xwos::sync::sem::SemError">SemError</a></h4></section></summary><div class="docblock"><p>冻结信号量</p>
+<p>信号量被冻结后，可被线程等待，但被能被单播 <a href="struct.Sem.html#method.post" title="method xwrust::xwos::sync::sem::Sem::post"><code>Sem::post()</code></a> 。</p>
+<h5 id="上下文-1"><a href="#上下文-1">上下文</a></h5>
+<ul>
+<li>任意</li>
+</ul>
+<h5 id="错误码"><a href="#错误码">错误码</a></h5>
+<ul>
+<li><a href="enum.SemError.html#variant.Ok" title="variant xwrust::xwos::sync::sem::SemError::Ok"><code>SemError::Ok</code></a> 没有错误</li>
+<li><a href="enum.SemError.html#variant.NotInit" title="variant xwrust::xwos::sync::sem::SemError::NotInit"><code>SemError::NotInit</code></a> 信号量没有初始化</li>
+<li><a href="enum.SemError.html#variant.AlreadyFrozen" title="variant xwrust::xwos::sync::sem::SemError::AlreadyFrozen"><code>SemError::AlreadyFrozen</code></a> 信号量已被冻结</li>
+</ul>
+<h5 id="示例-2"><a href="#示例-2">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::types::<span class="kw-2">*</span>;
+<span class="kw">use </span>xwrust::errno::<span class="kw-2">*</span>;
+<span class="kw">use </span>xwrust::xwos::sync::sem::<span class="kw-2">*</span>;
+
+<span class="kw">pub fn </span>xwrust_example_sem() {
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>sem: Sem = Sem::new();
+    sem.init(<span class="number">0</span>, XwSsq::max);
+    sem.freeze();
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.thaw" class="method"><a class="src rightside" href="../../../../src/xwrust/xwos/sync/sem.rs.html#421-438">source</a><h4 class="code-header">pub fn <a href="#method.thaw" class="fn">thaw</a>(&amp;self) -&gt; <a class="enum" href="enum.SemError.html" title="enum xwrust::xwos::sync::sem::SemError">SemError</a></h4></section></summary><div class="docblock"><p>解冻信号量</p>
+<p>被冻结的信号量解冻后，可被单播 <a href="struct.Sem.html#method.post" title="method xwrust::xwos::sync::sem::Sem::post"><code>Sem::post()</code></a> 。</p>
+<h5 id="上下文-2"><a href="#上下文-2">上下文</a></h5>
+<ul>
+<li>任意</li>
+</ul>
+<h5 id="错误码-1"><a href="#错误码-1">错误码</a></h5>
+<ul>
+<li><a href="enum.SemError.html#variant.Ok" title="variant xwrust::xwos::sync::sem::SemError::Ok"><code>SemError::Ok</code></a> 没有错误</li>
+<li><a href="enum.SemError.html#variant.NotInit" title="variant xwrust::xwos::sync::sem::SemError::NotInit"><code>SemError::NotInit</code></a> 信号量没有初始化</li>
+<li><a href="enum.SemError.html#variant.AlreadyThawed" title="variant xwrust::xwos::sync::sem::SemError::AlreadyThawed"><code>SemError::AlreadyThawed</code></a> 信号量已解冻</li>
+</ul>
+<h5 id="示例-3"><a href="#示例-3">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::types::<span class="kw-2">*</span>;
+<span class="kw">use </span>xwrust::errno::<span class="kw-2">*</span>;
+<span class="kw">use </span>xwrust::xwos::sync::sem::<span class="kw-2">*</span>;
+
+<span class="kw">pub fn </span>xwrust_example_sem() {
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>sem: Sem = Sem::new();
+    sem.init(<span class="number">0</span>, XwSsq::max);
+    sem.freeze(); <span class="comment">// 冻结
+    // ...省略...
+    </span>sem.thaw(); <span class="comment">// 解冻
+</span>}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.post" class="method"><a class="src rightside" href="../../../../src/xwrust/xwos/sync/sem.rs.html#467-484">source</a><h4 class="code-header">pub fn <a href="#method.post" class="fn">post</a>(&amp;self) -&gt; <a class="enum" href="enum.SemError.html" title="enum xwrust::xwos::sync::sem::SemError">SemError</a></h4></section></summary><div class="docblock"><p>发布信号量</p>
+<h5 id="上下文-3"><a href="#上下文-3">上下文</a></h5>
+<ul>
+<li>任意</li>
+</ul>
+<h5 id="错误码-2"><a href="#错误码-2">错误码</a></h5>
+<ul>
+<li><a href="enum.SemError.html#variant.Ok" title="variant xwrust::xwos::sync::sem::SemError::Ok"><code>SemError::Ok</code></a> 没有错误</li>
+<li><a href="enum.SemError.html#variant.NotInit" title="variant xwrust::xwos::sync::sem::SemError::NotInit"><code>SemError::NotInit</code></a> 信号量没有初始化</li>
+<li><a href="enum.SemError.html#variant.AlreadyFrozen" title="variant xwrust::xwos::sync::sem::SemError::AlreadyFrozen"><code>SemError::AlreadyFrozen</code></a> 信号量已被冻结</li>
+</ul>
+<h5 id="示例-4"><a href="#示例-4">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::types::<span class="kw-2">*</span>;
+<span class="kw">use </span>xwrust::errno::<span class="kw-2">*</span>;
+<span class="kw">use </span>xwrust::xwos::sync::sem::<span class="kw-2">*</span>;
+
+<span class="kw">pub fn </span>xwrust_example_sem() {
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>sem: Sem = Sem::new();
+    sem.init(<span class="number">0</span>, XwSsq::max);
+    <span class="comment">// ...省略...
+    </span>sem.post();
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.get_max" class="method"><a class="src rightside" href="../../../../src/xwrust/xwos/sync/sem.rs.html#519-531">source</a><h4 class="code-header">pub fn <a href="#method.get_max" class="fn">get_max</a>(&amp;self) -&gt; Result&lt;<a class="type" href="../../../types/type.XwSsq.html" title="type xwrust::types::XwSsq">XwSsq</a>, <a class="enum" href="enum.SemError.html" title="enum xwrust::xwos::sync::sem::SemError">SemError</a>&gt;</h4></section></summary><div class="docblock"><p>获取信号量对象计数器的最大值</p>
+<p>成功将在 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Ok"><code>Ok()</code></a> 中返回信号量对象计数器的值。</p>
+<h5 id="错误码-3"><a href="#错误码-3">错误码</a></h5>
+<ul>
+<li>Err(<a href="enum.SemError.html#variant.NotInit" title="variant xwrust::xwos::sync::sem::SemError::NotInit"><code>SemError::NotInit</code></a>) 信号量没有初始化</li>
+</ul>
+<h5 id="示例-5"><a href="#示例-5">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::types::<span class="kw-2">*</span>;
+<span class="kw">use </span>xwrust::errno::<span class="kw-2">*</span>;
+<span class="kw">use </span>xwrust::xwos::sync::sem::<span class="kw-2">*</span>;
+
+<span class="kw">pub fn </span>xwrust_example_sem() {
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>sem: Sem = Sem::new();
+    sem.init(<span class="number">0</span>, XwSsq::MAX);
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>res = sem.get_max();
+    <span class="kw">match </span>res {
+        <span class="prelude-val">Ok</span>(max) =&gt; {
+            <span class="comment">// 返回信号量的值
+        </span>},
+        <span class="prelude-val">Err</span>(e) =&gt; {
+            <span class="comment">// 返回错误码
+        </span>},
+    };
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.get_value" class="method"><a class="src rightside" href="../../../../src/xwrust/xwos/sync/sem.rs.html#566-578">source</a><h4 class="code-header">pub fn <a href="#method.get_value" class="fn">get_value</a>(&amp;self) -&gt; Result&lt;<a class="type" href="../../../types/type.XwSsq.html" title="type xwrust::types::XwSsq">XwSsq</a>, <a class="enum" href="enum.SemError.html" title="enum xwrust::xwos::sync::sem::SemError">SemError</a>&gt;</h4></section></summary><div class="docblock"><p>获取信号量对象计数器的值</p>
+<p>成功将在 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Ok"><code>Ok()</code></a> 中返回信号量对象计数器的值。</p>
+<h5 id="错误码-4"><a href="#错误码-4">错误码</a></h5>
+<ul>
+<li>Err(<a href="enum.SemError.html#variant.NotInit" title="variant xwrust::xwos::sync::sem::SemError::NotInit"><code>SemError::NotInit</code></a>) 信号量没有初始化</li>
+</ul>
+<h5 id="示例-6"><a href="#示例-6">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::types::<span class="kw-2">*</span>;
+<span class="kw">use </span>xwrust::errno::<span class="kw-2">*</span>;
+<span class="kw">use </span>xwrust::xwos::sync::sem::<span class="kw-2">*</span>;
+
+<span class="kw">pub fn </span>xwrust_example_sem() {
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>sem: Sem = Sem::new();
+    sem.init(<span class="number">0</span>, XwSsq::MAX);
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>res = sem.get_value();
+    <span class="kw">match </span>res {
+        <span class="prelude-val">Ok</span>(val) =&gt; {
+            <span class="comment">// 返回信号量的值
+        </span>},
+        <span class="prelude-val">Err</span>(e) =&gt; {
+            <span class="comment">// 返回错误码
+        </span>},
+    };
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.wait" class="method"><a class="src rightside" href="../../../../src/xwrust/xwos/sync/sem.rs.html#621-644">source</a><h4 class="code-header">pub fn <a href="#method.wait" class="fn">wait</a>(&amp;self) -&gt; <a class="enum" href="enum.SemError.html" title="enum xwrust::xwos::sync::sem::SemError">SemError</a></h4></section></summary><div class="docblock"><p>等待并获取信号量</p>
+<ul>
+<li>若信号量的值小于等于0，线程会阻塞等待。</li>
+<li>当信号量的值大于0时，线程被唤醒，并取走一个值（信号量的值减少1），然后返回 <a href="enum.SemError.html#variant.Ok" title="variant xwrust::xwos::sync::sem::SemError::Ok"><code>SemError::Ok</code></a> 。</li>
+<li>当线程阻塞等待被中断时，返回 <a href="enum.SemError.html#variant.Interrupt" title="variant xwrust::xwos::sync::sem::SemError::Interrupt"><code>SemError::Interrupt</code></a> 。</li>
+</ul>
+<h5 id="上下文-4"><a href="#上下文-4">上下文</a></h5>
+<ul>
+<li>线程</li>
+</ul>
+<h5 id="错误码-5"><a href="#错误码-5">错误码</a></h5>
+<ul>
+<li><a href="enum.SemError.html#variant.Ok" title="variant xwrust::xwos::sync::sem::SemError::Ok"><code>SemError::Ok</code></a> 没有错误</li>
+<li><a href="enum.SemError.html#variant.NotInit" title="variant xwrust::xwos::sync::sem::SemError::NotInit"><code>SemError::NotInit</code></a> 信号量没有初始化</li>
+<li><a href="enum.SemError.html#variant.Interrupt" title="variant xwrust::xwos::sync::sem::SemError::Interrupt"><code>SemError::Interrupt</code></a> 等待被中断</li>
+<li><a href="enum.SemError.html#variant.NotThreadContext" title="variant xwrust::xwos::sync::sem::SemError::NotThreadContext"><code>SemError::NotThreadContext</code></a> 不在线程上下文内</li>
+<li><a href="enum.SemError.html#variant.CannotPmpt" title="variant xwrust::xwos::sync::sem::SemError::CannotPmpt"><code>SemError::CannotPmpt</code></a> 抢占被关闭</li>
+<li><a href="enum.SemError.html#variant.CannotBh" title="variant xwrust::xwos::sync::sem::SemError::CannotBh"><code>SemError::CannotBh</code></a> 中断底半部被关闭</li>
+</ul>
+<h5 id="示例-7"><a href="#示例-7">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::types::<span class="kw-2">*</span>;
+<span class="kw">use </span>xwrust::xwos::sync::sem::<span class="kw-2">*</span>;
+
+<span class="kw">pub fn </span>xwrust_example_sem() {
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>sem: Sem = Sem::new();
+    sem.init(<span class="number">0</span>, XwSsq::max);
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>rc = sem.wait();
+    <span class="kw">match </span>rc {
+        SemError::Ok =&gt; {
+            <span class="comment">// 获取信号量
+        </span>},
+        <span class="kw">_ </span>=&gt; {
+            <span class="comment">// 等待信号量失败
+        </span>},
+    };
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.wait_to" class="method"><a class="src rightside" href="../../../../src/xwrust/xwos/sync/sem.rs.html#695-720">source</a><h4 class="code-header">pub fn <a href="#method.wait_to" class="fn">wait_to</a>(&amp;self, to: <a class="type" href="../../../types/type.XwTm.html" title="type xwrust::types::XwTm">XwTm</a>) -&gt; <a class="enum" href="enum.SemError.html" title="enum xwrust::xwos::sync::sem::SemError">SemError</a></h4></section></summary><div class="docblock"><p>限时等待并获取信号量</p>
+<ul>
+<li>若信号量的值小于等于0，线程会阻塞等待，等待时会指定一个唤醒时间点。</li>
+<li>当信号量的值大于0时，线程被唤醒，并取走一个值（信号量的值减少1），然后返回 <a href="enum.SemError.html#variant.Ok" title="variant xwrust::xwos::sync::sem::SemError::Ok"><code>SemError::Ok</code></a> 。</li>
+<li>当线程阻塞等待被中断时，返回 <a href="enum.SemError.html#variant.Interrupt" title="variant xwrust::xwos::sync::sem::SemError::Interrupt"><code>SemError::Interrupt</code></a> 。</li>
+<li>当到达指定的唤醒时间点，线程被唤醒，并返回 <a href="enum.SemError.html#variant.Timedout" title="variant xwrust::xwos::sync::sem::SemError::Timedout"><code>SemError::Timedout</code></a> 。</li>
+<li>如果 <code>to</code> 是过去的时间点，将直接返回 <a href="enum.SemError.html#variant.Timedout" title="variant xwrust::xwos::sync::sem::SemError::Timedout"><code>SemError::Timedout</code></a> 。</li>
+</ul>
+<h5 id="参数说明-1"><a href="#参数说明-1">参数说明</a></h5>
+<ul>
+<li>to: 期望唤醒的时间点</li>
+</ul>
+<h5 id="上下文-5"><a href="#上下文-5">上下文</a></h5>
+<ul>
+<li>线程</li>
+</ul>
+<h5 id="错误码-6"><a href="#错误码-6">错误码</a></h5>
+<ul>
+<li><a href="enum.SemError.html#variant.Ok" title="variant xwrust::xwos::sync::sem::SemError::Ok"><code>SemError::Ok</code></a> 没有错误</li>
+<li><a href="enum.SemError.html#variant.NotInit" title="variant xwrust::xwos::sync::sem::SemError::NotInit"><code>SemError::NotInit</code></a> 信号量没有初始化</li>
+<li><a href="enum.SemError.html#variant.Interrupt" title="variant xwrust::xwos::sync::sem::SemError::Interrupt"><code>SemError::Interrupt</code></a> 等待被中断</li>
+<li><a href="enum.SemError.html#variant.Timedout" title="variant xwrust::xwos::sync::sem::SemError::Timedout"><code>SemError::Timedout</code></a> 等待超时</li>
+<li><a href="enum.SemError.html#variant.NotThreadContext" title="variant xwrust::xwos::sync::sem::SemError::NotThreadContext"><code>SemError::NotThreadContext</code></a> 不在线程上下文内</li>
+<li><a href="enum.SemError.html#variant.CannotPmpt" title="variant xwrust::xwos::sync::sem::SemError::CannotPmpt"><code>SemError::CannotPmpt</code></a> 抢占被关闭</li>
+<li><a href="enum.SemError.html#variant.CannotBh" title="variant xwrust::xwos::sync::sem::SemError::CannotBh"><code>SemError::CannotBh</code></a> 中断底半部被关闭</li>
+</ul>
+<h5 id="示例-8"><a href="#示例-8">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::types::<span class="kw-2">*</span>;
+<span class="kw">use </span>xwrust::errno::<span class="kw-2">*</span>;
+<span class="kw">use </span>xwrust::xwos::sync::sem::<span class="kw-2">*</span>;
+
+<span class="kw">pub fn </span>xwrust_example_sem() {
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>sem: Sem = Sem::new();
+    sem.init(<span class="number">0</span>, XwSsq::max);
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>rc = sem.wait_to(xwtm::ft(xwtm::s(<span class="number">1</span>))); <span class="comment">// 最多等待1s
+    </span><span class="kw">match </span>rc {
+        SemError::Ok =&gt; {
+            <span class="comment">// 获取信号量
+        </span>},
+        <span class="kw">_ </span>=&gt; {
+            <span class="comment">// 等待信号量失败
+        </span>},
+    };
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.wait_unintr" class="method"><a class="src rightside" href="../../../../src/xwrust/xwos/sync/sem.rs.html#762-783">source</a><h4 class="code-header">pub fn <a href="#method.wait_unintr" class="fn">wait_unintr</a>(&amp;self) -&gt; <a class="enum" href="enum.SemError.html" title="enum xwrust::xwos::sync::sem::SemError">SemError</a></h4></section></summary><div class="docblock"><p>等待并获取信号量，且等待不可被中断</p>
+<ul>
+<li>若信号量的值小于等于0，线程会阻塞等待，且不可被中断，也不会超时。</li>
+<li>当信号量的值大于0时，线程被唤醒，并取走一个值（信号量的值减少1），然后返回 <a href="enum.SemError.html#variant.Ok" title="variant xwrust::xwos::sync::sem::SemError::Ok"><code>SemError::Ok</code></a> 。</li>
+</ul>
+<h5 id="上下文-6"><a href="#上下文-6">上下文</a></h5>
+<ul>
+<li>线程</li>
+</ul>
+<h5 id="错误码-7"><a href="#错误码-7">错误码</a></h5>
+<ul>
+<li><a href="enum.SemError.html#variant.Ok" title="variant xwrust::xwos::sync::sem::SemError::Ok"><code>SemError::Ok</code></a> 没有错误</li>
+<li><a href="enum.SemError.html#variant.NotInit" title="variant xwrust::xwos::sync::sem::SemError::NotInit"><code>SemError::NotInit</code></a> 信号量没有初始化</li>
+<li><a href="enum.SemError.html#variant.NotThreadContext" title="variant xwrust::xwos::sync::sem::SemError::NotThreadContext"><code>SemError::NotThreadContext</code></a> 不在线程上下文内</li>
+<li><a href="enum.SemError.html#variant.CannotPmpt" title="variant xwrust::xwos::sync::sem::SemError::CannotPmpt"><code>SemError::CannotPmpt</code></a> 抢占被关闭</li>
+<li><a href="enum.SemError.html#variant.CannotBh" title="variant xwrust::xwos::sync::sem::SemError::CannotBh"><code>SemError::CannotBh</code></a> 中断底半部被关闭</li>
+</ul>
+<h5 id="示例-9"><a href="#示例-9">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::types::<span class="kw-2">*</span>;
+<span class="kw">use </span>xwrust::errno::<span class="kw-2">*</span>;
+<span class="kw">use </span>xwrust::xwos::sync::sem::<span class="kw-2">*</span>;
+
+<span class="kw">pub fn </span>xwrust_example_sem() {
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>sem: Sem = Sem::new();
+    sem.init(<span class="number">0</span>, XwSsq::max);
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>rc = sem.wait_unintr();
+    <span class="kw">match </span>rc {
+        SemError::Ok =&gt; {
+            <span class="comment">// 获取信号量
+        </span>},
+        <span class="kw">_ </span>=&gt; {
+            <span class="comment">// 等待信号量失败
+        </span>},
+    };
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.trywait" class="method"><a class="src rightside" href="../../../../src/xwrust/xwos/sync/sem.rs.html#823-840">source</a><h4 class="code-header">pub fn <a href="#method.trywait" class="fn">trywait</a>(&amp;self) -&gt; <a class="enum" href="enum.SemError.html" title="enum xwrust::xwos::sync::sem::SemError">SemError</a></h4></section></summary><div class="docblock"><p>尝试获取信号量</p>
+<ul>
+<li>当信号量的值大于0时，就取走一个值（信号量的值减少1），然后返回 <a href="enum.SemError.html#variant.Ok" title="variant xwrust::xwos::sync::sem::SemError::Ok"><code>SemError::Ok</code></a> 。</li>
+<li>当信号量的值小于等于0时，立即返回 <a href="enum.SemError.html#variant.NoData" title="variant xwrust::xwos::sync::sem::SemError::NoData"><code>SemError::NoData</code></a> 。</li>
+</ul>
+<h5 id="上下文-7"><a href="#上下文-7">上下文</a></h5>
+<ul>
+<li>任意</li>
+</ul>
+<h5 id="错误码-8"><a href="#错误码-8">错误码</a></h5>
+<ul>
+<li><a href="enum.SemError.html#variant.Ok" title="variant xwrust::xwos::sync::sem::SemError::Ok"><code>SemError::Ok</code></a> 没有错误</li>
+<li><a href="enum.SemError.html#variant.NotInit" title="variant xwrust::xwos::sync::sem::SemError::NotInit"><code>SemError::NotInit</code></a> 信号量没有初始化</li>
+<li><a href="enum.SemError.html#variant.NoData" title="variant xwrust::xwos::sync::sem::SemError::NoData"><code>SemError::NoData</code></a> 信号量不可用</li>
+</ul>
+<h5 id="示例-10"><a href="#示例-10">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::types::<span class="kw-2">*</span>;
+<span class="kw">use </span>xwrust::errno::<span class="kw-2">*</span>;
+<span class="kw">use </span>xwrust::xwos::sync::sem::<span class="kw-2">*</span>;
+
+<span class="kw">pub fn </span>xwrust_example_sem() {
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>sem: Sem = Sem::new();
+    sem.init(<span class="number">0</span>, XwSsq::max);
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>rc = sem.trywait();
+    <span class="kw">match </span>rc {
+        SemError::Ok =&gt; {
+            <span class="comment">// 获取信号量
+        </span>},
+        <span class="kw">_ </span>=&gt; {
+            <span class="comment">// 等待信号量失败
+        </span>},
+    };
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.bind" class="method"><a class="src rightside" href="../../../../src/xwrust/xwos/sync/sem.rs.html#892-920">source</a><h4 class="code-header">pub fn <a href="#method.bind" class="fn">bind</a>&lt;'a, const M: <a class="type" href="../../../types/type.XwSz.html" title="type xwrust::types::XwSz">XwSz</a>&gt;(
+    &amp;'a self,
+    sel: &amp;'a <a class="struct" href="../sel/struct.Sel.html" title="struct xwrust::xwos::sync::sel::Sel">Sel</a>&lt;M&gt;,
+    pos: <a class="type" href="../../../types/type.XwSq.html" title="type xwrust::types::XwSq">XwSq</a>
+) -&gt; Result&lt;<a class="struct" href="struct.SemSel.html" title="struct xwrust::xwos::sync::sem::SemSel">SemSel</a>&lt;'a, M&gt;, <a class="enum" href="enum.SemError.html" title="enum xwrust::xwos::sync::sem::SemError">SemError</a>&gt;<span class="where fmt-newline">where
+    [<a class="type" href="../../../types/type.XwBmp.html" title="type xwrust::types::XwBmp">XwBmp</a>; { _ }]: Sized,</span></h4></section></summary><div class="docblock"><p>绑定信号量对象到信号选择器</p>
+<ul>
+<li>信号量绑定到信号选择器上时， <strong>独占</strong> 一个位置。</li>
+<li>绑定成功，通过 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Ok"><code>Ok()</code></a> 返回 <a href="struct.SemSel.html" title="struct xwrust::xwos::sync::sem::SemSel"><code>SemSel&lt;'a, M&gt;</code></a> 。</li>
+<li>如果位置已被占领，通过 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Err"><code>Err()</code></a> 返回 <a href="enum.SemError.html#variant.SelPosBusy" title="variant xwrust::xwos::sync::sem::SemError::SelPosBusy"><code>SemError::SelPosBusy</code></a> 。</li>
+<li>当指定的位置超出范围（例如 <a href="../sel/struct.Sel.html" title="struct xwrust::xwos::sync::sel::Sel"><code>Sel&lt;M&gt;</code></a> 只有8个位置，用户偏偏要绑定到位置9 ），通过 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Err"><code>Err()</code></a> 返回 <a href="enum.SemError.html#variant.OutOfSelPos" title="variant xwrust::xwos::sync::sem::SemError::OutOfSelPos"><code>SemError::OutOfSelPos</code></a> 。</li>
+<li>重复绑定，通过 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Err"><code>Err()</code></a> 返回 <a href="enum.SemError.html#variant.AlreadyBound" title="variant xwrust::xwos::sync::sem::SemError::AlreadyBound"><code>SemError::AlreadyBound</code></a> 。</li>
+</ul>
+<p><a href="struct.SemSel.html" title="struct xwrust::xwos::sync::sem::SemSel"><code>SemSel&lt;'a, M&gt;</code></a> 中包含信号量的绑定信息。 <a href="struct.SemSel.html" title="struct xwrust::xwos::sync::sem::SemSel"><code>SemSel&lt;'a, M&gt;</code></a> 与 <a href="struct.Sem.html" title="struct xwrust::xwos::sync::sem::Sem"><code>Sem</code></a> 与 <a href="../sel/struct.Sel.html" title="struct xwrust::xwos::sync::sel::Sel"><code>Sel&lt;M&gt;</code></a> 具有相同的生命周期约束 <code>'a</code> 。
+<a href="struct.SemSel.html#method.selected" title="method xwrust::xwos::sync::sem::SemSel::selected"><code>SemSel::selected()</code></a> 可用来判断信号量是否被选择。当 <a href="struct.SemSel.html" title="struct xwrust::xwos::sync::sem::SemSel"><code>SemSel&lt;'a, M&gt;</code></a> <a href="https://doc.rust-lang.org/std/mem/fn.drop.html"><code>drop()</code></a> 时，会自动解绑。</p>
+<h5 id="参数说明-2"><a href="#参数说明-2">参数说明</a></h5>
+<ul>
+<li>sel: 信号选择器的引用</li>
+<li>pos: 位置</li>
+</ul>
+<h5 id="上下文-8"><a href="#上下文-8">上下文</a></h5>
+<ul>
+<li>任意</li>
+</ul>
+<h5 id="错误码-9"><a href="#错误码-9">错误码</a></h5>
+<ul>
+<li><a href="enum.SemError.html#variant.OutOfSelPos" title="variant xwrust::xwos::sync::sem::SemError::OutOfSelPos"><code>SemError::OutOfSelPos</code></a> 信号选择器的位置超出范围</li>
+<li><a href="enum.SemError.html#variant.AlreadyBound" title="variant xwrust::xwos::sync::sem::SemError::AlreadyBound"><code>SemError::AlreadyBound</code></a> 信号量已经绑定</li>
+<li><a href="enum.SemError.html#variant.SelPosBusy" title="variant xwrust::xwos::sync::sem::SemError::SelPosBusy"><code>SemError::SelPosBusy</code></a> 信号选择器的位置被占用</li>
+</ul>
+<h5 id="示例-11"><a href="#示例-11">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">pub fn </span>xwrust_example_sel() {
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>sem0 = Arc::new(Sem::new());
+    sem0.init(<span class="number">0</span>, XwSsq::MAX);
+    <span class="kw">let </span>sem0sel = <span class="kw">match </span>sem0.bind(<span class="kw-2">&amp;</span>sel, <span class="number">0</span>) {
+        <span class="prelude-val">Ok</span>(s) =&gt; { <span class="comment">// 绑定成功，`s` 为 `SemSel`
+            </span>s
+        },
+        <span class="prelude-val">Err</span>(e) =&gt; { <span class="comment">// 绑定失败，`e` 为 `SelError`
+            </span><span class="kw">return</span>;
+        }
+    };
+    <span class="comment">// ...省略...
+</span>}</code></pre></div>
+</div></details></div></details></div><h2 id="trait-implementations" class="small-section-header">Trait Implementations<a href="#trait-implementations" class="anchor">§</a></h2><div id="trait-implementations-list"><details class="toggle implementors-toggle" open><summary><section id="impl-Drop-for-Sem" class="impl"><a class="src rightside" href="../../../../src/xwrust/xwos/sync/sem.rs.html#263-269">source</a><a href="#impl-Drop-for-Sem" class="anchor">§</a><h3 class="code-header">impl Drop for <a class="struct" href="struct.Sem.html" title="struct xwrust::xwos::sync::sem::Sem">Sem</a></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.drop" class="method trait-impl"><a class="src rightside" href="../../../../src/xwrust/xwos/sync/sem.rs.html#264-268">source</a><a href="#method.drop" class="anchor">§</a><h4 class="code-header">fn <a class="fn">drop</a>(&amp;mut self)</h4></section></summary><div class='docblock'>Executes the destructor for this type. <a>Read more</a></div></details></div></details><section id="impl-Send-for-Sem" class="impl"><a class="src rightside" href="../../../../src/xwrust/xwos/sync/sem.rs.html#260">source</a><a href="#impl-Send-for-Sem" class="anchor">§</a><h3 class="code-header">impl Send for <a class="struct" href="struct.Sem.html" title="struct xwrust::xwos::sync::sem::Sem">Sem</a></h3></section><section id="impl-Sync-for-Sem" class="impl"><a class="src rightside" href="../../../../src/xwrust/xwos/sync/sem.rs.html#261">source</a><a href="#impl-Sync-for-Sem" class="anchor">§</a><h3 class="code-header">impl Sync for <a class="struct" href="struct.Sem.html" title="struct xwrust::xwos::sync::sem::Sem">Sem</a></h3></section></div><h2 id="synthetic-implementations" class="small-section-header">Auto Trait Implementations<a href="#synthetic-implementations" class="anchor">§</a></h2><div id="synthetic-implementations-list"><section id="impl-RefUnwindSafe-for-Sem" class="impl"><a href="#impl-RefUnwindSafe-for-Sem" class="anchor">§</a><h3 class="code-header">impl !RefUnwindSafe for <a class="struct" href="struct.Sem.html" title="struct xwrust::xwos::sync::sem::Sem">Sem</a></h3></section><section id="impl-Unpin-for-Sem" class="impl"><a href="#impl-Unpin-for-Sem" class="anchor">§</a><h3 class="code-header">impl Unpin for <a class="struct" href="struct.Sem.html" title="struct xwrust::xwos::sync::sem::Sem">Sem</a></h3></section><section id="impl-UnwindSafe-for-Sem" class="impl"><a href="#impl-UnwindSafe-for-Sem" class="anchor">§</a><h3 class="code-header">impl UnwindSafe for <a class="struct" href="struct.Sem.html" title="struct xwrust::xwos::sync::sem::Sem">Sem</a></h3></section></div><h2 id="blanket-implementations" class="small-section-header">Blanket Implementations<a href="#blanket-implementations" class="anchor">§</a></h2><div id="blanket-implementations-list"><details class="toggle implementors-toggle"><summary><section id="impl-Any-for-T" class="impl"><a href="#impl-Any-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; Any for T<span class="where fmt-newline">where
+    T: 'static + ?Sized,</span></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.type_id" class="method trait-impl"><a href="#method.type_id" class="anchor">§</a><h4 class="code-header">fn <a class="fn">type_id</a>(&amp;self) -&gt; TypeId</h4></section></summary><div class='docblock'>Gets the <code>TypeId</code> of <code>self</code>. <a>Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-Borrow%3CT%3E-for-T" class="impl"><a href="#impl-Borrow%3CT%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; Borrow&lt;T&gt; for T<span class="where fmt-newline">where
+    T: ?Sized,</span></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.borrow" class="method trait-impl"><a href="#method.borrow" class="anchor">§</a><h4 class="code-header">fn <a class="fn">borrow</a>(&amp;self) -&gt; &amp;T</h4></section></summary><div class='docblock'>Immutably borrows from an owned value. <a>Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-BorrowMut%3CT%3E-for-T" class="impl"><a href="#impl-BorrowMut%3CT%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; BorrowMut&lt;T&gt; for T<span class="where fmt-newline">where
+    T: ?Sized,</span></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.borrow_mut" class="method trait-impl"><a href="#method.borrow_mut" class="anchor">§</a><h4 class="code-header">fn <a class="fn">borrow_mut</a>(&amp;mut self) -&gt; &amp;mut T</h4></section></summary><div class='docblock'>Mutably borrows from an owned value. <a>Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-From%3CT%3E-for-T" class="impl"><a href="#impl-From%3CT%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; From&lt;T&gt; for T</h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.from" class="method trait-impl"><a href="#method.from" class="anchor">§</a><h4 class="code-header">fn <a class="fn">from</a>(t: T) -&gt; T</h4></section></summary><div class="docblock"><p>Returns the argument unchanged.</p>
+</div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-Into%3CU%3E-for-T" class="impl"><a href="#impl-Into%3CU%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T, U&gt; Into&lt;U&gt; for T<span class="where fmt-newline">where
+    U: From&lt;T&gt;,</span></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.into" class="method trait-impl"><a href="#method.into" class="anchor">§</a><h4 class="code-header">fn <a class="fn">into</a>(self) -&gt; U</h4></section></summary><div class="docblock"><p>Calls <code>U::from(self)</code>.</p>
+<p>That is, this conversion is whatever the implementation of
+<code>[From]&lt;T&gt; for U</code> chooses to do.</p>
+</div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-TryFrom%3CU%3E-for-T" class="impl"><a href="#impl-TryFrom%3CU%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T, U&gt; TryFrom&lt;U&gt; for T<span class="where fmt-newline">where
+    U: Into&lt;T&gt;,</span></h3></section></summary><div class="impl-items"><details class="toggle" open><summary><section id="associatedtype.Error-1" class="associatedtype trait-impl"><a href="#associatedtype.Error-1" class="anchor">§</a><h4 class="code-header">type <a class="associatedtype">Error</a> = Infallible</h4></section></summary><div class='docblock'>The type returned in the event of a conversion error.</div></details><details class="toggle method-toggle" open><summary><section id="method.try_from" class="method trait-impl"><a href="#method.try_from" class="anchor">§</a><h4 class="code-header">fn <a class="fn">try_from</a>(value: U) -&gt; Result&lt;T, &lt;T as TryFrom&lt;U&gt;&gt;::Error&gt;</h4></section></summary><div class='docblock'>Performs the conversion.</div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-TryInto%3CU%3E-for-T" class="impl"><a href="#impl-TryInto%3CU%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T, U&gt; TryInto&lt;U&gt; for T<span class="where fmt-newline">where
+    U: TryFrom&lt;T&gt;,</span></h3></section></summary><div class="impl-items"><details class="toggle" open><summary><section id="associatedtype.Error" class="associatedtype trait-impl"><a href="#associatedtype.Error" class="anchor">§</a><h4 class="code-header">type <a class="associatedtype">Error</a> = &lt;U as TryFrom&lt;T&gt;&gt;::Error</h4></section></summary><div class='docblock'>The type returned in the event of a conversion error.</div></details><details class="toggle method-toggle" open><summary><section id="method.try_into" class="method trait-impl"><a href="#method.try_into" class="anchor">§</a><h4 class="code-header">fn <a class="fn">try_into</a>(self) -&gt; Result&lt;U, &lt;U as TryFrom&lt;T&gt;&gt;::Error&gt;</h4></section></summary><div class='docblock'>Performs the conversion.</div></details></div></details></div></section></div></main></body></html>

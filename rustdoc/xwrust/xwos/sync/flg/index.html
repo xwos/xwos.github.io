@@ -1,0 +1,102 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="XWOS RUST：事件标志"><title>xwrust::xwos::sync::flg - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="xwrust" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (b10cfcd65 2023-11-29)" data-channel="nightly" data-search-js="search-56a624991a76cfad.js" data-settings-js="settings-fe03fdc259827cd2.js" ><script src="../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../sidebar-items.js"></script><script defer src="../../../../static.files/main-77dede896d6ac08e.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../../xwrust/index.html">xwrust</a><span class="version">1.0.0</span></h2></div><h2 class="location"><a href="#">Module flg</a></h2><div class="sidebar-elems"><section><ul class="block"><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#constants">Constants</a></li></ul></section><h2><a href="../index.html">In xwrust::xwos::sync</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Module <a href="../../../index.html">xwrust</a>::<wbr><a href="../../index.html">xwos</a>::<wbr><a href="../index.html">sync</a>::<wbr><a class="mod" href="#">flg</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../../../../src/xwrust/xwos/sync/flg.rs.html#1-1008">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="xwos-rust事件标志"><a href="#xwos-rust事件标志">XWOS RUST：事件标志</a></h2>
+<p>事件标志使用位图来管理一组事件，位图中的每个位代表一个事件，
+当一个或多个事件状态发生变化时，事件对应的位也会发生变化，并唤醒正在等待的线程。
+线程唤醒后，就可从事件位图中获取事件的状态。</p>
+<ul>
+<li>线程可以等待位图中的事件位被置 <strong>1</strong> ，也可以等待事件位被清 <strong>0</strong> 。</li>
+<li>线程可以等待位图中的事件位同时被置 <strong>1</strong> （事件与事件之间是逻辑 <strong>与</strong> 的关系），也可以等待其中任意一个位被置 <strong>1</strong> （事件与事件之间是逻辑 <strong>或</strong> 的关系）。</li>
+<li>线程可以等待位图中的事件位同时被清 <strong>0</strong> （事件与事件之间是逻辑 <strong>与</strong> 的关系），也可以等待其中任意一个位被清 <strong>0</strong> （事件与事件之间是逻辑 <strong>或</strong> 的关系）。</li>
+<li>线程可以选择是否 <strong>消费</strong> 事件。 <strong>消费</strong> 事件是指，当事件到来，线程被唤醒时，可以选择是否 <strong>清除</strong> 事件。</li>
+<li>线程可以等待事件标志位发生 <strong>翻转</strong> ， <strong>翻转</strong> 是指事件标志位由 <strong>1</strong> 变为 <strong>0</strong> ，或由 <strong>0</strong> 变为 <strong>1</strong> 。</li>
+</ul>
+<h2 id="创建"><a href="#创建">创建</a></h2>
+<p>XWOS RUST的事件标志可使用 <a href="struct.Flg.html#method.new" title="associated function xwrust::xwos::sync::flg::Flg::new"><code>Flg::new()</code></a> 创建。</p>
+<ul>
+<li>可以创建具有静态生命周期 <a href="https://doc.rust-lang.org/std/keyword.static.html"><code>static</code></a> 约束的全局变量：</li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwos::sync::flg::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>GLOBAL_FLG: Flg&lt;<span class="number">8</span>&gt; = Flg::new();</code></pre></div>
+<ul>
+<li>也可以使用 <a href="https://doc.rust-lang.org/alloc/sync/struct.Arc.html"><code>alloc::sync::Arc</code></a> 在heap中创建：</li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>alloc;
+<span class="kw">use </span>alloc::sync::Arc;
+
+<span class="kw">use </span>xwrust::xwos::sync::flg::<span class="kw-2">*</span>;
+
+<span class="kw">pub fn </span>xwrust_example_flg() {
+    <span class="kw">let </span>flg = Arc::new(Flg::&lt;<span class="number">8</span>&gt;::new());
+}</code></pre></div>
+<h2 id="初始化"><a href="#初始化">初始化</a></h2>
+<p>无论以何种方式创建的事件标志，都必须在使用前调用 <a href="struct.Flg.html#method.init" title="method xwrust::xwos::sync::flg::Flg::init"><code>Flg::init()</code></a> 进行初始化：</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">pub fn </span>xwrust_example_flg() {
+    GLOBAL_FLG.init();
+    flg.init();
+}</code></pre></div>
+<h2 id="产生事件"><a href="#产生事件">产生事件</a></h2>
+<ul>
+<li><a href="struct.Flg.html#method.s1m" title="method xwrust::xwos::sync::flg::Flg::s1m"><code>Flg::s1m()</code></a> 同时设置多个事件标志位</li>
+<li><a href="struct.Flg.html#method.s1i" title="method xwrust::xwos::sync::flg::Flg::s1i"><code>Flg::s1i()</code></a> 设置单个事件标志位</li>
+<li><a href="struct.Flg.html#method.c0m" title="method xwrust::xwos::sync::flg::Flg::c0m"><code>Flg::c0m()</code></a> 同时清除多个事件标志位</li>
+<li><a href="struct.Flg.html#method.c0i" title="method xwrust::xwos::sync::flg::Flg::c0i"><code>Flg::c0i()</code></a> 清除单个事件标志位</li>
+<li><a href="struct.Flg.html#method.x1m" title="method xwrust::xwos::sync::flg::Flg::x1m"><code>Flg::x1m()</code></a> 同时翻转多个事件标志位</li>
+<li><a href="struct.Flg.html#method.x1i" title="method xwrust::xwos::sync::flg::Flg::x1i"><code>Flg::x1i()</code></a> 翻转单个事件标志位</li>
+</ul>
+<p>产生事件的方法，除了会修改事件标志位图的状态，还会通过 <strong>广播</strong> 唤醒所有正在等待的线程。
+然后，线程通过比对位图状态，确定事件是否已经满足触发条件。
+若满足触发条件，就退出等待；若未满足触发条件，重新进入阻塞等待状态。</p>
+<h2 id="等待事件的方法"><a href="#等待事件的方法">等待事件的方法</a></h2>
+<ul>
+<li><a href="struct.Flg.html#method.wait" title="method xwrust::xwos::sync::flg::Flg::wait"><code>Flg::wait()</code></a> 可用于等待事件。</li>
+<li><a href="struct.Flg.html#method.wait_to" title="method xwrust::xwos::sync::flg::Flg::wait_to"><code>Flg::wait_to()</code></a> 可用于限时等待事件。</li>
+<li><a href="struct.Flg.html#method.trywait" title="method xwrust::xwos::sync::flg::Flg::trywait"><code>Flg::trywait()</code></a> 可用于检测事件。</li>
+</ul>
+<h3 id="事件的触发条件"><a href="#事件的触发条件">事件的触发条件</a></h3>
+<p>等待事件时，可通过参数 <code>tg</code> 指明事件的触发条件。事件的触发条件分为两类。</p>
+<h4 id="电平触发"><a href="#电平触发">电平触发</a></h4>
+<p><strong>电平触发</strong> 源于数字电路，是一种类比概念，是指事件位图的特定状态（ <strong>1</strong> 或 <strong>0</strong> ）所产生的触发事件，包括：</p>
+<ul>
+<li><a href="enum.Trigger.html#variant.SetAll" title="variant xwrust::xwos::sync::flg::Trigger::SetAll"><code>Trigger::SetAll</code></a> 所有事件位被置 <strong>1</strong> 触发</li>
+<li><a href="enum.Trigger.html#variant.SetAny" title="variant xwrust::xwos::sync::flg::Trigger::SetAny"><code>Trigger::SetAny</code></a> 任意事件位被置 <strong>1</strong> 触发</li>
+<li><a href="enum.Trigger.html#variant.ClearAll" title="variant xwrust::xwos::sync::flg::Trigger::ClearAll"><code>Trigger::ClearAll</code></a> 所有事件位被清 <strong>0</strong> 触发</li>
+<li><a href="enum.Trigger.html#variant.ClearAny" title="variant xwrust::xwos::sync::flg::Trigger::ClearAny"><code>Trigger::ClearAny</code></a> 任意事件位被清 <strong>0</strong> 触发</li>
+</ul>
+<p><strong>电平触发</strong> 时，可在线程读取事件位图后，<strong>清除</strong> 事件触发条件。</p>
+<h4 id="边沿触发"><a href="#边沿触发">边沿触发</a></h4>
+<p><strong>边沿触发</strong> 源于数字电路，是一种类比概念，是指事件状态发生改变（ <strong>1</strong> 变 <strong>0</strong> 或 <strong>0</strong> 变 <strong>1</strong> ）时产生的唤醒信号，包括：</p>
+<ul>
+<li><a href="enum.Trigger.html#variant.SetAll" title="variant xwrust::xwos::sync::flg::Trigger::SetAll"><code>Trigger::SetAll</code></a> 所有事件位发生翻转触发</li>
+<li><a href="enum.Trigger.html#variant.SetAny" title="variant xwrust::xwos::sync::flg::Trigger::SetAny"><code>Trigger::SetAny</code></a> 任意事件位发生翻转触发</li>
+</ul>
+<p><strong>边沿触发</strong> 时，事件的触发条件不需要清除。
+<strong>边沿触发</strong> 时，必须要有一个初始状态，就像数字电路一样：</p>
+<ul>
+<li>当位的初始值为 <strong>0</strong> (低电平)，然后跳变到 <strong>1</strong> (高电平)的瞬间被称为上升沿。此时触发的事件被称为上升沿触发。</li>
+<li>当位的初始值为 <strong>1</strong> (高电平)，然后跳变到 <strong>0</strong> (低电平)的瞬间被称为下降沿。此时触发的事件被称为下降沿触发。</li>
+</ul>
+<h3 id="清除事件"><a href="#清除事件">清除事件</a></h3>
+<ul>
+<li>当采用 <strong>电平触发</strong> 时，需要在读取事件位图后 <strong>清除</strong> 事件标志位，否则事件会一直处于触发状态。
+可以在调用等待事件的方法时，指定参数 <code>action</code> 为 <a href="enum.Action.html#variant.Consumption" title="variant xwrust::xwos::sync::flg::Action::Consumption"><code>Action::Consumption</code></a> 。
+<strong>清除</strong> 的含义是：
+<ul>
+<li>当线程等待的是位图中的事件位被置 <strong>1</strong> ， <strong>清除</strong> 是指将这些位清 <strong>0</strong> ；</li>
+<li>当线程等待的是位图中的事件位被清 <strong>0</strong> ， <strong>清除</strong> 是指将这些位置 <strong>1</strong> ；</li>
+</ul>
+</li>
+<li>当采用 <strong>边沿触发</strong> 时，不需要 <strong>清除</strong> 事件的触发条件。</li>
+</ul>
+<h2 id="读取事件"><a href="#读取事件">读取事件</a></h2>
+<p>用户可以通过方法 <a href="struct.Flg.html#method.read" title="method xwrust::xwos::sync::flg::Flg::read"><code>Flg::read()</code></a> 直接读取事件的位图状态。此函数立即返回，不会阻塞。</p>
+<h2 id="获取事件标志中事件槽的数量"><a href="#获取事件标志中事件槽的数量">获取事件标志中事件槽的数量</a></h2>
+<p>可以通过方法 <a href="struct.Flg.html#method.get_num" title="method xwrust::xwos::sync::flg::Flg::get_num"><code>Flg::get_num()</code></a> 获取事件标志中事件槽的数量。</p>
+<h2 id="绑定到信号选择器"><a href="#绑定到信号选择器">绑定到信号选择器</a></h2>
+<p>事件标志是 <strong>同步对象</strong> ，可以通过方法 <a href="struct.Flg.html#method.bind" title="method xwrust::xwos::sync::flg::Flg::bind"><code>Flg::bind()</code></a> 将事件标志绑定到信号选择器 <a href="../sel/struct.Sel.html" title="struct xwrust::xwos::sync::sel::Sel"><code>Sel&lt;M&gt;</code></a> 上，通过 <a href="../sel/struct.Sel.html" title="struct xwrust::xwos::sync::sel::Sel"><code>Sel&lt;M&gt;</code></a> ，单一线程可以同时等待多个不同的 <strong>同步对象</strong> 。</p>
+<p>事件标志采用 <strong>非独占</strong> 的方式进行绑定。</p>
+<h2 id="示例"><a href="#示例">示例</a></h2>
+<p><a href="https://gitee.com/xwos/XWOS/blob/main/xwam/xwrust-example/xwrust_example_flg/src/lib.rs">XWOS/xwam/xwrust-example/xwrust_example_flg</a></p>
+</div></details><h2 id="structs" class="small-section-header"><a href="#structs">Structs</a></h2><ul class="item-table"><li><div class="item-name"><a class="struct" href="struct.Flg.html" title="struct xwrust::xwos::sync::flg::Flg">Flg</a></div><div class="desc docblock-short">事件标志对象结构体</div></li><li><div class="item-name"><a class="struct" href="struct.FlgSel.html" title="struct xwrust::xwos::sync::flg::FlgSel">FlgSel</a></div><div class="desc docblock-short">事件标志的选择子</div></li></ul><h2 id="enums" class="small-section-header"><a href="#enums">Enums</a></h2><ul class="item-table"><li><div class="item-name"><a class="enum" href="enum.Action.html" title="enum xwrust::xwos::sync::flg::Action">Action</a></div><div class="desc docblock-short">触发后的动作</div></li><li><div class="item-name"><a class="enum" href="enum.FlgError.html" title="enum xwrust::xwos::sync::flg::FlgError">FlgError</a></div><div class="desc docblock-short">事件标志的错误码</div></li><li><div class="item-name"><a class="enum" href="enum.Trigger.html" title="enum xwrust::xwos::sync::flg::Trigger">Trigger</a></div><div class="desc docblock-short">触发条件</div></li></ul><h2 id="constants" class="small-section-header"><a href="#constants">Constants</a></h2><ul class="item-table"><li><div class="item-name"><a class="constant" href="constant.SIZEOF_XWOS_FLG.html" title="constant xwrust::xwos::sync::flg::SIZEOF_XWOS_FLG">SIZEOF_XWOS_FLG</a></div><div class="desc docblock-short">XWOS事件标志对象占用的内存大小</div></li></ul></section></div></main></body></html>

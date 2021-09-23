@@ -1,0 +1,155 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="XWOS RUST：互斥锁"><title>xwrust::xwos::lock::mtx - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="xwrust" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (b10cfcd65 2023-11-29)" data-channel="nightly" data-search-js="search-56a624991a76cfad.js" data-settings-js="settings-fe03fdc259827cd2.js" ><script src="../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../sidebar-items.js"></script><script defer src="../../../../static.files/main-77dede896d6ac08e.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../../xwrust/index.html">xwrust</a><span class="version">1.0.0</span></h2></div><h2 class="location"><a href="#">Module mtx</a></h2><div class="sidebar-elems"><section><ul class="block"><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#constants">Constants</a></li></ul></section><h2><a href="../index.html">In xwrust::xwos::lock</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Module <a href="../../../index.html">xwrust</a>::<wbr><a href="../../index.html">xwos</a>::<wbr><a href="../index.html">lock</a>::<wbr><a class="mod" href="#">mtx</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../../../../src/xwrust/xwos/lock/mtx.rs.html#1-1039">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="xwos-rust互斥锁"><a href="#xwos-rust互斥锁">XWOS RUST：互斥锁</a></h2>
+<p>互斥锁是用来保证不同线程正确访问共享数据的机制。访问共享数据的代码片段被称为临界区。</p>
+<p>互斥锁 <strong>只能</strong> 用在 <strong>线程上下文（Thread Context）</strong> 。等待互斥锁的线程会被阻塞，并让出CPU的使用权。</p>
+<p>XWOS RUST框架的互斥锁是仿造 <a href="https://doc.rust-lang.org/std/sync/struct.Mutex.html"><code>std::sync::Mutex</code></a> 的来编写的，以降低熟悉Rust的朋友的学习代价。</p>
+<p>互斥锁上锁后，可返回一个 <strong>守卫</strong> <a href="struct.MutexGuard.html" title="struct xwrust::xwos::lock::mtx::MutexGuard"><code>MutexGuard</code></a> ，用于提供 <strong>Scoped Lock</strong> 机制：即只负责上锁，不用管解锁。
+解锁会由 <a href="struct.MutexGuard.html" title="struct xwrust::xwos::lock::mtx::MutexGuard"><code>MutexGuard</code></a> 在其生命周期结束后自动触发。</p>
+<h2 id="创建"><a href="#创建">创建</a></h2>
+<p>XWOS RUST的互斥锁可使用 <a href="struct.Mutex.html#method.new" title="associated function xwrust::xwos::lock::mtx::Mutex::new"><code>Mutex::new()</code></a> 创建。</p>
+<ul>
+<li>可以创建具有静态生命周期 <a href="https://doc.rust-lang.org/std/keyword.static.html"><code>static</code></a> 约束的全局变量：</li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwos::lock::mtx::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>GLOBAL_MUTEX: Mutex&lt;u32&gt; = Mutex::new(<span class="number">0</span>);</code></pre></div>
+<ul>
+<li>也可以使用 <a href="https://doc.rust-lang.org/alloc/sync/struct.Arc.html"><code>alloc::sync::Arc</code></a> 在heap中创建：</li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>alloc;
+<span class="kw">use </span>alloc::sync::Arc;
+
+<span class="kw">use </span>xwrust::xwos::lock::mtx::<span class="kw-2">*</span>;
+
+<span class="kw">pub fn </span>xwrust_example_mutex() {
+    <span class="kw">let </span>mutex: Arc&lt;Mutex&lt;u32&gt;&gt; = Arc::new(Mutex::new(<span class="number">0</span>));
+}</code></pre></div>
+<h2 id="初始化"><a href="#初始化">初始化</a></h2>
+<p>无论以何种方式创建的互斥锁，都必须在使用前调用 <a href="struct.Mutex.html#method.init" title="method xwrust::xwos::lock::mtx::Mutex::init"><code>Mutex::init()</code></a> 进行初始化：</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">pub fn </span>xwrust_example_mutex() {
+    GLOBAL_MUTEX.init();
+    mutex.init();
+}</code></pre></div>
+<h2 id="解锁"><a href="#解锁">解锁</a></h2>
+<p>上锁后返回的 <a href="struct.MutexGuard.html" title="struct xwrust::xwos::lock::mtx::MutexGuard"><code>MutexGuard</code></a> 。 <a href="struct.MutexGuard.html" title="struct xwrust::xwos::lock::mtx::MutexGuard"><code>MutexGuard</code></a> 的生命周期结束时，会自动解锁。
+也可调用 <a href="struct.Mutex.html#method.unlock" title="associated function xwrust::xwos::lock::mtx::Mutex::unlock"><code>Mutex::unlock()</code></a> 主动消费掉 <a href="struct.MutexGuard.html" title="struct xwrust::xwos::lock::mtx::MutexGuard"><code>MutexGuard</code></a> 来解锁。</p>
+<h2 id="上锁"><a href="#上锁">上锁</a></h2><h3 id="普通等待上锁"><a href="#普通等待上锁">普通等待上锁</a></h3>
+<p><a href="struct.Mutex.html#method.lock" title="method xwrust::xwos::lock::mtx::Mutex::lock"><code>Mutex::lock()</code></a> 方法只可在 <strong>线程</strong> 上下文中使用：</p>
+<ul>
+<li>若线程无法获得锁，会阻塞等待。</li>
+<li>当锁的占用者解锁时，锁会唤醒优先级最高的线程，并让此线程获得锁。</li>
+<li>线程获得锁后返回 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Ok"><code>Ok()</code></a> ，并在其中包含锁的守卫 <a href="struct.MutexGuard.html" title="struct xwrust::xwos::lock::mtx::MutexGuard"><code>MutexGuard</code></a> 。</li>
+<li>当线程阻塞等待被中断时，会在 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Err"><code>Err()</code></a> 中返回 <a href="enum.MutexError.html#variant.Interrupt" title="variant xwrust::xwos::lock::mtx::MutexError::Interrupt"><code>MutexError::Interrupt</code></a> 。</li>
+</ul>
+<h3 id="超时等待上锁"><a href="#超时等待上锁">超时等待上锁</a></h3>
+<p><a href="struct.Mutex.html#method.lock_to" title="method xwrust::xwos::lock::mtx::Mutex::lock_to"><code>Mutex::lock_to()</code></a> 方法只可在 <strong>线程</strong> 上下文中使用：</p>
+<ul>
+<li>若线程无法获得锁，会阻塞等待，等待时会指定一个唤醒时间点。</li>
+<li>当锁的占用者解锁时，锁会唤醒优先级最高的线程，并让此线程获得锁。</li>
+<li>线程获得锁后返回 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Ok"><code>Ok()</code></a> ，并在其中包含锁的守卫 <a href="struct.MutexGuard.html" title="struct xwrust::xwos::lock::mtx::MutexGuard"><code>MutexGuard</code></a> 。</li>
+<li>当线程阻塞等待被中断时，会在 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Err"><code>Err()</code></a> 中返回 <a href="enum.MutexError.html#variant.Interrupt" title="variant xwrust::xwos::lock::mtx::MutexError::Interrupt"><code>MutexError::Interrupt</code></a> 。</li>
+<li>当到达指定的唤醒时间点，线程被唤醒，并返回 <a href="enum.MutexError.html#variant.Timedout" title="variant xwrust::xwos::lock::mtx::MutexError::Timedout"><code>MutexError::Timedout</code></a> 。</li>
+</ul>
+<h3 id="不可中断等待上锁"><a href="#不可中断等待上锁">不可中断等待上锁</a></h3>
+<p><a href="struct.Mutex.html#method.lock_unintr" title="method xwrust::xwos::lock::mtx::Mutex::lock_unintr"><code>Mutex::lock_unintr()</code></a> 方法只可在 <strong>线程</strong> 上下文中使用：</p>
+<ul>
+<li>若线程无法获得锁，会阻塞等待，且不可被中断，也不会超时。</li>
+<li>当锁的占用者解锁时，锁会唤醒优先级最高的线程，并让此线程获得锁。</li>
+<li>线程获得锁后返回 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Ok"><code>Ok()</code></a> ，并在其中包含锁的守卫 <a href="struct.MutexGuard.html" title="struct xwrust::xwos::lock::mtx::MutexGuard"><code>MutexGuard</code></a> 。</li>
+</ul>
+<h3 id="尝试等待上锁"><a href="#尝试等待上锁">尝试等待上锁</a></h3>
+<p><a href="struct.Mutex.html#method.trylock" title="method xwrust::xwos::lock::mtx::Mutex::trylock"><code>Mutex::trylock()</code></a> 方法只可在 <strong>线程</strong> 上下文中使用，不会阻塞线程，只会检测锁是否可被获取：</p>
+<ul>
+<li>若线程可获得锁，立即获得锁并在 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Ok"><code>Ok()</code></a> 中返回锁的守卫 <a href="struct.MutexGuard.html" title="struct xwrust::xwos::lock::mtx::MutexGuard"><code>MutexGuard</code></a> 。</li>
+<li>若线程无法获得锁，立即在 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Err"><code>Err()</code></a> 中返回 <a href="enum.MutexError.html#variant.WouldBlock" title="variant xwrust::xwos::lock::mtx::MutexError::WouldBlock"><code>MutexError::WouldBlock</code></a> 。</li>
+</ul>
+<h2 id="示例"><a href="#示例">示例</a></h2>
+<p><a href="https://gitee.com/xwos/XWOS/blob/main/xwam/xwrust-example/xwrust_example_mutex/src/lib.rs">XWOS/xwam/xwrust-example/xwrust_example_mutex</a></p>
+<h2 id="对比-stdsyncmutex"><a href="#对比-stdsyncmutex">对比 <code>std::sync::Mutex</code></a></h2>
+<ul>
+<li>XWOS RUST</li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwos::thd;
+<span class="kw">use </span>xwrust::xwos::lock::mtx::<span class="kw-2">*</span>;
+<span class="kw">extern crate </span>alloc;
+<span class="kw">use </span>alloc::sync::Arc;
+
+<span class="kw">pub fn </span>xwrust_example_mutex() {
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>lock: Arc&lt;Mutex&lt;u32&gt;&gt; = Arc::new(Mutex::new(<span class="number">0</span>));
+    <span class="kw">let </span>lock_child = lock.clone();
+
+    <span class="kw">match </span>lock.lock() {
+        <span class="prelude-val">Ok</span>(<span class="kw-2">mut </span>guard) =&gt; { <span class="comment">// 主线程上锁成功
+            </span><span class="kw-2">*</span>guard = <span class="number">1</span>; <span class="comment">// 访问共享变量
+        </span>}
+        <span class="prelude-val">Err</span>(e) =&gt; {
+            <span class="comment">// 主线程上锁失败
+        </span>}
+    }
+    <span class="comment">// ...省略...
+    </span>thd::Builder::new()
+        .name(<span class="string">&quot;child&quot;</span>.into())
+        .spawn(<span class="kw">move </span>|<span class="kw">_</span>| {
+            <span class="comment">// 子线程闭包
+            </span><span class="kw">match </span>lock_child.lock() {
+                <span class="prelude-val">Ok</span>(<span class="kw-2">mut </span>guard) =&gt; { <span class="comment">// 子线程上锁成功
+                    </span><span class="kw-2">*</span>guard += <span class="number">1</span>;
+                }
+                <span class="prelude-val">Err</span>(e) =&gt; { <span class="comment">// 子线程上锁失败
+                </span>}
+            }
+        });
+}</code></pre></div>
+<ul>
+<li><a href="https://doc.rust-lang.org/std/sync/struct.Mutex.html"><code>std::sync::Mutex</code></a></li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>std::sync::{Arc, Mutex};
+<span class="kw">use </span>std::thread;
+
+<span class="kw">fn </span>main() {
+    <span class="comment">// 创建互斥锁的方法类似
+    </span><span class="kw">let </span>lock = Arc::new(Mutex::new(<span class="number">0_u32</span>));
+    <span class="kw">let </span>lock2 = Arc::clone(<span class="kw-2">&amp;</span>lock);
+
+    <span class="kw">let _ </span>= thread::spawn(<span class="kw">move </span>|| -&gt; () {
+        <span class="comment">// 访问共享数据的方法类似：
+        // 子线程中对互斥锁上锁， unwrap() 从 Ok() 中取出 guard，再对 guard 解可变引用可得数据的可变引用
+        </span><span class="kw">let </span>guard = lock2.lock().unwrap();
+        <span class="kw-2">*</span>guard = <span class="number">1</span>;
+
+        <span class="comment">// std库特有的机制：持有锁时 panic!() 将导致锁变成 **中毒状态(poisoned)** 。
+        </span><span class="macro">panic!</span>();
+    }).join();
+
+    <span class="comment">// std库特有的机制：处理中毒状态的锁
+    </span><span class="kw">let </span><span class="kw-2">mut </span>guard = <span class="kw">match </span>lock.lock() {
+        <span class="prelude-val">Ok</span>(guard) =&gt; guard,
+        <span class="prelude-val">Err</span>(poisoned) =&gt; poisoned.into_inner(),
+    };
+    <span class="kw-2">*</span>guard += <span class="number">1</span>;
+}</code></pre></div>
+<h4 id="构建全局变量的方式"><a href="#构建全局变量的方式">构建全局变量的方式</a></h4>
+<ul>
+<li><a href="https://doc.rust-lang.org/std/sync/struct.Mutex.html"><code>std::sync::Mutex</code></a> 没有编译期构造函数，因此只能借助宏 <a href="https://lib.rs/crates/lazy_static"><code>lazy_static!</code></a> 创建 <a href="https://doc.rust-lang.org/std/keyword.static.html"><code>static</code></a> 约束的全局变量；</li>
+<li><a href="index.html" title="mod xwrust::xwos::lock::mtx"><code>xwrust::xwos::lock::mtx</code></a> 则可以直接在函数外部定义。</li>
+</ul>
+<h4 id="中毒锁机制"><a href="#中毒锁机制">中毒锁机制</a></h4>
+<ul>
+<li><a href="https://doc.rust-lang.org/std/sync/struct.Mutex.html"><code>std::sync::Mutex</code></a> 提供了 <strong>Poisoned Mutex</strong> 机制。
+当通过 <a href="https://doc.rust-lang.org/std/thread/fn.spawn.html"><code>std::thread::spawn()</code></a> 创建的子线程在持有 <strong>互斥锁</strong> 时，发生了 <a href="https://doc.rust-lang.org/core/macro.panic.html"><code>panic!()</code></a> ，
+此时 <strong>互斥锁</strong> 的状态被称为 <strong>中毒(Poisoned)</strong> 。 <a href="https://doc.rust-lang.org/std/sync/struct.Mutex.html"><code>std::sync::Mutex</code></a> 可在父线程中检测到此错误状态，并尝试恢复。</li>
+<li><a href="index.html" title="mod xwrust::xwos::lock::mtx"><code>xwrust::xwos::lock::mtx</code></a> 不提供此机制，用户必须处理 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Ok"><code>Ok()</code></a> 与 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Err"><code>Err()</code></a> ，不可使用 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#method.unwrap"><code>unwrap()</code></a>。
+因为此机制需要依赖 <strong>unwind</strong> 机制 ，目前 <strong>unwind</strong> 在MCU上还不成熟：
+<ul>
+<li>Gcc可以在MCU C++中使用 <strong>try-catch</strong>；</li>
+<li>LLVM（Clan++）还无法支持在MCU C++中使用 <strong>try-catch</strong>；</li>
+<li>Rust目前在MCU上还无法使用 <strong>panic_unwind</strong> 的 feature。</li>
+</ul>
+</li>
+</ul>
+</div></details><h2 id="structs" class="small-section-header"><a href="#structs">Structs</a></h2><ul class="item-table"><li><div class="item-name"><a class="struct" href="struct.Mutex.html" title="struct xwrust::xwos::lock::mtx::Mutex">Mutex</a></div><div class="desc docblock-short">互斥锁对象结构体</div></li><li><div class="item-name"><a class="struct" href="struct.MutexGuard.html" title="struct xwrust::xwos::lock::mtx::MutexGuard">MutexGuard</a></div><div class="desc docblock-short">互斥锁对象的RAII Guard</div></li></ul><h2 id="enums" class="small-section-header"><a href="#enums">Enums</a></h2><ul class="item-table"><li><div class="item-name"><a class="enum" href="enum.MutexError.html" title="enum xwrust::xwos::lock::mtx::MutexError">MutexError</a></div><div class="desc docblock-short">互斥锁的错误码</div></li></ul><h2 id="constants" class="small-section-header"><a href="#constants">Constants</a></h2><ul class="item-table"><li><div class="item-name"><a class="constant" href="constant.SIZEOF_XWOS_MTX.html" title="constant xwrust::xwos::lock::mtx::SIZEOF_XWOS_MTX">SIZEOF_XWOS_MTX</a></div><div class="desc docblock-short">XWOS互斥锁对象占用的内存大小</div></li></ul></section></div></main></body></html>

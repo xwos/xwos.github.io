@@ -1,0 +1,909 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>XWOS API: xwcd/peripheral/i2c/eeprom/chip/at24sd.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<a href="/" class="github-corner" title="返回首页">
+  <svg viewBox="0 0 250 250" style="position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path
+      d="M 0 0 L 250 250 L 250 0 L 0 0 z M 181.19336 6.25 A 18.281986 19.638775 0 0 1 192.79297 10.798828 L 241.54492 54.201172 A 6.0939954 6.5462585 0 0 1 237.64453 65.787109 L 233.13477 65.787109 A 3.0469979 3.2731292 0 0 0 230.08789 69.060547 L 230.08789 111.61133 A 18.281986 19.638775 0 0 1 211.80664 131.25 L 205.71289 131.25 A 12.187991 13.092517 0 0 1 193.52344 118.1582 L 193.52344 98.519531 A 12.187991 13.092517 0 0 0 181.33594 85.425781 A 12.187991 13.092517 0 0 0 169.14844 98.519531 L 169.14844 118.1582 A 12.187991 13.092517 0 0 1 156.95898 131.25 L 150.86523 131.25 A 18.281986 19.638775 0 0 1 132.58398 111.61133 L 132.58398 68.994141 A 3.0469979 3.2731292 0 0 0 129.29297 65.722656 L 124.7832 65.722656 A 6.0939954 6.5462585 0 0 1 120.88281 54.201172 L 169.39258 10.798828 A 18.281986 19.638775 0 0 1 181.19336 6.25 z "/>
+  </svg>
+</a>
+<style>.github-corner:hover</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">XWOS API
+   &#160;<span id="projectnumber">3.0</span>
+   </div>
+   <div id="projectbrief">XWOS API参考手册</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('at24sd_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a> &#124;
+<a href="#var-members">变量</a>  </div>
+  <div class="headertitle"><div class="title">at24sd.c 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>小密度(1Ki/2Ki/4Ki/8Ki/16Ki bits)EEPROM驱动  
+<a href="#details">更多...</a></p>
+<div class="textblock"><code>#include &lt;<a class="el" href="xwos_2standard_8h_source.html">xwos/standard.h</a>&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="ds_2device_8h_source.html">xwcd/ds/device.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="soc_2gpio_8h_source.html">xwcd/ds/soc/gpio.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="i2c_2peripheral_8h_source.html">xwcd/ds/i2c/peripheral.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="peripheral_2i2c_2eeprom_2device_8h_source.html">xwcd/peripheral/i2c/eeprom/device.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="i2c_2eeprom_2driver_8h_source.html">xwcd/peripheral/i2c/eeprom/driver.h</a>&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+at24sd.c 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="at24sd_8c__incl.png" border="0" usemap="#axwcd_2peripheral_2i2c_2eeprom_2chip_2at24sd_8c" alt=""/></div>
+<map name="axwcd_2peripheral_2i2c_2eeprom_2chip_2at24sd_8c" id="axwcd_2peripheral_2i2c_2eeprom_2chip_2at24sd_8c">
+<area shape="rect" title="小密度(1Ki/2Ki/4Ki/8Ki/16Ki bits)EEPROM驱动" alt="" coords="452,5,602,45"/>
+<area shape="rect" href="xwos_2standard_8h.html" title="XWOS的标准头文件" alt="" coords="600,797,718,823"/>
+<area shape="poly" title=" " alt="" coords="452,38,322,59,176,93,111,115,58,140,37,154,22,169,13,184,10,200,10,657,10,709,17,728,34,747,63,759,115,770,266,786,440,797,586,804,586,809,439,803,266,792,114,775,61,764,31,752,12,731,5,709,4,657,4,200,8,182,18,166,34,150,55,136,109,110,175,88,321,54,451,33"/>
+<area shape="rect" title=" " alt="" coords="373,101,438,126"/>
+<area shape="poly" title=" " alt="" coords="502,48,435,95,432,90,499,43"/>
+<area shape="rect" href="ds_2device_8h.html" title="玄武设备栈：设备基类" alt="" coords="550,416,674,441"/>
+<area shape="poly" title=" " alt="" coords="559,43,593,70,629,106,657,150,665,174,668,200,668,283,665,318,655,351,629,406,624,403,650,350,659,317,663,283,663,200,660,175,652,152,625,109,590,74,556,48"/>
+<area shape="rect" href="soc_2gpio_8h.html" title="玄武设备栈：SOC：GPIO" alt="" coords="170,269,305,295"/>
+<area shape="poly" title=" " alt="" coords="518,47,490,89,452,135,406,175,357,211,272,265,269,260,354,207,403,171,448,131,486,86,514,44"/>
+<area shape="rect" href="i2c_2peripheral_8h.html" title="玄武设备栈：I2C：外设" alt="" coords="438,269,600,295"/>
+<area shape="poly" title=" " alt="" coords="529,45,523,255,517,255,524,45"/>
+<area shape="rect" href="peripheral_2i2c_2eeprom_2device_8h.html" title="I2C EEPROM 设备" alt="" coords="757,181,892,221"/>
+<area shape="poly" title=" " alt="" coords="603,29,674,36,748,48,812,66,837,78,853,92,862,110,862,131,856,152,847,171,843,168,851,150,857,130,857,112,849,95,834,82,810,71,747,54,673,41,602,34"/>
+<area shape="rect" href="i2c_2eeprom_2driver_8h.html" title="I2C EEPROM 驱动" alt="" coords="704,93,838,133"/>
+<area shape="poly" title=" " alt="" coords="582,43,706,86,704,91,580,48"/>
+<area shape="rect" title=" " alt="" coords="462,1017,557,1043"/>
+<area shape="poly" title=" " alt="" coords="604,825,563,843,545,856,529,872,514,904,507,940,506,974,508,1003,503,1004,500,974,501,939,509,902,525,869,541,852,560,838,602,820"/>
+<area shape="rect" href="rule_8h.html" title="XWOS通用库：编译规则" alt="" coords="118,871,224,896"/>
+<area shape="poly" title=" " alt="" coords="600,823,238,875,238,870,599,817"/>
+<area shape="rect" href="compiler_8h.html" title="XWOS通用库：编译器宏定义" alt="" coords="320,871,454,896"/>
+<area shape="poly" title=" " alt="" coords="616,825,445,870,444,865,615,820"/>
+<area shape="rect" href="version_8h.html" title="XWOS版本号" alt="" coords="538,871,649,896"/>
+<area shape="poly" title=" " alt="" coords="650,825,616,862,612,859,646,821"/>
+<area shape="rect" href="type_8h.html" title="XWOS通用库：基本类型定义" alt="" coords="953,944,1064,969"/>
+<area shape="poly" title=" " alt="" coords="719,813,863,831,931,847,958,857,977,869,989,882,998,897,1008,929,1003,930,993,900,985,885,973,873,955,862,929,852,862,837,718,818"/>
+<area shape="rect" href="error_8h.html" title="XWOS通用库：错误" alt="" coords="852,871,962,896"/>
+<area shape="poly" title=" " alt="" coords="700,820,855,864,853,869,698,825"/>
+<area shape="rect" title=" " alt="" coords="651,944,790,969"/>
+<area shape="poly" title=" " alt="" coords="718,820,758,838,776,852,791,869,795,889,788,908,773,925,755,939,751,934,769,921,783,905,790,889,786,872,772,856,755,843,716,825"/>
+<area shape="rect" href="mb_8h.html" title="XWOS通用库：内存屏障" alt="" coords="673,871,776,896"/>
+<area shape="poly" title=" " alt="" coords="672,821,707,859,703,862,668,825"/>
+<area shape="poly" title=" " alt="" coords="152,898,130,913,110,931,100,950,100,959,105,968,128,984,162,997,205,1008,254,1015,358,1024,449,1026,448,1032,357,1029,254,1021,204,1013,160,1003,125,989,101,971,95,960,95,949,106,928,127,909,149,894"/>
+<area shape="rect" title=" " alt="" coords="116,944,226,969"/>
+<area shape="poly" title=" " alt="" coords="174,896,174,930,168,930,168,896"/>
+<area shape="poly" title=" " alt="" coords="356,899,327,912,302,929,287,948,287,957,292,968,316,984,355,998,449,1018,448,1023,354,1003,313,989,288,971,282,959,282,946,298,925,325,907,354,894"/>
+<area shape="rect" title=" " alt="" coords="302,944,472,969"/>
+<area shape="poly" title=" " alt="" coords="390,896,390,930,384,930,384,896"/>
+<area shape="poly" title=" " alt="" coords="953,970,941,972,571,1023,571,1018,940,967,952,965"/>
+<area shape="rect" title=" " alt="" coords="1000,1017,1147,1043"/>
+<area shape="poly" title=" " alt="" coords="1021,968,1056,1005,1052,1009,1017,971"/>
+<area shape="rect" title=" " alt="" coords="907,1017,976,1043"/>
+<area shape="poly" title=" " alt="" coords="999,971,964,1009,960,1005,996,968"/>
+<area shape="poly" title=" " alt="" coords="925,894,982,934,979,938,922,898"/>
+<area shape="rect" href="errno_8h.html" title="XWOS通用库：错误码" alt="" coords="814,944,928,969"/>
+<area shape="poly" title=" " alt="" coords="904,898,886,933,881,930,899,895"/>
+<area shape="poly" title=" " alt="" coords="709,898,540,1011,537,1007,706,894"/>
+<area shape="poly" title=" " alt="" coords="726,896,725,931,719,930,721,896"/>
+<area shape="rect" href="xwcd_2ds_2standard_8h.html" title="玄武设备栈：顶级头文件" alt="" coords="295,563,431,588"/>
+<area shape="poly" title=" " alt="" coords="589,444,495,492,392,557,389,552,492,487,586,439"/>
+<area shape="rect" href="xwaop_8h.html" title="XWOS通用库：原子操作" alt="" coords="255,643,378,669"/>
+<area shape="poly" title=" " alt="" coords="599,444,541,491,514,519,495,542,474,565,445,590,401,618,358,640,355,635,398,614,442,586,471,561,491,539,510,515,537,487,595,440"/>
+<area shape="rect" href="bclst_8h.html" title="XWOS通用库：双循环链表" alt="" coords="653,563,766,588"/>
+<area shape="poly" title=" " alt="" coords="634,440,661,460,687,488,701,518,709,548,704,550,696,520,682,491,658,464,631,444"/>
+<area shape="rect" href="lock_2mtx_8h.html" title="操作系统抽象层：互斥锁" alt="" coords="791,563,938,588"/>
+<area shape="poly" title=" " alt="" coords="634,439,834,554,832,558,631,444"/>
+<area shape="rect" href="xwcd_2ds_2object_8h.html" title="玄武设备栈：对象" alt="" coords="550,489,672,515"/>
+<area shape="poly" title=" " alt="" coords="615,442,614,476,609,476,610,442"/>
+<area shape="poly" title=" " alt="" coords="371,587,419,661,457,707,502,747,549,773,597,791,596,796,547,778,499,752,453,711,415,664,367,590"/>
+<area shape="poly" title=" " alt="" coords="328,667,366,707,393,728,422,747,462,765,505,779,587,797,585,802,504,784,460,770,419,752,390,733,363,711,324,671"/>
+<area shape="rect" href="xwbop_8h.html" title="XWOS通用库：位操作" alt="" coords="44,724,167,749"/>
+<area shape="poly" title=" " alt="" coords="287,671,150,722,149,717,285,666"/>
+<area shape="rect" title=" " alt="" coords="192,724,350,749"/>
+<area shape="poly" title=" " alt="" coords="312,670,287,713,282,711,307,668"/>
+<area shape="poly" title=" " alt="" coords="168,745,179,747,587,798,586,803,179,752,167,750"/>
+<area shape="rect" title=" " alt="" coords="26,797,185,823"/>
+<area shape="poly" title=" " alt="" coords="108,750,108,784,103,784,103,750"/>
+<area shape="poly" title=" " alt="" coords="710,589,667,784,662,783,705,588"/>
+<area shape="poly" title=" " alt="" coords="838,590,800,610,764,638,724,700,674,787,670,784,720,697,760,634,798,606,835,586"/>
+<area shape="rect" href="jack_2lock_2mtx_8h.html" title="操作系统抽象层：互斥锁接口描述" alt="" coords="773,636,910,676"/>
+<area shape="poly" title=" " alt="" coords="864,589,854,623,849,622,859,587"/>
+<area shape="rect" href="time_8h.html" title="操作系统抽象层：时间" alt="" coords="886,724,1008,749"/>
+<area shape="poly" title=" " alt="" coords="882,586,904,607,925,635,940,673,947,710,942,711,935,675,921,637,900,611,878,590"/>
+<area shape="rect" href="skd_8h.html" title="操作系统抽象层：调度器" alt="" coords="986,643,1103,669"/>
+<area shape="poly" title=" " alt="" coords="892,586,1007,635,1005,640,890,590"/>
+<area shape="poly" title=" " alt="" coords="901,752,720,797,718,791,900,747"/>
+<area shape="rect" href="jack_2skd_8h.html" title="操作系统抽象层：调度接口描述" alt="" coords="1021,797,1166,823"/>
+<area shape="poly" title=" " alt="" coords="972,747,1059,789,1057,794,970,752"/>
+<area shape="poly" title=" " alt="" coords="1048,669,1044,709,1036,732,1022,751,1001,765,972,776,896,792,811,803,733,809,732,803,811,797,895,787,970,771,999,760,1019,747,1032,729,1039,708,1042,669"/>
+<area shape="poly" title=" " alt="" coords="1032,671,974,717,970,713,1028,667"/>
+<area shape="poly" title=" " alt="" coords="1051,668,1088,783,1083,785,1046,670"/>
+<area shape="poly" title=" " alt="" coords="572,517,417,561,416,556,571,512"/>
+<area shape="poly" title=" " alt="" coords="629,513,684,552,681,557,625,517"/>
+<area shape="rect" href="xwos_2lib_2object_8h.html" title="XWOS通用库：XWOS的对象" alt="" coords="508,563,628,588"/>
+<area shape="poly" title=" " alt="" coords="606,516,585,552,580,550,602,514"/>
+<area shape="poly" title=" " alt="" coords="580,587,611,635,640,715,657,784,652,785,635,717,606,637,576,590"/>
+<area shape="poly" title=" " alt="" coords="533,591,367,642,365,637,531,585"/>
+<area shape="rect" href="xwos_2mm_2common_8h.html" title="XWOS内存管理：通用定义" alt="" coords="452,643,596,669"/>
+<area shape="poly" title=" " alt="" coords="564,589,540,633,535,630,560,587"/>
+<area shape="poly" title=" " alt="" coords="521,670,510,708,510,729,517,748,531,764,548,776,588,794,585,799,545,781,528,768,513,751,505,730,505,707,516,669"/>
+<area shape="rect" title=" " alt="" coords="527,724,596,749"/>
+<area shape="poly" title=" " alt="" coords="532,668,553,710,548,713,528,670"/>
+<area shape="poly" title=" " alt="" coords="213,297,184,316,170,329,160,344,157,355,160,367,174,414,190,448,212,479,246,513,280,537,317,555,315,560,278,542,243,517,208,482,186,451,169,415,155,369,152,355,155,342,166,325,180,312,210,292"/>
+<area shape="rect" href="soc_2chip_8h.html" title="玄武设备栈：SOC" alt="" coords="170,343,305,368"/>
+<area shape="poly" title=" " alt="" coords="240,295,240,329,235,329,235,295"/>
+<area shape="poly" title=" " alt="" coords="298,365,539,411,538,416,297,371"/>
+<area shape="poly" title=" " alt="" coords="239,368,237,396,239,434,247,475,264,513,288,537,317,555,314,559,285,542,260,516,242,477,234,435,232,396,234,368"/>
+<area shape="poly" title=" " alt="" coords="540,293,567,313,592,341,606,372,612,402,607,403,601,373,588,344,564,317,537,297"/>
+<area shape="poly" title=" " alt="" coords="478,297,434,314,386,339,341,373,323,394,308,417,302,434,301,452,310,489,327,523,346,550,342,554,322,526,305,491,296,453,297,433,303,415,318,390,338,369,383,334,432,309,476,292"/>
+<area shape="poly" title=" " alt="" coords="438,293,281,313,209,328,159,345,129,361,105,377,90,397,84,428,84,577,91,650,102,710,97,711,85,650,79,577,79,427,85,395,101,373,126,357,157,340,208,322,280,308,437,288"/>
+<area shape="rect" href="xwcd_2ds_2i2c_2common_8h.html" title="玄武设备栈：I2C：协议通用的定义" alt="" coords="318,416,475,441"/>
+<area shape="poly" title=" " alt="" coords="488,297,453,316,436,329,421,344,407,373,401,403,396,402,402,371,417,341,432,325,450,312,486,292"/>
+<area shape="rect" href="i2c_2master_8h.html" title="玄武设备栈：I2C：主机" alt="" coords="431,343,578,368"/>
+<area shape="poly" title=" " alt="" coords="519,296,512,330,507,329,514,294"/>
+<area shape="poly" title=" " alt="" coords="396,442,371,550,366,549,391,441"/>
+<area shape="poly" title=" " alt="" coords="523,366,585,406,582,411,520,370"/>
+<area shape="poly" title=" " alt="" coords="507,369,502,403,489,443,448,491,386,554,383,551,444,487,485,440,497,402,501,368"/>
+<area shape="poly" title=" " alt="" coords="560,366,623,384,688,414,737,446,781,484,847,550,844,554,778,487,734,451,686,418,621,389,558,371"/>
+<area shape="poly" title=" " alt="" coords="489,370,427,411,424,406,486,366"/>
+<area shape="poly" title=" " alt="" coords="892,203,970,215,1012,225,1052,240,1088,259,1117,284,1136,316,1143,354,1143,657,1141,678,1136,694,1115,717,1085,734,1048,752,990,770,906,786,733,806,732,800,906,780,988,765,1046,747,1082,730,1112,713,1131,691,1136,676,1138,657,1138,354,1131,318,1113,288,1085,263,1050,245,1011,230,969,220,891,208"/>
+<area shape="poly" title=" " alt="" coords="758,222,577,269,576,263,756,217"/>
+<area shape="poly" title=" " alt="" coords="839,124,944,148,1060,182,1112,203,1154,226,1183,252,1191,266,1194,280,1194,657,1192,678,1185,695,1176,708,1163,719,1130,735,1091,752,1023,772,928,787,732,806,732,801,927,782,1022,766,1089,747,1128,730,1160,714,1172,705,1181,692,1186,677,1188,657,1188,281,1186,268,1179,255,1151,231,1110,208,1059,187,943,153,838,129"/>
+<area shape="poly" title=" " alt="" coords="744,136,549,264,546,260,741,131"/>
+<area shape="poly" title=" " alt="" coords="785,132,808,168,803,171,781,135"/>
+</map>
+</div>
+</div>
+<p><a href="at24sd_8c_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a861f75dc214dbd3460987c0b81c90b27"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at24sd_8c.html#a861f75dc214dbd3460987c0b81c90b27">at24sd_putc</a> (struct <a class="el" href="structxwds__eeprom.html">xwds_eeprom</a> *eeprom, <a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a> data, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> addr, <a class="el" href="group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a> to)</td></tr>
+<tr class="separator:a861f75dc214dbd3460987c0b81c90b27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d6e322502b4dad53f9f73f3d2aca845"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at24sd_8c.html#a0d6e322502b4dad53f9f73f3d2aca845">at24sd_getc</a> (struct <a class="el" href="structxwds__eeprom.html">xwds_eeprom</a> *eeprom, <a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a> *buf, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> addr, <a class="el" href="group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a> to)</td></tr>
+<tr class="separator:a0d6e322502b4dad53f9f73f3d2aca845"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c4f30f22327e2b6b1cd5de06e7be088"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at24sd_8c.html#a6c4f30f22327e2b6b1cd5de06e7be088">at24sd_pgwrite</a> (struct <a class="el" href="structxwds__eeprom.html">xwds_eeprom</a> *eeprom, <a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a> data[], <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> *size, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pgidx, <a class="el" href="group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a> to)</td></tr>
+<tr class="separator:a6c4f30f22327e2b6b1cd5de06e7be088"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01522dfc9420e8dae5c87192c9eb962b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at24sd_8c.html#a01522dfc9420e8dae5c87192c9eb962b">at24sd_pgread</a> (struct <a class="el" href="structxwds__eeprom.html">xwds_eeprom</a> *eeprom, <a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a> buf[], <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> *size, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pgidx, <a class="el" href="group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a> to)</td></tr>
+<tr class="separator:a01522dfc9420e8dae5c87192c9eb962b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7064ffc307bd7aae3b1af22328c6d3ba"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at24sd_8c.html#a7064ffc307bd7aae3b1af22328c6d3ba">at24sd_pgwrite</a> (struct <a class="el" href="structxwds__eeprom.html">xwds_eeprom</a> *eeprom, <a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a> *data, <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> *size, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pgidx, <a class="el" href="group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a> to)</td></tr>
+<tr class="separator:a7064ffc307bd7aae3b1af22328c6d3ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6c109cd13de49e1ff49a9519d5ff2b8"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at24sd_8c.html#ac6c109cd13de49e1ff49a9519d5ff2b8">at24sd_pgread</a> (struct <a class="el" href="structxwds__eeprom.html">xwds_eeprom</a> *eeprom, <a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a> *buf, <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> *size, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pgidx, <a class="el" href="group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a> to)</td></tr>
+<tr class="separator:ac6c109cd13de49e1ff49a9519d5ff2b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+变量</h2></td></tr>
+<tr class="memitem:ab39df9e183d699a5f4d403bbfbbf3d90"><td class="memItemLeft" align="right" valign="top">const struct <a class="el" href="structxwds__eeprom__driver.html">xwds_eeprom_driver</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="at24sd_8c.html#ab39df9e183d699a5f4d403bbfbbf3d90">at24sd_drv</a></td></tr>
+<tr class="separator:ab39df9e183d699a5f4d403bbfbbf3d90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>小密度(1Ki/2Ki/4Ki/8Ki/16Ki bits)EEPROM驱动 </p>
+<dl class="section author"><dt>作者</dt><dd><ul>
+<li>隐星魂 (Roy Sun) <a href="#" onclick="location.href='mai'+'lto:'+'xwo'+'s@'+'xwo'+'s.'+'tec'+'h'; return false;">xwos@<span class="obfuscator">.nosp@m.</span>xwos<span class="obfuscator">.nosp@m.</span>.tech</a> </li>
+</ul>
+</dd></dl>
+<dl class="section copyright"><dt>版权所有</dt><dd><ul>
+<li>Copyright © 2015 xwos.tech, All Rights Reserved. <blockquote class="doxtable">
+<p>&zwj;Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at </p><pre class="fragment">  http://www.apache.org/licenses/LICENSE-2.0
+</pre><p> Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. </p>
+</blockquote>
+</li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="at24sd_8c_source.html">at24sd.c</a> 中定义.</p>
+</div><h2 class="groupheader">函数说明</h2>
+<a id="a0d6e322502b4dad53f9f73f3d2aca845" name="a0d6e322502b4dad53f9f73f3d2aca845"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d6e322502b4dad53f9f73f3d2aca845">&#9670;&#160;</a></span>at24sd_getc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> at24sd_getc </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwds__eeprom.html">xwds_eeprom</a> *&#160;</td>
+          <td class="paramname"><em>eeprom</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a> *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a>&#160;</td>
+          <td class="paramname"><em>to</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>&lt;No error</p>
+
+<p class="definition">在文件 <a class="el" href="at24sd_8c_source.html">at24sd.c</a> 第 <a class="el" href="at24sd_8c_source.html#l00091">91</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   92</span>{</div>
+<div class="line"><span class="lineno">   93</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__i2cm.html">xwds_i2cm</a> * bus;</div>
+<div class="line"><span class="lineno">   94</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__i2c__msg.html">xwds_i2c_msg</a> msg;</div>
+<div class="line"><span class="lineno">   95</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">   96</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a> txdata;</div>
+<div class="line"><span class="lineno">   97</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a> i2cpaddr;</div>
+<div class="line"><span class="lineno">   98</span> </div>
+<div class="line"><span class="lineno">   99</span>        i2cpaddr = eeprom-&gt;<a class="code hl_variable" href="structxwds__eeprom.html#ac0d69a37031ba09618fa1e33e91395d2">i2cp</a>.<a class="code hl_variable" href="structxwds__i2cp.html#a5bc0af71e54616272ce4ae8faf96ce4f">addr</a>;</div>
+<div class="line"><span class="lineno">  100</span>        bus = eeprom-&gt;<a class="code hl_variable" href="structxwds__eeprom.html#ac0d69a37031ba09618fa1e33e91395d2">i2cp</a>.<a class="code hl_variable" href="structxwds__i2cp.html#aab3e38d64a24603c6362736349d6b6c0">bus</a>;</div>
+<div class="line"><span class="lineno">  101</span>        txdata = (<a class="code hl_typedef" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a>)(<a class="code hl_variable" href="structxwds__i2c__msg.html#a9c6c1fa43072751cfbe01ae80b6dead0">addr</a> &amp; (<a class="code hl_typedef" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a>)0xFF);</div>
+<div class="line"><span class="lineno">  102</span>        msg.addr = ((i2cpaddr &amp; (<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)0x00F0) |</div>
+<div class="line"><span class="lineno">  103</span>                    (((<a class="code hl_variable" href="structxwds__i2c__msg.html#a9c6c1fa43072751cfbe01ae80b6dead0">addr</a> &gt;&gt; (<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>)8) &amp; (<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)0x7) &lt;&lt; (<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)1));</div>
+<div class="line"><span class="lineno">  104</span>        msg.flag = ((<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)<a class="code hl_enumvalue" href="group__xwcd__ds__i2c.html#ggac98070f46e55551344ebb1d8a486d0e6a52b6a3aa304a046115aec2f08abe83f2">XWDS_I2C_F_START</a> | (<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)<a class="code hl_enumvalue" href="group__xwcd__ds__i2c.html#ggac98070f46e55551344ebb1d8a486d0e6a1908bd4e5ca5099dd6501f4fe78e37b7">XWDS_I2C_F_WR</a>);</div>
+<div class="line"><span class="lineno">  105</span>        msg.data = &amp;txdata;</div>
+<div class="line"><span class="lineno">  106</span>        msg.size = 1;</div>
+<div class="line"><span class="lineno">  107</span>        rc = <a class="code hl_function" href="group__xwcd__ds__i2c__master.html#gaa076e562fa002ef4a1f8b7e41bc13554">xwds_i2cm_xfer</a>(bus, &amp;msg, to);</div>
+<div class="line"><span class="lineno">  108</span>        <span class="keywordflow">if</span> (<a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a> == rc) {</div>
+<div class="line"><span class="lineno">  109</span>                msg.addr = ((i2cpaddr &amp; (<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)0x00F0) |</div>
+<div class="line"><span class="lineno">  110</span>                            (((<a class="code hl_variable" href="structxwds__i2c__msg.html#a9c6c1fa43072751cfbe01ae80b6dead0">addr</a> &gt;&gt; (<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>)8) &amp; (<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)0x7) &lt;&lt; (<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)1));</div>
+<div class="line"><span class="lineno">  111</span>                msg.flag = ((<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)<a class="code hl_enumvalue" href="group__xwcd__ds__i2c.html#ggac98070f46e55551344ebb1d8a486d0e6a52b6a3aa304a046115aec2f08abe83f2">XWDS_I2C_F_START</a> |</div>
+<div class="line"><span class="lineno">  112</span>                            (<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)<a class="code hl_enumvalue" href="group__xwcd__ds__i2c.html#ggac98070f46e55551344ebb1d8a486d0e6a5f567044bdba7c1a9adca424dc9a5f87">XWDS_I2C_F_RD</a> |</div>
+<div class="line"><span class="lineno">  113</span>                            (<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)<a class="code hl_enumvalue" href="group__xwcd__ds__i2c.html#ggac98070f46e55551344ebb1d8a486d0e6aeef742a36cca69f4afed581b6e43037b">XWDS_I2C_F_STOP</a>);</div>
+<div class="line"><span class="lineno">  114</span>                msg.data = buf;</div>
+<div class="line"><span class="lineno">  115</span>                msg.size = 1;</div>
+<div class="line"><span class="lineno">  116</span>                rc = <a class="code hl_function" href="group__xwcd__ds__i2c__master.html#gaa076e562fa002ef4a1f8b7e41bc13554">xwds_i2cm_xfer</a>(bus, &amp;msg, to);</div>
+<div class="line"><span class="lineno">  117</span>        }</div>
+<div class="line"><span class="lineno">  118</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  119</span>}</div>
+<div class="ttc" id="agroup__xwcd__ds__i2c__master_html_gaa076e562fa002ef4a1f8b7e41bc13554"><div class="ttname"><a href="group__xwcd__ds__i2c__master.html#gaa076e562fa002ef4a1f8b7e41bc13554">xwds_i2cm_xfer</a></div><div class="ttdeci">xwer_t xwds_i2cm_xfer(struct xwds_i2cm *i2cm, struct xwds_i2c_msg *msg, xwtm_t to)</div><div class="ttdoc">XWDS API：传输I2C消息</div><div class="ttdef"><b>Definition</b> <a href="i2c_2master_8c_source.html#l00201">master.c:201</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__i2c_html_ggac98070f46e55551344ebb1d8a486d0e6a1908bd4e5ca5099dd6501f4fe78e37b7"><div class="ttname"><a href="group__xwcd__ds__i2c.html#ggac98070f46e55551344ebb1d8a486d0e6a1908bd4e5ca5099dd6501f4fe78e37b7">XWDS_I2C_F_WR</a></div><div class="ttdeci">@ XWDS_I2C_F_WR</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2i2c_2common_8h_source.html#l00043">common.h:43</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__i2c_html_ggac98070f46e55551344ebb1d8a486d0e6a52b6a3aa304a046115aec2f08abe83f2"><div class="ttname"><a href="group__xwcd__ds__i2c.html#ggac98070f46e55551344ebb1d8a486d0e6a52b6a3aa304a046115aec2f08abe83f2">XWDS_I2C_F_START</a></div><div class="ttdeci">@ XWDS_I2C_F_START</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2i2c_2common_8h_source.html#l00055">common.h:46</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__i2c_html_ggac98070f46e55551344ebb1d8a486d0e6a5f567044bdba7c1a9adca424dc9a5f87"><div class="ttname"><a href="group__xwcd__ds__i2c.html#ggac98070f46e55551344ebb1d8a486d0e6a5f567044bdba7c1a9adca424dc9a5f87">XWDS_I2C_F_RD</a></div><div class="ttdeci">@ XWDS_I2C_F_RD</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2i2c_2common_8h_source.html#l00042">common.h:42</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__i2c_html_ggac98070f46e55551344ebb1d8a486d0e6aeef742a36cca69f4afed581b6e43037b"><div class="ttname"><a href="group__xwcd__ds__i2c.html#ggac98070f46e55551344ebb1d8a486d0e6aeef742a36cca69f4afed581b6e43037b">XWDS_I2C_F_STOP</a></div><div class="ttdeci">@ XWDS_I2C_F_STOP</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2i2c_2common_8h_source.html#l00056">common.h:56</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga6a72d49d869215a02342eb465166537b"><div class="ttname"><a href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a></div><div class="ttdeci">#define XWOK</div><div class="ttdoc">No error</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00182">errno.h:182</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga06847ea8c7edb2b1f166288b230f251f"><div class="ttname"><a href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a></div><div class="ttdeci">signed long xwer_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00554">type.h:554</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga4433c8b2d64a72382ab333d11bfd0093"><div class="ttname"><a href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a></div><div class="ttdeci">uint8_t xwu8_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00194">type.h:194</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga59fe68c80516b22de8dccb84275d23f2"><div class="ttname"><a href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a></div><div class="ttdeci">unsigned long xwsq_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00445">type.h:445</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_gae84464fbf887686043158271f71505d9"><div class="ttname"><a href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a></div><div class="ttdeci">uint16_t xwu16_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00230">type.h:230</a></div></div>
+<div class="ttc" id="astructxwds__eeprom_html_ac0d69a37031ba09618fa1e33e91395d2"><div class="ttname"><a href="structxwds__eeprom.html#ac0d69a37031ba09618fa1e33e91395d2">xwds_eeprom::i2cp</a></div><div class="ttdeci">struct xwds_i2cp i2cp</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2i2c_2eeprom_2device_8h_source.html#l00039">device.h:39</a></div></div>
+<div class="ttc" id="astructxwds__i2c__msg_html"><div class="ttname"><a href="structxwds__i2c__msg.html">xwds_i2c_msg</a></div><div class="ttdoc">I2C消息</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2i2c_2common_8h_source.html#l00062">common.h:62</a></div></div>
+<div class="ttc" id="astructxwds__i2c__msg_html_a9c6c1fa43072751cfbe01ae80b6dead0"><div class="ttname"><a href="structxwds__i2c__msg.html#a9c6c1fa43072751cfbe01ae80b6dead0">xwds_i2c_msg::addr</a></div><div class="ttdeci">xwu16_t addr</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2i2c_2common_8h_source.html#l00063">common.h:63</a></div></div>
+<div class="ttc" id="astructxwds__i2cm_html"><div class="ttname"><a href="structxwds__i2cm.html">xwds_i2cm</a></div><div class="ttdoc">I2C主机</div><div class="ttdef"><b>Definition</b> <a href="i2c_2master_8h_source.html#l00053">master.h:53</a></div></div>
+<div class="ttc" id="astructxwds__i2cp_html_a5bc0af71e54616272ce4ae8faf96ce4f"><div class="ttname"><a href="structxwds__i2cp.html#a5bc0af71e54616272ce4ae8faf96ce4f">xwds_i2cp::addr</a></div><div class="ttdeci">xwu16_t addr</div><div class="ttdef"><b>Definition</b> <a href="i2c_2peripheral_8h_source.html#l00053">peripheral.h:53</a></div></div>
+<div class="ttc" id="astructxwds__i2cp_html_aab3e38d64a24603c6362736349d6b6c0"><div class="ttname"><a href="structxwds__i2cp.html#aab3e38d64a24603c6362736349d6b6c0">xwds_i2cp::bus</a></div><div class="ttdeci">struct xwds_i2cm * bus</div><div class="ttdef"><b>Definition</b> <a href="i2c_2peripheral_8h_source.html#l00052">peripheral.h:52</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="at24sd_8c_a0d6e322502b4dad53f9f73f3d2aca845_cgraph.png" border="0" usemap="#aat24sd_8c_a0d6e322502b4dad53f9f73f3d2aca845_cgraph" alt=""/></div>
+<map name="aat24sd_8c_a0d6e322502b4dad53f9f73f3d2aca845_cgraph" id="aat24sd_8c_a0d6e322502b4dad53f9f73f3d2aca845_cgraph">
+<area shape="rect" title=" " alt="" coords="5,80,99,105"/>
+<area shape="rect" href="group__xwcd__ds__i2c__master.html#gaa076e562fa002ef4a1f8b7e41bc13554" title="XWDS API：传输I2C消息" alt="" coords="147,80,264,105"/>
+<area shape="poly" title=" " alt="" coords="99,90,133,90,133,95,99,95"/>
+<area shape="rect" href="group__xwcd__ds__i2c__master.html#gaefd3295a6a3fe9dda0e14991df2be25b" title="XWDS API：增加对象的引用计数" alt="" coords="317,5,437,31"/>
+<area shape="poly" title=" " alt="" coords="230,78,311,40,326,33,328,38,313,44,233,82"/>
+<area shape="rect" href="group__xwcd__ds__i2c__master.html#gaa1574aca457c744ba59ab83b0b0a2eee" title="XWDS API：减少对象的引用计数" alt="" coords="321,55,434,80"/>
+<area shape="poly" title=" " alt="" coords="264,81,307,75,307,80,265,87"/>
+<area shape="rect" href="group__xwos__lock__mtx.html#ga37eb46fa1271ff0ecebd4e0ceb0f4420" title="XWOS API：限时等待上锁互斥锁" alt="" coords="312,104,443,129"/>
+<area shape="poly" title=" " alt="" coords="265,98,299,103,298,108,264,103"/>
+<area shape="rect" href="group__xwos__lock__mtx.html#gaa6b3a2ce561acc043d826e47a9470919" title="XWOS API：解锁互斥锁" alt="" coords="314,153,441,179"/>
+<area shape="poly" title=" " alt="" coords="235,103,313,138,331,146,329,151,311,143,233,108"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga00553482e152b68af626de972e2187d7" title="XWDS API：增加对象的引用计数" alt="" coords="491,5,621,31"/>
+<area shape="poly" title=" " alt="" coords="438,15,477,15,477,21,438,21"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga69eb284bb145032e408adea3131b9d36" title="XWDS API：减少对象的引用计数" alt="" coords="495,55,617,80"/>
+<area shape="poly" title=" " alt="" coords="434,65,481,65,481,70,434,70"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ac6c109cd13de49e1ff49a9519d5ff2b8" name="ac6c109cd13de49e1ff49a9519d5ff2b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6c109cd13de49e1ff49a9519d5ff2b8">&#9670;&#160;</a></span>at24sd_pgread() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> at24sd_pgread </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwds__eeprom.html">xwds_eeprom</a> *&#160;</td>
+          <td class="paramname"><em>eeprom</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a> *&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> *&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>&#160;</td>
+          <td class="paramname"><em>pgidx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a>&#160;</td>
+          <td class="paramname"><em>to</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>&lt;No error</p>
+<p>&lt;No error</p>
+
+<p class="definition">在文件 <a class="el" href="at24sd_8c_source.html">at24sd.c</a> 第 <a class="el" href="at24sd_8c_source.html#l00157">157</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  160</span>{</div>
+<div class="line"><span class="lineno">  161</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__i2cm.html">xwds_i2cm</a> * bus;</div>
+<div class="line"><span class="lineno">  162</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__eeprom__parameter.html">xwds_eeprom_parameter</a> * parameter;</div>
+<div class="line"><span class="lineno">  163</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__i2c__msg.html">xwds_i2c_msg</a> msg;</div>
+<div class="line"><span class="lineno">  164</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">  165</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a> i2cpaddr;</div>
+<div class="line"><span class="lineno">  166</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> <a class="code hl_variable" href="structxwds__i2c__msg.html#a9c6c1fa43072751cfbe01ae80b6dead0">addr</a>;</div>
+<div class="line"><span class="lineno">  167</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a> txdata;</div>
+<div class="line"><span class="lineno">  168</span> </div>
+<div class="line"><span class="lineno">  169</span>        i2cpaddr = eeprom-&gt;<a class="code hl_variable" href="structxwds__eeprom.html#ac0d69a37031ba09618fa1e33e91395d2">i2cp</a>.<a class="code hl_variable" href="structxwds__i2cp.html#a5bc0af71e54616272ce4ae8faf96ce4f">addr</a>;</div>
+<div class="line"><span class="lineno">  170</span>        bus = eeprom-&gt;<a class="code hl_variable" href="structxwds__eeprom.html#ac0d69a37031ba09618fa1e33e91395d2">i2cp</a>.<a class="code hl_variable" href="structxwds__i2cp.html#aab3e38d64a24603c6362736349d6b6c0">bus</a>;</div>
+<div class="line"><span class="lineno">  171</span>        parameter = &amp;eeprom-&gt;<a class="code hl_variable" href="structxwds__eeprom.html#a8cd1f725ecbd1ec0ffa1195399ff51ff">parameter</a>;</div>
+<div class="line"><span class="lineno">  172</span>        <a class="code hl_variable" href="structxwds__i2c__msg.html#a9c6c1fa43072751cfbe01ae80b6dead0">addr</a> = ((pgidx * parameter-&gt;<a class="code hl_variable" href="structxwds__eeprom__parameter.html#ac5f83c39f713f719d3ea36176d891e04">page_size</a>) &amp; (<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>)0x7FF);</div>
+<div class="line"><span class="lineno">  173</span>        txdata = (<a class="code hl_typedef" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a>)(<a class="code hl_variable" href="structxwds__i2c__msg.html#a9c6c1fa43072751cfbe01ae80b6dead0">addr</a> &amp; (<a class="code hl_typedef" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a>)0xFF);</div>
+<div class="line"><span class="lineno">  174</span>        msg.addr = ((i2cpaddr &amp; (<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)0x00F0) |</div>
+<div class="line"><span class="lineno">  175</span>                    (((<a class="code hl_variable" href="structxwds__i2c__msg.html#a9c6c1fa43072751cfbe01ae80b6dead0">addr</a> &gt;&gt; (<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>)8) &amp; (<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)0x7) &lt;&lt; (<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)1));</div>
+<div class="line"><span class="lineno">  176</span>        msg.flag = ((<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)<a class="code hl_enumvalue" href="group__xwcd__ds__i2c.html#ggac98070f46e55551344ebb1d8a486d0e6a52b6a3aa304a046115aec2f08abe83f2">XWDS_I2C_F_START</a> | (<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)<a class="code hl_enumvalue" href="group__xwcd__ds__i2c.html#ggac98070f46e55551344ebb1d8a486d0e6a1908bd4e5ca5099dd6501f4fe78e37b7">XWDS_I2C_F_WR</a>);</div>
+<div class="line"><span class="lineno">  177</span>        msg.data = &amp;txdata;</div>
+<div class="line"><span class="lineno">  178</span>        msg.size = 1;</div>
+<div class="line"><span class="lineno">  179</span>        rc = <a class="code hl_function" href="group__xwcd__ds__i2c__master.html#gaa076e562fa002ef4a1f8b7e41bc13554">xwds_i2cm_xfer</a>(bus, &amp;msg, to);</div>
+<div class="line"><span class="lineno">  180</span>        <span class="keywordflow">if</span> (<a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a> == rc) {</div>
+<div class="line"><span class="lineno">  181</span>                msg.addr = ((i2cpaddr &amp; (<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)0x00F0) |</div>
+<div class="line"><span class="lineno">  182</span>                            (((<a class="code hl_variable" href="structxwds__i2c__msg.html#a9c6c1fa43072751cfbe01ae80b6dead0">addr</a> &gt;&gt; (<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>)8) &amp; (<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)0x7) &lt;&lt; (<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)1));</div>
+<div class="line"><span class="lineno">  183</span>                msg.flag = ((<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)<a class="code hl_enumvalue" href="group__xwcd__ds__i2c.html#ggac98070f46e55551344ebb1d8a486d0e6a52b6a3aa304a046115aec2f08abe83f2">XWDS_I2C_F_START</a> |</div>
+<div class="line"><span class="lineno">  184</span>                            (<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)<a class="code hl_enumvalue" href="group__xwcd__ds__i2c.html#ggac98070f46e55551344ebb1d8a486d0e6a5f567044bdba7c1a9adca424dc9a5f87">XWDS_I2C_F_RD</a> |</div>
+<div class="line"><span class="lineno">  185</span>                            (<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)<a class="code hl_enumvalue" href="group__xwcd__ds__i2c.html#ggac98070f46e55551344ebb1d8a486d0e6aeef742a36cca69f4afed581b6e43037b">XWDS_I2C_F_STOP</a>);</div>
+<div class="line"><span class="lineno">  186</span>                msg.data = buf;</div>
+<div class="line"><span class="lineno">  187</span>                msg.size = *<a class="code hl_variable" href="structxwds__i2c__msg.html#a583b69e24cc1245a01322f71c0f14424">size</a>;</div>
+<div class="line"><span class="lineno">  188</span>                rc = <a class="code hl_function" href="group__xwcd__ds__i2c__master.html#gaa076e562fa002ef4a1f8b7e41bc13554">xwds_i2cm_xfer</a>(bus, &amp;msg, to);</div>
+<div class="line"><span class="lineno">  189</span>                <span class="keywordflow">if</span> (<a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a> == rc) {</div>
+<div class="line"><span class="lineno">  190</span>                        *<a class="code hl_variable" href="structxwds__i2c__msg.html#a583b69e24cc1245a01322f71c0f14424">size</a> = msg.size;</div>
+<div class="line"><span class="lineno">  191</span>                }</div>
+<div class="line"><span class="lineno">  192</span>        }</div>
+<div class="line"><span class="lineno">  193</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  194</span>}</div>
+<div class="ttc" id="astructxwds__eeprom__parameter_html"><div class="ttname"><a href="structxwds__eeprom__parameter.html">xwds_eeprom_parameter</a></div><div class="ttdef"><b>Definition</b> <a href="peripheral_2i2c_2eeprom_2device_8h_source.html#l00033">device.h:33</a></div></div>
+<div class="ttc" id="astructxwds__eeprom__parameter_html_ac5f83c39f713f719d3ea36176d891e04"><div class="ttname"><a href="structxwds__eeprom__parameter.html#ac5f83c39f713f719d3ea36176d891e04">xwds_eeprom_parameter::page_size</a></div><div class="ttdeci">xwsz_t page_size</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2i2c_2eeprom_2device_8h_source.html#l00034">device.h:34</a></div></div>
+<div class="ttc" id="astructxwds__eeprom_html_a8cd1f725ecbd1ec0ffa1195399ff51ff"><div class="ttname"><a href="structxwds__eeprom.html#a8cd1f725ecbd1ec0ffa1195399ff51ff">xwds_eeprom::parameter</a></div><div class="ttdeci">const struct xwds_eeprom_parameter parameter</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2i2c_2eeprom_2device_8h_source.html#l00040">device.h:40</a></div></div>
+<div class="ttc" id="astructxwds__i2c__msg_html_a583b69e24cc1245a01322f71c0f14424"><div class="ttname"><a href="structxwds__i2c__msg.html#a583b69e24cc1245a01322f71c0f14424">xwds_i2c_msg::size</a></div><div class="ttdeci">xwsz_t size</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2i2c_2common_8h_source.html#l00068">common.h:68</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="at24sd_8c_ac6c109cd13de49e1ff49a9519d5ff2b8_cgraph.png" border="0" usemap="#aat24sd_8c_ac6c109cd13de49e1ff49a9519d5ff2b8_cgraph" alt=""/></div>
+<map name="aat24sd_8c_ac6c109cd13de49e1ff49a9519d5ff2b8_cgraph" id="aat24sd_8c_ac6c109cd13de49e1ff49a9519d5ff2b8_cgraph">
+<area shape="rect" title=" " alt="" coords="5,80,112,105"/>
+<area shape="rect" href="group__xwcd__ds__i2c__master.html#gaa076e562fa002ef4a1f8b7e41bc13554" title="XWDS API：传输I2C消息" alt="" coords="160,80,277,105"/>
+<area shape="poly" title=" " alt="" coords="112,90,146,90,146,95,112,95"/>
+<area shape="rect" href="group__xwcd__ds__i2c__master.html#gaefd3295a6a3fe9dda0e14991df2be25b" title="XWDS API：增加对象的引用计数" alt="" coords="331,5,451,31"/>
+<area shape="poly" title=" " alt="" coords="244,78,324,40,340,33,342,38,326,44,246,82"/>
+<area shape="rect" href="group__xwcd__ds__i2c__master.html#gaa1574aca457c744ba59ab83b0b0a2eee" title="XWDS API：减少对象的引用计数" alt="" coords="334,55,447,80"/>
+<area shape="poly" title=" " alt="" coords="277,81,320,75,321,80,278,87"/>
+<area shape="rect" href="group__xwos__lock__mtx.html#ga37eb46fa1271ff0ecebd4e0ceb0f4420" title="XWOS API：限时等待上锁互斥锁" alt="" coords="325,104,456,129"/>
+<area shape="poly" title=" " alt="" coords="278,98,312,103,311,108,277,103"/>
+<area shape="rect" href="group__xwos__lock__mtx.html#gaa6b3a2ce561acc043d826e47a9470919" title="XWOS API：解锁互斥锁" alt="" coords="327,153,454,179"/>
+<area shape="poly" title=" " alt="" coords="248,103,326,138,345,146,343,151,324,143,246,108"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga00553482e152b68af626de972e2187d7" title="XWDS API：增加对象的引用计数" alt="" coords="504,5,635,31"/>
+<area shape="poly" title=" " alt="" coords="451,15,490,15,490,21,451,21"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga69eb284bb145032e408adea3131b9d36" title="XWDS API：减少对象的引用计数" alt="" coords="508,55,631,80"/>
+<area shape="poly" title=" " alt="" coords="448,65,494,65,494,70,448,70"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a01522dfc9420e8dae5c87192c9eb962b" name="a01522dfc9420e8dae5c87192c9eb962b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01522dfc9420e8dae5c87192c9eb962b">&#9670;&#160;</a></span>at24sd_pgread() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> at24sd_pgread </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwds__eeprom.html">xwds_eeprom</a> *&#160;</td>
+          <td class="paramname"><em>eeprom</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a>&#160;</td>
+          <td class="paramname"><em>buf</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> *&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>&#160;</td>
+          <td class="paramname"><em>pgidx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a>&#160;</td>
+          <td class="paramname"><em>to</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7064ffc307bd7aae3b1af22328c6d3ba" name="a7064ffc307bd7aae3b1af22328c6d3ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7064ffc307bd7aae3b1af22328c6d3ba">&#9670;&#160;</a></span>at24sd_pgwrite() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> at24sd_pgwrite </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwds__eeprom.html">xwds_eeprom</a> *&#160;</td>
+          <td class="paramname"><em>eeprom</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a> *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> *&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>&#160;</td>
+          <td class="paramname"><em>pgidx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a>&#160;</td>
+          <td class="paramname"><em>to</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="at24sd_8c_source.html">at24sd.c</a> 第 <a class="el" href="at24sd_8c_source.html#l00122">122</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  125</span>{</div>
+<div class="line"><span class="lineno">  126</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__i2cm.html">xwds_i2cm</a> * bus;</div>
+<div class="line"><span class="lineno">  127</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__eeprom__parameter.html">xwds_eeprom_parameter</a> * parameter;</div>
+<div class="line"><span class="lineno">  128</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__i2c__msg.html">xwds_i2c_msg</a> msg;</div>
+<div class="line"><span class="lineno">  129</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">  130</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a> i2cpaddr;</div>
+<div class="line"><span class="lineno">  131</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> <a class="code hl_variable" href="structxwds__i2c__msg.html#a9c6c1fa43072751cfbe01ae80b6dead0">addr</a>;</div>
+<div class="line"><span class="lineno">  132</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> wrsz = *<a class="code hl_variable" href="structxwds__i2c__msg.html#a583b69e24cc1245a01322f71c0f14424">size</a>;</div>
+<div class="line"><span class="lineno">  133</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a> txdata[wrsz + 1];</div>
+<div class="line"><span class="lineno">  134</span> </div>
+<div class="line"><span class="lineno">  135</span>        i2cpaddr = eeprom-&gt;<a class="code hl_variable" href="structxwds__eeprom.html#ac0d69a37031ba09618fa1e33e91395d2">i2cp</a>.<a class="code hl_variable" href="structxwds__i2cp.html#a5bc0af71e54616272ce4ae8faf96ce4f">addr</a>;</div>
+<div class="line"><span class="lineno">  136</span>        bus = eeprom-&gt;<a class="code hl_variable" href="structxwds__eeprom.html#ac0d69a37031ba09618fa1e33e91395d2">i2cp</a>.<a class="code hl_variable" href="structxwds__i2cp.html#aab3e38d64a24603c6362736349d6b6c0">bus</a>;</div>
+<div class="line"><span class="lineno">  137</span>        parameter = &amp;eeprom-&gt;<a class="code hl_variable" href="structxwds__eeprom.html#a8cd1f725ecbd1ec0ffa1195399ff51ff">parameter</a>;</div>
+<div class="line"><span class="lineno">  138</span>        <a class="code hl_variable" href="structxwds__i2c__msg.html#a9c6c1fa43072751cfbe01ae80b6dead0">addr</a> = ((pgidx * parameter-&gt;<a class="code hl_variable" href="structxwds__eeprom__parameter.html#ac5f83c39f713f719d3ea36176d891e04">page_size</a>) &amp; (<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>)0x7FF);</div>
+<div class="line"><span class="lineno">  139</span>        txdata[0] = (<a class="code hl_typedef" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a>)(<a class="code hl_variable" href="structxwds__i2c__msg.html#a9c6c1fa43072751cfbe01ae80b6dead0">addr</a> &amp; (<a class="code hl_typedef" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a>)0xFF);</div>
+<div class="line"><span class="lineno">  140</span>        memcpy(&amp;txdata[1], <a class="code hl_variable" href="structxwds__i2c__msg.html#a7645e8cfaa3a6a3a86b35817b353b623">data</a>, wrsz);</div>
+<div class="line"><span class="lineno">  141</span>        msg.addr = ((i2cpaddr &amp; (<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)0x00F0) |</div>
+<div class="line"><span class="lineno">  142</span>                    (((<a class="code hl_variable" href="structxwds__i2c__msg.html#a9c6c1fa43072751cfbe01ae80b6dead0">addr</a> &gt;&gt; (<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>)8) &amp; (<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)0x7) &lt;&lt; (<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)1));</div>
+<div class="line"><span class="lineno">  143</span>        msg.flag = ((<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)<a class="code hl_enumvalue" href="group__xwcd__ds__i2c.html#ggac98070f46e55551344ebb1d8a486d0e6a52b6a3aa304a046115aec2f08abe83f2">XWDS_I2C_F_START</a> |</div>
+<div class="line"><span class="lineno">  144</span>                    (<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)<a class="code hl_enumvalue" href="group__xwcd__ds__i2c.html#ggac98070f46e55551344ebb1d8a486d0e6a1908bd4e5ca5099dd6501f4fe78e37b7">XWDS_I2C_F_WR</a> |</div>
+<div class="line"><span class="lineno">  145</span>                    (<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)<a class="code hl_enumvalue" href="group__xwcd__ds__i2c.html#ggac98070f46e55551344ebb1d8a486d0e6aeef742a36cca69f4afed581b6e43037b">XWDS_I2C_F_STOP</a>);</div>
+<div class="line"><span class="lineno">  146</span>        msg.data = txdata;</div>
+<div class="line"><span class="lineno">  147</span>        msg.size = wrsz + 1;</div>
+<div class="line"><span class="lineno">  148</span>        rc = <a class="code hl_function" href="group__xwcd__ds__i2c__master.html#gaa076e562fa002ef4a1f8b7e41bc13554">xwds_i2cm_xfer</a>(bus, &amp;msg, to);</div>
+<div class="line"><span class="lineno">  149</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  150</span>                *<a class="code hl_variable" href="structxwds__i2c__msg.html#a583b69e24cc1245a01322f71c0f14424">size</a> = 0;</div>
+<div class="line"><span class="lineno">  151</span>        }</div>
+<div class="line"><span class="lineno">  152</span> </div>
+<div class="line"><span class="lineno">  153</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  154</span>}</div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga2d00153ecb0cdcc8ea0823c13ee59649"><div class="ttname"><a href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a></div><div class="ttdeci">unsigned long xwsz_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00339">type.h:339</a></div></div>
+<div class="ttc" id="astructxwds__i2c__msg_html_a7645e8cfaa3a6a3a86b35817b353b623"><div class="ttname"><a href="structxwds__i2c__msg.html#a7645e8cfaa3a6a3a86b35817b353b623">xwds_i2c_msg::data</a></div><div class="ttdeci">xwu8_t * data</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2i2c_2common_8h_source.html#l00067">common.h:67</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="at24sd_8c_a7064ffc307bd7aae3b1af22328c6d3ba_cgraph.png" border="0" usemap="#aat24sd_8c_a7064ffc307bd7aae3b1af22328c6d3ba_cgraph" alt=""/></div>
+<map name="aat24sd_8c_a7064ffc307bd7aae3b1af22328c6d3ba_cgraph" id="aat24sd_8c_a7064ffc307bd7aae3b1af22328c6d3ba_cgraph">
+<area shape="rect" title=" " alt="" coords="5,80,116,105"/>
+<area shape="rect" href="group__xwcd__ds__i2c__master.html#gaa076e562fa002ef4a1f8b7e41bc13554" title="XWDS API：传输I2C消息" alt="" coords="164,80,281,105"/>
+<area shape="poly" title=" " alt="" coords="116,90,150,90,150,95,116,95"/>
+<area shape="rect" href="group__xwcd__ds__i2c__master.html#gaefd3295a6a3fe9dda0e14991df2be25b" title="XWDS API：增加对象的引用计数" alt="" coords="335,5,455,31"/>
+<area shape="poly" title=" " alt="" coords="248,78,328,40,344,33,346,38,330,44,250,82"/>
+<area shape="rect" href="group__xwcd__ds__i2c__master.html#gaa1574aca457c744ba59ab83b0b0a2eee" title="XWDS API：减少对象的引用计数" alt="" coords="338,55,451,80"/>
+<area shape="poly" title=" " alt="" coords="281,81,324,75,325,80,282,87"/>
+<area shape="rect" href="group__xwos__lock__mtx.html#ga37eb46fa1271ff0ecebd4e0ceb0f4420" title="XWOS API：限时等待上锁互斥锁" alt="" coords="329,104,460,129"/>
+<area shape="poly" title=" " alt="" coords="282,98,316,103,315,108,281,103"/>
+<area shape="rect" href="group__xwos__lock__mtx.html#gaa6b3a2ce561acc043d826e47a9470919" title="XWOS API：解锁互斥锁" alt="" coords="331,153,458,179"/>
+<area shape="poly" title=" " alt="" coords="252,103,330,138,349,146,347,151,328,143,250,108"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga00553482e152b68af626de972e2187d7" title="XWDS API：增加对象的引用计数" alt="" coords="508,5,639,31"/>
+<area shape="poly" title=" " alt="" coords="455,15,494,15,494,21,455,21"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga69eb284bb145032e408adea3131b9d36" title="XWDS API：减少对象的引用计数" alt="" coords="512,55,635,80"/>
+<area shape="poly" title=" " alt="" coords="452,65,498,65,498,70,452,70"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a6c4f30f22327e2b6b1cd5de06e7be088" name="a6c4f30f22327e2b6b1cd5de06e7be088"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c4f30f22327e2b6b1cd5de06e7be088">&#9670;&#160;</a></span>at24sd_pgwrite() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> at24sd_pgwrite </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwds__eeprom.html">xwds_eeprom</a> *&#160;</td>
+          <td class="paramname"><em>eeprom</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a>&#160;</td>
+          <td class="paramname"><em>data</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> *&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>&#160;</td>
+          <td class="paramname"><em>pgidx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a>&#160;</td>
+          <td class="paramname"><em>to</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a861f75dc214dbd3460987c0b81c90b27" name="a861f75dc214dbd3460987c0b81c90b27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a861f75dc214dbd3460987c0b81c90b27">&#9670;&#160;</a></span>at24sd_putc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> at24sd_putc </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwds__eeprom.html">xwds_eeprom</a> *&#160;</td>
+          <td class="paramname"><em>eeprom</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a>&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a>&#160;</td>
+          <td class="paramname"><em>to</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="at24sd_8c_source.html">at24sd.c</a> 第 <a class="el" href="at24sd_8c_source.html#l00067">67</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   68</span>{</div>
+<div class="line"><span class="lineno">   69</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__i2cm.html">xwds_i2cm</a> * bus;</div>
+<div class="line"><span class="lineno">   70</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__i2c__msg.html">xwds_i2c_msg</a> msg;</div>
+<div class="line"><span class="lineno">   71</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">   72</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a> txdata[2];</div>
+<div class="line"><span class="lineno">   73</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a> i2cpaddr;</div>
+<div class="line"><span class="lineno">   74</span> </div>
+<div class="line"><span class="lineno">   75</span>        i2cpaddr = eeprom-&gt;<a class="code hl_variable" href="structxwds__eeprom.html#ac0d69a37031ba09618fa1e33e91395d2">i2cp</a>.<a class="code hl_variable" href="structxwds__i2cp.html#a5bc0af71e54616272ce4ae8faf96ce4f">addr</a>;</div>
+<div class="line"><span class="lineno">   76</span>        bus = eeprom-&gt;<a class="code hl_variable" href="structxwds__eeprom.html#ac0d69a37031ba09618fa1e33e91395d2">i2cp</a>.<a class="code hl_variable" href="structxwds__i2cp.html#aab3e38d64a24603c6362736349d6b6c0">bus</a>;</div>
+<div class="line"><span class="lineno">   77</span>        txdata[0] = (<a class="code hl_typedef" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a>)(<a class="code hl_variable" href="structxwds__i2c__msg.html#a9c6c1fa43072751cfbe01ae80b6dead0">addr</a> &amp; (<a class="code hl_typedef" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a>)0xFF);</div>
+<div class="line"><span class="lineno">   78</span>        txdata[1] = <a class="code hl_variable" href="structxwds__i2c__msg.html#a7645e8cfaa3a6a3a86b35817b353b623">data</a>;</div>
+<div class="line"><span class="lineno">   79</span>        msg.addr = ((i2cpaddr &amp; (<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)0x00F0) |</div>
+<div class="line"><span class="lineno">   80</span>                    (((<a class="code hl_variable" href="structxwds__i2c__msg.html#a9c6c1fa43072751cfbe01ae80b6dead0">addr</a> &gt;&gt; (<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>)8) &amp; (<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)0x7) &lt;&lt; (<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)1));</div>
+<div class="line"><span class="lineno">   81</span>        msg.flag = ((<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)<a class="code hl_enumvalue" href="group__xwcd__ds__i2c.html#ggac98070f46e55551344ebb1d8a486d0e6a52b6a3aa304a046115aec2f08abe83f2">XWDS_I2C_F_START</a> |</div>
+<div class="line"><span class="lineno">   82</span>                    (<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)<a class="code hl_enumvalue" href="group__xwcd__ds__i2c.html#ggac98070f46e55551344ebb1d8a486d0e6a1908bd4e5ca5099dd6501f4fe78e37b7">XWDS_I2C_F_WR</a> |</div>
+<div class="line"><span class="lineno">   83</span>                    (<a class="code hl_typedef" href="group__xwos__lib__type.html#gae84464fbf887686043158271f71505d9">xwu16_t</a>)<a class="code hl_enumvalue" href="group__xwcd__ds__i2c.html#ggac98070f46e55551344ebb1d8a486d0e6aeef742a36cca69f4afed581b6e43037b">XWDS_I2C_F_STOP</a>);</div>
+<div class="line"><span class="lineno">   84</span>        msg.data = txdata;</div>
+<div class="line"><span class="lineno">   85</span>        msg.size = <span class="keyword">sizeof</span>(txdata);</div>
+<div class="line"><span class="lineno">   86</span>        rc = <a class="code hl_function" href="group__xwcd__ds__i2c__master.html#gaa076e562fa002ef4a1f8b7e41bc13554">xwds_i2cm_xfer</a>(bus, &amp;msg, to);</div>
+<div class="line"><span class="lineno">   87</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">   88</span>}</div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="at24sd_8c_a861f75dc214dbd3460987c0b81c90b27_cgraph.png" border="0" usemap="#aat24sd_8c_a861f75dc214dbd3460987c0b81c90b27_cgraph" alt=""/></div>
+<map name="aat24sd_8c_a861f75dc214dbd3460987c0b81c90b27_cgraph" id="aat24sd_8c_a861f75dc214dbd3460987c0b81c90b27_cgraph">
+<area shape="rect" title=" " alt="" coords="5,80,99,105"/>
+<area shape="rect" href="group__xwcd__ds__i2c__master.html#gaa076e562fa002ef4a1f8b7e41bc13554" title="XWDS API：传输I2C消息" alt="" coords="147,80,264,105"/>
+<area shape="poly" title=" " alt="" coords="99,90,133,90,133,95,99,95"/>
+<area shape="rect" href="group__xwcd__ds__i2c__master.html#gaefd3295a6a3fe9dda0e14991df2be25b" title="XWDS API：增加对象的引用计数" alt="" coords="317,5,437,31"/>
+<area shape="poly" title=" " alt="" coords="230,78,311,40,326,33,328,38,313,44,233,82"/>
+<area shape="rect" href="group__xwcd__ds__i2c__master.html#gaa1574aca457c744ba59ab83b0b0a2eee" title="XWDS API：减少对象的引用计数" alt="" coords="321,55,434,80"/>
+<area shape="poly" title=" " alt="" coords="264,81,307,75,307,80,265,87"/>
+<area shape="rect" href="group__xwos__lock__mtx.html#ga37eb46fa1271ff0ecebd4e0ceb0f4420" title="XWOS API：限时等待上锁互斥锁" alt="" coords="312,104,443,129"/>
+<area shape="poly" title=" " alt="" coords="265,98,299,103,298,108,264,103"/>
+<area shape="rect" href="group__xwos__lock__mtx.html#gaa6b3a2ce561acc043d826e47a9470919" title="XWOS API：解锁互斥锁" alt="" coords="314,153,441,179"/>
+<area shape="poly" title=" " alt="" coords="235,103,313,138,331,146,329,151,311,143,233,108"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga00553482e152b68af626de972e2187d7" title="XWDS API：增加对象的引用计数" alt="" coords="491,5,621,31"/>
+<area shape="poly" title=" " alt="" coords="438,15,477,15,477,21,438,21"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga69eb284bb145032e408adea3131b9d36" title="XWDS API：减少对象的引用计数" alt="" coords="495,55,617,80"/>
+<area shape="poly" title=" " alt="" coords="434,65,481,65,481,70,434,70"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">变量说明</h2>
+<a id="ab39df9e183d699a5f4d403bbfbbf3d90" name="ab39df9e183d699a5f4d403bbfbbf3d90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab39df9e183d699a5f4d403bbfbbf3d90">&#9670;&#160;</a></span>at24sd_drv</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const struct <a class="el" href="structxwds__eeprom__driver.html">xwds_eeprom_driver</a> at24sd_drv</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>初始值:</b><div class="fragment"><div class="line">= {</div>
+<div class="line">        .i2cp = {</div>
+<div class="line">                .base = {</div>
+<div class="line">                        .name = <span class="stringliteral">&quot;xwds.eeprom&quot;</span>,</div>
+<div class="line">                        .probe =  ((<span class="keywordtype">void</span> *)0) ,</div>
+<div class="line">                        .remove =  ((<span class="keywordtype">void</span> *)0) ,</div>
+<div class="line">                        .start = <a class="code hl_function" href="i2c_2eeprom_2driver_8c.html#a0c29df25ac0b5af92eb1402779b059aa">xwds_eeprom_drv_start</a>,</div>
+<div class="line">                        .stop = <a class="code hl_function" href="i2c_2eeprom_2driver_8c.html#a8b769f07f281c6af9d92dd233e0abe63">xwds_eeprom_drv_stop</a>,</div>
+<div class="line"> </div>
+<div class="line">                        .suspend = <a class="code hl_function" href="i2c_2eeprom_2driver_8c.html#a2a99cd188670708655703c0d2c2e7014">xwds_eeprom_drv_suspend</a>,</div>
+<div class="line">                        .resume =  <a class="code hl_function" href="i2c_2eeprom_2driver_8c.html#afce255dbf65cf1ef67bf822ff34fa7e5">xwds_eeprom_drv_resume</a>,</div>
+<div class="line"> </div>
+<div class="line">                },</div>
+<div class="line">        },</div>
+<div class="line">        .putc = <a class="code hl_function" href="at24sd_8c.html#a861f75dc214dbd3460987c0b81c90b27">at24sd_putc</a>,</div>
+<div class="line">        .getc = <a class="code hl_function" href="at24sd_8c.html#a0d6e322502b4dad53f9f73f3d2aca845">at24sd_getc</a>,</div>
+<div class="line">        .pgwrite = <a class="code hl_function" href="at24sd_8c.html#a6c4f30f22327e2b6b1cd5de06e7be088">at24sd_pgwrite</a>,</div>
+<div class="line">        .pgread = <a class="code hl_function" href="at24sd_8c.html#a01522dfc9420e8dae5c87192c9eb962b">at24sd_pgread</a>,</div>
+<div class="line">}</div>
+<div class="ttc" id="aat24sd_8c_html_a01522dfc9420e8dae5c87192c9eb962b"><div class="ttname"><a href="at24sd_8c.html#a01522dfc9420e8dae5c87192c9eb962b">at24sd_pgread</a></div><div class="ttdeci">static xwer_t at24sd_pgread(struct xwds_eeprom *eeprom, xwu8_t buf[], xwsz_t *size, xwsq_t pgidx, xwtm_t to)</div></div>
+<div class="ttc" id="aat24sd_8c_html_a0d6e322502b4dad53f9f73f3d2aca845"><div class="ttname"><a href="at24sd_8c.html#a0d6e322502b4dad53f9f73f3d2aca845">at24sd_getc</a></div><div class="ttdeci">static xwer_t at24sd_getc(struct xwds_eeprom *eeprom, xwu8_t *buf, xwsq_t addr, xwtm_t to)</div><div class="ttdef"><b>Definition</b> <a href="at24sd_8c_source.html#l00091">at24sd.c:91</a></div></div>
+<div class="ttc" id="aat24sd_8c_html_a6c4f30f22327e2b6b1cd5de06e7be088"><div class="ttname"><a href="at24sd_8c.html#a6c4f30f22327e2b6b1cd5de06e7be088">at24sd_pgwrite</a></div><div class="ttdeci">static xwer_t at24sd_pgwrite(struct xwds_eeprom *eeprom, xwu8_t data[], xwsz_t *size, xwsq_t pgidx, xwtm_t to)</div></div>
+<div class="ttc" id="aat24sd_8c_html_a861f75dc214dbd3460987c0b81c90b27"><div class="ttname"><a href="at24sd_8c.html#a861f75dc214dbd3460987c0b81c90b27">at24sd_putc</a></div><div class="ttdeci">static xwer_t at24sd_putc(struct xwds_eeprom *eeprom, xwu8_t data, xwsq_t addr, xwtm_t to)</div><div class="ttdef"><b>Definition</b> <a href="at24sd_8c_source.html#l00067">at24sd.c:67</a></div></div>
+<div class="ttc" id="ai2c_2eeprom_2driver_8c_html_a0c29df25ac0b5af92eb1402779b059aa"><div class="ttname"><a href="i2c_2eeprom_2driver_8c.html#a0c29df25ac0b5af92eb1402779b059aa">xwds_eeprom_drv_start</a></div><div class="ttdeci">xwer_t xwds_eeprom_drv_start(struct xwds_device *dev)</div><div class="ttdoc">EEPROM基本驱动：启动设备</div><div class="ttdef"><b>Definition</b> <a href="i2c_2eeprom_2driver_8c_source.html#l00048">driver.c:48</a></div></div>
+<div class="ttc" id="ai2c_2eeprom_2driver_8c_html_a2a99cd188670708655703c0d2c2e7014"><div class="ttname"><a href="i2c_2eeprom_2driver_8c.html#a2a99cd188670708655703c0d2c2e7014">xwds_eeprom_drv_suspend</a></div><div class="ttdeci">xwer_t xwds_eeprom_drv_suspend(struct xwds_device *dev)</div><div class="ttdoc">EEPROM基本驱动：继续设备</div><div class="ttdef"><b>Definition</b> <a href="i2c_2eeprom_2driver_8c_source.html#l00108">driver.c:108</a></div></div>
+<div class="ttc" id="ai2c_2eeprom_2driver_8c_html_a8b769f07f281c6af9d92dd233e0abe63"><div class="ttname"><a href="i2c_2eeprom_2driver_8c.html#a8b769f07f281c6af9d92dd233e0abe63">xwds_eeprom_drv_stop</a></div><div class="ttdeci">xwer_t xwds_eeprom_drv_stop(struct xwds_device *dev)</div><div class="ttdoc">EEPROM基本驱动：停止设备</div><div class="ttdef"><b>Definition</b> <a href="i2c_2eeprom_2driver_8c_source.html#l00087">driver.c:87</a></div></div>
+<div class="ttc" id="ai2c_2eeprom_2driver_8c_html_afce255dbf65cf1ef67bf822ff34fa7e5"><div class="ttname"><a href="i2c_2eeprom_2driver_8c.html#afce255dbf65cf1ef67bf822ff34fa7e5">xwds_eeprom_drv_resume</a></div><div class="ttdeci">xwer_t xwds_eeprom_drv_resume(struct xwds_device *dev)</div><div class="ttdoc">EEPROM基本驱动：暂停设备</div><div class="ttdef"><b>Definition</b> <a href="i2c_2eeprom_2driver_8c_source.html#l00114">driver.c:114</a></div></div>
+</div><!-- fragment -->
+<p class="definition">在文件 <a class="el" href="at24sd_8c_source.html">at24sd.c</a> 第 <a class="el" href="at24sd_8c_source.html#l00046">46</a> 行定义.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_91e37f1231cf9910bfa2c11be57d8122.html">xwcd</a></li><li class="navelem"><a class="el" href="dir_16e94e208a6ea392b1280d9110c02837.html">peripheral</a></li><li class="navelem"><a class="el" href="dir_89cfba742c65dee08130291e662a86fa.html">i2c</a></li><li class="navelem"><a class="el" href="dir_03bd88ceb44231529bdd5be1bc731fff.html">eeprom</a></li><li class="navelem"><a class="el" href="dir_21b7b3e2ac33df5da4744e7d273eaa8f.html">chip</a></li><li class="navelem"><a class="el" href="at24sd_8c.html">at24sd.c</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
+  </ul>
+</div>
+</body>
+</html>

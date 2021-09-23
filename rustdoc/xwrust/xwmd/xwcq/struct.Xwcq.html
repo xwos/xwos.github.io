@@ -1,0 +1,962 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="循环队列对象结构体"><title>Xwcq in xwrust::xwmd::xwcq - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="xwrust" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (b10cfcd65 2023-11-29)" data-channel="nightly" data-search-js="search-56a624991a76cfad.js" data-settings-js="settings-fe03fdc259827cd2.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="sidebar-items.js"></script><script defer src="../../../static.files/main-77dede896d6ac08e.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc struct"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../xwrust/index.html">xwrust</a><span class="version">1.0.0</span></h2></div><h2 class="location"><a href="#">Xwcq</a></h2><div class="sidebar-elems"><section><h3><a href="#implementations">Methods</a></h3><ul class="block method"><li><a href="#method.availability">availability</a></li><li><a href="#method.capacity">capacity</a></li><li><a href="#method.dq">dq</a></li><li><a href="#method.dq_to">dq_to</a></li><li><a href="#method.dq_unintr">dq_unintr</a></li><li><a href="#method.eq">eq</a></li><li><a href="#method.flush">flush</a></li><li><a href="#method.init">init</a></li><li><a href="#method.jq">jq</a></li><li><a href="#method.new">new</a></li><li><a href="#method.pfq">pfq</a></li><li><a href="#method.pfq_to">pfq_to</a></li><li><a href="#method.pfq_unintr">pfq_unintr</a></li><li><a href="#method.prq">prq</a></li><li><a href="#method.prq_to">prq_to</a></li><li><a href="#method.prq_unintr">prq_unintr</a></li><li><a href="#method.rq">rq</a></li><li><a href="#method.rq_to">rq_to</a></li><li><a href="#method.rq_unintr">rq_unintr</a></li><li><a href="#method.size">size</a></li><li><a href="#method.trydq">trydq</a></li><li><a href="#method.trypfq">trypfq</a></li><li><a href="#method.tryprq">tryprq</a></li><li><a href="#method.tryrq">tryrq</a></li></ul><h3><a href="#trait-implementations">Trait Implementations</a></h3><ul class="block trait-implementation"><li><a href="#impl-Send-for-Xwcq%3CS,+N%3E">!Send</a></li><li><a href="#impl-Sync-for-Xwcq%3CS,+N%3E">Sync</a></li></ul><h3><a href="#synthetic-implementations">Auto Trait Implementations</a></h3><ul class="block synthetic-implementation"><li><a href="#impl-RefUnwindSafe-for-Xwcq%3CS,+N%3E">!RefUnwindSafe</a></li><li><a href="#impl-Unpin-for-Xwcq%3CS,+N%3E">Unpin</a></li><li><a href="#impl-UnwindSafe-for-Xwcq%3CS,+N%3E">UnwindSafe</a></li></ul><h3><a href="#blanket-implementations">Blanket Implementations</a></h3><ul class="block blanket-implementation"><li><a href="#impl-Any-for-T">Any</a></li><li><a href="#impl-Borrow%3CT%3E-for-T">Borrow&lt;T&gt;</a></li><li><a href="#impl-BorrowMut%3CT%3E-for-T">BorrowMut&lt;T&gt;</a></li><li><a href="#impl-From%3CT%3E-for-T">From&lt;T&gt;</a></li><li><a href="#impl-Into%3CU%3E-for-T">Into&lt;U&gt;</a></li><li><a href="#impl-TryFrom%3CU%3E-for-T">TryFrom&lt;U&gt;</a></li><li><a href="#impl-TryInto%3CU%3E-for-T">TryInto&lt;U&gt;</a></li></ul></section><h2><a href="index.html">In xwrust::xwmd::xwcq</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Struct <a href="../../index.html">xwrust</a>::<wbr><a href="../index.html">xwmd</a>::<wbr><a href="index.html">xwcq</a>::<wbr><a class="struct" href="#">Xwcq</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../../../src/xwrust/xwmd/xwcq.rs.html#270-280">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><pre class="rust item-decl"><code>pub struct Xwcq&lt;const S: <a class="type" href="../../types/type.XwSz.html" title="type xwrust::types::XwSz">XwSz</a>, const N: <a class="type" href="../../types/type.XwSz.html" title="type xwrust::types::XwSz">XwSz</a>&gt;<span class="where fmt-newline">where
+    [u8; { _ }]: Sized,</span>{ /* private fields */ }</code></pre><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>循环队列对象结构体</p>
+</div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor">§</a></h2><div id="implementations-list"><details class="toggle implementors-toggle" open><summary><section id="impl-Xwcq%3CS,+N%3E" class="impl"><a class="src rightside" href="../../../src/xwrust/xwmd/xwcq.rs.html#292-1990">source</a><a href="#impl-Xwcq%3CS,+N%3E" class="anchor">§</a><h3 class="code-header">impl&lt;const S: <a class="type" href="../../types/type.XwSz.html" title="type xwrust::types::XwSz">XwSz</a>, const N: <a class="type" href="../../types/type.XwSz.html" title="type xwrust::types::XwSz">XwSz</a>&gt; <a class="struct" href="struct.Xwcq.html" title="struct xwrust::xwmd::xwcq::Xwcq">Xwcq</a>&lt;S, N&gt;<span class="where fmt-newline">where
+    [u8; { _ }]: Sized,</span></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.new" class="method"><a class="src rightside" href="../../../src/xwrust/xwmd/xwcq.rs.html#312-320">source</a><h4 class="code-header">pub const fn <a href="#method.new" class="fn">new</a>() -&gt; Self</h4></section></summary><div class="docblock"><p>新建循环队列对象</p>
+<p>新建时需要指定类型常量参数。</p>
+<ul>
+<li><code>S</code> 是数据槽的大小，不能为0，若 <code>S</code> 不满足内存对齐的要求，会自动向上调整。</li>
+<li><code>N</code> 是数据槽的数量，不能为0。</li>
+</ul>
+<p>此方法是编译期方法。循环队列只可被定义为具有 <a href="https://doc.rust-lang.org/std/keyword.static.html"><code>'static</code></a> 约束的全局变量全局变量：</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwmd::xwcq::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>CQ: Xwcq&lt;<span class="number">64</span>, <span class="number">8</span>&gt; = Xwcq::new(); <span class="comment">// 64字节 * 8个槽</span></code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.init" class="method"><a class="src rightside" href="../../../src/xwrust/xwmd/xwcq.rs.html#348-361">source</a><h4 class="code-header">pub fn <a href="#method.init" class="fn">init</a>(&amp;'static self) -&gt; <a class="enum" href="enum.XwcqError.html" title="enum xwrust::xwmd::xwcq::XwcqError">XwcqError</a></h4></section></summary><div class="docblock"><p>初始化循环队列对象</p>
+<p>循环队列对象必须调用此方法一次，方可正常使用。</p>
+<p>如果在创建循环队列时，指定的 <code>S * N == 0</code> ，初始化时将返回错误 <a href="enum.XwcqError.html#variant.PoolSize" title="variant xwrust::xwmd::xwcq::XwcqError::PoolSize"><code>XwcqError::PoolSize</code></a> 。</p>
+<h5 id="错误码"><a href="#错误码">错误码</a></h5>
+<ul>
+<li><a href="enum.XwcqError.html#variant.Ok" title="variant xwrust::xwmd::xwcq::XwcqError::Ok"><code>XwcqError::Ok</code></a> 没有错误</li>
+<li><a href="enum.XwcqError.html#variant.PoolSize" title="variant xwrust::xwmd::xwcq::XwcqError::PoolSize"><code>XwcqError::PoolSize</code></a> 循环队列内存大小错误</li>
+</ul>
+<h5 id="上下文"><a href="#上下文">上下文</a></h5>
+<ul>
+<li>任意</li>
+</ul>
+<h5 id="示例"><a href="#示例">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwmd::xwcq::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>CQ: Xwcq&lt;<span class="number">64</span>, <span class="number">8</span>&gt; = Xwcq::new(); <span class="comment">// 64字节 * 8个槽
+
+</span><span class="kw">pub fn </span>xwrust_example_xwcq() {
+    <span class="kw">let </span>rc = CQ.init();
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.eq" class="method"><a class="src rightside" href="../../../src/xwrust/xwmd/xwcq.rs.html#413-437">source</a><h4 class="code-header">pub fn <a href="#method.eq" class="fn">eq</a>&lt;T&gt;(&amp;self, data: T) -&gt; Result&lt;<a class="type" href="../../types/type.XwSz.html" title="type xwrust::types::XwSz">XwSz</a>, <a class="enum" href="enum.XwcqError.html" title="enum xwrust::xwmd::xwcq::XwcqError">XwcqError</a>&gt;<span class="where fmt-newline">where
+    T: Sized + Send,</span></h4></section></summary><div class="docblock"><p>将数据发送到循环队列的 <strong>尾端</strong> （入队，EnQueue）</p>
+<ul>
+<li>如果循环队列数据已被填满，循环队列会循环回队列 <strong>首端</strong> 的位置，覆盖掉原数据。</li>
+<li>发送时，数据类型是泛型 <code>T</code> ，<code>T</code> 必须是 <a href="https://doc.rust-lang.org/std/marker/trait.Sized.html"><code>Sized</code></a> 的，数据是被逐字节地被拷贝到循环队列的数据槽内的。</li>
+<li>当发送的数据类型大小大于循环队列的数据槽大小 <code>S</code> ，发送会失败，并返回错误码 <a href="enum.XwcqError.html#variant.DataSize" title="variant xwrust::xwmd::xwcq::XwcqError::DataSize"><code>XwcqError::DataSize</code></a> 。</li>
+</ul>
+<h5 id="参数说明"><a href="#参数说明">参数说明</a></h5>
+<ul>
+<li>data: 类型为 <code>T</code> 的数据</li>
+</ul>
+<h5 id="错误码-1"><a href="#错误码-1">错误码</a></h5>
+<ul>
+<li><a href="enum.XwcqError.html#variant.Ok" title="variant xwrust::xwmd::xwcq::XwcqError::Ok"><code>XwcqError::Ok</code></a> 没有错误</li>
+<li><a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 循环队列没有初始化</li>
+<li><a href="enum.XwcqError.html#variant.DataSize" title="variant xwrust::xwmd::xwcq::XwcqError::DataSize"><code>XwcqError::DataSize</code></a> 数据大小错误</li>
+</ul>
+<h5 id="上下文-1"><a href="#上下文-1">上下文</a></h5>
+<ul>
+<li>任意</li>
+</ul>
+<h5 id="示例-1"><a href="#示例-1">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwos::thd::SThd;
+<span class="kw">use </span>xwrust::xwmd::xwcq::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>CQ: Xwcq&lt;<span class="number">64</span>, <span class="number">16</span>&gt; = Xwcq::new();
+<span class="kw">static </span>CHILD: SThd&lt;<span class="number">1024</span>, <span class="kw-2">&amp;</span>str&gt; = SThd::new(<span class="string">&quot;CHILD0&quot;</span>, <span class="bool-val">true</span>);
+
+<span class="kw">pub fn </span>xwrust_example_xwcq() {
+    CQ.init();
+    CHILD.run(|<span class="kw">_</span>| { <span class="comment">// 子线程0
+            // 将utf-8字符串放入 `[u8; 64]` 数组中后发送
+            </span><span class="kw">let </span><span class="kw-2">mut </span>buffer: [u8; <span class="number">64</span>] = [<span class="number">0</span>; <span class="number">64</span>];
+            <span class="kw">let </span>msg = <span class="string">&quot;子线程数据&quot;</span>.as_bytes();
+            <span class="kw">let </span>msgsize = msg.len();
+            buffer[..msgsize].copy_from_slice(msg);
+            <span class="kw">let </span>rc = CQ.eq(buffer);
+            <span class="kw">match </span>rc {
+                <span class="prelude-val">Ok</span>(sz) =&gt; { <span class="comment">// 发送数据成功
+                </span>},
+                <span class="prelude-val">Err</span>(e) =&gt; { <span class="comment">// 发送数据失败
+                </span>},
+            };
+            <span class="string">&quot;OK&quot;
+        </span>});
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.jq" class="method"><a class="src rightside" href="../../../src/xwrust/xwmd/xwcq.rs.html#489-513">source</a><h4 class="code-header">pub fn <a href="#method.jq" class="fn">jq</a>&lt;T&gt;(&amp;self, data: T) -&gt; Result&lt;<a class="type" href="../../types/type.XwSz.html" title="type xwrust::types::XwSz">XwSz</a>, <a class="enum" href="enum.XwcqError.html" title="enum xwrust::xwmd::xwcq::XwcqError">XwcqError</a>&gt;<span class="where fmt-newline">where
+    T: Sized + Send,</span></h4></section></summary><div class="docblock"><p>将数据发送循环队列的 <strong>首端</strong> （插队，Jump the Queue）</p>
+<ul>
+<li>如果循环队列数据已被填满，循环队列会循环回队列 <strong>尾端</strong> 的位置，覆盖掉原数据。</li>
+<li>发送时，数据类型是泛型 <code>T</code> ，<code>T</code> 必须是 <a href="https://doc.rust-lang.org/std/marker/trait.Sized.html"><code>Sized</code></a> 的，数据是被逐字节地被拷贝到循环队列的数据槽内的。</li>
+<li>当发送的数据类型大小大于循环队列的数据槽大小 <code>S</code> ，发送会失败，并返回错误码 <a href="enum.XwcqError.html#variant.DataSize" title="variant xwrust::xwmd::xwcq::XwcqError::DataSize"><code>XwcqError::DataSize</code></a> 。</li>
+</ul>
+<h5 id="参数说明-1"><a href="#参数说明-1">参数说明</a></h5>
+<ul>
+<li>data: 类型为 <code>T</code> 的数据</li>
+</ul>
+<h5 id="错误码-2"><a href="#错误码-2">错误码</a></h5>
+<ul>
+<li><a href="enum.XwcqError.html#variant.Ok" title="variant xwrust::xwmd::xwcq::XwcqError::Ok"><code>XwcqError::Ok</code></a> 没有错误</li>
+<li><a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 循环队列没有初始化</li>
+<li><a href="enum.XwcqError.html#variant.DataSize" title="variant xwrust::xwmd::xwcq::XwcqError::DataSize"><code>XwcqError::DataSize</code></a> 数据大小错误</li>
+</ul>
+<h5 id="上下文-2"><a href="#上下文-2">上下文</a></h5>
+<ul>
+<li>任意</li>
+</ul>
+<h5 id="示例-2"><a href="#示例-2">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwos::thd::SThd;
+<span class="kw">use </span>xwrust::xwmd::xwcq::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>CQ: Xwcq&lt;<span class="number">64</span>, <span class="number">16</span>&gt; = Xwcq::new();
+<span class="kw">static </span>CHILD: SThd&lt;<span class="number">1024</span>, <span class="kw-2">&amp;</span>str&gt; = SThd::new(<span class="string">&quot;CHILD0&quot;</span>, <span class="bool-val">true</span>);
+
+<span class="kw">pub fn </span>xwrust_example_xwcq() {
+    CQ.init();
+    CHILD.run(|<span class="kw">_</span>| { <span class="comment">// 子线程0
+            // 将utf-8字符串放入 `[u8; 64]` 数组中后发送
+            </span><span class="kw">let </span><span class="kw-2">mut </span>buffer: [u8; <span class="number">64</span>] = [<span class="number">0</span>; <span class="number">64</span>];
+            <span class="kw">let </span>msg = <span class="string">&quot;子线程数据&quot;</span>.as_bytes();
+            <span class="kw">let </span>msgsize = msg.len();
+            buffer[..msgsize].copy_from_slice(msg);
+            <span class="kw">let </span>rc = CQ.jq(buffer);
+            <span class="kw">match </span>rc {
+                <span class="prelude-val">Ok</span>(sz) =&gt; { <span class="comment">// 发送数据成功
+                </span>},
+                <span class="prelude-val">Err</span>(e) =&gt; { <span class="comment">// 发送数据失败
+                </span>},
+            };
+            <span class="string">&quot;OK&quot;
+        </span>});
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.dq" class="method"><a class="src rightside" href="../../../src/xwrust/xwmd/xwcq.rs.html#568-601">source</a><h4 class="code-header">pub fn <a href="#method.dq" class="fn">dq</a>&lt;T&gt;(&amp;self) -&gt; Result&lt;T, <a class="enum" href="enum.XwcqError.html" title="enum xwrust::xwmd::xwcq::XwcqError">XwcqError</a>&gt;<span class="where fmt-newline">where
+    T: Sized + Send,</span></h4></section></summary><div class="docblock"><p>等待从循环队列的 <strong>首端</strong> 接收数据（离队，DeQueue）</p>
+<ul>
+<li>当循环队列未初始化，返回错误码 <a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 。</li>
+<li>若循环队列为空，线程会阻塞等待。</li>
+<li>接收时，数据类型是泛型 <code>T</code> ，<code>T</code> 必须是 <a href="https://doc.rust-lang.org/std/marker/trait.Sized.html"><code>Sized</code></a> 的，数据是被逐字节地从循环队列的数据槽中拷贝到出来的。</li>
+<li>循环队列不会对接收时的 <code>T</code> 与 发送时的 <code>T</code> 进行检查，因此用户必须确保两个类型是一样的，或能安全地进行转换。</li>
+<li>当 <code>T</code> 大小大于循环队列的数据槽大小 <code>S</code> ，接收会失败，并返回错误码 <a href="enum.XwcqError.html#variant.DataSize" title="variant xwrust::xwmd::xwcq::XwcqError::DataSize"><code>XwcqError::DataSize</code></a> 。</li>
+<li>当线程阻塞等待被中断时，返回错误码 <a href="enum.XwcqError.html#variant.Interrupt" title="variant xwrust::xwmd::xwcq::XwcqError::Interrupt"><code>XwcqError::Interrupt</code></a> 。</li>
+</ul>
+<h5 id="上下文-3"><a href="#上下文-3">上下文</a></h5>
+<ul>
+<li>线程</li>
+</ul>
+<h5 id="错误码-3"><a href="#错误码-3">错误码</a></h5>
+<ul>
+<li><a href="enum.XwcqError.html#variant.Ok" title="variant xwrust::xwmd::xwcq::XwcqError::Ok"><code>XwcqError::Ok</code></a> 没有错误</li>
+<li><a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 循环队列没有初始化</li>
+<li><a href="enum.XwcqError.html#variant.Interrupt" title="variant xwrust::xwmd::xwcq::XwcqError::Interrupt"><code>XwcqError::Interrupt</code></a> 等待被中断</li>
+<li><a href="enum.XwcqError.html#variant.NotThreadContext" title="variant xwrust::xwmd::xwcq::XwcqError::NotThreadContext"><code>XwcqError::NotThreadContext</code></a> 不在线程上下文内</li>
+<li><a href="enum.XwcqError.html#variant.CannotPmpt" title="variant xwrust::xwmd::xwcq::XwcqError::CannotPmpt"><code>XwcqError::CannotPmpt</code></a> 抢占被关闭</li>
+<li><a href="enum.XwcqError.html#variant.CannotBh" title="variant xwrust::xwmd::xwcq::XwcqError::CannotBh"><code>XwcqError::CannotBh</code></a> 中断底半部被关闭</li>
+</ul>
+<h5 id="示例-3"><a href="#示例-3">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>core;
+<span class="kw">use </span>core::str;
+<span class="kw">use </span>core::slice::memchr::memchr;
+
+<span class="kw">use </span>xwrust::xwmd::xwcq::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>CQ: Xwcq&lt;<span class="number">64</span>, <span class="number">16</span>&gt; = Xwcq::new();
+
+<span class="kw">pub fn </span>xwrust_example_xwcq() {
+    CQ.init();
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>rc = CQ.dq::&lt;[u8; <span class="number">64</span>]&gt;();
+    <span class="kw">match </span>rc {
+        <span class="prelude-val">Ok</span>(d) =&gt; { <span class="comment">// 获取数据成功
+            // 从 `[u8; 64]` 数组中构建切片 `&amp;str`
+            </span><span class="kw">let </span>totalslice = <span class="kw-2">&amp;</span>d[<span class="number">0</span>..<span class="number">64</span>];
+            <span class="kw">let </span>nullpos = memchr(<span class="number">0</span>, totalslice).unwrap_or(<span class="number">64</span>);
+            <span class="kw">let </span>msgu8slice = <span class="kw-2">&amp;</span>d[<span class="number">0</span>..nullpos];
+            <span class="kw">let </span>msg = str::from_utf8(msgu8slice);
+        },
+        <span class="prelude-val">Err</span>(e) =&gt; { <span class="comment">// 获取数据失败
+            </span><span class="kw">break</span>;
+        },
+    };
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.dq_to" class="method"><a class="src rightside" href="../../../src/xwrust/xwmd/xwcq.rs.html#663-699">source</a><h4 class="code-header">pub fn <a href="#method.dq_to" class="fn">dq_to</a>&lt;T&gt;(&amp;self, to: <a class="type" href="../../types/type.XwTm.html" title="type xwrust::types::XwTm">XwTm</a>) -&gt; Result&lt;T, <a class="enum" href="enum.XwcqError.html" title="enum xwrust::xwmd::xwcq::XwcqError">XwcqError</a>&gt;<span class="where fmt-newline">where
+    T: Sized + Send,</span></h4></section></summary><div class="docblock"><p>等待从循环队列的 <strong>首端</strong> 接收数据（离队，DeQueue）</p>
+<ul>
+<li>当循环队列未初始化，返回错误码 <a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 。</li>
+<li>若循环队列为空，线程会阻塞等待，等待时会指定一个唤醒时间点。</li>
+<li>接收时，数据类型是泛型 <code>T</code> ，<code>T</code> 必须是 <a href="https://doc.rust-lang.org/std/marker/trait.Sized.html"><code>Sized</code></a> 的，数据是被逐字节地从循环队列的数据槽中拷贝到出来的。</li>
+<li>循环队列不会对接收时的 <code>T</code> 与 发送时的 <code>T</code> 进行检查，因此用户必须确保两个类型是一样的，或能安全地进行转换。</li>
+<li>当 <code>T</code> 大小大于循环队列的数据槽大小 <code>S</code> ，接收会失败，并返回错误码 <a href="enum.XwcqError.html#variant.DataSize" title="variant xwrust::xwmd::xwcq::XwcqError::DataSize"><code>XwcqError::DataSize</code></a> 。</li>
+<li>当线程阻塞等待被中断时，返回错误码 <a href="enum.XwcqError.html#variant.Interrupt" title="variant xwrust::xwmd::xwcq::XwcqError::Interrupt"><code>XwcqError::Interrupt</code></a> 。</li>
+<li>当到达指定的唤醒时间点，线程被唤醒，返回错误码 <a href="enum.XwcqError.html#variant.Timedout" title="variant xwrust::xwmd::xwcq::XwcqError::Timedout"><code>XwcqError::Timedout</code></a> 。</li>
+</ul>
+<h5 id="参数说明-2"><a href="#参数说明-2">参数说明</a></h5>
+<ul>
+<li>to: 期望唤醒的时间点</li>
+</ul>
+<h5 id="上下文-4"><a href="#上下文-4">上下文</a></h5>
+<ul>
+<li>线程</li>
+</ul>
+<h5 id="错误码-4"><a href="#错误码-4">错误码</a></h5>
+<ul>
+<li><a href="enum.XwcqError.html#variant.Ok" title="variant xwrust::xwmd::xwcq::XwcqError::Ok"><code>XwcqError::Ok</code></a> 没有错误</li>
+<li><a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 循环队列没有初始化</li>
+<li><a href="enum.XwcqError.html#variant.Interrupt" title="variant xwrust::xwmd::xwcq::XwcqError::Interrupt"><code>XwcqError::Interrupt</code></a> 等待被中断</li>
+<li><a href="enum.XwcqError.html#variant.Timedout" title="variant xwrust::xwmd::xwcq::XwcqError::Timedout"><code>XwcqError::Timedout</code></a> 等待超时</li>
+<li><a href="enum.XwcqError.html#variant.NotThreadContext" title="variant xwrust::xwmd::xwcq::XwcqError::NotThreadContext"><code>XwcqError::NotThreadContext</code></a> 不在线程上下文内</li>
+<li><a href="enum.XwcqError.html#variant.CannotPmpt" title="variant xwrust::xwmd::xwcq::XwcqError::CannotPmpt"><code>XwcqError::CannotPmpt</code></a> 抢占被关闭</li>
+<li><a href="enum.XwcqError.html#variant.CannotBh" title="variant xwrust::xwmd::xwcq::XwcqError::CannotBh"><code>XwcqError::CannotBh</code></a> 中断底半部被关闭</li>
+</ul>
+<h5 id="示例-4"><a href="#示例-4">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>core;
+<span class="kw">use </span>core::str;
+<span class="kw">use </span>core::slice::memchr::memchr;
+
+<span class="kw">use </span>xwrust::xwtm;
+<span class="kw">use </span>xwrust::xwmd::xwcq::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>CQ: Xwcq&lt;<span class="number">64</span>, <span class="number">16</span>&gt; = Xwcq::new();
+
+<span class="kw">pub fn </span>xwrust_example_xwcq() {
+    CQ.init();
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>rc = CQ.dq_to::&lt;[u8; <span class="number">64</span>]&gt;(xwtm::ft(xwtm::s(<span class="number">1</span>)));
+    <span class="kw">match </span>rc {
+        <span class="prelude-val">Ok</span>(d) =&gt; { <span class="comment">// 获取数据成功
+            // 从 `[u8; 64]` 数组中构建切片 `&amp;str`
+            </span><span class="kw">let </span>totalslice = <span class="kw-2">&amp;</span>d[<span class="number">0</span>..<span class="number">64</span>];
+            <span class="kw">let </span>nullpos = memchr(<span class="number">0</span>, totalslice).unwrap_or(<span class="number">64</span>);
+            <span class="kw">let </span>msgu8slice = <span class="kw-2">&amp;</span>d[<span class="number">0</span>..nullpos];
+            <span class="kw">let </span>msg = str::from_utf8(msgu8slice);
+        },
+        <span class="prelude-val">Err</span>(e) =&gt; { <span class="comment">// 获取数据失败
+            </span><span class="kw">break</span>;
+        },
+    };
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.dq_unintr" class="method"><a class="src rightside" href="../../../src/xwrust/xwmd/xwcq.rs.html#752-784">source</a><h4 class="code-header">pub fn <a href="#method.dq_unintr" class="fn">dq_unintr</a>&lt;T&gt;(&amp;self) -&gt; Result&lt;T, <a class="enum" href="enum.XwcqError.html" title="enum xwrust::xwmd::xwcq::XwcqError">XwcqError</a>&gt;<span class="where fmt-newline">where
+    T: Sized + Send,</span></h4></section></summary><div class="docblock"><p>等待从循环队列的 <strong>首端</strong> 接收数据（离队，DeQueue），并且等待不可被中断</p>
+<ul>
+<li>当循环队列未初始化，返回错误码 <a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 。</li>
+<li>若循环队列为空，线程会阻塞等待，且不可被中断。</li>
+<li>接收时，数据类型是泛型 <code>T</code> ，<code>T</code> 必须是 <a href="https://doc.rust-lang.org/std/marker/trait.Sized.html"><code>Sized</code></a> 的，数据是被逐字节地从循环队列的数据槽中拷贝到出来的。</li>
+<li>循环队列不会对接收时的 <code>T</code> 与 发送时的 <code>T</code> 进行检查，因此用户必须确保两个类型是一样的，或能安全地进行转换。</li>
+<li>当 <code>T</code> 大小大于循环队列的数据槽大小 <code>S</code> ，接收会失败，并返回错误码 <a href="enum.XwcqError.html#variant.DataSize" title="variant xwrust::xwmd::xwcq::XwcqError::DataSize"><code>XwcqError::DataSize</code></a> 。</li>
+</ul>
+<h5 id="上下文-5"><a href="#上下文-5">上下文</a></h5>
+<ul>
+<li>线程</li>
+</ul>
+<h5 id="错误码-5"><a href="#错误码-5">错误码</a></h5>
+<ul>
+<li><a href="enum.XwcqError.html#variant.Ok" title="variant xwrust::xwmd::xwcq::XwcqError::Ok"><code>XwcqError::Ok</code></a> 没有错误</li>
+<li><a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 循环队列没有初始化</li>
+<li><a href="enum.XwcqError.html#variant.NotThreadContext" title="variant xwrust::xwmd::xwcq::XwcqError::NotThreadContext"><code>XwcqError::NotThreadContext</code></a> 不在线程上下文内</li>
+<li><a href="enum.XwcqError.html#variant.CannotPmpt" title="variant xwrust::xwmd::xwcq::XwcqError::CannotPmpt"><code>XwcqError::CannotPmpt</code></a> 抢占被关闭</li>
+<li><a href="enum.XwcqError.html#variant.CannotBh" title="variant xwrust::xwmd::xwcq::XwcqError::CannotBh"><code>XwcqError::CannotBh</code></a> 中断底半部被关闭</li>
+</ul>
+<h5 id="示例-5"><a href="#示例-5">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>core;
+<span class="kw">use </span>core::str;
+<span class="kw">use </span>core::slice::memchr::memchr;
+
+<span class="kw">use </span>xwrust::xwmd::xwcq::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>CQ: Xwcq&lt;<span class="number">64</span>, <span class="number">16</span>&gt; = Xwcq::new();
+
+<span class="kw">pub fn </span>xwrust_example_xwcq() {
+    CQ.init();
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>rc = CQ.dq_unintr::&lt;[u8; <span class="number">64</span>]&gt;();
+    <span class="kw">match </span>rc {
+        <span class="prelude-val">Ok</span>(d) =&gt; { <span class="comment">// 获取数据成功
+            // 从 `[u8; 64]` 数组中构建切片 `&amp;str`
+            </span><span class="kw">let </span>totalslice = <span class="kw-2">&amp;</span>d[<span class="number">0</span>..<span class="number">64</span>];
+            <span class="kw">let </span>nullpos = memchr(<span class="number">0</span>, totalslice).unwrap_or(<span class="number">64</span>);
+            <span class="kw">let </span>msgu8slice = <span class="kw-2">&amp;</span>d[<span class="number">0</span>..nullpos];
+            <span class="kw">let </span>msg = str::from_utf8(msgu8slice);
+        },
+        <span class="prelude-val">Err</span>(e) =&gt; { <span class="comment">// 获取数据失败
+            </span><span class="kw">break</span>;
+        },
+    };
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.trydq" class="method"><a class="src rightside" href="../../../src/xwrust/xwmd/xwcq.rs.html#834-861">source</a><h4 class="code-header">pub fn <a href="#method.trydq" class="fn">trydq</a>&lt;T&gt;(&amp;self) -&gt; Result&lt;T, <a class="enum" href="enum.XwcqError.html" title="enum xwrust::xwmd::xwcq::XwcqError">XwcqError</a>&gt;<span class="where fmt-newline">where
+    T: Sized + Send,</span></h4></section></summary><div class="docblock"><p>尝试从循环队列的 <strong>首端</strong> 接收数据（离队，DeQueue）</p>
+<ul>
+<li>当循环队列未初始化，返回错误码 <a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 。</li>
+<li>若循环队列为空，立即返回 <a href="enum.XwcqError.html#variant.DataSize" title="variant xwrust::xwmd::xwcq::XwcqError::DataSize"><code>XwcqError::DataSize</code></a> ，此方法不会阻塞等待。</li>
+<li>接收时，数据类型是泛型 <code>T</code> ，<code>T</code> 必须是 <a href="https://doc.rust-lang.org/std/marker/trait.Sized.html"><code>Sized</code></a> 的，数据是被逐字节地从循环队列的数据槽中拷贝到出来的。</li>
+<li>循环队列不会对接收时的 <code>T</code> 与 发送时的 <code>T</code> 进行检查，因此用户必须确保两个类型是一样的，或能安全地进行转换。</li>
+<li>当 <code>T</code> 大小大于循环队列的数据槽大小 <code>S</code> ，接收会失败，并返回错误码 <a href="enum.XwcqError.html#variant.DataSize" title="variant xwrust::xwmd::xwcq::XwcqError::DataSize"><code>XwcqError::DataSize</code></a> 。</li>
+</ul>
+<h5 id="上下文-6"><a href="#上下文-6">上下文</a></h5>
+<ul>
+<li>任意</li>
+</ul>
+<h5 id="错误码-6"><a href="#错误码-6">错误码</a></h5>
+<ul>
+<li><a href="enum.XwcqError.html#variant.Ok" title="variant xwrust::xwmd::xwcq::XwcqError::Ok"><code>XwcqError::Ok</code></a> 没有错误</li>
+<li><a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 循环队列没有初始化</li>
+<li><a href="enum.XwcqError.html#variant.NoData" title="variant xwrust::xwmd::xwcq::XwcqError::NoData"><code>XwcqError::NoData</code></a> 循环队列中没有数据</li>
+</ul>
+<h5 id="示例-6"><a href="#示例-6">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>core;
+<span class="kw">use </span>core::str;
+<span class="kw">use </span>core::slice::memchr::memchr;
+
+<span class="kw">use </span>xwrust::xwmd::xwcq::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>CQ: Xwcq&lt;<span class="number">64</span>, <span class="number">16</span>&gt; = Xwcq::new();
+
+<span class="kw">pub fn </span>xwrust_example_xwcq() {
+    CQ.init();
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>rc = CQ.trydq::&lt;[u8; <span class="number">64</span>]&gt;();
+    <span class="kw">match </span>rc {
+        <span class="prelude-val">Ok</span>(d) =&gt; { <span class="comment">// 获取数据成功
+            // 从 `[u8; 64]` 数组中构建切片 `&amp;str`
+            </span><span class="kw">let </span>totalslice = <span class="kw-2">&amp;</span>d[<span class="number">0</span>..<span class="number">64</span>];
+            <span class="kw">let </span>nullpos = memchr(<span class="number">0</span>, totalslice).unwrap_or(<span class="number">64</span>);
+            <span class="kw">let </span>msgu8slice = <span class="kw-2">&amp;</span>d[<span class="number">0</span>..nullpos];
+            <span class="kw">let </span>msg = str::from_utf8(msgu8slice);
+        },
+        <span class="prelude-val">Err</span>(e) =&gt; { <span class="comment">// 获取数据失败
+        </span>},
+    };
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.rq" class="method"><a class="src rightside" href="../../../src/xwrust/xwmd/xwcq.rs.html#916-949">source</a><h4 class="code-header">pub fn <a href="#method.rq" class="fn">rq</a>&lt;T&gt;(&amp;self) -&gt; Result&lt;T, <a class="enum" href="enum.XwcqError.html" title="enum xwrust::xwmd::xwcq::XwcqError">XwcqError</a>&gt;<span class="where fmt-newline">where
+    T: Sized + Send,</span></h4></section></summary><div class="docblock"><p>等待从循环队列的 <strong>尾端</strong> 接收数据（反向离队，Reversely deQueue）</p>
+<ul>
+<li>当循环队列未初始化，返回错误码 <a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 。</li>
+<li>若循环队列为空，线程会阻塞等待。</li>
+<li>接收时，数据类型是泛型 <code>T</code> ，<code>T</code> 必须是 <a href="https://doc.rust-lang.org/std/marker/trait.Sized.html"><code>Sized</code></a> 的，数据是被逐字节地从循环队列的数据槽中拷贝到出来的。</li>
+<li>循环队列不会对接收时的 <code>T</code> 与 发送时的 <code>T</code> 进行检查，因此用户必须确保两个类型是一样的，或能安全地进行转换。</li>
+<li>当 <code>T</code> 大小大于循环队列的数据槽大小 <code>S</code> ，接收会失败，并返回错误码 <a href="enum.XwcqError.html#variant.DataSize" title="variant xwrust::xwmd::xwcq::XwcqError::DataSize"><code>XwcqError::DataSize</code></a> 。</li>
+<li>当线程阻塞等待被中断时，返回错误码 <a href="enum.XwcqError.html#variant.Interrupt" title="variant xwrust::xwmd::xwcq::XwcqError::Interrupt"><code>XwcqError::Interrupt</code></a> 。</li>
+</ul>
+<h5 id="上下文-7"><a href="#上下文-7">上下文</a></h5>
+<ul>
+<li>线程</li>
+</ul>
+<h5 id="错误码-7"><a href="#错误码-7">错误码</a></h5>
+<ul>
+<li><a href="enum.XwcqError.html#variant.Ok" title="variant xwrust::xwmd::xwcq::XwcqError::Ok"><code>XwcqError::Ok</code></a> 没有错误</li>
+<li><a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 循环队列没有初始化</li>
+<li><a href="enum.XwcqError.html#variant.Interrupt" title="variant xwrust::xwmd::xwcq::XwcqError::Interrupt"><code>XwcqError::Interrupt</code></a> 等待被中断</li>
+<li><a href="enum.XwcqError.html#variant.NotThreadContext" title="variant xwrust::xwmd::xwcq::XwcqError::NotThreadContext"><code>XwcqError::NotThreadContext</code></a> 不在线程上下文内</li>
+<li><a href="enum.XwcqError.html#variant.CannotPmpt" title="variant xwrust::xwmd::xwcq::XwcqError::CannotPmpt"><code>XwcqError::CannotPmpt</code></a> 抢占被关闭</li>
+<li><a href="enum.XwcqError.html#variant.CannotBh" title="variant xwrust::xwmd::xwcq::XwcqError::CannotBh"><code>XwcqError::CannotBh</code></a> 中断底半部被关闭</li>
+</ul>
+<h5 id="示例-7"><a href="#示例-7">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>core;
+<span class="kw">use </span>core::str;
+<span class="kw">use </span>core::slice::memchr::memchr;
+
+<span class="kw">use </span>xwrust::xwmd::xwcq::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>CQ: Xwcq&lt;<span class="number">64</span>, <span class="number">16</span>&gt; = Xwcq::new();
+
+<span class="kw">pub fn </span>xwrust_example_xwcq() {
+    CQ.init();
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>rc = CQ.rq::&lt;[u8; <span class="number">64</span>]&gt;();
+    <span class="kw">match </span>rc {
+        <span class="prelude-val">Ok</span>(d) =&gt; { <span class="comment">// 获取数据成功
+            // 从 `[u8; 64]` 数组中构建切片 `&amp;str`
+            </span><span class="kw">let </span>totalslice = <span class="kw-2">&amp;</span>d[<span class="number">0</span>..<span class="number">64</span>];
+            <span class="kw">let </span>nullpos = memchr(<span class="number">0</span>, totalslice).unwrap_or(<span class="number">64</span>);
+            <span class="kw">let </span>msgu8slice = <span class="kw-2">&amp;</span>d[<span class="number">0</span>..nullpos];
+            <span class="kw">let </span>msg = str::from_utf8(msgu8slice);
+        },
+        <span class="prelude-val">Err</span>(e) =&gt; { <span class="comment">// 获取数据失败
+            </span><span class="kw">break</span>;
+        },
+    };
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.rq_to" class="method"><a class="src rightside" href="../../../src/xwrust/xwmd/xwcq.rs.html#1015-1051">source</a><h4 class="code-header">pub fn <a href="#method.rq_to" class="fn">rq_to</a>&lt;T&gt;(&amp;self, to: <a class="type" href="../../types/type.XwTm.html" title="type xwrust::types::XwTm">XwTm</a>) -&gt; Result&lt;T, <a class="enum" href="enum.XwcqError.html" title="enum xwrust::xwmd::xwcq::XwcqError">XwcqError</a>&gt;<span class="where fmt-newline">where
+    T: Sized + Send,</span></h4></section></summary><div class="docblock"><p>限时等待从循环队列的 <strong>尾端</strong> 接收数据（反向离队，Reversely deQueue）</p>
+<ul>
+<li>当循环队列未初始化，返回错误码 <a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 。</li>
+<li>若循环队列为空，线程会阻塞等待，等待时会指定一个唤醒时间点。</li>
+<li>接收时，数据类型是泛型 <code>T</code> ，<code>T</code> 必须是 <a href="https://doc.rust-lang.org/std/marker/trait.Sized.html"><code>Sized</code></a> 的，数据是被逐字节地从循环队列的数据槽中拷贝到出来的。</li>
+<li>循环队列不会对接收时的 <code>T</code> 与 发送时的 <code>T</code> 进行检查，因此用户必须确保两个类型是一样的，或能安全地进行转换。</li>
+<li>当 <code>T</code> 大小大于循环队列的数据槽大小 <code>S</code> ，接收会失败，并返回错误码 <a href="enum.XwcqError.html#variant.DataSize" title="variant xwrust::xwmd::xwcq::XwcqError::DataSize"><code>XwcqError::DataSize</code></a> 。</li>
+<li>当线程阻塞等待被中断时，返回错误码 <a href="enum.XwcqError.html#variant.Interrupt" title="variant xwrust::xwmd::xwcq::XwcqError::Interrupt"><code>XwcqError::Interrupt</code></a> 。</li>
+<li>当到达指定的唤醒时间点，线程被唤醒，返回错误码 <a href="enum.XwcqError.html#variant.Timedout" title="variant xwrust::xwmd::xwcq::XwcqError::Timedout"><code>XwcqError::Timedout</code></a> 。</li>
+</ul>
+<h5 id="参数说明-3"><a href="#参数说明-3">参数说明</a></h5>
+<ul>
+<li>to: 期望唤醒的时间点</li>
+</ul>
+<h5 id="上下文-8"><a href="#上下文-8">上下文</a></h5>
+<ul>
+<li>线程</li>
+</ul>
+<h5 id="错误码-8"><a href="#错误码-8">错误码</a></h5>
+<ul>
+<li><a href="enum.XwcqError.html#variant.Ok" title="variant xwrust::xwmd::xwcq::XwcqError::Ok"><code>XwcqError::Ok</code></a> 没有错误</li>
+<li><a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 循环队列没有初始化</li>
+<li><a href="enum.XwcqError.html#variant.Interrupt" title="variant xwrust::xwmd::xwcq::XwcqError::Interrupt"><code>XwcqError::Interrupt</code></a> 等待被中断</li>
+<li><a href="enum.XwcqError.html#variant.Timedout" title="variant xwrust::xwmd::xwcq::XwcqError::Timedout"><code>XwcqError::Timedout</code></a> 等待超时</li>
+<li><a href="enum.XwcqError.html#variant.NotThreadContext" title="variant xwrust::xwmd::xwcq::XwcqError::NotThreadContext"><code>XwcqError::NotThreadContext</code></a> 不在线程上下文内</li>
+<li><a href="enum.XwcqError.html#variant.CannotPmpt" title="variant xwrust::xwmd::xwcq::XwcqError::CannotPmpt"><code>XwcqError::CannotPmpt</code></a> 抢占被关闭</li>
+<li><a href="enum.XwcqError.html#variant.CannotBh" title="variant xwrust::xwmd::xwcq::XwcqError::CannotBh"><code>XwcqError::CannotBh</code></a> 中断底半部被关闭</li>
+</ul>
+<h5 id="上下文-9"><a href="#上下文-9">上下文</a></h5>
+<ul>
+<li>线程</li>
+</ul>
+<h5 id="示例-8"><a href="#示例-8">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>core;
+<span class="kw">use </span>core::str;
+<span class="kw">use </span>core::slice::memchr::memchr;
+
+<span class="kw">use </span>xwrust::xwtm;
+<span class="kw">use </span>xwrust::xwmd::xwcq::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>CQ: Xwcq&lt;<span class="number">64</span>, <span class="number">16</span>&gt; = Xwcq::new();
+
+<span class="kw">pub fn </span>xwrust_example_xwcq() {
+    CQ.init();
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>rc = CQ.rq_to::&lt;[u8; <span class="number">64</span>]&gt;(xwtm::ft(xwtm::s(<span class="number">1</span>)));
+    <span class="kw">match </span>rc {
+        <span class="prelude-val">Ok</span>(d) =&gt; { <span class="comment">// 获取数据成功
+            // 从 `[u8; 64]` 数组中构建切片 `&amp;str`
+            </span><span class="kw">let </span>totalslice = <span class="kw-2">&amp;</span>d[<span class="number">0</span>..<span class="number">64</span>];
+            <span class="kw">let </span>nullpos = memchr(<span class="number">0</span>, totalslice).unwrap_or(<span class="number">64</span>);
+            <span class="kw">let </span>msgu8slice = <span class="kw-2">&amp;</span>d[<span class="number">0</span>..nullpos];
+            <span class="kw">let </span>msg = str::from_utf8(msgu8slice);
+        },
+        <span class="prelude-val">Err</span>(e) =&gt; { <span class="comment">// 获取数据失败
+            </span><span class="kw">break</span>;
+        },
+    };
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.rq_unintr" class="method"><a class="src rightside" href="../../../src/xwrust/xwmd/xwcq.rs.html#1104-1136">source</a><h4 class="code-header">pub fn <a href="#method.rq_unintr" class="fn">rq_unintr</a>&lt;T&gt;(&amp;self) -&gt; Result&lt;T, <a class="enum" href="enum.XwcqError.html" title="enum xwrust::xwmd::xwcq::XwcqError">XwcqError</a>&gt;<span class="where fmt-newline">where
+    T: Sized + Send,</span></h4></section></summary><div class="docblock"><p>等待从循环队列的 <strong>尾端</strong> 接收数据（反向离队，Reversely deQueue），并且等待不可被中断</p>
+<ul>
+<li>当循环队列未初始化，返回错误码 <a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 。</li>
+<li>若循环队列为空，线程会阻塞等待，且不可被中断。</li>
+<li>接收时，数据类型是泛型 <code>T</code> ，<code>T</code> 必须是 <a href="https://doc.rust-lang.org/std/marker/trait.Sized.html"><code>Sized</code></a> 的，数据是被逐字节地从循环队列的数据槽中拷贝到出来的。</li>
+<li>循环队列不会对接收时的 <code>T</code> 与 发送时的 <code>T</code> 进行检查，因此用户必须确保两个类型是一样的，或能安全地进行转换。</li>
+<li>当 <code>T</code> 大小大于循环队列的数据槽大小 <code>S</code> ，接收会失败，并返回错误码 <a href="enum.XwcqError.html#variant.DataSize" title="variant xwrust::xwmd::xwcq::XwcqError::DataSize"><code>XwcqError::DataSize</code></a> 。</li>
+</ul>
+<h5 id="上下文-10"><a href="#上下文-10">上下文</a></h5>
+<ul>
+<li>线程</li>
+</ul>
+<h5 id="错误码-9"><a href="#错误码-9">错误码</a></h5>
+<ul>
+<li><a href="enum.XwcqError.html#variant.Ok" title="variant xwrust::xwmd::xwcq::XwcqError::Ok"><code>XwcqError::Ok</code></a> 没有错误</li>
+<li><a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 循环队列没有初始化</li>
+<li><a href="enum.XwcqError.html#variant.NotThreadContext" title="variant xwrust::xwmd::xwcq::XwcqError::NotThreadContext"><code>XwcqError::NotThreadContext</code></a> 不在线程上下文内</li>
+<li><a href="enum.XwcqError.html#variant.CannotPmpt" title="variant xwrust::xwmd::xwcq::XwcqError::CannotPmpt"><code>XwcqError::CannotPmpt</code></a> 抢占被关闭</li>
+<li><a href="enum.XwcqError.html#variant.CannotBh" title="variant xwrust::xwmd::xwcq::XwcqError::CannotBh"><code>XwcqError::CannotBh</code></a> 中断底半部被关闭</li>
+</ul>
+<h5 id="示例-9"><a href="#示例-9">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>core;
+<span class="kw">use </span>core::str;
+<span class="kw">use </span>core::slice::memchr::memchr;
+
+<span class="kw">use </span>xwrust::xwmd::xwcq::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>CQ: Xwcq&lt;<span class="number">64</span>, <span class="number">16</span>&gt; = Xwcq::new();
+
+<span class="kw">pub fn </span>xwrust_example_xwcq() {
+    CQ.init();
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>rc = CQ.rq_unintr::&lt;[u8; <span class="number">64</span>]&gt;();
+    <span class="kw">match </span>rc {
+        <span class="prelude-val">Ok</span>(d) =&gt; { <span class="comment">// 获取数据成功
+            // 从 `[u8; 64]` 数组中构建切片 `&amp;str`
+            </span><span class="kw">let </span>totalslice = <span class="kw-2">&amp;</span>d[<span class="number">0</span>..<span class="number">64</span>];
+            <span class="kw">let </span>nullpos = memchr(<span class="number">0</span>, totalslice).unwrap_or(<span class="number">64</span>);
+            <span class="kw">let </span>msgu8slice = <span class="kw-2">&amp;</span>d[<span class="number">0</span>..nullpos];
+            <span class="kw">let </span>msg = str::from_utf8(msgu8slice);
+        },
+        <span class="prelude-val">Err</span>(e) =&gt; { <span class="comment">// 获取数据失败
+            </span><span class="kw">break</span>;
+        },
+    };
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.tryrq" class="method"><a class="src rightside" href="../../../src/xwrust/xwmd/xwcq.rs.html#1186-1213">source</a><h4 class="code-header">pub fn <a href="#method.tryrq" class="fn">tryrq</a>&lt;T&gt;(&amp;self) -&gt; Result&lt;T, <a class="enum" href="enum.XwcqError.html" title="enum xwrust::xwmd::xwcq::XwcqError">XwcqError</a>&gt;<span class="where fmt-newline">where
+    T: Sized + Send,</span></h4></section></summary><div class="docblock"><p>尝试从循环队列的 <strong>尾端</strong> 接收数据（反向离队，Reversely deQueue）</p>
+<ul>
+<li>当循环队列未初始化，返回错误码 <a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 。</li>
+<li>若循环队列为空，立即返回 <a href="enum.XwcqError.html#variant.DataSize" title="variant xwrust::xwmd::xwcq::XwcqError::DataSize"><code>XwcqError::DataSize</code></a> ，此方法不会阻塞。</li>
+<li>接收时，数据类型是泛型 <code>T</code> ，<code>T</code> 必须是 <a href="https://doc.rust-lang.org/std/marker/trait.Sized.html"><code>Sized</code></a> 的，数据是被逐字节地从循环队列的数据槽中拷贝到出来的。</li>
+<li>循环队列不会对接收时的 <code>T</code> 与 发送时的 <code>T</code> 进行检查，因此用户必须确保两个类型是一样的，或能安全地进行转换。</li>
+<li>当 <code>T</code> 大小大于循环队列的数据槽大小 <code>S</code> ，接收会失败，并返回错误码 <a href="enum.XwcqError.html#variant.DataSize" title="variant xwrust::xwmd::xwcq::XwcqError::DataSize"><code>XwcqError::DataSize</code></a> 。</li>
+</ul>
+<h5 id="上下文-11"><a href="#上下文-11">上下文</a></h5>
+<ul>
+<li>任意</li>
+</ul>
+<h5 id="错误码-10"><a href="#错误码-10">错误码</a></h5>
+<ul>
+<li><a href="enum.XwcqError.html#variant.Ok" title="variant xwrust::xwmd::xwcq::XwcqError::Ok"><code>XwcqError::Ok</code></a> 没有错误</li>
+<li><a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 循环队列没有初始化</li>
+<li><a href="enum.XwcqError.html#variant.NoData" title="variant xwrust::xwmd::xwcq::XwcqError::NoData"><code>XwcqError::NoData</code></a> 循环队列中没有数据</li>
+</ul>
+<h5 id="示例-10"><a href="#示例-10">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>core;
+<span class="kw">use </span>core::str;
+<span class="kw">use </span>core::slice::memchr::memchr;
+
+<span class="kw">use </span>xwrust::xwmd::xwcq::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>CQ: Xwcq&lt;<span class="number">64</span>, <span class="number">16</span>&gt; = Xwcq::new();
+
+<span class="kw">pub fn </span>xwrust_example_xwcq() {
+    CQ.init();
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>rc = CQ.tryrq::&lt;[u8; <span class="number">64</span>]&gt;();
+    <span class="kw">match </span>rc {
+        <span class="prelude-val">Ok</span>(d) =&gt; { <span class="comment">// 获取数据成功
+            // 从 `[u8; 64]` 数组中构建切片 `&amp;str`
+            </span><span class="kw">let </span>totalslice = <span class="kw-2">&amp;</span>d[<span class="number">0</span>..<span class="number">64</span>];
+            <span class="kw">let </span>nullpos = memchr(<span class="number">0</span>, totalslice).unwrap_or(<span class="number">64</span>);
+            <span class="kw">let </span>msgu8slice = <span class="kw-2">&amp;</span>d[<span class="number">0</span>..nullpos];
+            <span class="kw">let </span>msg = str::from_utf8(msgu8slice);
+        },
+        <span class="prelude-val">Err</span>(e) =&gt; { <span class="comment">// 获取数据失败
+        </span>},
+    };
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.pfq" class="method"><a class="src rightside" href="../../../src/xwrust/xwmd/xwcq.rs.html#1269-1302">source</a><h4 class="code-header">pub fn <a href="#method.pfq" class="fn">pfq</a>&lt;T&gt;(&amp;self) -&gt; Result&lt;T, <a class="enum" href="enum.XwcqError.html" title="enum xwrust::xwmd::xwcq::XwcqError">XwcqError</a>&gt;<span class="where fmt-newline">where
+    T: Sized + Send,</span></h4></section></summary><div class="docblock"><p>等待从循环队列 <strong>头端</strong> 拷贝数据（Peek at the Front of Queue）</p>
+<ul>
+<li>当循环队列未初始化，返回错误码 <a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 。</li>
+<li>拷贝数据不会取走数据，也不会释放数据槽，数据可被重复拷贝，也可继续被接收。</li>
+<li>若循环队列为空，线程会阻塞等待。</li>
+<li>接收时，数据类型是泛型 <code>T</code> ，<code>T</code> 必须是 <a href="https://doc.rust-lang.org/std/marker/trait.Sized.html"><code>Sized</code></a> 的，数据是被逐字节地从循环队列的数据槽中拷贝到出来的。</li>
+<li>循环队列不会对接收时的 <code>T</code> 与 发送时的 <code>T</code> 进行检查，因此用户必须确保两个类型是一样的，或能安全地进行转换。</li>
+<li>当 <code>T</code> 大小大于循环队列的数据槽大小 <code>S</code> ，接收会失败，并返回错误码 <a href="enum.XwcqError.html#variant.DataSize" title="variant xwrust::xwmd::xwcq::XwcqError::DataSize"><code>XwcqError::DataSize</code></a> 。</li>
+<li>当线程阻塞等待被中断时，返回错误码 <a href="enum.XwcqError.html#variant.Interrupt" title="variant xwrust::xwmd::xwcq::XwcqError::Interrupt"><code>XwcqError::Interrupt</code></a> 。</li>
+</ul>
+<h5 id="上下文-12"><a href="#上下文-12">上下文</a></h5>
+<ul>
+<li>线程</li>
+</ul>
+<h5 id="错误码-11"><a href="#错误码-11">错误码</a></h5>
+<ul>
+<li><a href="enum.XwcqError.html#variant.Ok" title="variant xwrust::xwmd::xwcq::XwcqError::Ok"><code>XwcqError::Ok</code></a> 没有错误</li>
+<li><a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 循环队列没有初始化</li>
+<li><a href="enum.XwcqError.html#variant.Interrupt" title="variant xwrust::xwmd::xwcq::XwcqError::Interrupt"><code>XwcqError::Interrupt</code></a> 等待被中断</li>
+<li><a href="enum.XwcqError.html#variant.NotThreadContext" title="variant xwrust::xwmd::xwcq::XwcqError::NotThreadContext"><code>XwcqError::NotThreadContext</code></a> 不在线程上下文内</li>
+<li><a href="enum.XwcqError.html#variant.CannotPmpt" title="variant xwrust::xwmd::xwcq::XwcqError::CannotPmpt"><code>XwcqError::CannotPmpt</code></a> 抢占被关闭</li>
+<li><a href="enum.XwcqError.html#variant.CannotBh" title="variant xwrust::xwmd::xwcq::XwcqError::CannotBh"><code>XwcqError::CannotBh</code></a> 中断底半部被关闭</li>
+</ul>
+<h5 id="示例-11"><a href="#示例-11">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>core;
+<span class="kw">use </span>core::str;
+<span class="kw">use </span>core::slice::memchr::memchr;
+
+<span class="kw">use </span>xwrust::xwmd::xwcq::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>CQ: Xwcq&lt;<span class="number">64</span>, <span class="number">16</span>&gt; = Xwcq::new();
+
+<span class="kw">pub fn </span>xwrust_example_xwcq() {
+    CQ.init();
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>rc = CQ.pfq::&lt;[u8; <span class="number">64</span>]&gt;();
+    <span class="kw">match </span>rc {
+        <span class="prelude-val">Ok</span>(d) =&gt; { <span class="comment">// 获取数据成功
+            // 从 `[u8; 64]` 数组中构建切片 `&amp;str`
+            </span><span class="kw">let </span>totalslice = <span class="kw-2">&amp;</span>d[<span class="number">0</span>..<span class="number">64</span>];
+            <span class="kw">let </span>nullpos = memchr(<span class="number">0</span>, totalslice).unwrap_or(<span class="number">64</span>);
+            <span class="kw">let </span>msgu8slice = <span class="kw-2">&amp;</span>d[<span class="number">0</span>..nullpos];
+            <span class="kw">let </span>msg = str::from_utf8(msgu8slice);
+        },
+        <span class="prelude-val">Err</span>(e) =&gt; { <span class="comment">// 获取数据失败
+            </span><span class="kw">break</span>;
+        },
+    };
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.pfq_to" class="method"><a class="src rightside" href="../../../src/xwrust/xwmd/xwcq.rs.html#1365-1401">source</a><h4 class="code-header">pub fn <a href="#method.pfq_to" class="fn">pfq_to</a>&lt;T&gt;(&amp;self, to: <a class="type" href="../../types/type.XwTm.html" title="type xwrust::types::XwTm">XwTm</a>) -&gt; Result&lt;T, <a class="enum" href="enum.XwcqError.html" title="enum xwrust::xwmd::xwcq::XwcqError">XwcqError</a>&gt;<span class="where fmt-newline">where
+    T: Sized + Send,</span></h4></section></summary><div class="docblock"><p>限时等待从循环队列 <strong>头端</strong> 拷贝数据（Peek at the Front of Queue）</p>
+<ul>
+<li>当循环队列未初始化，返回错误码 <a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 。</li>
+<li>拷贝数据不会取走数据，也不会释放数据槽，数据可被重复拷贝，也可继续被接收。</li>
+<li>若循环队列为空，线程会阻塞等待，等待时会指定一个唤醒时间点。</li>
+<li>接收时，数据类型是泛型 <code>T</code> ，<code>T</code> 必须是 <a href="https://doc.rust-lang.org/std/marker/trait.Sized.html"><code>Sized</code></a> 的，数据是被逐字节地从循环队列的数据槽中拷贝到出来的。</li>
+<li>循环队列不会对接收时的 <code>T</code> 与 发送时的 <code>T</code> 进行检查，因此用户必须确保两个类型是一样的，或能安全地进行转换。</li>
+<li>当 <code>T</code> 大小大于循环队列的数据槽大小 <code>S</code> ，接收会失败，并返回错误码 <a href="enum.XwcqError.html#variant.DataSize" title="variant xwrust::xwmd::xwcq::XwcqError::DataSize"><code>XwcqError::DataSize</code></a> 。</li>
+<li>当线程阻塞等待被中断时，返回错误码 <a href="enum.XwcqError.html#variant.Interrupt" title="variant xwrust::xwmd::xwcq::XwcqError::Interrupt"><code>XwcqError::Interrupt</code></a> 。</li>
+<li>当到达指定的唤醒时间点，线程被唤醒，返回错误码 <a href="enum.XwcqError.html#variant.Timedout" title="variant xwrust::xwmd::xwcq::XwcqError::Timedout"><code>XwcqError::Timedout</code></a> 。</li>
+</ul>
+<h5 id="参数说明-4"><a href="#参数说明-4">参数说明</a></h5>
+<ul>
+<li>to: 期望唤醒的时间点</li>
+</ul>
+<h5 id="上下文-13"><a href="#上下文-13">上下文</a></h5>
+<ul>
+<li>线程</li>
+</ul>
+<h5 id="错误码-12"><a href="#错误码-12">错误码</a></h5>
+<ul>
+<li><a href="enum.XwcqError.html#variant.Ok" title="variant xwrust::xwmd::xwcq::XwcqError::Ok"><code>XwcqError::Ok</code></a> 没有错误</li>
+<li><a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 循环队列没有初始化</li>
+<li><a href="enum.XwcqError.html#variant.Interrupt" title="variant xwrust::xwmd::xwcq::XwcqError::Interrupt"><code>XwcqError::Interrupt</code></a> 等待被中断</li>
+<li><a href="enum.XwcqError.html#variant.Timedout" title="variant xwrust::xwmd::xwcq::XwcqError::Timedout"><code>XwcqError::Timedout</code></a> 等待超时</li>
+<li><a href="enum.XwcqError.html#variant.NotThreadContext" title="variant xwrust::xwmd::xwcq::XwcqError::NotThreadContext"><code>XwcqError::NotThreadContext</code></a> 不在线程上下文内</li>
+<li><a href="enum.XwcqError.html#variant.CannotPmpt" title="variant xwrust::xwmd::xwcq::XwcqError::CannotPmpt"><code>XwcqError::CannotPmpt</code></a> 抢占被关闭</li>
+<li><a href="enum.XwcqError.html#variant.CannotBh" title="variant xwrust::xwmd::xwcq::XwcqError::CannotBh"><code>XwcqError::CannotBh</code></a> 中断底半部被关闭</li>
+</ul>
+<h5 id="示例-12"><a href="#示例-12">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>core;
+<span class="kw">use </span>core::str;
+<span class="kw">use </span>core::slice::memchr::memchr;
+
+<span class="kw">use </span>xwrust::xwtm;
+<span class="kw">use </span>xwrust::xwmd::xwcq::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>CQ: Xwcq&lt;<span class="number">64</span>, <span class="number">16</span>&gt; = Xwcq::new();
+
+<span class="kw">pub fn </span>xwrust_example_xwcq() {
+    CQ.init();
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>rc = CQ.pfq_to::&lt;[u8; <span class="number">64</span>]&gt;(xwtm::ft(xwtm::s(<span class="number">1</span>)));
+    <span class="kw">match </span>rc {
+        <span class="prelude-val">Ok</span>(d) =&gt; { <span class="comment">// 获取数据成功
+            // 从 `[u8; 64]` 数组中构建切片 `&amp;str`
+            </span><span class="kw">let </span>totalslice = <span class="kw-2">&amp;</span>d[<span class="number">0</span>..<span class="number">64</span>];
+            <span class="kw">let </span>nullpos = memchr(<span class="number">0</span>, totalslice).unwrap_or(<span class="number">64</span>);
+            <span class="kw">let </span>msgu8slice = <span class="kw-2">&amp;</span>d[<span class="number">0</span>..nullpos];
+            <span class="kw">let </span>msg = str::from_utf8(msgu8slice);
+        },
+        <span class="prelude-val">Err</span>(e) =&gt; { <span class="comment">// 获取数据失败
+            </span><span class="kw">break</span>;
+        },
+    };
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.pfq_unintr" class="method"><a class="src rightside" href="../../../src/xwrust/xwmd/xwcq.rs.html#1455-1487">source</a><h4 class="code-header">pub fn <a href="#method.pfq_unintr" class="fn">pfq_unintr</a>&lt;T&gt;(&amp;self) -&gt; Result&lt;T, <a class="enum" href="enum.XwcqError.html" title="enum xwrust::xwmd::xwcq::XwcqError">XwcqError</a>&gt;<span class="where fmt-newline">where
+    T: Sized + Send,</span></h4></section></summary><div class="docblock"><p>等待从循环队列 <strong>头端</strong> 拷贝数据（Peek at the Front of Queue），并且等待不可被中断</p>
+<ul>
+<li>当循环队列未初始化，返回错误码 <a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 。</li>
+<li>拷贝数据不会取走数据，也不会释放数据槽，数据可被重复拷贝，也可继续被接收。</li>
+<li>若循环队列为空，线程会阻塞等待，且不可被中断。</li>
+<li>接收时，数据类型是泛型 <code>T</code> ，<code>T</code> 必须是 <a href="https://doc.rust-lang.org/std/marker/trait.Sized.html"><code>Sized</code></a> 的，数据是被逐字节地从循环队列的数据槽中拷贝到出来的。</li>
+<li>循环队列不会对接收时的 <code>T</code> 与 发送时的 <code>T</code> 进行检查，因此用户必须确保两个类型是一样的，或能安全地进行转换。</li>
+<li>当 <code>T</code> 大小大于循环队列的数据槽大小 <code>S</code> ，接收会失败，并返回错误码 <a href="enum.XwcqError.html#variant.DataSize" title="variant xwrust::xwmd::xwcq::XwcqError::DataSize"><code>XwcqError::DataSize</code></a> 。</li>
+</ul>
+<h5 id="上下文-14"><a href="#上下文-14">上下文</a></h5>
+<ul>
+<li>线程</li>
+</ul>
+<h5 id="错误码-13"><a href="#错误码-13">错误码</a></h5>
+<ul>
+<li><a href="enum.XwcqError.html#variant.Ok" title="variant xwrust::xwmd::xwcq::XwcqError::Ok"><code>XwcqError::Ok</code></a> 没有错误</li>
+<li><a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 循环队列没有初始化</li>
+<li><a href="enum.XwcqError.html#variant.NotThreadContext" title="variant xwrust::xwmd::xwcq::XwcqError::NotThreadContext"><code>XwcqError::NotThreadContext</code></a> 不在线程上下文内</li>
+<li><a href="enum.XwcqError.html#variant.CannotPmpt" title="variant xwrust::xwmd::xwcq::XwcqError::CannotPmpt"><code>XwcqError::CannotPmpt</code></a> 抢占被关闭</li>
+<li><a href="enum.XwcqError.html#variant.CannotBh" title="variant xwrust::xwmd::xwcq::XwcqError::CannotBh"><code>XwcqError::CannotBh</code></a> 中断底半部被关闭</li>
+</ul>
+<h5 id="示例-13"><a href="#示例-13">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>core;
+<span class="kw">use </span>core::str;
+<span class="kw">use </span>core::slice::memchr::memchr;
+
+<span class="kw">use </span>xwrust::xwmd::xwcq::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>CQ: Xwcq&lt;<span class="number">64</span>, <span class="number">16</span>&gt; = Xwcq::new();
+
+<span class="kw">pub fn </span>xwrust_example_xwcq() {
+    CQ.init();
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>rc = CQ.pfq_unintr::&lt;[u8; <span class="number">64</span>]&gt;();
+    <span class="kw">match </span>rc {
+        <span class="prelude-val">Ok</span>(d) =&gt; { <span class="comment">// 获取数据成功
+            // 从 `[u8; 64]` 数组中构建切片 `&amp;str`
+            </span><span class="kw">let </span>totalslice = <span class="kw-2">&amp;</span>d[<span class="number">0</span>..<span class="number">64</span>];
+            <span class="kw">let </span>nullpos = memchr(<span class="number">0</span>, totalslice).unwrap_or(<span class="number">64</span>);
+            <span class="kw">let </span>msgu8slice = <span class="kw-2">&amp;</span>d[<span class="number">0</span>..nullpos];
+            <span class="kw">let </span>msg = str::from_utf8(msgu8slice);
+        },
+        <span class="prelude-val">Err</span>(e) =&gt; { <span class="comment">// 获取数据失败
+            </span><span class="kw">break</span>;
+        },
+    };
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.trypfq" class="method"><a class="src rightside" href="../../../src/xwrust/xwmd/xwcq.rs.html#1538-1565">source</a><h4 class="code-header">pub fn <a href="#method.trypfq" class="fn">trypfq</a>&lt;T&gt;(&amp;self) -&gt; Result&lt;T, <a class="enum" href="enum.XwcqError.html" title="enum xwrust::xwmd::xwcq::XwcqError">XwcqError</a>&gt;<span class="where fmt-newline">where
+    T: Sized + Send,</span></h4></section></summary><div class="docblock"><p>尝试从循环队列 <strong>头端</strong> 拷贝数据（Peek at the Front of Queue）</p>
+<ul>
+<li>当循环队列未初始化，返回错误码 <a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 。</li>
+<li>拷贝数据不会取走数据，也不会释放数据槽，数据可被重复拷贝，也可继续被接收。</li>
+<li>若循环队列为空，立即返回 <a href="enum.XwcqError.html#variant.DataSize" title="variant xwrust::xwmd::xwcq::XwcqError::DataSize"><code>XwcqError::DataSize</code></a> ，此方法不会阻塞。</li>
+<li>接收时，数据类型是泛型 <code>T</code> ，<code>T</code> 必须是 <a href="https://doc.rust-lang.org/std/marker/trait.Sized.html"><code>Sized</code></a> 的，数据是被逐字节地从循环队列的数据槽中拷贝到出来的。</li>
+<li>循环队列不会对接收时的 <code>T</code> 与 发送时的 <code>T</code> 进行检查，因此用户必须确保两个类型是一样的，或能安全地进行转换。</li>
+<li>当 <code>T</code> 大小大于循环队列的数据槽大小 <code>S</code> ，接收会失败，并返回错误码 <a href="enum.XwcqError.html#variant.DataSize" title="variant xwrust::xwmd::xwcq::XwcqError::DataSize"><code>XwcqError::DataSize</code></a> 。</li>
+</ul>
+<h5 id="上下文-15"><a href="#上下文-15">上下文</a></h5>
+<ul>
+<li>任意</li>
+</ul>
+<h5 id="错误码-14"><a href="#错误码-14">错误码</a></h5>
+<ul>
+<li><a href="enum.XwcqError.html#variant.Ok" title="variant xwrust::xwmd::xwcq::XwcqError::Ok"><code>XwcqError::Ok</code></a> 没有错误</li>
+<li><a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 循环队列没有初始化</li>
+<li><a href="enum.XwcqError.html#variant.NoData" title="variant xwrust::xwmd::xwcq::XwcqError::NoData"><code>XwcqError::NoData</code></a> 循环队列中没有数据</li>
+</ul>
+<h5 id="示例-14"><a href="#示例-14">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>core;
+<span class="kw">use </span>core::str;
+<span class="kw">use </span>core::slice::memchr::memchr;
+
+<span class="kw">use </span>xwrust::xwmd::xwcq::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>CQ: Xwcq&lt;<span class="number">64</span>, <span class="number">16</span>&gt; = Xwcq::new();
+
+<span class="kw">pub fn </span>xwrust_example_xwcq() {
+    CQ.init();
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>rc = CQ.trypfq::&lt;[u8; <span class="number">64</span>]&gt;();
+    <span class="kw">match </span>rc {
+        <span class="prelude-val">Ok</span>(d) =&gt; { <span class="comment">// 获取数据成功
+            // 从 `[u8; 64]` 数组中构建切片 `&amp;str`
+            </span><span class="kw">let </span>totalslice = <span class="kw-2">&amp;</span>d[<span class="number">0</span>..<span class="number">64</span>];
+            <span class="kw">let </span>nullpos = memchr(<span class="number">0</span>, totalslice).unwrap_or(<span class="number">64</span>);
+            <span class="kw">let </span>msgu8slice = <span class="kw-2">&amp;</span>d[<span class="number">0</span>..nullpos];
+            <span class="kw">let </span>msg = str::from_utf8(msgu8slice);
+        },
+        <span class="prelude-val">Err</span>(e) =&gt; { <span class="comment">// 获取数据失败
+        </span>},
+    };
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.prq" class="method"><a class="src rightside" href="../../../src/xwrust/xwmd/xwcq.rs.html#1621-1654">source</a><h4 class="code-header">pub fn <a href="#method.prq" class="fn">prq</a>&lt;T&gt;(&amp;self) -&gt; Result&lt;T, <a class="enum" href="enum.XwcqError.html" title="enum xwrust::xwmd::xwcq::XwcqError">XwcqError</a>&gt;<span class="where fmt-newline">where
+    T: Sized + Send,</span></h4></section></summary><div class="docblock"><p>等待从循环队列 <strong>尾端</strong> 拷贝数据（Peek at the Rear of Queue）</p>
+<ul>
+<li>当循环队列未初始化，返回错误码 <a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 。</li>
+<li>拷贝数据不会取走数据，也不会释放数据槽，数据可被重复拷贝，也可继续被接收。</li>
+<li>若循环队列为空，线程会阻塞等待。</li>
+<li>接收时，数据类型是泛型 <code>T</code> ，<code>T</code> 必须是 <a href="https://doc.rust-lang.org/std/marker/trait.Sized.html"><code>Sized</code></a> 的，数据是被逐字节地从循环队列的数据槽中拷贝到出来的。</li>
+<li>循环队列不会对接收时的 <code>T</code> 与 发送时的 <code>T</code> 进行检查，因此用户必须确保两个类型是一样的，或能安全地进行转换。</li>
+<li>当 <code>T</code> 大小大于循环队列的数据槽大小 <code>S</code> ，接收会失败，并返回错误码 <a href="enum.XwcqError.html#variant.DataSize" title="variant xwrust::xwmd::xwcq::XwcqError::DataSize"><code>XwcqError::DataSize</code></a> 。</li>
+<li>当线程阻塞等待被中断时，返回错误码 <a href="enum.XwcqError.html#variant.Interrupt" title="variant xwrust::xwmd::xwcq::XwcqError::Interrupt"><code>XwcqError::Interrupt</code></a> 。</li>
+</ul>
+<h5 id="上下文-16"><a href="#上下文-16">上下文</a></h5>
+<ul>
+<li>线程</li>
+</ul>
+<h5 id="错误码-15"><a href="#错误码-15">错误码</a></h5>
+<ul>
+<li><a href="enum.XwcqError.html#variant.Ok" title="variant xwrust::xwmd::xwcq::XwcqError::Ok"><code>XwcqError::Ok</code></a> 没有错误</li>
+<li><a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 循环队列没有初始化</li>
+<li><a href="enum.XwcqError.html#variant.Interrupt" title="variant xwrust::xwmd::xwcq::XwcqError::Interrupt"><code>XwcqError::Interrupt</code></a> 等待被中断</li>
+<li><a href="enum.XwcqError.html#variant.NotThreadContext" title="variant xwrust::xwmd::xwcq::XwcqError::NotThreadContext"><code>XwcqError::NotThreadContext</code></a> 不在线程上下文内</li>
+<li><a href="enum.XwcqError.html#variant.CannotPmpt" title="variant xwrust::xwmd::xwcq::XwcqError::CannotPmpt"><code>XwcqError::CannotPmpt</code></a> 抢占被关闭</li>
+<li><a href="enum.XwcqError.html#variant.CannotBh" title="variant xwrust::xwmd::xwcq::XwcqError::CannotBh"><code>XwcqError::CannotBh</code></a> 中断底半部被关闭</li>
+</ul>
+<h5 id="示例-15"><a href="#示例-15">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>core;
+<span class="kw">use </span>core::str;
+<span class="kw">use </span>core::slice::memchr::memchr;
+
+<span class="kw">use </span>xwrust::xwmd::xwcq::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>CQ: Xwcq&lt;<span class="number">64</span>, <span class="number">16</span>&gt; = Xwcq::new();
+
+<span class="kw">pub fn </span>xwrust_example_xwcq() {
+    CQ.init();
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>rc = CQ.prq::&lt;[u8; <span class="number">64</span>]&gt;();
+    <span class="kw">match </span>rc {
+        <span class="prelude-val">Ok</span>(d) =&gt; { <span class="comment">// 获取数据成功
+            // 从 `[u8; 64]` 数组中构建切片 `&amp;str`
+            </span><span class="kw">let </span>totalslice = <span class="kw-2">&amp;</span>d[<span class="number">0</span>..<span class="number">64</span>];
+            <span class="kw">let </span>nullpos = memchr(<span class="number">0</span>, totalslice).unwrap_or(<span class="number">64</span>);
+            <span class="kw">let </span>msgu8slice = <span class="kw-2">&amp;</span>d[<span class="number">0</span>..nullpos];
+            <span class="kw">let </span>msg = str::from_utf8(msgu8slice);
+        },
+        <span class="prelude-val">Err</span>(e) =&gt; { <span class="comment">// 获取数据失败
+            </span><span class="kw">break</span>;
+        },
+    };
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.prq_to" class="method"><a class="src rightside" href="../../../src/xwrust/xwmd/xwcq.rs.html#1717-1753">source</a><h4 class="code-header">pub fn <a href="#method.prq_to" class="fn">prq_to</a>&lt;T&gt;(&amp;self, to: <a class="type" href="../../types/type.XwTm.html" title="type xwrust::types::XwTm">XwTm</a>) -&gt; Result&lt;T, <a class="enum" href="enum.XwcqError.html" title="enum xwrust::xwmd::xwcq::XwcqError">XwcqError</a>&gt;<span class="where fmt-newline">where
+    T: Sized + Send,</span></h4></section></summary><div class="docblock"><p>限时等待从循环队列 <strong>尾端</strong> 拷贝数据（Peek at the Rear of Queue）</p>
+<ul>
+<li>当循环队列未初始化，返回错误码 <a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 。</li>
+<li>拷贝数据不会取走数据，也不会释放数据槽，数据可被重复拷贝，也可继续被接收。</li>
+<li>若循环队列为空，线程会阻塞等待，等待时会指定一个唤醒时间点。</li>
+<li>接收时，数据类型是泛型 <code>T</code> ，<code>T</code> 必须是 <a href="https://doc.rust-lang.org/std/marker/trait.Sized.html"><code>Sized</code></a> 的，数据是被逐字节地从循环队列的数据槽中拷贝到出来的。</li>
+<li>循环队列不会对接收时的 <code>T</code> 与 发送时的 <code>T</code> 进行检查，因此用户必须确保两个类型是一样的，或能安全地进行转换。</li>
+<li>当 <code>T</code> 大小大于循环队列的数据槽大小 <code>S</code> ，接收会失败，并返回错误码 <a href="enum.XwcqError.html#variant.DataSize" title="variant xwrust::xwmd::xwcq::XwcqError::DataSize"><code>XwcqError::DataSize</code></a> 。</li>
+<li>当线程阻塞等待被中断时，返回错误码 <a href="enum.XwcqError.html#variant.Interrupt" title="variant xwrust::xwmd::xwcq::XwcqError::Interrupt"><code>XwcqError::Interrupt</code></a> 。</li>
+<li>当到达指定的唤醒时间点，线程被唤醒，返回错误码 <a href="enum.XwcqError.html#variant.Timedout" title="variant xwrust::xwmd::xwcq::XwcqError::Timedout"><code>XwcqError::Timedout</code></a> 。</li>
+</ul>
+<h5 id="参数说明-5"><a href="#参数说明-5">参数说明</a></h5>
+<ul>
+<li>to: 期望唤醒的时间点</li>
+</ul>
+<h5 id="上下文-17"><a href="#上下文-17">上下文</a></h5>
+<ul>
+<li>线程</li>
+</ul>
+<h5 id="错误码-16"><a href="#错误码-16">错误码</a></h5>
+<ul>
+<li><a href="enum.XwcqError.html#variant.Ok" title="variant xwrust::xwmd::xwcq::XwcqError::Ok"><code>XwcqError::Ok</code></a> 没有错误</li>
+<li><a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 循环队列没有初始化</li>
+<li><a href="enum.XwcqError.html#variant.Interrupt" title="variant xwrust::xwmd::xwcq::XwcqError::Interrupt"><code>XwcqError::Interrupt</code></a> 等待被中断</li>
+<li><a href="enum.XwcqError.html#variant.Timedout" title="variant xwrust::xwmd::xwcq::XwcqError::Timedout"><code>XwcqError::Timedout</code></a> 等待超时</li>
+<li><a href="enum.XwcqError.html#variant.NotThreadContext" title="variant xwrust::xwmd::xwcq::XwcqError::NotThreadContext"><code>XwcqError::NotThreadContext</code></a> 不在线程上下文内</li>
+<li><a href="enum.XwcqError.html#variant.CannotPmpt" title="variant xwrust::xwmd::xwcq::XwcqError::CannotPmpt"><code>XwcqError::CannotPmpt</code></a> 抢占被关闭</li>
+<li><a href="enum.XwcqError.html#variant.CannotBh" title="variant xwrust::xwmd::xwcq::XwcqError::CannotBh"><code>XwcqError::CannotBh</code></a> 中断底半部被关闭</li>
+</ul>
+<h5 id="示例-16"><a href="#示例-16">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>core;
+<span class="kw">use </span>core::str;
+<span class="kw">use </span>core::slice::memchr::memchr;
+
+<span class="kw">use </span>xwrust::xwtm;
+<span class="kw">use </span>xwrust::xwmd::xwcq::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>CQ: Xwcq&lt;<span class="number">64</span>, <span class="number">16</span>&gt; = Xwcq::new();
+
+<span class="kw">pub fn </span>xwrust_example_xwcq() {
+    CQ.init();
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>rc = CQ.prq_to::&lt;[u8; <span class="number">64</span>]&gt;(xwtm::ft(xwtm::s(<span class="number">1</span>)));
+    <span class="kw">match </span>rc {
+        <span class="prelude-val">Ok</span>(d) =&gt; { <span class="comment">// 获取数据成功
+            // 从 `[u8; 64]` 数组中构建切片 `&amp;str`
+            </span><span class="kw">let </span>totalslice = <span class="kw-2">&amp;</span>d[<span class="number">0</span>..<span class="number">64</span>];
+            <span class="kw">let </span>nullpos = memchr(<span class="number">0</span>, totalslice).unwrap_or(<span class="number">64</span>);
+            <span class="kw">let </span>msgu8slice = <span class="kw-2">&amp;</span>d[<span class="number">0</span>..nullpos];
+            <span class="kw">let </span>msg = str::from_utf8(msgu8slice);
+        },
+        <span class="prelude-val">Err</span>(e) =&gt; { <span class="comment">// 获取数据失败
+            </span><span class="kw">break</span>;
+        },
+    };
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.prq_unintr" class="method"><a class="src rightside" href="../../../src/xwrust/xwmd/xwcq.rs.html#1807-1839">source</a><h4 class="code-header">pub fn <a href="#method.prq_unintr" class="fn">prq_unintr</a>&lt;T&gt;(&amp;self) -&gt; Result&lt;T, <a class="enum" href="enum.XwcqError.html" title="enum xwrust::xwmd::xwcq::XwcqError">XwcqError</a>&gt;<span class="where fmt-newline">where
+    T: Sized + Send,</span></h4></section></summary><div class="docblock"><p>等待从循环队列 <strong>尾端</strong> 拷贝数据（Peek at the Rear of Queue），并且等待不可被中断</p>
+<ul>
+<li>当循环队列未初始化，返回错误码 <a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 。</li>
+<li>拷贝数据不会取走数据，也不会释放数据槽，数据可被重复拷贝，也可继续被接收。</li>
+<li>若循环队列为空，线程会阻塞等待，且不可被中断。</li>
+<li>接收时，数据类型是泛型 <code>T</code> ，<code>T</code> 必须是 <a href="https://doc.rust-lang.org/std/marker/trait.Sized.html"><code>Sized</code></a> 的，数据是被逐字节地从循环队列的数据槽中拷贝到出来的。</li>
+<li>循环队列不会对接收时的 <code>T</code> 与 发送时的 <code>T</code> 进行检查，因此用户必须确保两个类型是一样的，或能安全地进行转换。</li>
+<li>当 <code>T</code> 大小大于循环队列的数据槽大小 <code>S</code> ，接收会失败，并返回错误码 <a href="enum.XwcqError.html#variant.DataSize" title="variant xwrust::xwmd::xwcq::XwcqError::DataSize"><code>XwcqError::DataSize</code></a> 。</li>
+</ul>
+<h5 id="上下文-18"><a href="#上下文-18">上下文</a></h5>
+<ul>
+<li>线程</li>
+</ul>
+<h5 id="错误码-17"><a href="#错误码-17">错误码</a></h5>
+<ul>
+<li><a href="enum.XwcqError.html#variant.Ok" title="variant xwrust::xwmd::xwcq::XwcqError::Ok"><code>XwcqError::Ok</code></a> 没有错误</li>
+<li><a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 循环队列没有初始化</li>
+<li><a href="enum.XwcqError.html#variant.NotThreadContext" title="variant xwrust::xwmd::xwcq::XwcqError::NotThreadContext"><code>XwcqError::NotThreadContext</code></a> 不在线程上下文内</li>
+<li><a href="enum.XwcqError.html#variant.CannotPmpt" title="variant xwrust::xwmd::xwcq::XwcqError::CannotPmpt"><code>XwcqError::CannotPmpt</code></a> 抢占被关闭</li>
+<li><a href="enum.XwcqError.html#variant.CannotBh" title="variant xwrust::xwmd::xwcq::XwcqError::CannotBh"><code>XwcqError::CannotBh</code></a> 中断底半部被关闭</li>
+</ul>
+<h5 id="示例-17"><a href="#示例-17">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>core;
+<span class="kw">use </span>core::str;
+<span class="kw">use </span>core::slice::memchr::memchr;
+
+<span class="kw">use </span>xwrust::xwmd::xwcq::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>CQ: Xwcq&lt;<span class="number">64</span>, <span class="number">16</span>&gt; = Xwcq::new();
+
+<span class="kw">pub fn </span>xwrust_example_xwcq() {
+    CQ.init();
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>rc = CQ.prq_unintr::&lt;[u8; <span class="number">64</span>]&gt;();
+    <span class="kw">match </span>rc {
+        <span class="prelude-val">Ok</span>(d) =&gt; { <span class="comment">// 获取数据成功
+            // 从 `[u8; 64]` 数组中构建切片 `&amp;str`
+            </span><span class="kw">let </span>totalslice = <span class="kw-2">&amp;</span>d[<span class="number">0</span>..<span class="number">64</span>];
+            <span class="kw">let </span>nullpos = memchr(<span class="number">0</span>, totalslice).unwrap_or(<span class="number">64</span>);
+            <span class="kw">let </span>msgu8slice = <span class="kw-2">&amp;</span>d[<span class="number">0</span>..nullpos];
+            <span class="kw">let </span>msg = str::from_utf8(msgu8slice);
+        },
+        <span class="prelude-val">Err</span>(e) =&gt; { <span class="comment">// 获取数据失败
+            </span><span class="kw">break</span>;
+        },
+    };
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.tryprq" class="method"><a class="src rightside" href="../../../src/xwrust/xwmd/xwcq.rs.html#1890-1917">source</a><h4 class="code-header">pub fn <a href="#method.tryprq" class="fn">tryprq</a>&lt;T&gt;(&amp;self) -&gt; Result&lt;T, <a class="enum" href="enum.XwcqError.html" title="enum xwrust::xwmd::xwcq::XwcqError">XwcqError</a>&gt;<span class="where fmt-newline">where
+    T: Sized + Send,</span></h4></section></summary><div class="docblock"><p>尝试从循环队列 <strong>尾端</strong> 拷贝数据（Peek at the Rear of Queue）</p>
+<ul>
+<li>当循环队列未初始化，返回错误码 <a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 。</li>
+<li>拷贝数据不会取走数据，也不会释放数据槽，数据可被重复拷贝，也可继续被接收。</li>
+<li>若循环队列为空，立即返回 <a href="enum.XwcqError.html#variant.DataSize" title="variant xwrust::xwmd::xwcq::XwcqError::DataSize"><code>XwcqError::DataSize</code></a> ，此方法不会阻塞。</li>
+<li>接收时，数据类型是泛型 <code>T</code> ，<code>T</code> 必须是 <a href="https://doc.rust-lang.org/std/marker/trait.Sized.html"><code>Sized</code></a> 的，数据是被逐字节地从循环队列的数据槽中拷贝到出来的。</li>
+<li>循环队列不会对接收时的 <code>T</code> 与 发送时的 <code>T</code> 进行检查，因此用户必须确保两个类型是一样的，或能安全地进行转换。</li>
+<li>当 <code>T</code> 大小大于循环队列的数据槽大小 <code>S</code> ，接收会失败，并返回错误码 <a href="enum.XwcqError.html#variant.DataSize" title="variant xwrust::xwmd::xwcq::XwcqError::DataSize"><code>XwcqError::DataSize</code></a> 。</li>
+</ul>
+<h5 id="上下文-19"><a href="#上下文-19">上下文</a></h5>
+<ul>
+<li>任意</li>
+</ul>
+<h5 id="错误码-18"><a href="#错误码-18">错误码</a></h5>
+<ul>
+<li><a href="enum.XwcqError.html#variant.Ok" title="variant xwrust::xwmd::xwcq::XwcqError::Ok"><code>XwcqError::Ok</code></a> 没有错误</li>
+<li><a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 循环队列没有初始化</li>
+<li><a href="enum.XwcqError.html#variant.NoData" title="variant xwrust::xwmd::xwcq::XwcqError::NoData"><code>XwcqError::NoData</code></a> 循环队列中没有数据</li>
+</ul>
+<h5 id="示例-18"><a href="#示例-18">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>core;
+<span class="kw">use </span>core::str;
+<span class="kw">use </span>core::slice::memchr::memchr;
+
+<span class="kw">use </span>xwrust::xwmd::xwcq::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>CQ: Xwcq&lt;<span class="number">64</span>, <span class="number">16</span>&gt; = Xwcq::new();
+
+<span class="kw">pub fn </span>xwrust_example_xwcq() {
+    CQ.init();
+    <span class="comment">// ...省略...
+    </span><span class="kw">let </span>rc = CQ.tryprq::&lt;[u8; <span class="number">64</span>]&gt;();
+    <span class="kw">match </span>rc {
+        <span class="prelude-val">Ok</span>(d) =&gt; { <span class="comment">// 获取数据成功
+            // 从 `[u8; 64]` 数组中构建切片 `&amp;str`
+            </span><span class="kw">let </span>totalslice = <span class="kw-2">&amp;</span>d[<span class="number">0</span>..<span class="number">64</span>];
+            <span class="kw">let </span>nullpos = memchr(<span class="number">0</span>, totalslice).unwrap_or(<span class="number">64</span>);
+            <span class="kw">let </span>msgu8slice = <span class="kw-2">&amp;</span>d[<span class="number">0</span>..nullpos];
+            <span class="kw">let </span>msg = str::from_utf8(msgu8slice);
+        },
+        <span class="prelude-val">Err</span>(e) =&gt; { <span class="comment">// 获取数据失败
+        </span>},
+    };
+}</code></pre></div>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.flush" class="method"><a class="src rightside" href="../../../src/xwrust/xwmd/xwcq.rs.html#1926-1941">source</a><h4 class="code-header">pub fn <a href="#method.flush" class="fn">flush</a>(&amp;self) -&gt; <a class="enum" href="enum.XwcqError.html" title="enum xwrust::xwmd::xwcq::XwcqError">XwcqError</a></h4></section></summary><div class="docblock"><p>清空循环队列</p>
+<ul>
+<li>当循环队列未初始化，返回错误码 <a href="enum.XwcqError.html#variant.NotInit" title="variant xwrust::xwmd::xwcq::XwcqError::NotInit"><code>XwcqError::NotInit</code></a> 。</li>
+</ul>
+<h5 id="上下文-20"><a href="#上下文-20">上下文</a></h5>
+<ul>
+<li>任意</li>
+</ul>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.capacity" class="method"><a class="src rightside" href="../../../src/xwrust/xwmd/xwcq.rs.html#1950-1952">source</a><h4 class="code-header">pub const fn <a href="#method.capacity" class="fn">capacity</a>(&amp;self) -&gt; <a class="type" href="../../types/type.XwSz.html" title="type xwrust::types::XwSz">XwSz</a></h4></section></summary><div class="docblock"><p>获取循环队列的容量</p>
+<p>循环队列的容量也即是数据槽的数量，是在创建循环队列时，指明的类型常数 <code>N</code> 。</p>
+<h5 id="上下文-21"><a href="#上下文-21">上下文</a></h5>
+<ul>
+<li>任意</li>
+</ul>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.size" class="method"><a class="src rightside" href="../../../src/xwrust/xwmd/xwcq.rs.html#1962-1964">source</a><h4 class="code-header">pub const fn <a href="#method.size" class="fn">size</a>(&amp;self) -&gt; <a class="type" href="../../types/type.XwSz.html" title="type xwrust::types::XwSz">XwSz</a></h4></section></summary><div class="docblock"><p>获取循环队列的单个数据槽的大小</p>
+<p>循环队列的单个数据槽的大小是在创建循环队列时，指明的类型常数 <code>S</code> 。
+若 <code>S</code> 不满足内存对齐的要求，会自动向上调整。</p>
+<h5 id="上下文-22"><a href="#上下文-22">上下文</a></h5>
+<ul>
+<li>任意</li>
+</ul>
+</div></details><details class="toggle method-toggle" open><summary><section id="method.availability" class="method"><a class="src rightside" href="../../../src/xwrust/xwmd/xwcq.rs.html#1973-1989">source</a><h4 class="code-header">pub fn <a href="#method.availability" class="fn">availability</a>(&amp;self) -&gt; Result&lt;<a class="type" href="../../types/type.XwSz.html" title="type xwrust::types::XwSz">XwSz</a>, <a class="enum" href="enum.XwcqError.html" title="enum xwrust::xwmd::xwcq::XwcqError">XwcqError</a>&gt;</h4></section></summary><div class="docblock"><p>获取循环队列中有效数据槽的数量</p>
+<p>有效数据槽是指包含了可被接收数据的数据槽。</p>
+<h5 id="上下文-23"><a href="#上下文-23">上下文</a></h5>
+<ul>
+<li>任意</li>
+</ul>
+</div></details></div></details></div><h2 id="trait-implementations" class="small-section-header">Trait Implementations<a href="#trait-implementations" class="anchor">§</a></h2><div id="trait-implementations-list"><section id="impl-Send-for-Xwcq%3CS,+N%3E" class="impl"><a class="src rightside" href="../../../src/xwrust/xwmd/xwcq.rs.html#282-285">source</a><a href="#impl-Send-for-Xwcq%3CS,+N%3E" class="anchor">§</a><h3 class="code-header">impl&lt;const S: <a class="type" href="../../types/type.XwSz.html" title="type xwrust::types::XwSz">XwSz</a>, const N: <a class="type" href="../../types/type.XwSz.html" title="type xwrust::types::XwSz">XwSz</a>&gt; !Send for <a class="struct" href="struct.Xwcq.html" title="struct xwrust::xwmd::xwcq::Xwcq">Xwcq</a>&lt;S, N&gt;<span class="where fmt-newline">where
+    [u8; { _ }]: Sized,</span></h3></section><section id="impl-Sync-for-Xwcq%3CS,+N%3E" class="impl"><a class="src rightside" href="../../../src/xwrust/xwmd/xwcq.rs.html#287-290">source</a><a href="#impl-Sync-for-Xwcq%3CS,+N%3E" class="anchor">§</a><h3 class="code-header">impl&lt;const S: <a class="type" href="../../types/type.XwSz.html" title="type xwrust::types::XwSz">XwSz</a>, const N: <a class="type" href="../../types/type.XwSz.html" title="type xwrust::types::XwSz">XwSz</a>&gt; Sync for <a class="struct" href="struct.Xwcq.html" title="struct xwrust::xwmd::xwcq::Xwcq">Xwcq</a>&lt;S, N&gt;<span class="where fmt-newline">where
+    [u8; { _ }]: Sized,</span></h3></section></div><h2 id="synthetic-implementations" class="small-section-header">Auto Trait Implementations<a href="#synthetic-implementations" class="anchor">§</a></h2><div id="synthetic-implementations-list"><section id="impl-RefUnwindSafe-for-Xwcq%3CS,+N%3E" class="impl"><a href="#impl-RefUnwindSafe-for-Xwcq%3CS,+N%3E" class="anchor">§</a><h3 class="code-header">impl&lt;const S: usize, const N: usize&gt; !RefUnwindSafe for <a class="struct" href="struct.Xwcq.html" title="struct xwrust::xwmd::xwcq::Xwcq">Xwcq</a>&lt;S, N&gt;</h3></section><section id="impl-Unpin-for-Xwcq%3CS,+N%3E" class="impl"><a href="#impl-Unpin-for-Xwcq%3CS,+N%3E" class="anchor">§</a><h3 class="code-header">impl&lt;const S: usize, const N: usize&gt; Unpin for <a class="struct" href="struct.Xwcq.html" title="struct xwrust::xwmd::xwcq::Xwcq">Xwcq</a>&lt;S, N&gt;</h3></section><section id="impl-UnwindSafe-for-Xwcq%3CS,+N%3E" class="impl"><a href="#impl-UnwindSafe-for-Xwcq%3CS,+N%3E" class="anchor">§</a><h3 class="code-header">impl&lt;const S: usize, const N: usize&gt; UnwindSafe for <a class="struct" href="struct.Xwcq.html" title="struct xwrust::xwmd::xwcq::Xwcq">Xwcq</a>&lt;S, N&gt;</h3></section></div><h2 id="blanket-implementations" class="small-section-header">Blanket Implementations<a href="#blanket-implementations" class="anchor">§</a></h2><div id="blanket-implementations-list"><details class="toggle implementors-toggle"><summary><section id="impl-Any-for-T" class="impl"><a href="#impl-Any-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; Any for T<span class="where fmt-newline">where
+    T: 'static + ?Sized,</span></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.type_id" class="method trait-impl"><a href="#method.type_id" class="anchor">§</a><h4 class="code-header">fn <a class="fn">type_id</a>(&amp;self) -&gt; TypeId</h4></section></summary><div class='docblock'>Gets the <code>TypeId</code> of <code>self</code>. <a>Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-Borrow%3CT%3E-for-T" class="impl"><a href="#impl-Borrow%3CT%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; Borrow&lt;T&gt; for T<span class="where fmt-newline">where
+    T: ?Sized,</span></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.borrow" class="method trait-impl"><a href="#method.borrow" class="anchor">§</a><h4 class="code-header">fn <a class="fn">borrow</a>(&amp;self) -&gt; &amp;T</h4></section></summary><div class='docblock'>Immutably borrows from an owned value. <a>Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-BorrowMut%3CT%3E-for-T" class="impl"><a href="#impl-BorrowMut%3CT%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; BorrowMut&lt;T&gt; for T<span class="where fmt-newline">where
+    T: ?Sized,</span></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.borrow_mut" class="method trait-impl"><a href="#method.borrow_mut" class="anchor">§</a><h4 class="code-header">fn <a class="fn">borrow_mut</a>(&amp;mut self) -&gt; &amp;mut T</h4></section></summary><div class='docblock'>Mutably borrows from an owned value. <a>Read more</a></div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-From%3CT%3E-for-T" class="impl"><a href="#impl-From%3CT%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T&gt; From&lt;T&gt; for T</h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.from" class="method trait-impl"><a href="#method.from" class="anchor">§</a><h4 class="code-header">fn <a class="fn">from</a>(t: T) -&gt; T</h4></section></summary><div class="docblock"><p>Returns the argument unchanged.</p>
+</div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-Into%3CU%3E-for-T" class="impl"><a href="#impl-Into%3CU%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T, U&gt; Into&lt;U&gt; for T<span class="where fmt-newline">where
+    U: From&lt;T&gt;,</span></h3></section></summary><div class="impl-items"><details class="toggle method-toggle" open><summary><section id="method.into" class="method trait-impl"><a href="#method.into" class="anchor">§</a><h4 class="code-header">fn <a class="fn">into</a>(self) -&gt; U</h4></section></summary><div class="docblock"><p>Calls <code>U::from(self)</code>.</p>
+<p>That is, this conversion is whatever the implementation of
+<code>[From]&lt;T&gt; for U</code> chooses to do.</p>
+</div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-TryFrom%3CU%3E-for-T" class="impl"><a href="#impl-TryFrom%3CU%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T, U&gt; TryFrom&lt;U&gt; for T<span class="where fmt-newline">where
+    U: Into&lt;T&gt;,</span></h3></section></summary><div class="impl-items"><details class="toggle" open><summary><section id="associatedtype.Error-1" class="associatedtype trait-impl"><a href="#associatedtype.Error-1" class="anchor">§</a><h4 class="code-header">type <a class="associatedtype">Error</a> = Infallible</h4></section></summary><div class='docblock'>The type returned in the event of a conversion error.</div></details><details class="toggle method-toggle" open><summary><section id="method.try_from" class="method trait-impl"><a href="#method.try_from" class="anchor">§</a><h4 class="code-header">fn <a class="fn">try_from</a>(value: U) -&gt; Result&lt;T, &lt;T as TryFrom&lt;U&gt;&gt;::Error&gt;</h4></section></summary><div class='docblock'>Performs the conversion.</div></details></div></details><details class="toggle implementors-toggle"><summary><section id="impl-TryInto%3CU%3E-for-T" class="impl"><a href="#impl-TryInto%3CU%3E-for-T" class="anchor">§</a><h3 class="code-header">impl&lt;T, U&gt; TryInto&lt;U&gt; for T<span class="where fmt-newline">where
+    U: TryFrom&lt;T&gt;,</span></h3></section></summary><div class="impl-items"><details class="toggle" open><summary><section id="associatedtype.Error" class="associatedtype trait-impl"><a href="#associatedtype.Error" class="anchor">§</a><h4 class="code-header">type <a class="associatedtype">Error</a> = &lt;U as TryFrom&lt;T&gt;&gt;::Error</h4></section></summary><div class='docblock'>The type returned in the event of a conversion error.</div></details><details class="toggle method-toggle" open><summary><section id="method.try_into" class="method trait-impl"><a href="#method.try_into" class="anchor">§</a><h4 class="code-header">fn <a class="fn">try_into</a>(self) -&gt; Result&lt;U, &lt;U as TryFrom&lt;T&gt;&gt;::Error&gt;</h4></section></summary><div class='docblock'>Performs the conversion.</div></details></div></details></div></section></div></main></body></html>

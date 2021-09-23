@@ -1,0 +1,24 @@
+var searchData=
+[
+  ['backup_0',['backup',['../structxwmm__memslice.html#ab6d4c104e52c5aeb5441ca96c360be85',1,'xwmm_memslice::backup'],['../structxwmm__mempool__objcache.html#a2a35a6f0e7edd3a011291ae539af6206',1,'xwmm_mempool_objcache::backup']]],
+  ['base_1',['base',['../structxwds__cantrcv__driver.html#afa33ee13ffa6c24588ca4ab214bc70ab',1,'xwds_cantrcv_driver::base'],['../structxwds__uartc__driver.html#a30b7b84aac1a55837d12d0796391c0c8',1,'xwds_uartc_driver::base'],['../structxwds__resource__reg.html#a5ad8088cace6ffa46067e7ed4ca98d1d',1,'xwds_resource_reg::base'],['../structxwds__spip__driver.html#a32813b75565444a41b3861b60265daad',1,'xwds_spip_driver::base'],['../structxwds__spim__driver.html#adbab4e406b1603256504556806b7e55c',1,'xwds_spim_driver::base'],['../structxwds__soc__driver.html#a5293cab99fdfd952aeb53e7620bd26d3',1,'xwds_soc_driver::base'],['../structxwds__misc__driver.html#a3189cbde2c75f296aac08efd922641c6',1,'xwds_misc_driver::base'],['../structxwds__linc__driver.html#a50fc2e18528aed28ae1100383a79156b',1,'xwds_linc_driver::base'],['../structxwds__iochip__driver.html#a1072c7bb2295c628782726e8bd6d878f',1,'xwds_iochip_driver::base'],['../structxwds__i2cp__driver.html#a49feb7f1f1472fe91d6547e3fee487e7',1,'xwds_i2cp_driver::base'],['../structxwds__i2cm__driver.html#a73535c493a0854119d9a843a808c12c8',1,'xwds_i2cm_driver::base'],['../structxwds__canc__driver.html#a1bc221f35b0b43877be380cad2b3ce3f',1,'xwds_canc_driver::base']]],
+  ['baudrate_2',['baudrate',['../structxwds__lin__cfg.html#aab58ce8bda2c5bcda13e82dc42905edb',1,'xwds_lin_cfg::baudrate'],['../structxwds__uart__cfg.html#a1a32329ab1319bdbed712f7a3f763b8b',1,'xwds_uart_cfg::baudrate']]],
+  ['bc_3',['bc',['../structxwds__canc.html#aa67f3a720e649a6b720991b1167e888e',1,'xwds_canc::bc'],['../structxwds__cantrcv.html#a3ec16b6fa4c10eeb0aff75e5862680d7',1,'xwds_cantrcv::bc'],['../structxwds__iochip.html#a8f0e9f6d5d418956c51c243712071071',1,'xwds_iochip::bc']]],
+  ['bcbs_4',['bcbs',['../structxwmm__bma.html#a960065c30d9d1ab09b38751d3b9936ab',1,'xwmm_bma']]],
+  ['bclh_5',['bclh',['../structxwlib__map.html#af4ea26a144cb1ec3ad80132bbd285f24',1,'xwlib_map']]],
+  ['bcln_6',['bcln',['../structxwlib__map__container.html#a70ea6ca60e3804052046c8dfd276004f',1,'xwlib_map_container']]],
+  ['bdcfgs_7',['bdcfgs',['../structxwds__canc__cfg.html#a13763e21bcca671303ca5d1c0565f01d',1,'xwds_canc_cfg']]],
+  ['bdcfgs_5fnum_8',['bdcfgs_num',['../structxwds__canc__cfg.html#a622700f6a004e7a6a366bd68fa2f726f',1,'xwds_canc_cfg']]],
+  ['bdkb_9',['bdkb',['../structxwds__canc__bd__cfg.html#afa6ff5ce00b71b06395ee7d02a7f41f1',1,'xwds_canc_bd_cfg']]],
+  ['bit_10',['bit',['../structxwds__lin__cfg.html#a4f9e51965c4283e25dc41d4529ecad91',1,'xwds_lin_cfg::bit'],['../structxwds__tca9539__cfg.html#a9b4dafd5a46328d10aa1160f6ac46509',1,'xwds_tca9539_cfg::bit'],['../structxwds__tca9539__cfg.html#a8c162043fe9b203cf64d7bbc960b5a01',1,'xwds_tca9539_cfg::bit'],['../structxwds__tca9539__cfg.html#ae5be8c7764e8bdf7e15a65f8fb5963d0',1,'xwds_tca9539_cfg::bit'],['../structxwds__tca9539__cfg.html#a448f5345b54916ccaa3f8273c3ed1ce7',1,'xwds_tca9539_cfg::bit']]],
+  ['bits_11',['bits',['../structxwds__uart__cfg.html#a0e546642f829db2d0d0f97bcc6e5a503',1,'xwds_uart_cfg']]],
+  ['blkodr_12',['blkodr',['../structxwmm__bma.html#aaf40145eda6128c47a0780bbc03e51e2',1,'xwmm_bma']]],
+  ['blksize_13',['blksize',['../structxwmm__bma.html#af75616bed0d5aca4c06b78a05ebfd318',1,'xwmm_bma']]],
+  ['br_14',['br',['../structxwos__br__d.html#ad5951f3c1769088679485955ba6ce194',1,'xwos_br_d']]],
+  ['brightness_15',['brightness',['../structxwds__st7735__parameter.html#a18315c66180d83298bb589f2a69b3553',1,'xwds_st7735_parameter']]],
+  ['bus_16',['bus',['../structxwds__i2cp.html#aab3e38d64a24603c6362736349d6b6c0',1,'xwds_i2cp::bus'],['../structxwds__spip.html#ae52401dbfbade6e5943d8ce82d55a416',1,'xwds_spip::bus'],['../structxwds__uart__cfg.html#a22d871267979068e2e2c6313cac82220',1,'xwds_uart_cfg::bus']]],
+  ['buscfg_17',['buscfg',['../structxwds__spim.html#a3b97b3423c0bd08222b911997db59d34',1,'xwds_spim']]],
+  ['buscfg_5fnum_18',['buscfg_num',['../structxwds__spim.html#a3819df451d1291c23c23b8d09d0efa2f',1,'xwds_spim']]],
+  ['buscfgid_19',['buscfgid',['../structxwds__spip.html#a685eae03d1aa78870e004321ad780bc1',1,'xwds_spip']]],
+  ['busoff_5findication_20',['busoff_indication',['../structxwds__canc__cbtbl.html#a237706de7ca56b40f122f4f7b118cb69',1,'xwds_canc_cbtbl']]]
+];

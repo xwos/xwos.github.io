@@ -1,0 +1,145 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="XWOS RUST：信号选择器"><title>xwrust::xwos::sync::sel - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="xwrust" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (b10cfcd65 2023-11-29)" data-channel="nightly" data-search-js="search-56a624991a76cfad.js" data-settings-js="settings-fe03fdc259827cd2.js" ><script src="../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../sidebar-items.js"></script><script defer src="../../../../static.files/main-77dede896d6ac08e.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../../xwrust/index.html">xwrust</a><span class="version">1.0.0</span></h2></div><h2 class="location"><a href="#">Module sel</a></h2><div class="sidebar-elems"><section><ul class="block"><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#constants">Constants</a></li></ul></section><h2><a href="../index.html">In xwrust::xwos::sync</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Module <a href="../../../index.html">xwrust</a>::<wbr><a href="../../index.html">xwos</a>::<wbr><a href="../index.html">sync</a>::<wbr><a class="mod" href="#">sel</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../../../../src/xwrust/xwos/sync/sel.rs.html#1-765">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="xwos-rust信号选择器"><a href="#xwos-rust信号选择器">XWOS RUST：信号选择器</a></h2>
+<p>信号选择器使用位图 <a href="../../../xwbmp/struct.Bmp.html" title="struct xwrust::xwbmp::Bmp"><code>Bmp</code></a> 来管理一组 <strong>同步对象</strong> 。使得单一线程可以同时等待多个 <strong>同步对象</strong> 。</p>
+<p>每个 <strong>同步对象</strong> 在信号选择器位图中都绑定一个特定的 <strong>位</strong> ，</p>
+<p>当这些 <strong>同步对象</strong> 发送 <strong>选择信号</strong> 时，信号选择器位图中特定的 <strong>位</strong> 被置 <strong>1</strong> ，同时唤醒正在等待信号选择器的线程。
+线程唤醒后可以通过检测哪些 <strong>位</strong> 被置 <strong>1</strong> 来判断哪些 <strong>同步对象</strong> 发送了 <strong>选择信号</strong> 。</p>
+<h2 id="同步对象的绑定与解绑"><a href="#同步对象的绑定与解绑">同步对象的绑定与解绑</a></h2>
+<p>XWOS RUST的所有 <strong>同步对象</strong> 都有一个相似的用于绑定的方法：</p>
+<ul>
+<li><a href="../sem/struct.Sem.html#method.bind" title="method xwrust::xwos::sync::sem::Sem::bind"><code>Sem::bind()</code></a></li>
+<li><a href="../cond/struct.Cond.html#method.bind" title="method xwrust::xwos::sync::cond::Cond::bind"><code>Cond::bind()</code></a></li>
+<li><a href="../flg/struct.Flg.html#method.bind" title="method xwrust::xwos::sync::flg::Flg::bind"><code>Flg::bind()</code></a></li>
+<li><a href="../br/struct.Br.html#method.bind" title="method xwrust::xwos::sync::br::Br::bind"><code>Br::bind()</code></a></li>
+<li><a href="struct.Sel.html#method.bind" title="method xwrust::xwos::sync::sel::Sel::bind"><code>Sel::bind()</code></a></li>
+</ul>
+<p>绑定后会返回各个 <strong>同步对象</strong> 的 <strong>选择子</strong> ：</p>
+<ul>
+<li><a href="../sem/struct.SemSel.html" title="struct xwrust::xwos::sync::sem::SemSel"><code>SemSel</code></a></li>
+<li><a href="../cond/struct.CondSel.html" title="struct xwrust::xwos::sync::cond::CondSel"><code>CondSel</code></a></li>
+<li><a href="../flg/struct.FlgSel.html" title="struct xwrust::xwos::sync::flg::FlgSel"><code>FlgSel</code></a></li>
+<li><a href="../br/struct.BrSel.html" title="struct xwrust::xwos::sync::br::BrSel"><code>BrSel</code></a></li>
+<li><a href="struct.SelSel.html" title="struct xwrust::xwos::sync::sel::SelSel"><code>SelSel</code></a></li>
+</ul>
+<p><strong>选择子</strong> 被 <a href="https://doc.rust-lang.org/std/mem/fn.drop.html"><code>drop()</code></a> 时，会自动解绑。</p>
+<p><strong>同步对象</strong> 绑定操作又分为 <strong>独占绑定</strong> 与 <strong>非独占绑定</strong> ：</p>
+<ul>
+<li>独占绑定：是指 <strong>同步对象</strong> 一旦绑定了信号选择器位图中的某一位后，其他 <strong>同步对象</strong> 不可再绑定此位，发送的 <strong>选择信号</strong> 也被称为 <strong>独占</strong> 方式的 <strong>选择信号</strong> ；</li>
+<li>非独占绑定：是指 <strong>同步对象</strong> 一旦绑定了信号选择器位图中的某一位后，其他 <strong>同步对象</strong> 还可继续再绑定此位，发送的 <strong>选择信号</strong> 也被称为 <strong>非独占</strong> 方式的 <strong>选择信号</strong> 。</li>
+</ul>
+<p><strong>同步对象</strong> 采用的绑定方式：</p>
+<ul>
+<li>信号量：独占绑定</li>
+<li>条件量：非独占绑定</li>
+<li>事件标志：非独占绑定</li>
+<li>线程栅栏：非独占绑定</li>
+<li>信号选择器：非独占绑定</li>
+</ul>
+<h2 id="选择信号"><a href="#选择信号">选择信号</a></h2><h3 id="选择信号的设置"><a href="#选择信号的设置">选择信号的设置</a></h3>
+<p><strong>选择信号</strong> 的设置，对于不同的 <strong>同步对象</strong> 有不同解释：</p>
+<ul>
+<li>信号量
+<ul>
+<li>计数器的值大于 <strong>0</strong> 时就会被设置。</li>
+</ul>
+</li>
+<li>条件量
+<ul>
+<li>广播操作 <a href="../cond/struct.Cond.html#method.broadcast" title="method xwrust::xwos::sync::cond::Cond::broadcast"><code>Cond::broadcast</code></a></li>
+</ul>
+</li>
+<li>事件标志
+<ul>
+<li>事件标志位图中任何一位发生改变的操作：
+<ul>
+<li><a href="../flg/struct.Flg.html#method.s1m" title="method xwrust::xwos::sync::flg::Flg::s1m"><code>Flg::s1m</code></a></li>
+<li><a href="../flg/struct.Flg.html#method.s1i" title="method xwrust::xwos::sync::flg::Flg::s1i"><code>Flg::s1i</code></a></li>
+<li><a href="../flg/struct.Flg.html#method.c0m" title="method xwrust::xwos::sync::flg::Flg::c0m"><code>Flg::c0m</code></a></li>
+<li><a href="../flg/struct.Flg.html#method.c0i" title="method xwrust::xwos::sync::flg::Flg::c0i"><code>Flg::c0i</code></a></li>
+<li><a href="../flg/struct.Flg.html#method.x1m" title="method xwrust::xwos::sync::flg::Flg::x1m"><code>Flg::x1m</code></a></li>
+<li><a href="../flg/struct.Flg.html#method.x1i" title="method xwrust::xwos::sync::flg::Flg::x1i"><code>Flg::x1i</code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>线程栅栏
+<ul>
+<li>所有线程抵达栅栏，并同时被唤醒；</li>
+</ul>
+</li>
+<li>信号选择器
+<ul>
+<li>信号选择器本身也是 <strong>同步对象</strong> ，也可绑定在另一个信号选择器上。当源信号选择器收到了 <strong>选择信号</strong> ，会将其传递到绑定的另一个目的信号选择器上。</li>
+</ul>
+</li>
+</ul>
+<h3 id="选择信号的清除"><a href="#选择信号的清除">选择信号的清除</a></h3><h4 id="独占-方式的-选择信号"><a href="#独占-方式的-选择信号"><strong>独占</strong> 方式的 <strong>选择信号</strong></a></h4>
+<ul>
+<li>信号量：当信号量中的计数器的值小于等于 <strong>0</strong> 时， <strong>选择信号</strong> 才会被清除。</li>
+</ul>
+<h4 id="非独占-方式的-选择信号"><a href="#非独占-方式的-选择信号"><strong>非独占</strong> 方式的 <strong>选择信号</strong></a></h4>
+<p><strong>非独占</strong> 方式绑定的 <strong>同步对象</strong> 向信号选择器发送 <strong>选择信号</strong> 后，其位图中的位置会被置 <strong>1</strong> 。
+同时会唤醒所有等待的线程，此时线程们会竞争进入信号选择器的临界区。</p>
+<p>最先进入的线程会读取信号选择器的 <strong>选择信号</strong> 位图，并与调用函数时传递的 <strong>掩码</strong> 进行比较，判断是否有 <strong>掩码</strong> 中的 <strong>选择信号</strong> ：</p>
+<ul>
+<li>如果有，会清除信号选择器位图中 <strong>所有</strong> 的 <strong>非独占</strong> 方式的 <strong>选择信号</strong> ，包括 <strong>掩码</strong> 中没有设置的 <strong>选择信号</strong> 。
+因此后续线程将无法再检测到任何 <strong>非独占</strong> 方式的 <strong>选择信号</strong> ，会重新阻塞等待。
+XWOS不推荐在信号选择器上，多于1个线程等待。</li>
+<li>如果没有，线程会重新阻塞等待。然后下一个线程进入临界区检测。</li>
+</ul>
+<h2 id="创建"><a href="#创建">创建</a></h2>
+<p>XWOS RUST的信号量可使用 <a href="struct.Sel.html#method.new" title="associated function xwrust::xwos::sync::sel::Sel::new"><code>Sel::new()</code></a> 创建。
+创建时需要指明泛型中的常量 <code>N</code> ，表示信号选择器中有个多少个位置可以绑定。</p>
+<ul>
+<li>可以创建具有静态生命周期 <a href="https://doc.rust-lang.org/std/keyword.static.html"><code>static</code></a> 约束的全局变量：</li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwos::sync::sel::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>GLOBAL_SEL: Sel&lt;<span class="number">8</span>&gt; = Sel::new();</code></pre></div>
+<ul>
+<li>也可以使用 <a href="https://doc.rust-lang.org/alloc/sync/struct.Arc.html"><code>alloc::sync::Arc</code></a> 在heap中创建：</li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>alloc;
+<span class="kw">use </span>alloc::sync::Arc;
+
+<span class="kw">use </span>xwrust::xwos::sync::sel::<span class="kw-2">*</span>;
+
+<span class="kw">pub fn </span>xwrust_example_sel() {
+    <span class="kw">let </span>sel = Arc::new(Sel::&lt;<span class="number">8</span>&gt;::new());
+}</code></pre></div>
+<h2 id="初始化"><a href="#初始化">初始化</a></h2>
+<p>无论以何种方式创建的信号选择器，都必须在使用前调用 <a href="struct.Sel.html#method.init" title="method xwrust::xwos::sync::sel::Sel::init"><code>Sel::init()</code></a> 进行初始化：</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">pub fn </span>xwrust_example_sel() {
+    GLOBAL_SEL.init();
+    sel.init();
+}</code></pre></div>
+<h3 id="等待信号选择器中的-选择信号"><a href="#等待信号选择器中的-选择信号">等待信号选择器中的 <strong>选择信号</strong></a></h3>
+<p><a href="struct.Sel.html#method.select" title="method xwrust::xwos::sync::sel::Sel::select"><code>Sel::select()</code></a> 可用于等待信号选择器中的 <strong>选择信号</strong> 。</p>
+<ul>
+<li>当没有同步对象向信号选择器发送 <strong>选择信号</strong> 时，线程会阻塞等待。</li>
+<li>当 <strong>任意</strong> 同步对象向信号选择器发送 <strong>选择信号</strong> 时，线程被唤醒，然后返回 <a href="../../../xwbmp/struct.Bmp.html" title="struct xwrust::xwbmp::Bmp"><code>Bmp&lt;N&gt;</code></a> 。</li>
+<li>当线程阻塞等待被中断时，返回 <a href="enum.SelError.html#variant.Interrupt" title="variant xwrust::xwos::sync::sel::SelError::Interrupt"><code>SelError::Interrupt</code></a> 。</li>
+</ul>
+<h3 id="限时等待信号选择器中的-选择信号"><a href="#限时等待信号选择器中的-选择信号">限时等待信号选择器中的 <strong>选择信号</strong></a></h3>
+<p><a href="struct.Sel.html#method.select_to" title="method xwrust::xwos::sync::sel::Sel::select_to"><code>Sel::select_to()</code></a> 可用于限时等待信号选择器中的 <strong>选择信号</strong> 。</p>
+<ul>
+<li>当没有同步对象向信号选择器发送 <strong>选择信号</strong> 时，线程会阻塞等待，等待时会指定一个唤醒时间点。</li>
+<li>当 <strong>任意</strong> 同步对象向信号选择器发送 <strong>选择信号</strong> 时，线程被唤醒，然后返回 <a href="../../../xwbmp/struct.Bmp.html" title="struct xwrust::xwbmp::Bmp"><code>Bmp&lt;N&gt;</code></a> 。</li>
+<li>当线程阻塞等待被中断时，返回 <a href="enum.SelError.html#variant.Interrupt" title="variant xwrust::xwos::sync::sel::SelError::Interrupt"><code>SelError::Interrupt</code></a> 。</li>
+<li>当到达指定的唤醒时间点，线程被唤醒，并返回 <a href="enum.SelError.html#variant.Timedout" title="variant xwrust::xwos::sync::sel::SelError::Timedout"><code>SelError::Timedout</code></a> 。</li>
+</ul>
+<p><a href="struct.Sel.html#method.tryselect" title="method xwrust::xwos::sync::sel::Sel::tryselect"><code>Sel::tryselect()</code></a> 检测信号选择器中是否有 <strong>选择信号</strong> 。</p>
+<ul>
+<li>当检测到 <strong>任意</strong> 同步对象向信号选择器发送 <strong>选择信号</strong> 时，立即返回 <a href="../../../xwbmp/struct.Bmp.html" title="struct xwrust::xwbmp::Bmp"><code>Bmp&lt;N&gt;</code></a> 。</li>
+<li>当没有同步对象向信号选择器发送 <strong>选择信号</strong> 时，立即返回 <a href="enum.SelError.html#variant.NoSignal" title="variant xwrust::xwos::sync::sel::SelError::NoSignal"><code>SelError::NoSignal</code></a> 。</li>
+</ul>
+<h2 id="获取信号选择器中同步对象槽的数量"><a href="#获取信号选择器中同步对象槽的数量">获取信号选择器中同步对象槽的数量</a></h2>
+<p>可以通过方法 <a href="struct.Sel.html#method.get_num" title="method xwrust::xwos::sync::sel::Sel::get_num"><code>Sel::get_num()</code></a> 获取信号选择器中位置的数量，这个值是在创建信号选择器时通过泛型常量 <code>N</code> 指定的。</p>
+<h2 id="绑定到其他信号选择器"><a href="#绑定到其他信号选择器">绑定到其他信号选择器</a></h2>
+<p>信号选择器也是 <strong>同步对象</strong>， 可以通过方法 <a href="struct.Sel.html#method.bind" title="method xwrust::xwos::sync::sel::Sel::bind"><code>Sel::bind()</code></a> 将信号选择器绑定到另一个信号选择器上，由此可将 <strong>选择信号</strong> 进行传递。</p>
+<p>信号选择器采用 <strong>非独占</strong> 的方式进行绑定。</p>
+<h2 id="示例"><a href="#示例">示例</a></h2>
+<p><a href="https://gitee.com/xwos/XWOS/blob/main/xwam/xwrust-example/xwrust_example_sel/src/lib.rs">XWOS/xwam/xwrust-example/xwrust_example_sel</a></p>
+</div></details><h2 id="structs" class="small-section-header"><a href="#structs">Structs</a></h2><ul class="item-table"><li><div class="item-name"><a class="struct" href="struct.Sel.html" title="struct xwrust::xwos::sync::sel::Sel">Sel</a></div><div class="desc docblock-short">信号选择器对象结构体</div></li><li><div class="item-name"><a class="struct" href="struct.SelSel.html" title="struct xwrust::xwos::sync::sel::SelSel">SelSel</a></div><div class="desc docblock-short">信号选择器的选择子</div></li></ul><h2 id="enums" class="small-section-header"><a href="#enums">Enums</a></h2><ul class="item-table"><li><div class="item-name"><a class="enum" href="enum.SelError.html" title="enum xwrust::xwos::sync::sel::SelError">SelError</a></div><div class="desc docblock-short">信号选择器的错误码</div></li></ul><h2 id="constants" class="small-section-header"><a href="#constants">Constants</a></h2><ul class="item-table"><li><div class="item-name"><a class="constant" href="constant.SIZEOF_XWOS_SEL.html" title="constant xwrust::xwos::sync::sel::SIZEOF_XWOS_SEL">SIZEOF_XWOS_SEL</a></div><div class="desc docblock-short">XWOS信号选择器对象占用的内存大小</div></li></ul></section></div></main></body></html>

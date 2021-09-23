@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>XWLUA参考手册</title>
+    <link rel="stylesheet" href="ldoc_new.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>XWLUA</h1>
+
+
+
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="modules/xwtm.html">xwtm</a></li>
+  <li><a href="modules/xwvm.html">xwvm</a></li>
+  <li><a href="modules/xwxt.html">xwxt</a></li>
+  <li><a href="modules/xwos.skd.html">xwos.skd</a></li>
+  <li><a href="modules/xwos.thd.html">xwos.thd</a></li>
+  <li><a href="modules/xwos.cthd.html">xwos.cthd</a></li>
+  <li><a href="modules/xwos.lock.mtx.html">xwos.lock.mtx</a></li>
+  <li><a href="modules/xwos.lock.splk.html">xwos.lock.splk</a></li>
+  <li><a href="modules/xwos.lock.sqlk.html">xwos.lock.sqlk</a></li>
+  <li><a href="modules/xwos.sync.sem.html">xwos.sync.sem</a></li>
+  <li><a href="modules/xwos.sync.cond.html">xwos.sync.cond</a></li>
+  <li><a href="modules/xwos.sync.flg.html">xwos.sync.flg</a></li>
+  <li><a href="modules/xwos.sync.br.html">xwos.sync.br</a></li>
+  <li><a href="modules/xwos.sync.sel.html">xwos.sync.sel</a></li>
+  <li><a href="modules/xwos.pm.html">xwos.pm</a></li>
+</ul>
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><a href="classes/xwlib.bmp.html">xwlib.bmp</a></li>
+  <li><a href="classes/thdsp.html">thdsp</a></li>
+  <li><a href="classes/mtxsp.html">mtxsp</a></li>
+  <li><a href="classes/splksp.html">splksp</a></li>
+  <li><a href="classes/sqlksp.html">sqlksp</a></li>
+  <li><a href="classes/semsp.html">semsp</a></li>
+  <li><a href="classes/condsp.html">condsp</a></li>
+  <li><a href="classes/flgsp.html">flgsp</a></li>
+  <li><a href="classes/brsp.html">brsp</a></li>
+  <li><a href="classes/selsp.html">selsp</a></li>
+  <li><a href="classes/xwds.soc.html">xwds.soc</a></li>
+  <li><a href="classes/xwds.uart.html">xwds.uart</a></li>
+  <li><a href="classes/xwds.i2cm.html">xwds.i2cm</a></li>
+  <li><a href="classes/xwds.spim.html">xwds.spim</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+
+  <h2>XWOS LUA API参考手册</h2>
+  <p>
+
+<h2>XWLUA的扩展</h2>
+
+<h3>多线程</h3>
+
+<p>原生的Lua语言不支持多线程（Lua中的类型 <code>thread</code> 并不是真正的线程，而是协程。），脚本中的全局变量只能由执行脚本的线程自身访问。
+XWLUA在C语言层面开发了多线程的功能，每个线程都拥有一个 <strong>独立的Lua虚拟机</strong> 。</p>
+
+<h3>全局导出表</h3>
+
+<p>为了实现多线程共享数据，XWLUA中实现了一个 <strong>全局导出表(xwxt)</strong> ，全局导出表中的数据对所有线程可见，并且是线程安全的。
+全局导出表也是Lua中的一个独立的虚拟机。</p>
+
+<h3>新的Metamethod：<code>__copy</code></h3>
+
+<p>元方法 <code>__copy()</code> 用于将用户数据从一个虚拟机（全局导出表、线程） <strong>深拷贝</strong> 到另一个虚拟机（线程、全局导出表）中。
+只有 <strong>userdata</strong> 可以定义 <code>__copy()</code> 元方法。</p>
+
+<p>元方法 <code>__copy()</code> 有两个参数，第一个参数是 <strong>数据</strong> ，第二参数是 <strong>目的虚拟机</strong> ，无返回值。
+元方法 <code>__copy()</code> 运行在 <strong>保护模式</strong> ，可以 <strong>抛出错误</strong> 。</p>
+
+<p>实现元方法 <code>__copy()</code> 时，若拷贝失败，应该在 <strong>目的虚拟机</strong> 中压入一个 <strong>nil</strong> 。</p>
+
+
+<p>XWLUA的对象都提供了元方法 <code>__copy()</code> 。</p>
+
+
+<h3>对象强指针</h3>
+
+<p>XWLUA使用 <strong>对象强指针</strong> 管理XWOS内核中的对象（线程、信号量、条件量、事件标志、信号选择器、线程栅栏、互斥锁、自旋锁、顺序锁）。
+<strong>对象强指针</strong> 是一种 <strong>userdata</strong> 。 <strong>对象强指针</strong> 就是对XWOS中的 <a href="../docs/TechRefManual/XwosStd#对象描述符">对象描述符</a> 的封装。
+再借助于Lua虚拟机的GC机制，可实现对象的生命周期自动管理：</p>
+
+<ul>
+    <li>Lua虚拟机每引用一个 <strong>对象强指针</strong> ，都会增加相关联对象的引用计数；</li>
+    <li>Lua虚拟机每 <strong>GC</strong> 一个 <strong>对象强指针</strong> ，都会减少相关联对象的引用计数；</li>
+    <li>当相关联对象的引用计数为 <strong>0</strong> 时，就会执行C语言层面对象的 <code>GC</code> 函数 。</li>
+</ul>
+
+<p><strong>对象强指针</strong> 的概念源于Lua语言的 <strong>强引用</strong> 。</p>
+
+<p><a href="/"><strong>返回首页</strong></a></p>
+
+</p>
+
+<h2>Modules</h2>
+<table class="module_list">
+	<tr>
+		<td class="name"  nowrap><a href="modules/xwtm.html">xwtm</a></td>
+		<td class="summary">XWLUA模块：系统时间</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="modules/xwvm.html">xwvm</a></td>
+		<td class="summary">XWLUA模块：虚拟机</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="modules/xwxt.html">xwxt</a></td>
+		<td class="summary">XWLUA模块：全局导出表</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="modules/xwos.skd.html">xwos.skd</a></td>
+		<td class="summary">XWLUA模块：调度器</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="modules/xwos.thd.html">xwos.thd</a></td>
+		<td class="summary">XWLUA模块：线程</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="modules/xwos.cthd.html">xwos.cthd</a></td>
+		<td class="summary">XWLUA模块：当前线程</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="modules/xwos.lock.mtx.html">xwos.lock.mtx</a></td>
+		<td class="summary">XWLUA模块：互斥锁</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="modules/xwos.lock.splk.html">xwos.lock.splk</a></td>
+		<td class="summary">XWLUA模块：自旋锁</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="modules/xwos.lock.sqlk.html">xwos.lock.sqlk</a></td>
+		<td class="summary">XWLUA模块：顺序锁</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="modules/xwos.sync.sem.html">xwos.sync.sem</a></td>
+		<td class="summary">XWLUA模块：信号量</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="modules/xwos.sync.cond.html">xwos.sync.cond</a></td>
+		<td class="summary">XWLUA模块：条件量</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="modules/xwos.sync.flg.html">xwos.sync.flg</a></td>
+		<td class="summary">XWLUA模块：事件标志</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="modules/xwos.sync.br.html">xwos.sync.br</a></td>
+		<td class="summary">XWLUA模块：线程栅栏</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="modules/xwos.sync.sel.html">xwos.sync.sel</a></td>
+		<td class="summary">XWLUA模块：信号选择器</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="modules/xwos.pm.html">xwos.pm</a></td>
+		<td class="summary">XWLUA模块：电源管理</td>
+	</tr>
+</table>
+<h2>Classes</h2>
+<table class="module_list">
+	<tr>
+		<td class="name"  nowrap><a href="classes/xwlib.bmp.html">xwlib.bmp</a></td>
+		<td class="summary">XWLUA模块：位图</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/thdsp.html">thdsp</a></td>
+		<td class="summary">XWLUA类：线程对象强指针</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/mtxsp.html">mtxsp</a></td>
+		<td class="summary">XWLUA类：互斥锁对象强指针</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/splksp.html">splksp</a></td>
+		<td class="summary">XWLUA类：自旋锁对象强指针</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/sqlksp.html">sqlksp</a></td>
+		<td class="summary">XWLUA类：顺序锁对象强指针</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/semsp.html">semsp</a></td>
+		<td class="summary">XWLUA类：信号量对象强指针</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/condsp.html">condsp</a></td>
+		<td class="summary">XWLUA类：条件量对象强指针</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/flgsp.html">flgsp</a></td>
+		<td class="summary">XWLUA类：事件标志对象强指针</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/brsp.html">brsp</a></td>
+		<td class="summary">XWLUA类：线程栅栏对象强指针</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/selsp.html">selsp</a></td>
+		<td class="summary">XWLUA类：信号选择器对象强指针</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/xwds.soc.html">xwds.soc</a></td>
+		<td class="summary">XWLUA模块：SOC</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/xwds.uart.html">xwds.uart</a></td>
+		<td class="summary">XWLUA模块：UART</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/xwds.i2cm.html">xwds.i2cm</a></td>
+		<td class="summary">XWLUA模块：I2C主机模式控制器</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/xwds.spim.html">xwds.spim</a></td>
+		<td class="summary">XWLUA模块：SPI主机模式控制器</td>
+	</tr>
+</table>
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/lunarmodules/LDoc">LDoc 1.5.0</a></i>
+<i style="float:right;">Last updated 2024-01-12 20:06:58 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

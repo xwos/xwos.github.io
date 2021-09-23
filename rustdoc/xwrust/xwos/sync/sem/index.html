@@ -1,0 +1,81 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="XWOS RUST：信号量"><title>xwrust::xwos::sync::sem - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="xwrust" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (b10cfcd65 2023-11-29)" data-channel="nightly" data-search-js="search-56a624991a76cfad.js" data-settings-js="settings-fe03fdc259827cd2.js" ><script src="../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../sidebar-items.js"></script><script defer src="../../../../static.files/main-77dede896d6ac08e.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../../xwrust/index.html">xwrust</a><span class="version">1.0.0</span></h2></div><h2 class="location"><a href="#">Module sem</a></h2><div class="sidebar-elems"><section><ul class="block"><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#constants">Constants</a></li></ul></section><h2><a href="../index.html">In xwrust::xwos::sync</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Module <a href="../../../index.html">xwrust</a>::<wbr><a href="../../index.html">xwos</a>::<wbr><a href="../index.html">sync</a>::<wbr><a class="mod" href="#">sem</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../../../../src/xwrust/xwos/sync/sem.rs.html#1-997">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="xwos-rust信号量"><a href="#xwos-rust信号量">XWOS RUST：信号量</a></h2>
+<p>信号量是操作系统比较底层的同步机制，可以同时阻塞一个或多个线程。</p>
+<p>信号量中包含一个整数值，当信号量的值大于等于0时，信号量可以唤醒一个正在等待的线程。线程被唤醒时会取走一个值，信号量的值减少1。</p>
+<p>任意上下文都可增加信号量的值，这个操作被称为 <strong>发布</strong> 。</p>
+<p>信号量常常用于在中断中唤醒一个线程，并将耗时较长的操作放在线程中执行。可减少中断上下文的执行时间，增加中断吞吐量，降低中断延迟。</p>
+<h2 id="创建"><a href="#创建">创建</a></h2>
+<p>XWOS RUST的信号量可使用 <a href="struct.Sem.html#method.new" title="associated function xwrust::xwos::sync::sem::Sem::new"><code>Sem::new()</code></a> 创建。</p>
+<ul>
+<li>可以创建具有静态生命周期 <a href="https://doc.rust-lang.org/std/keyword.static.html"><code>static</code></a> 约束的全局变量：</li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwos::sync::sem::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>GLOBAL_SEM: Sem = Sem::new();</code></pre></div>
+<ul>
+<li>也可以使用 <a href="https://doc.rust-lang.org/alloc/sync/struct.Arc.html"><code>alloc::sync::Arc</code></a> 在heap中创建：</li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>alloc;
+<span class="kw">use </span>alloc::sync::Arc;
+
+<span class="kw">use </span>xwrust::xwos::sync::sem::<span class="kw-2">*</span>;
+
+<span class="kw">pub fn </span>xwrust_example_sem() {
+    <span class="kw">let </span>sem = Arc::new(Sem::new());
+}</code></pre></div>
+<h2 id="初始化"><a href="#初始化">初始化</a></h2>
+<p>无论以何种方式创建的信号量，都必须在使用前调用 <a href="struct.Sem.html#method.init" title="method xwrust::xwos::sync::sem::Sem::init"><code>Sem::init()</code></a> 进行初始化：</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">pub fn </span>xwrust_example_sem() {
+    GLOBAL_SEM.init(<span class="number">0</span>, XwSsq::MAX);
+    sem.init(<span class="number">0</span>, XwSsq::MAX);
+}</code></pre></div>
+<h2 id="发布信号量"><a href="#发布信号量">发布信号量</a></h2>
+<p><a href="struct.Sem.html#method.post" title="method xwrust::xwos::sync::sem::Sem::post"><code>Sem::post()</code></a> 方法可用来增加信号量的值。此方法可在 <strong>任意</strong> 上下文使用。
+当信号量的值大与0时，会唤醒信号量等待队列中的一个线程。被唤醒的线程会取走一个值，使得信号量的计数器减1。</p>
+<h2 id="获取信号量"><a href="#获取信号量">获取信号量</a></h2>
+<p>当信号量的值大于 <strong>0</strong> 时，可以直接取走一个，此时信号量的值减 <strong>1</strong> ；
+当信号量的值等于 <strong>0</strong> 时，获取信号量的线程就只能阻塞等待，XWOS提供四种方式：</p>
+<h3 id="等待并获取信号量"><a href="#等待并获取信号量">等待并获取信号量</a></h3>
+<p><a href="struct.Sem.html#method.wait" title="method xwrust::xwos::sync::sem::Sem::wait"><code>Sem::wait()</code></a> 方法可用于等待并获取信号量：</p>
+<ul>
+<li>若信号量的值小于等于0，线程会阻塞等待。</li>
+<li>当信号量的值大于0时，线程被唤醒，并取走一个值（信号量的值减少1），然后返回 <a href="enum.SemError.html#variant.Ok" title="variant xwrust::xwos::sync::sem::SemError::Ok"><code>SemError::Ok</code></a> 。</li>
+<li>当线程阻塞等待被中断时，返回 <a href="enum.SemError.html#variant.Interrupt" title="variant xwrust::xwos::sync::sem::SemError::Interrupt"><code>SemError::Interrupt</code></a> 。</li>
+</ul>
+<h3 id="限时等待并获取信号量"><a href="#限时等待并获取信号量">限时等待并获取信号量</a></h3>
+<p><a href="struct.Sem.html#method.wait_to" title="method xwrust::xwos::sync::sem::Sem::wait_to"><code>Sem::wait_to()</code></a> 方法可用来限时等待并获取信号量：</p>
+<ul>
+<li>若信号量的值小于等于0，线程会阻塞等待，等待时会指定一个唤醒时间点。</li>
+<li>当信号量的值大于0时，线程被唤醒，并取走一个值（信号量的值减少1），然后返回 <a href="enum.SemError.html#variant.Ok" title="variant xwrust::xwos::sync::sem::SemError::Ok"><code>SemError::Ok</code></a> 。</li>
+<li>当线程阻塞等待被中断时，返回 <a href="enum.SemError.html#variant.Interrupt" title="variant xwrust::xwos::sync::sem::SemError::Interrupt"><code>SemError::Interrupt</code></a> 。</li>
+<li>当到达指定的唤醒时间点，线程被唤醒，并返回 <a href="enum.SemError.html#variant.Timedout" title="variant xwrust::xwos::sync::sem::SemError::Timedout"><code>SemError::Timedout</code></a> 。</li>
+</ul>
+<h3 id="不可中断等待并获取信号量"><a href="#不可中断等待并获取信号量">不可中断等待并获取信号量</a></h3>
+<p><a href="struct.Sem.html#method.wait_unintr" title="method xwrust::xwos::sync::sem::Sem::wait_unintr"><code>Sem::wait_unintr()</code></a> 方法可用来不可中断等待并获取信号量：</p>
+<ul>
+<li>若信号量的值小于等于0，线程会阻塞等待，且不可被中断，也不会超时。</li>
+<li>当信号量的值大于0时，线程被唤醒，并取走一个值（信号量的值减少1），然后返回 <a href="enum.SemError.html#variant.Ok" title="variant xwrust::xwos::sync::sem::SemError::Ok"><code>SemError::Ok</code></a> 。</li>
+</ul>
+<h3 id="尝试获取信号量"><a href="#尝试获取信号量">尝试获取信号量</a></h3>
+<p><a href="struct.Sem.html#method.trywait" title="method xwrust::xwos::sync::sem::Sem::trywait"><code>Sem::trywait()</code></a> 方法可用来尝试获取信号量：</p>
+<ul>
+<li>当信号量的值大于0时，就取走一个值（信号量的值减少1），然后返回 <a href="enum.SemError.html#variant.Ok" title="variant xwrust::xwos::sync::sem::SemError::Ok"><code>SemError::Ok</code></a> 。</li>
+<li>当信号量的值小于等于0时，立即返回 <a href="enum.SemError.html#variant.NoData" title="variant xwrust::xwos::sync::sem::SemError::NoData"><code>SemError::NoData</code></a> 。</li>
+</ul>
+<h2 id="冻结与解冻"><a href="#冻结与解冻">冻结与解冻</a></h2><h3 id="冻结"><a href="#冻结">冻结</a></h3>
+<p>XWOS RUST的信号量可以使用方法 <a href="struct.Sem.html#method.freeze" title="method xwrust::xwos::sync::sem::Sem::freeze"><code>Sem::freeze()</code></a> 进行 <strong>冻结</strong> 操作，被冻结的信号量的值为负数，不影响对信号量的 <strong>等待</strong> 操作。
+但不能发布信号量。</p>
+<h3 id="解冻"><a href="#解冻">解冻</a></h3>
+<p>可以通过 <a href="struct.Sem.html#method.thaw" title="method xwrust::xwos::sync::sem::Sem::thaw"><code>Sem::thaw()</code></a> 方法将已经冻结的信号量 <strong>解冻</strong>，信号量 <strong>解冻</strong> 后，值被重置为0，此时可重新开始发布信号量。</p>
+<h2 id="获取信号量的最大值"><a href="#获取信号量的最大值">获取信号量的最大值</a></h2>
+<p>可以通过方法 <a href="struct.Sem.html#method.get_max" title="method xwrust::xwos::sync::sem::Sem::get_max"><code>Sem::get_max()</code></a> 获取信号量的最大值。</p>
+<h2 id="获取信号量的值"><a href="#获取信号量的值">获取信号量的值</a></h2>
+<p>可以通过方法 <a href="struct.Sem.html#method.get_value" title="method xwrust::xwos::sync::sem::Sem::get_value"><code>Sem::get_value()</code></a> 获取信号量的值，此方法只是读取值，不会 <strong>消费</strong> 信号量。</p>
+<h2 id="绑定到信号选择器"><a href="#绑定到信号选择器">绑定到信号选择器</a></h2>
+<p>信号量是 <strong>同步对象</strong> ，可以通过方法 <a href="struct.Sem.html#method.bind" title="method xwrust::xwos::sync::sem::Sem::bind"><code>Sem::bind()</code></a> 将信号量绑定到信号选择器 <a href="../sel/struct.Sel.html" title="struct xwrust::xwos::sync::sel::Sel"><code>Sel&lt;M&gt;</code></a> 上，通过 <a href="../sel/struct.Sel.html" title="struct xwrust::xwos::sync::sel::Sel"><code>Sel&lt;M&gt;</code></a> ，单一线程可以同时等待多个不同的 <strong>同步对象</strong> 。</p>
+<p>信号量采用 <strong>独占</strong> 的方式进行绑定。</p>
+<h2 id="示例"><a href="#示例">示例</a></h2>
+<p><a href="https://gitee.com/xwos/XWOS/blob/main/xwam/xwrust-example/xwrust_example_sem/src/lib.rs">XWOS/xwam/xwrust-example/xwrust_example_sem</a></p>
+</div></details><h2 id="structs" class="small-section-header"><a href="#structs">Structs</a></h2><ul class="item-table"><li><div class="item-name"><a class="struct" href="struct.Sem.html" title="struct xwrust::xwos::sync::sem::Sem">Sem</a></div><div class="desc docblock-short">信号量对象结构体</div></li><li><div class="item-name"><a class="struct" href="struct.SemSel.html" title="struct xwrust::xwos::sync::sem::SemSel">SemSel</a></div><div class="desc docblock-short">信号量的选择子</div></li></ul><h2 id="enums" class="small-section-header"><a href="#enums">Enums</a></h2><ul class="item-table"><li><div class="item-name"><a class="enum" href="enum.SemError.html" title="enum xwrust::xwos::sync::sem::SemError">SemError</a></div><div class="desc docblock-short">信号量的错误码</div></li></ul><h2 id="constants" class="small-section-header"><a href="#constants">Constants</a></h2><ul class="item-table"><li><div class="item-name"><a class="constant" href="constant.SIZEOF_XWOS_SEM.html" title="constant xwrust::xwos::sync::sem::SIZEOF_XWOS_SEM">SIZEOF_XWOS_SEM</a></div><div class="desc docblock-short">XWOS信号量对象占用的内存大小</div></li></ul></section></div></main></body></html>

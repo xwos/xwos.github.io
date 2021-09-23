@@ -1,0 +1,358 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>XWOS API: XWOS内存管理通用定义</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<a href="/" class="github-corner" title="返回首页">
+  <svg viewBox="0 0 250 250" style="position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path
+      d="M 0 0 L 250 250 L 250 0 L 0 0 z M 181.19336 6.25 A 18.281986 19.638775 0 0 1 192.79297 10.798828 L 241.54492 54.201172 A 6.0939954 6.5462585 0 0 1 237.64453 65.787109 L 233.13477 65.787109 A 3.0469979 3.2731292 0 0 0 230.08789 69.060547 L 230.08789 111.61133 A 18.281986 19.638775 0 0 1 211.80664 131.25 L 205.71289 131.25 A 12.187991 13.092517 0 0 1 193.52344 118.1582 L 193.52344 98.519531 A 12.187991 13.092517 0 0 0 181.33594 85.425781 A 12.187991 13.092517 0 0 0 169.14844 98.519531 L 169.14844 118.1582 A 12.187991 13.092517 0 0 1 156.95898 131.25 L 150.86523 131.25 A 18.281986 19.638775 0 0 1 132.58398 111.61133 L 132.58398 68.994141 A 3.0469979 3.2731292 0 0 0 129.29297 65.722656 L 124.7832 65.722656 A 6.0939954 6.5462585 0 0 1 120.88281 54.201172 L 169.39258 10.798828 A 18.281986 19.638775 0 0 1 181.19336 6.25 z "/>
+  </svg>
+</a>
+<style>.github-corner:hover</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">XWOS API
+   &#160;<span id="projectnumber">3.0</span>
+   </div>
+   <div id="projectbrief">XWOS API参考手册</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('group__xwmm__common.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">结构体</a> &#124;
+<a href="#define-members">宏定义</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">XWOS内存管理通用定义<div class="ingroups"><a class="el" href="group__xwos.html">XWOS内核</a> &raquo; <a class="el" href="group__xwmm.html">XWOS内存管理</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+XWOS内存管理通用定义 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmm__common.png" border="0" usemap="#agroup____xwmm____common" alt=""/></div>
+<map name="agroup____xwmm____common" id="agroup____xwmm____common">
+<area shape="rect" href="group__xwmm.html" title=" " alt="" coords="5,5,120,31"/>
+<area shape="rect" title=" " alt="" coords="168,5,335,31"/>
+</map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+结构体</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structxwmm__zone.html">xwmm_zone</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS内存区域  <a href="structxwmm__zone.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:ga5fda7561f71a27db613b7fe335ea3259"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmm__common.html#ga5fda7561f71a27db613b7fe335ea3259">XWMM_ALIGNMENT</a>&#160;&#160;&#160;XWMMCFG_ALIGNMENT</td></tr>
+<tr class="separator:ga5fda7561f71a27db613b7fe335ea3259"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaef7956af43e867df24542bc90d1dcff1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmm__common.html#gaef7956af43e867df24542bc90d1dcff1">XWMM_UNALIGNED_MASK</a>&#160;&#160;&#160;(<a class="el" href="group__xwmm__common.html#ga5fda7561f71a27db613b7fe335ea3259">XWMM_ALIGNMENT</a> - 1U)</td></tr>
+<tr class="separator:gaef7956af43e867df24542bc90d1dcff1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad9349b6db0db8764add5b82df17fd81d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmm__common.html#gad9349b6db0db8764add5b82df17fd81d">XWMM_ALIGNMENT_MASK</a>&#160;&#160;&#160;(~(<a class="el" href="group__xwmm__common.html#gaef7956af43e867df24542bc90d1dcff1">XWMM_UNALIGNED_MASK</a>))</td></tr>
+<tr class="separator:gad9349b6db0db8764add5b82df17fd81d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga14518c4cba64dcb10620a0aac3e5c7eb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmm__common.html#ga14518c4cba64dcb10620a0aac3e5c7eb">XWMM_STACK_ALIGNMENT</a>&#160;&#160;&#160;XWMMCFG_STACK_ALIGNMENT</td></tr>
+<tr class="separator:ga14518c4cba64dcb10620a0aac3e5c7eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7044c55a9a45d2a5286efb0f3c9aee31"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmm__common.html#ga7044c55a9a45d2a5286efb0f3c9aee31">XWMM_STACK_UNALIGNED_MASK</a>&#160;&#160;&#160;(<a class="el" href="group__xwmm__common.html#ga14518c4cba64dcb10620a0aac3e5c7eb">XWMM_STACK_ALIGNMENT</a> - 1U)</td></tr>
+<tr class="separator:ga7044c55a9a45d2a5286efb0f3c9aee31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5600f4ff39a51059378cecf3332789a9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmm__common.html#ga5600f4ff39a51059378cecf3332789a9">XWMM_STACK_ALIGNMENT_MASK</a>&#160;&#160;&#160;(~(<a class="el" href="group__xwmm__common.html#ga7044c55a9a45d2a5286efb0f3c9aee31">XWMM_STACK_UNALIGNED_MASK</a>))</td></tr>
+<tr class="separator:ga5600f4ff39a51059378cecf3332789a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:gad67e304134804e22fa78ebb02d27121d"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmm__common.html#gad67e304134804e22fa78ebb02d27121d">xwmm_in_zone</a> (void *mem, <a class="el" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a> origin, <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> size)</td></tr>
+<tr class="memdesc:gad67e304134804e22fa78ebb02d27121d"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMM API：测试地址是否在内存区域内  <br /></td></tr>
+<tr class="separator:gad67e304134804e22fa78ebb02d27121d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<h2 class="groupheader">宏定义说明</h2>
+<a id="ga5fda7561f71a27db613b7fe335ea3259" name="ga5fda7561f71a27db613b7fe335ea3259"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5fda7561f71a27db613b7fe335ea3259">&#9670;&#160;</a></span>XWMM_ALIGNMENT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XWMM_ALIGNMENT&#160;&#160;&#160;XWMMCFG_ALIGNMENT</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>内存管理对齐的字节数 </p>
+
+<p class="definition">在文件 <a class="el" href="xwos_2mm_2common_8h_source.html">common.h</a> 第 <a class="el" href="xwos_2mm_2common_8h_source.html#l00029">29</a> 行定义.</p>
+
+</div>
+</div>
+<a id="gad9349b6db0db8764add5b82df17fd81d" name="gad9349b6db0db8764add5b82df17fd81d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad9349b6db0db8764add5b82df17fd81d">&#9670;&#160;</a></span>XWMM_ALIGNMENT_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XWMM_ALIGNMENT_MASK&#160;&#160;&#160;(~(<a class="el" href="group__xwmm__common.html#gaef7956af43e867df24542bc90d1dcff1">XWMM_UNALIGNED_MASK</a>))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>内存管理对齐掩码 </p>
+
+<p class="definition">在文件 <a class="el" href="xwos_2mm_2common_8h_source.html">common.h</a> 第 <a class="el" href="xwos_2mm_2common_8h_source.html#l00031">31</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ga14518c4cba64dcb10620a0aac3e5c7eb" name="ga14518c4cba64dcb10620a0aac3e5c7eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga14518c4cba64dcb10620a0aac3e5c7eb">&#9670;&#160;</a></span>XWMM_STACK_ALIGNMENT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XWMM_STACK_ALIGNMENT&#160;&#160;&#160;XWMMCFG_STACK_ALIGNMENT</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>线程栈对齐的字节数 </p>
+
+<p class="definition">在文件 <a class="el" href="xwos_2mm_2common_8h_source.html">common.h</a> 第 <a class="el" href="xwos_2mm_2common_8h_source.html#l00033">33</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ga5600f4ff39a51059378cecf3332789a9" name="ga5600f4ff39a51059378cecf3332789a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5600f4ff39a51059378cecf3332789a9">&#9670;&#160;</a></span>XWMM_STACK_ALIGNMENT_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XWMM_STACK_ALIGNMENT_MASK&#160;&#160;&#160;(~(<a class="el" href="group__xwmm__common.html#ga7044c55a9a45d2a5286efb0f3c9aee31">XWMM_STACK_UNALIGNED_MASK</a>))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>线程栈对齐掩码 </p>
+
+<p class="definition">在文件 <a class="el" href="xwos_2mm_2common_8h_source.html">common.h</a> 第 <a class="el" href="xwos_2mm_2common_8h_source.html#l00035">35</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ga7044c55a9a45d2a5286efb0f3c9aee31" name="ga7044c55a9a45d2a5286efb0f3c9aee31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7044c55a9a45d2a5286efb0f3c9aee31">&#9670;&#160;</a></span>XWMM_STACK_UNALIGNED_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XWMM_STACK_UNALIGNED_MASK&#160;&#160;&#160;(<a class="el" href="group__xwmm__common.html#ga14518c4cba64dcb10620a0aac3e5c7eb">XWMM_STACK_ALIGNMENT</a> - 1U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>线程栈未对齐掩码 </p>
+
+<p class="definition">在文件 <a class="el" href="xwos_2mm_2common_8h_source.html">common.h</a> 第 <a class="el" href="xwos_2mm_2common_8h_source.html#l00034">34</a> 行定义.</p>
+
+</div>
+</div>
+<a id="gaef7956af43e867df24542bc90d1dcff1" name="gaef7956af43e867df24542bc90d1dcff1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaef7956af43e867df24542bc90d1dcff1">&#9670;&#160;</a></span>XWMM_UNALIGNED_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XWMM_UNALIGNED_MASK&#160;&#160;&#160;(<a class="el" href="group__xwmm__common.html#ga5fda7561f71a27db613b7fe335ea3259">XWMM_ALIGNMENT</a> - 1U)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>内存管理未对齐掩码 </p>
+
+<p class="definition">在文件 <a class="el" href="xwos_2mm_2common_8h_source.html">common.h</a> 第 <a class="el" href="xwos_2mm_2common_8h_source.html#l00030">30</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">函数说明</h2>
+<a id="gad67e304134804e22fa78ebb02d27121d" name="gad67e304134804e22fa78ebb02d27121d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad67e304134804e22fa78ebb02d27121d">&#9670;&#160;</a></span>xwmm_in_zone()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool xwmm_in_zone </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>mem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a>&#160;</td>
+          <td class="paramname"><em>origin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a>&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWMM API：测试地址是否在内存区域内 </p>
+<dl class="section return"><dt>返回</dt><dd>布尔值 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>是 </td></tr>
+    <tr><td class="paramname">false</td><td>否 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="xwos_2mm_2common_8h_source.html">common.h</a> 第 <a class="el" href="xwos_2mm_2common_8h_source.html#l00052">52</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   53</span>{</div>
+<div class="line"><span class="lineno">   54</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a> memptr = (<a class="code hl_typedef" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a>)mem;</div>
+<div class="line"><span class="lineno">   55</span>        <span class="keywordtype">bool</span> ret;</div>
+<div class="line"><span class="lineno">   56</span> </div>
+<div class="line"><span class="lineno">   57</span>        <span class="keywordflow">if</span> (memptr &lt; origin) {</div>
+<div class="line"><span class="lineno">   58</span>                ret = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   59</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (memptr &gt; (origin + size)) {</div>
+<div class="line"><span class="lineno">   60</span>                ret = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   61</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">   62</span>                ret = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   63</span>        }</div>
+<div class="line"><span class="lineno">   64</span>        <span class="keywordflow">return</span> ret;</div>
+<div class="line"><span class="lineno">   65</span>}</div>
+<div class="ttc" id="agroup__xwos__lib__type_html_gacef49946313c8d1985a8279bb40e31c4"><div class="ttname"><a href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a></div><div class="ttdeci">unsigned long xwptr_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00375">type.h:375</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
+  </ul>
+</div>
+</body>
+</html>

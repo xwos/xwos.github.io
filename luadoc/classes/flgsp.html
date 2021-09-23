@@ -1,0 +1,999 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>XWLUA参考手册</title>
+    <link rel="stylesheet" href="../ldoc_new.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>XWLUA</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#MetaMethods">MetaMethods</a></li>
+<li><a href="#Methods">Methods</a></li>
+</ul>
+
+
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><a href="../classes/xwlib.bmp.html">xwlib.bmp</a></li>
+  <li><a href="../classes/thdsp.html">thdsp</a></li>
+  <li><a href="../classes/mtxsp.html">mtxsp</a></li>
+  <li><a href="../classes/splksp.html">splksp</a></li>
+  <li><a href="../classes/sqlksp.html">sqlksp</a></li>
+  <li><a href="../classes/semsp.html">semsp</a></li>
+  <li><a href="../classes/condsp.html">condsp</a></li>
+  <li><strong>flgsp</strong></li>
+  <li><a href="../classes/brsp.html">brsp</a></li>
+  <li><a href="../classes/selsp.html">selsp</a></li>
+  <li><a href="../classes/xwds.soc.html">xwds.soc</a></li>
+  <li><a href="../classes/xwds.uart.html">xwds.uart</a></li>
+  <li><a href="../classes/xwds.i2cm.html">xwds.i2cm</a></li>
+  <li><a href="../classes/xwds.spim.html">xwds.spim</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/xwtm.html">xwtm</a></li>
+  <li><a href="../modules/xwvm.html">xwvm</a></li>
+  <li><a href="../modules/xwxt.html">xwxt</a></li>
+  <li><a href="../modules/xwos.skd.html">xwos.skd</a></li>
+  <li><a href="../modules/xwos.thd.html">xwos.thd</a></li>
+  <li><a href="../modules/xwos.cthd.html">xwos.cthd</a></li>
+  <li><a href="../modules/xwos.lock.mtx.html">xwos.lock.mtx</a></li>
+  <li><a href="../modules/xwos.lock.splk.html">xwos.lock.splk</a></li>
+  <li><a href="../modules/xwos.lock.sqlk.html">xwos.lock.sqlk</a></li>
+  <li><a href="../modules/xwos.sync.sem.html">xwos.sync.sem</a></li>
+  <li><a href="../modules/xwos.sync.cond.html">xwos.sync.cond</a></li>
+  <li><a href="../modules/xwos.sync.flg.html">xwos.sync.flg</a></li>
+  <li><a href="../modules/xwos.sync.br.html">xwos.sync.br</a></li>
+  <li><a href="../modules/xwos.sync.sel.html">xwos.sync.sel</a></li>
+  <li><a href="../modules/xwos.pm.html">xwos.pm</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Class <code>flgsp</code></h1>
+<p>XWLUA类：事件标志对象强指针</p>
+<p>事件标志对象强指针是Lua语言中的一种 <code>userdata</code> ，用于 <strong>强引用</strong> XWOS的事件标志对象。</p>
+
+<p><strong>强引用</strong> 表示会增加XWOS的事件标志对象的 <strong>引用计数</strong> 。</p>
+
+
+<h2><a href="#MetaMethods">MetaMethods</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#flgsp:metatable.__copy">flgsp:metatable.__copy (flgsp, vm)</a></td>
+	<td class="summary">元方法：__copy</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#flgsp:metatable.__gc">flgsp:metatable.__gc (flgsp)</a></td>
+	<td class="summary">元方法：__gc</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#flgsp:metatable.__tostring">flgsp:metatable.__tostring (flgsp)</a></td>
+	<td class="summary">元方法：__tostring</td>
+	</tr>
+</table>
+<h2><a href="#Methods">Methods</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#flgsp:bind">flgsp:bind (flgsp, sel, pos)</a></td>
+	<td class="summary">绑定事件标志对象到信号选择器</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#flgsp:unbind">flgsp:unbind (flgsp, sel)</a></td>
+	<td class="summary">从信号选择器上解绑事件标志对象</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#flgsp:bmp">flgsp:bmp (flgsp)</a></td>
+	<td class="summary">新建位图，位的数量与事件标志中的事件数量相等</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#flgsp:num">flgsp:num (flgsp)</a></td>
+	<td class="summary">获取事件标志中事件（位）的数量</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#flgsp:read">flgsp:read (flgsp)</a></td>
+	<td class="summary">读取事件标志</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#flgsp:s1m">flgsp:s1m (flgsp, msk)</a></td>
+	<td class="summary">同时设置多个事件标志位</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#flgsp:s1i">flgsp:s1i (flgsp, pos)</a></td>
+	<td class="summary">设置单个事件标志位</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#flgsp:c0m">flgsp:c0m (flgsp, msk)</a></td>
+	<td class="summary">同时清除多个事件标志位</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#flgsp:c0i">flgsp:c0i (flgsp, pos)</a></td>
+	<td class="summary">清除单个事件标志位</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#flgsp:x1m">flgsp:x1m (flgsp, msk)</a></td>
+	<td class="summary">同时翻转多个事件标志位</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#flgsp:x1i">flgsp:x1i (flgsp, pos)</a></td>
+	<td class="summary">翻转单个事件标志位</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#flgsp:wait">flgsp:wait (flgsp, trigger, consumption, origin, msk)</a></td>
+	<td class="summary">等待触发事件</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#flgsp:trywait">flgsp:trywait (flgsp, trigger, consumption, origin, msk)</a></td>
+	<td class="summary">检查事件标志</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#flgsp:wait_to">flgsp:wait_to (flgsp, trigger, consumption, origin, msk, to)</a></td>
+	<td class="summary">限时等待事件标志对象的触发事件</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="MetaMethods"></a>MetaMethods</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "flgsp:metatable.__copy"></a>
+    <strong>flgsp:metatable.__copy (flgsp, vm)</strong>
+    </dt>
+    <dd>
+    元方法：__copy </p>
+
+<p>将事件标志对象强指针拷贝到全局导出表 <a href="../modules/xwxt.html#">xwxt</a> 中。</p>
+
+<p>此元方法意味着事件标志对象的强引用多了一个， <strong>引用计数</strong> 加 <strong>1</strong> 。
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">flgsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 事件标志对象强指针
+        </li>
+        <li><span class="parameter">vm</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 目标虚拟机
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">flgsp = ... <span class="comment">-- 创建事件标志的代码（省略）
+</span>xwxt.someflg = flgsp <span class="comment">-- 事件标志对象的引用计数加1
+</span>flgsp2 = xwxt.someflg <span class="comment">-- 事件标志对象的引用计数加1
+</span>xwxt.someflg = <span class="keyword">nil</span> <span class="comment">-- 事件标志对象的引用计数减1</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "flgsp:metatable.__gc"></a>
+    <strong>flgsp:metatable.__gc (flgsp)</strong>
+    </dt>
+    <dd>
+    元方法：__gc </p>
+
+<p>事件标志对象强指针的垃圾回收方法。</p>
+
+<p>此元方法意味着事件标志对象的强引用少了一个， <strong>引用计数</strong> 减 <strong>1</strong> 。
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">flgsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 事件标志对象强指针
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">flgsp = <span class="keyword">nil</span> <span class="comment">-- 删除引用
+</span><span class="global">collectgarbage</span>() <span class="comment">-- 强制垃圾回收，将调用__gc()函数</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "flgsp:metatable.__tostring"></a>
+    <strong>flgsp:metatable.__tostring (flgsp)</strong>
+    </dt>
+    <dd>
+    元方法：__tostring </p>
+
+<p>将事件标志对象强指针格式化成字符串，可用于终端打印调试。
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">flgsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 事件标志对象强指针
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="global">print</span>(flgsp)</pre>
+    </ul>
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Methods"></a>Methods</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "flgsp:bind"></a>
+    <strong>flgsp:bind (flgsp, sel, pos)</strong>
+    </dt>
+    <dd>
+    绑定事件标志对象到信号选择器
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">flgsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 事件标志对象强指针
+        </li>
+        <li><span class="parameter">sel</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 信号选择器对象的强指针
+        </li>
+        <li><span class="parameter">pos</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) 事件标志对象映射到信号选择器位图中的位置，位置从 <strong>0</strong> 开始编号
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+         错误码<br>
+　● <strong>0</strong> 没有错误<br>
+　● <strong>-ECHRNG</strong> 位置超出范围<br>
+　● <strong>-EALREADY</strong> 同步对象已经绑定到事件对象<br>
+　● <strong>-EBUSY</strong> 通道已经被其他同步对象独占
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">flg = xwos.flg.<span class="function-name">new</span>(<span class="number">32</span>)
+<span class="comment">-- ...省略...
+</span>rc = flg:<span class="function-name">bind</span>(sel, <span class="number">3</span>) <span class="comment">-- 绑定到信号选择器的位置3
+</span><span class="keyword">if</span> (rc == <span class="number">0</span>) <span class="keyword">then</span>
+  <span class="comment">-- 绑定成功
+</span><span class="keyword">else</span>
+  <span class="comment">-- 绑定失败
+</span><span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "flgsp:unbind"></a>
+    <strong>flgsp:unbind (flgsp, sel)</strong>
+    </dt>
+    <dd>
+    从信号选择器上解绑事件标志对象
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">flgsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 事件标志对象强指针
+        </li>
+        <li><span class="parameter">sel</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 信号选择器对象的强指针
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+         错误码<br>
+　● <strong>0</strong> 没有错误<br>
+　● <strong>-ENOTCONN</strong> 同步对象没有绑定到事件对象上
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">flg:<span class="function-name">unbind</span>(sel)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "flgsp:bmp"></a>
+    <strong>flgsp:bmp (flgsp)</strong>
+    </dt>
+    <dd>
+    新建位图，位的数量与事件标志中的事件数量相等
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">flgsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 事件标志对象强指针
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">userdata</span></span>
+        位图
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">bmp = flg:<span class="function-name">bmp</span>()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "flgsp:num"></a>
+    <strong>flgsp:num (flgsp)</strong>
+    </dt>
+    <dd>
+    获取事件标志中事件（位）的数量
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">flgsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 事件标志对象强指针
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        数量
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">num = flg:<span class="function-name">num</span>()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "flgsp:read"></a>
+    <strong>flgsp:read (flgsp)</strong>
+    </dt>
+    <dd>
+    读取事件标志
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">flgsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 事件标志对象强指针
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+         错误码<br>
+　● <strong>0</strong> 没有错误</li>
+        <li>
+           <span class="types"><span class="type">userdata</span></span>
+        事件标志位图</li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">rc, bmp = flg:<span class="function-name">read</span>()</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "flgsp:s1m"></a>
+    <strong>flgsp:s1m (flgsp, msk)</strong>
+    </dt>
+    <dd>
+    同时设置多个事件标志位
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">flgsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 事件标志对象强指针
+        </li>
+        <li><span class="parameter">msk</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 事件的位图掩码
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+         错误码<br>
+　● <strong>0</strong> 没有错误
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">msk = flg:<span class="function-name">bmp</span>()
+msk:<span class="function-name">zero</span>()
+msk:<span class="function-name">s1i</span>(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>) <span class="comment">-- msk == 0xFF
+</span>flg:<span class="function-name">s1m</span>(msk) <span class="comment">-- 设置事件1,2,3,4,5,6,7,8</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "flgsp:s1i"></a>
+    <strong>flgsp:s1i (flgsp, pos)</strong>
+    </dt>
+    <dd>
+    设置单个事件标志位
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">flgsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 事件标志对象强指针
+        </li>
+        <li><span class="parameter">pos</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) 事件的序号
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+         错误码<br>
+　● <strong>0</strong> 没有错误
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">flg:<span class="function-name">s1i</span>(<span class="number">1</span>) <span class="comment">-- 设置事件1</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "flgsp:c0m"></a>
+    <strong>flgsp:c0m (flgsp, msk)</strong>
+    </dt>
+    <dd>
+    同时清除多个事件标志位
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">flgsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 事件标志对象强指针
+        </li>
+        <li><span class="parameter">msk</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 事件的位图掩码
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+         错误码<br>
+　● <strong>0</strong> 没有错误
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">msk = flg:<span class="function-name">bmp</span>()
+msk:<span class="function-name">zero</span>()
+msk:<span class="function-name">s1i</span>(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>) <span class="comment">-- msk == 0xFF
+</span>flg:<span class="function-name">c0m</span>(msk) <span class="comment">-- 清除事件1,2,3,4,5,6,7,8</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "flgsp:c0i"></a>
+    <strong>flgsp:c0i (flgsp, pos)</strong>
+    </dt>
+    <dd>
+    清除单个事件标志位
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">flgsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 事件标志对象强指针
+        </li>
+        <li><span class="parameter">pos</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) 事件的序号
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+         错误码<br>
+　● <strong>0</strong> 没有错误
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">flg:<span class="function-name">c0i</span>(<span class="number">1</span>) <span class="comment">-- 清除事件1</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "flgsp:x1m"></a>
+    <strong>flgsp:x1m (flgsp, msk)</strong>
+    </dt>
+    <dd>
+    同时翻转多个事件标志位
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">flgsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 事件标志对象强指针
+        </li>
+        <li><span class="parameter">msk</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 事件的位图掩码
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+         错误码<br>
+　● <strong>0</strong> 没有错误
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">msk = flg:<span class="function-name">bmp</span>()
+msk:<span class="function-name">zero</span>()
+msk:<span class="function-name">s1i</span>(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>) <span class="comment">-- msk == 0xFF
+</span>flg:<span class="function-name">x1m</span>(msk) <span class="comment">-- 翻转事件1,2,3,4,5,6,7,8</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "flgsp:x1i"></a>
+    <strong>flgsp:x1i (flgsp, pos)</strong>
+    </dt>
+    <dd>
+    翻转单个事件标志位
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">flgsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 事件标志对象强指针
+        </li>
+        <li><span class="parameter">pos</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) 事件的序号
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+         错误码<br>
+　● <strong>0</strong> 没有错误
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">flg:<span class="function-name">x1i</span>(<span class="number">1</span>) <span class="comment">-- 翻转事件1</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "flgsp:wait"></a>
+    <strong>flgsp:wait (flgsp, trigger, consumption, origin, msk)</strong>
+    </dt>
+    <dd>
+    等待触发事件
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">flgsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 事件标志对象强指针
+        </li>
+        <li><span class="parameter">trigger</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+         (<strong>in</strong>) 事件触发条件<br>
+　● <strong>"sa"</strong> 所有事件位被置 <strong>1</strong> 触发<br>
+　● <strong>"so"</strong> 任意事件位被置 <strong>1</strong> 触发<br>
+　● <strong>"ca"</strong> 所有事件位被清 <strong>0</strong> 触发<br>
+　● <strong>"co"</strong> 任意事件位被清 <strong>0</strong> 触发<br>
+　● <strong>"ta"</strong> 所有事件位发生翻转触发<br>
+　● <strong>"to"</strong> 任意事件位发生翻转触发
+        </li>
+        <li><span class="parameter">consumption</span>
+            <span class="types"><span class="type">boolean</span></span>
+         (<strong>in</strong>) 是否消费事件<br>
+　● <strong>消费</strong> 事件是指，当线程等到事件被唤醒，可以选择是否 <strong>清除</strong> 事件标志。<br>
+　● <strong>清除</strong> 的含义是：<br>
+　　○ 当线程等待的是位图中的事件位被置 <strong>1</strong> ，<strong>清除</strong> 是指将这些位清 <strong>0</strong> ；<br>
+　　○ 当线程等待的是位图中的事件位被清 <strong>0</strong> ，<strong>清除</strong> 是指将这些位置 <strong>1</strong> ；<br>
+　● 此参数对 <strong>trigger</strong> 取值 <strong>"sa"</strong> ， <strong>"so"</strong> ， <strong>"ca"</strong> ， <strong>"co"</strong> 有效；<br>
+　● 此参数对 <strong>trigger</strong> 取值 <strong>"ta"</strong> ， <strong>"to"</strong> ，无意义。
+        </li>
+        <li><span class="parameter">origin</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in,out</strong>) 事件的状态位图<br>
+　● 当参数 <strong>trigger</strong> 取值 <strong>"sa"</strong> ， <strong>"so"</strong> ， <strong>"ca"</strong> ， <strong>"co"</strong> 时：(<strong>out</strong>) 返回触发时的事件状态位图<br>
+　● 当参数 <strong>trigger</strong> 取值 <strong>"ta"</strong> ， <strong>"to"</strong> 时：<br>
+　　○ (<strong>in</strong>) 用于比较的初始值<br>
+　　○ (<strong>out</strong>) 返回触发时的事件状态位图
+        </li>
+        <li><span class="parameter">msk</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 事件的位图掩码，表示只关注掩码部分的事件
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+         返回值<br>
+　● <strong>0</strong> 没有错误<br>
+　● <strong>-EINVAL</strong> 参数错误<br>
+　● <strong>-EINTR</strong> 等待被中断<br>
+　● <strong>-ENOTTHDCTX</strong> 不在线程上下文中
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <li><pre class="example">flg = xwos.flg.<span class="function-name">new</span>(<span class="number">32</span>)
+origin = flg:<span class="function-name">bmp</span>();
+msk = flg:<span class="function-name">bmp</span>();
+msk:<span class="function-name">zero</span>();
+msk:<span class="function-name">s1i</span>(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>) <span class="comment">-- 事件掩码：0xFF
+</span>rc = flg:<span class="function-name">wait</span>(<span class="string">"sa"</span>, <span class="keyword">true</span>, origin, msk)
+<span class="keyword">if</span> (rc == <span class="number">0</span>) <span class="keyword">then</span>
+  <span class="comment">-- 获取所有的事件1,2,3,4,5,6,7,8
+</span>  <span class="comment">-- 消费事件，事件1,2,3,4,5,6,7,8会被清除
+</span><span class="keyword">else</span>
+  <span class="comment">-- 错误发生
+</span><span class="keyword">end</span></pre></li>
+        <li><pre class="example">flg = xwos.flg.<span class="function-name">new</span>(<span class="number">32</span>)
+origin = flg:<span class="function-name">bmp</span>();
+msk = flg:<span class="function-name">bmp</span>();
+msk:<span class="function-name">zero</span>();
+msk:<span class="function-name">s1i</span>(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>) <span class="comment">-- 事件掩码：0xFF
+</span>rc = flg:<span class="function-name">wait</span>(<span class="string">"so"</span>, <span class="keyword">true</span>, origin, msk)
+<span class="keyword">if</span> (rc == <span class="number">0</span>) <span class="keyword">then</span>
+  <span class="comment">-- 获取事件1,2,3,4,5,6,7,8中的一个或多个
+</span>  <span class="comment">-- 消费事件，事件1,2,3,4,5,6,7,8会被清除
+</span><span class="keyword">else</span>
+  <span class="comment">-- 错误发生
+</span><span class="keyword">end</span></pre></li>
+        <li><pre class="example">flg = xwos.flg.<span class="function-name">new</span>(<span class="number">32</span>)
+origin = flg:<span class="function-name">bmp</span>();
+msk = flg:<span class="function-name">bmp</span>();
+msk:<span class="function-name">zero</span>();
+msk:<span class="function-name">s1i</span>(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>) <span class="comment">-- 事件掩码：0xFF
+</span>rc = flg:<span class="function-name">wait</span>(<span class="string">"ca"</span>, <span class="keyword">true</span>, origin, msk)
+<span class="keyword">if</span> (rc == <span class="number">0</span>) <span class="keyword">then</span>
+  <span class="comment">-- 事件1,2,3,4,5,6,7,8全部被清除
+</span>  <span class="comment">-- 消费事件，事件1,2,3,4,5,6,7,8全被设置
+</span><span class="keyword">else</span>
+  <span class="comment">-- 错误发生
+</span><span class="keyword">end</span></pre></li>
+        <li><pre class="example">flg = xwos.flg.<span class="function-name">new</span>(<span class="number">32</span>)
+origin = flg:<span class="function-name">bmp</span>();
+msk = flg:<span class="function-name">bmp</span>();
+msk:<span class="function-name">zero</span>();
+msk:<span class="function-name">s1i</span>(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>) <span class="comment">-- 事件掩码：0xFF
+</span>rc = flg:<span class="function-name">wait</span>(<span class="string">"co"</span>, <span class="keyword">true</span>, origin, msk)
+<span class="keyword">if</span> (rc == <span class="number">0</span>) <span class="keyword">then</span>
+  <span class="comment">-- 事件1,2,3,4,5,6,7,8中的一个或多个被清除
+</span>  <span class="comment">-- 消费事件，事件1,2,3,4,5,6,7,8全被设置
+</span><span class="keyword">else</span>
+  <span class="comment">-- 错误发生
+</span><span class="keyword">end</span></pre></li>
+        <li><pre class="example">flg = xwos.flg.<span class="function-name">new</span>(<span class="number">32</span>)
+origin = flg:<span class="function-name">bmp</span>();
+origin:<span class="function-name">zero</span>();
+origin:<span class="function-name">s1i</span>(<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>); <span class="comment">-- 事件初始值：0xAA
+</span>msk = flg:<span class="function-name">bmp</span>();
+msk:<span class="function-name">zero</span>();
+msk:<span class="function-name">s1i</span>(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>) <span class="comment">-- 事件掩码：0xFF
+</span>rc = flg:<span class="function-name">wait</span>(<span class="string">"ta"</span>, <span class="keyword">true</span>, origin, msk)
+<span class="keyword">if</span> (rc == <span class="number">0</span>) <span class="keyword">then</span>
+  <span class="comment">-- 事件1,2,3,4,5,6,7,8全部发生了翻转
+</span>  <span class="comment">-- consumption对此种类型的等待不起作用
+</span>  <span class="comment">-- origin为翻转后的事件状态（0x55）
+</span><span class="keyword">else</span>
+  <span class="comment">-- 错误发生
+</span><span class="keyword">end</span></pre></li>
+        <li><pre class="example">flg = xwos.flg.<span class="function-name">new</span>(<span class="number">32</span>)
+origin = flg:<span class="function-name">bmp</span>();
+origin:<span class="function-name">zero</span>();
+origin:<span class="function-name">s1i</span>(<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>); <span class="comment">-- 事件初始值：0xAA
+</span>msk = flg:<span class="function-name">bmp</span>();
+msk:<span class="function-name">zero</span>();
+msk:<span class="function-name">s1i</span>(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>) <span class="comment">-- 事件掩码：0xFF
+</span>rc = flg:<span class="function-name">wait</span>(<span class="string">"to"</span>, <span class="keyword">true</span>, origin, msk)
+<span class="keyword">if</span> (rc == <span class="number">0</span>) <span class="keyword">then</span>
+  <span class="comment">-- 事件1,2,3,4,5,6,7,8部分发生了翻转
+</span>  <span class="comment">-- consumption对此种类型的等待不起作用
+</span>  <span class="comment">-- origin为翻转后的事件状态
+</span><span class="keyword">else</span>
+  <span class="comment">-- 错误发生
+</span><span class="keyword">end</span></pre></li>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "flgsp:trywait"></a>
+    <strong>flgsp:trywait (flgsp, trigger, consumption, origin, msk)</strong>
+    </dt>
+    <dd>
+    检查事件标志 </p>
+
+<p>若事件没有触发，立即返回，不会等待。
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">flgsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 事件标志对象强指针
+        </li>
+        <li><span class="parameter">trigger</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+         (<strong>in</strong>) 事件触发条件<br>
+　● <strong>"sa"</strong> 所有事件位被置 <strong>1</strong> 触发<br>
+　● <strong>"so"</strong> 任意事件位被置 <strong>1</strong> 触发<br>
+　● <strong>"ca"</strong> 所有事件位被清 <strong>0</strong> 触发<br>
+　● <strong>"co"</strong> 任意事件位被清 <strong>0</strong> 触发<br>
+　● <strong>"ta"</strong> 所有事件位发生翻转触发<br>
+　● <strong>"to"</strong> 任意事件位发生翻转触发
+        </li>
+        <li><span class="parameter">consumption</span>
+            <span class="types"><span class="type">boolean</span></span>
+         (<strong>in</strong>) 是否消费事件<br>
+　● <strong>消费</strong> 事件是指，当线程等到事件被唤醒，可以选择是否 <strong>清除</strong> 事件标志。<br>
+　● <strong>清除</strong> 的含义是：<br>
+　　○ 当线程等待的是位图中的事件位被置 <strong>1</strong> ， <strong>清除</strong> 是指将这些位清 <strong>0</strong> ；<br>
+　　○ 当线程等待的是位图中的事件位被清 <strong>0</strong> ， <strong>清除</strong> 是指将这些位置 <strong>1</strong> ；<br>
+　● 此参数对 <strong>trigger</strong> 取值 <strong>"sa"</strong> ， <strong>"so"</strong> ， <strong>"ca"</strong> ， <strong>"co"</strong> 有效；<br>
+　● 此参数对 <strong>trigger</strong> 取值 <strong>"ta"</strong> ， <strong>"to"</strong> ，无意义。
+        </li>
+        <li><span class="parameter">origin</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in,out</strong>) 事件的状态位图<br>
+　● 当参数 <strong>trigger</strong> 取值 <strong>"sa"</strong> ， <strong>"so"</strong> ， <strong>"ca"</strong> ， <strong>"co"</strong> 时：(<strong>out</strong>) 返回触发时的事件状态位图<br>
+　● 当参数 <strong>trigger</strong> 取值 <strong>"ta"</strong> ， <strong>"to"</strong> 时：<br>
+　　○ (<strong>in</strong>) 用于比较的初始值<br>
+　　○ (<strong>out</strong>) 返回触发时的事件状态位图
+        </li>
+        <li><span class="parameter">msk</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 事件的位图掩码，表示只关注掩码部分的事件
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+         返回值<br>
+　● <strong>0</strong> 没有错误<br>
+　● <strong>-EINVAL</strong> 参数错误<br>
+　● <strong>-EINTR</strong> 等待被中断<br>
+　● <strong>-ENOTTHDCTX</strong> 不在线程上下文中<br>
+　● <strong>-ENODATA</strong> 尝试失败
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">flg = xwos.flg.<span class="function-name">new</span>(<span class="number">32</span>)
+origin = flg:<span class="function-name">bmp</span>();
+msk = flg:<span class="function-name">bmp</span>();
+msk:<span class="function-name">zero</span>();
+msk:<span class="function-name">s1i</span>(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>) <span class="comment">-- 事件掩码：0xFF
+</span>rc = flg:<span class="function-name">trywait</span>(<span class="string">"sa"</span>, <span class="keyword">true</span>, origin, msk)
+<span class="keyword">if</span> (rc == <span class="number">0</span>) <span class="keyword">then</span>
+  <span class="comment">-- 获取所有的事件1,2,3,4,5,6,7,8
+</span>  <span class="comment">-- 消费事件，事件1,2,3,4,5,6,7,8会被清除
+</span><span class="keyword">else</span> <span class="keyword">if</span> (rc == -<span class="number">61</span>)
+  <span class="comment">-- 检查失败
+</span><span class="keyword">else</span>
+  <span class="comment">-- 错误发生
+</span><span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "flgsp:wait_to"></a>
+    <strong>flgsp:wait_to (flgsp, trigger, consumption, origin, msk, to)</strong>
+    </dt>
+    <dd>
+    限时等待事件标志对象的触发事件
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">flgsp</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 事件标志对象强指针
+        </li>
+        <li><span class="parameter">trigger</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+         (<strong>in</strong>) 事件触发条件<br>
+　● <strong>"sa"</strong> 所有事件位被置 <strong>1</strong> 触发<br>
+　● <strong>"so"</strong> 任意事件位被置 <strong>1</strong> 触发<br>
+　● <strong>"ca"</strong> 所有事件位被清 <strong>0</strong> 触发<br>
+　● <strong>"co"</strong> 任意事件位被清 <strong>0</strong> 触发<br>
+　● <strong>"ta"</strong> 所有事件位发生翻转触发<br>
+　● <strong>"to"</strong> 任意事件位发生翻转触发
+        </li>
+        <li><span class="parameter">consumption</span>
+            <span class="types"><span class="type">boolean</span></span>
+         (<strong>in</strong>) 是否消费事件<br>
+　● <strong>消费</strong> 事件是指，当线程等到事件被唤醒，可以选择是否 <strong>清除</strong> 事件标志。<br>
+　● <strong>清除</strong> 的含义是：<br>
+　　○ 当线程等待的是位图中的事件位被置 <strong>1</strong> ， <strong>清除</strong> 是指将这些位清 <strong>0</strong> ；<br>
+　　○ 当线程等待的是位图中的事件位被清 <strong>0</strong> ， <strong>清除</strong> 是指将这些位置 <strong>1</strong> ；<br>
+　● 此参数对 <strong>trigger</strong> 取值 <strong>"sa"</strong> ， <strong>"so"</strong> ， <strong>"ca"</strong> ， <strong>"co"</strong> 有效；<br>
+　● 此参数对 <strong>trigger</strong> 取值 <strong>"ta"</strong> ， <strong>"to"</strong> ，无意义。
+        </li>
+        <li><span class="parameter">origin</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in,out</strong>) 事件的状态位图<br>
+　● 当参数 <strong>trigger</strong> 取值 <strong>"sa"</strong> ， <strong>"so"</strong> ， <strong>"ca"</strong> ， <strong>"co"</strong> 时：(<strong>out</strong>) 返回触发时的事件状态位图<br>
+　● 当参数 <strong>trigger</strong> 取值 <strong>"ta"</strong> ， <strong>"to"</strong> 时：<br>
+　　○ (<strong>in</strong>) 用于比较的初始值<br>
+　　○ (<strong>out</strong>) 返回触发时的事件状态位图
+        </li>
+        <li><span class="parameter">msk</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) 事件的位图掩码，表示只关注掩码部分的事件
+        </li>
+        <li><span class="parameter">to</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) 期望的阻塞等待时间
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+         返回值<br>
+　● <strong>0</strong> 没有错误<br>
+　● <strong>-EINVAL</strong> 参数错误<br>
+　● <strong>-EINTR</strong> 等待被中断<br>
+　● <strong>-ENOTTHDCTX</strong> 不在线程上下文中<br>
+　● <strong>-ETIMEDOUT</strong> 超时
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">flg = xwos.flg.<span class="function-name">new</span>(<span class="number">32</span>)
+origin = flg:<span class="function-name">bmp</span>();
+msk = flg:<span class="function-name">bmp</span>();
+msk:<span class="function-name">zero</span>();
+msk:<span class="function-name">s1i</span>(<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>) <span class="comment">-- 事件掩码：0xFF
+</span>rc = flg:<span class="function-name">wait_to</span>(<span class="string">"ca"</span>, <span class="keyword">true</span>, origin, msk, xwtm.<span class="function-name">ft</span>(xwtm.<span class="function-name">s</span>(<span class="number">1</span>)))
+<span class="keyword">if</span> (rc == <span class="number">0</span>) <span class="keyword">then</span>
+  <span class="comment">-- 事件1,2,3,4,5,6,7,8全部被清除
+</span>  <span class="comment">-- 消费事件，事件1,2,3,4,5,6,7,8全被设置
+</span><span class="keyword">else</span> <span class="keyword">if</span> (rc == -<span class="number">116</span>)
+  <span class="comment">-- 超时
+</span><span class="keyword">else</span>
+  <span class="comment">-- 错误发生
+</span><span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/lunarmodules/LDoc">LDoc 1.5.0</a></i>
+<i style="float:right;">Last updated 2024-01-12 20:06:58 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

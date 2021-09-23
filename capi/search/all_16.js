@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['u16_2ec_0',['u16.c',['../u16_8c.html',1,'']]],
+  ['u32_1',['u32',['../structxwds__lin__cfg.html#aff809be49d1a857d12907d5e9c1121f3',1,'xwds_lin_cfg']]],
+  ['u32_2ec_2',['u32.c',['../u32_8c.html',1,'']]],
+  ['u64_2ec_3',['u64.c',['../u64_8c.html',1,'']]],
+  ['u8_4',['u8',['../structxwds__tca9539__cfg.html#ac28e8b7e5ff6d8c67572b578e31bdc79',1,'xwds_tca9539_cfg']]],
+  ['u8_2ec_5',['u8.c',['../u8_8c.html',1,'']]],
+  ['uart控制器_6',['UART控制器',['../group__xwlua__xwds__uart.html',1,'']]],
+  ['uart_2eh_7',['uart.h',['../xwmd_2isc_2xwssc_2hwif_2uart_8h.html',1,'(全局命名空间)'],['../xwem_2vm_2lua_2xwlua_2xwds_2uart_8h.html',1,'(全局命名空间)']]],
+  ['uartc_8',['uartc',['../structxwlua__uart.html#ae35b32cf2a91199cef07f4bf725e438a',1,'xwlua_uart']]],
+  ['uchar_5fmax_9',['UCHAR_MAX',['../group__xwos__lib__type.html#ga4066e640ee269d5d8f83ff6643b7af5f',1,'type.h']]],
+  ['uchar_5fmin_10',['UCHAR_MIN',['../group__xwos__lib__type.html#ga0535a618e5c3ef22b719df3e5d1f73bc',1,'type.h']]],
+  ['uchar_5fshift_11',['UCHAR_SHIFT',['../group__xwos__lib__type.html#gaa2cf31bcb3d565e3e6dd3540fee8a920',1,'type.h']]],
+  ['uid_12',['uid',['../structxwds__w25qxx__parameter.html#a6869b259ee5325f75f3315cc27c44c82',1,'xwds_w25qxx_parameter']]],
+  ['uint_5fmax_13',['UINT_MAX',['../group__xwos__lib__type.html#gac998ea02fbd821fc123d60445ce76f38',1,'type.h']]],
+  ['uint_5fmin_14',['UINT_MIN',['../group__xwos__lib__type.html#ga4c5cca78586f61bea3640a1563a43819',1,'type.h']]],
+  ['uint_5fshift_15',['UINT_SHIFT',['../group__xwos__lib__type.html#gae1323441d5e2eec9b4f80f2f7660eeaf',1,'type.h']]],
+  ['ullong_5fmax_16',['ULLONG_MAX',['../group__xwos__lib__type.html#gaa1dd7166a75b73ad62b111ae6fc17c59',1,'type.h']]],
+  ['ullong_5fmin_17',['ULLONG_MIN',['../group__xwos__lib__type.html#gacad8f4f6621c48edbb976cf52348955b',1,'type.h']]],
+  ['ullong_5fshift_18',['ULLONG_SHIFT',['../group__xwos__lib__type.html#ga0b6eb7cc237fcc15c895becd3e0d0f4f',1,'type.h']]],
+  ['ulong_5fmax_19',['ULONG_MAX',['../group__xwos__lib__type.html#ga41c51926a1997aab3503f9083935e06c',1,'type.h']]],
+  ['ulong_5fmin_20',['ULONG_MIN',['../group__xwos__lib__type.html#ga174a3b1d61499b676a2ad2efc8f224c5',1,'type.h']]],
+  ['unlock_21',['unlock',['../structxwos__cblk.html#ae857f358993e57122f81a1933f88a11a',1,'xwos_cblk']]],
+  ['ushrt_5fmax_22',['USHRT_MAX',['../group__xwos__lib__type.html#ga689b119da994dece91d44b5aeac643ed',1,'type.h']]],
+  ['ushrt_5fmin_23',['USHRT_MIN',['../group__xwos__lib__type.html#ga57f617d9cf5cce12e8499f7512ebd948',1,'type.h']]],
+  ['ushrt_5fshift_24',['USHRT_SHIFT',['../group__xwos__lib__type.html#ga7611b46a41b64f5ccbfd257971062ad7',1,'type.h']]]
+];

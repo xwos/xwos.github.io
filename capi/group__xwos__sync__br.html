@@ -1,0 +1,1165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>XWOS API: 线程栅栏</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<a href="/" class="github-corner" title="返回首页">
+  <svg viewBox="0 0 250 250" style="position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path
+      d="M 0 0 L 250 250 L 250 0 L 0 0 z M 181.19336 6.25 A 18.281986 19.638775 0 0 1 192.79297 10.798828 L 241.54492 54.201172 A 6.0939954 6.5462585 0 0 1 237.64453 65.787109 L 233.13477 65.787109 A 3.0469979 3.2731292 0 0 0 230.08789 69.060547 L 230.08789 111.61133 A 18.281986 19.638775 0 0 1 211.80664 131.25 L 205.71289 131.25 A 12.187991 13.092517 0 0 1 193.52344 118.1582 L 193.52344 98.519531 A 12.187991 13.092517 0 0 0 181.33594 85.425781 A 12.187991 13.092517 0 0 0 169.14844 98.519531 L 169.14844 118.1582 A 12.187991 13.092517 0 0 1 156.95898 131.25 L 150.86523 131.25 A 18.281986 19.638775 0 0 1 132.58398 111.61133 L 132.58398 68.994141 A 3.0469979 3.2731292 0 0 0 129.29297 65.722656 L 124.7832 65.722656 A 6.0939954 6.5462585 0 0 1 120.88281 54.201172 L 169.39258 10.798828 A 18.281986 19.638775 0 0 1 181.19336 6.25 z "/>
+  </svg>
+</a>
+<style>.github-corner:hover</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">XWOS API
+   &#160;<span id="projectnumber">3.0</span>
+   </div>
+   <div id="projectbrief">XWOS API参考手册</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('group__xwos__sync__br.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">结构体</a> &#124;
+<a href="#define-members">宏定义</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">线程栅栏<div class="ingroups"><a class="el" href="group__xwos.html">XWOS内核</a> &raquo; <a class="el" href="group__xwos__sync.html">XWOS的同步机制</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+线程栅栏 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwos__sync__br.png" border="0" usemap="#agroup____xwos____sync____br" alt=""/></div>
+<map name="agroup____xwos____sync____br" id="agroup____xwos____sync____br">
+<area shape="rect" href="group__xwos__sync.html" title=" " alt="" coords="5,5,133,31"/>
+<area shape="rect" title=" " alt="" coords="181,5,256,31"/>
+</map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+结构体</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structxwos__br.html">xwos_br</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：线程栅栏  <a href="structxwos__br.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structxwos__br__d.html">xwos_br_d</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：线程栅栏对象描述符  <a href="structxwos__br__d.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:ga8e6bdc72c35767d441ca010f694e93c3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__sync__br.html#ga8e6bdc72c35767d441ca010f694e93c3">XWOS_BR_NILD</a>&#160;&#160;&#160;((<a class="el" href="structxwos__br__d.html">xwos_br_d</a>){<a class="el" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, 0,})</td></tr>
+<tr class="memdesc:ga8e6bdc72c35767d441ca010f694e93c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：空的线程栅栏对象描述符  <br /></td></tr>
+<tr class="separator:ga8e6bdc72c35767d441ca010f694e93c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:ga14263f3e94d189d110eb62bdceca51b5"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__sync__br.html#ga14263f3e94d189d110eb62bdceca51b5">xwos_br_init</a> (struct <a class="el" href="structxwos__br.html">xwos_br</a> *br, <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num, <a class="el" href="group__xwos__lib__type.html#gaf34d2bb83d9ceab0d030c4e03d9d7f86">xwbmp_t</a> *bmp, <a class="el" href="group__xwos__lib__type.html#gaf34d2bb83d9ceab0d030c4e03d9d7f86">xwbmp_t</a> *msk)</td></tr>
+<tr class="memdesc:ga14263f3e94d189d110eb62bdceca51b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：静态方式初始化线程栅栏  <br /></td></tr>
+<tr class="separator:ga14263f3e94d189d110eb62bdceca51b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadf0ab06127734021e54209b8fb9b8cf1"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__sync__br.html#gadf0ab06127734021e54209b8fb9b8cf1">xwos_br_fini</a> (struct <a class="el" href="structxwos__br.html">xwos_br</a> *br)</td></tr>
+<tr class="memdesc:gadf0ab06127734021e54209b8fb9b8cf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：销毁静态方式初始化的线程栅栏  <br /></td></tr>
+<tr class="separator:gadf0ab06127734021e54209b8fb9b8cf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7402fda20860499d41f347a0b69ded8b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__sync__br.html#ga7402fda20860499d41f347a0b69ded8b">xwos_br_grab</a> (struct <a class="el" href="structxwos__br.html">xwos_br</a> *br)</td></tr>
+<tr class="memdesc:ga7402fda20860499d41f347a0b69ded8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：增加线程栅栏对象的引用计数  <br /></td></tr>
+<tr class="separator:ga7402fda20860499d41f347a0b69ded8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae9d7efa29affa54491a5bc59e12f5691"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__sync__br.html#gae9d7efa29affa54491a5bc59e12f5691">xwos_br_put</a> (struct <a class="el" href="structxwos__br.html">xwos_br</a> *br)</td></tr>
+<tr class="memdesc:gae9d7efa29affa54491a5bc59e12f5691"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：减少线程栅栏对象的引用计数  <br /></td></tr>
+<tr class="separator:gae9d7efa29affa54491a5bc59e12f5691"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga01340bc335a510cde0aea244ae6e55b0"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__sync__br.html#ga01340bc335a510cde0aea244ae6e55b0">xwos_br_create</a> (<a class="el" href="structxwos__br__d.html">xwos_br_d</a> *brd, <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num)</td></tr>
+<tr class="memdesc:ga01340bc335a510cde0aea244ae6e55b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：动态方式创建线程栅栏  <br /></td></tr>
+<tr class="separator:ga01340bc335a510cde0aea244ae6e55b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0562246ab3c7f893323c9103b93bdaba"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__sync__br.html#ga0562246ab3c7f893323c9103b93bdaba">xwos_br_delete</a> (<a class="el" href="structxwos__br__d.html">xwos_br_d</a> brd)</td></tr>
+<tr class="memdesc:ga0562246ab3c7f893323c9103b93bdaba"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：删除动态方式创建的线程栅栏  <br /></td></tr>
+<tr class="separator:ga0562246ab3c7f893323c9103b93bdaba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5ad53ec7b82b801714b872f580896db4"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__sync__br.html#ga5ad53ec7b82b801714b872f580896db4">xwos_br_acquire</a> (<a class="el" href="structxwos__br__d.html">xwos_br_d</a> brd)</td></tr>
+<tr class="memdesc:ga5ad53ec7b82b801714b872f580896db4"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：检查线程栅栏对象的标签并增加引用计数  <br /></td></tr>
+<tr class="separator:ga5ad53ec7b82b801714b872f580896db4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafd544bdd7b0b78a883ecb7eb66b7ea31"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__sync__br.html#gafd544bdd7b0b78a883ecb7eb66b7ea31">xwos_br_release</a> (<a class="el" href="structxwos__br__d.html">xwos_br_d</a> brd)</td></tr>
+<tr class="memdesc:gafd544bdd7b0b78a883ecb7eb66b7ea31"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：检查对象的标签并减少引用计数  <br /></td></tr>
+<tr class="separator:gafd544bdd7b0b78a883ecb7eb66b7ea31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga793ee3025d05a1d9913089283d7bc71d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__sync__br.html#ga793ee3025d05a1d9913089283d7bc71d">xwos_br_get_tik</a> (struct <a class="el" href="structxwos__br.html">xwos_br</a> *br)</td></tr>
+<tr class="memdesc:ga793ee3025d05a1d9913089283d7bc71d"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：获取线程栅栏对象的标签  <br /></td></tr>
+<tr class="separator:ga793ee3025d05a1d9913089283d7bc71d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae2f2787b835d88b11430847a1e27ddd3"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structxwos__br__d.html">xwos_br_d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__sync__br.html#gae2f2787b835d88b11430847a1e27ddd3">xwos_br_get_d</a> (struct <a class="el" href="structxwos__br.html">xwos_br</a> *br)</td></tr>
+<tr class="memdesc:gae2f2787b835d88b11430847a1e27ddd3"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：获取线程栅栏对象描述符  <br /></td></tr>
+<tr class="separator:gae2f2787b835d88b11430847a1e27ddd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaee7adfe8ec301f3c31d3b196242ac5c6"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__sync__br.html#gaee7adfe8ec301f3c31d3b196242ac5c6">xwos_br_bind</a> (struct <a class="el" href="structxwos__br.html">xwos_br</a> *br, struct <a class="el" href="structxwos__sel.html">xwos_sel</a> *sel, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pos)</td></tr>
+<tr class="memdesc:gaee7adfe8ec301f3c31d3b196242ac5c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：绑定线程栅栏到信号选择器  <br /></td></tr>
+<tr class="separator:gaee7adfe8ec301f3c31d3b196242ac5c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga680c5382714109d755883339d198454e"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__sync__br.html#ga680c5382714109d755883339d198454e">xwos_br_unbind</a> (struct <a class="el" href="structxwos__br.html">xwos_br</a> *br, struct <a class="el" href="structxwos__sel.html">xwos_sel</a> *sel)</td></tr>
+<tr class="memdesc:ga680c5382714109d755883339d198454e"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：从信号选择器上解绑线程栅栏  <br /></td></tr>
+<tr class="separator:ga680c5382714109d755883339d198454e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8b984b72f8fa6608489a98a61b4ef5ee"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__sync__br.html#ga8b984b72f8fa6608489a98a61b4ef5ee">xwos_br_get_num</a> (struct <a class="el" href="structxwos__br.html">xwos_br</a> *br, <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> *numbuf)</td></tr>
+<tr class="memdesc:ga8b984b72f8fa6608489a98a61b4ef5ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：获取线程栅栏中线程槽数量  <br /></td></tr>
+<tr class="separator:ga8b984b72f8fa6608489a98a61b4ef5ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6b28c7fe0cb6e0569f5bdc93fa7f0afe"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__sync__br.html#ga6b28c7fe0cb6e0569f5bdc93fa7f0afe">xwos_br_wait</a> (struct <a class="el" href="structxwos__br.html">xwos_br</a> *br)</td></tr>
+<tr class="memdesc:ga6b28c7fe0cb6e0569f5bdc93fa7f0afe"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：等待所有线程到达栅栏  <br /></td></tr>
+<tr class="separator:ga6b28c7fe0cb6e0569f5bdc93fa7f0afe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga22bb233fcefa640a3d3e196eac1c5753"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__sync__br.html#ga22bb233fcefa640a3d3e196eac1c5753">xwos_br_wait_to</a> (struct <a class="el" href="structxwos__br.html">xwos_br</a> *br, <a class="el" href="group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a> to)</td></tr>
+<tr class="memdesc:ga22bb233fcefa640a3d3e196eac1c5753"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：限时等待所有线程到达栅栏  <br /></td></tr>
+<tr class="separator:ga22bb233fcefa640a3d3e196eac1c5753"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<p>技术参考手册： <a href="../docs/TechRefManual/Sync/Br">线程栅栏</a></p>
+<h2><a class="anchor" id="autotoc_md40"></a>
+线程栅栏的静态初始化、销毁</h2>
+<ul>
+<li><code><a class="el" href="group__xwos__sync__br.html#ga14263f3e94d189d110eb62bdceca51b5" title="XWOS API：静态方式初始化线程栅栏">xwos_br_init()</a></code> ：静态初始化</li>
+<li><code><a class="el" href="group__xwos__sync__br.html#gadf0ab06127734021e54209b8fb9b8cf1" title="XWOS API：销毁静态方式初始化的线程栅栏">xwos_br_fini()</a></code> ：销毁</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md41"></a>
+线程栅栏的动态创建、删除</h2>
+<ul>
+<li><code><a class="el" href="group__xwos__sync__br.html#ga01340bc335a510cde0aea244ae6e55b0" title="XWOS API：动态方式创建线程栅栏">xwos_br_create()</a></code> ：动态创建</li>
+<li><code><a class="el" href="group__xwos__sync__br.html#ga0562246ab3c7f893323c9103b93bdaba" title="XWOS API：删除动态方式创建的线程栅栏">xwos_br_delete()</a></code> ：删除</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md42"></a>
+获取事件的状态</h2>
+<ul>
+<li><code><a class="el" href="group__xwos__sync__br.html#ga8b984b72f8fa6608489a98a61b4ef5ee" title="XWOS API：获取线程栅栏中线程槽数量">xwos_br_get_num()</a></code> ：获取线程栅栏中线程槽数量，可在 <b>任意</b> 上下文使用</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md43"></a>
+同步线程</h2>
+<ul>
+<li><code><a class="el" href="group__xwos__sync__br.html#ga6b28c7fe0cb6e0569f5bdc93fa7f0afe" title="XWOS API：等待所有线程到达栅栏">xwos_br_wait()</a></code> ：等待所有线程到达栅栏，只能在 <b>线程</b> 上下文使用</li>
+<li><code><a class="el" href="group__xwos__sync__br.html#ga22bb233fcefa640a3d3e196eac1c5753" title="XWOS API：限时等待所有线程到达栅栏">xwos_br_wait_to()</a></code> ：限时等待所有线程到达栅栏，只能在 <b>线程</b> 上下文使用</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md44"></a>
+使用信号选择器选择线程栅栏</h2>
+<ul>
+<li><code><a class="el" href="group__xwos__sync__br.html#gaee7adfe8ec301f3c31d3b196242ac5c6" title="XWOS API：绑定线程栅栏到信号选择器">xwos_br_bind()</a></code> ：将线程栅栏绑定到 <a href="../docs/TechRefManual/Sync/Sel">信号选择器</a> 上</li>
+<li><code><a class="el" href="group__xwos__sync__br.html#ga680c5382714109d755883339d198454e" title="XWOS API：从信号选择器上解绑线程栅栏">xwos_br_unbind()</a></code> ：从 <a href="../docs/TechRefManual/Sync/Sel">信号选择器</a> 上解绑</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md45"></a>
+线程栅栏对象的生命周期管理</h2>
+<ul>
+<li>通过 <b>对象指针</b> 管理生命周期：<ul>
+<li><code><a class="el" href="group__xwos__sync__br.html#ga7402fda20860499d41f347a0b69ded8b" title="XWOS API：增加线程栅栏对象的引用计数">xwos_br_grab()</a></code> ：增加引用计数</li>
+<li><code><a class="el" href="group__xwos__sync__br.html#gae9d7efa29affa54491a5bc59e12f5691" title="XWOS API：减少线程栅栏对象的引用计数">xwos_br_put()</a></code> ：减少引用计数</li>
+</ul>
+</li>
+<li>通过 <b>对象描述符</b> 管理生命周期：<ul>
+<li><code><a class="el" href="group__xwos__sync__br.html#ga5ad53ec7b82b801714b872f580896db4" title="XWOS API：检查线程栅栏对象的标签并增加引用计数">xwos_br_acquire()</a></code> ：增加引用计数</li>
+<li><code><a class="el" href="group__xwos__sync__br.html#gafd544bdd7b0b78a883ecb7eb66b7ea31" title="XWOS API：检查对象的标签并减少引用计数">xwos_br_release()</a></code> ：减少引用计数</li>
+</ul>
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md46"></a>
+对象描述符和对象标签</h2>
+<p>已知线程栅栏对象的指针的情况下，可以通过 <code><a class="el" href="group__xwos__sync__br.html#gae2f2787b835d88b11430847a1e27ddd3" title="XWOS API：获取线程栅栏对象描述符">xwos_br_get_d()</a></code> 获取 <a class="el" href="structxwos__br__d.html">xwos_br_d</a> ， 或可以通过 <code><a class="el" href="group__xwos__sync__br.html#ga793ee3025d05a1d9913089283d7bc71d" title="XWOS API：获取线程栅栏对象的标签">xwos_br_get_tik()</a></code> 获取对象标签。</p>
+<h2><a class="anchor" id="autotoc_md47"></a>
+C++</h2>
+<p>C++头文件： <a class="el" href="br_8hxx.html">xwos/osal/sync/br.hxx</a> </p>
+<h2 class="groupheader">宏定义说明</h2>
+<a id="ga8e6bdc72c35767d441ca010f694e93c3" name="ga8e6bdc72c35767d441ca010f694e93c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8e6bdc72c35767d441ca010f694e93c3">&#9670;&#160;</a></span>XWOS_BR_NILD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XWOS_BR_NILD&#160;&#160;&#160;((<a class="el" href="structxwos__br__d.html">xwos_br_d</a>){<a class="el" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, 0,})</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWOS API：空的线程栅栏对象描述符 </p>
+
+<p class="definition">在文件 <a class="el" href="sync_2br_8h_source.html">br.h</a> 第 <a class="el" href="sync_2br_8h_source.html#l00096">96</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">函数说明</h2>
+<a id="ga5ad53ec7b82b801714b872f580896db4" name="ga5ad53ec7b82b801714b872f580896db4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5ad53ec7b82b801714b872f580896db4">&#9670;&#160;</a></span>xwos_br_acquire()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_br_acquire </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structxwos__br__d.html">xwos_br_d</a>&#160;</td>
+          <td class="paramname"><em>brd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：检查线程栅栏对象的标签并增加引用计数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">brd</td><td>线程栅栏对象描述符 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-ENILOBJD</td><td>空的对象描述符 </td></tr>
+    <tr><td class="paramname">-EOBJDEAD</td><td>对象无效 </td></tr>
+    <tr><td class="paramname">-EACCES</td><td>对象标签检查失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="sync_2br_8h_source.html">br.h</a> 第 <a class="el" href="sync_2br_8h_source.html#l00214">214</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  215</span>{</div>
+<div class="line"><span class="lineno">  216</span>        <span class="keywordflow">return</span> xwosdl_br_acquire(&amp;brd.<a class="code hl_variable" href="structxwos__br__d.html#ad5951f3c1769088679485955ba6ce194">br</a>-&gt;<a class="code hl_variable" href="structxwos__br.html#a63c8e2b0fcd4312be295bb17238b987e">osbr</a>, brd.<a class="code hl_variable" href="structxwos__br__d.html#a4bedc591efb4973a5eb817c7dd36acbc">tik</a>);</div>
+<div class="line"><span class="lineno">  217</span>}</div>
+<div class="ttc" id="astructxwos__br__d_html_a4bedc591efb4973a5eb817c7dd36acbc"><div class="ttname"><a href="structxwos__br__d.html#a4bedc591efb4973a5eb817c7dd36acbc">xwos_br_d::tik</a></div><div class="ttdeci">xwsq_t tik</div><div class="ttdef"><b>Definition</b> <a href="sync_2br_8h_source.html#l00090">br.h:90</a></div></div>
+<div class="ttc" id="astructxwos__br__d_html_ad5951f3c1769088679485955ba6ce194"><div class="ttname"><a href="structxwos__br__d.html#ad5951f3c1769088679485955ba6ce194">xwos_br_d::br</a></div><div class="ttdeci">struct xwos_br * br</div><div class="ttdef"><b>Definition</b> <a href="sync_2br_8h_source.html#l00089">br.h:89</a></div></div>
+<div class="ttc" id="astructxwos__br_html_a63c8e2b0fcd4312be295bb17238b987e"><div class="ttname"><a href="structxwos__br.html#a63c8e2b0fcd4312be295bb17238b987e">xwos_br::osbr</a></div><div class="ttdeci">struct xwmp_evt osbr</div><div class="ttdef"><b>Definition</b> <a href="sync_2br_8h_source.html#l00082">br.h:82</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="gaee7adfe8ec301f3c31d3b196242ac5c6" name="gaee7adfe8ec301f3c31d3b196242ac5c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaee7adfe8ec301f3c31d3b196242ac5c6">&#9670;&#160;</a></span>xwos_br_bind()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_br_bind </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__br.html">xwos_br</a> *&#160;</td>
+          <td class="paramname"><em>br</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structxwos__sel.html">xwos_sel</a> *&#160;</td>
+          <td class="paramname"><em>sel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>&#160;</td>
+          <td class="paramname"><em>pos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：绑定线程栅栏到信号选择器 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">br</td><td>线程栅栏对象的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sel</td><td>信号选择器的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pos</td><td>线程栅栏对象映射到位图中的位置 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>无效的指针或空指针 </td></tr>
+    <tr><td class="paramname">-ECHRNG</td><td>线程数量超出范围 </td></tr>
+    <tr><td class="paramname">-EALREADY</td><td>同步对象已经绑定到事件对象 </td></tr>
+    <tr><td class="paramname">-EBUSY</td><td>通道已经被其他同步对象独占 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意</li>
+<li>绑定方式：非独占绑定</li>
+</ul>
+</dd></dl>
+<p>当所有线程到达线程栅栏时，绑定了信号选择器的线程栅栏将向信号选择器发送信号。 </p>
+
+<p class="definition">在文件 <a class="el" href="sync_2br_8h_source.html">br.h</a> 第 <a class="el" href="sync_2br_8h_source.html#l00284">284</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  285</span>{</div>
+<div class="line"><span class="lineno">  286</span>        <span class="keywordflow">return</span> xwosdl_br_bind(&amp;br-&gt;<a class="code hl_variable" href="structxwos__br.html#a63c8e2b0fcd4312be295bb17238b987e">osbr</a>, &amp;sel-&gt;<a class="code hl_variable" href="structxwos__sel.html#adaf7f267f13f41092f7d4ce9a8e464d7">ossel</a>, pos);</div>
+<div class="line"><span class="lineno">  287</span>}</div>
+<div class="ttc" id="astructxwos__sel_html_adaf7f267f13f41092f7d4ce9a8e464d7"><div class="ttname"><a href="structxwos__sel.html#adaf7f267f13f41092f7d4ce9a8e464d7">xwos_sel::ossel</a></div><div class="ttdeci">struct xwmp_evt ossel</div><div class="ttdef"><b>Definition</b> <a href="sync_2sel_8h_source.html#l00082">sel.h:82</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga01340bc335a510cde0aea244ae6e55b0" name="ga01340bc335a510cde0aea244ae6e55b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga01340bc335a510cde0aea244ae6e55b0">&#9670;&#160;</a></span>xwos_br_create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_br_create </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structxwos__br__d.html">xwos_br_d</a> *&#160;</td>
+          <td class="paramname"><em>brd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a>&#160;</td>
+          <td class="paramname"><em>num</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：动态方式创建线程栅栏 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">brd</td><td>指向缓冲区的指针，通过此缓冲区返回线程栅栏对象描述符 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">num</td><td>线程栅栏中的线程数量 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>无效的指针或空指针 </td></tr>
+    <tr><td class="paramname">-ENOMEM</td><td>内存不足 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="sync_2br_8h_source.html">br.h</a> 第 <a class="el" href="sync_2br_8h_source.html#l00182">182</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  183</span>{</div>
+<div class="line"><span class="lineno">  184</span>        <span class="keywordflow">return</span> xwosdl_br_create((xwosdl_br_d *)brd, num);</div>
+<div class="line"><span class="lineno">  185</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga0562246ab3c7f893323c9103b93bdaba" name="ga0562246ab3c7f893323c9103b93bdaba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0562246ab3c7f893323c9103b93bdaba">&#9670;&#160;</a></span>xwos_br_delete()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_br_delete </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structxwos__br__d.html">xwos_br_d</a>&#160;</td>
+          <td class="paramname"><em>brd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：删除动态方式创建的线程栅栏 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">brd</td><td>线程栅栏对象描述符 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>无效的指针或空指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="sync_2br_8h_source.html">br.h</a> 第 <a class="el" href="sync_2br_8h_source.html#l00197">197</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  198</span>{</div>
+<div class="line"><span class="lineno">  199</span>        <span class="keywordflow">return</span> xwosdl_br_delete(&amp;brd.<a class="code hl_variable" href="structxwos__br__d.html#ad5951f3c1769088679485955ba6ce194">br</a>-&gt;<a class="code hl_variable" href="structxwos__br.html#a63c8e2b0fcd4312be295bb17238b987e">osbr</a>, brd.<a class="code hl_variable" href="structxwos__br__d.html#a4bedc591efb4973a5eb817c7dd36acbc">tik</a>);</div>
+<div class="line"><span class="lineno">  200</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="gadf0ab06127734021e54209b8fb9b8cf1" name="gadf0ab06127734021e54209b8fb9b8cf1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadf0ab06127734021e54209b8fb9b8cf1">&#9670;&#160;</a></span>xwos_br_fini()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_br_fini </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__br.html">xwos_br</a> *&#160;</td>
+          <td class="paramname"><em>br</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：销毁静态方式初始化的线程栅栏 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">br</td><td>线程栅栏对象的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>无效的指针或空指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="sync_2br_8h_source.html">br.h</a> 第 <a class="el" href="sync_2br_8h_source.html#l00127">127</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  128</span>{</div>
+<div class="line"><span class="lineno">  129</span>        <span class="keywordflow">return</span> xwosdl_br_fini(&amp;br-&gt;<a class="code hl_variable" href="structxwos__br.html#a63c8e2b0fcd4312be295bb17238b987e">osbr</a>);</div>
+<div class="line"><span class="lineno">  130</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="gae2f2787b835d88b11430847a1e27ddd3" name="gae2f2787b835d88b11430847a1e27ddd3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae2f2787b835d88b11430847a1e27ddd3">&#9670;&#160;</a></span>xwos_br_get_d()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="structxwos__br__d.html">xwos_br_d</a> xwos_br_get_d </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__br.html">xwos_br</a> *&#160;</td>
+          <td class="paramname"><em>br</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：获取线程栅栏对象描述符 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">br</td><td>线程栅栏对象的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>线程栅栏对象描述符 </dd></dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="sync_2br_8h_source.html">br.h</a> 第 <a class="el" href="sync_2br_8h_source.html#l00257">257</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  258</span>{</div>
+<div class="line"><span class="lineno">  259</span>        <a class="code hl_struct" href="structxwos__br__d.html">xwos_br_d</a> brd;</div>
+<div class="line"><span class="lineno">  260</span> </div>
+<div class="line"><span class="lineno">  261</span>        brd.<a class="code hl_variable" href="structxwos__br__d.html#ad5951f3c1769088679485955ba6ce194">br</a> = br;</div>
+<div class="line"><span class="lineno">  262</span>        brd.<a class="code hl_variable" href="structxwos__br__d.html#a4bedc591efb4973a5eb817c7dd36acbc">tik</a> = xwosdl_br_get_tik(&amp;br-&gt;<a class="code hl_variable" href="structxwos__br.html#a63c8e2b0fcd4312be295bb17238b987e">osbr</a>);</div>
+<div class="line"><span class="lineno">  263</span>        <span class="keywordflow">return</span> brd;</div>
+<div class="line"><span class="lineno">  264</span>}</div>
+<div class="ttc" id="astructxwos__br__d_html"><div class="ttname"><a href="structxwos__br__d.html">xwos_br_d</a></div><div class="ttdoc">XWOS API：线程栅栏对象描述符</div><div class="ttdef"><b>Definition</b> <a href="sync_2br_8h_source.html#l00088">br.h:88</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga8b984b72f8fa6608489a98a61b4ef5ee" name="ga8b984b72f8fa6608489a98a61b4ef5ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8b984b72f8fa6608489a98a61b4ef5ee">&#9670;&#160;</a></span>xwos_br_get_num()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_br_get_num </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__br.html">xwos_br</a> *&#160;</td>
+          <td class="paramname"><em>br</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> *&#160;</td>
+          <td class="paramname"><em>numbuf</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：获取线程栅栏中线程槽数量 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">br</td><td>线程栅栏对象的指针 </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">numbuf</td><td>指向缓冲区的指针，通过此缓冲区返回线程槽数量 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>空指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="sync_2br_8h_source.html">br.h</a> 第 <a class="el" href="sync_2br_8h_source.html#l00317">317</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  318</span>{</div>
+<div class="line"><span class="lineno">  319</span>        <span class="keywordflow">return</span> xwosdl_br_get_num(&amp;br-&gt;<a class="code hl_variable" href="structxwos__br.html#a63c8e2b0fcd4312be295bb17238b987e">osbr</a>, numbuf);</div>
+<div class="line"><span class="lineno">  320</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga793ee3025d05a1d9913089283d7bc71d" name="ga793ee3025d05a1d9913089283d7bc71d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga793ee3025d05a1d9913089283d7bc71d">&#9670;&#160;</a></span>xwos_br_get_tik()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> xwos_br_get_tik </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__br.html">xwos_br</a> *&#160;</td>
+          <td class="paramname"><em>br</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：获取线程栅栏对象的标签 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">br</td><td>线程栅栏对象的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>线程栅栏对象的标签 </dd></dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="sync_2br_8h_source.html">br.h</a> 第 <a class="el" href="sync_2br_8h_source.html#l00244">244</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  245</span>{</div>
+<div class="line"><span class="lineno">  246</span>        <span class="keywordflow">return</span> xwosdl_br_get_tik(&amp;br-&gt;<a class="code hl_variable" href="structxwos__br.html#a63c8e2b0fcd4312be295bb17238b987e">osbr</a>);</div>
+<div class="line"><span class="lineno">  247</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga7402fda20860499d41f347a0b69ded8b" name="ga7402fda20860499d41f347a0b69ded8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7402fda20860499d41f347a0b69ded8b">&#9670;&#160;</a></span>xwos_br_grab()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_br_grab </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__br.html">xwos_br</a> *&#160;</td>
+          <td class="paramname"><em>br</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：增加线程栅栏对象的引用计数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">br</td><td>线程栅栏对象的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>空指针 </td></tr>
+    <tr><td class="paramname">-EOBJDEAD</td><td>对象无效 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意</li>
+</ul>
+</dd></dl>
+<p>此函数主要用于管理 <b>静态对象</b> 的引用计数。 若用于 <b>动态对象</b> ，需要确保对象的指针一定不是野指针。 </p>
+
+<p class="definition">在文件 <a class="el" href="sync_2br_8h_source.html">br.h</a> 第 <a class="el" href="sync_2br_8h_source.html#l00146">146</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  147</span>{</div>
+<div class="line"><span class="lineno">  148</span>        <span class="keywordflow">return</span> xwosdl_br_grab(&amp;br-&gt;<a class="code hl_variable" href="structxwos__br.html#a63c8e2b0fcd4312be295bb17238b987e">osbr</a>);</div>
+<div class="line"><span class="lineno">  149</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga14263f3e94d189d110eb62bdceca51b5" name="ga14263f3e94d189d110eb62bdceca51b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga14263f3e94d189d110eb62bdceca51b5">&#9670;&#160;</a></span>xwos_br_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_br_init </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__br.html">xwos_br</a> *&#160;</td>
+          <td class="paramname"><em>br</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a>&#160;</td>
+          <td class="paramname"><em>num</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#gaf34d2bb83d9ceab0d030c4e03d9d7f86">xwbmp_t</a> *&#160;</td>
+          <td class="paramname"><em>bmp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#gaf34d2bb83d9ceab0d030c4e03d9d7f86">xwbmp_t</a> *&#160;</td>
+          <td class="paramname"><em>msk</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：静态方式初始化线程栅栏 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">br</td><td>线程栅栏对象的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">num</td><td>线程栅栏中的线程数量 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bmp</td><td>线程栅栏用来记录线程抵达事件的位图缓冲区 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">msk</td><td>线程栅栏用来记录线程掩码状态的位图缓冲区，长度应与bmp一致 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>无效的指针或空指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="sync_2br_8h_source.html">br.h</a> 第 <a class="el" href="sync_2br_8h_source.html#l00111">111</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  113</span>{</div>
+<div class="line"><span class="lineno">  114</span>        <span class="keywordflow">return</span> xwosdl_br_init(&amp;br-&gt;<a class="code hl_variable" href="structxwos__br.html#a63c8e2b0fcd4312be295bb17238b987e">osbr</a>, num, bmp, msk);</div>
+<div class="line"><span class="lineno">  115</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="gae9d7efa29affa54491a5bc59e12f5691" name="gae9d7efa29affa54491a5bc59e12f5691"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae9d7efa29affa54491a5bc59e12f5691">&#9670;&#160;</a></span>xwos_br_put()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_br_put </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__br.html">xwos_br</a> *&#160;</td>
+          <td class="paramname"><em>br</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：减少线程栅栏对象的引用计数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">br</td><td>线程栅栏对象的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>空指针 </td></tr>
+    <tr><td class="paramname">-EOBJDEAD</td><td>对象无效 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意</li>
+</ul>
+</dd></dl>
+<p>此函数主要用于管理 <b>静态对象</b> 的引用计数。 若用于 <b>动态对象</b> ，需要确保对象的指针一定不是野指针。 </p>
+
+<p class="definition">在文件 <a class="el" href="sync_2br_8h_source.html">br.h</a> 第 <a class="el" href="sync_2br_8h_source.html#l00165">165</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  166</span>{</div>
+<div class="line"><span class="lineno">  167</span>        <span class="keywordflow">return</span> xwosdl_br_put(&amp;br-&gt;<a class="code hl_variable" href="structxwos__br.html#a63c8e2b0fcd4312be295bb17238b987e">osbr</a>);</div>
+<div class="line"><span class="lineno">  168</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="gafd544bdd7b0b78a883ecb7eb66b7ea31" name="gafd544bdd7b0b78a883ecb7eb66b7ea31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafd544bdd7b0b78a883ecb7eb66b7ea31">&#9670;&#160;</a></span>xwos_br_release()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_br_release </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structxwos__br__d.html">xwos_br_d</a>&#160;</td>
+          <td class="paramname"><em>brd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：检查对象的标签并减少引用计数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">brd</td><td>线程栅栏对象描述符 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-ENILOBJD</td><td>空的对象描述符 </td></tr>
+    <tr><td class="paramname">-EOBJDEAD</td><td>对象无效 </td></tr>
+    <tr><td class="paramname">-EACCES</td><td>对象标签检查失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="sync_2br_8h_source.html">br.h</a> 第 <a class="el" href="sync_2br_8h_source.html#l00231">231</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  232</span>{</div>
+<div class="line"><span class="lineno">  233</span>        <span class="keywordflow">return</span> xwosdl_br_release(&amp;brd.<a class="code hl_variable" href="structxwos__br__d.html#ad5951f3c1769088679485955ba6ce194">br</a>-&gt;<a class="code hl_variable" href="structxwos__br.html#a63c8e2b0fcd4312be295bb17238b987e">osbr</a>, brd.<a class="code hl_variable" href="structxwos__br__d.html#a4bedc591efb4973a5eb817c7dd36acbc">tik</a>);</div>
+<div class="line"><span class="lineno">  234</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga680c5382714109d755883339d198454e" name="ga680c5382714109d755883339d198454e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga680c5382714109d755883339d198454e">&#9670;&#160;</a></span>xwos_br_unbind()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_br_unbind </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__br.html">xwos_br</a> *&#160;</td>
+          <td class="paramname"><em>br</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structxwos__sel.html">xwos_sel</a> *&#160;</td>
+          <td class="paramname"><em>sel</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：从信号选择器上解绑线程栅栏 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">br</td><td>线程栅栏对象的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sel</td><td>信号选择器的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>无效的指针或空指针 </td></tr>
+    <tr><td class="paramname">-ENOTCONN</td><td>同步对象没有绑定到事件对象上 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="sync_2br_8h_source.html">br.h</a> 第 <a class="el" href="sync_2br_8h_source.html#l00301">301</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  302</span>{</div>
+<div class="line"><span class="lineno">  303</span>        <span class="keywordflow">return</span> xwosdl_br_unbind(&amp;br-&gt;<a class="code hl_variable" href="structxwos__br.html#a63c8e2b0fcd4312be295bb17238b987e">osbr</a>, &amp;sel-&gt;<a class="code hl_variable" href="structxwos__sel.html#adaf7f267f13f41092f7d4ce9a8e464d7">ossel</a>);</div>
+<div class="line"><span class="lineno">  304</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga6b28c7fe0cb6e0569f5bdc93fa7f0afe" name="ga6b28c7fe0cb6e0569f5bdc93fa7f0afe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6b28c7fe0cb6e0569f5bdc93fa7f0afe">&#9670;&#160;</a></span>xwos_br_wait()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_br_wait </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__br.html">xwos_br</a> *&#160;</td>
+          <td class="paramname"><em>br</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：等待所有线程到达栅栏 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">br</td><td>线程栅栏对象的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>无效的指针或空指针 </td></tr>
+    <tr><td class="paramname">-ECHRNG</td><td>线程数量超出范围 </td></tr>
+    <tr><td class="paramname">-EINTR</td><td>等待被中断 </td></tr>
+    <tr><td class="paramname">-ENOTTHDCTX：不在线程上下文中</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：线程 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="sync_2br_8h_source.html">br.h</a> 第 <a class="el" href="sync_2br_8h_source.html#l00335">335</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  336</span>{</div>
+<div class="line"><span class="lineno">  337</span>        <span class="keywordflow">return</span> xwosdl_br_wait(&amp;br-&gt;<a class="code hl_variable" href="structxwos__br.html#a63c8e2b0fcd4312be295bb17238b987e">osbr</a>);</div>
+<div class="line"><span class="lineno">  338</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga22bb233fcefa640a3d3e196eac1c5753" name="ga22bb233fcefa640a3d3e196eac1c5753"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga22bb233fcefa640a3d3e196eac1c5753">&#9670;&#160;</a></span>xwos_br_wait_to()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_br_wait_to </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__br.html">xwos_br</a> *&#160;</td>
+          <td class="paramname"><em>br</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a>&#160;</td>
+          <td class="paramname"><em>to</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：限时等待所有线程到达栅栏 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">br</td><td>线程栅栏对象的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">to</td><td>期望唤醒的时间点 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>无效的指针或空指针 </td></tr>
+    <tr><td class="paramname">-ECHRNG</td><td>线程数量超出范围 </td></tr>
+    <tr><td class="paramname">-ETIMEDOUT</td><td>超时 </td></tr>
+    <tr><td class="paramname">-EINTR</td><td>等待被中断 </td></tr>
+    <tr><td class="paramname">-ENOTTHDCTX：不在线程上下文中</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：线程</li>
+</ul>
+</dd></dl>
+<p><code>to</code> 表示等待超时的时间点：</p><ul>
+<li><code>to</code> 通常是未来的时间，即 <b>当前系统时间</b> + <code>delta</code> ， 可以使用 <code>xwtm_ft(delta)</code> 表示；</li>
+<li>如果 <code>to</code> 是过去的时间点，将直接返回 <code>-ETIMEDOUT</code> 。 </li>
+</ul>
+
+<p class="definition">在文件 <a class="el" href="sync_2br_8h_source.html">br.h</a> 第 <a class="el" href="sync_2br_8h_source.html#l00360">360</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  361</span>{</div>
+<div class="line"><span class="lineno">  362</span>        <span class="keywordflow">return</span> xwosdl_br_wait_to(&amp;br-&gt;<a class="code hl_variable" href="structxwos__br.html#a63c8e2b0fcd4312be295bb17238b987e">osbr</a>, to);</div>
+<div class="line"><span class="lineno">  363</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
+  </ul>
+</div>
+</body>
+</html>

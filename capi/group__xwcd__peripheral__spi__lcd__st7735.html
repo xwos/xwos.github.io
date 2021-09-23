@@ -1,0 +1,933 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>XWOS API: SPI LCD Controller ST7735</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<a href="/" class="github-corner" title="返回首页">
+  <svg viewBox="0 0 250 250" style="position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path
+      d="M 0 0 L 250 250 L 250 0 L 0 0 z M 181.19336 6.25 A 18.281986 19.638775 0 0 1 192.79297 10.798828 L 241.54492 54.201172 A 6.0939954 6.5462585 0 0 1 237.64453 65.787109 L 233.13477 65.787109 A 3.0469979 3.2731292 0 0 0 230.08789 69.060547 L 230.08789 111.61133 A 18.281986 19.638775 0 0 1 211.80664 131.25 L 205.71289 131.25 A 12.187991 13.092517 0 0 1 193.52344 118.1582 L 193.52344 98.519531 A 12.187991 13.092517 0 0 0 181.33594 85.425781 A 12.187991 13.092517 0 0 0 169.14844 98.519531 L 169.14844 118.1582 A 12.187991 13.092517 0 0 1 156.95898 131.25 L 150.86523 131.25 A 18.281986 19.638775 0 0 1 132.58398 111.61133 L 132.58398 68.994141 A 3.0469979 3.2731292 0 0 0 129.29297 65.722656 L 124.7832 65.722656 A 6.0939954 6.5462585 0 0 1 120.88281 54.201172 L 169.39258 10.798828 A 18.281986 19.638775 0 0 1 181.19336 6.25 z "/>
+  </svg>
+</a>
+<style>.github-corner:hover</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">XWOS API
+   &#160;<span id="projectnumber">3.0</span>
+   </div>
+   <div id="projectbrief">XWOS API参考手册</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('group__xwcd__peripheral__spi__lcd__st7735.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">结构体</a> &#124;
+<a href="#define-members">宏定义</a> &#124;
+<a href="#enum-members">枚举</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">SPI LCD Controller ST7735<div class="ingroups"><a class="el" href="group__xwcd.html">芯片与设备</a> &raquo; <a class="el" href="group__xwcd__peripheral.html">外设驱动</a> &raquo; <a class="el" href="group__xwcd__peripheral__spi.html">SPI总线</a> &raquo; <a class="el" href="group__xwcd__peripheral__spi__lcd.html">LCD</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+SPI LCD Controller ST7735 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwcd__peripheral__spi__lcd__st7735.png" border="0" usemap="#agroup____xwcd____peripheral____spi____lcd____st7735" alt=""/></div>
+<map name="agroup____xwcd____peripheral____spi____lcd____st7735" id="agroup____xwcd____peripheral____spi____lcd____st7735">
+<area shape="rect" href="group__xwcd__peripheral__spi__lcd.html" title=" " alt="" coords="5,13,55,38"/>
+<area shape="rect" title=" " alt="" coords="103,5,237,45"/>
+</map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+结构体</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structxwds__st7735__parameter.html">xwds_st7735_parameter</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">ST7735 参数  <a href="structxwds__st7735__parameter.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structxwds__st7735.html">xwds_st7735</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">ST7735 设备  <a href="structxwds__st7735.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structxwds__st7735__driver.html">xwds_st7735_driver</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">ST7735驱动函数表  <a href="structxwds__st7735__driver.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:ga48fcec8206c1cc649089903e30bba31c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ga48fcec8206c1cc649089903e30bba31c">XWDS_ST7735_ID</a>&#160;&#160;&#160;0x5CU</td></tr>
+<tr class="memdesc:ga48fcec8206c1cc649089903e30bba31c"><td class="mdescLeft">&#160;</td><td class="mdescRight">ST7735 ID  <br /></td></tr>
+<tr class="separator:ga48fcec8206c1cc649089903e30bba31c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5eb76dfdce1c7c6040cca9464ac66620"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ga5eb76dfdce1c7c6040cca9464ac66620">XWDS_ST7735_WIDTH</a>&#160;&#160;&#160;132U</td></tr>
+<tr class="memdesc:ga5eb76dfdce1c7c6040cca9464ac66620"><td class="mdescLeft">&#160;</td><td class="mdescRight">ST7735 Size  <br /></td></tr>
+<tr class="separator:ga5eb76dfdce1c7c6040cca9464ac66620"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga02ca81893c96aa6f589aca2e4c02da32"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ga02ca81893c96aa6f589aca2e4c02da32">XWDS_ST7735_HEIGHT</a>&#160;&#160;&#160;162U</td></tr>
+<tr class="separator:ga02ca81893c96aa6f589aca2e4c02da32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+枚举</h2></td></tr>
+<tr class="memitem:gacc62b47c91823a6e365424c829a473dc"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#gacc62b47c91823a6e365424c829a473dc">xwds_st7735_reg_em</a> { <br />
+&#160;&#160;<a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcadd53c7dfc1e704c9c7eea34acb7c0f4b">XWDS_ST7735_NOP</a> = 0x00U
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca220bf04d48b48bf68fb51b566544a919">XWDS_ST7735_SWRESET</a> = 0x01U
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcac828dea88af6beedd620d6e927223999">XWDS_ST7735_RDDID</a> = 0x04U
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca7069312dd129c2c53babf68a8167db58">XWDS_ST7735_RDDST</a> = 0x09U
+, <br />
+&#160;&#160;<a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcab1d63ed4086cef0b7533f48082beb43d">XWDS_ST7735_RDDPM</a> = 0x0AU
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca688a5287421d31550e4e25b88b43c15c">XWDS_ST7735_RDDMADCTL</a> = 0x0BU
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca375191c1eda9947d90b1a3a5b7e51c3a">XWDS_ST7735_RDDCOLMOD</a> = 0x0CU
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca145e537f88531a9a29ecb8f1e57db9a2">XWDS_ST7735_RDDIM</a> = 0x0DU
+, <br />
+&#160;&#160;<a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcaf6d5a1740bb6a0c3cf697b27682e49ab">XWDS_ST7735_RDDSM</a> = 0x0EU
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcaec3127563306d6d72036221b3df520e3">XWDS_ST7735_SLPIN</a> = 0x10U
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcab74d9e2f15c5b31ec3f86b6a2ed2c36b">XWDS_ST7735_SLPOUT</a> = 0x11U
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca26b608f8893bcc97ee098afd07c48ab0">XWDS_ST7735_PTLON</a> = 0x12U
+, <br />
+&#160;&#160;<a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcab637eef98f8fbfd943c73d24aed212a3">XWDS_ST7735_NORON</a> = 0x13U
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcaeacab81512ec1116f6ff081d8f882e94">XWDS_ST7735_INVOFF</a> = 0x20U
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca39ca7e6795f3a119e635341104bdcba0">XWDS_ST7735_INVON</a> = 0x21U
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcae7fafeb405e3906539d7cf01e688bff8">XWDS_ST7735_GAMSET</a> = 0x26U
+, <br />
+&#160;&#160;<a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca6814994ad47a80d8f32ac2c448fc81c3">XWDS_ST7735_DISPOFF</a> = 0x28U
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcaebb0b536cc92973daa53f3f61451bcbf">XWDS_ST7735_DISPON</a> = 0x29U
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcacc21959f596083d52675a682d439c9f6">XWDS_ST7735_CASET</a> = 0x2AU
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca971e3e32205643ee82881f83a92a6e40">XWDS_ST7735_RASET</a> = 0x2BU
+, <br />
+&#160;&#160;<a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcad6426515a9247095c1b604543db96ce5">XWDS_ST7735_RAMWR</a> = 0x2CU
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcae9101cdbf2f4be35d0fd339260243cc6">XWDS_ST7735_RGBSET</a> = 0x2DU
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca60c9b94d662303104020652c27f2a5b9">XWDS_ST7735_RAMRD</a> = 0x2EU
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca3599d90d116c9bb0433295e0b2cedf71">XWDS_ST7735_PTLAR</a> = 0x30U
+, <br />
+&#160;&#160;<a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca73ab045416a2fd8f6afa78d6d3d88e91">XWDS_ST7735_TEOFF</a> = 0x34U
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca4a8e4a26b5e8efc5c42fe05fdf609562">XWDS_ST7735_TEON</a> = 0x35U
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca35e496cf25498f503d588e675cd15b2d">XWDS_ST7735_MADCTL</a> = 0x36U
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca4c6373035c18cc83a8bb6c8a66147dc0">XWDS_ST7735_IDMOFF</a> = 0x38U
+, <br />
+&#160;&#160;<a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca2108701ba6dd61daea8c73e6443161a6">XWDS_ST7735_IDMON</a> = 0x39U
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcaf03949361ca209102f7c55ea3467ae6d">XWDS_ST7735_COLMOD</a> = 0x3AU
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca29f8aeace1c3d87d565515c8626e637e">XWDS_ST7735_FRMCTR1</a> = 0xB1U
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcab9d2eade3aa2304e61b9c8854a5bf359">XWDS_ST7735_FRMCTR2</a> = 0xB2U
+, <br />
+&#160;&#160;<a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca754bc9131d8aa0b1ae761721a9715e87">XWDS_ST7735_FRMCTR3</a> = 0xB3U
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcaa4442364019ee191712d8abf4e40225c">XWDS_ST7735_INVCTR</a> = 0xB4U
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca972121e0fa6ef6811f546ebb7b36e308">XWDS_ST7735_PWCTR1</a> = 0xC0U
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcaff373d7e61b538363480965f61827d90">XWDS_ST7735_PWCTR2</a> = 0xC1U
+, <br />
+&#160;&#160;<a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca2623085022f8cd648a6f3c4e625c68cc">XWDS_ST7735_PWCTR3</a> = 0xC2U
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcaeb8e5322bf6e21b4e814bd33621f0842">XWDS_ST7735_PWCTR4</a> = 0xC3U
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca0799da8fbbb8a4db719340a4296b515e">XWDS_ST7735_PWCTR5</a> = 0xC4U
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca68a6e92eaf3c8d638355677bbceb80cd">XWDS_ST7735_VMCTR1</a> = 0xC5U
+, <br />
+&#160;&#160;<a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca2ed6ecd47fdc4e80c54067d24a4f64b8">XWDS_ST7735_VMOFCTR</a> = 0xC7U
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca2c00e71554beda246aee7c47b69fc1bf">XWDS_ST7735_WRID2</a> = 0xD1U
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca04014e4c252d94283fa054587704945f">XWDS_ST7735_WRID3</a> = 0xD2U
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcaac9a394f887235ca2328ad0e9549131c">XWDS_ST7735_NVCTR1</a> = 0xD9U
+, <br />
+&#160;&#160;<a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcab31a19b1a39d1bf5eafa5fb99012ff94">XWDS_ST7735_RDID1</a> = 0xDAU
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca0172bcf2ec54b034eb1e948d3775131b">XWDS_ST7735_RDID2</a> = 0xDBU
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca2507484ca4af11ec0229b04e47775b8a">XWDS_ST7735_RDID3</a> = 0xDCU
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca7c3b016f6330f60894b2cc477267d221">XWDS_ST7735_NVCTR2</a> = 0xDEU
+, <br />
+&#160;&#160;<a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcacf4bf89e65000636cefa39a5970e4fe2">XWDS_ST7735_NVCTR3</a> = 0xDFU
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca44e7178b4f08dd25967efccd96581796">XWDS_ST7735_GMCTRP1</a> = 0xE0U
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca2def4795d446ddfdff16a08bfec9f061">XWDS_ST7735_GMCTRN1</a> = 0xE1U
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca274cbd926ecf2df37bf01ab6a554d9b9">XWDS_ST7735_PWCTR6</a> = 0xFCU
+<br />
+ }</td></tr>
+<tr class="memdesc:gacc62b47c91823a6e365424c829a473dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">ST7735 寄存器枚举  <a href="group__xwcd__peripheral__spi__lcd__st7735.html#gacc62b47c91823a6e365424c829a473dc">更多...</a><br /></td></tr>
+<tr class="separator:gacc62b47c91823a6e365424c829a473dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4fcf8d03f7cac2aa7742e3a778619e13"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ga4fcf8d03f7cac2aa7742e3a778619e13">xwds_st7735_datatype_em</a> { <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#gga4fcf8d03f7cac2aa7742e3a778619e13a9c3e3c32f5f40ff260253a507b283e01">XWDS_ST7735_DTYPE_CMD</a> = 0
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#gga4fcf8d03f7cac2aa7742e3a778619e13a98f493e8ad7cdce98d335697458894c4">XWDS_ST7735_DTYPE_DATA</a> = 1
+ }</td></tr>
+<tr class="memdesc:ga4fcf8d03f7cac2aa7742e3a778619e13"><td class="mdescLeft">&#160;</td><td class="mdescRight">ST7735 数据类型枚举  <a href="group__xwcd__peripheral__spi__lcd__st7735.html#ga4fcf8d03f7cac2aa7742e3a778619e13">更多...</a><br /></td></tr>
+<tr class="separator:ga4fcf8d03f7cac2aa7742e3a778619e13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad669afcc692c084a612a2132397877a6"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#gad669afcc692c084a612a2132397877a6">xwds_st7735_orientation_em</a> { <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggad669afcc692c084a612a2132397877a6aa2778d26d3fa22fa412b151e709d3a3a">XWDS_ST7735_ORIENTATION_PORTRAIT</a> = 0x00U
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggad669afcc692c084a612a2132397877a6a8305b11db89003d45f8dbe26d7aa6163">XWDS_ST7735_ORIENTATION_PORTRAIT_ROT180</a> = 0xC0U
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggad669afcc692c084a612a2132397877a6a44130b0261c76ab49374b196493cb23f">XWDS_ST7735_ORIENTATION_LANDSCAPE</a> = 0xA0U
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggad669afcc692c084a612a2132397877a6a1a6306d8781b5537948dbb912de24736">XWDS_ST7735_ORIENTATION_LANDSCAPE_ROT180</a> = 0x60U
+ }</td></tr>
+<tr class="memdesc:gad669afcc692c084a612a2132397877a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">ST7735 LCD定向枚举  <a href="group__xwcd__peripheral__spi__lcd__st7735.html#gad669afcc692c084a612a2132397877a6">更多...</a><br /></td></tr>
+<tr class="separator:gad669afcc692c084a612a2132397877a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabec686b20d3bf1f4e6feb92d5750dec0"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#gabec686b20d3bf1f4e6feb92d5750dec0">xwds_st7735_format_em</a> { <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggabec686b20d3bf1f4e6feb92d5750dec0adb5808074b8cdfef49e88a2381a04a31">XWDS_ST7735_FORMAT_RBG565</a> = 0x05U
+ }</td></tr>
+<tr class="memdesc:gabec686b20d3bf1f4e6feb92d5750dec0"><td class="mdescLeft">&#160;</td><td class="mdescRight">ST7735 像素数据格式枚举  <a href="group__xwcd__peripheral__spi__lcd__st7735.html#gabec686b20d3bf1f4e6feb92d5750dec0">更多...</a><br /></td></tr>
+<tr class="separator:gabec686b20d3bf1f4e6feb92d5750dec0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga002db0efe7c8e398aee5e01825a6ee8d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ga002db0efe7c8e398aee5e01825a6ee8d">xwds_st7735_inversion_em</a> { <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#gga002db0efe7c8e398aee5e01825a6ee8da45bb90db1497ce5c86a57651fcee767a">XWDS_ST7735_INVERSION_OFF</a> = 0U
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#gga002db0efe7c8e398aee5e01825a6ee8da879d54ade45bd16466ffb6d4237fd033">XWDS_ST7735_INVERSION_ON</a>
+ }</td></tr>
+<tr class="memdesc:ga002db0efe7c8e398aee5e01825a6ee8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">ST7735 反色枚举  <a href="group__xwcd__peripheral__spi__lcd__st7735.html#ga002db0efe7c8e398aee5e01825a6ee8d">更多...</a><br /></td></tr>
+<tr class="separator:ga002db0efe7c8e398aee5e01825a6ee8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0d60fdca0eae47afe362207ea5b854d0"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ga0d60fdca0eae47afe362207ea5b854d0">xwds_st7735_bgr_em</a> { <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#gga0d60fdca0eae47afe362207ea5b854d0ac3edcde62c0ee48d6c4cc71a89d75640">XWDS_ST7735_RGBSEQ_RGB</a> = 0U
+, <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#gga0d60fdca0eae47afe362207ea5b854d0a07546eada6d0ae8740cc4959d932287e">XWDS_ST7735_RGBSEQ_BGR</a> = 0x8U
+ }</td></tr>
+<tr class="memdesc:ga0d60fdca0eae47afe362207ea5b854d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">ST7735 RGB颜色顺序枚举  <a href="group__xwcd__peripheral__spi__lcd__st7735.html#ga0d60fdca0eae47afe362207ea5b854d0">更多...</a><br /></td></tr>
+<tr class="separator:ga0d60fdca0eae47afe362207ea5b854d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:gae5b51f8c09b0c85439b2daafd79c6147"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#gae5b51f8c09b0c85439b2daafd79c6147">xwds_st7735_construct</a> (struct <a class="el" href="structxwds__st7735.html">xwds_st7735</a> *st7735)</td></tr>
+<tr class="memdesc:gae5b51f8c09b0c85439b2daafd79c6147"><td class="mdescLeft">&#160;</td><td class="mdescRight">ST7735 API：ST7735对象的构造函数  <br /></td></tr>
+<tr class="separator:gae5b51f8c09b0c85439b2daafd79c6147"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga869c90fd015ccae12de3ef16f712e26c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ga869c90fd015ccae12de3ef16f712e26c">xwds_st7735_destruct</a> (struct <a class="el" href="structxwds__st7735.html">xwds_st7735</a> *st7735)</td></tr>
+<tr class="memdesc:ga869c90fd015ccae12de3ef16f712e26c"><td class="mdescLeft">&#160;</td><td class="mdescRight">ST7735 API：ST7735对象的析构函数  <br /></td></tr>
+<tr class="separator:ga869c90fd015ccae12de3ef16f712e26c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga399dea02fa8fc2bbf55eba2bafeb5cc0"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ga399dea02fa8fc2bbf55eba2bafeb5cc0">xwds_st7735_grab</a> (struct <a class="el" href="structxwds__st7735.html">xwds_st7735</a> *st7735)</td></tr>
+<tr class="memdesc:ga399dea02fa8fc2bbf55eba2bafeb5cc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">ST7735 API：增加对象的引用计数  <br /></td></tr>
+<tr class="separator:ga399dea02fa8fc2bbf55eba2bafeb5cc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1087cbc6af40acc129eea178d575dbd5"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ga1087cbc6af40acc129eea178d575dbd5">xwds_st7735_put</a> (struct <a class="el" href="structxwds__st7735.html">xwds_st7735</a> *st7735)</td></tr>
+<tr class="memdesc:ga1087cbc6af40acc129eea178d575dbd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">ST7735 API：减少对象的引用计数  <br /></td></tr>
+<tr class="separator:ga1087cbc6af40acc129eea178d575dbd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<h2 class="groupheader">宏定义说明</h2>
+<a id="ga02ca81893c96aa6f589aca2e4c02da32" name="ga02ca81893c96aa6f589aca2e4c02da32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga02ca81893c96aa6f589aca2e4c02da32">&#9670;&#160;</a></span>XWDS_ST7735_HEIGHT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XWDS_ST7735_HEIGHT&#160;&#160;&#160;162U</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html">device.h</a> 第 <a class="el" href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00048">48</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ga48fcec8206c1cc649089903e30bba31c" name="ga48fcec8206c1cc649089903e30bba31c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga48fcec8206c1cc649089903e30bba31c">&#9670;&#160;</a></span>XWDS_ST7735_ID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XWDS_ST7735_ID&#160;&#160;&#160;0x5CU</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ST7735 ID </p>
+
+<p class="definition">在文件 <a class="el" href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html">device.h</a> 第 <a class="el" href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00042">42</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ga5eb76dfdce1c7c6040cca9464ac66620" name="ga5eb76dfdce1c7c6040cca9464ac66620"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5eb76dfdce1c7c6040cca9464ac66620">&#9670;&#160;</a></span>XWDS_ST7735_WIDTH</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XWDS_ST7735_WIDTH&#160;&#160;&#160;132U</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ST7735 Size </p>
+
+<p class="definition">在文件 <a class="el" href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html">device.h</a> 第 <a class="el" href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00047">47</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">枚举类型说明</h2>
+<a id="ga0d60fdca0eae47afe362207ea5b854d0" name="ga0d60fdca0eae47afe362207ea5b854d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0d60fdca0eae47afe362207ea5b854d0">&#9670;&#160;</a></span>xwds_st7735_bgr_em</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ga0d60fdca0eae47afe362207ea5b854d0">xwds_st7735_bgr_em</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ST7735 RGB颜色顺序枚举 </p>
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="gga0d60fdca0eae47afe362207ea5b854d0ac3edcde62c0ee48d6c4cc71a89d75640" name="gga0d60fdca0eae47afe362207ea5b854d0ac3edcde62c0ee48d6c4cc71a89d75640"></a>XWDS_ST7735_RGBSEQ_RGB&#160;</td><td class="fielddoc"><p>RGB颜色顺序：RGB </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga0d60fdca0eae47afe362207ea5b854d0a07546eada6d0ae8740cc4959d932287e" name="gga0d60fdca0eae47afe362207ea5b854d0a07546eada6d0ae8740cc4959d932287e"></a>XWDS_ST7735_RGBSEQ_BGR&#160;</td><td class="fielddoc"><p>RGB颜色顺序：BGR </p>
+</td></tr>
+</table>
+
+<p class="definition">在文件 <a class="el" href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html">device.h</a> 第 <a class="el" href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00144">144</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  144</span>                        {</div>
+<div class="line"><span class="lineno">  145</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#gga0d60fdca0eae47afe362207ea5b854d0ac3edcde62c0ee48d6c4cc71a89d75640">XWDS_ST7735_RGBSEQ_RGB</a> = 0U, </div>
+<div class="line"><span class="lineno">  146</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#gga0d60fdca0eae47afe362207ea5b854d0a07546eada6d0ae8740cc4959d932287e">XWDS_ST7735_RGBSEQ_BGR</a> = 0x8U, </div>
+<div class="line"><span class="lineno">  147</span>};</div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_gga0d60fdca0eae47afe362207ea5b854d0a07546eada6d0ae8740cc4959d932287e"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#gga0d60fdca0eae47afe362207ea5b854d0a07546eada6d0ae8740cc4959d932287e">XWDS_ST7735_RGBSEQ_BGR</a></div><div class="ttdeci">@ XWDS_ST7735_RGBSEQ_BGR</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00146">device.h:146</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_gga0d60fdca0eae47afe362207ea5b854d0ac3edcde62c0ee48d6c4cc71a89d75640"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#gga0d60fdca0eae47afe362207ea5b854d0ac3edcde62c0ee48d6c4cc71a89d75640">XWDS_ST7735_RGBSEQ_RGB</a></div><div class="ttdeci">@ XWDS_ST7735_RGBSEQ_RGB</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00145">device.h:145</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga4fcf8d03f7cac2aa7742e3a778619e13" name="ga4fcf8d03f7cac2aa7742e3a778619e13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4fcf8d03f7cac2aa7742e3a778619e13">&#9670;&#160;</a></span>xwds_st7735_datatype_em</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ga4fcf8d03f7cac2aa7742e3a778619e13">xwds_st7735_datatype_em</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ST7735 数据类型枚举 </p>
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="gga4fcf8d03f7cac2aa7742e3a778619e13a9c3e3c32f5f40ff260253a507b283e01" name="gga4fcf8d03f7cac2aa7742e3a778619e13a9c3e3c32f5f40ff260253a507b283e01"></a>XWDS_ST7735_DTYPE_CMD&#160;</td><td class="fielddoc"><p>命令 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga4fcf8d03f7cac2aa7742e3a778619e13a98f493e8ad7cdce98d335697458894c4" name="gga4fcf8d03f7cac2aa7742e3a778619e13a98f493e8ad7cdce98d335697458894c4"></a>XWDS_ST7735_DTYPE_DATA&#160;</td><td class="fielddoc"><p>数据 </p>
+</td></tr>
+</table>
+
+<p class="definition">在文件 <a class="el" href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html">device.h</a> 第 <a class="el" href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00111">111</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  111</span>                             {</div>
+<div class="line"><span class="lineno">  112</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#gga4fcf8d03f7cac2aa7742e3a778619e13a9c3e3c32f5f40ff260253a507b283e01">XWDS_ST7735_DTYPE_CMD</a> = 0, </div>
+<div class="line"><span class="lineno">  113</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#gga4fcf8d03f7cac2aa7742e3a778619e13a98f493e8ad7cdce98d335697458894c4">XWDS_ST7735_DTYPE_DATA</a> = 1, </div>
+<div class="line"><span class="lineno">  114</span>};</div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_gga4fcf8d03f7cac2aa7742e3a778619e13a98f493e8ad7cdce98d335697458894c4"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#gga4fcf8d03f7cac2aa7742e3a778619e13a98f493e8ad7cdce98d335697458894c4">XWDS_ST7735_DTYPE_DATA</a></div><div class="ttdeci">@ XWDS_ST7735_DTYPE_DATA</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00113">device.h:113</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_gga4fcf8d03f7cac2aa7742e3a778619e13a9c3e3c32f5f40ff260253a507b283e01"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#gga4fcf8d03f7cac2aa7742e3a778619e13a9c3e3c32f5f40ff260253a507b283e01">XWDS_ST7735_DTYPE_CMD</a></div><div class="ttdeci">@ XWDS_ST7735_DTYPE_CMD</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00112">device.h:112</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="gabec686b20d3bf1f4e6feb92d5750dec0" name="gabec686b20d3bf1f4e6feb92d5750dec0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabec686b20d3bf1f4e6feb92d5750dec0">&#9670;&#160;</a></span>xwds_st7735_format_em</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#gabec686b20d3bf1f4e6feb92d5750dec0">xwds_st7735_format_em</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ST7735 像素数据格式枚举 </p>
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="ggabec686b20d3bf1f4e6feb92d5750dec0adb5808074b8cdfef49e88a2381a04a31" name="ggabec686b20d3bf1f4e6feb92d5750dec0adb5808074b8cdfef49e88a2381a04a31"></a>XWDS_ST7735_FORMAT_RBG565&#160;</td><td class="fielddoc"><p>RGB565, 16 bpp </p>
+</td></tr>
+</table>
+
+<p class="definition">在文件 <a class="el" href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html">device.h</a> 第 <a class="el" href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00129">129</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  129</span>                           {</div>
+<div class="line"><span class="lineno">  130</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggabec686b20d3bf1f4e6feb92d5750dec0adb5808074b8cdfef49e88a2381a04a31">XWDS_ST7735_FORMAT_RBG565</a> = 0x05U, </div>
+<div class="line"><span class="lineno">  131</span>};</div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggabec686b20d3bf1f4e6feb92d5750dec0adb5808074b8cdfef49e88a2381a04a31"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggabec686b20d3bf1f4e6feb92d5750dec0adb5808074b8cdfef49e88a2381a04a31">XWDS_ST7735_FORMAT_RBG565</a></div><div class="ttdeci">@ XWDS_ST7735_FORMAT_RBG565</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00130">device.h:130</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga002db0efe7c8e398aee5e01825a6ee8d" name="ga002db0efe7c8e398aee5e01825a6ee8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga002db0efe7c8e398aee5e01825a6ee8d">&#9670;&#160;</a></span>xwds_st7735_inversion_em</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#ga002db0efe7c8e398aee5e01825a6ee8d">xwds_st7735_inversion_em</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ST7735 反色枚举 </p>
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="gga002db0efe7c8e398aee5e01825a6ee8da45bb90db1497ce5c86a57651fcee767a" name="gga002db0efe7c8e398aee5e01825a6ee8da45bb90db1497ce5c86a57651fcee767a"></a>XWDS_ST7735_INVERSION_OFF&#160;</td><td class="fielddoc"><p>反色关闭 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga002db0efe7c8e398aee5e01825a6ee8da879d54ade45bd16466ffb6d4237fd033" name="gga002db0efe7c8e398aee5e01825a6ee8da879d54ade45bd16466ffb6d4237fd033"></a>XWDS_ST7735_INVERSION_ON&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">在文件 <a class="el" href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html">device.h</a> 第 <a class="el" href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00136">136</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  136</span>                              {</div>
+<div class="line"><span class="lineno">  137</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#gga002db0efe7c8e398aee5e01825a6ee8da45bb90db1497ce5c86a57651fcee767a">XWDS_ST7735_INVERSION_OFF</a> = 0U, </div>
+<div class="line"><span class="lineno">  138</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#gga002db0efe7c8e398aee5e01825a6ee8da879d54ade45bd16466ffb6d4237fd033">XWDS_ST7735_INVERSION_ON</a>,</div>
+<div class="line"><span class="lineno">  139</span>};</div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_gga002db0efe7c8e398aee5e01825a6ee8da45bb90db1497ce5c86a57651fcee767a"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#gga002db0efe7c8e398aee5e01825a6ee8da45bb90db1497ce5c86a57651fcee767a">XWDS_ST7735_INVERSION_OFF</a></div><div class="ttdeci">@ XWDS_ST7735_INVERSION_OFF</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00137">device.h:137</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_gga002db0efe7c8e398aee5e01825a6ee8da879d54ade45bd16466ffb6d4237fd033"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#gga002db0efe7c8e398aee5e01825a6ee8da879d54ade45bd16466ffb6d4237fd033">XWDS_ST7735_INVERSION_ON</a></div><div class="ttdeci">@ XWDS_ST7735_INVERSION_ON</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00138">device.h:138</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="gad669afcc692c084a612a2132397877a6" name="gad669afcc692c084a612a2132397877a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad669afcc692c084a612a2132397877a6">&#9670;&#160;</a></span>xwds_st7735_orientation_em</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#gad669afcc692c084a612a2132397877a6">xwds_st7735_orientation_em</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ST7735 LCD定向枚举 </p>
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="ggad669afcc692c084a612a2132397877a6aa2778d26d3fa22fa412b151e709d3a3a" name="ggad669afcc692c084a612a2132397877a6aa2778d26d3fa22fa412b151e709d3a3a"></a>XWDS_ST7735_ORIENTATION_PORTRAIT&#160;</td><td class="fielddoc"><p>纵向 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggad669afcc692c084a612a2132397877a6a8305b11db89003d45f8dbe26d7aa6163" name="ggad669afcc692c084a612a2132397877a6a8305b11db89003d45f8dbe26d7aa6163"></a>XWDS_ST7735_ORIENTATION_PORTRAIT_ROT180&#160;</td><td class="fielddoc"><p>纵向并翻转180° </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggad669afcc692c084a612a2132397877a6a44130b0261c76ab49374b196493cb23f" name="ggad669afcc692c084a612a2132397877a6a44130b0261c76ab49374b196493cb23f"></a>XWDS_ST7735_ORIENTATION_LANDSCAPE&#160;</td><td class="fielddoc"><p>横向 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggad669afcc692c084a612a2132397877a6a1a6306d8781b5537948dbb912de24736" name="ggad669afcc692c084a612a2132397877a6a1a6306d8781b5537948dbb912de24736"></a>XWDS_ST7735_ORIENTATION_LANDSCAPE_ROT180&#160;</td><td class="fielddoc"><p>横向并翻转180° </p>
+</td></tr>
+</table>
+
+<p class="definition">在文件 <a class="el" href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html">device.h</a> 第 <a class="el" href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00119">119</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  119</span>                                {</div>
+<div class="line"><span class="lineno">  120</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggad669afcc692c084a612a2132397877a6aa2778d26d3fa22fa412b151e709d3a3a">XWDS_ST7735_ORIENTATION_PORTRAIT</a> = 0x00U, </div>
+<div class="line"><span class="lineno">  121</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggad669afcc692c084a612a2132397877a6a8305b11db89003d45f8dbe26d7aa6163">XWDS_ST7735_ORIENTATION_PORTRAIT_ROT180</a> = 0xC0U, </div>
+<div class="line"><span class="lineno">  122</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggad669afcc692c084a612a2132397877a6a44130b0261c76ab49374b196493cb23f">XWDS_ST7735_ORIENTATION_LANDSCAPE</a> = 0xA0U, </div>
+<div class="line"><span class="lineno">  123</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggad669afcc692c084a612a2132397877a6a1a6306d8781b5537948dbb912de24736">XWDS_ST7735_ORIENTATION_LANDSCAPE_ROT180</a> = 0x60U, </div>
+<div class="line"><span class="lineno">  124</span>};</div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggad669afcc692c084a612a2132397877a6a1a6306d8781b5537948dbb912de24736"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggad669afcc692c084a612a2132397877a6a1a6306d8781b5537948dbb912de24736">XWDS_ST7735_ORIENTATION_LANDSCAPE_ROT180</a></div><div class="ttdeci">@ XWDS_ST7735_ORIENTATION_LANDSCAPE_ROT180</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00123">device.h:123</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggad669afcc692c084a612a2132397877a6a44130b0261c76ab49374b196493cb23f"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggad669afcc692c084a612a2132397877a6a44130b0261c76ab49374b196493cb23f">XWDS_ST7735_ORIENTATION_LANDSCAPE</a></div><div class="ttdeci">@ XWDS_ST7735_ORIENTATION_LANDSCAPE</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00122">device.h:122</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggad669afcc692c084a612a2132397877a6a8305b11db89003d45f8dbe26d7aa6163"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggad669afcc692c084a612a2132397877a6a8305b11db89003d45f8dbe26d7aa6163">XWDS_ST7735_ORIENTATION_PORTRAIT_ROT180</a></div><div class="ttdeci">@ XWDS_ST7735_ORIENTATION_PORTRAIT_ROT180</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00121">device.h:121</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggad669afcc692c084a612a2132397877a6aa2778d26d3fa22fa412b151e709d3a3a"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggad669afcc692c084a612a2132397877a6aa2778d26d3fa22fa412b151e709d3a3a">XWDS_ST7735_ORIENTATION_PORTRAIT</a></div><div class="ttdeci">@ XWDS_ST7735_ORIENTATION_PORTRAIT</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00120">device.h:120</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="gacc62b47c91823a6e365424c829a473dc" name="gacc62b47c91823a6e365424c829a473dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacc62b47c91823a6e365424c829a473dc">&#9670;&#160;</a></span>xwds_st7735_reg_em</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__xwcd__peripheral__spi__lcd__st7735.html#gacc62b47c91823a6e365424c829a473dc">xwds_st7735_reg_em</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ST7735 寄存器枚举 </p>
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dcadd53c7dfc1e704c9c7eea34acb7c0f4b" name="ggacc62b47c91823a6e365424c829a473dcadd53c7dfc1e704c9c7eea34acb7c0f4b"></a>XWDS_ST7735_NOP&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dca220bf04d48b48bf68fb51b566544a919" name="ggacc62b47c91823a6e365424c829a473dca220bf04d48b48bf68fb51b566544a919"></a>XWDS_ST7735_SWRESET&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dcac828dea88af6beedd620d6e927223999" name="ggacc62b47c91823a6e365424c829a473dcac828dea88af6beedd620d6e927223999"></a>XWDS_ST7735_RDDID&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dca7069312dd129c2c53babf68a8167db58" name="ggacc62b47c91823a6e365424c829a473dca7069312dd129c2c53babf68a8167db58"></a>XWDS_ST7735_RDDST&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dcab1d63ed4086cef0b7533f48082beb43d" name="ggacc62b47c91823a6e365424c829a473dcab1d63ed4086cef0b7533f48082beb43d"></a>XWDS_ST7735_RDDPM&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dca688a5287421d31550e4e25b88b43c15c" name="ggacc62b47c91823a6e365424c829a473dca688a5287421d31550e4e25b88b43c15c"></a>XWDS_ST7735_RDDMADCTL&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dca375191c1eda9947d90b1a3a5b7e51c3a" name="ggacc62b47c91823a6e365424c829a473dca375191c1eda9947d90b1a3a5b7e51c3a"></a>XWDS_ST7735_RDDCOLMOD&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dca145e537f88531a9a29ecb8f1e57db9a2" name="ggacc62b47c91823a6e365424c829a473dca145e537f88531a9a29ecb8f1e57db9a2"></a>XWDS_ST7735_RDDIM&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dcaf6d5a1740bb6a0c3cf697b27682e49ab" name="ggacc62b47c91823a6e365424c829a473dcaf6d5a1740bb6a0c3cf697b27682e49ab"></a>XWDS_ST7735_RDDSM&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dcaec3127563306d6d72036221b3df520e3" name="ggacc62b47c91823a6e365424c829a473dcaec3127563306d6d72036221b3df520e3"></a>XWDS_ST7735_SLPIN&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dcab74d9e2f15c5b31ec3f86b6a2ed2c36b" name="ggacc62b47c91823a6e365424c829a473dcab74d9e2f15c5b31ec3f86b6a2ed2c36b"></a>XWDS_ST7735_SLPOUT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dca26b608f8893bcc97ee098afd07c48ab0" name="ggacc62b47c91823a6e365424c829a473dca26b608f8893bcc97ee098afd07c48ab0"></a>XWDS_ST7735_PTLON&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dcab637eef98f8fbfd943c73d24aed212a3" name="ggacc62b47c91823a6e365424c829a473dcab637eef98f8fbfd943c73d24aed212a3"></a>XWDS_ST7735_NORON&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dcaeacab81512ec1116f6ff081d8f882e94" name="ggacc62b47c91823a6e365424c829a473dcaeacab81512ec1116f6ff081d8f882e94"></a>XWDS_ST7735_INVOFF&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dca39ca7e6795f3a119e635341104bdcba0" name="ggacc62b47c91823a6e365424c829a473dca39ca7e6795f3a119e635341104bdcba0"></a>XWDS_ST7735_INVON&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dcae7fafeb405e3906539d7cf01e688bff8" name="ggacc62b47c91823a6e365424c829a473dcae7fafeb405e3906539d7cf01e688bff8"></a>XWDS_ST7735_GAMSET&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dca6814994ad47a80d8f32ac2c448fc81c3" name="ggacc62b47c91823a6e365424c829a473dca6814994ad47a80d8f32ac2c448fc81c3"></a>XWDS_ST7735_DISPOFF&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dcaebb0b536cc92973daa53f3f61451bcbf" name="ggacc62b47c91823a6e365424c829a473dcaebb0b536cc92973daa53f3f61451bcbf"></a>XWDS_ST7735_DISPON&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dcacc21959f596083d52675a682d439c9f6" name="ggacc62b47c91823a6e365424c829a473dcacc21959f596083d52675a682d439c9f6"></a>XWDS_ST7735_CASET&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dca971e3e32205643ee82881f83a92a6e40" name="ggacc62b47c91823a6e365424c829a473dca971e3e32205643ee82881f83a92a6e40"></a>XWDS_ST7735_RASET&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dcad6426515a9247095c1b604543db96ce5" name="ggacc62b47c91823a6e365424c829a473dcad6426515a9247095c1b604543db96ce5"></a>XWDS_ST7735_RAMWR&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dcae9101cdbf2f4be35d0fd339260243cc6" name="ggacc62b47c91823a6e365424c829a473dcae9101cdbf2f4be35d0fd339260243cc6"></a>XWDS_ST7735_RGBSET&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dca60c9b94d662303104020652c27f2a5b9" name="ggacc62b47c91823a6e365424c829a473dca60c9b94d662303104020652c27f2a5b9"></a>XWDS_ST7735_RAMRD&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dca3599d90d116c9bb0433295e0b2cedf71" name="ggacc62b47c91823a6e365424c829a473dca3599d90d116c9bb0433295e0b2cedf71"></a>XWDS_ST7735_PTLAR&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dca73ab045416a2fd8f6afa78d6d3d88e91" name="ggacc62b47c91823a6e365424c829a473dca73ab045416a2fd8f6afa78d6d3d88e91"></a>XWDS_ST7735_TEOFF&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dca4a8e4a26b5e8efc5c42fe05fdf609562" name="ggacc62b47c91823a6e365424c829a473dca4a8e4a26b5e8efc5c42fe05fdf609562"></a>XWDS_ST7735_TEON&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dca35e496cf25498f503d588e675cd15b2d" name="ggacc62b47c91823a6e365424c829a473dca35e496cf25498f503d588e675cd15b2d"></a>XWDS_ST7735_MADCTL&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dca4c6373035c18cc83a8bb6c8a66147dc0" name="ggacc62b47c91823a6e365424c829a473dca4c6373035c18cc83a8bb6c8a66147dc0"></a>XWDS_ST7735_IDMOFF&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dca2108701ba6dd61daea8c73e6443161a6" name="ggacc62b47c91823a6e365424c829a473dca2108701ba6dd61daea8c73e6443161a6"></a>XWDS_ST7735_IDMON&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dcaf03949361ca209102f7c55ea3467ae6d" name="ggacc62b47c91823a6e365424c829a473dcaf03949361ca209102f7c55ea3467ae6d"></a>XWDS_ST7735_COLMOD&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dca29f8aeace1c3d87d565515c8626e637e" name="ggacc62b47c91823a6e365424c829a473dca29f8aeace1c3d87d565515c8626e637e"></a>XWDS_ST7735_FRMCTR1&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dcab9d2eade3aa2304e61b9c8854a5bf359" name="ggacc62b47c91823a6e365424c829a473dcab9d2eade3aa2304e61b9c8854a5bf359"></a>XWDS_ST7735_FRMCTR2&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dca754bc9131d8aa0b1ae761721a9715e87" name="ggacc62b47c91823a6e365424c829a473dca754bc9131d8aa0b1ae761721a9715e87"></a>XWDS_ST7735_FRMCTR3&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dcaa4442364019ee191712d8abf4e40225c" name="ggacc62b47c91823a6e365424c829a473dcaa4442364019ee191712d8abf4e40225c"></a>XWDS_ST7735_INVCTR&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dca972121e0fa6ef6811f546ebb7b36e308" name="ggacc62b47c91823a6e365424c829a473dca972121e0fa6ef6811f546ebb7b36e308"></a>XWDS_ST7735_PWCTR1&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dcaff373d7e61b538363480965f61827d90" name="ggacc62b47c91823a6e365424c829a473dcaff373d7e61b538363480965f61827d90"></a>XWDS_ST7735_PWCTR2&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dca2623085022f8cd648a6f3c4e625c68cc" name="ggacc62b47c91823a6e365424c829a473dca2623085022f8cd648a6f3c4e625c68cc"></a>XWDS_ST7735_PWCTR3&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dcaeb8e5322bf6e21b4e814bd33621f0842" name="ggacc62b47c91823a6e365424c829a473dcaeb8e5322bf6e21b4e814bd33621f0842"></a>XWDS_ST7735_PWCTR4&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dca0799da8fbbb8a4db719340a4296b515e" name="ggacc62b47c91823a6e365424c829a473dca0799da8fbbb8a4db719340a4296b515e"></a>XWDS_ST7735_PWCTR5&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dca68a6e92eaf3c8d638355677bbceb80cd" name="ggacc62b47c91823a6e365424c829a473dca68a6e92eaf3c8d638355677bbceb80cd"></a>XWDS_ST7735_VMCTR1&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dca2ed6ecd47fdc4e80c54067d24a4f64b8" name="ggacc62b47c91823a6e365424c829a473dca2ed6ecd47fdc4e80c54067d24a4f64b8"></a>XWDS_ST7735_VMOFCTR&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dca2c00e71554beda246aee7c47b69fc1bf" name="ggacc62b47c91823a6e365424c829a473dca2c00e71554beda246aee7c47b69fc1bf"></a>XWDS_ST7735_WRID2&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dca04014e4c252d94283fa054587704945f" name="ggacc62b47c91823a6e365424c829a473dca04014e4c252d94283fa054587704945f"></a>XWDS_ST7735_WRID3&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dcaac9a394f887235ca2328ad0e9549131c" name="ggacc62b47c91823a6e365424c829a473dcaac9a394f887235ca2328ad0e9549131c"></a>XWDS_ST7735_NVCTR1&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dcab31a19b1a39d1bf5eafa5fb99012ff94" name="ggacc62b47c91823a6e365424c829a473dcab31a19b1a39d1bf5eafa5fb99012ff94"></a>XWDS_ST7735_RDID1&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dca0172bcf2ec54b034eb1e948d3775131b" name="ggacc62b47c91823a6e365424c829a473dca0172bcf2ec54b034eb1e948d3775131b"></a>XWDS_ST7735_RDID2&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dca2507484ca4af11ec0229b04e47775b8a" name="ggacc62b47c91823a6e365424c829a473dca2507484ca4af11ec0229b04e47775b8a"></a>XWDS_ST7735_RDID3&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dca7c3b016f6330f60894b2cc477267d221" name="ggacc62b47c91823a6e365424c829a473dca7c3b016f6330f60894b2cc477267d221"></a>XWDS_ST7735_NVCTR2&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dcacf4bf89e65000636cefa39a5970e4fe2" name="ggacc62b47c91823a6e365424c829a473dcacf4bf89e65000636cefa39a5970e4fe2"></a>XWDS_ST7735_NVCTR3&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dca44e7178b4f08dd25967efccd96581796" name="ggacc62b47c91823a6e365424c829a473dca44e7178b4f08dd25967efccd96581796"></a>XWDS_ST7735_GMCTRP1&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dca2def4795d446ddfdff16a08bfec9f061" name="ggacc62b47c91823a6e365424c829a473dca2def4795d446ddfdff16a08bfec9f061"></a>XWDS_ST7735_GMCTRN1&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ggacc62b47c91823a6e365424c829a473dca274cbd926ecf2df37bf01ab6a554d9b9" name="ggacc62b47c91823a6e365424c829a473dca274cbd926ecf2df37bf01ab6a554d9b9"></a>XWDS_ST7735_PWCTR6&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">在文件 <a class="el" href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html">device.h</a> 第 <a class="el" href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00053">53</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   53</span>                        {</div>
+<div class="line"><span class="lineno">   54</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcadd53c7dfc1e704c9c7eea34acb7c0f4b">XWDS_ST7735_NOP</a>         = 0x00U, <span class="comment">/* No Operation: NOP */</span></div>
+<div class="line"><span class="lineno">   55</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca220bf04d48b48bf68fb51b566544a919">XWDS_ST7735_SWRESET</a>     = 0x01U, <span class="comment">/* Software reset: SWRESET */</span></div>
+<div class="line"><span class="lineno">   56</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcac828dea88af6beedd620d6e927223999">XWDS_ST7735_RDDID</a>       = 0x04U, <span class="comment">/* Read Display ID: RDDID */</span></div>
+<div class="line"><span class="lineno">   57</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca7069312dd129c2c53babf68a8167db58">XWDS_ST7735_RDDST</a>       = 0x09U, <span class="comment">/* Read Display Statu: RDDST */</span></div>
+<div class="line"><span class="lineno">   58</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcab1d63ed4086cef0b7533f48082beb43d">XWDS_ST7735_RDDPM</a>       = 0x0AU, <span class="comment">/* Read Display Power: RDDPM */</span></div>
+<div class="line"><span class="lineno">   59</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca688a5287421d31550e4e25b88b43c15c">XWDS_ST7735_RDDMADCTL</a>   = 0x0BU, <span class="comment">/* Read Display: RDDMADCTL */</span></div>
+<div class="line"><span class="lineno">   60</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca375191c1eda9947d90b1a3a5b7e51c3a">XWDS_ST7735_RDDCOLMOD</a>   = 0x0CU, <span class="comment">/* Read Display Pixel: RDDCOLMOD */</span></div>
+<div class="line"><span class="lineno">   61</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca145e537f88531a9a29ecb8f1e57db9a2">XWDS_ST7735_RDDIM</a>       = 0x0DU, <span class="comment">/* Read Display Image: RDDIM */</span></div>
+<div class="line"><span class="lineno">   62</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcaf6d5a1740bb6a0c3cf697b27682e49ab">XWDS_ST7735_RDDSM</a>       = 0x0EU, <span class="comment">/* Read Display Signal: RDDSM */</span></div>
+<div class="line"><span class="lineno">   63</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcaec3127563306d6d72036221b3df520e3">XWDS_ST7735_SLPIN</a>       = 0x10U, <span class="comment">/* Sleep in &amp; booster off: SLPIN */</span></div>
+<div class="line"><span class="lineno">   64</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcab74d9e2f15c5b31ec3f86b6a2ed2c36b">XWDS_ST7735_SLPOUT</a>      = 0x11U, <span class="comment">/* Sleep out &amp; booster on: SLPOUT */</span></div>
+<div class="line"><span class="lineno">   65</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca26b608f8893bcc97ee098afd07c48ab0">XWDS_ST7735_PTLON</a>       = 0x12U, <span class="comment">/* Partial mode on: PTLON */</span></div>
+<div class="line"><span class="lineno">   66</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcab637eef98f8fbfd943c73d24aed212a3">XWDS_ST7735_NORON</a>       = 0x13U, <span class="comment">/* Partial off (Normal): NORON */</span></div>
+<div class="line"><span class="lineno">   67</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcaeacab81512ec1116f6ff081d8f882e94">XWDS_ST7735_INVOFF</a>      = 0x20U, <span class="comment">/* Display inversion off: INVOFF */</span></div>
+<div class="line"><span class="lineno">   68</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca39ca7e6795f3a119e635341104bdcba0">XWDS_ST7735_INVON</a>       = 0x21U, <span class="comment">/* Display inversion on: INVON */</span></div>
+<div class="line"><span class="lineno">   69</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcae7fafeb405e3906539d7cf01e688bff8">XWDS_ST7735_GAMSET</a>      = 0x26U, <span class="comment">/* Gamma curve select: GAMSET */</span></div>
+<div class="line"><span class="lineno">   70</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca6814994ad47a80d8f32ac2c448fc81c3">XWDS_ST7735_DISPOFF</a>     = 0x28U, <span class="comment">/* Display off: DISPOFF */</span></div>
+<div class="line"><span class="lineno">   71</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcaebb0b536cc92973daa53f3f61451bcbf">XWDS_ST7735_DISPON</a>      = 0x29U, <span class="comment">/* Display on: DISPON */</span></div>
+<div class="line"><span class="lineno">   72</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcacc21959f596083d52675a682d439c9f6">XWDS_ST7735_CASET</a>       = 0x2AU, <span class="comment">/* Column address set: CASET */</span></div>
+<div class="line"><span class="lineno">   73</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca971e3e32205643ee82881f83a92a6e40">XWDS_ST7735_RASET</a>       = 0x2BU, <span class="comment">/* Row address set: RASET */</span></div>
+<div class="line"><span class="lineno">   74</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcad6426515a9247095c1b604543db96ce5">XWDS_ST7735_RAMWR</a>       = 0x2CU, <span class="comment">/* Memory write: RAMWR */</span></div>
+<div class="line"><span class="lineno">   75</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcae9101cdbf2f4be35d0fd339260243cc6">XWDS_ST7735_RGBSET</a>      = 0x2DU, <span class="comment">/* LUT for 4k,65k,262k color: RGBSET */</span></div>
+<div class="line"><span class="lineno">   76</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca60c9b94d662303104020652c27f2a5b9">XWDS_ST7735_RAMRD</a>       = 0x2EU, <span class="comment">/* Memory read: RAMRD */</span></div>
+<div class="line"><span class="lineno">   77</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca3599d90d116c9bb0433295e0b2cedf71">XWDS_ST7735_PTLAR</a>       = 0x30U, <span class="comment">/* Partial start/end address set: PTLAR */</span></div>
+<div class="line"><span class="lineno">   78</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca73ab045416a2fd8f6afa78d6d3d88e91">XWDS_ST7735_TEOFF</a>       = 0x34U, <span class="comment">/* Tearing effect line off: TEOFF */</span></div>
+<div class="line"><span class="lineno">   79</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca4a8e4a26b5e8efc5c42fe05fdf609562">XWDS_ST7735_TEON</a>        = 0x35U, <span class="comment">/* Tearing effect mode set &amp; on: TEON */</span></div>
+<div class="line"><span class="lineno">   80</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca35e496cf25498f503d588e675cd15b2d">XWDS_ST7735_MADCTL</a>      = 0x36U, <span class="comment">/* Memory data access control: MADCTL */</span></div>
+<div class="line"><span class="lineno">   81</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca4c6373035c18cc83a8bb6c8a66147dc0">XWDS_ST7735_IDMOFF</a>      = 0x38U, <span class="comment">/* Idle mode off: IDMOFF */</span></div>
+<div class="line"><span class="lineno">   82</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca2108701ba6dd61daea8c73e6443161a6">XWDS_ST7735_IDMON</a>       = 0x39U, <span class="comment">/* Idle mode on: IDMON */</span></div>
+<div class="line"><span class="lineno">   83</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcaf03949361ca209102f7c55ea3467ae6d">XWDS_ST7735_COLMOD</a>      = 0x3AU, <span class="comment">/* Interface pixel format: COLMOD */</span></div>
+<div class="line"><span class="lineno">   84</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca29f8aeace1c3d87d565515c8626e637e">XWDS_ST7735_FRMCTR1</a>     = 0xB1U, <span class="comment">/* In normal mode (Full colors): FRMCTR1 */</span></div>
+<div class="line"><span class="lineno">   85</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcab9d2eade3aa2304e61b9c8854a5bf359">XWDS_ST7735_FRMCTR2</a>     = 0xB2U, <span class="comment">/* In Idle mode (8-colors): FRMCTR2 */</span></div>
+<div class="line"><span class="lineno">   86</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca754bc9131d8aa0b1ae761721a9715e87">XWDS_ST7735_FRMCTR3</a>     = 0xB3U, <span class="comment">/* In partial mode + Full colors: FRMCTR3 */</span></div>
+<div class="line"><span class="lineno">   87</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcaa4442364019ee191712d8abf4e40225c">XWDS_ST7735_INVCTR</a>      = 0xB4U, <span class="comment">/* Display inversion control: INVCTR */</span></div>
+<div class="line"><span class="lineno">   88</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca972121e0fa6ef6811f546ebb7b36e308">XWDS_ST7735_PWCTR1</a>      = 0xC0U, <span class="comment">/* Power control setting: PWCTR1 */</span></div>
+<div class="line"><span class="lineno">   89</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcaff373d7e61b538363480965f61827d90">XWDS_ST7735_PWCTR2</a>      = 0xC1U, <span class="comment">/* Power control setting: PWCTR2 */</span></div>
+<div class="line"><span class="lineno">   90</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca2623085022f8cd648a6f3c4e625c68cc">XWDS_ST7735_PWCTR3</a>      = 0xC2U, <span class="comment">/* In normal mode (Full colors): PWCTR3 */</span></div>
+<div class="line"><span class="lineno">   91</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcaeb8e5322bf6e21b4e814bd33621f0842">XWDS_ST7735_PWCTR4</a>      = 0xC3U, <span class="comment">/* In Idle mode (8-colors): PWCTR4 */</span></div>
+<div class="line"><span class="lineno">   92</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca0799da8fbbb8a4db719340a4296b515e">XWDS_ST7735_PWCTR5</a>      = 0xC4U, <span class="comment">/* In partial mode + Full colors: PWCTR5 */</span></div>
+<div class="line"><span class="lineno">   93</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca68a6e92eaf3c8d638355677bbceb80cd">XWDS_ST7735_VMCTR1</a>      = 0xC5U, <span class="comment">/* VCOM control 1: VMCTR1 */</span></div>
+<div class="line"><span class="lineno">   94</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca2ed6ecd47fdc4e80c54067d24a4f64b8">XWDS_ST7735_VMOFCTR</a>     = 0xC7U, <span class="comment">/* Set VCOM offset control: VMOFCTR */</span></div>
+<div class="line"><span class="lineno">   95</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca2c00e71554beda246aee7c47b69fc1bf">XWDS_ST7735_WRID2</a>       = 0xD1U, <span class="comment">/* Set LCM version code: WRID2 */</span></div>
+<div class="line"><span class="lineno">   96</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca04014e4c252d94283fa054587704945f">XWDS_ST7735_WRID3</a>       = 0xD2U, <span class="comment">/* Customer Project code: WRID3 */</span></div>
+<div class="line"><span class="lineno">   97</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcaac9a394f887235ca2328ad0e9549131c">XWDS_ST7735_NVCTR1</a>      = 0xD9U, <span class="comment">/* NVM control status: NVCTR1 */</span></div>
+<div class="line"><span class="lineno">   98</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcab31a19b1a39d1bf5eafa5fb99012ff94">XWDS_ST7735_RDID1</a>       = 0xDAU, <span class="comment">/* Read ID1: RDID1 */</span></div>
+<div class="line"><span class="lineno">   99</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca0172bcf2ec54b034eb1e948d3775131b">XWDS_ST7735_RDID2</a>       = 0xDBU, <span class="comment">/* Read ID2: RDID2 */</span></div>
+<div class="line"><span class="lineno">  100</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca2507484ca4af11ec0229b04e47775b8a">XWDS_ST7735_RDID3</a>       = 0xDCU, <span class="comment">/* Read ID3: RDID3 */</span></div>
+<div class="line"><span class="lineno">  101</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca7c3b016f6330f60894b2cc477267d221">XWDS_ST7735_NVCTR2</a>      = 0xDEU, <span class="comment">/* NVM Read Command: NVCTR2 */</span></div>
+<div class="line"><span class="lineno">  102</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcacf4bf89e65000636cefa39a5970e4fe2">XWDS_ST7735_NVCTR3</a>      = 0xDFU, <span class="comment">/* NVM Write Command: NVCTR3 */</span></div>
+<div class="line"><span class="lineno">  103</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca44e7178b4f08dd25967efccd96581796">XWDS_ST7735_GMCTRP1</a>    = 0xE0U, <span class="comment">/* Set Gamma adjustment (+ polarity): GMCTRP1 */</span></div>
+<div class="line"><span class="lineno">  104</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca2def4795d446ddfdff16a08bfec9f061">XWDS_ST7735_GMCTRN1</a>    = 0xE1U, <span class="comment">/* Set Gamma adjustment (- polarity): GMCTRN1 */</span></div>
+<div class="line"><span class="lineno">  105</span>        <a class="code hl_enumvalue" href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca274cbd926ecf2df37bf01ab6a554d9b9">XWDS_ST7735_PWCTR6</a>      = 0xFCU, <span class="comment">/* In partial mode + Idle mode: PWCTR6 */</span></div>
+<div class="line"><span class="lineno">  106</span>};</div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dca0172bcf2ec54b034eb1e948d3775131b"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca0172bcf2ec54b034eb1e948d3775131b">XWDS_ST7735_RDID2</a></div><div class="ttdeci">@ XWDS_ST7735_RDID2</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00099">device.h:99</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dca04014e4c252d94283fa054587704945f"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca04014e4c252d94283fa054587704945f">XWDS_ST7735_WRID3</a></div><div class="ttdeci">@ XWDS_ST7735_WRID3</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00096">device.h:96</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dca0799da8fbbb8a4db719340a4296b515e"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca0799da8fbbb8a4db719340a4296b515e">XWDS_ST7735_PWCTR5</a></div><div class="ttdeci">@ XWDS_ST7735_PWCTR5</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00092">device.h:92</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dca145e537f88531a9a29ecb8f1e57db9a2"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca145e537f88531a9a29ecb8f1e57db9a2">XWDS_ST7735_RDDIM</a></div><div class="ttdeci">@ XWDS_ST7735_RDDIM</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00061">device.h:61</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dca2108701ba6dd61daea8c73e6443161a6"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca2108701ba6dd61daea8c73e6443161a6">XWDS_ST7735_IDMON</a></div><div class="ttdeci">@ XWDS_ST7735_IDMON</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00082">device.h:82</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dca220bf04d48b48bf68fb51b566544a919"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca220bf04d48b48bf68fb51b566544a919">XWDS_ST7735_SWRESET</a></div><div class="ttdeci">@ XWDS_ST7735_SWRESET</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00055">device.h:55</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dca2507484ca4af11ec0229b04e47775b8a"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca2507484ca4af11ec0229b04e47775b8a">XWDS_ST7735_RDID3</a></div><div class="ttdeci">@ XWDS_ST7735_RDID3</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00100">device.h:100</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dca2623085022f8cd648a6f3c4e625c68cc"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca2623085022f8cd648a6f3c4e625c68cc">XWDS_ST7735_PWCTR3</a></div><div class="ttdeci">@ XWDS_ST7735_PWCTR3</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00090">device.h:90</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dca26b608f8893bcc97ee098afd07c48ab0"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca26b608f8893bcc97ee098afd07c48ab0">XWDS_ST7735_PTLON</a></div><div class="ttdeci">@ XWDS_ST7735_PTLON</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00065">device.h:65</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dca274cbd926ecf2df37bf01ab6a554d9b9"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca274cbd926ecf2df37bf01ab6a554d9b9">XWDS_ST7735_PWCTR6</a></div><div class="ttdeci">@ XWDS_ST7735_PWCTR6</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00105">device.h:105</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dca29f8aeace1c3d87d565515c8626e637e"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca29f8aeace1c3d87d565515c8626e637e">XWDS_ST7735_FRMCTR1</a></div><div class="ttdeci">@ XWDS_ST7735_FRMCTR1</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00084">device.h:84</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dca2c00e71554beda246aee7c47b69fc1bf"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca2c00e71554beda246aee7c47b69fc1bf">XWDS_ST7735_WRID2</a></div><div class="ttdeci">@ XWDS_ST7735_WRID2</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00095">device.h:95</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dca2def4795d446ddfdff16a08bfec9f061"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca2def4795d446ddfdff16a08bfec9f061">XWDS_ST7735_GMCTRN1</a></div><div class="ttdeci">@ XWDS_ST7735_GMCTRN1</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00104">device.h:104</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dca2ed6ecd47fdc4e80c54067d24a4f64b8"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca2ed6ecd47fdc4e80c54067d24a4f64b8">XWDS_ST7735_VMOFCTR</a></div><div class="ttdeci">@ XWDS_ST7735_VMOFCTR</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00094">device.h:94</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dca3599d90d116c9bb0433295e0b2cedf71"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca3599d90d116c9bb0433295e0b2cedf71">XWDS_ST7735_PTLAR</a></div><div class="ttdeci">@ XWDS_ST7735_PTLAR</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00077">device.h:77</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dca35e496cf25498f503d588e675cd15b2d"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca35e496cf25498f503d588e675cd15b2d">XWDS_ST7735_MADCTL</a></div><div class="ttdeci">@ XWDS_ST7735_MADCTL</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00080">device.h:80</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dca375191c1eda9947d90b1a3a5b7e51c3a"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca375191c1eda9947d90b1a3a5b7e51c3a">XWDS_ST7735_RDDCOLMOD</a></div><div class="ttdeci">@ XWDS_ST7735_RDDCOLMOD</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00060">device.h:60</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dca39ca7e6795f3a119e635341104bdcba0"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca39ca7e6795f3a119e635341104bdcba0">XWDS_ST7735_INVON</a></div><div class="ttdeci">@ XWDS_ST7735_INVON</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00068">device.h:68</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dca44e7178b4f08dd25967efccd96581796"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca44e7178b4f08dd25967efccd96581796">XWDS_ST7735_GMCTRP1</a></div><div class="ttdeci">@ XWDS_ST7735_GMCTRP1</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00103">device.h:103</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dca4a8e4a26b5e8efc5c42fe05fdf609562"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca4a8e4a26b5e8efc5c42fe05fdf609562">XWDS_ST7735_TEON</a></div><div class="ttdeci">@ XWDS_ST7735_TEON</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00079">device.h:79</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dca4c6373035c18cc83a8bb6c8a66147dc0"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca4c6373035c18cc83a8bb6c8a66147dc0">XWDS_ST7735_IDMOFF</a></div><div class="ttdeci">@ XWDS_ST7735_IDMOFF</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00081">device.h:81</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dca60c9b94d662303104020652c27f2a5b9"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca60c9b94d662303104020652c27f2a5b9">XWDS_ST7735_RAMRD</a></div><div class="ttdeci">@ XWDS_ST7735_RAMRD</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00076">device.h:76</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dca6814994ad47a80d8f32ac2c448fc81c3"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca6814994ad47a80d8f32ac2c448fc81c3">XWDS_ST7735_DISPOFF</a></div><div class="ttdeci">@ XWDS_ST7735_DISPOFF</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00070">device.h:70</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dca688a5287421d31550e4e25b88b43c15c"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca688a5287421d31550e4e25b88b43c15c">XWDS_ST7735_RDDMADCTL</a></div><div class="ttdeci">@ XWDS_ST7735_RDDMADCTL</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00059">device.h:59</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dca68a6e92eaf3c8d638355677bbceb80cd"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca68a6e92eaf3c8d638355677bbceb80cd">XWDS_ST7735_VMCTR1</a></div><div class="ttdeci">@ XWDS_ST7735_VMCTR1</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00093">device.h:93</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dca7069312dd129c2c53babf68a8167db58"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca7069312dd129c2c53babf68a8167db58">XWDS_ST7735_RDDST</a></div><div class="ttdeci">@ XWDS_ST7735_RDDST</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00057">device.h:57</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dca73ab045416a2fd8f6afa78d6d3d88e91"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca73ab045416a2fd8f6afa78d6d3d88e91">XWDS_ST7735_TEOFF</a></div><div class="ttdeci">@ XWDS_ST7735_TEOFF</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00078">device.h:78</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dca754bc9131d8aa0b1ae761721a9715e87"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca754bc9131d8aa0b1ae761721a9715e87">XWDS_ST7735_FRMCTR3</a></div><div class="ttdeci">@ XWDS_ST7735_FRMCTR3</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00086">device.h:86</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dca7c3b016f6330f60894b2cc477267d221"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca7c3b016f6330f60894b2cc477267d221">XWDS_ST7735_NVCTR2</a></div><div class="ttdeci">@ XWDS_ST7735_NVCTR2</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00101">device.h:101</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dca971e3e32205643ee82881f83a92a6e40"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca971e3e32205643ee82881f83a92a6e40">XWDS_ST7735_RASET</a></div><div class="ttdeci">@ XWDS_ST7735_RASET</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00073">device.h:73</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dca972121e0fa6ef6811f546ebb7b36e308"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dca972121e0fa6ef6811f546ebb7b36e308">XWDS_ST7735_PWCTR1</a></div><div class="ttdeci">@ XWDS_ST7735_PWCTR1</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00088">device.h:88</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dcaa4442364019ee191712d8abf4e40225c"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcaa4442364019ee191712d8abf4e40225c">XWDS_ST7735_INVCTR</a></div><div class="ttdeci">@ XWDS_ST7735_INVCTR</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00087">device.h:87</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dcaac9a394f887235ca2328ad0e9549131c"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcaac9a394f887235ca2328ad0e9549131c">XWDS_ST7735_NVCTR1</a></div><div class="ttdeci">@ XWDS_ST7735_NVCTR1</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00097">device.h:97</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dcab1d63ed4086cef0b7533f48082beb43d"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcab1d63ed4086cef0b7533f48082beb43d">XWDS_ST7735_RDDPM</a></div><div class="ttdeci">@ XWDS_ST7735_RDDPM</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00058">device.h:58</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dcab31a19b1a39d1bf5eafa5fb99012ff94"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcab31a19b1a39d1bf5eafa5fb99012ff94">XWDS_ST7735_RDID1</a></div><div class="ttdeci">@ XWDS_ST7735_RDID1</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00098">device.h:98</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dcab637eef98f8fbfd943c73d24aed212a3"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcab637eef98f8fbfd943c73d24aed212a3">XWDS_ST7735_NORON</a></div><div class="ttdeci">@ XWDS_ST7735_NORON</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00066">device.h:66</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dcab74d9e2f15c5b31ec3f86b6a2ed2c36b"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcab74d9e2f15c5b31ec3f86b6a2ed2c36b">XWDS_ST7735_SLPOUT</a></div><div class="ttdeci">@ XWDS_ST7735_SLPOUT</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00064">device.h:64</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dcab9d2eade3aa2304e61b9c8854a5bf359"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcab9d2eade3aa2304e61b9c8854a5bf359">XWDS_ST7735_FRMCTR2</a></div><div class="ttdeci">@ XWDS_ST7735_FRMCTR2</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00085">device.h:85</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dcac828dea88af6beedd620d6e927223999"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcac828dea88af6beedd620d6e927223999">XWDS_ST7735_RDDID</a></div><div class="ttdeci">@ XWDS_ST7735_RDDID</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00056">device.h:56</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dcacc21959f596083d52675a682d439c9f6"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcacc21959f596083d52675a682d439c9f6">XWDS_ST7735_CASET</a></div><div class="ttdeci">@ XWDS_ST7735_CASET</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00072">device.h:72</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dcacf4bf89e65000636cefa39a5970e4fe2"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcacf4bf89e65000636cefa39a5970e4fe2">XWDS_ST7735_NVCTR3</a></div><div class="ttdeci">@ XWDS_ST7735_NVCTR3</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00102">device.h:102</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dcad6426515a9247095c1b604543db96ce5"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcad6426515a9247095c1b604543db96ce5">XWDS_ST7735_RAMWR</a></div><div class="ttdeci">@ XWDS_ST7735_RAMWR</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00074">device.h:74</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dcadd53c7dfc1e704c9c7eea34acb7c0f4b"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcadd53c7dfc1e704c9c7eea34acb7c0f4b">XWDS_ST7735_NOP</a></div><div class="ttdeci">@ XWDS_ST7735_NOP</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00054">device.h:54</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dcae7fafeb405e3906539d7cf01e688bff8"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcae7fafeb405e3906539d7cf01e688bff8">XWDS_ST7735_GAMSET</a></div><div class="ttdeci">@ XWDS_ST7735_GAMSET</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00069">device.h:69</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dcae9101cdbf2f4be35d0fd339260243cc6"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcae9101cdbf2f4be35d0fd339260243cc6">XWDS_ST7735_RGBSET</a></div><div class="ttdeci">@ XWDS_ST7735_RGBSET</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00075">device.h:75</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dcaeacab81512ec1116f6ff081d8f882e94"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcaeacab81512ec1116f6ff081d8f882e94">XWDS_ST7735_INVOFF</a></div><div class="ttdeci">@ XWDS_ST7735_INVOFF</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00067">device.h:67</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dcaeb8e5322bf6e21b4e814bd33621f0842"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcaeb8e5322bf6e21b4e814bd33621f0842">XWDS_ST7735_PWCTR4</a></div><div class="ttdeci">@ XWDS_ST7735_PWCTR4</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00091">device.h:91</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dcaebb0b536cc92973daa53f3f61451bcbf"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcaebb0b536cc92973daa53f3f61451bcbf">XWDS_ST7735_DISPON</a></div><div class="ttdeci">@ XWDS_ST7735_DISPON</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00071">device.h:71</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dcaec3127563306d6d72036221b3df520e3"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcaec3127563306d6d72036221b3df520e3">XWDS_ST7735_SLPIN</a></div><div class="ttdeci">@ XWDS_ST7735_SLPIN</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00063">device.h:63</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dcaf03949361ca209102f7c55ea3467ae6d"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcaf03949361ca209102f7c55ea3467ae6d">XWDS_ST7735_COLMOD</a></div><div class="ttdeci">@ XWDS_ST7735_COLMOD</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00083">device.h:83</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dcaf6d5a1740bb6a0c3cf697b27682e49ab"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcaf6d5a1740bb6a0c3cf697b27682e49ab">XWDS_ST7735_RDDSM</a></div><div class="ttdeci">@ XWDS_ST7735_RDDSM</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00062">device.h:62</a></div></div>
+<div class="ttc" id="agroup__xwcd__peripheral__spi__lcd__st7735_html_ggacc62b47c91823a6e365424c829a473dcaff373d7e61b538363480965f61827d90"><div class="ttname"><a href="group__xwcd__peripheral__spi__lcd__st7735.html#ggacc62b47c91823a6e365424c829a473dcaff373d7e61b538363480965f61827d90">XWDS_ST7735_PWCTR2</a></div><div class="ttdeci">@ XWDS_ST7735_PWCTR2</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00089">device.h:89</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">函数说明</h2>
+<a id="gae5b51f8c09b0c85439b2daafd79c6147" name="gae5b51f8c09b0c85439b2daafd79c6147"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae5b51f8c09b0c85439b2daafd79c6147">&#9670;&#160;</a></span>xwds_st7735_construct()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void xwds_st7735_construct </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwds__st7735.html">xwds_st7735</a> *&#160;</td>
+          <td class="paramname"><em>st7735</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ST7735 API：ST7735对象的构造函数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">st7735</td><td>ST7735对象指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="peripheral_2spi_2lcd_2st7735_2device_8c_source.html">device.c</a> 第 <a class="el" href="peripheral_2spi_2lcd_2st7735_2device_8c_source.html#l00024">24</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   25</span>{</div>
+<div class="line"><span class="lineno">   26</span>        <a class="code hl_function" href="group__xwcd__ds__spi__peripheral.html#ga3d639a784c85af47017a92a03a6d502b">xwds_spip_construct</a>(&amp;st7735-&gt;<a class="code hl_variable" href="structxwds__st7735.html#a13e1d040769de644d73571a1c0edcb78">spip</a>);</div>
+<div class="line"><span class="lineno">   27</span>}</div>
+<div class="ttc" id="agroup__xwcd__ds__spi__peripheral_html_ga3d639a784c85af47017a92a03a6d502b"><div class="ttname"><a href="group__xwcd__ds__spi__peripheral.html#ga3d639a784c85af47017a92a03a6d502b">xwds_spip_construct</a></div><div class="ttdeci">void xwds_spip_construct(struct xwds_spip *spip)</div><div class="ttdoc">XWDS API：SPI外设控制器对象的构造函数</div><div class="ttdef"><b>Definition</b> <a href="spi_2peripheral_8c_source.html#l00057">peripheral.c:57</a></div></div>
+<div class="ttc" id="astructxwds__st7735_html_a13e1d040769de644d73571a1c0edcb78"><div class="ttname"><a href="structxwds__st7735.html#a13e1d040769de644d73571a1c0edcb78">xwds_st7735::spip</a></div><div class="ttdeci">struct xwds_spip spip</div><div class="ttdef"><b>Definition</b> <a href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00168">device.h:168</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwcd__peripheral__spi__lcd__st7735_gae5b51f8c09b0c85439b2daafd79c6147_cgraph.png" border="0" usemap="#agroup__xwcd__peripheral__spi__lcd__st7735_gae5b51f8c09b0c85439b2daafd79c6147_cgraph" alt=""/></div>
+<map name="agroup__xwcd__peripheral__spi__lcd__st7735_gae5b51f8c09b0c85439b2daafd79c6147_cgraph" id="agroup__xwcd__peripheral__spi__lcd__st7735_gae5b51f8c09b0c85439b2daafd79c6147_cgraph">
+<area shape="rect" title="ST7735 API：ST7735对象的构造函数" alt="" coords="5,31,165,56"/>
+<area shape="rect" href="group__xwcd__ds__spi__peripheral.html#ga3d639a784c85af47017a92a03a6d502b" title="XWDS API：SPI外设控制器对象的构造函数" alt="" coords="213,31,359,56"/>
+<area shape="poly" title=" " alt="" coords="165,41,200,41,200,46,165,46"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga28c4da29c7c95ad0ee437ed6e4a97e9d" title="XWDS API：设备的构造函数" alt="" coords="407,31,565,56"/>
+<area shape="poly" title=" " alt="" coords="359,41,393,41,393,46,359,46"/>
+<area shape="rect" href="group__xwcd__ds__object.html#ga8159ce4ed1c5c3c8c4f3ab187fac48a0" title=" " alt="" coords="613,31,752,56"/>
+<area shape="poly" title=" " alt="" coords="566,41,600,41,600,46,566,46"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga3286c94ae92265dea90fd52bfdb85569" title="初始化一个链表节点。" alt="" coords="805,5,951,31"/>
+<area shape="poly" title=" " alt="" coords="752,32,791,27,791,32,753,37"/>
+<area shape="rect" href="group__xwos__lib__xwobj.html#ga908c48f09f38f5be9d69758fe30c5d3f" title="XWOS对象的构造函数" alt="" coords="800,55,956,80"/>
+<area shape="poly" title=" " alt="" coords="753,49,787,53,786,59,752,55"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga869c90fd015ccae12de3ef16f712e26c" name="ga869c90fd015ccae12de3ef16f712e26c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga869c90fd015ccae12de3ef16f712e26c">&#9670;&#160;</a></span>xwds_st7735_destruct()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void xwds_st7735_destruct </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwds__st7735.html">xwds_st7735</a> *&#160;</td>
+          <td class="paramname"><em>st7735</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ST7735 API：ST7735对象的析构函数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">st7735</td><td>ST7735对象指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="peripheral_2spi_2lcd_2st7735_2device_8c_source.html">device.c</a> 第 <a class="el" href="peripheral_2spi_2lcd_2st7735_2device_8c_source.html#l00030">30</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   31</span>{</div>
+<div class="line"><span class="lineno">   32</span>        <a class="code hl_function" href="group__xwcd__ds__spi__peripheral.html#gaa0869471c6c02f7a347e99b395643187">xwds_spip_destruct</a>(&amp;st7735-&gt;<a class="code hl_variable" href="structxwds__st7735.html#a13e1d040769de644d73571a1c0edcb78">spip</a>);</div>
+<div class="line"><span class="lineno">   33</span>}</div>
+<div class="ttc" id="agroup__xwcd__ds__spi__peripheral_html_gaa0869471c6c02f7a347e99b395643187"><div class="ttname"><a href="group__xwcd__ds__spi__peripheral.html#gaa0869471c6c02f7a347e99b395643187">xwds_spip_destruct</a></div><div class="ttdeci">void xwds_spip_destruct(struct xwds_spip *spip)</div><div class="ttdoc">XWDS API：SPI外设控制器对象的析构函数</div><div class="ttdef"><b>Definition</b> <a href="spi_2peripheral_8c_source.html#l00064">peripheral.c:64</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwcd__peripheral__spi__lcd__st7735_ga869c90fd015ccae12de3ef16f712e26c_cgraph.png" border="0" usemap="#agroup__xwcd__peripheral__spi__lcd__st7735_ga869c90fd015ccae12de3ef16f712e26c_cgraph" alt=""/></div>
+<map name="agroup__xwcd__peripheral__spi__lcd__st7735_ga869c90fd015ccae12de3ef16f712e26c_cgraph" id="agroup__xwcd__peripheral__spi__lcd__st7735_ga869c90fd015ccae12de3ef16f712e26c_cgraph">
+<area shape="rect" title="ST7735 API：ST7735对象的析构函数" alt="" coords="5,5,159,31"/>
+<area shape="rect" href="group__xwcd__ds__spi__peripheral.html#gaa0869471c6c02f7a347e99b395643187" title="XWDS API：SPI外设控制器对象的析构函数" alt="" coords="207,5,345,31"/>
+<area shape="poly" title=" " alt="" coords="159,15,193,15,193,21,159,21"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga40607e48943c7647201065226dc37fa1" title="XWDS API：设备的析构函数" alt="" coords="393,5,545,31"/>
+<area shape="poly" title=" " alt="" coords="346,15,380,15,380,21,346,21"/>
+<area shape="rect" href="group__xwcd__ds__object.html#ga73902a4e27cea5ecf32e7fb39166b49c" title=" " alt="" coords="593,5,724,31"/>
+<area shape="poly" title=" " alt="" coords="546,15,580,15,580,21,546,21"/>
+<area shape="rect" href="group__xwos__lib__xwobj.html#gaaaa2a74387092ee01a9e495a2994d1fa" title="XWOS对象的析构函数" alt="" coords="772,5,921,31"/>
+<area shape="poly" title=" " alt="" coords="724,15,758,15,758,21,724,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga399dea02fa8fc2bbf55eba2bafeb5cc0" name="ga399dea02fa8fc2bbf55eba2bafeb5cc0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga399dea02fa8fc2bbf55eba2bafeb5cc0">&#9670;&#160;</a></span>xwds_st7735_grab()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwds_st7735_grab </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwds__st7735.html">xwds_st7735</a> *&#160;</td>
+          <td class="paramname"><em>st7735</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ST7735 API：增加对象的引用计数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">st7735</td><td>ST7735 设备指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"></td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>ref <a class="el" href="group__xwcd__ds__spi__peripheral.html#gab5494314854848168abb6f20c73b3367" title="XWDS API：增加对象的引用计数">xwds_spip_grab()</a> </p>
+
+<p class="definition">在文件 <a class="el" href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html">device.h</a> 第 <a class="el" href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00193">193</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  194</span>{</div>
+<div class="line"><span class="lineno">  195</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="group__xwcd__ds__spi__peripheral.html#gab5494314854848168abb6f20c73b3367">xwds_spip_grab</a>(&amp;st7735-&gt;<a class="code hl_variable" href="structxwds__st7735.html#a13e1d040769de644d73571a1c0edcb78">spip</a>);</div>
+<div class="line"><span class="lineno">  196</span>}</div>
+<div class="ttc" id="agroup__xwcd__ds__spi__peripheral_html_gab5494314854848168abb6f20c73b3367"><div class="ttname"><a href="group__xwcd__ds__spi__peripheral.html#gab5494314854848168abb6f20c73b3367">xwds_spip_grab</a></div><div class="ttdeci">xwer_t xwds_spip_grab(struct xwds_spip *spip)</div><div class="ttdoc">XWDS API：增加对象的引用计数</div><div class="ttdef"><b>Definition</b> <a href="spi_2peripheral_8c_source.html#l00070">peripheral.c:70</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwcd__peripheral__spi__lcd__st7735_ga399dea02fa8fc2bbf55eba2bafeb5cc0_cgraph.png" border="0" usemap="#agroup__xwcd__peripheral__spi__lcd__st7735_ga399dea02fa8fc2bbf55eba2bafeb5cc0_cgraph" alt=""/></div>
+<map name="agroup__xwcd__peripheral__spi__lcd__st7735_ga399dea02fa8fc2bbf55eba2bafeb5cc0_cgraph" id="agroup__xwcd__peripheral__spi__lcd__st7735_ga399dea02fa8fc2bbf55eba2bafeb5cc0_cgraph">
+<area shape="rect" title="ST7735 API：增加对象的引用计数" alt="" coords="5,5,136,31"/>
+<area shape="rect" href="group__xwcd__ds__spi__peripheral.html#gab5494314854848168abb6f20c73b3367" title="XWDS API：增加对象的引用计数" alt="" coords="184,5,300,31"/>
+<area shape="poly" title=" " alt="" coords="136,15,170,15,170,21,136,21"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga00553482e152b68af626de972e2187d7" title="XWDS API：增加对象的引用计数" alt="" coords="348,5,479,31"/>
+<area shape="poly" title=" " alt="" coords="300,15,335,15,335,21,300,21"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwcd__peripheral__spi__lcd__st7735_ga399dea02fa8fc2bbf55eba2bafeb5cc0_icgraph.png" border="0" usemap="#agroup__xwcd__peripheral__spi__lcd__st7735_ga399dea02fa8fc2bbf55eba2bafeb5cc0_icgraph" alt=""/></div>
+<map name="agroup__xwcd__peripheral__spi__lcd__st7735_ga399dea02fa8fc2bbf55eba2bafeb5cc0_icgraph" id="agroup__xwcd__peripheral__spi__lcd__st7735_ga399dea02fa8fc2bbf55eba2bafeb5cc0_icgraph">
+<area shape="rect" title="ST7735 API：增加对象的引用计数" alt="" coords="233,80,364,105"/>
+<area shape="rect" href="spi_2lcd_2st7735_2driver_8c.html#a0b9d306ef30a5f43fc4bbb1ed993d6c7" title="ST7735 API：读取RDDCOLMOD寄存器的值" alt="" coords="5,5,185,31"/>
+<area shape="poly" title=" " alt="" coords="258,76,184,45,148,33,150,28,186,39,261,71"/>
+<area shape="rect" href="spi_2lcd_2st7735_2driver_8c.html#ad3bb56951da755feee1c1e3f5f5bdab3" title="ST7735 API：读取ID" alt="" coords="21,55,169,80"/>
+<area shape="poly" title=" " alt="" coords="219,86,169,79,170,74,220,80"/>
+<area shape="rect" href="spi_2lcd_2st7735_2driver_8c.html#af2f71b0631f8ebc75e96022efc6f8a2f" title="ST7735 API：读取RDDMADCTL寄存器的值" alt="" coords="7,104,184,129"/>
+<area shape="poly" title=" " alt="" coords="220,105,185,109,184,104,220,99"/>
+<area shape="rect" href="spi_2lcd_2st7735_2driver_8c.html#ac217864ed806b1cbfe6cdd3667950ee8" title="ST7735 API：读取状态" alt="" coords="8,153,183,179"/>
+<area shape="poly" title=" " alt="" coords="259,114,186,143,146,156,145,151,184,138,257,109"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga1087cbc6af40acc129eea178d575dbd5" name="ga1087cbc6af40acc129eea178d575dbd5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1087cbc6af40acc129eea178d575dbd5">&#9670;&#160;</a></span>xwds_st7735_put()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwds_st7735_put </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwds__st7735.html">xwds_st7735</a> *&#160;</td>
+          <td class="paramname"><em>st7735</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ST7735 API：减少对象的引用计数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">st7735</td><td>ST7735 设备指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"></td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>ref <a class="el" href="group__xwcd__ds__spi__peripheral.html#gae0f7ed1d5997711b22b441e6e460d106" title="XWDS API：减少对象的引用计数">xwds_spip_put()</a> </p>
+
+<p class="definition">在文件 <a class="el" href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html">device.h</a> 第 <a class="el" href="peripheral_2spi_2lcd_2st7735_2device_8h_source.html#l00205">205</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  206</span>{</div>
+<div class="line"><span class="lineno">  207</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="group__xwcd__ds__spi__peripheral.html#gae0f7ed1d5997711b22b441e6e460d106">xwds_spip_put</a>(&amp;st7735-&gt;<a class="code hl_variable" href="structxwds__st7735.html#a13e1d040769de644d73571a1c0edcb78">spip</a>);</div>
+<div class="line"><span class="lineno">  208</span>}</div>
+<div class="ttc" id="agroup__xwcd__ds__spi__peripheral_html_gae0f7ed1d5997711b22b441e6e460d106"><div class="ttname"><a href="group__xwcd__ds__spi__peripheral.html#gae0f7ed1d5997711b22b441e6e460d106">xwds_spip_put</a></div><div class="ttdeci">xwer_t xwds_spip_put(struct xwds_spip *spip)</div><div class="ttdoc">XWDS API：减少对象的引用计数</div><div class="ttdef"><b>Definition</b> <a href="spi_2peripheral_8c_source.html#l00076">peripheral.c:76</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwcd__peripheral__spi__lcd__st7735_ga1087cbc6af40acc129eea178d575dbd5_cgraph.png" border="0" usemap="#agroup__xwcd__peripheral__spi__lcd__st7735_ga1087cbc6af40acc129eea178d575dbd5_cgraph" alt=""/></div>
+<map name="agroup__xwcd__peripheral__spi__lcd__st7735_ga1087cbc6af40acc129eea178d575dbd5_cgraph" id="agroup__xwcd__peripheral__spi__lcd__st7735_ga1087cbc6af40acc129eea178d575dbd5_cgraph">
+<area shape="rect" title="ST7735 API：减少对象的引用计数" alt="" coords="5,5,129,31"/>
+<area shape="rect" href="group__xwcd__ds__spi__peripheral.html#gae0f7ed1d5997711b22b441e6e460d106" title="XWDS API：减少对象的引用计数" alt="" coords="177,5,287,31"/>
+<area shape="poly" title=" " alt="" coords="129,15,163,15,163,21,129,21"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga69eb284bb145032e408adea3131b9d36" title="XWDS API：减少对象的引用计数" alt="" coords="335,5,457,31"/>
+<area shape="poly" title=" " alt="" coords="287,15,321,15,321,21,287,21"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwcd__peripheral__spi__lcd__st7735_ga1087cbc6af40acc129eea178d575dbd5_icgraph.png" border="0" usemap="#agroup__xwcd__peripheral__spi__lcd__st7735_ga1087cbc6af40acc129eea178d575dbd5_icgraph" alt=""/></div>
+<map name="agroup__xwcd__peripheral__spi__lcd__st7735_ga1087cbc6af40acc129eea178d575dbd5_icgraph" id="agroup__xwcd__peripheral__spi__lcd__st7735_ga1087cbc6af40acc129eea178d575dbd5_icgraph">
+<area shape="rect" title="ST7735 API：减少对象的引用计数" alt="" coords="233,80,357,105"/>
+<area shape="rect" href="spi_2lcd_2st7735_2driver_8c.html#a0b9d306ef30a5f43fc4bbb1ed993d6c7" title="ST7735 API：读取RDDCOLMOD寄存器的值" alt="" coords="5,5,185,31"/>
+<area shape="poly" title=" " alt="" coords="257,76,184,44,149,33,150,28,186,40,259,71"/>
+<area shape="rect" href="spi_2lcd_2st7735_2driver_8c.html#ad3bb56951da755feee1c1e3f5f5bdab3" title="ST7735 API：读取ID" alt="" coords="21,55,169,80"/>
+<area shape="poly" title=" " alt="" coords="219,86,169,79,170,74,220,80"/>
+<area shape="rect" href="spi_2lcd_2st7735_2driver_8c.html#af2f71b0631f8ebc75e96022efc6f8a2f" title="ST7735 API：读取RDDMADCTL寄存器的值" alt="" coords="7,104,184,129"/>
+<area shape="poly" title=" " alt="" coords="220,104,184,109,184,103,219,99"/>
+<area shape="rect" href="spi_2lcd_2st7735_2driver_8c.html#ac217864ed806b1cbfe6cdd3667950ee8" title="ST7735 API：读取状态" alt="" coords="8,153,183,179"/>
+<area shape="poly" title=" " alt="" coords="256,114,186,143,147,156,145,151,184,138,254,109"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="XWOS RUST：消息队列"><title>xwrust::xwmd::xwmq - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="xwrust" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (b10cfcd65 2023-11-29)" data-channel="nightly" data-search-js="search-56a624991a76cfad.js" data-settings-js="settings-fe03fdc259827cd2.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../sidebar-items.js"></script><script defer src="../../../static.files/main-77dede896d6ac08e.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../xwrust/index.html">xwrust</a><span class="version">1.0.0</span></h2></div><h2 class="location"><a href="#">Module xwmq</a></h2><div class="sidebar-elems"><section><ul class="block"><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#constants">Constants</a></li></ul></section><h2><a href="../index.html">In xwrust::xwmd</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Module <a href="../../index.html">xwrust</a>::<wbr><a href="../index.html">xwmd</a>::<wbr><a class="mod" href="#">xwmq</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../../../src/xwrust/xwmd/xwmq.rs.html#1-1739">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="xwos-rust消息队列"><a href="#xwos-rust消息队列">XWOS RUST：消息队列</a></h2>
+<p>XWOS RUST的消息队列是仿照 <a href="https://doc.rust-lang.org/std/sync/mpsc/index.html"><code>std::sync::mpsc</code></a>  编写的。可以有多个发送者，但只能有一个接收者。</p>
+<p>XWOS RUST的消息队列是一个先进先进（FIFO）队列。</p>
+<p>消息队列在创建时，需要指定一个类型 <code>T</code> ，发送和接收的数据只能是类型 <code>T</code> 的数据。
+发送时，消息队列会通过 <a href="https://doc.rust-lang.org/alloc/boxed/struct.Box.html"><code>Box</code></a> 将类型 <code>T</code> 的数据存入堆内存中。然后将 <code>Box&lt;T&gt;</code> 的裸指针发送到队列。
+可以发送到尾端（入队 <a href="struct.XwmqTx.html#method.eq" title="method xwrust::xwmd::xwmq::XwmqTx::eq"><code>XwmqTx::eq()</code></a> ），也可将消息发送到队列的首端（插队 <a href="struct.XwmqTx.html#method.jq" title="method xwrust::xwmd::xwmq::XwmqTx::jq"><code>XwmqTx::jq()</code></a> ）。</p>
+<p>接收时，会从队列中取出 <code>T</code> 的裸指针，然后恢复成 <code>Box&lt;T&gt;</code> 后返回，由于 <a href="https://doc.rust-lang.org/alloc/boxed/struct.Box.html"><code>Box</code></a> 能自动释放内存，因此用户不需要关心内存释放的问题。
+接收消息可以从首端接收，也可以从尾端接收。</p>
+<h2 id="创建"><a href="#创建">创建</a></h2>
+<p>XWOS RUST的消息队列可使用 <a href="struct.Xwmq.html#method.new" title="associated function xwrust::xwmd::xwmq::Xwmq::new"><code>Xwmq::new()</code></a> 创建。创建时需要指定两个类型参数：发送消息槽的个数以及消息数据的类型。</p>
+<ul>
+<li>可以创建具有静态生命周期 <a href="https://doc.rust-lang.org/std/keyword.static.html"><code>static</code></a> 约束的全局变量：</li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwmd::xwmq::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>MQ: Xwmq&lt;<span class="number">16</span>, String&gt; = Xwmq::new(); <span class="comment">// 16个消息槽，数据类型为String</span></code></pre></div>
+<ul>
+<li>也可以使用 <a href="https://doc.rust-lang.org/alloc/sync/struct.Arc.html"><code>alloc::sync::Arc</code></a> 在heap中创建：</li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>alloc;
+<span class="kw">use </span>alloc::sync::Arc;
+
+<span class="kw">use </span>xwrust::xwmd::xwmq::<span class="kw-2">*</span>;
+
+<span class="kw">pub fn </span>xwrust_example_xwmq() {
+    <span class="kw">let </span>mq: Arc&lt;Xwmq&lt;<span class="number">16</span>, String&gt;&gt; = Arc::new(Xwmq::new()); <span class="comment">// 16个消息槽，数据类型为 `String`
+</span>}</code></pre></div>
+<h2 id="初始化"><a href="#初始化">初始化</a></h2>
+<p>无论以何种方式创建的消息队列，都必须在使用前调用 <a href="struct.Xwmq.html#method.init" title="method xwrust::xwmd::xwmq::Xwmq::init"><code>Xwmq::init()</code></a> 进行初始化，
+初始化后会返回消息队列的发送者 <a href="struct.XwmqTx.html" title="struct xwrust::xwmd::xwmq::XwmqTx"><code>XwmqTx</code></a> 以及接收者 <a href="struct.XwmqRx.html" title="struct xwrust::xwmd::xwmq::XwmqRx"><code>XwmqRx</code></a> 。</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">pub fn </span>xwrust_example_xwmq() {
+    <span class="kw">let </span>(tx, rx) = MQ.init();
+}</code></pre></div>
+<h2 id="发送"><a href="#发送">发送</a></h2>
+<p><a href="struct.Xwmq.html" title="struct xwrust::xwmd::xwmq::Xwmq"><code>Xwmq</code></a> 的发送者 <a href="struct.XwmqTx.html" title="struct xwrust::xwmd::xwmq::XwmqTx"><code>XwmqTx</code></a> 具有 <a href="https://doc.rust-lang.org/core/marker/trait.Send.html"><code>Send</code></a> 约束，可在线程之间转移所有权，但不能在线程之间共享( <a href="https://doc.rust-lang.org/core/marker/trait.Sync.html"><code>!Sync</code></a> )。</p>
+<p>发送者 <a href="struct.XwmqTx.html" title="struct xwrust::xwmd::xwmq::XwmqTx"><code>XwmqTx</code></a> 可被 <a href="struct.XwmqTx.html#method.clone" title="method xwrust::xwmd::xwmq::XwmqTx::clone"><code>XwmqTx::clone()</code></a> 为多个发送者，由不同线程持有，向接收者 <a href="struct.XwmqRx.html" title="struct xwrust::xwmd::xwmq::XwmqRx"><code>XwmqRx</code></a> 发送消息。</p>
+<h3 id="入队"><a href="#入队">入队</a></h3>
+<p><strong>入队</strong> 方式是将消息发送到队列的 <strong>尾端</strong> ， <strong>入队</strong> 时，会通过 <a href="https://doc.rust-lang.org/alloc/boxed/struct.Box.html"><code>Box</code></a> 将数据放入heap中，然后进行发送。</p>
+<h4 id="等待入队"><a href="#等待入队">等待入队</a></h4>
+<p>方法 <a href="struct.XwmqTx.html#method.eq" title="method xwrust::xwmd::xwmq::XwmqTx::eq"><code>XwmqTx::eq()</code></a> 只可在 <strong>线程</strong> 上下文中使用：</p>
+<ul>
+<li>当消息队列中没有可用的消息槽可用时，发送线程会阻塞等待。</li>
+<li>当消息队列中有可用的消息槽时，发送线程被唤醒，并取走一个消息槽，并发送数据。</li>
+<li>当线程阻塞等待被中断时，返回 <a href="enum.XwmqError.html#variant.Interrupt" title="variant xwrust::xwmd::xwmq::XwmqError::Interrupt"><code>XwmqError::Interrupt</code></a> 。</li>
+</ul>
+<h4 id="超时等待入队"><a href="#超时等待入队">超时等待入队</a></h4>
+<p>方法 <a href="struct.XwmqTx.html#method.eq_to" title="method xwrust::xwmd::xwmq::XwmqTx::eq_to"><code>XwmqTx::eq_to()</code></a> 只可在 <strong>线程</strong> 上下文中使用：</p>
+<ul>
+<li>当消息队列中没有可用的消息槽可用时，发送线程会阻塞等待，等待时会指定一个唤醒时间点。</li>
+<li>当消息队列中有可用的消息槽时，发送线程被唤醒，并取走一个消息槽，并发送数据。</li>
+<li>当线程阻塞等待被中断时，返回 <a href="enum.XwmqError.html#variant.Interrupt" title="variant xwrust::xwmd::xwmq::XwmqError::Interrupt"><code>XwmqError::Interrupt</code></a> 。</li>
+<li>当到达指定的唤醒时间点，线程被唤醒，并返回 <a href="enum.XwmqError.html#variant.Timedout" title="variant xwrust::xwmd::xwmq::XwmqError::Timedout"><code>XwmqError::Timedout</code></a> 。</li>
+</ul>
+<h4 id="等待入队且等待不可不中断"><a href="#等待入队且等待不可不中断">等待入队，且等待不可不中断</a></h4>
+<p>方法 <a href="struct.XwmqTx.html#method.eq_unintr" title="method xwrust::xwmd::xwmq::XwmqTx::eq_unintr"><code>XwmqTx::eq_unintr()</code></a> 只可在 <strong>线程</strong> 上下文中使用：</p>
+<ul>
+<li>当消息队列中没有可用的消息槽可用时，发送线程会阻塞等待。</li>
+<li>发送线程的阻塞等待不可被中断。</li>
+<li>当消息队列中有可用的消息槽时，发送线程被唤醒，并取走一个消息槽，并发送数据。</li>
+</ul>
+<h4 id="尝试等待入队"><a href="#尝试等待入队">尝试等待入队</a></h4>
+<p>方法 <a href="struct.XwmqTx.html#method.tryeq" title="method xwrust::xwmd::xwmq::XwmqTx::tryeq"><code>XwmqTx::tryeq()</code></a> 方法可在 <strong>任意</strong> 上下文中使用，不会阻塞，只会检测信号量的值：</p>
+<ul>
+<li>当消息队列中没有可用的消息槽可用时，立即返回 <a href="enum.XwmqError.html#variant.NoSlot" title="variant xwrust::xwmd::xwmq::XwmqError::NoSlot"><code>XwmqError::NoSlot</code></a> 。</li>
+<li>当消息队列中有可用的消息槽时，发送线程会取走一个消息槽，并发送数据。</li>
+</ul>
+<h3 id="插队"><a href="#插队">插队</a></h3>
+<p><strong>插队</strong> 方式是将消息发送到队列的 <strong>首端</strong> ， <strong>插队</strong> 时，会通过 <a href="https://doc.rust-lang.org/alloc/boxed/struct.Box.html"><code>Box</code></a> 将数据放入heap中，然后进行发送。</p>
+<h4 id="等待插队"><a href="#等待插队">等待插队</a></h4>
+<p>方法 <a href="struct.XwmqTx.html#method.jq" title="method xwrust::xwmd::xwmq::XwmqTx::jq"><code>XwmqTx::jq()</code></a> 只可在 <strong>线程</strong> 上下文中使用：</p>
+<ul>
+<li>当消息队列中没有可用的消息槽可用时，发送线程会阻塞等待。</li>
+<li>当消息队列中有可用的消息槽时，发送线程被唤醒，并取走一个消息槽，并发送数据。</li>
+<li>当线程阻塞等待被中断时，返回 <a href="enum.XwmqError.html#variant.Interrupt" title="variant xwrust::xwmd::xwmq::XwmqError::Interrupt"><code>XwmqError::Interrupt</code></a> 。</li>
+</ul>
+<h4 id="超时等待插队"><a href="#超时等待插队">超时等待插队</a></h4>
+<p>方法 <a href="struct.XwmqTx.html#method.jq_to" title="method xwrust::xwmd::xwmq::XwmqTx::jq_to"><code>XwmqTx::jq_to()</code></a> 只可在 <strong>线程</strong> 上下文中使用：</p>
+<ul>
+<li>当消息队列中没有可用的消息槽可用时，发送线程会阻塞等待，等待时会指定一个唤醒时间点。</li>
+<li>当消息队列中有可用的消息槽时，发送线程被唤醒，并取走一个消息槽，并发送数据。</li>
+<li>当线程阻塞等待被中断时，返回 <a href="enum.XwmqError.html#variant.Interrupt" title="variant xwrust::xwmd::xwmq::XwmqError::Interrupt"><code>XwmqError::Interrupt</code></a> 。</li>
+<li>当到达指定的唤醒时间点，线程被唤醒，并返回 <a href="enum.XwmqError.html#variant.Timedout" title="variant xwrust::xwmd::xwmq::XwmqError::Timedout"><code>XwmqError::Timedout</code></a> 。</li>
+</ul>
+<p>方法 <a href="struct.XwmqTx.html#method.jq_unintr" title="method xwrust::xwmd::xwmq::XwmqTx::jq_unintr"><code>XwmqTx::jq_unintr()</code></a> 只可在 <strong>线程</strong> 上下文中使用：</p>
+<ul>
+<li>当消息队列中没有可用的消息槽可用时，发送线程会阻塞等待。</li>
+<li>发送线程的阻塞等待不可被中断。</li>
+<li>当消息队列中有可用的消息槽时，发送线程被唤醒，并取走一个消息槽，并发送数据。</li>
+</ul>
+<h4 id="尝试等待插队"><a href="#尝试等待插队">尝试等待插队</a></h4>
+<p>方法 <a href="struct.XwmqTx.html#method.tryjq" title="method xwrust::xwmd::xwmq::XwmqTx::tryjq"><code>XwmqTx::tryjq()</code></a> 方法可在 <strong>任意</strong> 上下文中使用，不会阻塞，只会检测信号量的值：</p>
+<ul>
+<li>当消息队列中没有可用的消息槽可用时，立即返回 <a href="enum.XwmqError.html#variant.NoSlot" title="variant xwrust::xwmd::xwmq::XwmqError::NoSlot"><code>XwmqError::NoSlot</code></a> 。</li>
+<li>当消息队列中有可用的消息槽时，发送线程会取走一个消息槽，并发送数据。</li>
+</ul>
+<h2 id="接收"><a href="#接收">接收</a></h2>
+<p><a href="struct.Xwmq.html" title="struct xwrust::xwmd::xwmq::Xwmq"><code>Xwmq</code></a> 的接收者 <a href="struct.XwmqRx.html" title="struct xwrust::xwmd::xwmq::XwmqRx"><code>XwmqRx</code></a> 具有 <a href="https://doc.rust-lang.org/core/marker/trait.Send.html"><code>Send</code></a> 约束，可在线程之间转移所有权，但不能在线程之间共享( <a href="https://doc.rust-lang.org/core/marker/trait.Sync.html"><code>!Sync</code></a> )。</p>
+<p>接收者 <a href="struct.XwmqRx.html" title="struct xwrust::xwmd::xwmq::XwmqRx"><code>XwmqRx</code></a> 不可被 ”<strong>克隆</strong>“，因为接收者只能有一个。</p>
+<p>接收消息后，会释放消息槽。若有发送线程正在等待消息槽，将唤醒发送线程。</p>
+<h3 id="首端离队"><a href="#首端离队">首端离队</a></h3>
+<p>从消息队列的 <strong>首端</strong> 取出消息，称为 <strong>首端离队</strong> 。
+接收成功，消息 <strong>离队</strong> 时，会通过 <a href="https://doc.rust-lang.org/alloc/boxed/struct.Box.html#method.from_raw"><code>Box::from_raw()</code></a> 将数据重新放入 <a href="https://doc.rust-lang.org/alloc/boxed/struct.Box.html"><code>Box</code></a> 中，然后通过 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Ok"><code>Ok()</code></a> 返回。
+当 <a href="https://doc.rust-lang.org/alloc/boxed/struct.Box.html"><code>Box</code></a> 被 <a href="https://doc.rust-lang.org/alloc/boxed/struct.Box.html#method.drop"><code>drop()</code></a> 时，会自动释放heap内存。</p>
+<h4 id="等待离队"><a href="#等待离队">等待离队</a></h4>
+<p>方法 <a href="struct.XwmqRx.html#method.dq" title="method xwrust::xwmd::xwmq::XwmqRx::dq"><code>XwmqRx::dq()</code></a> 只可在 <strong>线程</strong> 上下文中使用：</p>
+<ul>
+<li>当消息队列中没有消息时，接收线程会阻塞等待。</li>
+<li>当消息队列中有可用的消息时，接收线程被唤醒，并取走一个消息，并释放消息槽。</li>
+<li>当线程阻塞等待被中断时，通过 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Err"><code>Err()</code></a> 返回 <a href="enum.XwmqError.html#variant.Interrupt" title="variant xwrust::xwmd::xwmq::XwmqError::Interrupt"><code>XwmqError::Interrupt</code></a> 。</li>
+</ul>
+<h4 id="超时等待离队"><a href="#超时等待离队">超时等待离队</a></h4>
+<p>方法 <a href="struct.XwmqRx.html#method.dq_to" title="method xwrust::xwmd::xwmq::XwmqRx::dq_to"><code>XwmqRx::dq_to()</code></a> 只可在 <strong>线程</strong> 上下文中使用：</p>
+<ul>
+<li>当消息队列中没有消息时，接收线程会阻塞等待，等待时会指定一个唤醒时间点。</li>
+<li>当消息队列中有可用的消息时，接收线程被唤醒，并取走一个消息，释放消息槽。</li>
+<li>当线程阻塞等待被中断时，通过 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Err"><code>Err()</code></a> 返回 <a href="enum.XwmqError.html#variant.Interrupt" title="variant xwrust::xwmd::xwmq::XwmqError::Interrupt"><code>XwmqError::Interrupt</code></a> 。</li>
+<li>当到达指定的唤醒时间点，线程被唤醒，并通过 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Err"><code>Err()</code></a> 返回 <a href="enum.XwmqError.html#variant.Timedout" title="variant xwrust::xwmd::xwmq::XwmqError::Timedout"><code>XwmqError::Timedout</code></a> 。</li>
+</ul>
+<p>方法 <a href="struct.XwmqRx.html#method.dq_unintr" title="method xwrust::xwmd::xwmq::XwmqRx::dq_unintr"><code>XwmqRx::dq_unintr()</code></a> 只可在 <strong>线程</strong> 上下文中使用：</p>
+<ul>
+<li>当消息队列中没有消息时，接收线程会阻塞等待。</li>
+<li>接收线程的阻塞等待不可被中断。</li>
+<li>当消息队列中有可用的消息时，接收线程被唤醒，并取走一个消息，并释放消息槽。</li>
+</ul>
+<h4 id="尝试等待离队"><a href="#尝试等待离队">尝试等待离队</a></h4>
+<p>方法 <a href="struct.XwmqRx.html#method.trydq" title="method xwrust::xwmd::xwmq::XwmqRx::trydq"><code>XwmqRx::trydq()</code></a> 方法可在 <strong>任意</strong> 上下文中使用，不会阻塞，只会检测信号量的值：</p>
+<ul>
+<li>当消息队列中没有消息时，立即通过 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Err"><code>Err()</code></a> 返回 <a href="enum.XwmqError.html#variant.NoMsg" title="variant xwrust::xwmd::xwmq::XwmqError::NoMsg"><code>XwmqError::NoMsg</code></a> 。</li>
+<li>当消息队列中有可用的消息时，接收线程会取走一个消息，并释放消息槽。</li>
+</ul>
+<h3 id="尾端离队"><a href="#尾端离队">尾端离队</a></h3>
+<p>从消息队列的 <strong>尾端</strong> 取出消息，称为 <strong>尾端离队</strong> 。
+接收成功，消息 <strong>离队</strong> 时，会通过 <a href="https://doc.rust-lang.org/alloc/boxed/struct.Box.html#method.from_raw"><code>Box::from_raw()</code></a> 将数据重新放入 <a href="https://doc.rust-lang.org/alloc/boxed/struct.Box.html"><code>Box</code></a> 中，
+然后通过 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Ok"><code>Ok()</code></a> 返回。
+当 <a href="https://doc.rust-lang.org/alloc/boxed/struct.Box.html"><code>Box</code></a> 被 <a href="https://doc.rust-lang.org/alloc/boxed/struct.Box.html#method.drop"><code>drop()</code></a> 时，会自动释放heap内存。</p>
+<h4 id="等待反向离队"><a href="#等待反向离队">等待反向离队</a></h4>
+<p>方法 <a href="struct.XwmqRx.html#method.rq" title="method xwrust::xwmd::xwmq::XwmqRx::rq"><code>XwmqRx::rq()</code></a> 只可在 <strong>线程</strong> 上下文中使用：</p>
+<ul>
+<li>当消息队列中没有消息时，接收线程会阻塞等待。</li>
+<li>当消息队列中有可用的消息时，接收线程被唤醒，并取走一个消息，并释放消息槽。</li>
+<li>当线程阻塞等待被中断时，通过 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Err"><code>Err()</code></a> 返回 <a href="enum.XwmqError.html#variant.Interrupt" title="variant xwrust::xwmd::xwmq::XwmqError::Interrupt"><code>XwmqError::Interrupt</code></a> 。</li>
+</ul>
+<h4 id="超时等待反向离队"><a href="#超时等待反向离队">超时等待反向离队</a></h4>
+<p>方法 <a href="struct.XwmqRx.html#method.rq_to" title="method xwrust::xwmd::xwmq::XwmqRx::rq_to"><code>XwmqRx::rq_to()</code></a> 只可在 <strong>线程</strong> 上下文中使用：</p>
+<ul>
+<li>当消息队列中没有消息时，接收线程会阻塞等待，等待时会指定一个唤醒时间点。</li>
+<li>当消息队列中有可用的消息时，接收线程被唤醒，并取走一个消息，释放消息槽。</li>
+<li>当线程阻塞等待被中断时，通过 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Err"><code>Err()</code></a> 返回 <a href="enum.XwmqError.html#variant.Interrupt" title="variant xwrust::xwmd::xwmq::XwmqError::Interrupt"><code>XwmqError::Interrupt</code></a> 。</li>
+<li>当到达指定的唤醒时间点，线程被唤醒，并通过 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Err"><code>Err()</code></a> 返回 <a href="enum.XwmqError.html#variant.Timedout" title="variant xwrust::xwmd::xwmq::XwmqError::Timedout"><code>XwmqError::Timedout</code></a> 。</li>
+</ul>
+<p>方法 <a href="struct.XwmqRx.html#method.rq_unintr" title="method xwrust::xwmd::xwmq::XwmqRx::rq_unintr"><code>XwmqRx::rq_unintr()</code></a> 只可在 <strong>线程</strong> 上下文中使用：</p>
+<ul>
+<li>当消息队列中没有消息时，接收线程会阻塞等待。</li>
+<li>接收线程的阻塞等待不可被中断。</li>
+<li>当消息队列中有可用的消息时，接收线程被唤醒，并取走一个消息，并释放消息槽。</li>
+</ul>
+<h4 id="尝试等待反向离队"><a href="#尝试等待反向离队">尝试等待反向离队</a></h4>
+<p>方法 <a href="struct.XwmqRx.html#method.tryrq" title="method xwrust::xwmd::xwmq::XwmqRx::tryrq"><code>XwmqRx::tryrq()</code></a> 方法可在 <strong>任意</strong> 上下文中使用，不会阻塞，只会检测信号量的值：</p>
+<ul>
+<li>当消息队列中没有消息时，立即通过 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Err"><code>Err()</code></a> 返回 <a href="enum.XwmqError.html#variant.NoMsg" title="variant xwrust::xwmd::xwmq::XwmqError::NoMsg"><code>XwmqError::NoMsg</code></a> 。</li>
+<li>当消息队列中有可用的消息时，接收线程会取走一个消息，并释放消息槽。</li>
+</ul>
+<h2 id="示例"><a href="#示例">示例</a></h2>
+<p><a href="https://gitee.com/xwos/XWOS/blob/main/xwam/xwrust-example/xwrust_example_xwmq/src/lib.rs">XWOS/xwam/xwrust-example/xwrust_example_xwmq</a></p>
+<h2 id="对比-stdsyncmpsc"><a href="#对比-stdsyncmpsc">对比 <code>std::sync::mpsc</code></a></h2>
+<ul>
+<li>XWOS RUST:</li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="attr">#![no_std]
+
+</span><span class="kw">extern crate </span>alloc;
+
+<span class="kw">use </span>xwrust::xwos::thd;
+<span class="kw">use </span>xwrust::xwmd::xwmq::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>MQ: Xwmq&lt;<span class="number">16</span>, u32&gt; = Xwmq::new();
+
+<span class="kw">pub fn </span>xwrust_example_xwmq() {
+    <span class="macro">println!</span>(<span class="string">&quot;XWOS RUST Example: XWMQ&quot;</span>);
+    <span class="kw">let </span>(tx, rx) = MQ.init();
+
+    <span class="kw">let _ </span>= thd::Builder::new()
+                .spawn(<span class="kw">move </span>|<span class="kw">_</span>| { <span class="comment">// 子线程闭包
+                    </span>tx.eq(<span class="number">53</span>);
+                    <span class="string">&quot;OK&quot;
+                </span>});
+
+    <span class="kw">let </span>rc = rx.dq();
+    <span class="kw">match </span>rc {
+        <span class="prelude-val">Ok</span>(d) =&gt; { <span class="comment">// d为接收到的数据，并被放在智能指针Box中
+        </span>},
+        <span class="prelude-val">Err</span>(e) =&gt; {
+        },
+    };
+}</code></pre></div>
+<ul>
+<li><a href="https://doc.rust-lang.org/std/sync/mpsc/index.html"><code>std::sync::mpsc</code></a></li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>std::thread;
+<span class="kw">use </span>std::sync::mpsc::sync_channel;
+
+<span class="kw">let </span>(tx, rx) = sync_channel::&lt;i32&gt;(<span class="number">0</span>);
+thread::spawn(<span class="kw">move</span>|| {
+    tx.send(<span class="number">53</span>).unwrap();
+});
+rx.recv().unwrap();</code></pre></div>
+<h4 id="构建全局变量的方式"><a href="#构建全局变量的方式">构建全局变量的方式</a></h4>
+<ul>
+<li><a href="https://doc.rust-lang.org/std/sync/mpsc/index.html"><code>std::sync::mpsc</code></a> 没有编译期构造函数，因此只能借助
+宏 <a href="https://lib.rs/crates/lazy_static"><code>lazy_static!</code></a> 创建全局变量；</li>
+<li><a href="index.html" title="mod xwrust::xwmd::xwmq"><code>xwrust::xwmd::xwmq</code></a> 则可以直接在函数外部定义。</li>
+</ul>
+<h4 id="通道类型"><a href="#通道类型">通道类型</a></h4>
+<ul>
+<li><a href="https://doc.rust-lang.org/std/sync/mpsc/index.html"><code>std::sync::mpsc</code></a> 还有异步的通道 <a href="https://doc.rust-lang.org/std/sync/mpsc/fn.channel.html"><code>std::sync::mpsc::channel()</code></a> ；</li>
+<li><a href="index.html" title="mod xwrust::xwmd::xwmq"><code>xwrust::xwmd::xwmq</code></a> 通过 <a href="struct.Xwmq.html#method.init" title="method xwrust::xwmd::xwmq::Xwmq::init"><code>Xwmq::init()</code></a> 返回的是类似于
+<a href="https://doc.rust-lang.org/std/sync/mpsc/fn.sync_channel.html"><code>std::sync::mpsc::sync_channel()</code></a> 的通道，
+<a href="index.html" title="mod xwrust::xwmd::xwmq"><code>xwrust::xwmd::xwmq</code></a> 没有异步的通道 。</li>
+</ul>
+<h4 id="接收消息返回方式不同"><a href="#接收消息返回方式不同">接收消息返回方式不同</a></h4>
+<ul>
+<li><a href="https://doc.rust-lang.org/std/sync/mpsc/index.html"><code>std::sync::mpsc</code></a> 接收到消息后，直接返回类型为 <strong>T</strong> 的消息；</li>
+<li><a href="index.html" title="mod xwrust::xwmd::xwmq"><code>xwrust::xwmd::xwmq</code></a> 则返回 <code>Box&lt;T&gt;</code> 。</li>
+</ul>
+</div></details><h2 id="structs" class="small-section-header"><a href="#structs">Structs</a></h2><ul class="item-table"><li><div class="item-name"><a class="struct" href="struct.Xwmq.html" title="struct xwrust::xwmd::xwmq::Xwmq">Xwmq</a></div><div class="desc docblock-short">消息队列对象结构体</div></li><li><div class="item-name"><a class="struct" href="struct.XwmqRx.html" title="struct xwrust::xwmd::xwmq::XwmqRx">XwmqRx</a></div></li><li><div class="item-name"><a class="struct" href="struct.XwmqTx.html" title="struct xwrust::xwmd::xwmq::XwmqTx">XwmqTx</a></div></li></ul><h2 id="enums" class="small-section-header"><a href="#enums">Enums</a></h2><ul class="item-table"><li><div class="item-name"><a class="enum" href="enum.XwmqError.html" title="enum xwrust::xwmd::xwmq::XwmqError">XwmqError</a></div><div class="desc docblock-short">消息队列的错误码</div></li></ul><h2 id="constants" class="small-section-header"><a href="#constants">Constants</a></h2><ul class="item-table"><li><div class="item-name"><a class="constant" href="constant.SIZEOF_XWMQ.html" title="constant xwrust::xwmd::xwmq::SIZEOF_XWMQ">SIZEOF_XWMQ</a></div><div class="desc docblock-short">消息队列对象占用的内存大小</div></li><li><div class="item-name"><a class="constant" href="constant.SIZEOF_XWMQ_MSG.html" title="constant xwrust::xwmd::xwmq::SIZEOF_XWMQ_MSG">SIZEOF_XWMQ_MSG</a></div><div class="desc docblock-short">消息占用的内存大小</div></li></ul></section></div></main></body></html>

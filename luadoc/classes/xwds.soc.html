@@ -1,0 +1,533 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>XWLUA参考手册</title>
+    <link rel="stylesheet" href="../ldoc_new.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>XWLUA</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#MetaMethods">MetaMethods</a></li>
+<li><a href="#Methods">Methods</a></li>
+</ul>
+
+
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><a href="../classes/xwlib.bmp.html">xwlib.bmp</a></li>
+  <li><a href="../classes/thdsp.html">thdsp</a></li>
+  <li><a href="../classes/mtxsp.html">mtxsp</a></li>
+  <li><a href="../classes/splksp.html">splksp</a></li>
+  <li><a href="../classes/sqlksp.html">sqlksp</a></li>
+  <li><a href="../classes/semsp.html">semsp</a></li>
+  <li><a href="../classes/condsp.html">condsp</a></li>
+  <li><a href="../classes/flgsp.html">flgsp</a></li>
+  <li><a href="../classes/brsp.html">brsp</a></li>
+  <li><a href="../classes/selsp.html">selsp</a></li>
+  <li><strong>xwds.soc</strong></li>
+  <li><a href="../classes/xwds.uart.html">xwds.uart</a></li>
+  <li><a href="../classes/xwds.i2cm.html">xwds.i2cm</a></li>
+  <li><a href="../classes/xwds.spim.html">xwds.spim</a></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/xwtm.html">xwtm</a></li>
+  <li><a href="../modules/xwvm.html">xwvm</a></li>
+  <li><a href="../modules/xwxt.html">xwxt</a></li>
+  <li><a href="../modules/xwos.skd.html">xwos.skd</a></li>
+  <li><a href="../modules/xwos.thd.html">xwos.thd</a></li>
+  <li><a href="../modules/xwos.cthd.html">xwos.cthd</a></li>
+  <li><a href="../modules/xwos.lock.mtx.html">xwos.lock.mtx</a></li>
+  <li><a href="../modules/xwos.lock.splk.html">xwos.lock.splk</a></li>
+  <li><a href="../modules/xwos.lock.sqlk.html">xwos.lock.sqlk</a></li>
+  <li><a href="../modules/xwos.sync.sem.html">xwos.sync.sem</a></li>
+  <li><a href="../modules/xwos.sync.cond.html">xwos.sync.cond</a></li>
+  <li><a href="../modules/xwos.sync.flg.html">xwos.sync.flg</a></li>
+  <li><a href="../modules/xwos.sync.br.html">xwos.sync.br</a></li>
+  <li><a href="../modules/xwos.sync.sel.html">xwos.sync.sel</a></li>
+  <li><a href="../modules/xwos.pm.html">xwos.pm</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Class <code>xwds.soc</code></h1>
+<p>XWLUA模块：SOC</p>
+<p>
+
+<h2>CAPI</h2>
+
+<p><a href="../../capi/group__xwlua__xwds__i2cm.html"><strong>CAPI</strong></a></p>
+</p>
+
+
+<h2><a href="#MetaMethods">MetaMethods</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#xwds.soc:metatable.__tostring">xwds.soc:metatable.__tostring (soc)</a></td>
+	<td class="summary">元方法：__tostring</td>
+	</tr>
+</table>
+<h2><a href="#Methods">Methods</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#xwds.soc:pin">xwds.soc:pin (soc, pin)</a></td>
+	<td class="summary">返回指定序号的GPIO PIN的掩码</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#xwds.soc:req">xwds.soc:req (soc, port, pinmsk)</a></td>
+	<td class="summary">申请GPIO</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#xwds.soc:rls">xwds.soc:rls (soc, port, pinmsk)</a></td>
+	<td class="summary">释放GPIO</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#xwds.soc:set">xwds.soc:set (soc, port, pinmsk)</a></td>
+	<td class="summary">设置GPIO为高电平</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#xwds.soc:reset">xwds.soc:reset (soc, port, pinmsk)</a></td>
+	<td class="summary">设置GPIO为低电平</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#xwds.soc:toggle">xwds.soc:toggle (soc, port, pinmsk)</a></td>
+	<td class="summary">翻转GPIO的电平</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#xwds.soc:output">xwds.soc:output (soc, port, pinmsk, out)</a></td>
+	<td class="summary">同时输出多个GPIO PIN</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#xwds.soc:input">xwds.soc:input (soc, port, pinmsk)</a></td>
+	<td class="summary">同时从GPIO读取多个PIN的输入值</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="MetaMethods"></a>MetaMethods</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "xwds.soc:metatable.__tostring"></a>
+    <strong>xwds.soc:metatable.__tostring (soc)</strong>
+    </dt>
+    <dd>
+    元方法：__tostring </p>
+
+<p>将SOC对象格式化成字符串，可用于终端打印调试。
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">soc</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) C代码中注册的SOC
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Methods"></a>Methods</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "xwds.soc:pin"></a>
+    <strong>xwds.soc:pin (soc, pin)</strong>
+    </dt>
+    <dd>
+    返回指定序号的GPIO PIN的掩码 </p>
+
+<p>注意：序号是从0开始。
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">soc</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) C代码中注册的SOC
+        </li>
+        <li><span class="parameter">pin</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) GPIO PIN的序号
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+        pin的掩码
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">msk = stm32:<span class="function-name">pin</span>(<span class="number">4</span>) <span class="comment">-- msk == 0x8</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "xwds.soc:req"></a>
+    <strong>xwds.soc:req (soc, port, pinmsk)</strong>
+    </dt>
+    <dd>
+    申请GPIO </p>
+
+<p>注意：序号是从0开始编号。
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">soc</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) C代码中注册的SOC
+        </li>
+        <li><span class="parameter">port</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) GPIO PORT的序号
+        </li>
+        <li><span class="parameter">pinmsk</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) GPIO PIN的掩码
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+         错误码<br>
+　● <strong>0</strong> 没有错误<br>
+　● <strong>-ERANGE</strong> GPIO PORT错误<br>
+　● <strong>-EBUSY</strong> GPIO PIN已被使用
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">rc = stm32:<span class="function-name">req</span>(<span class="number">4</span>, stm32:<span class="function-name">pin</span>(<span class="number">7</span>)) <span class="comment">-- GPIOE PIN7</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "xwds.soc:rls"></a>
+    <strong>xwds.soc:rls (soc, port, pinmsk)</strong>
+    </dt>
+    <dd>
+    释放GPIO </p>
+
+<p>注意：序号是从0开始编号。
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">soc</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) C代码中注册的SOC
+        </li>
+        <li><span class="parameter">port</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) GPIO PORT的序号
+        </li>
+        <li><span class="parameter">pinmsk</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) GPIO PIN的掩码
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+         错误码<br>
+　● <strong>0</strong> 没有错误<br>
+　● <strong>-ERANGE</strong> GPIO PORT错误<br>
+　● <strong>-EPERM</strong> GPIO PIN未被使用
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">rc = stm32:<span class="function-name">rls</span>(<span class="number">3</span>, stm32:<span class="function-name">pin</span>(<span class="number">7</span>)) <span class="comment">-- PORTD, PIN7</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "xwds.soc:set"></a>
+    <strong>xwds.soc:set (soc, port, pinmsk)</strong>
+    </dt>
+    <dd>
+    设置GPIO为高电平 </p>
+
+<p>注意：序号是从0开始编号。
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">soc</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) C代码中注册的SOC
+        </li>
+        <li><span class="parameter">port</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) GPIO PORT的序号
+        </li>
+        <li><span class="parameter">pinmsk</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) GPIO PIN的掩码
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+         错误码<br>
+　● <strong>0</strong> 没有错误<br>
+　● <strong>-ERANGE</strong> GPIO PORT错误<br>
+　● <strong>-EPERM</strong> GPIO PIN未被使用
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">rc = stm32:<span class="function-name">set</span>(<span class="number">0</span>, stm32:<span class="function-name">pin</span>(<span class="number">7</span>)) <span class="comment">-- PORTA, PIN7</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "xwds.soc:reset"></a>
+    <strong>xwds.soc:reset (soc, port, pinmsk)</strong>
+    </dt>
+    <dd>
+    设置GPIO为低电平 </p>
+
+<p>注意：序号是从0开始编号。
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">soc</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) C代码中注册的SOC
+        </li>
+        <li><span class="parameter">port</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) GPIO PORT的序号
+        </li>
+        <li><span class="parameter">pinmsk</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) GPIO PIN的掩码
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+         错误码<br>
+　● <strong>0</strong> 没有错误<br>
+　● <strong>-ERANGE</strong> GPIO PORT错误<br>
+　● <strong>-EPERM</strong> GPIO PIN未被使用
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">rc = stm32:<span class="function-name">reset</span>(<span class="number">3</span>, stm32:<span class="function-name">pin</span>(<span class="number">7</span>)) <span class="comment">-- PORTD, PIN7</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "xwds.soc:toggle"></a>
+    <strong>xwds.soc:toggle (soc, port, pinmsk)</strong>
+    </dt>
+    <dd>
+    翻转GPIO的电平 </p>
+
+<p>注意：序号是从0开始编号。
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">soc</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) C代码中注册的SOC
+        </li>
+        <li><span class="parameter">port</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) GPIO PORT的序号
+        </li>
+        <li><span class="parameter">pinmsk</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) GPIO PIN的掩码
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+         错误码<br>
+　● <strong>0</strong> 没有错误<br>
+　● <strong>-ERANGE</strong> GPIO PORT错误<br>
+　● <strong>-EPERM</strong> GPIO PIN未被使用
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">rc = stm32:<span class="function-name">toggle</span>(<span class="number">1</span>, stm32:<span class="function-name">pin</span>(<span class="number">7</span>)) <span class="comment">-- PORTB, PIN7</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "xwds.soc:output"></a>
+    <strong>xwds.soc:output (soc, port, pinmsk, out)</strong>
+    </dt>
+    <dd>
+    同时输出多个GPIO PIN </p>
+
+<p>注意：序号是从0开始编号。
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">soc</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) C代码中注册的SOC
+        </li>
+        <li><span class="parameter">port</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) GPIO PORT的序号
+        </li>
+        <li><span class="parameter">pinmsk</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) GPIO PIN的掩码
+        </li>
+        <li><span class="parameter">out</span>
+            <span class="types"><span class="type">number</span></span>
+         GPIO 输出值
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">number</span></span>
+         错误码<br>
+　● <strong>0</strong> 没有错误<br>
+　● <strong>-ERANGE</strong> GPIO PORT错误<br>
+　● <strong>-EPERM</strong> GPIO PIN未被使用
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- 输出GPIOE，掩码0xFFFFFFFF，输出值0x3
+</span>rc = stm32:<span class="function-name">output</span>(stm32, <span class="number">4</span>, <span class="number">0xFFFFFFFF</span>, <span class="number">0x3</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "xwds.soc:input"></a>
+    <strong>xwds.soc:input (soc, port, pinmsk)</strong>
+    </dt>
+    <dd>
+    同时从GPIO读取多个PIN的输入值 </p>
+
+<p>注意：序号是从0开始编号。
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">soc</span>
+            <span class="types"><span class="type">userdata</span></span>
+         (<strong>in</strong>) C代码中注册的SOC
+        </li>
+        <li><span class="parameter">port</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) GPIO PORT的序号
+        </li>
+        <li><span class="parameter">pinmsk</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) GPIO PIN的掩码
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+         错误码<br>
+　● <strong>0</strong> 没有错误<br>
+　● <strong>-ERANGE</strong> GPIO PORT错误<br>
+　● <strong>-EPERM</strong> GPIO PIN未被使用</li>
+        <li>
+           <span class="types"><span class="type">number</span></span>
+        GPIO的输入值</li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">-- 读取GPIOC，掩码0xFFFFFFFF
+</span>rc, <span class="keyword">in</span> = stm32:<span class="function-name">input</span>(stm32, <span class="number">2</span>, <span class="number">0xFFFFFFFF</span>)</pre>
+    </ul>
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/lunarmodules/LDoc">LDoc 1.5.0</a></i>
+<i style="float:right;">Last updated 2024-01-12 20:06:58 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

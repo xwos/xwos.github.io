@@ -1,0 +1,302 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>XWOS – 系统间通讯机制</title>
+    <link>/docs/TechRefManual/Isc/</link>
+    <description>Recent content in 系统间通讯机制 on XWOS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    
+	  <atom:link href="/docs/TechRefManual/Isc/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: 消息队列</title>
+      <link>/docs/TechRefManual/Isc/Xwmq/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/TechRefManual/Isc/Xwmq/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
+&lt;p&gt;XWOS的消息队列（xwmq）采用双循环链表实现。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-mermaid&#34; data-lang=&#34;mermaid&#34;&gt;flowchart LR
+    Head --&amp;gt; Msg1 --&amp;gt; Head
+    Msg1 --&amp;gt; Msg2 --&amp;gt; Msg1
+    Msg2 --&amp;gt; Msg3 --&amp;gt; Msg2
+    Msg3 --&amp;gt; Msg4 --&amp;gt; Msg3
+    Msg4 --&amp;gt; Msg5 --&amp;gt; Msg4
+    Msg5 --&amp;gt; Msg6 --&amp;gt; Msg5
+    Msg6 --&amp;gt; Msg7 --&amp;gt; Msg6
+    Msg7 --&amp;gt; Head --&amp;gt; Msg7
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;消息可发送到队列的头部，也可以发送到队列的尾部。
+消息可以从队列的头部接收，也可以从队列的尾部接收。&lt;/p&gt;
+&lt;h3 id=&#34;消息队列的消息&#34;&gt;消息队列的消息&lt;/h3&gt;
+&lt;p&gt;消息队列的每个节点是 &lt;a href=&#34;../../../../api/structxwmq__msg.html&#34;&gt;&lt;code&gt;struct xwmq_msg&lt;/code&gt;&lt;/a&gt; 。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;struct&lt;/span&gt; xwmq_msg {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; data;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;xwsq_t&lt;/span&gt; topic;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;struct&lt;/span&gt; xwlib_bclst_node node;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;};
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;data&lt;/code&gt; ：消息的数据，只能传递一个指针长度的数据&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;topic&lt;/code&gt; ：消息的主题，由用户自定义主题的含义&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;node&lt;/code&gt; ：链表节点&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;消息槽&#34;&gt;消息槽&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;消息槽&lt;/strong&gt; 是消息队列初始化时，用户定义的消息数组。消息队列中的消息数量最多等于消息槽的数量。&lt;/p&gt;
+&lt;h3 id=&#34;消息队列对象与对象描述符描述符&#34;&gt;消息队列对象与对象描述符描述符&lt;/h3&gt;
+&lt;p&gt;消息队列对象是 &lt;a href=&#34;../../Xwobj&#34;&gt;XWOS对象&lt;/a&gt; &lt;a href=&#34;../../../../api/structxwos__object.html&#34;&gt;&lt;code&gt;struct xwos_object&lt;/code&gt;&lt;/a&gt; 的派生类 。
+类似的，消息队列对象也用 &lt;strong&gt;消息队列对象描述符&lt;/strong&gt; &lt;a href=&#34;../../../../api/structxwmq__d.html&#34;&gt;&lt;code&gt;xwmq_d&lt;/code&gt;&lt;/a&gt;
+来解决有效性和身份合法性的问题。&lt;/p&gt;
+&lt;p&gt;消息队列对象描述符由 &lt;strong&gt;消息队列对象的指针&lt;/strong&gt; 和 &lt;strong&gt;标签&lt;/strong&gt; 组成：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;typedef&lt;/span&gt; &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;struct&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;struct&lt;/span&gt; xwmq &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; mq; &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/**&amp;lt; 消息队列对象的指针 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;xwsq_t&lt;/span&gt; tik; &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/**&amp;lt; 标签 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;} xwmq_d;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;通过对象描述符引用对象时，首先检测 &lt;code&gt;obj-&amp;gt;magic&lt;/code&gt; 的值，是否为 &lt;code&gt;0x58574F53U&lt;/code&gt; ，由此可确定指针 &lt;code&gt;obj&lt;/code&gt; 指向一个有效的 &lt;strong&gt;XWOS的对象&lt;/strong&gt; 。
+然后对比标签 &lt;code&gt;obj-&amp;gt;tik&lt;/code&gt; 和 &lt;code&gt;tik&lt;/code&gt; 是否相等，由此可以确定对象的 &lt;strong&gt;身份&lt;/strong&gt; 。
+因为对象的 &lt;code&gt;tik&lt;/code&gt; 是全局唯一的，当对象被释放后，它的 &lt;code&gt;tik&lt;/code&gt; 会被析构函数析构为 &lt;code&gt;0&lt;/code&gt; 。
+当内存地址被重新构建为新的对象，那么它的 &lt;code&gt;tik&lt;/code&gt; 一定与对象描述符的 &lt;code&gt;tik&lt;/code&gt; 不一致。&lt;/p&gt;
+&lt;h3 id=&#34;局限性&#34;&gt;局限性&lt;/h3&gt;
+&lt;p&gt;消息队列的消息只能发送一个和指针长度一样的数据。
+如果需要发送比较大的数据，只能将数据的缓冲区的首地址发送出去。
+若数据缓冲区是通过向动态内存管理申请而来，用户需要特别小心，数据缓冲区不能被意外地释放掉。&lt;/p&gt;
+&lt;h2 id=&#34;消息队列的静态初始化销毁&#34;&gt;消息队列的静态初始化、销毁&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;静态初始化： &lt;a href=&#34;../../../../capi/group__xwmd__isc__xwmq.html#ga51603f04fac6de40ea6726d69b264cc7&#34;&gt;&lt;code&gt;xwmq_init()&lt;/code&gt;&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;静态&lt;/strong&gt; 是指用户预先定义线程结构体对象，这些对象在编译期由编译器分配内存。&lt;/li&gt;
+&lt;li&gt;初始化消息队列时，需要预先定义消息数组作为消息槽。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;struct&lt;/span&gt; xwmq brd_mq;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;struct&lt;/span&gt; xwmq_msg brd_mq_txq[&lt;span style=&#34;color:#666&#34;&gt;16&lt;/span&gt;]; &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;// 最多16个消息
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080;font-style:italic&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;xwer_t&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;brd_init_xwmq&lt;/span&gt;(&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;void&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;xwmq_init&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;brd_mq, brd_mq_txq, &lt;span style=&#34;color:#00a000&#34;&gt;xw_array_size&lt;/span&gt;(brd_mq_txq));
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;销毁静态初始化的信号量： &lt;a href=&#34;../../../../capi/group__xwmd__isc__xwmq.html#ga57fec3e151fbf8044a2b7092ab2972b3&#34;&gt;&lt;code&gt;xwmq_fini()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;消息队列的动态创建删除&#34;&gt;消息队列的动态创建、删除&lt;/h2&gt;
+&lt;p&gt;XWOS并未提供基于动态内存管理的创建与删除CAPI。&lt;/p&gt;
+&lt;h2 id=&#34;发送消息&#34;&gt;发送消息&lt;/h2&gt;
+&lt;h3 id=&#34;入队&#34;&gt;入队&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;入队&lt;/strong&gt; 是指将消息发送到消息队列的 &lt;strong&gt;尾端&lt;/strong&gt; ，发送之前需要获取一个可用的消息槽。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwmq.html#gad8d2b0b29234d2959a05eeb67a23ff45&#34;&gt;&lt;code&gt;xwmq_eq()&lt;/code&gt;&lt;/a&gt; ：等待消息槽，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwmq.html#ga8359c9ba02c8fb2a74e6c4c6094d94cc&#34;&gt;&lt;code&gt;xwmq_eq_to()&lt;/code&gt;&lt;/a&gt; ：限时等待消息槽，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwmq.html#ga8a32f1b107baef4bc25957bca4d4bddd&#34;&gt;&lt;code&gt;xwmq_eq_unintr()&lt;/code&gt;&lt;/a&gt; ：不可中断地等待消息槽，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwmq.html#ga30b3fc4cf9323d3597eb8a383bdf611f&#34;&gt;&lt;code&gt;xwmq_tryeq()&lt;/code&gt;&lt;/a&gt; ：尝试获取消息槽，可在 &lt;strong&gt;任意&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;插队&#34;&gt;插队&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;插队&lt;/strong&gt; 是指将消息发送到消息队列的 &lt;strong&gt;首端&lt;/strong&gt; ，发送之前需要获取一个可用的消息槽。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwmq.html#ga18b4d97f9de46feb6eebd197738aabf6&#34;&gt;&lt;code&gt;xwmq_jq()&lt;/code&gt;&lt;/a&gt; ：等待消息槽，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwmq.html#ga0eb1aa3f3e83b696612a7cd9cc90a6f2&#34;&gt;&lt;code&gt;xwmq_jq_to()&lt;/code&gt;&lt;/a&gt; ：限时等待消息槽，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwmq.html#ga3c6e22dce3a927f790d95f1e294c5789&#34;&gt;&lt;code&gt;xwmq_jq_unintr()&lt;/code&gt;&lt;/a&gt; ：不可中断地等待消息槽，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwmq.html#ga706a753c885996d85ec7fbf6d7461385&#34;&gt;&lt;code&gt;xwmq_tryjq()&lt;/code&gt;&lt;/a&gt; ：尝试获取消息槽，可在 &lt;strong&gt;任意&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;接收消息&#34;&gt;接收消息&lt;/h2&gt;
+&lt;h3 id=&#34;首端离队&#34;&gt;首端离队&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;首端离队&lt;/strong&gt; 是指从消息队列的 &lt;strong&gt;首端&lt;/strong&gt; 接收消息。接收之后会释放一个消息槽。如果有发送线程正在等待消息槽，将唤醒发送线程。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwmq.html#ga6dac123dd10ceaf0f24181b66d49d39a&#34;&gt;&lt;code&gt;xwmq_dq()&lt;/code&gt;&lt;/a&gt; ：等待消息，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwmq.html#ga9b11a75d7c8d792d305154b32c3dedee&#34;&gt;&lt;code&gt;xwmq_dq_to()&lt;/code&gt;&lt;/a&gt; ：限时等待消息，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwmq.html#ga98fe6e199b379e49ed413db1435f5b3a&#34;&gt;&lt;code&gt;xwmq_dq_unintr()&lt;/code&gt;&lt;/a&gt; ：不可中断地等待消息，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwmq.html#ga113bc97ec8121f3eb884e8da900497eb&#34;&gt;&lt;code&gt;xwmq_trydq()&lt;/code&gt;&lt;/a&gt; ：尝试获取消息，可在 &lt;strong&gt;任意&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;尾端离队&#34;&gt;尾端离队&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;尾端离队&lt;/strong&gt; 是指从消息队列的 &lt;strong&gt;尾端&lt;/strong&gt; 接收消息。接收之后会释放一个消息槽。如果有发送线程正在等待消息槽，将唤醒发送线程。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwmq.html#ga79b5a6769a655a4e5946f3d60729b342&#34;&gt;&lt;code&gt;xwmq_rq()&lt;/code&gt;&lt;/a&gt; ：等待消息，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwmq.html#gaacdb3c6bfb639e6d2444f479e9557c38&#34;&gt;&lt;code&gt;xwmq_rq_to()&lt;/code&gt;&lt;/a&gt; ：限时等待消息，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwmq.html#ga1ebf67fde973c23ec718d35258dd7ee1&#34;&gt;&lt;code&gt;xwmq_rq_unintr()&lt;/code&gt;&lt;/a&gt; ：不可中断地等待消息，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwmq.html#ga7c48b58030cf580f089d2cb42bc644fd&#34;&gt;&lt;code&gt;xwmq_tryrq()&lt;/code&gt;&lt;/a&gt; ：尝试获取消息，可在 &lt;strong&gt;任意&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;消息队列对象的生命周期管理&#34;&gt;消息队列对象的生命周期管理&lt;/h2&gt;
+&lt;p&gt;消息队列对象的基类是 &lt;a href=&#34;../../Xwobj&#34;&gt;XWOS对象&lt;/a&gt; &lt;a href=&#34;../../../../api/structxwos__object.html&#34;&gt;&lt;code&gt;struct xwos_object&lt;/code&gt;&lt;/a&gt; 。
+消息队列对象也有两组生命周期管理的CAPI：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;使用 &lt;strong&gt;对象指针&lt;/strong&gt; 访问生命周期管理的CAPI：需要确保调用CAPI时，对象一定是有效的，且不存在 &lt;strong&gt;释放-又被申请&lt;/strong&gt; 为另一个对象的情况。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwmq.html#ga8b86e4a1725d0d9363ee8a31095222c9&#34;&gt;&lt;code&gt;xwmq_grab()&lt;/code&gt;&lt;/a&gt; ：增加引用计数。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwmq.html#ga3a7d5f642c3629ebfcf03e7721efd4c2&#34;&gt;&lt;code&gt;xwmq_put()&lt;/code&gt;&lt;/a&gt; ：减少引用计数，当引用计数减少为 &lt;strong&gt;0&lt;/strong&gt; 时，调用垃圾回收函数释放对象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 &lt;strong&gt;对象描述符&lt;/strong&gt; 访问生命周期管理的CAPI：用户无法确保对象一定有效或无法确保对象不会变成另一个对象时使用。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwmq.html#ga1357e7c300f83638ef7758e1395e423d&#34;&gt;&lt;code&gt;xwmq_acquire()&lt;/code&gt;&lt;/a&gt; ：通过对象描述符确定对象有效且合法，再增加引用计数。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwmq.html#ga57efc774777e38855532c6f6be1e4504&#34;&gt;&lt;code&gt;xwmq_release()&lt;/code&gt;&lt;/a&gt; ：通过对象描述符确定对象有效且合法，再减少引用计数。
+当引用计数减少为 &lt;strong&gt;0&lt;/strong&gt; 时，调用垃圾回收函数释放对象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;capi参考&#34;&gt;CAPI参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../../capi/group__xwmd__isc__xwmq.html&#34;&gt;&lt;strong&gt;头文件 &amp;lt;xwmd/isc/xwmq.h&amp;gt;&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 循环队列</title>
+      <link>/docs/TechRefManual/Isc/Xwcq/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/TechRefManual/Isc/Xwcq/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
+&lt;p&gt;XWOS的循环队列（xwcq）是由 &lt;strong&gt;NUM&lt;/strong&gt; 个大小为 &lt;strong&gt;SIZE&lt;/strong&gt; 的数据缓冲区组成的队列。
+这些缓冲区首尾相连，形成一个环。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-mermaid&#34; data-lang=&#34;mermaid&#34;&gt;pie
+    title 循环队列
+    &amp;#34;数据缓冲区0&amp;#34; : 1
+    &amp;#34;数据缓冲区1&amp;#34; : 1
+    &amp;#34;数据缓冲区2&amp;#34; : 1
+    &amp;#34;数据缓冲区3&amp;#34; : 1
+    &amp;#34;数据缓冲区4&amp;#34; : 1
+    &amp;#34;数据缓冲区5&amp;#34; : 1
+    &amp;#34;数据缓冲区6&amp;#34; : 1
+    &amp;#34;数据缓冲区7&amp;#34; : 1
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;消息可发送到队列的头部，也可以发送到队列的尾部。
+消息可以从队列的头部接收，也可以从队列的尾部接收。&lt;/p&gt;
+&lt;h3 id=&#34;循环队列对象与对象描述符描述符&#34;&gt;循环队列对象与对象描述符描述符&lt;/h3&gt;
+&lt;p&gt;循环队列对象是 &lt;a href=&#34;../../Xwobj&#34;&gt;XWOS对象&lt;/a&gt; &lt;a href=&#34;../../../../api/structxwos__object.html&#34;&gt;&lt;code&gt;struct xwos_object&lt;/code&gt;&lt;/a&gt; 的派生类 。
+类似的，循环队列对象也用 &lt;strong&gt;循环队列对象描述符&lt;/strong&gt; &lt;a href=&#34;../../../../api/structxwcq__d.html&#34;&gt;&lt;code&gt;xwcq_d&lt;/code&gt;&lt;/a&gt;
+来解决有效性和身份合法性的问题。&lt;/p&gt;
+&lt;p&gt;循环队列对象描述符由 &lt;strong&gt;循环队列对象的指针&lt;/strong&gt; 和 &lt;strong&gt;标签&lt;/strong&gt; 组成：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;typedef&lt;/span&gt; &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;struct&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;struct&lt;/span&gt; xwcq &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; cq; &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/**&amp;lt; 循环队列对象的指针 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;xwsq_t&lt;/span&gt; tik; &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/**&amp;lt; 标签 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;} xwcq_d;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;通过对象描述符引用对象时，首先检测 &lt;code&gt;obj-&amp;gt;magic&lt;/code&gt; 的值，是否为 &lt;code&gt;0x58574F53U&lt;/code&gt; ，由此可确定指针 &lt;code&gt;obj&lt;/code&gt; 指向一个有效的 &lt;strong&gt;XWOS的对象&lt;/strong&gt; 。
+然后对比标签 &lt;code&gt;obj-&amp;gt;tik&lt;/code&gt; 和 &lt;code&gt;tik&lt;/code&gt; 是否相等，由此可以确定对象的 &lt;strong&gt;身份&lt;/strong&gt; 。
+因为对象的 &lt;code&gt;tik&lt;/code&gt; 是全局唯一的，当对象被释放后，它的 &lt;code&gt;tik&lt;/code&gt; 会被析构函数析构为 &lt;code&gt;0&lt;/code&gt; 。
+当内存地址被重新构建为新的对象，那么它的 &lt;code&gt;tik&lt;/code&gt; 一定与对象描述符的 &lt;code&gt;tik&lt;/code&gt; 不一致。&lt;/p&gt;
+&lt;h3 id=&#34;局限性&#34;&gt;局限性&lt;/h3&gt;
+&lt;p&gt;循环队列有自己数据缓冲区，用户的消息会被拷贝到数据缓冲区内，用户不必额外申请动态内存。
+但循环队列缓冲区大小是固定的，用户只能发送小于等于缓冲区大小的数据。&lt;/p&gt;
+&lt;h2 id=&#34;循环队列的静态初始化销毁&#34;&gt;循环队列的静态初始化、销毁&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;静态初始化： &lt;a href=&#34;../../../../capi/group__xwmd__isc__xwcq.html#ga0c3766b13d0b48e0c99fab1d814c7b57&#34;&gt;&lt;code&gt;xwcq_init()&lt;/code&gt;&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;静态&lt;/strong&gt; 是指用户预先定义线程结构体对象，这些对象在编译期由编译器分配内存。&lt;/li&gt;
+&lt;li&gt;初始化循环队列时，需要预先定义数据缓冲区。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080&#34;&gt;#define BRDCQ_SIZE 64
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080&#34;&gt;#define BRDCQ_NUM  8
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#00a000&#34;&gt;XWCQ_DEF_MEMPOOL&lt;/span&gt;(brdcq_mempool, BRDCQ_SIZE, BRDCQ_NUM);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;struct&lt;/span&gt; xwcq brdcq;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;xwer_t&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;brd_init_xwcq&lt;/span&gt;(&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;void&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;xwcq_init&lt;/span&gt;(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;brdcq, BRDCQ_SIZE, BRDCQ_NUM, brdcq_mempool);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;销毁静态初始化的信号量： &lt;a href=&#34;../../../../capi/group__xwmd__isc__xwcq.html#gad2cc23153007095e7eb3420412ad4083&#34;&gt;&lt;code&gt;xwcq_fini()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;循环队列的动态创建删除&#34;&gt;循环队列的动态创建、删除&lt;/h2&gt;
+&lt;p&gt;XWOS并未提供基于动态内存管理的创建与删除CAPI。&lt;/p&gt;
+&lt;h2 id=&#34;发送消息&#34;&gt;发送消息&lt;/h2&gt;
+&lt;h3 id=&#34;入队&#34;&gt;入队&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;入队&lt;/strong&gt; 是指将消息发送到循环队列的 &lt;strong&gt;尾端&lt;/strong&gt; 。
+如果循环队列数据已被填满，循环队列会循环回队列 &lt;strong&gt;首端&lt;/strong&gt; 的位置，覆盖掉原数据。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwcq.html#gacc14c7eb323b5968c30d42371bced34b&#34;&gt;&lt;code&gt;xwcq_eq()&lt;/code&gt;&lt;/a&gt; ：可在 &lt;strong&gt;任意&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;插队&#34;&gt;插队&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;插队&lt;/strong&gt; 是指将消息发送到循环队列的 &lt;strong&gt;首端&lt;/strong&gt; 。
+如果循环队列数据已被填满，循环队列会循环回队列 &lt;strong&gt;尾端&lt;/strong&gt; 的位置，覆盖掉原数据。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwcq.html#ga99aaf9a7ad5acc2dde16642e3c76644f&#34;&gt;&lt;code&gt;xwcq_jq()&lt;/code&gt;&lt;/a&gt; ：可在 &lt;strong&gt;任意&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;接收消息&#34;&gt;接收消息&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;接收消息&lt;/strong&gt; 是指从循环队列中 &lt;strong&gt;取走&lt;/strong&gt; 消息，消息取走后不再存在于循环队列。&lt;/p&gt;
+&lt;h3 id=&#34;首端接收&#34;&gt;首端接收&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwcq.html#gac9f65a59cd4c07212e4515d81466edab&#34;&gt;&lt;code&gt;xwcq_dq()&lt;/code&gt;&lt;/a&gt; ：等待消息，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwcq.html#ga1751e4a7d470159426dfc0b28f30c426&#34;&gt;&lt;code&gt;xwcq_dq_to()&lt;/code&gt;&lt;/a&gt; ：限时等待消息，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwcq.html#ga9268a23f62386b705f358da0690719d7&#34;&gt;&lt;code&gt;xwcq_dq_unintr()&lt;/code&gt;&lt;/a&gt; ：不可中断地等待消息，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwcq.html#ga7b6a39511984b0701595df93d4f07072&#34;&gt;&lt;code&gt;xwcq_trydq()&lt;/code&gt;&lt;/a&gt; ：尝试获取消息，可在 &lt;strong&gt;任意&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;尾端离队&#34;&gt;尾端离队&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwcq.html#ga9aaa9a95186c3bd701b31dc05d1f051b&#34;&gt;&lt;code&gt;xwcq_rq()&lt;/code&gt;&lt;/a&gt; ：等待消息，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwcq.html#gaf4c60c0ca895ff95a7f636871a83592b&#34;&gt;&lt;code&gt;xwcq_rq_to()&lt;/code&gt;&lt;/a&gt; ：限时等待消息，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwcq.html#gadc32b77f21a0faec18ce917f4cae6b46&#34;&gt;&lt;code&gt;xwcq_rq_unintr()&lt;/code&gt;&lt;/a&gt; ：不可中断地等待消息，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwcq.html#ga4ee21be691d89289330a6b775eaa2122&#34;&gt;&lt;code&gt;xwcq_tryrq()&lt;/code&gt;&lt;/a&gt; ：尝试获取消息，可在 &lt;strong&gt;任意&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;拷贝消息&#34;&gt;拷贝消息&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;拷贝消息&lt;/strong&gt; 是指从循环队列中 &lt;strong&gt;拷贝&lt;/strong&gt; 消息，不会从循环队列中删除消息。&lt;/p&gt;
+&lt;h3 id=&#34;首端拷贝&#34;&gt;首端拷贝&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwcq.html#gaf743e9140c73b57f82592e612e5f0310&#34;&gt;&lt;code&gt;xwcq_pfq()&lt;/code&gt;&lt;/a&gt; ：等待消息，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwcq.html#ga8ee1e6f6ccb52d2ad7ff983299e457f8&#34;&gt;&lt;code&gt;xwcq_pfq_to()&lt;/code&gt;&lt;/a&gt; ：限时等待消息，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwcq.html#ga47c4c89b9ae21ff278bb0911982a9178&#34;&gt;&lt;code&gt;xwcq_pfq_unintr()&lt;/code&gt;&lt;/a&gt; ：不可中断地等待消息，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwcq.html#gaf6e49bfc7b9b04d1c0162fba5fa19752&#34;&gt;&lt;code&gt;xwcq_trypfq()&lt;/code&gt;&lt;/a&gt; ：尝试获取消息，可在 &lt;strong&gt;任意&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;尾端拷贝&#34;&gt;尾端拷贝&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwcq.html#ga446e314e4d1bf1e91a6f17a4e57b5fc4&#34;&gt;&lt;code&gt;xwcq_prq()&lt;/code&gt;&lt;/a&gt; ：等待消息，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwcq.html#ga927902d5c0f3137e42dc3040b8186c1e&#34;&gt;&lt;code&gt;xwcq_prq_to()&lt;/code&gt;&lt;/a&gt; ：限时等待消息，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwcq.html#gab7a4f7dad6f65d876840a5e1279cdab6&#34;&gt;&lt;code&gt;xwcq_prq_unintr()&lt;/code&gt;&lt;/a&gt; ：不可中断地等待消息，只能在 &lt;strong&gt;线程&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwcq.html#gaa0cca193c18e50f3357ec81431f591da&#34;&gt;&lt;code&gt;xwcq_tryprq()&lt;/code&gt;&lt;/a&gt; ：尝试获取消息，可在 &lt;strong&gt;任意&lt;/strong&gt; 上下文使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;清空循环队列&#34;&gt;清空循环队列&lt;/h2&gt;
+&lt;p&gt;用户可以通过 &lt;a href=&#34;../../../../capi/group__xwmd__isc__xwcq.html#gae3abbdc3ed1a692d76a37d01de02f4b8&#34;&gt;&lt;code&gt;xwcq_flush()&lt;/code&gt;&lt;/a&gt; 将循环队列恢复到初始化状态。&lt;/p&gt;
+&lt;h2 id=&#34;获取循环队列容量&#34;&gt;获取循环队列容量&lt;/h2&gt;
+&lt;p&gt;用户可以通过 &lt;a href=&#34;../../../../capi/group__xwmd__isc__xwcq.html#ga1c85e05558f075453bfa3c7cd3fc02a5&#34;&gt;&lt;code&gt;xwcq_get_capacity()&lt;/code&gt;&lt;/a&gt; 获取循环队列的容量。
+循环队列的容量是指数据缓冲区中数据槽的数量，也即是 &lt;code&gt;xwcq_init()&lt;/code&gt; 的第三个参数。&lt;/p&gt;
+&lt;h2 id=&#34;获取循环队列单个数据槽的大小&#34;&gt;获取循环队列单个数据槽的大小&lt;/h2&gt;
+&lt;p&gt;用户可以通过 &lt;a href=&#34;../../../../capi/group__xwmd__isc__xwcq.html#gaa51ad59ea6039a0e7f0086e019361a65&#34;&gt;&lt;code&gt;xwcq_get_size()&lt;/code&gt;&lt;/a&gt; 获取单个数据槽的大小。
+也即是 &lt;code&gt;xwcq_init()&lt;/code&gt; 的第二个参数。&lt;/p&gt;
+&lt;h2 id=&#34;获取循环队列中有效数据槽的数量&#34;&gt;获取循环队列中有效数据槽的数量&lt;/h2&gt;
+&lt;p&gt;用户可以通过 &lt;a href=&#34;../../../../capi/group__xwmd__isc__xwcq.html#ga00c6353fe858d19a09198cf3adfd20fb&#34;&gt;&lt;code&gt;xwcq_get_availability()&lt;/code&gt;&lt;/a&gt; 获取循环队列中有效数据槽的数量。
+有效数据槽是指包含了可被接收数据的数据槽。&lt;/p&gt;
+&lt;h2 id=&#34;循环队列对象的生命周期管理&#34;&gt;循环队列对象的生命周期管理&lt;/h2&gt;
+&lt;p&gt;循环队列对象的基类是 &lt;a href=&#34;../../Xwobj&#34;&gt;XWOS对象&lt;/a&gt; &lt;a href=&#34;../../../../api/structxwos__object.html&#34;&gt;&lt;code&gt;struct xwos_object&lt;/code&gt;&lt;/a&gt; 。
+循环队列对象也有两组生命周期管理的CAPI：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;使用 &lt;strong&gt;对象指针&lt;/strong&gt; 访问生命周期管理的CAPI：需要确保调用CAPI时，对象一定是有效的，且不存在 &lt;strong&gt;释放-又被申请&lt;/strong&gt; 为另一个对象的情况。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwcq.html#gad5deec2a2c4c219ff7e4e5e562711936&#34;&gt;&lt;code&gt;xwcq_grab()&lt;/code&gt;&lt;/a&gt; ：增加引用计数。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwcq.html#ga830514ae992ff57a790a427f98ee2802&#34;&gt;&lt;code&gt;xwcq_put()&lt;/code&gt;&lt;/a&gt; ：减少引用计数，当引用计数减少为 &lt;strong&gt;0&lt;/strong&gt; 时，调用垃圾回收函数释放对象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 &lt;strong&gt;对象描述符&lt;/strong&gt; 访问生命周期管理的CAPI：用户无法确保对象一定有效或无法确保对象不会变成另一个对象时使用。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwcq.html#gaeb13f10158bb8bcc962c9d4b70304e83&#34;&gt;&lt;code&gt;xwcq_acquire()&lt;/code&gt;&lt;/a&gt; ：通过对象描述符确定对象有效且合法，再增加引用计数。&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwmd__isc__xwcq.html#ga51d97bf4e9311f1ca7aec6f99b557587&#34;&gt;&lt;code&gt;xwcq_release()&lt;/code&gt;&lt;/a&gt; ：通过对象描述符确定对象有效且合法，再减少引用计数。
+当引用计数减少为 &lt;strong&gt;0&lt;/strong&gt; 时，调用垃圾回收函数释放对象。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;capi参考&#34;&gt;CAPI参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../../capi/group__xwmd__isc__xwcq.html&#34;&gt;&lt;strong&gt;头文件 &amp;lt;xwmd/isc/xwcq.h&amp;gt;&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,511 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>XWOS API: xwcd/ds/iochip/gpio.c 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<a href="/" class="github-corner" title="返回首页">
+  <svg viewBox="0 0 250 250" style="position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path
+      d="M 0 0 L 250 250 L 250 0 L 0 0 z M 181.19336 6.25 A 18.281986 19.638775 0 0 1 192.79297 10.798828 L 241.54492 54.201172 A 6.0939954 6.5462585 0 0 1 237.64453 65.787109 L 233.13477 65.787109 A 3.0469979 3.2731292 0 0 0 230.08789 69.060547 L 230.08789 111.61133 A 18.281986 19.638775 0 0 1 211.80664 131.25 L 205.71289 131.25 A 12.187991 13.092517 0 0 1 193.52344 118.1582 L 193.52344 98.519531 A 12.187991 13.092517 0 0 0 181.33594 85.425781 A 12.187991 13.092517 0 0 0 169.14844 98.519531 L 169.14844 118.1582 A 12.187991 13.092517 0 0 1 156.95898 131.25 L 150.86523 131.25 A 18.281986 19.638775 0 0 1 132.58398 111.61133 L 132.58398 68.994141 A 3.0469979 3.2731292 0 0 0 129.29297 65.722656 L 124.7832 65.722656 A 6.0939954 6.5462585 0 0 1 120.88281 54.201172 L 169.39258 10.798828 A 18.281986 19.638775 0 0 1 181.19336 6.25 z "/>
+  </svg>
+</a>
+<style>.github-corner:hover</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">XWOS API
+   &#160;<span id="projectnumber">3.0</span>
+   </div>
+   <div id="projectbrief">XWOS API参考手册</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('iochip_2gpio_8c_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">gpio.c</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="iochip_2gpio_8c.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;<a class="code" href="xwcd_2ds_2standard_8h.html">xwcd/ds/standard.h</a>&gt;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;<a class="code" href="xwaop_8h.html">xwos/lib/xwaop.h</a>&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;<a class="code" href="iochip_2gpio_8h.html">xwcd/ds/iochip/gpio.h</a>&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><a class="code hl_define" href="group__xwcd__ds.html#ga8dfce3af09db190cd28028a817ae9275">__xwds_api</a></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="iochip_2gpio_8c.html#a97138af02426138b1b1d4f150c9ef808">   27</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="iochip_2gpio_8c.html#a97138af02426138b1b1d4f150c9ef808">xwds_iochip_gpio_req</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__iochip.html">xwds_iochip</a> * iochip,</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>                            <a class="code hl_typedef" href="group__xwos__lib__type.html#ga0bb4d847ba02675e5264444479899532">xwid_t</a> port, <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pinmask,</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>                            <a class="code hl_typedef" href="group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a> to)</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>{</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__iochip__driver.html">xwds_iochip_driver</a> * drv;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>(iochip, <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>((port &lt; iochip-&gt;gpio.port_num), <span class="stringliteral">&quot;out-of-range&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#gaa1591a4f3a86360108de5b9ba34980ca">ERANGE</a>);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        pinmask &amp;= <a class="code hl_define" href="group__xwcd__ds__iochip.html#gaf1921d271a1ac3a685383393b5b273ff">XWDS_IOCHIP_GPIO_PIN_MASK</a>(iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#abd019fbd28b4fce1a6a0d7a99392c721">gpio</a>.<a class="code hl_variable" href="structxwds__iochip.html#a4e2b067a74e668308d0dff8afc081337">pin_num</a>);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        rc = <a class="code hl_function" href="group__xwcd__ds__iochip.html#ga447256e7eb891f10bd4753f32b85107a">xwds_iochip_grab</a>(iochip);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>                <span class="keywordflow">goto</span> err_iochip_grab;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        }</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        rc = <a class="code hl_define" href="group__xwos__lib__xwaop.html#gadc20095dc759f0aa8791e4310bcfe52d">xwaop_t0ma_then_s1m</a>(<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>, &amp;iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#abd019fbd28b4fce1a6a0d7a99392c721">gpio</a>.<a class="code hl_variable" href="structxwds__iochip.html#add73f037f5004980fe9d34ba4ad1b276">pins</a>[port], pinmask, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#ga8368025077a0385849d6817b2007c095">EBUSY</a>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>                <span class="keywordflow">goto</span> err_set_pin;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        }</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        drv = <a class="code hl_define" href="group__xwcd__ds.html#ga01391bff32dca44d0fdbe5817e801353">xwds_cast</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__iochip__driver.html">xwds_iochip_driver</a> *, iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#a8f0e9f6d5d418956c51c243712071071">bc</a>.<a class="code hl_variable" href="structxwds__iochip.html#a8467a37cf311a499d312a4b008499c68">dev</a>.<a class="code hl_variable" href="structxwds__device.html#a1d485436e69d8cd8f38bcd2eb467a640">drv</a>);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <span class="keywordflow">if</span> ((drv) &amp;&amp; (drv-&gt;<a class="code hl_variable" href="structxwds__iochip__driver.html#a03d275006624de716cc7e897bb904ae1">gpio_req</a>)) {</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>                rc = drv-&gt;<a class="code hl_variable" href="structxwds__iochip__driver.html#a03d275006624de716cc7e897bb904ae1">gpio_req</a>(iochip, port, pinmask, to);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>                <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>                        <span class="keywordflow">goto</span> err_drv_gpio_req;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>                }</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        }</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>err_drv_gpio_req:</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <a class="code hl_define" href="group__xwos__lib__xwaop.html#ga994e87b2c012362dcd18e5491c6748a0">xwaop_c0m</a>(<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>, &amp;iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#abd019fbd28b4fce1a6a0d7a99392c721">gpio</a>.<a class="code hl_variable" href="structxwds__iochip.html#add73f037f5004980fe9d34ba4ad1b276">pins</a>[port], pinmask, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>err_set_pin:</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <a class="code hl_function" href="group__xwcd__ds__iochip.html#ga750653544c84171501d58b632fe2ee43">xwds_iochip_put</a>(iochip);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>err_iochip_grab:</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>}</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><a class="code hl_define" href="group__xwcd__ds.html#ga8dfce3af09db190cd28028a817ae9275">__xwds_api</a></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="iochip_2gpio_8c.html#aaae051fc051f69193f4e62a79446b932">   65</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="iochip_2gpio_8c.html#aaae051fc051f69193f4e62a79446b932">xwds_iochip_gpio_rls</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__iochip.html">xwds_iochip</a> * iochip,</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>                            <a class="code hl_typedef" href="group__xwos__lib__type.html#ga0bb4d847ba02675e5264444479899532">xwid_t</a> port, <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pinmask,</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                            <a class="code hl_typedef" href="group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a> to)</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>{</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__iochip__driver.html">xwds_iochip_driver</a> * drv;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pinsts;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>(iochip, <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>((port &lt; iochip-&gt;gpio.port_num), <span class="stringliteral">&quot;out-of-range&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#gaa1591a4f3a86360108de5b9ba34980ca">ERANGE</a>);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        pinmask &amp;= <a class="code hl_define" href="group__xwcd__ds__iochip.html#gaf1921d271a1ac3a685383393b5b273ff">XWDS_IOCHIP_GPIO_PIN_MASK</a>(iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#abd019fbd28b4fce1a6a0d7a99392c721">gpio</a>.<a class="code hl_variable" href="structxwds__iochip.html#a4e2b067a74e668308d0dff8afc081337">pin_num</a>);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        pinsts = <a class="code hl_define" href="group__xwos__lib__xwaop.html#ga9a53ba42b71093821567101c3ebcbe77">xwaop_load</a>(<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>, &amp;iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#abd019fbd28b4fce1a6a0d7a99392c721">gpio</a>.<a class="code hl_variable" href="structxwds__iochip.html#add73f037f5004980fe9d34ba4ad1b276">pins</a>[port], <a class="code hl_enumvalue" href="group__xwos__lib__type.html#gga33d957600264a16ede92db2e6e42f830acdb5a6e088c69ee770c24d3612d12adc">xwaop_mo_relaxed</a>);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        <span class="keywordflow">if</span> (pinmask &amp; (~pinsts)) {</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#gadd669d31505a077f769cff8e66c780b3">EPERM</a>;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>                <span class="keywordflow">goto</span> err_pinsts;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>        }</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        drv = <a class="code hl_define" href="group__xwcd__ds.html#ga01391bff32dca44d0fdbe5817e801353">xwds_cast</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__iochip__driver.html">xwds_iochip_driver</a> *, iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#a8f0e9f6d5d418956c51c243712071071">bc</a>.<a class="code hl_variable" href="structxwds__iochip.html#a8467a37cf311a499d312a4b008499c68">dev</a>.<a class="code hl_variable" href="structxwds__device.html#a1d485436e69d8cd8f38bcd2eb467a640">drv</a>);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <span class="keywordflow">if</span> ((drv) &amp;&amp; (drv-&gt;<a class="code hl_variable" href="structxwds__iochip__driver.html#a06d8a194e502e362f5082d7819ff8080">gpio_rls</a>)) {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>                rc = drv-&gt;<a class="code hl_variable" href="structxwds__iochip__driver.html#a06d8a194e502e362f5082d7819ff8080">gpio_rls</a>(iochip, port, pinmask, to);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>                <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>                        <span class="keywordflow">goto</span> err_drv_gpio_rls;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>                }</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        }</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        <a class="code hl_define" href="group__xwos__lib__xwaop.html#ga994e87b2c012362dcd18e5491c6748a0">xwaop_c0m</a>(<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>, &amp;iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#abd019fbd28b4fce1a6a0d7a99392c721">gpio</a>.<a class="code hl_variable" href="structxwds__iochip.html#add73f037f5004980fe9d34ba4ad1b276">pins</a>[port], pinmask, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        <a class="code hl_function" href="group__xwcd__ds__iochip.html#ga750653544c84171501d58b632fe2ee43">xwds_iochip_put</a>(iochip);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>err_drv_gpio_rls:</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>err_pinsts:</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>}</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><a class="code hl_define" href="group__xwcd__ds.html#ga8dfce3af09db190cd28028a817ae9275">__xwds_api</a></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="iochip_2gpio_8c.html#a400b0e3b589412e52c02dc94911fb01a">  100</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="iochip_2gpio_8c.html#a400b0e3b589412e52c02dc94911fb01a">xwds_iochip_gpio_cfg</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__iochip.html">xwds_iochip</a> * iochip,</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>                            <a class="code hl_typedef" href="group__xwos__lib__type.html#ga0bb4d847ba02675e5264444479899532">xwid_t</a> port, <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pinmask, <span class="keywordtype">void</span> * cfg,</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>                            <a class="code hl_typedef" href="group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a> to)</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>{</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__iochip__driver.html">xwds_iochip_driver</a> * drv;</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>(iochip, <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>((port &lt; iochip-&gt;gpio.port_num), <span class="stringliteral">&quot;out-of-range&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#gaa1591a4f3a86360108de5b9ba34980ca">ERANGE</a>);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>(cfg, <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>        pinmask &amp;= <a class="code hl_define" href="group__xwcd__ds__iochip.html#gaf1921d271a1ac3a685383393b5b273ff">XWDS_IOCHIP_GPIO_PIN_MASK</a>(iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#abd019fbd28b4fce1a6a0d7a99392c721">gpio</a>.<a class="code hl_variable" href="structxwds__iochip.html#a4e2b067a74e668308d0dff8afc081337">pin_num</a>);</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        rc = <a class="code hl_function" href="group__xwcd__ds__iochip.html#ga447256e7eb891f10bd4753f32b85107a">xwds_iochip_grab</a>(iochip);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>               <span class="keywordflow">goto</span> err_iochip_grab;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        }</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>        drv = <a class="code hl_define" href="group__xwcd__ds.html#ga01391bff32dca44d0fdbe5817e801353">xwds_cast</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__iochip__driver.html">xwds_iochip_driver</a> *, iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#a8f0e9f6d5d418956c51c243712071071">bc</a>.<a class="code hl_variable" href="structxwds__iochip.html#a8467a37cf311a499d312a4b008499c68">dev</a>.<a class="code hl_variable" href="structxwds__device.html#a1d485436e69d8cd8f38bcd2eb467a640">drv</a>);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>        <span class="keywordflow">if</span> ((drv) &amp;&amp; (drv-&gt;<a class="code hl_variable" href="structxwds__iochip__driver.html#a05bcba35731b5581f994220de33380fa">gpio_cfg</a>)) {</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>                rc = drv-&gt;<a class="code hl_variable" href="structxwds__iochip__driver.html#a05bcba35731b5581f994220de33380fa">gpio_cfg</a>(iochip, port, pinmask, cfg, to);</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#ga43785b9969e0bd1af532dbde06c5540b">ENOSYS</a>;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        }</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>                <span class="keywordflow">goto</span> err_drv_gpio_cfg;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        }</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        <a class="code hl_function" href="group__xwcd__ds__iochip.html#ga750653544c84171501d58b632fe2ee43">xwds_iochip_put</a>(iochip);</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>err_drv_gpio_cfg:</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>        <a class="code hl_function" href="group__xwcd__ds__iochip.html#ga750653544c84171501d58b632fe2ee43">xwds_iochip_put</a>(iochip);</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>err_iochip_grab:</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>}</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><a class="code hl_define" href="group__xwcd__ds.html#ga8dfce3af09db190cd28028a817ae9275">__xwds_api</a></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="iochip_2gpio_8c.html#a2e49275db746dec60309a9a051bc5842">  135</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="iochip_2gpio_8c.html#a2e49275db746dec60309a9a051bc5842">xwds_iochip_gpio_set</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__iochip.html">xwds_iochip</a> * iochip,</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>                            <a class="code hl_typedef" href="group__xwos__lib__type.html#ga0bb4d847ba02675e5264444479899532">xwid_t</a> port, <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pinmask,</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>                            <a class="code hl_typedef" href="group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a> to)</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>{</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__iochip__driver.html">xwds_iochip_driver</a> * drv;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pinsts;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>(iochip, <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>((port &lt; iochip-&gt;gpio.port_num), <span class="stringliteral">&quot;out-of-range&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#gaa1591a4f3a86360108de5b9ba34980ca">ERANGE</a>);</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>        pinmask &amp;= <a class="code hl_define" href="group__xwcd__ds__iochip.html#gaf1921d271a1ac3a685383393b5b273ff">XWDS_IOCHIP_GPIO_PIN_MASK</a>(iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#abd019fbd28b4fce1a6a0d7a99392c721">gpio</a>.<a class="code hl_variable" href="structxwds__iochip.html#a4e2b067a74e668308d0dff8afc081337">pin_num</a>);</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>        rc = <a class="code hl_function" href="group__xwcd__ds__iochip.html#ga447256e7eb891f10bd4753f32b85107a">xwds_iochip_grab</a>(iochip);</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>                <span class="keywordflow">goto</span> err_iochip_grab;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        }</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        pinsts = <a class="code hl_define" href="group__xwos__lib__xwaop.html#ga9a53ba42b71093821567101c3ebcbe77">xwaop_load</a>(<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>, &amp;iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#abd019fbd28b4fce1a6a0d7a99392c721">gpio</a>.<a class="code hl_variable" href="structxwds__iochip.html#add73f037f5004980fe9d34ba4ad1b276">pins</a>[port], <a class="code hl_enumvalue" href="group__xwos__lib__type.html#gga33d957600264a16ede92db2e6e42f830acdb5a6e088c69ee770c24d3612d12adc">xwaop_mo_relaxed</a>);</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        <span class="keywordflow">if</span> (pinmask &amp; (~pinsts)) {</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#gadd669d31505a077f769cff8e66c780b3">EPERM</a>;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>                <span class="keywordflow">goto</span> err_pinsts;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>        }</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>        drv = <a class="code hl_define" href="group__xwcd__ds.html#ga01391bff32dca44d0fdbe5817e801353">xwds_cast</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__iochip__driver.html">xwds_iochip_driver</a> *, iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#a8f0e9f6d5d418956c51c243712071071">bc</a>.<a class="code hl_variable" href="structxwds__iochip.html#a8467a37cf311a499d312a4b008499c68">dev</a>.<a class="code hl_variable" href="structxwds__device.html#a1d485436e69d8cd8f38bcd2eb467a640">drv</a>);</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>        <span class="keywordflow">if</span> ((drv) &amp;&amp; (drv-&gt;<a class="code hl_variable" href="structxwds__iochip__driver.html#a74c1e1b48abfe6c1cf9aef480a1ef3cb">gpio_set</a>)) {</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>                rc = drv-&gt;<a class="code hl_variable" href="structxwds__iochip__driver.html#a74c1e1b48abfe6c1cf9aef480a1ef3cb">gpio_set</a>(iochip, port, pinmask, to);</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#ga43785b9969e0bd1af532dbde06c5540b">ENOSYS</a>;</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        }</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>                <span class="keywordflow">goto</span> err_drv_set;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>        }</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>        <a class="code hl_function" href="group__xwcd__ds__iochip.html#ga750653544c84171501d58b632fe2ee43">xwds_iochip_put</a>(iochip);</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>err_drv_set:</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>err_pinsts:</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>        <a class="code hl_function" href="group__xwcd__ds__iochip.html#ga750653544c84171501d58b632fe2ee43">xwds_iochip_put</a>(iochip);</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>err_iochip_grab:</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>}</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span><a class="code hl_define" href="group__xwcd__ds.html#ga8dfce3af09db190cd28028a817ae9275">__xwds_api</a></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno"><a class="line" href="iochip_2gpio_8c.html#aa3fd9c1a3320dac2cacc61cdecd7e16a">  176</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="iochip_2gpio_8c.html#aa3fd9c1a3320dac2cacc61cdecd7e16a">xwds_iochip_gpio_reset</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__iochip.html">xwds_iochip</a> * iochip,</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>                              <a class="code hl_typedef" href="group__xwos__lib__type.html#ga0bb4d847ba02675e5264444479899532">xwid_t</a> port, <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pinmask,</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>                              <a class="code hl_typedef" href="group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a> to)</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>{</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__iochip__driver.html">xwds_iochip_driver</a> * drv;</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pinsts;</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span> </div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>(iochip, <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>((port &lt; iochip-&gt;gpio.port_num), <span class="stringliteral">&quot;out-of-range&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#gaa1591a4f3a86360108de5b9ba34980ca">ERANGE</a>);</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span> </div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>        pinmask &amp;= <a class="code hl_define" href="group__xwcd__ds__iochip.html#gaf1921d271a1ac3a685383393b5b273ff">XWDS_IOCHIP_GPIO_PIN_MASK</a>(iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#abd019fbd28b4fce1a6a0d7a99392c721">gpio</a>.<a class="code hl_variable" href="structxwds__iochip.html#a4e2b067a74e668308d0dff8afc081337">pin_num</a>);</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>        rc = <a class="code hl_function" href="group__xwcd__ds__iochip.html#ga447256e7eb891f10bd4753f32b85107a">xwds_iochip_grab</a>(iochip);</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>                <span class="keywordflow">goto</span> err_iochip_grab;</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>        }</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>        pinsts = <a class="code hl_define" href="group__xwos__lib__xwaop.html#ga9a53ba42b71093821567101c3ebcbe77">xwaop_load</a>(<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>, &amp;iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#abd019fbd28b4fce1a6a0d7a99392c721">gpio</a>.<a class="code hl_variable" href="structxwds__iochip.html#add73f037f5004980fe9d34ba4ad1b276">pins</a>[port], <a class="code hl_enumvalue" href="group__xwos__lib__type.html#gga33d957600264a16ede92db2e6e42f830acdb5a6e088c69ee770c24d3612d12adc">xwaop_mo_relaxed</a>);</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>        <span class="keywordflow">if</span> (pinmask &amp; (~pinsts)) {</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#gadd669d31505a077f769cff8e66c780b3">EPERM</a>;</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>                <span class="keywordflow">goto</span> err_pinsts;</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        }</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>        drv = <a class="code hl_define" href="group__xwcd__ds.html#ga01391bff32dca44d0fdbe5817e801353">xwds_cast</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__iochip__driver.html">xwds_iochip_driver</a> *, iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#a8f0e9f6d5d418956c51c243712071071">bc</a>.<a class="code hl_variable" href="structxwds__iochip.html#a8467a37cf311a499d312a4b008499c68">dev</a>.<a class="code hl_variable" href="structxwds__device.html#a1d485436e69d8cd8f38bcd2eb467a640">drv</a>);</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        <span class="keywordflow">if</span> ((drv) &amp;&amp; (drv-&gt;<a class="code hl_variable" href="structxwds__iochip__driver.html#a974c86db4077375ee0beb6a9e1a69cbf">gpio_reset</a>)) {</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>                rc = drv-&gt;<a class="code hl_variable" href="structxwds__iochip__driver.html#a974c86db4077375ee0beb6a9e1a69cbf">gpio_reset</a>(iochip, port, pinmask, to);</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#ga43785b9969e0bd1af532dbde06c5540b">ENOSYS</a>;</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>        }</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>                <span class="keywordflow">goto</span> err_drv_reset;</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>        }</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>        <a class="code hl_function" href="group__xwcd__ds__iochip.html#ga750653544c84171501d58b632fe2ee43">xwds_iochip_put</a>(iochip);</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>err_drv_reset:</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>err_pinsts:</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>        <a class="code hl_function" href="group__xwcd__ds__iochip.html#ga750653544c84171501d58b632fe2ee43">xwds_iochip_put</a>(iochip);</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>err_iochip_grab:</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>}</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><a class="code hl_define" href="group__xwcd__ds.html#ga8dfce3af09db190cd28028a817ae9275">__xwds_api</a></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno"><a class="line" href="iochip_2gpio_8c.html#a651867f1ff048af7fe85aa4086a659ed">  217</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="iochip_2gpio_8c.html#a651867f1ff048af7fe85aa4086a659ed">xwds_iochip_gpio_toggle</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__iochip.html">xwds_iochip</a> * iochip,</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>                               <a class="code hl_typedef" href="group__xwos__lib__type.html#ga0bb4d847ba02675e5264444479899532">xwid_t</a> port, <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pinmask,</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>                               <a class="code hl_typedef" href="group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a> to)</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>{</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__iochip__driver.html">xwds_iochip_driver</a> * drv;</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pinsts;</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span> </div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>(iochip, <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>((port &lt; iochip-&gt;gpio.port_num), <span class="stringliteral">&quot;out-of-range&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#gaa1591a4f3a86360108de5b9ba34980ca">ERANGE</a>);</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>        pinmask &amp;= <a class="code hl_define" href="group__xwcd__ds__iochip.html#gaf1921d271a1ac3a685383393b5b273ff">XWDS_IOCHIP_GPIO_PIN_MASK</a>(iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#abd019fbd28b4fce1a6a0d7a99392c721">gpio</a>.<a class="code hl_variable" href="structxwds__iochip.html#a4e2b067a74e668308d0dff8afc081337">pin_num</a>);</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>        rc = <a class="code hl_function" href="group__xwcd__ds__iochip.html#ga447256e7eb891f10bd4753f32b85107a">xwds_iochip_grab</a>(iochip);</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>                <span class="keywordflow">goto</span> err_iochip_grab;</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>        }</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>        pinsts = <a class="code hl_define" href="group__xwos__lib__xwaop.html#ga9a53ba42b71093821567101c3ebcbe77">xwaop_load</a>(<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>, &amp;iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#abd019fbd28b4fce1a6a0d7a99392c721">gpio</a>.<a class="code hl_variable" href="structxwds__iochip.html#add73f037f5004980fe9d34ba4ad1b276">pins</a>[port], <a class="code hl_enumvalue" href="group__xwos__lib__type.html#gga33d957600264a16ede92db2e6e42f830acdb5a6e088c69ee770c24d3612d12adc">xwaop_mo_relaxed</a>);</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>        <span class="keywordflow">if</span> (pinmask &amp; (~pinsts)) {</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#gadd669d31505a077f769cff8e66c780b3">EPERM</a>;</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>                <span class="keywordflow">goto</span> err_pinsts;</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>        }</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>        drv = <a class="code hl_define" href="group__xwcd__ds.html#ga01391bff32dca44d0fdbe5817e801353">xwds_cast</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__iochip__driver.html">xwds_iochip_driver</a> *, iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#a8f0e9f6d5d418956c51c243712071071">bc</a>.<a class="code hl_variable" href="structxwds__iochip.html#a8467a37cf311a499d312a4b008499c68">dev</a>.<a class="code hl_variable" href="structxwds__device.html#a1d485436e69d8cd8f38bcd2eb467a640">drv</a>);</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>        <span class="keywordflow">if</span> ((drv) &amp;&amp; (drv-&gt;<a class="code hl_variable" href="structxwds__iochip__driver.html#a4faff2e807057ad69f589529fe00e5ec">gpio_toggle</a>)) {</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>                rc = drv-&gt;<a class="code hl_variable" href="structxwds__iochip__driver.html#a4faff2e807057ad69f589529fe00e5ec">gpio_toggle</a>(iochip, port, pinmask, to);</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#ga43785b9969e0bd1af532dbde06c5540b">ENOSYS</a>;</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        }</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>                <span class="keywordflow">goto</span> err_drv_toggle;</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>        }</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>        <a class="code hl_function" href="group__xwcd__ds__iochip.html#ga750653544c84171501d58b632fe2ee43">xwds_iochip_put</a>(iochip);</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>err_drv_toggle:</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>err_pinsts:</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>        <a class="code hl_function" href="group__xwcd__ds__iochip.html#ga750653544c84171501d58b632fe2ee43">xwds_iochip_put</a>(iochip);</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>err_iochip_grab:</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>}</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span> </div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span><a class="code hl_define" href="group__xwcd__ds.html#ga8dfce3af09db190cd28028a817ae9275">__xwds_api</a></div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno"><a class="line" href="iochip_2gpio_8c.html#adf3962109e6b4ec4061e20fcdbf075c9">  258</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="iochip_2gpio_8c.html#adf3962109e6b4ec4061e20fcdbf075c9">xwds_iochip_gpio_output</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__iochip.html">xwds_iochip</a> * iochip,</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>                               <a class="code hl_typedef" href="group__xwos__lib__type.html#ga0bb4d847ba02675e5264444479899532">xwid_t</a> port, <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pinmask, <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> out,</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>                               <a class="code hl_typedef" href="group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a> to)</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>{</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__iochip__driver.html">xwds_iochip_driver</a> * drv;</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pinsts;</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span> </div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>(iochip, <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>((port &lt; iochip-&gt;gpio.port_num), <span class="stringliteral">&quot;out-of-range&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#gaa1591a4f3a86360108de5b9ba34980ca">ERANGE</a>);</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span> </div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>        pinmask &amp;= <a class="code hl_define" href="group__xwcd__ds__iochip.html#gaf1921d271a1ac3a685383393b5b273ff">XWDS_IOCHIP_GPIO_PIN_MASK</a>(iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#abd019fbd28b4fce1a6a0d7a99392c721">gpio</a>.<a class="code hl_variable" href="structxwds__iochip.html#a4e2b067a74e668308d0dff8afc081337">pin_num</a>);</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>        rc = <a class="code hl_function" href="group__xwcd__ds__iochip.html#ga447256e7eb891f10bd4753f32b85107a">xwds_iochip_grab</a>(iochip);</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>                <span class="keywordflow">goto</span> err_iochip_grab;</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>        }</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>        pinsts = <a class="code hl_define" href="group__xwos__lib__xwaop.html#ga9a53ba42b71093821567101c3ebcbe77">xwaop_load</a>(<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>, &amp;iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#abd019fbd28b4fce1a6a0d7a99392c721">gpio</a>.<a class="code hl_variable" href="structxwds__iochip.html#add73f037f5004980fe9d34ba4ad1b276">pins</a>[port], <a class="code hl_enumvalue" href="group__xwos__lib__type.html#gga33d957600264a16ede92db2e6e42f830acdb5a6e088c69ee770c24d3612d12adc">xwaop_mo_relaxed</a>);</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>        <span class="keywordflow">if</span> (pinmask &amp; (~pinsts)) {</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#gadd669d31505a077f769cff8e66c780b3">EPERM</a>;</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>                <span class="keywordflow">goto</span> err_pinsts;</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>        }</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>        drv = <a class="code hl_define" href="group__xwcd__ds.html#ga01391bff32dca44d0fdbe5817e801353">xwds_cast</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__iochip__driver.html">xwds_iochip_driver</a> *, iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#a8f0e9f6d5d418956c51c243712071071">bc</a>.<a class="code hl_variable" href="structxwds__iochip.html#a8467a37cf311a499d312a4b008499c68">dev</a>.<a class="code hl_variable" href="structxwds__device.html#a1d485436e69d8cd8f38bcd2eb467a640">drv</a>);</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>        <span class="keywordflow">if</span> ((drv) &amp;&amp; (drv-&gt;<a class="code hl_variable" href="structxwds__iochip__driver.html#af6a028d6cce304c5828863bd933584cc">gpio_output</a>)) {</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>                rc = drv-&gt;<a class="code hl_variable" href="structxwds__iochip__driver.html#af6a028d6cce304c5828863bd933584cc">gpio_output</a>(iochip, port, pinmask, out, to);</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#ga43785b9969e0bd1af532dbde06c5540b">ENOSYS</a>;</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>        }</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>                <span class="keywordflow">goto</span> err_drv_out;</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>        }</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>        <a class="code hl_function" href="group__xwcd__ds__iochip.html#ga750653544c84171501d58b632fe2ee43">xwds_iochip_put</a>(iochip);</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span> </div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>err_drv_out:</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>err_pinsts:</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>        <a class="code hl_function" href="group__xwcd__ds__iochip.html#ga750653544c84171501d58b632fe2ee43">xwds_iochip_put</a>(iochip);</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>err_iochip_grab:</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>}</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span> </div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span><a class="code hl_define" href="group__xwcd__ds.html#ga8dfce3af09db190cd28028a817ae9275">__xwds_api</a></div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno"><a class="line" href="iochip_2gpio_8c.html#a0bc71239c037c0501a2e33e1ca5c42f0">  299</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="iochip_2gpio_8c.html#a0bc71239c037c0501a2e33e1ca5c42f0">xwds_iochip_gpio_input</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__iochip.html">xwds_iochip</a> * iochip,</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>                              <a class="code hl_typedef" href="group__xwos__lib__type.html#ga0bb4d847ba02675e5264444479899532">xwid_t</a> port, <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pinmask, <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> * inbuf,</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>                              <a class="code hl_typedef" href="group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a> to)</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>{</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__iochip__driver.html">xwds_iochip_driver</a> * drv;</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pinsts;</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span> </div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>(iochip, <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>((port &lt; iochip-&gt;gpio.port_num), <span class="stringliteral">&quot;out-of-range&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#gaa1591a4f3a86360108de5b9ba34980ca">ERANGE</a>);</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span> </div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>        pinmask &amp;= <a class="code hl_define" href="group__xwcd__ds__iochip.html#gaf1921d271a1ac3a685383393b5b273ff">XWDS_IOCHIP_GPIO_PIN_MASK</a>(iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#abd019fbd28b4fce1a6a0d7a99392c721">gpio</a>.<a class="code hl_variable" href="structxwds__iochip.html#a4e2b067a74e668308d0dff8afc081337">pin_num</a>);</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>        rc = <a class="code hl_function" href="group__xwcd__ds__iochip.html#ga447256e7eb891f10bd4753f32b85107a">xwds_iochip_grab</a>(iochip);</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>                <span class="keywordflow">goto</span> err_iochip_grab;</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>        }</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>        pinsts = <a class="code hl_define" href="group__xwos__lib__xwaop.html#ga9a53ba42b71093821567101c3ebcbe77">xwaop_load</a>(<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>, &amp;iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#abd019fbd28b4fce1a6a0d7a99392c721">gpio</a>.<a class="code hl_variable" href="structxwds__iochip.html#add73f037f5004980fe9d34ba4ad1b276">pins</a>[port], <a class="code hl_enumvalue" href="group__xwos__lib__type.html#gga33d957600264a16ede92db2e6e42f830acdb5a6e088c69ee770c24d3612d12adc">xwaop_mo_relaxed</a>);</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>        <span class="keywordflow">if</span> (pinmask &amp; (~pinsts)) {</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#gadd669d31505a077f769cff8e66c780b3">EPERM</a>;</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>                <span class="keywordflow">goto</span> err_pinsts;</div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>        }</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>        drv = <a class="code hl_define" href="group__xwcd__ds.html#ga01391bff32dca44d0fdbe5817e801353">xwds_cast</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__iochip__driver.html">xwds_iochip_driver</a> *, iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#a8f0e9f6d5d418956c51c243712071071">bc</a>.<a class="code hl_variable" href="structxwds__iochip.html#a8467a37cf311a499d312a4b008499c68">dev</a>.<a class="code hl_variable" href="structxwds__device.html#a1d485436e69d8cd8f38bcd2eb467a640">drv</a>);</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>        <span class="keywordflow">if</span> ((drv) &amp;&amp; (drv-&gt;<a class="code hl_variable" href="structxwds__iochip__driver.html#af4bcfb84a4c33cdccb7e59dd2d52c8e7">gpio_input</a>)) {</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>                rc = drv-&gt;<a class="code hl_variable" href="structxwds__iochip__driver.html#af4bcfb84a4c33cdccb7e59dd2d52c8e7">gpio_input</a>(iochip, port, pinmask, inbuf, to);</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#ga43785b9969e0bd1af532dbde06c5540b">ENOSYS</a>;</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>        }</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>                <span class="keywordflow">goto</span> err_drv_in;</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>        }</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>        <a class="code hl_function" href="group__xwcd__ds__iochip.html#ga750653544c84171501d58b632fe2ee43">xwds_iochip_put</a>(iochip);</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span> </div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>err_drv_in:</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>err_pinsts:</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>        <a class="code hl_function" href="group__xwcd__ds__iochip.html#ga750653544c84171501d58b632fe2ee43">xwds_iochip_put</a>(iochip);</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>err_iochip_grab:</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>}</div>
+<div class="ttc" id="agroup__xwcd__ds__iochip_html_ga447256e7eb891f10bd4753f32b85107a"><div class="ttname"><a href="group__xwcd__ds__iochip.html#ga447256e7eb891f10bd4753f32b85107a">xwds_iochip_grab</a></div><div class="ttdeci">xwer_t xwds_iochip_grab(struct xwds_iochip *iochip)</div><div class="ttdoc">XWDS API：增加对象的引用计数</div><div class="ttdef"><b>Definition</b> <a href="iochip_2chip_8c_source.html#l00071">chip.c:71</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__iochip_html_ga750653544c84171501d58b632fe2ee43"><div class="ttname"><a href="group__xwcd__ds__iochip.html#ga750653544c84171501d58b632fe2ee43">xwds_iochip_put</a></div><div class="ttdeci">xwer_t xwds_iochip_put(struct xwds_iochip *iochip)</div><div class="ttdoc">XWDS API：减少对象的引用计数</div><div class="ttdef"><b>Definition</b> <a href="iochip_2chip_8c_source.html#l00077">chip.c:77</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__iochip_html_gaf1921d271a1ac3a685383393b5b273ff"><div class="ttname"><a href="group__xwcd__ds__iochip.html#gaf1921d271a1ac3a685383393b5b273ff">XWDS_IOCHIP_GPIO_PIN_MASK</a></div><div class="ttdeci">#define XWDS_IOCHIP_GPIO_PIN_MASK(n)</div><div class="ttdef"><b>Definition</b> <a href="iochip_2gpio_8h_source.html#l00035">gpio.h:35</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds_html_ga01391bff32dca44d0fdbe5817e801353"><div class="ttname"><a href="group__xwcd__ds.html#ga01391bff32dca44d0fdbe5817e801353">xwds_cast</a></div><div class="ttdeci">#define xwds_cast(type, dev)</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2standard_8h_source.html#l00040">standard.h:40</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds_html_ga8dfce3af09db190cd28028a817ae9275"><div class="ttname"><a href="group__xwcd__ds.html#ga8dfce3af09db190cd28028a817ae9275">__xwds_api</a></div><div class="ttdeci">#define __xwds_api</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2standard_8h_source.html#l00033">standard.h:33</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds_html_ga9541a62248e32dc84221e1f55d11c2b3"><div class="ttname"><a href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a></div><div class="ttdeci">#define XWDS_VALIDATE(exp, errstr,...)</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2standard_8h_source.html#l00051">standard.h:51</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga3f317946e043623f9d6b93dbf60e6316"><div class="ttname"><a href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a></div><div class="ttdeci">#define EFAULT</div><div class="ttdoc">Bad address</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00044">errno.h:44</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga43785b9969e0bd1af532dbde06c5540b"><div class="ttname"><a href="group__xwos__lib__errno.html#ga43785b9969e0bd1af532dbde06c5540b">ENOSYS</a></div><div class="ttdeci">#define ENOSYS</div><div class="ttdoc">Function not implemented</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00110">errno.h:110</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga6a72d49d869215a02342eb465166537b"><div class="ttname"><a href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a></div><div class="ttdeci">#define XWOK</div><div class="ttdoc">No error</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00182">errno.h:182</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga8368025077a0385849d6817b2007c095"><div class="ttname"><a href="group__xwos__lib__errno.html#ga8368025077a0385849d6817b2007c095">EBUSY</a></div><div class="ttdeci">#define EBUSY</div><div class="ttdoc">Device or resource busy</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00046">errno.h:46</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_gaa1591a4f3a86360108de5b9ba34980ca"><div class="ttname"><a href="group__xwos__lib__errno.html#gaa1591a4f3a86360108de5b9ba34980ca">ERANGE</a></div><div class="ttdeci">#define ERANGE</div><div class="ttdoc">Result too large</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00064">errno.h:64</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_gadd669d31505a077f769cff8e66c780b3"><div class="ttname"><a href="group__xwos__lib__errno.html#gadd669d31505a077f769cff8e66c780b3">EPERM</a></div><div class="ttdeci">#define EPERM</div><div class="ttdoc">Operation not permitted</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00031">errno.h:31</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type__time_html_ga3079bb70c0290f939f9c6896fe43ec61"><div class="ttname"><a href="group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a></div><div class="ttdeci">xws64_t xwtm_t</div><div class="ttdoc">XWOS系统时间（有符号)</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00710">type.h:710</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga06847ea8c7edb2b1f166288b230f251f"><div class="ttname"><a href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a></div><div class="ttdeci">signed long xwer_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00554">type.h:554</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00028">type.h:28</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga0bb4d847ba02675e5264444479899532"><div class="ttname"><a href="group__xwos__lib__type.html#ga0bb4d847ba02675e5264444479899532">xwid_t</a></div><div class="ttdeci">unsigned long xwid_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00481">type.h:481</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga59fe68c80516b22de8dccb84275d23f2"><div class="ttname"><a href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a></div><div class="ttdeci">unsigned long xwsq_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00445">type.h:445</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_gga33d957600264a16ede92db2e6e42f830acdb5a6e088c69ee770c24d3612d12adc"><div class="ttname"><a href="group__xwos__lib__type.html#gga33d957600264a16ede92db2e6e42f830acdb5a6e088c69ee770c24d3612d12adc">xwaop_mo_relaxed</a></div><div class="ttdeci">@ xwaop_mo_relaxed</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00628">type.h:628</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__xwaop_html_ga994e87b2c012362dcd18e5491c6748a0"><div class="ttname"><a href="group__xwos__lib__xwaop.html#ga994e87b2c012362dcd18e5491c6748a0">xwaop_c0m</a></div><div class="ttdeci">#define xwaop_c0m(type, a, m, nv, ov)</div><div class="ttdoc">对原子变量进行原子操作：读取－位清0操作－回写</div><div class="ttdef"><b>Definition</b> <a href="xwaop_8h_source.html#l01190">xwaop.h:1190</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__xwaop_html_ga9a53ba42b71093821567101c3ebcbe77"><div class="ttname"><a href="group__xwos__lib__xwaop.html#ga9a53ba42b71093821567101c3ebcbe77">xwaop_load</a></div><div class="ttdeci">#define xwaop_load(type, a, memorder)</div><div class="ttdoc">对原子变量进行原子操作：加载</div><div class="ttdef"><b>Definition</b> <a href="xwaop_8h_source.html#l00045">xwaop.h:45</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__xwaop_html_gadc20095dc759f0aa8791e4310bcfe52d"><div class="ttname"><a href="group__xwos__lib__xwaop.html#gadc20095dc759f0aa8791e4310bcfe52d">xwaop_t0ma_then_s1m</a></div><div class="ttdeci">#define xwaop_t0ma_then_s1m(type, a, m, nv, ov)</div><div class="ttdoc">对原子变量进行原子操作：读取－位测试－位置1操作－回写</div><div class="ttdef"><b>Definition</b> <a href="xwaop_8h_source.html#l01277">xwaop.h:1277</a></div></div>
+<div class="ttc" id="aiochip_2gpio_8c_html_a0bc71239c037c0501a2e33e1ca5c42f0"><div class="ttname"><a href="iochip_2gpio_8c.html#a0bc71239c037c0501a2e33e1ca5c42f0">xwds_iochip_gpio_input</a></div><div class="ttdeci">xwer_t xwds_iochip_gpio_input(struct xwds_iochip *iochip, xwid_t port, xwsq_t pinmask, xwsq_t *inbuf, xwtm_t to)</div><div class="ttdoc">XWDS API：并行读取多个IO扩展芯片的GPIO</div><div class="ttdef"><b>Definition</b> <a href="iochip_2gpio_8c_source.html#l00299">gpio.c:299</a></div></div>
+<div class="ttc" id="aiochip_2gpio_8c_html_a2e49275db746dec60309a9a051bc5842"><div class="ttname"><a href="iochip_2gpio_8c.html#a2e49275db746dec60309a9a051bc5842">xwds_iochip_gpio_set</a></div><div class="ttdeci">xwer_t xwds_iochip_gpio_set(struct xwds_iochip *iochip, xwid_t port, xwsq_t pinmask, xwtm_t to)</div><div class="ttdoc">XWDS API：将IO扩展芯片的GPIO设置为高电平</div><div class="ttdef"><b>Definition</b> <a href="iochip_2gpio_8c_source.html#l00135">gpio.c:135</a></div></div>
+<div class="ttc" id="aiochip_2gpio_8c_html_a400b0e3b589412e52c02dc94911fb01a"><div class="ttname"><a href="iochip_2gpio_8c.html#a400b0e3b589412e52c02dc94911fb01a">xwds_iochip_gpio_cfg</a></div><div class="ttdeci">xwer_t xwds_iochip_gpio_cfg(struct xwds_iochip *iochip, xwid_t port, xwsq_t pinmask, void *cfg, xwtm_t to)</div><div class="ttdoc">XWDS API：配置IO扩展芯片的GPIO</div><div class="ttdef"><b>Definition</b> <a href="iochip_2gpio_8c_source.html#l00100">gpio.c:100</a></div></div>
+<div class="ttc" id="aiochip_2gpio_8c_html_a651867f1ff048af7fe85aa4086a659ed"><div class="ttname"><a href="iochip_2gpio_8c.html#a651867f1ff048af7fe85aa4086a659ed">xwds_iochip_gpio_toggle</a></div><div class="ttdeci">xwer_t xwds_iochip_gpio_toggle(struct xwds_iochip *iochip, xwid_t port, xwsq_t pinmask, xwtm_t to)</div><div class="ttdoc">XWDS API：翻转IO扩展芯片的GPIO电平</div><div class="ttdef"><b>Definition</b> <a href="iochip_2gpio_8c_source.html#l00217">gpio.c:217</a></div></div>
+<div class="ttc" id="aiochip_2gpio_8c_html_a97138af02426138b1b1d4f150c9ef808"><div class="ttname"><a href="iochip_2gpio_8c.html#a97138af02426138b1b1d4f150c9ef808">xwds_iochip_gpio_req</a></div><div class="ttdeci">xwer_t xwds_iochip_gpio_req(struct xwds_iochip *iochip, xwid_t port, xwsq_t pinmask, xwtm_t to)</div><div class="ttdoc">XWDS API：申请IO扩展芯片的GPIO</div><div class="ttdef"><b>Definition</b> <a href="iochip_2gpio_8c_source.html#l00027">gpio.c:27</a></div></div>
+<div class="ttc" id="aiochip_2gpio_8c_html_aa3fd9c1a3320dac2cacc61cdecd7e16a"><div class="ttname"><a href="iochip_2gpio_8c.html#aa3fd9c1a3320dac2cacc61cdecd7e16a">xwds_iochip_gpio_reset</a></div><div class="ttdeci">xwer_t xwds_iochip_gpio_reset(struct xwds_iochip *iochip, xwid_t port, xwsq_t pinmask, xwtm_t to)</div><div class="ttdoc">XWDS API：将IO扩展芯片的GPIO设置为低电平</div><div class="ttdef"><b>Definition</b> <a href="iochip_2gpio_8c_source.html#l00176">gpio.c:176</a></div></div>
+<div class="ttc" id="aiochip_2gpio_8c_html_aaae051fc051f69193f4e62a79446b932"><div class="ttname"><a href="iochip_2gpio_8c.html#aaae051fc051f69193f4e62a79446b932">xwds_iochip_gpio_rls</a></div><div class="ttdeci">xwer_t xwds_iochip_gpio_rls(struct xwds_iochip *iochip, xwid_t port, xwsq_t pinmask, xwtm_t to)</div><div class="ttdoc">XWDS API：释放IO扩展芯片的GPIO</div><div class="ttdef"><b>Definition</b> <a href="iochip_2gpio_8c_source.html#l00065">gpio.c:65</a></div></div>
+<div class="ttc" id="aiochip_2gpio_8c_html_adf3962109e6b4ec4061e20fcdbf075c9"><div class="ttname"><a href="iochip_2gpio_8c.html#adf3962109e6b4ec4061e20fcdbf075c9">xwds_iochip_gpio_output</a></div><div class="ttdeci">xwer_t xwds_iochip_gpio_output(struct xwds_iochip *iochip, xwid_t port, xwsq_t pinmask, xwsq_t out, xwtm_t to)</div><div class="ttdoc">XWDS API：并行输出多个IO扩展芯片的GPIO</div><div class="ttdef"><b>Definition</b> <a href="iochip_2gpio_8c_source.html#l00258">gpio.c:258</a></div></div>
+<div class="ttc" id="aiochip_2gpio_8h_html"><div class="ttname"><a href="iochip_2gpio_8h.html">gpio.h</a></div><div class="ttdoc">玄武设备栈：IO扩展芯片：GPIO</div></div>
+<div class="ttc" id="astructxwds__device_html_a1d485436e69d8cd8f38bcd2eb467a640"><div class="ttname"><a href="structxwds__device.html#a1d485436e69d8cd8f38bcd2eb467a640">xwds_device::drv</a></div><div class="ttdeci">const struct xwds_driver * drv</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8h_source.html#l00133">device.h:133</a></div></div>
+<div class="ttc" id="astructxwds__iochip__driver_html"><div class="ttname"><a href="structxwds__iochip__driver.html">xwds_iochip_driver</a></div><div class="ttdoc">BSP中需要提供的IO扩展芯片设备驱动函数表</div><div class="ttdef"><b>Definition</b> <a href="iochip_2chip_8h_source.html#l00052">chip.h:52</a></div></div>
+<div class="ttc" id="astructxwds__iochip__driver_html_a03d275006624de716cc7e897bb904ae1"><div class="ttname"><a href="structxwds__iochip__driver.html#a03d275006624de716cc7e897bb904ae1">xwds_iochip_driver::gpio_req</a></div><div class="ttdeci">xwer_t(* gpio_req)(struct xwds_iochip *, xwid_t, xwsq_t, xwtm_t)</div><div class="ttdef"><b>Definition</b> <a href="iochip_2chip_8h_source.html#l00055">chip.h:55</a></div></div>
+<div class="ttc" id="astructxwds__iochip__driver_html_a05bcba35731b5581f994220de33380fa"><div class="ttname"><a href="structxwds__iochip__driver.html#a05bcba35731b5581f994220de33380fa">xwds_iochip_driver::gpio_cfg</a></div><div class="ttdeci">xwer_t(* gpio_cfg)(struct xwds_iochip *, xwid_t, xwsq_t, void *, xwtm_t)</div><div class="ttdef"><b>Definition</b> <a href="iochip_2chip_8h_source.html#l00063">chip.h:63</a></div></div>
+<div class="ttc" id="astructxwds__iochip__driver_html_a06d8a194e502e362f5082d7819ff8080"><div class="ttname"><a href="structxwds__iochip__driver.html#a06d8a194e502e362f5082d7819ff8080">xwds_iochip_driver::gpio_rls</a></div><div class="ttdeci">xwer_t(* gpio_rls)(struct xwds_iochip *, xwid_t, xwid_t, xwtm_t)</div><div class="ttdef"><b>Definition</b> <a href="iochip_2chip_8h_source.html#l00059">chip.h:59</a></div></div>
+<div class="ttc" id="astructxwds__iochip__driver_html_a4faff2e807057ad69f589529fe00e5ec"><div class="ttname"><a href="structxwds__iochip__driver.html#a4faff2e807057ad69f589529fe00e5ec">xwds_iochip_driver::gpio_toggle</a></div><div class="ttdeci">xwer_t(* gpio_toggle)(struct xwds_iochip *, xwid_t, xwsq_t, xwtm_t)</div><div class="ttdef"><b>Definition</b> <a href="iochip_2chip_8h_source.html#l00081">chip.h:81</a></div></div>
+<div class="ttc" id="astructxwds__iochip__driver_html_a74c1e1b48abfe6c1cf9aef480a1ef3cb"><div class="ttname"><a href="structxwds__iochip__driver.html#a74c1e1b48abfe6c1cf9aef480a1ef3cb">xwds_iochip_driver::gpio_set</a></div><div class="ttdeci">xwer_t(* gpio_set)(struct xwds_iochip *, xwid_t, xwsq_t, xwtm_t)</div><div class="ttdef"><b>Definition</b> <a href="iochip_2chip_8h_source.html#l00073">chip.h:73</a></div></div>
+<div class="ttc" id="astructxwds__iochip__driver_html_a974c86db4077375ee0beb6a9e1a69cbf"><div class="ttname"><a href="structxwds__iochip__driver.html#a974c86db4077375ee0beb6a9e1a69cbf">xwds_iochip_driver::gpio_reset</a></div><div class="ttdeci">xwer_t(* gpio_reset)(struct xwds_iochip *, xwid_t, xwsq_t, xwtm_t)</div><div class="ttdef"><b>Definition</b> <a href="iochip_2chip_8h_source.html#l00077">chip.h:77</a></div></div>
+<div class="ttc" id="astructxwds__iochip__driver_html_af4bcfb84a4c33cdccb7e59dd2d52c8e7"><div class="ttname"><a href="structxwds__iochip__driver.html#af4bcfb84a4c33cdccb7e59dd2d52c8e7">xwds_iochip_driver::gpio_input</a></div><div class="ttdeci">xwer_t(* gpio_input)(struct xwds_iochip *, xwid_t, xwsq_t, xwsq_t *, xwtm_t)</div><div class="ttdef"><b>Definition</b> <a href="iochip_2chip_8h_source.html#l00085">chip.h:85</a></div></div>
+<div class="ttc" id="astructxwds__iochip__driver_html_af6a028d6cce304c5828863bd933584cc"><div class="ttname"><a href="structxwds__iochip__driver.html#af6a028d6cce304c5828863bd933584cc">xwds_iochip_driver::gpio_output</a></div><div class="ttdeci">xwer_t(* gpio_output)(struct xwds_iochip *, xwid_t, xwsq_t, xwsq_t, xwtm_t)</div><div class="ttdef"><b>Definition</b> <a href="iochip_2chip_8h_source.html#l00068">chip.h:68</a></div></div>
+<div class="ttc" id="astructxwds__iochip_html"><div class="ttname"><a href="structxwds__iochip.html">xwds_iochip</a></div><div class="ttdoc">IO扩展芯片</div><div class="ttdef"><b>Definition</b> <a href="iochip_2chip_8h_source.html#l00095">chip.h:95</a></div></div>
+<div class="ttc" id="astructxwds__iochip_html_a4e2b067a74e668308d0dff8afc081337"><div class="ttname"><a href="structxwds__iochip.html#a4e2b067a74e668308d0dff8afc081337">xwds_iochip::pin_num</a></div><div class="ttdeci">xwsz_t pin_num</div><div class="ttdef"><b>Definition</b> <a href="iochip_2chip_8h_source.html#l00111">chip.h:111</a></div></div>
+<div class="ttc" id="astructxwds__iochip_html_a8467a37cf311a499d312a4b008499c68"><div class="ttname"><a href="structxwds__iochip.html#a8467a37cf311a499d312a4b008499c68">xwds_iochip::dev</a></div><div class="ttdeci">struct xwds_device dev</div><div class="ttdef"><b>Definition</b> <a href="iochip_2chip_8h_source.html#l00097">chip.h:97</a></div></div>
+<div class="ttc" id="astructxwds__iochip_html_a8f0e9f6d5d418956c51c243712071071"><div class="ttname"><a href="structxwds__iochip.html#a8f0e9f6d5d418956c51c243712071071">xwds_iochip::bc</a></div><div class="ttdeci">union xwds_iochip::@19 bc</div></div>
+<div class="ttc" id="astructxwds__iochip_html_abd019fbd28b4fce1a6a0d7a99392c721"><div class="ttname"><a href="structxwds__iochip.html#abd019fbd28b4fce1a6a0d7a99392c721">xwds_iochip::gpio</a></div><div class="ttdeci">struct xwds_iochip::@20 gpio</div></div>
+<div class="ttc" id="astructxwds__iochip_html_add73f037f5004980fe9d34ba4ad1b276"><div class="ttname"><a href="structxwds__iochip.html#add73f037f5004980fe9d34ba4ad1b276">xwds_iochip::pins</a></div><div class="ttdeci">atomic_xwsq_t * pins</div><div class="ttdef"><b>Definition</b> <a href="iochip_2chip_8h_source.html#l00109">chip.h:109</a></div></div>
+<div class="ttc" id="axwaop_8h_html"><div class="ttname"><a href="xwaop_8h.html">xwaop.h</a></div><div class="ttdoc">XWOS通用库：原子操作</div></div>
+<div class="ttc" id="axwcd_2ds_2standard_8h_html"><div class="ttname"><a href="xwcd_2ds_2standard_8h.html">standard.h</a></div><div class="ttdoc">玄武设备栈：顶级头文件</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_91e37f1231cf9910bfa2c11be57d8122.html">xwcd</a></li><li class="navelem"><a class="el" href="dir_7e7acccef388183555cf60cdd0da09f6.html">ds</a></li><li class="navelem"><a class="el" href="dir_30f1e19aebdfafb1f2bd4e6032cfaf91.html">iochip</a></li><li class="navelem"><a class="el" href="iochip_2gpio_8c.html">gpio.c</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
+  </ul>
+</div>
+</body>
+</html>

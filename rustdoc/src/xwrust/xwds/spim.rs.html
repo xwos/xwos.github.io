@@ -1,0 +1,221 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/xuanwu/xwos.tech/XWOS/xwmd/xwrust/src/xwds/spim.rs`."><title>spim.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="xwrust" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (b10cfcd65 2023-11-29)" data-channel="nightly" data-search-js="search-56a624991a76cfad.js" data-settings-js="settings-fe03fdc259827cd2.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-77dede896d6ac08e.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<a href="#2" id="2">2</a>
+<a href="#3" id="3">3</a>
+<a href="#4" id="4">4</a>
+<a href="#5" id="5">5</a>
+<a href="#6" id="6">6</a>
+<a href="#7" id="7">7</a>
+<a href="#8" id="8">8</a>
+<a href="#9" id="9">9</a>
+<a href="#10" id="10">10</a>
+<a href="#11" id="11">11</a>
+<a href="#12" id="12">12</a>
+<a href="#13" id="13">13</a>
+<a href="#14" id="14">14</a>
+<a href="#15" id="15">15</a>
+<a href="#16" id="16">16</a>
+<a href="#17" id="17">17</a>
+<a href="#18" id="18">18</a>
+<a href="#19" id="19">19</a>
+<a href="#20" id="20">20</a>
+<a href="#21" id="21">21</a>
+<a href="#22" id="22">22</a>
+<a href="#23" id="23">23</a>
+<a href="#24" id="24">24</a>
+<a href="#25" id="25">25</a>
+<a href="#26" id="26">26</a>
+<a href="#27" id="27">27</a>
+<a href="#28" id="28">28</a>
+<a href="#29" id="29">29</a>
+<a href="#30" id="30">30</a>
+<a href="#31" id="31">31</a>
+<a href="#32" id="32">32</a>
+<a href="#33" id="33">33</a>
+<a href="#34" id="34">34</a>
+<a href="#35" id="35">35</a>
+<a href="#36" id="36">36</a>
+<a href="#37" id="37">37</a>
+<a href="#38" id="38">38</a>
+<a href="#39" id="39">39</a>
+<a href="#40" id="40">40</a>
+<a href="#41" id="41">41</a>
+<a href="#42" id="42">42</a>
+<a href="#43" id="43">43</a>
+<a href="#44" id="44">44</a>
+<a href="#45" id="45">45</a>
+<a href="#46" id="46">46</a>
+<a href="#47" id="47">47</a>
+<a href="#48" id="48">48</a>
+<a href="#49" id="49">49</a>
+<a href="#50" id="50">50</a>
+<a href="#51" id="51">51</a>
+<a href="#52" id="52">52</a>
+<a href="#53" id="53">53</a>
+<a href="#54" id="54">54</a>
+<a href="#55" id="55">55</a>
+<a href="#56" id="56">56</a>
+<a href="#57" id="57">57</a>
+<a href="#58" id="58">58</a>
+<a href="#59" id="59">59</a>
+<a href="#60" id="60">60</a>
+<a href="#61" id="61">61</a>
+<a href="#62" id="62">62</a>
+<a href="#63" id="63">63</a>
+<a href="#64" id="64">64</a>
+<a href="#65" id="65">65</a>
+<a href="#66" id="66">66</a>
+<a href="#67" id="67">67</a>
+<a href="#68" id="68">68</a>
+<a href="#69" id="69">69</a>
+<a href="#70" id="70">70</a>
+<a href="#71" id="71">71</a>
+<a href="#72" id="72">72</a>
+<a href="#73" id="73">73</a>
+<a href="#74" id="74">74</a>
+<a href="#75" id="75">75</a>
+<a href="#76" id="76">76</a>
+<a href="#77" id="77">77</a>
+<a href="#78" id="78">78</a>
+<a href="#79" id="79">79</a>
+<a href="#80" id="80">80</a>
+<a href="#81" id="81">81</a>
+<a href="#82" id="82">82</a>
+<a href="#83" id="83">83</a>
+<a href="#84" id="84">84</a>
+<a href="#85" id="85">85</a>
+<a href="#86" id="86">86</a>
+<a href="#87" id="87">87</a>
+<a href="#88" id="88">88</a>
+<a href="#89" id="89">89</a>
+<a href="#90" id="90">90</a>
+<a href="#91" id="91">91</a>
+<a href="#92" id="92">92</a>
+<a href="#93" id="93">93</a>
+<a href="#94" id="94">94</a>
+<a href="#95" id="95">95</a>
+<a href="#96" id="96">96</a>
+<a href="#97" id="97">97</a>
+<a href="#98" id="98">98</a>
+<a href="#99" id="99">99</a>
+<a href="#100" id="100">100</a>
+<a href="#101" id="101">101</a>
+<a href="#102" id="102">102</a>
+<a href="#103" id="103">103</a>
+<a href="#104" id="104">104</a>
+<a href="#105" id="105">105</a>
+<a href="#106" id="106">106</a>
+<a href="#107" id="107">107</a>
+<a href="#108" id="108">108</a>
+<a href="#109" id="109">109</a>
+<a href="#110" id="110">110</a>
+</pre></div><pre class="rust"><code><span class="doccomment">//! XWOS RUST：SPI主机模式控制器
+//! ========
+//!
+
+</span><span class="kw">extern crate </span>core;
+<span class="kw">use </span>core::cell::UnsafeCell;
+
+<span class="kw">use </span><span class="kw">crate</span>::types::<span class="kw-2">*</span>;
+
+<span class="kw">extern </span><span class="string">&quot;C&quot; </span>{
+    <span class="kw">fn </span>xwds_spim_buscfg(spim: <span class="kw-2">*mut </span>XwdsSpim, cfgid: XwId, to: XwTm) -&gt; XwEr;
+    <span class="kw">fn </span>xwds_spim_xfer(spim: <span class="kw-2">*mut </span>XwdsSpim,
+                      txd: <span class="kw-2">*const </span>u8, rxd: <span class="kw-2">*mut </span>u8, size: <span class="kw-2">*mut </span>XwSz,
+                      to: XwTm) -&gt; XwEr;
+    <span class="kw">fn </span>xwds_spim_abort(spim: <span class="kw-2">*mut </span>XwdsSpim, to: XwTm) -&gt; XwEr;
+}
+
+<span class="doccomment">/// XWOS自旋锁占用的内存大小
+</span><span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;32&quot;</span>)]
+</span><span class="kw">pub const </span>SIZEOF_XWDS_SPIM: usize = <span class="number">144</span>;
+
+<span class="doccomment">/// XWOS自旋锁占用的内存大小
+</span><span class="attr">#[cfg(target_pointer_width = <span class="string">&quot;64&quot;</span>)]
+</span><span class="kw">pub const </span>SIZEOF_XWDS_SPIM: usize = <span class="number">288</span>;
+
+<span class="doccomment">/// SPI主机模式控制器
+</span><span class="attr">#[repr(C)]
+#[cfg_attr(target_pointer_width = <span class="string">&quot;32&quot;</span>, repr(align(<span class="number">8</span>)))]
+#[cfg_attr(target_pointer_width = <span class="string">&quot;64&quot;</span>, repr(align(<span class="number">16</span>)))]
+</span><span class="kw">pub struct </span>XwdsSpim {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) obj: [u8; SIZEOF_XWDS_SPIM],
+}
+
+<span class="doccomment">/// SPI主机模式控制器
+</span><span class="attr">#[repr(C)]
+</span><span class="kw">pub struct </span>Spim {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) spim: UnsafeCell&lt;XwdsSpim&gt;,
+}
+
+<span class="kw">impl </span>Spim {
+    <span class="doccomment">/// 配置总线
+    ///
+    /// # 参数说明
+    ///
+    /// + cfgid: 总线配置ID
+    /// + to: 期望唤醒的时间点
+    ///
+    /// # 错误码
+    ///
+    /// + [`-ENOSYS`] 不支持配置总线操作
+    /// + [`-ECHRNG`] 配置ID不在配置表范围内
+    /// + [`-ETIMEDOUT`] 超时
+    ///
+    /// [`-ENOSYS`]: crate::errno::ENOSYS
+    /// [`-ECHRNG`]: crate::errno::ECHRNG
+    /// [`-ETIMEDOUT`]: crate::errno::ETIMEDOUT
+    </span><span class="kw">pub fn </span>buscfg(<span class="kw-2">&amp;</span><span class="self">self</span>, cfgid: XwId, to: XwTm) -&gt; XwEr {
+        <span class="kw">unsafe </span>{
+            xwds_spim_buscfg(<span class="self">self</span>.spim.get(), cfgid, to)
+        }
+    }
+
+    <span class="doccomment">/// 传输SPI消息
+    ///
+    /// # 参数说明
+    ///
+    /// + txd: 发送数据的缓冲区
+    /// + rxd: 接收数据的缓冲区
+    /// + size: 传输的大小
+    ///   + (I) 作为输入时，表示缓冲区大小（单位：字节）
+    ///   + (O) 作为输出时，返回实际传输的数据大小
+    /// + to: 期望唤醒的时间点
+    ///
+    /// # 错误码
+    ///
+    /// + [`-EBUSY`] 总线繁忙
+    /// + [`-EIO`] 传输错误
+    /// + [`-ETIMEDOUT`] 传输超时
+    ///
+    /// [`-EBUSY`]: crate::errno::EBUSY
+    /// [`-EIO`]: crate::errno::EIO
+    /// [`-ETIMEDOUT`]: crate::errno::ETIMEDOUT
+    </span><span class="kw">pub fn </span>xfer(<span class="kw-2">&amp;</span><span class="self">self</span>,
+                txd: <span class="kw-2">&amp;</span>[u8], rxd: <span class="kw-2">&amp;mut </span>[u8], size: <span class="kw-2">&amp;mut </span>XwSz,
+                to: XwTm) -&gt; XwEr {
+        <span class="kw">unsafe </span>{
+            xwds_spim_xfer(<span class="self">self</span>.spim.get(),
+                           txd.as_ptr(), rxd.as_mut_ptr(), size <span class="kw">as </span><span class="kw-2">*mut </span>XwSz,
+                           to)
+        }
+    }
+
+    <span class="doccomment">/// 中止SPI总线传输
+    ///
+    /// # 参数说明
+    ///
+    /// + to: 期望唤醒的时间点
+    ///
+    /// # 错误码
+    ///
+    /// + [`-ETIMEDOUT`] 传输超时
+    ///
+    /// [`-ETIMEDOUT`]: crate::errno::ETIMEDOUT
+    </span><span class="kw">pub fn </span>abort(<span class="kw-2">&amp;</span><span class="self">self</span>,
+                 to: XwTm) -&gt; XwEr {
+        <span class="kw">unsafe </span>{
+            xwds_spim_abort(<span class="self">self</span>.spim.get(), to)
+        }
+    }
+}
+</code></pre></div></section></main></body></html>

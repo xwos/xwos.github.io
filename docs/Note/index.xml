@@ -1,0 +1,1491 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>XWOS – 笔记</title>
+    <link>/docs/Note/</link>
+    <description>Recent content in 笔记 on XWOS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    
+	  <atom:link href="/docs/Note/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: SOC移植</title>
+      <link>/docs/Note/SOC/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/Note/SOC/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
+&lt;p&gt;XWOS的移植，包括以下几个环节：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;编译环境&lt;/li&gt;
+&lt;li&gt;初始化流程&lt;/li&gt;
+&lt;li&gt;XWOS移植层（XWOSPL）&lt;/li&gt;
+&lt;li&gt;XWOS移植实现层（XWOSIMPL）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;XWOS采用 &lt;strong&gt;适配器模式&lt;/strong&gt; 的方法来构建移植相关的代码：XWOS移植层（XWOSPL）&lt;strong&gt;定义&lt;/strong&gt; 接口，
+XWOS移植实现层（XWOSIMPL）提供 &lt;strong&gt;实现&lt;/strong&gt; 。&lt;/p&gt;
+&lt;p&gt;为了提高代码的复用性，XWOS移植实现层（XWOSIMPL）相关的代码又细分为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;架构描述层(ADL)&lt;/li&gt;
+&lt;li&gt;CPU描述层(CDL)&lt;/li&gt;
+&lt;li&gt;SOC描述层(SDL)&lt;/li&gt;
+&lt;li&gt;电路板描述层(BDL)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;例如，ARMv7m架构下，ADL目录为 &lt;code&gt;xwcd/soc/arm/v7m/gcc/&lt;/code&gt; ，其中代码对
+STM32、S32K、i.MX RT1052、GD32等都是复用的，m3、m4、m7的差异又由CDL目录来描述，
+相同的CPU内核不同SOC又由SDL来描述，不同的电路板由BDL来描述，最后由他们共同完成
+对编译环境、初始化流程以及XWOS移植实现层（XWOSIMPL）的 &lt;strong&gt;实现&lt;/strong&gt; 。&lt;/p&gt;
+&lt;h2 id=&#34;xwos移植层xwospl头文件规则&#34;&gt;XWOS移植层（XWOSPL）头文件规则&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos/ospl/*.h&lt;/code&gt; ：XWOS提供给BSP的头文件， &lt;strong&gt;不可&lt;/strong&gt; 被XWOS自身的头文件包含。
+&lt;ul&gt;
+&lt;li&gt;前缀 &lt;code&gt;xwospl&lt;/code&gt; ：BSP中需要提供实现的函数&lt;/li&gt;
+&lt;li&gt;前缀 &lt;code&gt;xwosplcb&lt;/code&gt; ：BSP中可以调用的函数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/ospl/soc/*.h&lt;/code&gt; ：其中包含了BSP提供给XWOS的头文件， &lt;strong&gt;可被&lt;/strong&gt; XWOS的头文件包含。
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos/ospl/soc/type.h&lt;/code&gt; ：包含了平台类型的定义&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/ospl/soc/compiler.h&lt;/code&gt; ：包含了平台编译器相关的定义&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/ospl/soc/isa.h&lt;/code&gt; ：包含了平台指令和架构相关的定义&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/ospl/soc/lfq.h&lt;/code&gt; ：包含了无锁队列相关的定义&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/ospl/soc/setjmp.h&lt;/code&gt; ：包含了 &lt;code&gt;setjmp.h&lt;/code&gt; 相关的定义&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/ospl/soc/spinlock.h&lt;/code&gt; ：包含了自旋锁相关的定义&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/ospl/soc/xwaop[bit].h&lt;/code&gt; ：包含了原子操作相关的定义&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/ospl/soc/xwbmpaop.h&lt;/code&gt; ：包含了位图原子操作相关的定义&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/ospl/soc/xwbop.h&lt;/code&gt; ：包含了位操作相关的定义&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/ospl/soc/xwsc.h&lt;/code&gt; ：包含了系统调用相关的定义&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;移植&#34;&gt;移植&lt;/h2&gt;
+&lt;p&gt;XWOS的移植，包括：基本类型、编译器、断点、setjmp、系统调用与系统特权、
+位操作、原子操作、无锁队列、自旋锁、中断、硬件定时器、调度器。&lt;/p&gt;
+&lt;h3 id=&#34;基本类型&#34;&gt;基本类型&lt;/h3&gt;
+&lt;p&gt;XWOS定义了自己的一套基本类型，所有源码都是围绕基本类型展开的。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;XWOS头文件： &lt;code&gt;xwos/lib/type.h&lt;/code&gt; ，
+详见&lt;a href=&#34;../../user-manual/basic-promise#%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B&#34;&gt;基本类型&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;Adapter： &lt;code&gt;xwos/ospl/soc/type.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Adaptee： &lt;code&gt;xwosimpl_soc_type.h&lt;/code&gt; 文件对某些类型按照架构的ELFABI规则重新进行了定义，
+并且需要将 &lt;code&gt;ARCH_HAVE_xxxx&lt;/code&gt; 宏定义为1，表明覆盖 &lt;code&gt;xxxx&lt;/code&gt; 的默认定义，
+此文件一般位于 &lt;strong&gt;ADL&lt;/strong&gt; 目录，例如 &lt;code&gt;xwcd/soc/arm/v7m/gcc/xwosimpl_soc_type.h&lt;/code&gt; 。&lt;/li&gt;
+&lt;li&gt;基本类型：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWU8_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;xwu8_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwu8_t&lt;/code&gt; ：类型，8位无符号整数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_ATOMIC_XWU8_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;atomic_xwu8_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;atomic_xwu8_t&lt;/code&gt; ：类型，原子的8位无符号整数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWS8_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;xws8_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xws8_t&lt;/code&gt; ：类型，8位有符号整数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_ATOMIC_XWS8_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;atomic_xws8_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;atomic_xws8_t&lt;/code&gt; ：类型，原子的8位有符号整数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWU16_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;xwu16_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwu16_t&lt;/code&gt; ：类型，16位无符号整数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_ATOMIC_XWU16_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;atomic_xwu16_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;atomic_xwu16_t&lt;/code&gt; ：类型，原子的16位无符号整数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWS16_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;xws16_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xws16_t&lt;/code&gt; ：类型，16位有符号整数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_ATOMIC_XWS16_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;atomic_xws16_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;atomic_xws16_t&lt;/code&gt; ：类型，原子的16位有符号整数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWU32_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;xwu32_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwu32_t&lt;/code&gt; ：类型，32位无符号整数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_ATOMIC_XWU32_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;atomic_xwu32_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;atomic_xwu32_t&lt;/code&gt; ：类型，原子的32位无符号整数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWS32_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;xws32_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xws32_t&lt;/code&gt; ：类型，32位有符号整数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_ATOMIC_XWS32_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;atomic_xws32_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;atomic_xws32_t&lt;/code&gt; ：类型，原子的32位有符号整数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWU64_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;xwu64_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwu64_t&lt;/code&gt; ：类型，64位无符号整数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_ATOMIC_XWU64_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;atomic_xwu64_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;atomic_xwu64_t&lt;/code&gt; ：类型，原子的64位无符号整数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWS64_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;xws64_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xws64_t&lt;/code&gt; ：类型，64位有符号整数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_ATOMIC_XWS64_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;atomic_xws64_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;atomic_xws64_t&lt;/code&gt; ：类型，原子的64位有符号整数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWSZ_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;xwsz_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwsz_t&lt;/code&gt; ：类型，无符号大小值类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_ATOMIC_XWSZ_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;atomic_xwsz_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;atomic_xwsz_t&lt;/code&gt; ：类型，原子的无符号大小值类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWSSZ_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;xwssz_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwssz_t&lt;/code&gt; ：类型，有符号大小值类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_ATOMIC_XWSSZ_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;atomic_xwssz_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;atomic_xwssz_t&lt;/code&gt; ：类型，原子的有符号大小值类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWSTK_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;xwstk_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwstk_t&lt;/code&gt; ：类型，无符号栈类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_ATOMIC_XWSTK_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;atomic_xwstk_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;atomic_xwstk_t&lt;/code&gt; ：类型，原子的无符号栈类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWPTR_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;xwptr_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwptr_t&lt;/code&gt; ：类型，无符号指针值类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_ATOMIC_XWPTR_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;atomic_xwptr_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;atomic_xwptr_t&lt;/code&gt; ：类型，原子的无符号指针值类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWREG_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;xwreg_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwreg_t&lt;/code&gt; ：类型，无符号寄存器类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_ATOMIC_XWREG_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;atomic_xwreg_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;atomic_xwreg_t&lt;/code&gt; ：类型，原子的无符号寄存器类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWSREG_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;xwsreg_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwsreg_t&lt;/code&gt; ：类型，有符号寄存器类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_ATOMIC_XWSREG_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;atomic_xwsreg_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;atomic_xwsreg_t&lt;/code&gt; ：类型，原子的有符号寄存器类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWSQ_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;xwsq_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwsq_t&lt;/code&gt; ：类型，无符号顺序值类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_ATOMIC_XWSQ_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;atomic_xwsq_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;atomic_xwsq_t&lt;/code&gt; ：类型，原子的无符号顺序值类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWSSQ_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;xwssq_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwssq_t&lt;/code&gt; ：类型，有符号顺序值类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_ATOMIC_XWSSQ_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;atomic_xwssq_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;atomic_xwssq_t&lt;/code&gt; ：类型，原子的有符号顺序值类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWID_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;xwid_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwid_t&lt;/code&gt; ：类型，无符号ID值类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_ATOMIC_XWID_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;atomic_xwid_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;atomic_xwid_t&lt;/code&gt; ：类型，原子的无符号ID值类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWSID_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;xwsid_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwsid_t&lt;/code&gt; ：类型，有符号ID值类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_ATOMIC_XWSID_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;atomic_xwsid_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;atomic_xwsid_t&lt;/code&gt; ：类型，原子的有符号ID值类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWER_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;xwer_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwer_t&lt;/code&gt; ：类型，有符号错误码类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_ATOMIC_XWER_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;atomic_xwer_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;atomic_xwer_t&lt;/code&gt; ：类型，原子的有符号错误码类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWPR_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;xwpr_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwpr_t&lt;/code&gt; ：类型，有符号优先级类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_ATOMIC_XWPR_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;atomic_xwpr_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;atomic_xwpr_t&lt;/code&gt; ：类型，原子的有符号优先级类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWBMP_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;xwbmp_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmp_t&lt;/code&gt; ：类型，无符号位图类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_ATOMIC_XWBMP_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;atomic_xwbmp_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpy_a&lt;/code&gt; ：类型，原子的无符号位图类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWTM_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;xwtm_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwtm_t&lt;/code&gt; ：类型，有符号优先级类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_ATOMIC_XWTM_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;atomic_xwtm_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;atomic_xwtm_t&lt;/code&gt; ：类型，原子的有符号优先级类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWLFQ_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;xwlfq_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwlfq_t&lt;/code&gt; ：类型，无锁队列类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_ATOMIC_XWLFQ_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;atomic_xwlfq_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;atomic_xwlfq_t&lt;/code&gt; ：类型，原子的无锁队列类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWISR_F&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; 中提供类型 &lt;code&gt;xwisr_f&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;atomic_xwer_t&lt;/code&gt; ：类型，原子的有符号错误码类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWIRQ_T&lt;/code&gt; ：宏，定义为1表示 &lt;code&gt;arch_type.h&lt;/code&gt; y中提供类型 &lt;code&gt;xwirq_t&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwirq_t&lt;/code&gt; ：类型，有符号中断号类型&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;编译器&#34;&gt;编译器&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;XWOS头文件： &lt;code&gt;xwos/lib/compiler.h&lt;/code&gt; ，被 &lt;code&gt;xwos/standard.h&lt;/code&gt; 包含。&lt;/li&gt;
+&lt;li&gt;Adapter： &lt;code&gt;xwos/ospl/soc/compiler.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Adaptee： &lt;code&gt;xwosimpl_soc_compiler.h&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;编译器相关的宏定义：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;__xwcc_section(s)&lt;/code&gt; ：表明符号属于段 &lt;code&gt;s&lt;/code&gt; 。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwcc_aligned(x)&lt;/code&gt; ：表明数据的起始地址对齐到x字节处。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwcc_inline&lt;/code&gt; ：表明函数是内联函数，需要和 &lt;code&gt;static&lt;/code&gt; 一起使用。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwcc_packed&lt;/code&gt; ：表明数据结构体是紧凑分布的，编译器不要做优化对齐处理。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwcc_must_check&lt;/code&gt; ：表明函数返回值必须被读取，否则编译器会报警告。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwcc_unused&lt;/code&gt; ：表明变量或函数未被使用，用于去除编译警告。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwcc_noreturn&lt;/code&gt; ：表明函数不会返回。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwcc_hot&lt;/code&gt; ：表明函数在代码中经常被调用，可以帮助某些编译器优化编译。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwcc_atomic&lt;/code&gt; ：表明变量是原子的，C11标准中被定义为_Atomic，C99标准中被定义为volatile。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwcc_likely(x)&lt;/code&gt; ：表明条件 &lt;code&gt;x&lt;/code&gt; 大概率为 &lt;code&gt;true&lt;/code&gt; ，用于编译 &lt;code&gt;if..else..&lt;/code&gt; 的优化。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwcc_unlikely(x)&lt;/code&gt; ：表明条件 &lt;code&gt;x&lt;/code&gt; 大概率为 &lt;code&gt;false&lt;/code&gt; ，用于编译 &lt;code&gt;if..else..&lt;/code&gt; 的优化。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwcc_alignl1cache&lt;/code&gt; ：表明数据的起始地址对齐到1级缓存(way-set缓存)的缓存线&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwcc_alignptr&lt;/code&gt; ：表明数据的起始地址对齐到指针的尺寸&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwcc_offsetof(type, member)&lt;/code&gt; ：计算member在结构体type中的偏移，等价于标准C库中的 &lt;code&gt;offsetof()&lt;/code&gt; 。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;架构指令&#34;&gt;架构指令&lt;/h3&gt;
+&lt;p&gt;CPU架构会提供一些特殊指令，一般这些指令很难用C语言表达出，以方便使用，XWOS内核对统一的部分进行了相同的封装。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;XWOS头文件：被包含在 &lt;code&gt;xwos/standard.h&lt;/code&gt; 内。&lt;/li&gt;
+&lt;li&gt;Adapter： &lt;code&gt;xwos/ospl/soc/isa.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Adaptee： &lt;code&gt;xwosimpl_soc_isa.h&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这些架构指令包括但不限于：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;断点指令&lt;/li&gt;
+&lt;li&gt;内存屏障&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;setjmplongjmp&#34;&gt;setjmp/longjmp&lt;/h3&gt;
+&lt;p&gt;XWOS的C库中提供了类似于C标准库中的 &lt;code&gt;setjmp()/longjmp()&lt;/code&gt; 函数组合，
+其实现与切换上下文时如何保存寄存器有密切关系。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;XWOS头文件： &lt;code&gt;xwos/lib/setjmp.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Adapter： &lt;code&gt;xwos/ospl/soc/setjmp.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Adaptee： &lt;code&gt;xwosimpl_soc_setjmp.h&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;系统调用与系统特权&#34;&gt;系统调用与系统特权&lt;/h3&gt;
+&lt;p&gt;通常CPU都有两种权限模式：用户和系统。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;系统模式下可以访问所有的寄存器；&lt;/li&gt;
+&lt;li&gt;用户模式下某些CPU内的寄存器无法被访问（例如开关中断），只能通过特殊指令让CPU进入系统模式才可访问。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;XWOS的C库中提供了可切换CPU访问权限的函数 &lt;code&gt;xwsc()&lt;/code&gt; ，通过 &lt;code&gt;xwsc()&lt;/code&gt; 可以让用户模式暂时拥有系统特权调用某个函数。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;XWOS头文件： &lt;code&gt;xwos/lib/sc.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Adapter： &lt;code&gt;xwos/ospl/soc/xwsc.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Adaptee： &lt;code&gt;xwosimpl_soc_xwsc.h&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;位操作&#34;&gt;位操作&lt;/h3&gt;
+&lt;p&gt;XWOS的C库中提供了位操作的函数集合，为提高效率，部分位操作可使用特殊指令实现。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;XWOS头文件： &lt;code&gt;xwos/lib/xwbop.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Adapter： &lt;code&gt;xwos/ospl/soc/xwbop.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Adaptee： &lt;code&gt;xwosimpl_soc_xwbop.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;基本类型的位操作函数集合：
+&lt;ul&gt;
+&lt;li&gt;位序镜面翻转：Intel位序（主流的小端CPU都是Inter位序）是越往高位位序号越大，
+摩托罗拉位序（PowerPC架构的CPU）是越往高位位序号越小，
+因此在两个系统混用时需要将数据的位序进行镜面翻转
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwbop_rbit8()&lt;/code&gt; ：镜面翻转8位数据的位序&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_rbit16()&lt;/code&gt; ：镜面翻转16位数据的位序&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_rbit32()&lt;/code&gt; ：镜面翻转32位数据的位序&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_rbit64()&lt;/code&gt; ：镜面翻转64位数据的位序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;大小端反转
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwbop_re16()&lt;/code&gt; ：反转16位数据的字节序&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_re16s32()&lt;/code&gt; ：反转16位数据的字节序，并将符号位扩展到32位，返回有符号32位数据&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_re32()&lt;/code&gt; ：反转32位数据的字节序&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_re32s64()&lt;/code&gt; ：反转32位数据的字节序，并将符号位扩展到64位，返回有符号64位数据&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_re64()&lt;/code&gt; ：：反转64位数据的字节序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;查找被置1的位
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwbop_ffs8()&lt;/code&gt; ：8位数据，从最低有效位开始查找&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_fls8()&lt;/code&gt; ：8位数据，从最高有效位开始查找&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_ffs16()&lt;/code&gt; ：16位数据，从最低有效位开始查找&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_fls16()&lt;/code&gt; ：16位数据，从最高有效位开始查找&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_ffs32()&lt;/code&gt; ：32位数据，从最低有效位开始查找&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_fls32()&lt;/code&gt; ：32位数据，从最高有效位开始查找&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_ffs64()&lt;/code&gt; ：64位数据，从最低有效位开始查找&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_fls64()&lt;/code&gt; ：64位数据，从最高有效位开始查找&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;原子操作&#34;&gt;原子操作&lt;/h3&gt;
+&lt;p&gt;XWOS的C库中提供了原子操作的函数集合，原子操作的实现依赖于CPU的原子操作指令。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;XWOS头文件：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos/lib/xwaop.h&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Adapter：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos/ospl/soc/xwaop.h&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Adaptee：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwosimpl_soc_xwaop.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwosimpl_soc_xwaop/*&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;说明
+&lt;ul&gt;
+&lt;li&gt;其他类型的原子操作，XWOS内核会基于4个基本类型进行封装。
+64位原子操作如果不支持可不提供；&lt;/li&gt;
+&lt;li&gt;如果CPU架构比较简单，无原子操作指令，可通过关中断实现这些原子操作函数；&lt;/li&gt;
+&lt;li&gt;某些CPU架构只提供与CPU位宽一致的原子操作指令，考虑代码的通用性，最好只使用
+与CPU位宽一致的原子数据类型；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;基本类型的原子操作函数集合：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;load()&lt;/code&gt; ：加载（可指定内存序）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;store()&lt;/code&gt; ：存储（可指定内存序）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;read()&lt;/code&gt; ：读（内存序：load-require）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;write()&lt;/code&gt; ：写（内存序：store-release）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;add()&lt;/code&gt; ：加法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sub()&lt;/code&gt; ：减法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rsb()&lt;/code&gt; ：反向减法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;and()&lt;/code&gt; ：与运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;or()&lt;/code&gt; ：或运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xor()&lt;/code&gt; ：异或运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;teq_then_write()&lt;/code&gt; ：测试是否与测试值 &lt;strong&gt;相等&lt;/strong&gt; ，然后 &lt;strong&gt;写&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;teq_then_add()&lt;/code&gt; ：测试是否与测试值 &lt;strong&gt;相等&lt;/strong&gt; ，然后做 &lt;strong&gt;加法&lt;/strong&gt; 运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;teq_then_sub()&lt;/code&gt; ：测试是否与测试值 &lt;strong&gt;相等&lt;/strong&gt; ，然后做 &lt;strong&gt;减法&lt;/strong&gt; 运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;teq_then_rsb()&lt;/code&gt; ：测试是否与测试值 &lt;strong&gt;相等&lt;/strong&gt; ，然后做 &lt;strong&gt;反向减法&lt;/strong&gt; 运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tne_then_write()&lt;/code&gt; ：测试是否与测试值 &lt;strong&gt;不相等&lt;/strong&gt; ，然后 &lt;strong&gt;写&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tne_then_add()&lt;/code&gt; ：测试是否与测试值 &lt;strong&gt;不相等&lt;/strong&gt; ，然后做 &lt;strong&gt;加法&lt;/strong&gt; 运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tne_then_sub()&lt;/code&gt; ：测试是否与测试值 &lt;strong&gt;不相等&lt;/strong&gt; ，然后做 &lt;strong&gt;减法&lt;/strong&gt; 运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tne_then_rsb()&lt;/code&gt; ：测试是否与测试值 &lt;strong&gt;不相等&lt;/strong&gt; ，然后做 &lt;strong&gt;反向减法&lt;/strong&gt; 运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tge_then_write()&lt;/code&gt; ：测试是否 &lt;strong&gt;大于等于&lt;/strong&gt; 测试值，然后 &lt;strong&gt;写&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tge_then_add()&lt;/code&gt; ：测试是否 &lt;strong&gt;大于等于&lt;/strong&gt; 测试值，然后做 &lt;strong&gt;加法&lt;/strong&gt; 运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tge_then_sub()&lt;/code&gt; ：测试是否 &lt;strong&gt;大于等于&lt;/strong&gt; 测试值，然后做 &lt;strong&gt;减法&lt;/strong&gt; 运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tge_then_rsb()&lt;/code&gt; ：测试是否 &lt;strong&gt;大于等于&lt;/strong&gt; 测试值，然后做 &lt;strong&gt;反向减法&lt;/strong&gt; 运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgt_then_write()&lt;/code&gt; ：测试是否 &lt;strong&gt;大于&lt;/strong&gt; 测试值，然后 &lt;strong&gt;写&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgt_then_add()&lt;/code&gt; ：测试是否 &lt;strong&gt;大于&lt;/strong&gt; 测试值，然后做 &lt;strong&gt;加法&lt;/strong&gt; 运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgt_then_sub()&lt;/code&gt; ：测试是否 &lt;strong&gt;大于&lt;/strong&gt; 测试值，然后做 &lt;strong&gt;减法&lt;/strong&gt; 运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgt_then_rsb()&lt;/code&gt; ：测试是否 &lt;strong&gt;大于&lt;/strong&gt; 测试值，然后做 &lt;strong&gt;反向减法&lt;/strong&gt; 运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tle_then_write()&lt;/code&gt; ：测试是否 &lt;strong&gt;小于等于&lt;/strong&gt; 测试值，然后 &lt;strong&gt;写&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tle_then_add()&lt;/code&gt; ：测试是否 &lt;strong&gt;小于等于&lt;/strong&gt; 测试值，然后做 &lt;strong&gt;加法&lt;/strong&gt; 运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tle_then_sub()&lt;/code&gt; ：测试是否 &lt;strong&gt;小于等于&lt;/strong&gt; 测试值，然后做 &lt;strong&gt;减法&lt;/strong&gt; 运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tle_then_rsb()&lt;/code&gt; ：测试是否 &lt;strong&gt;小于等于&lt;/strong&gt; 测试值，然后做 &lt;strong&gt;反向减法&lt;/strong&gt; 运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tlt_then_write()&lt;/code&gt; ：测试是否 &lt;strong&gt;小于&lt;/strong&gt; 测试值，然后 &lt;strong&gt;写&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tlt_then_add()&lt;/code&gt; ：测试是否 &lt;strong&gt;小于&lt;/strong&gt; 测试值，然后做 &lt;strong&gt;加法&lt;/strong&gt; 运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tlt_then_sub()&lt;/code&gt; ：测试是否 &lt;strong&gt;小于&lt;/strong&gt; 测试值，然后做 &lt;strong&gt;减法&lt;/strong&gt; 运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tlt_then_rsb()&lt;/code&gt; ：测试是否 &lt;strong&gt;小于&lt;/strong&gt; 测试值，然后做 &lt;strong&gt;反向减法&lt;/strong&gt; 运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgele_then_write()&lt;/code&gt; ：测试是否旧值是否在闭区间 &lt;code&gt;[l,r]&lt;/code&gt; ，然后 &lt;strong&gt;写&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgele_then_add()&lt;/code&gt; ：测试是否旧值是否在闭区间 &lt;code&gt;[l,r]&lt;/code&gt; ，然后做 &lt;strong&gt;加法&lt;/strong&gt; 运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgele_then_sub()&lt;/code&gt; ：测试是否旧值是否在闭区间 &lt;code&gt;[l,r]&lt;/code&gt; ，然后做 &lt;strong&gt;减法&lt;/strong&gt; 运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgele_then_rsb()&lt;/code&gt; ：测试是否旧值是否在闭区间 &lt;code&gt;[l,r]&lt;/code&gt; ，然后做 &lt;strong&gt;反向减法&lt;/strong&gt; 运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgelt_then_write()&lt;/code&gt; ：测试是否旧值是否在左闭右开区间 &lt;code&gt;[l,r)&lt;/code&gt; ，然后 &lt;strong&gt;写&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgelt_then_add()&lt;/code&gt; ：测试是否旧值是否在左闭右开区间 &lt;code&gt;[l,r)&lt;/code&gt; ，然后做 &lt;strong&gt;加法&lt;/strong&gt; 运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgelt_then_sub()&lt;/code&gt; ：测试是否旧值是否在左闭右开区间 &lt;code&gt;[l,r)&lt;/code&gt; ，然后做 &lt;strong&gt;减法&lt;/strong&gt; 运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgelt_then_rsb()&lt;/code&gt; ：测试是否旧值是否在左闭右开区间 &lt;code&gt;[l,r)&lt;/code&gt; ，然后做 &lt;strong&gt;反向减法&lt;/strong&gt; 运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgtle_then_write()&lt;/code&gt; ：测试是否旧值是否在左开右闭区间 &lt;code&gt;(l,r]&lt;/code&gt; ，然后 &lt;strong&gt;写&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgtle_then_add()&lt;/code&gt; ：测试是否旧值是否在左开右闭区间 &lt;code&gt;(l,r]&lt;/code&gt; ，然后做 &lt;strong&gt;加法&lt;/strong&gt; 运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgtle_then_sub()&lt;/code&gt; ：测试是否旧值是否在左开右闭区间 &lt;code&gt;(l,r]&lt;/code&gt; ，然后做 &lt;strong&gt;减法&lt;/strong&gt; 运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgtle_then_rsb()&lt;/code&gt; ：测试是否旧值是否在左开右闭区间 &lt;code&gt;(l,r]&lt;/code&gt; ，然后做 &lt;strong&gt;反向减法&lt;/strong&gt; 运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgtlt_then_write()&lt;/code&gt; ：测试是否旧值是否在开区间 &lt;code&gt;(l,r)&lt;/code&gt; ，然后 &lt;strong&gt;写&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgtlt_then_add()&lt;/code&gt; ：测试是否旧值是否在开区间 &lt;code&gt;(l,r)&lt;/code&gt; ，然后做 &lt;strong&gt;加法&lt;/strong&gt; 运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgtlt_then_sub()&lt;/code&gt; ：测试是否旧值是否在开区间 &lt;code&gt;(l,r)&lt;/code&gt; ，然后做 &lt;strong&gt;减法&lt;/strong&gt; 运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgtlt_then_rsb()&lt;/code&gt; ：测试是否旧值是否在开区间 &lt;code&gt;(l,r)&lt;/code&gt; ，然后做 &lt;strong&gt;反向减法&lt;/strong&gt; 运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tst_then_op()&lt;/code&gt; ：使用 &lt;code&gt;tst()&lt;/code&gt; 函数测试，然后使用 &lt;code&gt;op()&lt;/code&gt; 函数操作&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;位图数组的原子操作
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwbmpaop_c0i()&lt;/code&gt; ：将第i位清0&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpaop_s1i()&lt;/code&gt; ：将第i位置1&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpaop_x1i()&lt;/code&gt; ：翻转第i位&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpaop_t1i()&lt;/code&gt; ：测试第i位是否为1&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpaop_t0i_then_s1i()&lt;/code&gt; ：测试第i位是否为0，然后把它置1&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpaop_t1i_then_c0i()&lt;/code&gt; ：测试第i位是否为1，然后把它清0&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpaop_ffs_then_c0i()&lt;/code&gt; ：从最低有效位开始查找第一个为1的位并把它清0&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpaop_ffz_then_s1i()&lt;/code&gt; ：从最低有效位开始查找第一个为0的位并把它置1&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpaop_fls_then_c0i()&lt;/code&gt; ：从最高有效位开始查找第一个为1的位并把它清0&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpaop_flz_then_s1i()&lt;/code&gt; ：从最高有效位开始查找第一个为0的位并把它置1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;无锁队列&#34;&gt;无锁队列&lt;/h3&gt;
+&lt;p&gt;XWOS的C库中提供了无锁队列的函数，无锁队列的实现依赖于CPU的原子操作指令。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;XWOS头文件： &lt;code&gt;xwos/lib/lfq.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Adapter： &lt;code&gt;xwos/ospl/soc/lfq.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Adaptee： &lt;code&gt;xwosimpl_soc_lfq.h&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;自旋锁&#34;&gt;自旋锁&lt;/h3&gt;
+&lt;p&gt;在多核系统中，被多个CPU共同访问的内存区域需要被自旋锁保护，自旋锁的实现依赖于
+原子操作指令与内存屏障指令。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;XWOS头文件：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos/osal/lock/spinlock.h&lt;/code&gt; ：自旋锁&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/osal/lock/seqlock.h&lt;/code&gt; ：自旋锁的派生锁，顺序锁&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Adapter： &lt;code&gt;xwos/ospl/soc/spinlock.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Adaptee： &lt;code&gt;xwosimpl_soc_spinlock.h&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;中断&#34;&gt;中断&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;XWOS头文件： &lt;code&gt;xwos/osal/irq.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Adapter：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos/ospl/irq.h&lt;/code&gt; ： &lt;strong&gt;定义&lt;/strong&gt; 了BSP中需要适配的函数；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Adaptee：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwosimpl_irq.h&lt;/code&gt; ： &lt;strong&gt;实现&lt;/strong&gt; 了XWOS移植层中定义的函数；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;中断号：
+&lt;ul&gt;
+&lt;li&gt;XWOS定义了中断号类型 &lt;code&gt;xwirq_t&lt;/code&gt; ，是一个有符号数：&lt;/li&gt;
+&lt;li&gt;整数和0：表示SOC的外设中断；&lt;/li&gt;
+&lt;li&gt;负数：表示异常。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;中断优先级要求&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;切换上下文的中断为系统中最低优先级中断
+切换上下文的中断 &amp;lt;= 滴答定时器的中断 &amp;lt;= 调度器服务中断
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;操作系统移植层中需要提供的函数：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;void xwospl_cpuirq_enable_lc(void)&lt;/code&gt; ：开启CPU的中断开关&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;void xwospl_cpuirq_disable_lc(void)&lt;/code&gt; ：关闭CPU的中断开关&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;void xwospl_cpuirq_restore_lc(xwreg_t cpuirq)&lt;/code&gt; ：保存当前CPU的中断开关状态后关闭&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;void xwospl_cpuirq_save_lc(xwreg_t * cpuirq)&lt;/code&gt; ：恢复之前保存的CPU的中断开关状态&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwer_t xwospl_irq_get_id(xwirq_t * irqnbuf)&lt;/code&gt; ：获取当前中断的中断号，亦可用于判断上下文&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwer_t xwospl_irq_enable(xwirq_t irqn)&lt;/code&gt; ：开启某个外设中断&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwer_t xwospl_irq_disable(xwirq_t irqn)&lt;/code&gt; ：关闭某个外设中断&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwer_t xwospl_irq_save(xwirq_t irqn, xwreg_t * flag)&lt;/code&gt; ：保存某个外设中断的开关，然后将其关闭&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwer_t xwospl_irq_restore(xwirq_t irqn, xwreg_t flag)&lt;/code&gt; ：恢复某个外设中断的开关&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;硬件定时器&#34;&gt;硬件定时器&lt;/h3&gt;
+&lt;p&gt;每个CPU都需要一个私有的硬件定时器提供滴答中断，XWOS的调度、超时、软件定时器都基于滴答中断来实现。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Adapter： &lt;code&gt;xwos/ospl/syshwt.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Adaptee： &lt;code&gt;xwosimpl_syshwt.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;适配函数：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwospl_syshwt_init()&lt;/code&gt; ：初始化硬件定时器&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_syshwt_start()&lt;/code&gt; ：启动硬件定时器&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_syshwt_stop()&lt;/code&gt; ：关闭硬件定时器&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_syshwt_get_timeconfetti()&lt;/code&gt; ：返回还有多少纳秒进入下一次定时器中断&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;调度器&#34;&gt;调度器&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Adapter： &lt;code&gt;xwos/ospl/skd.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Adaptee： &lt;code&gt;xwosimpl_skd.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;适配函数：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwospl_skd_init(struct xwospl_skd * xwskd)&lt;/code&gt; ：初始化调度调度器&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_skd_init_stack()&lt;/code&gt; ：初始化调度对象（线程）的栈&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_skd_get_id()&lt;/code&gt; ：获取当前CPU的ID&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_skd_start()&lt;/code&gt; ：启动调度器&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_skd_suspend()&lt;/code&gt; ：暂停调度器，用于电源管理&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_skd_resume()&lt;/code&gt; ：继续调度器，用于电源管理&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_skd_req_swcx()&lt;/code&gt; ：请求调度&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_skd_isr_swcx()&lt;/code&gt; ：切换上下文的中断&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_thd_exit_lc()&lt;/code&gt; ：当前CPU上的线程退出&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_thd_freeze_lc()&lt;/code&gt; ：冻结当前CPU中正在运行的线程&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_thd_outmigrate()&lt;/code&gt; ：将线程迁出其他CPU，并准备迁入其他CPU（仅限多核）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_thd_immigrate()&lt;/code&gt; ：迁移线程至目标CPU（仅限多核）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;链接脚本&#34;&gt;链接脚本&lt;/h2&gt;
+&lt;p&gt;SOC描述层中包含了SOC的基本链接脚本，使用时需要在电路板目录的 &lt;code&gt;cfg&lt;/code&gt; 文件夹中定义一个 &lt;code&gt;XuanWuOS.lds&lt;/code&gt; ，
+其中包含了SOC的地址空间的定义，然后再 &lt;code&gt;include&lt;/code&gt; SOC描述层中的连接脚本即可。
+例如： &lt;code&gt;xwbd/WeActH750/cfg/XuanWuOS.lds&lt;/code&gt; 中只定义了 &lt;code&gt;MEMORY&lt;/code&gt; 和 &lt;code&gt;include xwcd/soc/arm/v7m/gcc/m7/stm32/h7.lds&lt;/code&gt; 。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;XWOS定义了一些 &lt;strong&gt;段(section)&lt;/strong&gt; ，链接时，可将内核代码、内核数据放在镜像文件的特定区域。
+这需要在 &lt;strong&gt;链接脚本&lt;/strong&gt; 中指明这些 &lt;strong&gt;段&lt;/strong&gt; 如何存放。
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;__xwos_init_code&lt;/code&gt; ：初始化代码，存放在 &lt;strong&gt;.xwos.init.text&lt;/strong&gt; 段&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwos_init_rodata&lt;/code&gt; ：初始化阶段的const数据，存放在 &lt;strong&gt;.xwos.init.rodata&lt;/strong&gt; 段&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwos_exit_code&lt;/code&gt; ：退出代码，存放在 &lt;strong&gt;.xwos.exit.text&lt;/strong&gt; 段&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwos_exit_rodata&lt;/code&gt; ：退出阶段的const数据，存放在 &lt;strong&gt;.xwos.exit.rodata&lt;/strong&gt; 段&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwos_ivt&lt;/code&gt; ：中断向量表，存放在 &lt;strong&gt;.xwos.ivt&lt;/strong&gt; 段&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwos_isr&lt;/code&gt; ：中断代码，存放在 &lt;strong&gt;.xwos.isr.text&lt;/strong&gt; 段&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwos_bh&lt;/code&gt; ：中断底半部代码，存放在 &lt;strong&gt;.xwos.isr.text&lt;/strong&gt; 段&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwos_code&lt;/code&gt; ：XWOS内核代码，存放在 &lt;strong&gt;.xwos.text&lt;/strong&gt; 段&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwos_api&lt;/code&gt; ：XWOS内核API，存放在 &lt;strong&gt;.xwos.text&lt;/strong&gt; 段&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwos_rodata&lt;/code&gt; ：const数据，存放在 &lt;strong&gt;.xwos.rodata&lt;/strong&gt; 段&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwos_data&lt;/code&gt; ：全局变量与静态变量，存放在 &lt;strong&gt;.xwos.data&lt;/strong&gt; 段&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;如果不需要这些自定义的 &lt;strong&gt;段&lt;/strong&gt; ，可将上面的宏定义为 &lt;strong&gt;空&lt;/strong&gt; ，相应的，代码会默认
+放在 &lt;code&gt;.text&lt;/code&gt; 段，数据会默认放在 &lt;code&gt;.data&lt;/code&gt; 段，const数据会默认放在 &lt;code&gt;.rodata&lt;/code&gt; 段。
+这三个 &lt;strong&gt;段&lt;/strong&gt; 都是由编译器默认产生的。&lt;/li&gt;
+&lt;li&gt;当 &lt;code&gt;__xwos_data&lt;/code&gt; 定义为 &lt;strong&gt;空&lt;/strong&gt; 时，配置文件 &lt;code&gt;cfg/xwos.h&lt;/code&gt; 中的配置 &lt;code&gt;XWKNCFG_RELOCATE_DATA&lt;/code&gt; 也应该不定义或定义为 &lt;code&gt;0&lt;/code&gt; 。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;初始化流程&#34;&gt;初始化流程&lt;/h2&gt;
+&lt;p&gt;XWOS提供了一个通用的&lt;a href=&#34;../../user-manual/boot-flow&#34;&gt;启动流程&lt;/a&gt;：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-mermaid&#34; data-lang=&#34;mermaid&#34;&gt;flowchart LR
+    poweron(&amp;#34;上电&amp;#34;) --&amp;gt; 低级初始化阶段 --&amp;gt; 系统初始化阶段 --&amp;gt; 用户程序
+
+    subgraph 低级初始化阶段
+        direction TB
+        arch_lowlevel_init[&amp;#34;arch_lowlevel_init()&amp;#34;] --&amp;gt; cpu_lowlevel_init
+        cpu_lowlevel_init[&amp;#34;cpu_lowlevel_init()&amp;#34;] --&amp;gt; soc_lowlevel_init
+        soc_lowlevel_init[&amp;#34;soc_lowlevel_init()&amp;#34;] --&amp;gt; board_lowlevel_init
+        board_lowlevel_init[&amp;#34;board_lowlevel_init()&amp;#34;]
+    end
+
+    subgraph 系统初始化阶段
+        direction TB
+        xwos_init[&amp;#34;xwos_init()&amp;#34;] --&amp;gt; arch_relocate
+        arch_relocate[&amp;#34;arch_relocate()&amp;#34;] --&amp;gt; arch_init
+        arch_init[&amp;#34;arch_init()&amp;#34;] --&amp;gt; cpu_init
+        cpu_init[&amp;#34;cpu_init()&amp;#34;] --&amp;gt; soc_init
+        soc_init[&amp;#34;soc_init()&amp;#34;] --&amp;gt; board_init
+    end
+
+    subgraph 用户程序
+        direction LR
+        subgraph &amp;#34;xwos_main()&amp;#34;
+            direction LR
+            skd[&amp;#34;启动调度器&amp;#34;]
+            thd[&amp;#34;线程初始化&amp;#34;]
+            device[&amp;#34;设备驱动初始化&amp;#34;]
+            libc[&amp;#34;C/C++标准库初始化&amp;#34;]
+            lua[&amp;#34;Lua虚拟机初始化&amp;#34;]
+        end
+    end
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;用户可在流程中找地方插入SOC的初始化的代码，但要注意：
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;lowlevel_init&lt;/strong&gt;的流程中不可访问全局变量，因为还未将全局变量的初值从flash中拷贝到RAM中；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;cxx_init&lt;/strong&gt;之后才可开始调用C++的代码；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;XWOS的初始化流程中，在 &lt;code&gt;soc_init()&lt;/code&gt; 中完成对中断控制器、调度器的初始化，
+如果用户不使用XWOS的初始化流程，需要依次调用：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos_init()&lt;/code&gt; ：初始化XWOS内核；&lt;/li&gt;
+&lt;li&gt;多核系统：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwmp_irqc_construct()&lt;/code&gt; ：初始化每个CPU的中断控制器；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmp_irqc_register()&lt;/code&gt; ：将每个CPU的中断控制器注册到中断控制子系统；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmp_skd_init_lc()&lt;/code&gt; ：分别在每个CPU上都运行一次这个函数初始化自己的调度器；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;单核系统：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwup_irqc_init()&lt;/code&gt; ：初始化中断控制器；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwup_skd_init_lc()&lt;/code&gt; ：初始化调度器；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;编译集成环境&#34;&gt;编译集成环境&lt;/h2&gt;
+&lt;p&gt;XWOS提供了一个&lt;a href=&#34;../../user-manual/build-system&#34;&gt;构建系统&lt;/a&gt;，可在Windows、Linux上运行。
+用户可以选择使用XWOS的编译集成环境，也可以使用其他IDE进行编译。&lt;/p&gt;
+&lt;h3 id=&#34;使用玄武构建系统&#34;&gt;使用玄武构建系统&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;XWOS的构建系统在构建 &lt;strong&gt;内核&lt;/strong&gt; 、 &lt;strong&gt;xwmd&lt;/strong&gt; 模块、 &lt;strong&gt;xwcd&lt;/strong&gt; 模块、 &lt;strong&gt;xwem&lt;/strong&gt; 模块、
+&lt;strong&gt;xwam&lt;/strong&gt; 模块、 &lt;strong&gt;oem&lt;/strong&gt; 模块时都是独立编译成静态库 &lt;strong&gt;.a&lt;/strong&gt; ，然后再链接。
+各个模块的编译配置（头文件、编译器选项）都是完全独立的，可以理解为不同的子工程。&lt;/li&gt;
+&lt;li&gt;构建是从 &lt;code&gt;xwbd/电路板名称/&lt;/code&gt; 录下执行命令 &lt;code&gt;make&lt;/code&gt; 开始的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;使用其他ide构建系统&#34;&gt;使用其他IDE构建系统&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;需要增加的头文件搜索路径：
+&lt;ul&gt;
+&lt;li&gt;XWOS根目录 &lt;code&gt;XWOS&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;架构描述层(ADL)目录：以ARMv7m为例， &lt;code&gt;xwcd/soc/arm/v7m/gcc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;CPU描述层(CDL)目录：以ARMv7m7为例， &lt;code&gt;xwcd/soc/arm/v7m/gcc/m7&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;SOC描述层(SDL)目录：以STM32H7为例， &lt;code&gt;xwcd/soc/arm/v7m/gcc/m7/stm32h7x&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;电路板目录：以开发板 &lt;code&gt;WeActMiniStm32H750&lt;/code&gt; 为例， &lt;code&gt;xwbd/WeActMiniStm32H750&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;需要包含的源码文件：
+&lt;ul&gt;
+&lt;li&gt;内核目录 &lt;code&gt;xwos&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;架构描述层(ADL)目录：以ARMv7m为例， &lt;code&gt;xwcd/soc/arm/v7m/gcc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;CPU描述层(CDL)目录：以ARMv7m7为例， &lt;code&gt;xwcd/soc/arm/v7m/gcc/m7&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;SOC描述层(SDL)目录：以STM32H7为例， &lt;code&gt;xwcd/soc/arm/v7m/gcc/m7/stm32h7x&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;电路板目录：以开发板WeActH750为例， &lt;code&gt;xwbd/WeActH750&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;中间件 &lt;code&gt;xwmd&lt;/code&gt; 、驱动框架 &lt;code&gt;xwcd/ds&lt;/code&gt; 、第三方模块 &lt;code&gt;xwem&lt;/code&gt; 、应用模块 &lt;code&gt;xwam&lt;/code&gt;
+不是必须的，若只使用XWOS内核，这些可以删除。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;若其他IDE的工具链不是gcc，则需要重新实现ADL、CDL、SDL中的 &lt;code&gt;xwosimpl&lt;/code&gt; 的代码，此种情况 &lt;code&gt;xwcd/soc&lt;/code&gt; 中的代码也不需要。&lt;/li&gt;
+&lt;li&gt;需要修改配置， &lt;code&gt;xwbd/WeActMiniStm32H750/cfg&lt;/code&gt; 。&lt;/li&gt;
+&lt;li&gt;需要在 &lt;code&gt;xwbd/WeActMiniStm32H750&lt;/code&gt; 目录，执行一次 &lt;code&gt;make cfg&lt;/code&gt; ，生成
+然后将 &lt;code&gt;xwbd/WeActMiniStm32H750/wkspc/autogen.h&lt;/code&gt; 拷贝到 &lt;code&gt;xwbd/WeActMiniStm32H750/cfg&lt;/code&gt; 中。&lt;/li&gt;
+&lt;li&gt;需要配置IDE的连接脚本。&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Newlib</title>
+      <link>/docs/Note/Newlib/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/Note/Newlib/</guid>
+      <description>
+        
+        
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Picolibc</title>
+      <link>/docs/Note/Picolibc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/Note/Picolibc/</guid>
+      <description>
+        
+        
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Lua开发笔记</title>
+      <link>/docs/Note/Lua/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/Note/Lua/</guid>
+      <description>
+        
+        
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Rust开发笔记</title>
+      <link>/docs/Note/Rust/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/Note/Rust/</guid>
+      <description>
+        
+        
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: MISRA-C2012</title>
+      <link>/docs/Note/MISRA-C2012/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/Note/MISRA-C2012/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
+&lt;p&gt;XWOS的代码，大致遵循 &lt;strong&gt;MISRA-C:2012&lt;/strong&gt; 规范进行编写，但有些 &lt;strong&gt;MISRA-C:2012&lt;/strong&gt; 的规则不利于
+编写操作系统，XWOS的代码趋向于选择更优的性能以及尝试使用更新的语言特性。&lt;/p&gt;
+&lt;p&gt;本文将详细描述 &lt;strong&gt;MISRA-C:2012&lt;/strong&gt; 检查的方法，以及 &lt;strong&gt;MISRA-C:2012&lt;/strong&gt; 规范的符合程度。&lt;/p&gt;
+&lt;h2 id=&#34;misra-c2012-规范的检查方法&#34;&gt;&lt;strong&gt;MISRA-C:2012&lt;/strong&gt; 规范的检查方法&lt;/h2&gt;
+&lt;p&gt;使用 &lt;code&gt;cppcheck&lt;/code&gt; 工具的 &lt;code&gt;misra&lt;/code&gt; 插件。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cppcheck -I. -I&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;$(&lt;/span&gt;XWOS_ARCH_DIR&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;)&lt;/span&gt; -I&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;$(&lt;/span&gt;XWOS_CPU_DIR&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;)&lt;/span&gt; -I&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;$(&lt;/span&gt;XWOS_SOC_DIR&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;)&lt;/span&gt; -I&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;$(&lt;/span&gt;XWOS_BRD_DIR&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#b62;font-weight:bold&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#b62;font-weight:bold&#34;&gt;&lt;/span&gt;  --force --addon&lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt;misra --cppcheck-build-dir&lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;$(&lt;/span&gt;CPPCHECK_OUT&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color:#b62;font-weight:bold&#34;&gt;\
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#b62;font-weight:bold&#34;&gt;&lt;/span&gt;  --template&lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt;gcc --inline-suppr --suppressions-list&lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt;xwbs/util/cppcheck/misra-c2012-suppressions.txt
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  -i ignore_path src_path
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;misra-c2012-规范的符合程度&#34;&gt;&lt;strong&gt;MISRA-C:2012&lt;/strong&gt; 规范的符合程度&lt;/h2&gt;
+&lt;h3 id=&#34;全局禁用的规则&#34;&gt;全局禁用的规则&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;uninitvar&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：误报。实际上未初始化变量，编译器会当成错误来处理。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-1.4&lt;/code&gt; : &lt;strong&gt;Emergent language features shall not be used&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：作为一个长期持续维护的项目，XWOS在新版本中会偏向于引入新的语言特性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-2.3&lt;/code&gt; : &lt;strong&gt;A project should not contain unused type declarations&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：操作系统作为一个 &lt;strong&gt;生态系统&lt;/strong&gt; 的基本环境，其中定义的类型、宏、函数、符号等可能在各种衍生项目中被用到。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-2.4&lt;/code&gt; : &lt;strong&gt;A project should not contain unused tag declarations&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：操作系统作为一个 &lt;strong&gt;生态系统&lt;/strong&gt; 的基本环境，其中定义的类型、宏、函数、符号等可能在各种衍生项目中被用到。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-2.5&lt;/code&gt; : &lt;strong&gt;A project should not contain unused macro declarations&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：操作系统作为一个 &lt;strong&gt;生态系统&lt;/strong&gt; 的基本环境，其中定义的类型、宏、函数、符号等可能在各种衍生项目中被用到。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-3.1&lt;/code&gt; : &lt;strong&gt;The character sequences &lt;code&gt;/*&lt;/code&gt; and &lt;code&gt;//&lt;/code&gt; shall not be used within a comment&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：XWOS内使用doxygen来抓取注释生成文档，文档中如果出现URL，必然会出现 &lt;code&gt;//&lt;/code&gt; ，例如 &lt;code&gt;https://...&lt;/code&gt; ，除此种情况，禁止在注释中出现 &lt;code&gt;//&lt;/code&gt; 。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-5.9&lt;/code&gt; : &lt;strong&gt;Identifiers that define objects or functions with internal linkage should be unique&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：包含 &lt;code&gt;static inline&lt;/code&gt; 内联函数的头文件多处使用时，内联函数被认为重复定义。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-8.7&lt;/code&gt; : &lt;strong&gt;Functions and objects should not be defined with external linkage if they are referenced in only one translation unit&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：XWOS提供的API并不一定被自己使用，对于 &lt;strong&gt;MISRA-C2012&lt;/strong&gt; 规范的检查工具，可能会因为只检查到一次符号而报错。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-8.9&lt;/code&gt; : &lt;strong&gt;An object should be defined at block scope if its identifier only appears in a single function&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：有些数据定义为全局，是为了链接时放在特定的段。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-11.3&lt;/code&gt; : &lt;strong&gt;A cast shall not be performed between a pointer to object type and a pointer to a diﬀerent object type&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;XWOS中各类型的原子操作和位操作是根据位宽转换为8位、16位、32位、64位基本类型来实现的；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;动态内存管理；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;C语言面向对象。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-11.4&lt;/code&gt; : &lt;strong&gt;A conversion should not be performed between a pointer to object and an integer type&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;在指令和寄存器级别的代码；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;&lt;code&gt;xwcc_derof()&lt;/code&gt; 宏的实现；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;动态内存管理；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;C语言面向对象。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-11.5&lt;/code&gt; : &lt;strong&gt;A conversion should not be performed from pointer to void into pointer to object&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;动态内存管理；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;通讯协议协议的变长消息；&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;回调函数的用户参数是个泛型指针。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-11.6&lt;/code&gt; : &lt;strong&gt;A cast shall not be performed between pointer to void and an arithmetic type&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;XWOS将 &lt;code&gt;-1&lt;/code&gt; 至 &lt;code&gt;-4095&lt;/code&gt; 的指针值当作错误码指针。但是指针是一个无符号整数。
+因此是以补码形式表示。 &lt;code&gt;-1&lt;/code&gt; 即 &lt;code&gt;0xFFFFFFFF&lt;/code&gt; ， &lt;code&gt;-4095&lt;/code&gt; 即 &lt;code&gt;0xFFFFF001&lt;/code&gt; 。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;动态内存管理。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-15.1&lt;/code&gt; : &lt;strong&gt;The goto statement should not be used&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：XWOS只在下面两种情况下使用 &lt;code&gt;goto&lt;/code&gt; 。
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;XWOS内某些比较核心的算法（例如红黑树），会使用 &lt;code&gt;goto&lt;/code&gt; 来提高效率。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;1.1. 因为这类代码在整个内核中被大量使用，效率是优先考虑的重点；&lt;/li&gt;
+&lt;li&gt;1.2. 这类代码被验证得最充分，稳定性与安全性最高。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;XWOS使用 &lt;code&gt;goto&lt;/code&gt; 来处理出错时的代码返回。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;2.1. 如果代码中包含了大量的操作，每个操作都有返回值，若使用 &lt;code&gt;if...else...&lt;/code&gt; 将使得嵌套特别深。使用 &lt;code&gt;goto&lt;/code&gt; 能使得代码更美观易读；&lt;/li&gt;
+&lt;li&gt;2.2. 如果代码中包含了大量的操作，每个操作都有对应的反操作，操作与反操作需要像 “栈” 结构一样先进后出，使用 &lt;code&gt;if...else...&lt;/code&gt; 很容易
+遗漏反操作或将反操作的顺序搞错，但使用 &lt;code&gt;goto&lt;/code&gt; 就可完美解决这一问题。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 如果包含大量操作，使用 `if...else...` 将使得代码行过长，
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080;font-style:italic&#34;&gt; * 并且anti_operationX() 很容易写错位置或者遗漏。
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080;font-style:italic&#34;&gt; */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;func1&lt;/span&gt;(&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;void&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        rc &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;operation1&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#666&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;==&lt;/span&gt; rc) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                rc &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;operation3&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#666&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;==&lt;/span&gt; rc) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                        rc &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;operation8&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                        &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#666&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;==&lt;/span&gt; rc) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                                rc &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;operation2&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                                &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#666&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;==&lt;/span&gt; rc) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                                        rc &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;operation6&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                                        &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#666&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;==&lt;/span&gt; rc) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                                                rc &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;operation5&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                                                &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#666&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;==&lt;/span&gt; rc) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                                                } &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;else&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                                                        &lt;span style=&#34;color:#00a000&#34;&gt;anti_operation6&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                                                }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                                        } &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;else&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                                                &lt;span style=&#34;color:#00a000&#34;&gt;anti_operation2&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                                        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                                } &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;else&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                                        &lt;span style=&#34;color:#00a000&#34;&gt;anti_operation8&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                                }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                        } &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;else&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                                &lt;span style=&#34;color:#00a000&#34;&gt;anti_operation3&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                } &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;else&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                    &lt;span style=&#34;color:#00a000&#34;&gt;anti_operation1&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        } &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;else&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;return&lt;/span&gt; rc;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 使用 `goto` 将避免 `if...else...` 上述的两个问题。*/&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;func2&lt;/span&gt;(&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;void&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        rc &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;operation1&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;if&lt;/span&gt; (rc &lt;span style=&#34;color:#666&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;0&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;goto&lt;/span&gt; err_operation1;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        rc &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;operation3&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;if&lt;/span&gt; (rc &lt;span style=&#34;color:#666&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;0&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;goto&lt;/span&gt; err_operation3;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        rc &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;operation8&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;if&lt;/span&gt; (rc &lt;span style=&#34;color:#666&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;0&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;goto&lt;/span&gt; err_operation8;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        rc &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;operation2&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;if&lt;/span&gt; (rc &lt;span style=&#34;color:#666&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;0&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;goto&lt;/span&gt; err_operation2;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        rc &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;operation6&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;if&lt;/span&gt; (rc &lt;span style=&#34;color:#666&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;0&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;goto&lt;/span&gt; err_operation6;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        rc &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;operation5&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;if&lt;/span&gt; (rc &lt;span style=&#34;color:#666&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;0&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;goto&lt;/span&gt; err_operation5;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;return&lt;/span&gt; rc;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;anti_operation5&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a0a000&#34;&gt;err_operation5&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;anti_operation6&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a0a000&#34;&gt;err_operation6&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;anti_operation2&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a0a000&#34;&gt;err_operation2&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;anti_operation8&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a0a000&#34;&gt;err_operation8&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;anti_operation3&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a0a000&#34;&gt;err_operation3&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#00a000&#34;&gt;anti_operation1&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a0a000&#34;&gt;err_operation1&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;return&lt;/span&gt; rc;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-17.1&lt;/code&gt; : &lt;strong&gt;The features of &amp;lt;stdarg.h&amp;gt; shall not be used&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：不应该完全禁止语言特性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-18.8&lt;/code&gt; : &lt;strong&gt;Variable-length array types shall not be used&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：变长数组是C99标准引入的特性，XWOS在新版本中会偏向于引入新的语言特性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-19.2&lt;/code&gt; : &lt;strong&gt;The union keyword should not be used&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：
+&lt;ul&gt;
+&lt;li&gt;编写操作系统时不可避免地需要将内存地址转换为不同类型的指针，使用 &lt;code&gt;union&lt;/code&gt; 可以避免直接对 &lt;code&gt;void *&lt;/code&gt; 进行转换，提高可读性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-20.9&lt;/code&gt; : &lt;strong&gt;All identifiers used in the controlling expression of &lt;code&gt;#if&lt;/code&gt; or &lt;code&gt;#elif&lt;/code&gt; preprocessing directives shall be &lt;code&gt;#define&lt;/code&gt; ’d before evaluation&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：检测工具会误报，但XWOS的代码是遵循此规则的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-21.1&lt;/code&gt; : ** &lt;code&gt;#define&lt;/code&gt; and &lt;code&gt;#undef&lt;/code&gt; shall not be used on a reserved identifier or reserved macro name**&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：C语言将任何以 &lt;code&gt;_&lt;/code&gt; 开头的符号作为保留，但有些符号来自于编译器的扩展语法，例如 &lt;code&gt;__attribute__((x))&lt;/code&gt; ，通常将它们定义为两个 &lt;code&gt;_&lt;/code&gt; 开头的宏来使用，
+以显示它们和正常的变量、函数、宏的区别。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-21.3&lt;/code&gt; &lt;strong&gt;The memory allocation and deallocation functions of &lt;code&gt;&amp;lt;stdlib.h&amp;gt;&lt;/code&gt; shall not be used&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：完全禁止动态内存管理不利于引入高级语言。
+仅当安全等级非常高时才禁止动态内存管理，相应的一些功能也不可被使用，例如Lua语言。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-21.6&lt;/code&gt; : &lt;strong&gt;The Standard Library input/output functions shall not be used&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因： &lt;code&gt;stdio.h&lt;/code&gt; 的函数在XWOS内被重新定义过。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-21.10&lt;/code&gt; : &lt;strong&gt;The Standard Library time and date functions shall not be used&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因： &lt;code&gt;time.h&lt;/code&gt; 的函数在XWOS内被重新定义过。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;部分文件禁用的规则&#34;&gt;部分文件禁用的规则&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-2.7&lt;/code&gt; : &lt;strong&gt;There should be no unused parameters in functions&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：此头文件中包含CPU架构指令级别的函数，这些函数使用内联汇编语法编写，
+在C语法层面看起来有些参数未使用，实际上这些参数是根据 &lt;code&gt;EABI&lt;/code&gt; 规则通过寄存器在使用。
+&lt;ul&gt;
+&lt;li&gt;适用范围：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwcd/soc/arm/v6m/armv6m_isa.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwcd/soc/arm/v7m/armv7m_isa.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwcd/soc/powerpc/e200x/e200x_isa.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwcd/soc/riscv/nuclei/riscv_isa.h&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-5.7&lt;/code&gt; : &lt;strong&gt;A tag name shall be a unique identifier&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：匿名结构体被认为 &lt;code&gt;tag name&lt;/code&gt; 重复是误报。
+&lt;ul&gt;
+&lt;li&gt;适用范围：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwcd/soc/arm/v6m/armv6m_isa.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwcd/soc/arm/v7m/armv7m_isa.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwcd/soc/powerpc/e200x/e200x_isa.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwcd/soc/riscv/nuclei/riscv_isa.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwcd/ds/uart/common.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwcd/ds/uart/controller.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwcd/ds/soc/chip.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/lib/xwbop.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/mp/skd.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/up/skd.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/mp/thd.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/up/thd.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/mp/sync/obj.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/up/sync/obj.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/mm/mempool/objcache.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/mm/mempool/page.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/isc/xwssc/protocol.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/libc/newlibac/lock.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/libc/picolibac/lock.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;禁用原因：libc要求定义的符号
+&lt;ul&gt;
+&lt;li&gt;适用范围：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwmd/libc/newlibac/lock.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/libc/picolibac/lock.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-5.8&lt;/code&gt; : &lt;strong&gt;A tag name shall be a unique identifier&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：结构体内部的成员名是在结构体的namespace内的，不会和外面符号发生冲突。
+&lt;ul&gt;
+&lt;li&gt;适用范围：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwmd/isc/xwssc/hwifal.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/mm/mempool/i_allocator.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/libc/picolibcac/mem.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/mm/mempool/page.h&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;禁用原因：对LIBC中的标准函数进行重写。
+&lt;ul&gt;
+&lt;li&gt;适用范围：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwmd/libc/picolibcac/fops.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-8.4&lt;/code&gt; : &lt;strong&gt;A compatible declaration shall be visible when an object or function with external linkage is defined&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：误报
+&lt;ul&gt;
+&lt;li&gt;适用范围：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos/ospl/xwosplcb.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;禁用原因：Rust语言的 &lt;code&gt;ffi&lt;/code&gt; 不是在C语言层面进行链接。
+&lt;ul&gt;
+&lt;li&gt;适用范围：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwmd/xwrust/ffi/*.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-8.5&lt;/code&gt; : &lt;strong&gt;An external object or function shall be declared once in one and only one file&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因： &lt;code&gt;xwos/ospl/soc/*.h&lt;/code&gt; 是操作系统移植层的代码，对符号再次定义，起到汇总与强调的作用。提示用户移植时需要提供这些符号的定义。
+&lt;ul&gt;
+&lt;li&gt;适用范围：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos/ospl/soc/*.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/lib/xwbop.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/lib/lfq.h&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;禁用原因：误报
+&lt;ul&gt;
+&lt;li&gt;适用范围
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwmd/libc/newlibac/*.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/libc/picolibcac/*.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-8.6&lt;/code&gt; : &lt;strong&gt;An identifier with external linkage shall have exactly one external definition&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：误报
+&lt;ul&gt;
+&lt;li&gt;适用范围
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwmd/libc/newlibac/*.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/libc/picolibcac/*.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-8.14&lt;/code&gt; : &lt;strong&gt;The restrict type qualifier shall not be used&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：对LIBC中的标准函数进行重写。
+&lt;ul&gt;
+&lt;li&gt;适用范围：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwmd/libc/newlibac/string.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/libc/picolibcac/string.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/libc/newlibac/time.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/libc/picolibcac/time.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-9.2&lt;/code&gt; : &lt;strong&gt;The initializer for an aggregate or union shall be enclosed in braces&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：误报
+&lt;ul&gt;
+&lt;li&gt;适用范围：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwmd/libc/newlibac/fops.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/libc/picolibcac/fops.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-9.3&lt;/code&gt; : &lt;strong&gt;Arrays shall not be partially initialized&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：误报
+&lt;ul&gt;
+&lt;li&gt;适用范围：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwmd/libc/newlibac/fops.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/libc/picolibcac/fops.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-10.8&lt;/code&gt; : &lt;strong&gt;The value of a composite expression shall not be cast to a diﬀerent essential type category or a wider essential type&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：宏定义的表达式是复合的表达式，不得不使用强制类型转换
+&lt;ul&gt;
+&lt;li&gt;适用范围：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos/mm/mempool/page.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-11.1&lt;/code&gt; : &lt;strong&gt;Conversions shall not be performed between a pointer to a function and any other type&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：操作系统抽象层到实现层的必要转换
+&lt;ul&gt;
+&lt;li&gt;适用范围：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos/osal/thd.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/osal/swt.h&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-12.3&lt;/code&gt; : &lt;strong&gt;The comma operator should not be used&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：XWOS的链表( &lt;code&gt;xwos/lib/bclst.h&lt;/code&gt; )中的迭代操作宏不得不使用逗号表达式来定义。
+&lt;ul&gt;
+&lt;li&gt;适用范围：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos/mp/skd.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/up/skd.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-14.2&lt;/code&gt; : &lt;strong&gt;A for loop shall be well-formed&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：XWOS的链表( &lt;code&gt;xwos/lib/bclst.h&lt;/code&gt; )中的迭代操作过于复杂，使用宏定义来简化代码。
+&lt;ul&gt;
+&lt;li&gt;适用范围：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos/mp/skd.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/up/skd.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-15.2&lt;/code&gt; : &lt;strong&gt;The goto statement shall jump to a label declared later in the same function&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：这部分代码是XWOS低中断延迟的关键代码，必须优先考虑实时性和性能，因此不得不用 &lt;code&gt;goto&lt;/code&gt; 来实现。
+&lt;ul&gt;
+&lt;li&gt;适用范围：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos/mp/tt.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/up/tt.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;禁用原因：误报。
+&lt;ul&gt;
+&lt;li&gt;适用范围：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwmd/isc/xwssc/mif.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-15.4&lt;/code&gt; : &lt;strong&gt;There should be no more than one break or goto statement used to terminate any iteration statement&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：这部分代码是XWOS低中断延迟的关键代码，必须优先考虑实时性和性能，因此不得不用 &lt;code&gt;goto&lt;/code&gt; 来实现。
+&lt;ul&gt;
+&lt;li&gt;适用范围：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos/mp/tt.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/up/tt.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;禁用原因：使用率较高的代码只使用一个 &lt;code&gt;break&lt;/code&gt; 或 &lt;code&gt;goto&lt;/code&gt; 影响效率。
+&lt;ul&gt;
+&lt;li&gt;适用范围：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos/up/skd.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/mp/sync/evt.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/up/sync/evt.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/isc/xwssc/hwifal.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/isc/xwssc/protocol.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-15.5&lt;/code&gt; : &lt;strong&gt;A function should have a single point of exit at the end&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：函数参数检测的代码被定义为一个宏，其中包含了一个 &lt;code&gt;return&lt;/code&gt; 。
+&lt;ul&gt;
+&lt;li&gt;适用范围：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwmd/isc/xwssc/mif.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-17.2&lt;/code&gt; : &lt;strong&gt;Functions shall not call themselves, either directly or indirectly&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：这部分代码是XWOS独创的开中断调度技术的关键代码，不得不使用递归函数来实现。此处代码被验证得非常充分，稳定性与安全性不用担心。
+&lt;ul&gt;
+&lt;li&gt;适用范围：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos/mp/skd.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/up/skd.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-17.7&lt;/code&gt; : &lt;strong&gt;The value returned by a function having non-void return type shall be used&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：C库函数 &lt;code&gt;memset()&lt;/code&gt; , &lt;code&gt;memcpy()&lt;/code&gt; 等有返回值，但这里并不使用它们。
+&lt;ul&gt;
+&lt;li&gt;适用范围：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos/mp/rtrq.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/up/rtrq.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/mp/sync/evt.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/up/sync/evt.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/isc/xwcq/xwcq.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/isc/xwssc/hwifal.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/isc/xwssc/mif.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/isc/xwssc/protocol.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/libc/newlibac/mif.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/libc/picolibcac/mif.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/libc/newlibac/mem.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/libc/picolibcac/mem.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;禁用原因：确定不使用返回值的地方，使用 &lt;code&gt;cppcheck-suppress [misra-c2012-17.7]&lt;/code&gt; 标注。
+&lt;ul&gt;
+&lt;li&gt;适用范围：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos/init.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/mp/lock/mtx.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/up/lock/mtx.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/mp/lock/spinlock.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/up/lock/seqlock.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/isc/xwssc/mif.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/isc/xwssc/protocol.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/mm/mempool/objcache.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/mm/mempool/allocator.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/mm/mempool/page.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-17.8&lt;/code&gt; : &lt;strong&gt;A function parameter should not be modified&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：为了追求效率以及内存使用率，不遵循此规则。
+&lt;ul&gt;
+&lt;li&gt;适用范围：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos/lib/xwbop.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/mm/bma.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/mm/mempool/objcache.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/mm/mempool/page.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/mm/mempool/allocator.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/mp/lock/mtx.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/up/lock/mtx.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/isc/xwssc/protocol.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/libc/newlibac/string.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/libc/picolibcac/string.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-20.7&lt;/code&gt; : &lt;strong&gt;Expressions resulting from the expansion of macro parameters shall be enclosed in parentheses&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：这部分代码使用宏来模拟C++的函数模板，其中作为类型名的参数不能使用括号封闭起来。
+&lt;ul&gt;
+&lt;li&gt;适用范围：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos/lib/xwaop.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/lib/xwbop.h&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;禁用原因：这部分代码使用宏来定义数组，其中作为数组名参数不能使用括号封闭起来。
+&lt;ul&gt;
+&lt;li&gt;适用范围：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos/mm/bma.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/mm/mempool/allocator.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/isc/xwssc/mif.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/isc/xwcq/mif.h&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-20.10&lt;/code&gt; : &lt;strong&gt;The &lt;code&gt;#&lt;/code&gt; and &lt;code&gt;##&lt;/code&gt; preprocessor operators should not be used&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：这部分代码使用宏来模拟C++的函数模板，必须使用到 &lt;code&gt;#&lt;/code&gt; 和 &lt;code&gt;##&lt;/code&gt; 。
+&lt;ul&gt;
+&lt;li&gt;适用范围：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos/lib/xwaop.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/lib/xwbop.h&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-20.12&lt;/code&gt; : &lt;strong&gt;A macro parameter used as an operand to the &lt;code&gt;#&lt;/code&gt; or &lt;code&gt;##&lt;/code&gt; operators,
+which is itself subject to further macro replacement, shall only be used as an operand to these operators&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：这部分代码使用宏来模拟C++的函数模板。
+&lt;ul&gt;
+&lt;li&gt;适用范围：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos/lib/xwaop.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/lib/xwbop.h&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-21.2&lt;/code&gt; &lt;strong&gt;A reserved identifier or macro name shall not be declared&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：对LIBC中的标准函数进行重写。
+&lt;ul&gt;
+&lt;li&gt;适用范围：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwmd/libc/newlibac/string.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/libc/picolibcac/string.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/libc/picolibcac/fops.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/libc/picolibcac/mem.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;misra-c2012-21.4&lt;/code&gt; &lt;strong&gt;The standard header file &lt;code&gt;&amp;lt;setjmp.h&amp;gt;&lt;/code&gt; shall not be used&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;禁用原因：不应该完全禁止语言特性，XWOS对 &lt;code&gt;&amp;lt;setjmp.h&amp;gt;&lt;/code&gt; 提供了支持 。
+&lt;ul&gt;
+&lt;li&gt;适用范围：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwmd/libc/newlibac/setjmp.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/libc/picolibcac/setjmp.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

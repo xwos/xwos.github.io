@@ -1,0 +1,550 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>XWOS API: xwos/lib/compiler.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<a href="/" class="github-corner" title="返回首页">
+  <svg viewBox="0 0 250 250" style="position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path
+      d="M 0 0 L 250 250 L 250 0 L 0 0 z M 181.19336 6.25 A 18.281986 19.638775 0 0 1 192.79297 10.798828 L 241.54492 54.201172 A 6.0939954 6.5462585 0 0 1 237.64453 65.787109 L 233.13477 65.787109 A 3.0469979 3.2731292 0 0 0 230.08789 69.060547 L 230.08789 111.61133 A 18.281986 19.638775 0 0 1 211.80664 131.25 L 205.71289 131.25 A 12.187991 13.092517 0 0 1 193.52344 118.1582 L 193.52344 98.519531 A 12.187991 13.092517 0 0 0 181.33594 85.425781 A 12.187991 13.092517 0 0 0 169.14844 98.519531 L 169.14844 118.1582 A 12.187991 13.092517 0 0 1 156.95898 131.25 L 150.86523 131.25 A 18.281986 19.638775 0 0 1 132.58398 111.61133 L 132.58398 68.994141 A 3.0469979 3.2731292 0 0 0 129.29297 65.722656 L 124.7832 65.722656 A 6.0939954 6.5462585 0 0 1 120.88281 54.201172 L 169.39258 10.798828 A 18.281986 19.638775 0 0 1 181.19336 6.25 z "/>
+  </svg>
+</a>
+<style>.github-corner:hover</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">XWOS API
+   &#160;<span id="projectnumber">3.0</span>
+   </div>
+   <div id="projectbrief">XWOS API参考手册</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('compiler_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">compiler.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="compiler_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#ifndef __xwos_lib_compiler_h__</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#define __xwos_lib_compiler_h__</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;cfg/project.h&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#include &lt;xwos/ospl/soc/compiler.h&gt;</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#ifndef __xwcc_section</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga63c73d4d1079dd4a5cbdb32c1441285a">   59</a></span><span class="preprocessor">#  define __xwcc_section(s)</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">#ifndef __xwcc_aligned</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga9fb0ff33b1810478550bba1488757afb">   62</a></span><span class="preprocessor">#  define __xwcc_aligned(x) __attribute__((aligned(x)))</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="preprocessor">#ifndef __xwcc_weak</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga761bc0276b8857adbde74cec1e4b1f15">   65</a></span><span class="preprocessor">#  define __xwcc_weak __attribute__((weak))</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="preprocessor">#ifndef __xwcc_weakref</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga62c429b5b854bbf3521a69880f284c5b">   68</a></span><span class="preprocessor">#  define __xwcc_weakref(x) __attribute__((weakref(s)))</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="preprocessor">#ifndef __xwcc_alias</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga266d20ebc51ce2721d8127597e5cbd42">   71</a></span><span class="preprocessor">#  define __xwcc_alias(s) __attribute__((alias(s)))</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="preprocessor">#ifndef __xwcc_weakalias</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga64c104ece7e51f2ee7660366cc04f39d">   74</a></span><span class="preprocessor">#  define __xwcc_weakalias(s) __attribute__((weak, alias(s)))</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="preprocessor">#ifndef __xwcc_inline</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga5e8b37d60ecc79e18ac2ace94dcbf258">   77</a></span><span class="preprocessor">#  define __xwcc_inline inline</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="preprocessor">#ifndef __xwcc_pure</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga82b702726a672e61d294c251b077aa66">   80</a></span><span class="preprocessor">#  define __xwcc_pure</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="preprocessor">#ifndef __xwcc_packed</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga6920aba0744d4f658b40dc976d850962">   83</a></span><span class="preprocessor">#  define __xwcc_packed __attribute__((packed))</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="preprocessor">#ifndef __xwcc_must_check</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga794c56417fe26dec2ff730cccd2fb195">   86</a></span><span class="preprocessor">#  define __xwcc_must_check __attribute__((warn_unused_result))</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="preprocessor">#ifndef __xwcc_naked</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga24bdb0f742a827ba57a7bbf6ce896d90">   89</a></span><span class="preprocessor">#define __xwcc_naked __attribute__((naked))</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="preprocessor">#ifndef __xwcc_unused</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga2a4b26a4b30ea1d95139b259340efb58">   92</a></span><span class="preprocessor">#  define __xwcc_unused __attribute__((unused))</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="preprocessor">#ifndef __xwcc_used</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gad4910fb1f3e1a1c3c91f211352551836">   95</a></span><span class="preprocessor">#  define __xwcc_used __attribute__((used))</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="preprocessor">#ifndef __xwcc_hot</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga5335991137efad99536ab90043610d12">   98</a></span><span class="preprocessor">#  define __xwcc_hot __attribute__((hot))</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="preprocessor">#if defined(__STDC_VERSION__) &amp;&amp; (__STDC_VERSION__ &gt;= 201112L)</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="preprocessor">#  ifndef __xwcc_atomic</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="preprocessor">#    define __xwcc_atomic _Atomic</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="preprocessor">#  endif</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="preprocessor">#  ifndef __xwcc_noreturn</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="preprocessor">#    define __xwcc_noreturn _Noreturn</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="preprocessor">#  endif</span></div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="preprocessor">#  ifndef __xwcc_atomic</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga926befdc83df32072f677cfd38244512">  109</a></span><span class="preprocessor">#    define __xwcc_atomic volatile</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="preprocessor">#  endif</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="preprocessor">#  ifndef __xwcc_noreturn</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gab10b5e416600d79b921b33b7a871d063">  112</a></span><span class="preprocessor">#    define __xwcc_noreturn __attribute__((noreturn))</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="preprocessor">#  endif</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="preprocessor">#ifndef __xwcc_likely</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga2b9ae1c1324ea3848d3392cf656cedc8">  116</a></span><span class="preprocessor">#  define __xwcc_likely(x) __builtin_expect(!!(x), 1)</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="preprocessor">#ifndef __xwcc_unlikely</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gadc8a67c68c81395e096207c710e7b703">  119</a></span><span class="preprocessor">#  define __xwcc_unlikely(x) __builtin_expect(!!(x), 0)</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="preprocessor">#ifndef __xwcc_alignl1cache</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="preprocessor">#  if defined(CPUCFG_L1_CACHELINE_SIZE)</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga0debe7f6289b00c11369e3283e69ead5">  123</a></span><span class="preprocessor">#    define __xwcc_alignl1cache   __xwcc_aligned(CPUCFG_L1_CACHELINE_SIZE)</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="preprocessor">#  else</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="preprocessor">#    define __xwcc_alignl1cache   __xwcc_aligned(sizeof(void *))</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="preprocessor">#  endif</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="preprocessor">#ifndef __xwcc_alignptr</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gaee0e453c15efcc1e5024af82ff74d161">  129</a></span><span class="preprocessor">#  define __xwcc_alignptr __xwcc_aligned(sizeof(void *))</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="preprocessor">#ifndef __xwcc_warning</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga101250a9f83780bc1d1e125063142c2b">  132</a></span><span class="preprocessor">#  define __xwcc_warning(message) __attribute__((warning(message)))</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="preprocessor">#ifndef __xwcc_error</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga6f5ded25265e406f7b78b19373356ac3">  135</a></span><span class="preprocessor">#  define __xwcc_error(message) __attribute__((error(message)))</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="preprocessor">#ifndef __xwos_init_code</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gaa261a12bda5b4410b6d8276ce1e3bc68">  139</a></span><span class="preprocessor">#  define __xwos_init_code</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="preprocessor">#ifndef __xwos_init_rodata</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga064e63976461f16589609981a42a8c1d">  143</a></span><span class="preprocessor">#  define __xwos_init_rodata</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="preprocessor">#ifndef __xwos_exit_code</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga8309e7464412c0c68dfe400aaa4ace87">  147</a></span><span class="preprocessor">#  define __xwos_exit_code</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="preprocessor">#ifndef __xwos_exit_rodata</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga2e049f58fb2410df403da4a930d17afc">  151</a></span><span class="preprocessor">#  define __xwos_exit_rodata</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="preprocessor">#ifndef __xwos_ivt</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga1e63849e543619387f9f00b28bd169c8">  155</a></span><span class="preprocessor">#  define __xwos_ivt</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="preprocessor">#ifndef __xwos_isr</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gadcee068cfd9e5fbb1c378a27366678c7">  159</a></span><span class="preprocessor">#  define __xwos_isr</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="preprocessor">#ifndef __xwos_bh</span></div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga63d0137cf82197eed84db452ef967d23">  163</a></span><span class="preprocessor">#  define __xwos_bh             __xwos_isr</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="preprocessor">#ifndef __xwos_inline</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gafae45d6191a45bf477f9f1186b68c063">  167</a></span><span class="preprocessor">#  define __xwos_inline         __xwcc_inline</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span><span class="preprocessor">#ifndef __xwos_code</span></div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gac32a8f440521a89c27b9d7674c431128">  171</a></span><span class="preprocessor">#  define __xwos_code</span></div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span><span class="preprocessor">#ifndef __xwos_api</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gaee1a35ed0d87e827ff253fe4db95e9bc">  175</a></span><span class="preprocessor">#  define __xwos_api            __xwos_code</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="preprocessor">#ifndef __xwos_inline_api</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">  179</a></span><span class="preprocessor">#  define __xwos_inline_api     __xwcc_inline</span></div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span><span class="preprocessor">#ifndef __xwos_rodata</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gac3f526307fea64a910f82226f4980f89">  183</a></span><span class="preprocessor">#  define __xwos_rodata</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span><span class="preprocessor">#ifndef __xwos_data</span></div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gaf396cac6e5a4c3db3e53a095fd8b3a20">  187</a></span><span class="preprocessor">#  define __xwos_data</span></div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span><span class="preprocessor">#ifndef __image_description</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga63f77e2e1af7d82a7d27effc5a2b82fd">  191</a></span><span class="preprocessor">#  define __image_description</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="preprocessor">#ifndef __image_tail</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga75e6852408eee7f143b2f7a0592e52c7">  195</a></span><span class="preprocessor">#  define __image_tail</span></div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span> </div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span><span class="preprocessor">#ifndef __xwlib_code</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gab363819592f47f26b77fa892c13c0015">  199</a></span><span class="preprocessor">#  define __xwlib_code          __xwos_code</span></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span> </div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span><span class="preprocessor">#ifndef __xwlib_inline</span></div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gabea77deb7101b3feb914cc3cb6bda064">  203</a></span><span class="preprocessor">#  define __xwlib_inline        __xwcc_inline</span></div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span><span class="preprocessor">#ifndef __xwlib_data</span></div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga7f4809e795d9412a88cf01cdb02b64c2">  207</a></span><span class="preprocessor">#  define __xwlib_data          __xwos_data</span></div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span><span class="preprocessor">#ifndef __xwlib_rodata</span></div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga50ee61cf5f9ac84f9deeb7095e7ba067">  211</a></span><span class="preprocessor">#  define __xwlib_rodata        __xwos_rodata</span></div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span> </div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span><span class="preprocessor">#ifndef __xwbsp_init_code</span></div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gac6ad4ef8d4a5c1430594c03dd5e81c61">  215</a></span><span class="preprocessor">#  define __xwbsp_init_code     __xwos_init_code</span></div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span> </div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span><span class="preprocessor">#ifndef __xwbsp_init_rodata</span></div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga5877a36a9b64f326eea3e6bd6e2a0e7a">  219</a></span><span class="preprocessor">#  define __xwbsp_init_rodata   __xwos_init_rodata</span></div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span> </div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span><span class="preprocessor">#ifndef __xwbsp_exit_code</span></div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gabea9b813bcf8b15dd84048a14882ca40">  223</a></span><span class="preprocessor">#  define __xwbsp_exit_code     __xwos_exit_code</span></div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span><span class="preprocessor">#ifndef __xwbsp_exit_rodata</span></div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga56b889f4c5b1fb063bf5425b51fc1a97">  227</a></span><span class="preprocessor">#  define __xwbsp_exit_rodata   __xwos_exit_rodata</span></div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> </div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span><span class="preprocessor">#ifndef __xwbsp_code</span></div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga91aeedbbecf2b8a5ecd67133addcdf05">  231</a></span><span class="preprocessor">#  define __xwbsp_code          __xwos_code</span></div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span> </div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span><span class="preprocessor">#ifndef __xwbsp_api</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gac3ec21dc866aa05c3e18c1e0ba733047">  235</a></span><span class="preprocessor">#  define __xwbsp_api           __xwos_api</span></div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span><span class="preprocessor">#ifndef __xwbsp_isr</span></div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga3c596b84b27925cab358594bf66e242e">  239</a></span><span class="preprocessor">#  define __xwbsp_isr           __xwos_isr</span></div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span> </div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span><span class="preprocessor">#ifndef __xwbsp_inline</span></div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gaf33d8b356a94a0fb1dcbbfee1b1095ab">  243</a></span><span class="preprocessor">#  define __xwbsp_inline        __xwcc_inline</span></div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span> </div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span><span class="preprocessor">#ifndef __xwbsp_data</span></div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga747385f7e421dcd7e8b9acc56ee4a5e9">  247</a></span><span class="preprocessor">#  define __xwbsp_data          __xwos_data</span></div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span><span class="preprocessor">#ifndef __xwbsp_rodata</span></div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga727ac8fc075c19e2edfea440eeb8fec4">  251</a></span><span class="preprocessor">#  define __xwbsp_rodata        __xwos_rodata</span></div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span><span class="preprocessor">#ifndef __xwmp_init_code</span></div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gae744cb06b4e456ca425d4c6b67d89092">  255</a></span><span class="preprocessor">#  define __xwmp_init_code      __xwos_init_code</span></div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span> </div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span><span class="preprocessor">#ifndef __xwmp_init_rodata</span></div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga6165cc1b5488af2f2187e1f0759982aa">  259</a></span><span class="preprocessor">#  define __xwmp_init_rodata    __xwos_init_rodata</span></div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span> </div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span><span class="preprocessor">#ifndef __xwmp_exit_code</span></div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga132fc2b854c92103d4982612f7f8ad54">  263</a></span><span class="preprocessor">#  define __xwmp_exit_code      __xwos_exit_code</span></div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span> </div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span><span class="preprocessor">#ifndef __xwmp_exit_rodata</span></div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga3eecf18ee776d7af8d4f49a6738be014">  267</a></span><span class="preprocessor">#  define __xwmp_exit_rodata    __xwos_exit_rodata</span></div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span> </div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span><span class="preprocessor">#ifndef __xwmp_ivt</span></div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga2422f40e504575fca8d045c02f1c3a75">  271</a></span><span class="preprocessor">#  define __xwmp_ivt            __xwos_ivt</span></div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span> </div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span><span class="preprocessor">#ifndef __xwmp_isr</span></div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gaac51b3f37f8df398ac846ac628aa6737">  275</a></span><span class="preprocessor">#  define __xwmp_isr            __xwos_isr</span></div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span> </div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span><span class="preprocessor">#ifndef __xwmp_bh</span></div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gaae3852e145cfc6d5398cefb85242fc94">  279</a></span><span class="preprocessor">#  define __xwmp_bh             __xwos_bh</span></div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span> </div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span><span class="preprocessor">#ifndef __xwmp_code</span></div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gab1c37c4700286ec99b964dcdf80e67ed">  283</a></span><span class="preprocessor">#  define __xwmp_code           __xwos_code</span></div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span> </div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span><span class="preprocessor">#ifndef __xwmp_api</span></div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga34daddb9c21f159422a9cc081dc12b37">  287</a></span><span class="preprocessor">#  define __xwmp_api            __xwos_api</span></div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span><span class="preprocessor">#ifndef __xwmp_inline</span></div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gaddaf50325d33ffb588795d1b36043023">  291</a></span><span class="preprocessor">#  define __xwmp_inline         __xwcc_inline</span></div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span><span class="preprocessor">#ifndef __xwmp_inline_api</span></div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gac66ad58dfac27e469305ea72f07fbcd9">  295</a></span><span class="preprocessor">#  define __xwmp_inline_api     __xwos_inline_api</span></div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span> </div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span><span class="preprocessor">#ifndef __xwmp_rodata</span></div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga0db79d83c68355e4616e24427627c04e">  299</a></span><span class="preprocessor">#  define __xwmp_rodata         __xwos_rodata</span></div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span> </div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span><span class="preprocessor">#ifndef __xwmp_data</span></div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga679da342c57c25a9cfbaa774403a189e">  303</a></span><span class="preprocessor">#  define __xwmp_data           __xwos_data</span></div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span> </div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span><span class="preprocessor">#ifndef __xwup_init_code</span></div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gad2da66c4149e76ed80fa3e664fb78e13">  307</a></span><span class="preprocessor">#  define __xwup_init_code      __xwos_init_code</span></div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span> </div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span><span class="preprocessor">#ifndef __xwup_init_rodata</span></div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga85f2b907864545e72be4f20110047873">  311</a></span><span class="preprocessor">#  define __xwup_init_rodata    __xwos_init_rodata</span></div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span> </div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span><span class="preprocessor">#ifndef __xwup_exit_code</span></div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gac2b4c6e7d3ec34ba8126dfa13c3c63c4">  315</a></span><span class="preprocessor">#  define __xwup_exit_code      __xwos_exit_code</span></div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span> </div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span><span class="preprocessor">#ifndef __xwup_exit_rodata</span></div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga17451d708f474f78bbe79bd5d5c6d7c4">  319</a></span><span class="preprocessor">#  define __xwup_exit_rodata    __xwos_exit_rodata</span></div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span> </div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span><span class="preprocessor">#ifndef __xwup_ivt</span></div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga3808040337cd2ef85667043a1eb14dac">  323</a></span><span class="preprocessor">#  define __xwup_ivt            __xwos_ivt</span></div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span> </div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span><span class="preprocessor">#ifndef __xwup_isr</span></div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga04dd5f765474955df114c988c6aa704c">  327</a></span><span class="preprocessor">#  define __xwup_isr            __xwos_isr</span></div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span> </div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span><span class="preprocessor">#ifndef __xwup_bh</span></div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga8230f91cf3a84ce6b8efbe41de4c7834">  331</a></span><span class="preprocessor">#  define __xwup_bh             __xwos_bh</span></div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span> </div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span><span class="preprocessor">#ifndef __xwup_code</span></div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga2ec9e009300848b2b23ddb7539ee567b">  335</a></span><span class="preprocessor">#  define __xwup_code           __xwos_code</span></div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span> </div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span><span class="preprocessor">#ifndef __xwup_api</span></div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga6c8418d0ccaebf3428e1e5ca31a1e118">  339</a></span><span class="preprocessor">#  define __xwup_api            __xwos_api</span></div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span> </div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span><span class="preprocessor">#ifndef __xwup_inline</span></div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga28dbafa7c85425a9a09ba1ccb8f8ae04">  343</a></span><span class="preprocessor">#  define __xwup_inline         __xwcc_inline</span></div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span> </div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span><span class="preprocessor">#ifndef __xwup_inline_api</span></div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga06ca6727d71f495cb52afdbb1bc5c501">  347</a></span><span class="preprocessor">#  define __xwup_inline_api     __xwos_inline_api</span></div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span> </div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span><span class="preprocessor">#ifndef __xwup_rodata</span></div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga8ac9b6e625d417c8846884b7cf0db038">  351</a></span><span class="preprocessor">#  define __xwup_rodata         __xwos_rodata</span></div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span> </div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span><span class="preprocessor">#ifndef __xwup_data</span></div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gaee0b8f1c3ea330815a5bf11088eb6efa">  355</a></span><span class="preprocessor">#  define __xwup_data           __xwos_data</span></div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span> </div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span><span class="preprocessor">#ifndef __xwmd_code</span></div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gad45431745d191bf05dd0471741de1dc3">  359</a></span><span class="preprocessor">#  define __xwmd_code           __xwos_code</span></div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span> </div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span><span class="preprocessor">#ifndef __xwmd_api</span></div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga4385ff20e5f5dbacef037aa081edc8c8">  363</a></span><span class="preprocessor">#  define __xwmd_api            __xwmd_code</span></div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span> </div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span><span class="preprocessor">#ifndef __xwmd_inline</span></div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gabdc3d440308d739bf2f15f20e4ba0c10">  367</a></span><span class="preprocessor">#  define __xwmd_inline         __xwcc_inline</span></div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span> </div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span><span class="preprocessor">#ifndef __xwmd_inline_api</span></div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga756ad28c07f3ea2afa00a93839ed9897">  371</a></span><span class="preprocessor">#  define __xwmd_inline_api     __xwos_inline_api</span></div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span> </div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span><span class="preprocessor">#ifndef __xwmd_isr</span></div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga201c42b95b3e2406f8b2f4e8f63bcc15">  375</a></span><span class="preprocessor">#  define __xwmd_isr            __xwmd_code</span></div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span> </div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span><span class="preprocessor">#ifndef __xwmd_bh</span></div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gaa6bf86be94c6471466eba3344025ef18">  379</a></span><span class="preprocessor">#  define __xwmd_bh             __xwmd_isr</span></div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span> </div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span><span class="preprocessor">#ifndef __xwmd_rodata</span></div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga9f748b4b7b8281ff0cb8769bc38790a9">  383</a></span><span class="preprocessor">#  define __xwmd_rodata         __xwos_rodata</span></div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span> </div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span><span class="preprocessor">#ifndef __xwmd_data</span></div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga57581184719ab3a69a4682601a7de68b">  387</a></span><span class="preprocessor">#  define __xwmd_data           __xwos_data</span></div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span> </div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span><span class="preprocessor">#ifndef __xwcd_code</span></div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gab8bd3b2b2e8c4840b4ff4cac0f7aafb3">  391</a></span><span class="preprocessor">#  define __xwcd_code           __xwos_code</span></div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span> </div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span><span class="preprocessor">#ifndef __xwcd_api</span></div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gabae3c70d2da84abd27c01eb9ba7afaf8">  395</a></span><span class="preprocessor">#  define __xwcd_api            __xwcd_code</span></div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span> </div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span><span class="preprocessor">#ifndef __xwcd_inline</span></div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga35fcd6a7ff927430c5ea8f03bf894b89">  399</a></span><span class="preprocessor">#  define __xwcd_inline         __xwcc_inline</span></div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span> </div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span><span class="preprocessor">#ifndef __xwcd_inline_api</span></div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gaa2323daf634cb2b8918c425fa58f7e7a">  403</a></span><span class="preprocessor">#  define __xwcd_inline_api     __xwos_inline_api</span></div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span> </div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span><span class="preprocessor">#ifndef __xwcd_isr</span></div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga94e2e9d21cd7d54fb0cd9e2ed5e0741e">  407</a></span><span class="preprocessor">#  define __xwcd_isr            __xwcd_code</span></div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span> </div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span><span class="preprocessor">#ifndef __xwcd_bh</span></div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga0d01953017a5d6940db3f55d16affb68">  411</a></span><span class="preprocessor">#  define __xwcd_bh             __xwcd_isr</span></div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span> </div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span><span class="preprocessor">#ifndef __xwcd_rodata</span></div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga2f75005c683ab0fe3f6b267e70ce2d0d">  415</a></span><span class="preprocessor">#  define __xwcd_rodata         __xwos_rodata</span></div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span> </div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span><span class="preprocessor">#ifndef __xwcd_data</span></div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gadd7dbb958cdb17f9a5e6c53d13e11fd0">  419</a></span><span class="preprocessor">#  define __xwcd_data           __xwos_data</span></div>
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span> </div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span><span class="comment">/******** ******** compiletime check ******** ********/</span></div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span><span class="preprocessor">#ifndef xwcc_native_word</span></div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga451f1c8d2a74b3c282232b4b5de5a765">  428</a></span><span class="preprocessor">#  define xwcc_native_word(t)                   \</span></div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span><span class="preprocessor">          (sizeof(t) == sizeof(xwu8_t) ||       \</span></div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span><span class="preprocessor">           sizeof(t) == sizeof(xwu16_t) ||      \</span></div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span><span class="preprocessor">           sizeof(t) == sizeof(xwu32_t) ||      \</span></div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span><span class="preprocessor">           sizeof(t) == sizeof(xwu64_t))</span></div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span> </div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span><span class="comment">/******** ******** macros to string ******** ********/</span></div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span><span class="preprocessor">#ifndef stringify</span></div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span><span class="comment">// cppcheck-suppress [misra-c2012-20.10]</span></div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gaef21316972c3346266ee3e76c530df72">  441</a></span><span class="preprocessor">#  define __stringify(m)                  #m</span></div>
+<div class="line"><a id="l00442" name="l00442"></a><span class="lineno">  442</span> </div>
+<div class="line"><a id="l00466" name="l00466"></a><span class="lineno">  466</span><span class="comment">// cppcheck-suppress [misra-c2012-20.10]</span></div>
+<div class="line"><a id="l00467" name="l00467"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga751512480d4a7d5c7c019179bae39e5f">  467</a></span><span class="preprocessor">#  define stringify(m)                    __stringify(m)</span></div>
+<div class="line"><a id="l00468" name="l00468"></a><span class="lineno">  468</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00469" name="l00469"></a><span class="lineno">  469</span> </div>
+<div class="line"><a id="l00477" name="l00477"></a><span class="lineno">  477</span><span class="comment">// cppcheck-suppress [misra-c2012-20.10]</span></div>
+<div class="line"><a id="l00478" name="l00478"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga5c0216f1d146ecde8c03d6cdd148d845">  478</a></span><span class="preprocessor">#define __show_macro(m)                 #m &quot;:&quot;</span> stringify(m)</div>
+<div class="line"><a id="l00479" name="l00479"></a><span class="lineno">  479</span> </div>
+<div class="line"><a id="l00480" name="l00480"></a><span class="lineno">  480</span><span class="comment">/******** ******** struct &amp; member ******** ********/</span></div>
+<div class="line"><a id="l00481" name="l00481"></a><span class="lineno">  481</span><span class="preprocessor">#ifndef xwcc_offsetof</span></div>
+<div class="line"><a id="l00487" name="l00487"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#gae4752f0eaff966ee194be011d372ec68">  487</a></span><span class="preprocessor">#  define xwcc_offsetof(type, member)  ((xwptr_t)&amp;(((type *)0)-&gt;member))</span></div>
+<div class="line"><a id="l00488" name="l00488"></a><span class="lineno">  488</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00489" name="l00489"></a><span class="lineno">  489</span> </div>
+<div class="line"><a id="l00490" name="l00490"></a><span class="lineno">  490</span><span class="preprocessor">#ifndef xwcc_derof</span></div>
+<div class="line"><a id="l00501" name="l00501"></a><span class="lineno"><a class="line" href="group__xwos__lib__compiler.html#ga99121e5273969037cced18688d922eb5">  501</a></span><span class="preprocessor">#define xwcc_derof(baseptr, derclass, member) \</span></div>
+<div class="line"><a id="l00502" name="l00502"></a><span class="lineno">  502</span><span class="preprocessor">        ((derclass *)(((xwptr_t)(baseptr)) - (xwptr_t)xwcc_offsetof(derclass, member)))</span></div>
+<div class="line"><a id="l00503" name="l00503"></a><span class="lineno">  503</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00504" name="l00504"></a><span class="lineno">  504</span> </div>
+<div class="line"><a id="l00505" name="l00505"></a><span class="lineno">  505</span> </div>
+<div class="line"><a id="l00510" name="l00510"></a><span class="lineno">  510</span><span class="preprocessor">#endif </span><span class="comment">/* xwos/lib/compiler.h */</span><span class="preprocessor"></span></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_43a52829888b753087a6774748486ed5.html">xwos</a></li><li class="navelem"><a class="el" href="dir_661654454d33f46b32a0e119e0a883df.html">lib</a></li><li class="navelem"><a class="el" href="compiler_8h.html">compiler.h</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["SIZEOF_XWCQ"],"enum":["XwcqError"],"struct":["Xwcq"]};

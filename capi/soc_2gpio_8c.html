@@ -1,0 +1,1331 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>XWOS API: xwcd/ds/soc/gpio.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<a href="/" class="github-corner" title="返回首页">
+  <svg viewBox="0 0 250 250" style="position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path
+      d="M 0 0 L 250 250 L 250 0 L 0 0 z M 181.19336 6.25 A 18.281986 19.638775 0 0 1 192.79297 10.798828 L 241.54492 54.201172 A 6.0939954 6.5462585 0 0 1 237.64453 65.787109 L 233.13477 65.787109 A 3.0469979 3.2731292 0 0 0 230.08789 69.060547 L 230.08789 111.61133 A 18.281986 19.638775 0 0 1 211.80664 131.25 L 205.71289 131.25 A 12.187991 13.092517 0 0 1 193.52344 118.1582 L 193.52344 98.519531 A 12.187991 13.092517 0 0 0 181.33594 85.425781 A 12.187991 13.092517 0 0 0 169.14844 98.519531 L 169.14844 118.1582 A 12.187991 13.092517 0 0 1 156.95898 131.25 L 150.86523 131.25 A 18.281986 19.638775 0 0 1 132.58398 111.61133 L 132.58398 68.994141 A 3.0469979 3.2731292 0 0 0 129.29297 65.722656 L 124.7832 65.722656 A 6.0939954 6.5462585 0 0 1 120.88281 54.201172 L 169.39258 10.798828 A 18.281986 19.638775 0 0 1 181.19336 6.25 z "/>
+  </svg>
+</a>
+<style>.github-corner:hover</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">XWOS API
+   &#160;<span id="projectnumber">3.0</span>
+   </div>
+   <div id="projectbrief">XWOS API参考手册</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('soc_2gpio_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">gpio.c 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>玄武设备栈：SOC：GPIO  
+<a href="#details">更多...</a></p>
+<div class="textblock"><code>#include &lt;<a class="el" href="xwcd_2ds_2standard_8h_source.html">xwcd/ds/standard.h</a>&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="xwaop_8h_source.html">xwos/lib/xwaop.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="soc_2gpio_8h_source.html">xwcd/ds/soc/gpio.h</a>&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+gpio.c 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="soc_2gpio_8c__incl.png" border="0" usemap="#axwcd_2ds_2soc_2gpio_8c" alt=""/></div>
+<map name="axwcd_2ds_2soc_2gpio_8c" id="axwcd_2ds_2soc_2gpio_8c">
+<area shape="rect" title="玄武设备栈：SOC：GPIO" alt="" coords="500,5,635,31"/>
+<area shape="rect" href="xwcd_2ds_2standard_8h.html" title="玄武设备栈：顶级头文件" alt="" coords="611,372,747,397"/>
+<area shape="poly" title=" " alt="" coords="624,28,677,45,731,72,754,90,772,111,784,135,789,163,789,240,781,278,761,313,735,343,709,365,706,361,731,339,756,310,776,277,783,239,783,164,779,137,768,114,750,94,728,76,675,50,623,33"/>
+<area shape="rect" title=" " alt="" coords="473,79,539,104"/>
+<area shape="poly" title=" " alt="" coords="559,33,527,70,523,66,555,29"/>
+<area shape="rect" href="xwaop_8h.html" title="XWOS通用库：原子操作" alt="" coords="190,453,313,478"/>
+<area shape="poly" title=" " alt="" coords="500,23,419,32,376,41,335,54,299,72,270,96,250,126,243,164,243,313,246,381,251,439,246,439,241,382,238,313,238,163,245,124,266,93,296,68,333,49,375,36,418,26,499,18"/>
+<area shape="rect" href="soc_2gpio_8h.html" title="玄武设备栈：SOC：GPIO" alt="" coords="563,79,697,104"/>
+<area shape="poly" title=" " alt="" coords="580,29,613,66,609,70,576,33"/>
+<area shape="rect" href="xwos_2standard_8h.html" title="XWOS的标准头文件" alt="" coords="547,607,665,632"/>
+<area shape="poly" title=" " alt="" coords="678,399,616,594,611,592,673,397"/>
+<area shape="rect" title=" " alt="" coords="409,827,504,852"/>
+<area shape="poly" title=" " alt="" coords="550,634,509,652,490,665,475,682,459,713,453,749,452,783,455,813,449,813,447,784,447,748,454,712,470,678,487,661,506,648,548,630"/>
+<area shape="rect" href="rule_8h.html" title="XWOS通用库：编译规则" alt="" coords="65,680,171,705"/>
+<area shape="poly" title=" " alt="" coords="547,632,185,684,185,679,546,627"/>
+<area shape="rect" href="compiler_8h.html" title="XWOS通用库：编译器宏定义" alt="" coords="267,680,401,705"/>
+<area shape="poly" title=" " alt="" coords="563,635,392,679,390,674,562,629"/>
+<area shape="rect" href="version_8h.html" title="XWOS版本号" alt="" coords="485,680,596,705"/>
+<area shape="poly" title=" " alt="" coords="597,634,562,672,559,668,593,631"/>
+<area shape="rect" href="type_8h.html" title="XWOS通用库：基本类型定义" alt="" coords="901,753,1012,779"/>
+<area shape="poly" title=" " alt="" coords="666,622,810,641,878,657,904,667,924,678,936,691,945,707,956,739,951,741,940,710,932,695,920,682,902,671,876,662,809,646,665,628"/>
+<area shape="rect" href="error_8h.html" title="XWOS通用库：错误" alt="" coords="799,680,909,705"/>
+<area shape="poly" title=" " alt="" coords="647,629,801,674,800,679,645,635"/>
+<area shape="rect" title=" " alt="" coords="599,753,738,779"/>
+<area shape="poly" title=" " alt="" coords="665,630,705,648,723,661,738,679,742,698,735,717,720,734,702,748,699,744,716,730,730,714,737,698,733,681,719,665,702,652,662,635"/>
+<area shape="rect" href="mb_8h.html" title="XWOS通用库：内存屏障" alt="" coords="620,680,723,705"/>
+<area shape="poly" title=" " alt="" coords="619,631,653,668,650,672,615,634"/>
+<area shape="poly" title=" " alt="" coords="99,708,77,722,57,740,47,759,47,768,52,777,75,793,109,807,152,817,201,825,305,833,395,836,395,841,304,839,200,830,151,822,107,812,72,798,48,780,42,770,42,758,53,737,74,718,96,703"/>
+<area shape="rect" title=" " alt="" coords="63,753,173,779"/>
+<area shape="poly" title=" " alt="" coords="121,706,121,740,115,740,115,706"/>
+<area shape="poly" title=" " alt="" coords="303,708,274,721,249,738,234,757,234,767,239,777,263,794,302,808,396,827,395,832,301,813,260,798,235,780,229,768,229,756,245,734,272,717,301,703"/>
+<area shape="rect" title=" " alt="" coords="249,753,419,779"/>
+<area shape="poly" title=" " alt="" coords="337,706,337,740,331,740,331,706"/>
+<area shape="poly" title=" " alt="" coords="901,779,889,781,518,833,517,828,888,776,901,774"/>
+<area shape="rect" title=" " alt="" coords="949,827,1095,852"/>
+<area shape="poly" title=" " alt="" coords="969,777,1004,815,1000,818,965,781"/>
+<area shape="rect" title=" " alt="" coords="855,827,925,852"/>
+<area shape="poly" title=" " alt="" coords="948,781,912,818,908,815,944,777"/>
+<area shape="poly" title=" " alt="" coords="872,703,930,743,927,747,869,708"/>
+<area shape="rect" href="errno_8h.html" title="XWOS通用库：错误码" alt="" coords="762,753,877,779"/>
+<area shape="poly" title=" " alt="" coords="851,707,833,742,829,740,846,704"/>
+<area shape="poly" title=" " alt="" coords="656,708,487,821,484,816,653,703"/>
+<area shape="poly" title=" " alt="" coords="674,706,672,740,667,740,668,706"/>
+<area shape="poly" title=" " alt="" coords="266,476,315,515,347,537,382,556,459,585,534,603,532,608,457,590,380,561,344,542,311,520,262,480"/>
+<area shape="rect" href="xwbop_8h.html" title="XWOS通用库：位操作" alt="" coords="189,533,311,559"/>
+<area shape="poly" title=" " alt="" coords="254,478,253,520,248,519,248,478"/>
+<area shape="rect" title=" " alt="" coords="5,533,164,559"/>
+<area shape="poly" title=" " alt="" coords="228,480,122,530,120,525,226,476"/>
+<area shape="poly" title=" " alt="" coords="308,556,536,601,534,607,307,561"/>
+<area shape="rect" title=" " alt="" coords="171,607,329,632"/>
+<area shape="poly" title=" " alt="" coords="253,559,253,593,247,593,247,559"/>
+<area shape="poly" title=" " alt="" coords="640,103,652,125,662,151,674,209,680,266,683,358,678,359,675,267,669,209,657,153,647,127,635,106"/>
+<area shape="rect" href="soc_2chip_8h.html" title="玄武设备栈：SOC" alt="" coords="512,152,647,177"/>
+<area shape="poly" title=" " alt="" coords="624,106,598,142,593,139,619,103"/>
+<area shape="poly" title=" " alt="" coords="587,177,671,358,666,360,582,179"/>
+<area shape="rect" href="ds_2device_8h.html" title="玄武设备栈：设备基类" alt="" coords="448,225,572,251"/>
+<area shape="poly" title=" " alt="" coords="570,180,533,217,529,214,566,176"/>
+<area shape="poly" title=" " alt="" coords="526,249,657,361,654,365,522,253"/>
+<area shape="poly" title=" " alt="" coords="483,253,440,274,394,301,354,335,319,373,268,442,264,439,315,370,350,331,391,296,437,269,481,248"/>
+<area shape="rect" href="bclst_8h.html" title="XWOS通用库：双循环链表" alt="" coords="329,372,443,397"/>
+<area shape="poly" title=" " alt="" coords="480,253,445,272,413,300,399,329,391,359,386,358,394,327,409,297,442,268,478,248"/>
+<area shape="rect" href="lock_2mtx_8h.html" title="操作系统抽象层：互斥锁" alt="" coords="809,372,955,397"/>
+<area shape="poly" title=" " alt="" coords="541,248,841,365,839,369,539,253"/>
+<area shape="rect" href="xwcd_2ds_2object_8h.html" title="玄武设备栈：对象" alt="" coords="424,299,545,324"/>
+<area shape="poly" title=" " alt="" coords="508,252,496,287,491,285,503,250"/>
+<area shape="poly" title=" " alt="" coords="391,397,399,428,415,471,438,516,469,557,505,582,545,600,543,605,503,587,465,561,433,519,410,473,394,430,386,398"/>
+<area shape="poly" title=" " alt="" coords="885,398,879,440,872,464,859,487,815,529,764,563,712,588,664,605,662,600,710,583,762,558,812,525,855,484,867,462,874,439,879,397"/>
+<area shape="rect" href="jack_2lock_2mtx_8h.html" title="操作系统抽象层：互斥锁接口描述" alt="" coords="707,445,844,485"/>
+<area shape="poly" title=" " alt="" coords="868,400,814,439,811,435,865,395"/>
+<area shape="rect" href="time_8h.html" title="操作系统抽象层：时间" alt="" coords="872,533,993,559"/>
+<area shape="poly" title=" " alt="" coords="888,397,927,519,922,521,883,398"/>
+<area shape="rect" href="skd_8h.html" title="操作系统抽象层：调度器" alt="" coords="971,453,1089,478"/>
+<area shape="poly" title=" " alt="" coords="905,395,997,444,995,448,903,400"/>
+<area shape="poly" title=" " alt="" coords="881,561,673,606,672,601,880,556"/>
+<area shape="rect" href="jack_2skd_8h.html" title="操作系统抽象层：调度接口描述" alt="" coords="935,607,1080,632"/>
+<area shape="poly" title=" " alt="" coords="946,557,987,595,983,599,943,561"/>
+<area shape="poly" title=" " alt="" coords="1033,479,1030,519,1022,541,1008,561,984,575,950,588,864,605,767,615,680,619,679,614,767,609,863,599,949,582,982,571,1004,557,1017,539,1025,518,1028,478"/>
+<area shape="poly" title=" " alt="" coords="1017,480,959,527,956,523,1014,476"/>
+<area shape="poly" title=" " alt="" coords="1039,477,1052,514,1056,537,1053,559,1043,580,1030,598,1026,595,1038,577,1047,558,1050,537,1047,515,1034,479"/>
+<area shape="poly" title=" " alt="" coords="517,322,636,365,634,370,515,327"/>
+<area shape="poly" title=" " alt="" coords="470,326,415,366,412,362,467,322"/>
+<area shape="rect" href="xwos_2lib_2object_8h.html" title="XWOS通用库：XWOS的对象" alt="" coords="467,372,587,397"/>
+<area shape="poly" title=" " alt="" coords="494,323,516,359,511,362,489,326"/>
+<area shape="poly" title=" " alt="" coords="515,399,494,420,478,446,468,478,466,504,473,529,489,557,516,582,549,599,547,604,513,586,485,560,468,531,461,505,463,477,473,444,490,416,511,395"/>
+<area shape="poly" title=" " alt="" coords="488,400,305,452,304,446,486,395"/>
+<area shape="rect" href="xwos_2mm_2common_8h.html" title="XWOS内存管理：通用定义" alt="" coords="487,453,631,478"/>
+<area shape="poly" title=" " alt="" coords="535,396,552,439,547,441,530,399"/>
+<area shape="poly" title=" " alt="" coords="566,478,583,533,601,593,596,594,578,534,561,479"/>
+<area shape="rect" title=" " alt="" coords="499,533,569,559"/>
+<area shape="poly" title=" " alt="" coords="558,479,544,521,539,520,553,477"/>
+</map>
+</div>
+</div>
+<p><a href="soc_2gpio_8c_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:af37423c2fa2e07af00eef5f3bdc9f02d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="soc_2gpio_8c.html#af37423c2fa2e07af00eef5f3bdc9f02d">xwds_gpio_req</a> (struct <a class="el" href="structxwds__soc.html">xwds_soc</a> *soc, <a class="el" href="group__xwos__lib__type.html#ga0bb4d847ba02675e5264444479899532">xwid_t</a> port, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pinmask)</td></tr>
+<tr class="memdesc:af37423c2fa2e07af00eef5f3bdc9f02d"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWDS API：申请SOC的GPIO  <br /></td></tr>
+<tr class="separator:af37423c2fa2e07af00eef5f3bdc9f02d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7be304e546f2ce5f6f755cf577c1e742"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="soc_2gpio_8c.html#a7be304e546f2ce5f6f755cf577c1e742">xwds_gpio_rls</a> (struct <a class="el" href="structxwds__soc.html">xwds_soc</a> *soc, <a class="el" href="group__xwos__lib__type.html#ga0bb4d847ba02675e5264444479899532">xwid_t</a> port, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pinmask)</td></tr>
+<tr class="memdesc:a7be304e546f2ce5f6f755cf577c1e742"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWDS API：释放SOC的GPIO  <br /></td></tr>
+<tr class="separator:a7be304e546f2ce5f6f755cf577c1e742"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77641112749dbdbcd3b1be30903d521a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="soc_2gpio_8c.html#a77641112749dbdbcd3b1be30903d521a">xwds_gpio_cfg</a> (struct <a class="el" href="structxwds__soc.html">xwds_soc</a> *soc, <a class="el" href="group__xwos__lib__type.html#ga0bb4d847ba02675e5264444479899532">xwid_t</a> port, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pinmask, void *cfg)</td></tr>
+<tr class="memdesc:a77641112749dbdbcd3b1be30903d521a"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWDS API：配置SOC的GPIO  <br /></td></tr>
+<tr class="separator:a77641112749dbdbcd3b1be30903d521a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1aa0397839ec980bc4a43c1ef32869b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="soc_2gpio_8c.html#ac1aa0397839ec980bc4a43c1ef32869b">xwds_gpio_set</a> (struct <a class="el" href="structxwds__soc.html">xwds_soc</a> *soc, <a class="el" href="group__xwos__lib__type.html#ga0bb4d847ba02675e5264444479899532">xwid_t</a> port, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pinmask)</td></tr>
+<tr class="memdesc:ac1aa0397839ec980bc4a43c1ef32869b"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWDS API：将SOC的GPIO设置为高电平  <br /></td></tr>
+<tr class="separator:ac1aa0397839ec980bc4a43c1ef32869b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a359943605402a078a0017f7e85ead8ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="soc_2gpio_8c.html#a359943605402a078a0017f7e85ead8ee">xwds_gpio_reset</a> (struct <a class="el" href="structxwds__soc.html">xwds_soc</a> *soc, <a class="el" href="group__xwos__lib__type.html#ga0bb4d847ba02675e5264444479899532">xwid_t</a> port, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pinmask)</td></tr>
+<tr class="memdesc:a359943605402a078a0017f7e85ead8ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWDS API：将SOC的GPIO设置为低电平  <br /></td></tr>
+<tr class="separator:a359943605402a078a0017f7e85ead8ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b28375822f8f7ba9f67a70c358245ee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="soc_2gpio_8c.html#a8b28375822f8f7ba9f67a70c358245ee">xwds_gpio_toggle</a> (struct <a class="el" href="structxwds__soc.html">xwds_soc</a> *soc, <a class="el" href="group__xwos__lib__type.html#ga0bb4d847ba02675e5264444479899532">xwid_t</a> port, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pinmask)</td></tr>
+<tr class="memdesc:a8b28375822f8f7ba9f67a70c358245ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWDS API：翻转SOC的GPIO电平  <br /></td></tr>
+<tr class="separator:a8b28375822f8f7ba9f67a70c358245ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7031024c303ba17b0c9433c88bc7f9f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="soc_2gpio_8c.html#ac7031024c303ba17b0c9433c88bc7f9f">xwds_gpio_output</a> (struct <a class="el" href="structxwds__soc.html">xwds_soc</a> *soc, <a class="el" href="group__xwos__lib__type.html#ga0bb4d847ba02675e5264444479899532">xwid_t</a> port, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pinmask, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> out)</td></tr>
+<tr class="memdesc:ac7031024c303ba17b0c9433c88bc7f9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWDS API：并行输出多个SOC的GPIO  <br /></td></tr>
+<tr class="separator:ac7031024c303ba17b0c9433c88bc7f9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49fbdbb6abef12172865c1635a505a26"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="soc_2gpio_8c.html#a49fbdbb6abef12172865c1635a505a26">xwds_gpio_input</a> (struct <a class="el" href="structxwds__soc.html">xwds_soc</a> *soc, <a class="el" href="group__xwos__lib__type.html#ga0bb4d847ba02675e5264444479899532">xwid_t</a> port, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pinmask, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> *inbuf)</td></tr>
+<tr class="memdesc:a49fbdbb6abef12172865c1635a505a26"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWDS API：并行读取多个SOC的GPIO  <br /></td></tr>
+<tr class="separator:a49fbdbb6abef12172865c1635a505a26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>玄武设备栈：SOC：GPIO </p>
+<dl class="section author"><dt>作者</dt><dd><ul>
+<li>隐星魂 (Roy Sun) <a href="#" onclick="location.href='mai'+'lto:'+'xwo'+'s@'+'xwo'+'s.'+'tec'+'h'; return false;">xwos@<span class="obfuscator">.nosp@m.</span>xwos<span class="obfuscator">.nosp@m.</span>.tech</a> </li>
+</ul>
+</dd></dl>
+<dl class="section copyright"><dt>版权所有</dt><dd><ul>
+<li>Copyright © 2015 xwos.tech, All Rights Reserved. <blockquote class="doxtable">
+<p>&zwj;Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at </p><pre class="fragment">  http://www.apache.org/licenses/LICENSE-2.0
+</pre><p> Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. </p>
+</blockquote>
+</li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="soc_2gpio_8c_source.html">gpio.c</a> 中定义.</p>
+</div><h2 class="groupheader">函数说明</h2>
+<a id="a77641112749dbdbcd3b1be30903d521a" name="a77641112749dbdbcd3b1be30903d521a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77641112749dbdbcd3b1be30903d521a">&#9670;&#160;</a></span>xwds_gpio_cfg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwds_gpio_cfg </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwds__soc.html">xwds_soc</a> *&#160;</td>
+          <td class="paramname"><em>soc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga0bb4d847ba02675e5264444479899532">xwid_t</a>&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>&#160;</td>
+          <td class="paramname"><em>pinmask</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>cfg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWDS API：配置SOC的GPIO </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">soc</td><td>SOC对象指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">port</td><td>GPIO端口，取值 <a class="el" href="group__xwcd__ds__soc.html#ga9fa1d97777af82dc6af48f8580b0916e">xwds_gpio_port_em</a> 中的一项 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pinmask</td><td>引脚的掩码，取值 <a class="el" href="group__xwcd__ds__soc.html#gab0241f1479024c7f8701e5acd25dbf21">xwds_gpio_pin_em</a> 中的任意项的或运算 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cfg</td><td>GPIO配置，取值依据不同SOC </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>无效指针 </td></tr>
+    <tr><td class="paramname">-ERANGE</td><td>GPIO PORT错误 </td></tr>
+    <tr><td class="paramname">-ENOSYS</td><td>不支持的API </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：中断、中断底半部、线程 </li>
+</ul>
+</dd></dl>
+<p>&lt;No error</p>
+
+<p class="definition">在文件 <a class="el" href="soc_2gpio_8c_source.html">gpio.c</a> 第 <a class="el" href="soc_2gpio_8c_source.html#l00096">96</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   99</span>{</div>
+<div class="line"><span class="lineno">  100</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__soc__driver.html">xwds_soc_driver</a> * drv;</div>
+<div class="line"><span class="lineno">  101</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">  102</span> </div>
+<div class="line"><span class="lineno">  103</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>(soc, <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  104</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>((port &lt; soc-&gt;gpio.port_num), <span class="stringliteral">&quot;out-of-range&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#gaa1591a4f3a86360108de5b9ba34980ca">ERANGE</a>);</div>
+<div class="line"><span class="lineno">  105</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>(cfg, <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  106</span> </div>
+<div class="line"><span class="lineno">  107</span>        pinmask &amp;= <a class="code hl_define" href="group__xwcd__ds__soc.html#ga17e4702db508ab711cdb1ad47e834195">XWDS_GPIO_PIN_MASK</a>(soc-&gt;<a class="code hl_variable" href="structxwds__soc.html#a259dade2082633f55eef7d96c1030f85">gpio</a>.<a class="code hl_variable" href="structxwds__soc.html#a9bc616e089cfad153dc7b5ea533b0ba8">pin_num</a>);</div>
+<div class="line"><span class="lineno">  108</span>        rc = <a class="code hl_function" href="group__xwcd__ds__soc.html#ga3298dd6a43e0bee1314ff99ce032d50f">xwds_soc_grab</a>(soc);</div>
+<div class="line"><span class="lineno">  109</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  110</span>               <span class="keywordflow">goto</span> err_soc_grab;</div>
+<div class="line"><span class="lineno">  111</span>        }</div>
+<div class="line"><span class="lineno">  112</span>        drv = <a class="code hl_define" href="group__xwcd__ds.html#ga01391bff32dca44d0fdbe5817e801353">xwds_cast</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__soc__driver.html">xwds_soc_driver</a> *, soc-&gt;<a class="code hl_variable" href="structxwds__soc.html#a22a3eea17154df161c9874895b0cca77">dev</a>.<a class="code hl_variable" href="structxwds__device.html#a1d485436e69d8cd8f38bcd2eb467a640">drv</a>);</div>
+<div class="line"><span class="lineno">  113</span>        <span class="keywordflow">if</span> ((drv) &amp;&amp; (drv-&gt;<a class="code hl_variable" href="structxwds__soc__driver.html#ac0ca06bc6b391327f8ee7f34c5cf0759">gpio_cfg</a>)) {</div>
+<div class="line"><span class="lineno">  114</span>                rc = drv-&gt;<a class="code hl_variable" href="structxwds__soc__driver.html#ac0ca06bc6b391327f8ee7f34c5cf0759">gpio_cfg</a>(soc, port, pinmask, cfg);</div>
+<div class="line"><span class="lineno">  115</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  116</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#ga43785b9969e0bd1af532dbde06c5540b">ENOSYS</a>;</div>
+<div class="line"><span class="lineno">  117</span>        }</div>
+<div class="line"><span class="lineno">  118</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  119</span>                <span class="keywordflow">goto</span> err_drv_gpio_cfg;</div>
+<div class="line"><span class="lineno">  120</span>        }</div>
+<div class="line"><span class="lineno">  121</span>        <a class="code hl_function" href="group__xwcd__ds__soc.html#ga855673b28d25880362384813d1721825">xwds_soc_put</a>(soc);</div>
+<div class="line"><span class="lineno">  122</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><span class="lineno">  123</span> </div>
+<div class="line"><span class="lineno">  124</span>err_drv_gpio_cfg:</div>
+<div class="line"><span class="lineno">  125</span>        <a class="code hl_function" href="group__xwcd__ds__soc.html#ga855673b28d25880362384813d1721825">xwds_soc_put</a>(soc);</div>
+<div class="line"><span class="lineno">  126</span>err_soc_grab:</div>
+<div class="line"><span class="lineno">  127</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  128</span>}</div>
+<div class="ttc" id="agroup__xwcd__ds__soc_html_ga17e4702db508ab711cdb1ad47e834195"><div class="ttname"><a href="group__xwcd__ds__soc.html#ga17e4702db508ab711cdb1ad47e834195">XWDS_GPIO_PIN_MASK</a></div><div class="ttdeci">#define XWDS_GPIO_PIN_MASK(n)</div><div class="ttdef"><b>Definition</b> <a href="soc_2gpio_8h_source.html#l00033">gpio.h:33</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__soc_html_ga3298dd6a43e0bee1314ff99ce032d50f"><div class="ttname"><a href="group__xwcd__ds__soc.html#ga3298dd6a43e0bee1314ff99ce032d50f">xwds_soc_grab</a></div><div class="ttdeci">xwer_t xwds_soc_grab(struct xwds_soc *soc)</div><div class="ttdoc">XWDS API：增加对象的引用计数</div><div class="ttdef"><b>Definition</b> <a href="soc_2chip_8c_source.html#l00071">chip.c:71</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__soc_html_ga855673b28d25880362384813d1721825"><div class="ttname"><a href="group__xwcd__ds__soc.html#ga855673b28d25880362384813d1721825">xwds_soc_put</a></div><div class="ttdeci">xwer_t xwds_soc_put(struct xwds_soc *soc)</div><div class="ttdoc">XWDS API：减少对象的引用计数</div><div class="ttdef"><b>Definition</b> <a href="soc_2chip_8c_source.html#l00077">chip.c:77</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds_html_ga01391bff32dca44d0fdbe5817e801353"><div class="ttname"><a href="group__xwcd__ds.html#ga01391bff32dca44d0fdbe5817e801353">xwds_cast</a></div><div class="ttdeci">#define xwds_cast(type, dev)</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2standard_8h_source.html#l00040">standard.h:40</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds_html_ga9541a62248e32dc84221e1f55d11c2b3"><div class="ttname"><a href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a></div><div class="ttdeci">#define XWDS_VALIDATE(exp, errstr,...)</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2standard_8h_source.html#l00051">standard.h:51</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga3f317946e043623f9d6b93dbf60e6316"><div class="ttname"><a href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a></div><div class="ttdeci">#define EFAULT</div><div class="ttdoc">Bad address</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00044">errno.h:44</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga43785b9969e0bd1af532dbde06c5540b"><div class="ttname"><a href="group__xwos__lib__errno.html#ga43785b9969e0bd1af532dbde06c5540b">ENOSYS</a></div><div class="ttdeci">#define ENOSYS</div><div class="ttdoc">Function not implemented</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00110">errno.h:110</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga6a72d49d869215a02342eb465166537b"><div class="ttname"><a href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a></div><div class="ttdeci">#define XWOK</div><div class="ttdoc">No error</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00182">errno.h:182</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_gaa1591a4f3a86360108de5b9ba34980ca"><div class="ttname"><a href="group__xwos__lib__errno.html#gaa1591a4f3a86360108de5b9ba34980ca">ERANGE</a></div><div class="ttdeci">#define ERANGE</div><div class="ttdoc">Result too large</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00064">errno.h:64</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga06847ea8c7edb2b1f166288b230f251f"><div class="ttname"><a href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a></div><div class="ttdeci">signed long xwer_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00554">type.h:554</a></div></div>
+<div class="ttc" id="astructxwds__device_html_a1d485436e69d8cd8f38bcd2eb467a640"><div class="ttname"><a href="structxwds__device.html#a1d485436e69d8cd8f38bcd2eb467a640">xwds_device::drv</a></div><div class="ttdeci">const struct xwds_driver * drv</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8h_source.html#l00133">device.h:133</a></div></div>
+<div class="ttc" id="astructxwds__soc__driver_html"><div class="ttname"><a href="structxwds__soc__driver.html">xwds_soc_driver</a></div><div class="ttdoc">BSP中需要提供的SOC设备驱动函数表</div><div class="ttdef"><b>Definition</b> <a href="soc_2chip_8h_source.html#l00051">chip.h:51</a></div></div>
+<div class="ttc" id="astructxwds__soc__driver_html_ac0ca06bc6b391327f8ee7f34c5cf0759"><div class="ttname"><a href="structxwds__soc__driver.html#ac0ca06bc6b391327f8ee7f34c5cf0759">xwds_soc_driver::gpio_cfg</a></div><div class="ttdeci">xwer_t(* gpio_cfg)(struct xwds_soc *, xwid_t, xwsq_t, void *)</div><div class="ttdef"><b>Definition</b> <a href="soc_2chip_8h_source.html#l00082">chip.h:82</a></div></div>
+<div class="ttc" id="astructxwds__soc_html_a22a3eea17154df161c9874895b0cca77"><div class="ttname"><a href="structxwds__soc.html#a22a3eea17154df161c9874895b0cca77">xwds_soc::dev</a></div><div class="ttdeci">struct xwds_device dev</div><div class="ttdef"><b>Definition</b> <a href="soc_2chip_8h_source.html#l00160">chip.h:160</a></div></div>
+<div class="ttc" id="astructxwds__soc_html_a259dade2082633f55eef7d96c1030f85"><div class="ttname"><a href="structxwds__soc.html#a259dade2082633f55eef7d96c1030f85">xwds_soc::gpio</a></div><div class="ttdeci">struct xwds_soc::@23 gpio</div></div>
+<div class="ttc" id="astructxwds__soc_html_a9bc616e089cfad153dc7b5ea533b0ba8"><div class="ttname"><a href="structxwds__soc.html#a9bc616e089cfad153dc7b5ea533b0ba8">xwds_soc::pin_num</a></div><div class="ttdeci">xwsz_t pin_num</div><div class="ttdef"><b>Definition</b> <a href="soc_2chip_8h_source.html#l00169">chip.h:169</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="soc_2gpio_8c_a77641112749dbdbcd3b1be30903d521a_cgraph.png" border="0" usemap="#asoc_2gpio_8c_a77641112749dbdbcd3b1be30903d521a_cgraph" alt=""/></div>
+<map name="asoc_2gpio_8c_a77641112749dbdbcd3b1be30903d521a_cgraph" id="asoc_2gpio_8c_a77641112749dbdbcd3b1be30903d521a_cgraph">
+<area shape="rect" title="XWDS API：配置SOC的GPIO" alt="" coords="5,31,115,56"/>
+<area shape="rect" href="group__xwcd__ds__soc.html#ga3298dd6a43e0bee1314ff99ce032d50f" title="XWDS API：增加对象的引用计数" alt="" coords="163,5,276,31"/>
+<area shape="poly" title=" " alt="" coords="114,32,149,26,150,32,115,37"/>
+<area shape="rect" href="group__xwcd__ds__soc.html#ga855673b28d25880362384813d1721825" title="XWDS API：减少对象的引用计数" alt="" coords="166,55,273,80"/>
+<area shape="poly" title=" " alt="" coords="115,49,153,55,152,60,114,54"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga00553482e152b68af626de972e2187d7" title="XWDS API：增加对象的引用计数" alt="" coords="324,5,455,31"/>
+<area shape="poly" title=" " alt="" coords="276,15,310,15,310,21,276,21"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga69eb284bb145032e408adea3131b9d36" title="XWDS API：减少对象的引用计数" alt="" coords="328,55,451,80"/>
+<area shape="poly" title=" " alt="" coords="273,65,314,65,314,70,273,70"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a49fbdbb6abef12172865c1635a505a26" name="a49fbdbb6abef12172865c1635a505a26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49fbdbb6abef12172865c1635a505a26">&#9670;&#160;</a></span>xwds_gpio_input()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwds_gpio_input </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwds__soc.html">xwds_soc</a> *&#160;</td>
+          <td class="paramname"><em>soc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga0bb4d847ba02675e5264444479899532">xwid_t</a>&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>&#160;</td>
+          <td class="paramname"><em>pinmask</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> *&#160;</td>
+          <td class="paramname"><em>inbuf</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWDS API：并行读取多个SOC的GPIO </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">soc</td><td>SOC对象指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">port</td><td>GPIO端口，取值 <a class="el" href="group__xwcd__ds__soc.html#ga9fa1d97777af82dc6af48f8580b0916e">xwds_gpio_port_em</a> 中的一项 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pinmask</td><td>引脚的掩码，取值 <a class="el" href="group__xwcd__ds__soc.html#gab0241f1479024c7f8701e5acd25dbf21">xwds_gpio_pin_em</a> 中的任意项的或运算 </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">inbuf</td><td>输入缓冲区 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>无效指针 </td></tr>
+    <tr><td class="paramname">-ERANGE</td><td>GPIO PORT错误 </td></tr>
+    <tr><td class="paramname">-EPERM</td><td>GPIO PIN未被申请 </td></tr>
+    <tr><td class="paramname">-ENOSYS</td><td>不支持的API </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：中断、中断底半部、线程 </li>
+</ul>
+</dd></dl>
+<p>&lt;No error</p>
+
+<p class="definition">在文件 <a class="el" href="soc_2gpio_8c_source.html">gpio.c</a> 第 <a class="el" href="soc_2gpio_8c_source.html#l00289">289</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  292</span>{</div>
+<div class="line"><span class="lineno">  293</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__soc__driver.html">xwds_soc_driver</a> * drv;</div>
+<div class="line"><span class="lineno">  294</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pinsts;</div>
+<div class="line"><span class="lineno">  295</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">  296</span> </div>
+<div class="line"><span class="lineno">  297</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>(soc, <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  298</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>((port &lt; soc-&gt;gpio.port_num), <span class="stringliteral">&quot;out-of-range&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#gaa1591a4f3a86360108de5b9ba34980ca">ERANGE</a>);</div>
+<div class="line"><span class="lineno">  299</span> </div>
+<div class="line"><span class="lineno">  300</span>        pinmask &amp;= <a class="code hl_define" href="group__xwcd__ds__soc.html#ga17e4702db508ab711cdb1ad47e834195">XWDS_GPIO_PIN_MASK</a>(soc-&gt;<a class="code hl_variable" href="structxwds__soc.html#a259dade2082633f55eef7d96c1030f85">gpio</a>.<a class="code hl_variable" href="structxwds__soc.html#a9bc616e089cfad153dc7b5ea533b0ba8">pin_num</a>);</div>
+<div class="line"><span class="lineno">  301</span>        rc = <a class="code hl_function" href="group__xwcd__ds__soc.html#ga3298dd6a43e0bee1314ff99ce032d50f">xwds_soc_grab</a>(soc);</div>
+<div class="line"><span class="lineno">  302</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  303</span>                <span class="keywordflow">goto</span> err_soc_grab;</div>
+<div class="line"><span class="lineno">  304</span>        }</div>
+<div class="line"><span class="lineno">  305</span>        pinsts = <a class="code hl_define" href="group__xwos__lib__xwaop.html#ga9a53ba42b71093821567101c3ebcbe77">xwaop_load</a>(<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>, &amp;soc-&gt;<a class="code hl_variable" href="structxwds__soc.html#a259dade2082633f55eef7d96c1030f85">gpio</a>.<a class="code hl_variable" href="structxwds__soc.html#ad3708e7fb7cb4b628a7262598f9fe16b">pins</a>[port], <a class="code hl_enumvalue" href="group__xwos__lib__type.html#gga33d957600264a16ede92db2e6e42f830acdb5a6e088c69ee770c24d3612d12adc">xwaop_mo_relaxed</a>);</div>
+<div class="line"><span class="lineno">  306</span>        <span class="keywordflow">if</span> (pinmask &amp; (~pinsts)) {</div>
+<div class="line"><span class="lineno">  307</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#gadd669d31505a077f769cff8e66c780b3">EPERM</a>;</div>
+<div class="line"><span class="lineno">  308</span>                <span class="keywordflow">goto</span> err_pinsts;</div>
+<div class="line"><span class="lineno">  309</span>        }</div>
+<div class="line"><span class="lineno">  310</span>        drv = <a class="code hl_define" href="group__xwcd__ds.html#ga01391bff32dca44d0fdbe5817e801353">xwds_cast</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__soc__driver.html">xwds_soc_driver</a> *, soc-&gt;<a class="code hl_variable" href="structxwds__soc.html#a22a3eea17154df161c9874895b0cca77">dev</a>.<a class="code hl_variable" href="structxwds__device.html#a1d485436e69d8cd8f38bcd2eb467a640">drv</a>);</div>
+<div class="line"><span class="lineno">  311</span>        <span class="keywordflow">if</span> ((drv) &amp;&amp; (drv-&gt;<a class="code hl_variable" href="structxwds__soc__driver.html#ad9929fea316ab004f6223b31c4139328">gpio_input</a>)) {</div>
+<div class="line"><span class="lineno">  312</span>                rc = drv-&gt;<a class="code hl_variable" href="structxwds__soc__driver.html#ad9929fea316ab004f6223b31c4139328">gpio_input</a>(soc, port, pinmask, inbuf);</div>
+<div class="line"><span class="lineno">  313</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  314</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#ga43785b9969e0bd1af532dbde06c5540b">ENOSYS</a>;</div>
+<div class="line"><span class="lineno">  315</span>        }</div>
+<div class="line"><span class="lineno">  316</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  317</span>                <span class="keywordflow">goto</span> err_drv_in;</div>
+<div class="line"><span class="lineno">  318</span>        }</div>
+<div class="line"><span class="lineno">  319</span>        <a class="code hl_function" href="group__xwcd__ds__soc.html#ga855673b28d25880362384813d1721825">xwds_soc_put</a>(soc);</div>
+<div class="line"><span class="lineno">  320</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><span class="lineno">  321</span> </div>
+<div class="line"><span class="lineno">  322</span>err_drv_in:</div>
+<div class="line"><span class="lineno">  323</span>err_pinsts:</div>
+<div class="line"><span class="lineno">  324</span>        <a class="code hl_function" href="group__xwcd__ds__soc.html#ga855673b28d25880362384813d1721825">xwds_soc_put</a>(soc);</div>
+<div class="line"><span class="lineno">  325</span>err_soc_grab:</div>
+<div class="line"><span class="lineno">  326</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  327</span>}</div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_gadd669d31505a077f769cff8e66c780b3"><div class="ttname"><a href="group__xwos__lib__errno.html#gadd669d31505a077f769cff8e66c780b3">EPERM</a></div><div class="ttdeci">#define EPERM</div><div class="ttdoc">Operation not permitted</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00031">errno.h:31</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga59fe68c80516b22de8dccb84275d23f2"><div class="ttname"><a href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a></div><div class="ttdeci">unsigned long xwsq_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00445">type.h:445</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_gga33d957600264a16ede92db2e6e42f830acdb5a6e088c69ee770c24d3612d12adc"><div class="ttname"><a href="group__xwos__lib__type.html#gga33d957600264a16ede92db2e6e42f830acdb5a6e088c69ee770c24d3612d12adc">xwaop_mo_relaxed</a></div><div class="ttdeci">@ xwaop_mo_relaxed</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00628">type.h:628</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__xwaop_html_ga9a53ba42b71093821567101c3ebcbe77"><div class="ttname"><a href="group__xwos__lib__xwaop.html#ga9a53ba42b71093821567101c3ebcbe77">xwaop_load</a></div><div class="ttdeci">#define xwaop_load(type, a, memorder)</div><div class="ttdoc">对原子变量进行原子操作：加载</div><div class="ttdef"><b>Definition</b> <a href="xwaop_8h_source.html#l00045">xwaop.h:45</a></div></div>
+<div class="ttc" id="astructxwds__soc__driver_html_ad9929fea316ab004f6223b31c4139328"><div class="ttname"><a href="structxwds__soc__driver.html#ad9929fea316ab004f6223b31c4139328">xwds_soc_driver::gpio_input</a></div><div class="ttdeci">xwer_t(* gpio_input)(struct xwds_soc *, xwid_t, xwsq_t, xwsq_t *)</div><div class="ttdef"><b>Definition</b> <a href="soc_2chip_8h_source.html#l00099">chip.h:99</a></div></div>
+<div class="ttc" id="astructxwds__soc_html_ad3708e7fb7cb4b628a7262598f9fe16b"><div class="ttname"><a href="structxwds__soc.html#ad3708e7fb7cb4b628a7262598f9fe16b">xwds_soc::pins</a></div><div class="ttdeci">atomic_xwsq_t * pins</div><div class="ttdef"><b>Definition</b> <a href="soc_2chip_8h_source.html#l00167">chip.h:167</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="soc_2gpio_8c_a49fbdbb6abef12172865c1635a505a26_cgraph.png" border="0" usemap="#asoc_2gpio_8c_a49fbdbb6abef12172865c1635a505a26_cgraph" alt=""/></div>
+<map name="asoc_2gpio_8c_a49fbdbb6abef12172865c1635a505a26_cgraph" id="asoc_2gpio_8c_a49fbdbb6abef12172865c1635a505a26_cgraph">
+<area shape="rect" title="XWDS API：并行读取多个SOC的GPIO" alt="" coords="5,31,124,56"/>
+<area shape="rect" href="group__xwcd__ds__soc.html#ga3298dd6a43e0bee1314ff99ce032d50f" title="XWDS API：增加对象的引用计数" alt="" coords="172,5,285,31"/>
+<area shape="poly" title=" " alt="" coords="124,32,158,26,159,31,125,37"/>
+<area shape="rect" href="group__xwcd__ds__soc.html#ga855673b28d25880362384813d1721825" title="XWDS API：减少对象的引用计数" alt="" coords="175,55,282,80"/>
+<area shape="poly" title=" " alt="" coords="125,49,162,55,161,60,124,55"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga00553482e152b68af626de972e2187d7" title="XWDS API：增加对象的引用计数" alt="" coords="333,5,464,31"/>
+<area shape="poly" title=" " alt="" coords="286,15,320,15,320,21,286,21"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga69eb284bb145032e408adea3131b9d36" title="XWDS API：减少对象的引用计数" alt="" coords="337,55,460,80"/>
+<area shape="poly" title=" " alt="" coords="282,65,323,65,323,70,282,70"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ac7031024c303ba17b0c9433c88bc7f9f" name="ac7031024c303ba17b0c9433c88bc7f9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7031024c303ba17b0c9433c88bc7f9f">&#9670;&#160;</a></span>xwds_gpio_output()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwds_gpio_output </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwds__soc.html">xwds_soc</a> *&#160;</td>
+          <td class="paramname"><em>soc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga0bb4d847ba02675e5264444479899532">xwid_t</a>&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>&#160;</td>
+          <td class="paramname"><em>pinmask</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>&#160;</td>
+          <td class="paramname"><em>out</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWDS API：并行输出多个SOC的GPIO </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">soc</td><td>SOC对象指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">port</td><td>GPIO端口，取值 <a class="el" href="group__xwcd__ds__soc.html#ga9fa1d97777af82dc6af48f8580b0916e">xwds_gpio_port_em</a> 中的一项 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pinmask</td><td>引脚的掩码，取值 <a class="el" href="group__xwcd__ds__soc.html#gab0241f1479024c7f8701e5acd25dbf21">xwds_gpio_pin_em</a> 中的任意项的或运算 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">out</td><td>输出值，引脚的掩码，取值 <a class="el" href="group__xwcd__ds__soc.html#gab0241f1479024c7f8701e5acd25dbf21">xwds_gpio_pin_em</a> 中的任意项的或运算， 只有被pinmask掩码覆盖的部分有效，未覆盖的pin输出不会发生改变。 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>无效指针 </td></tr>
+    <tr><td class="paramname">-ERANGE</td><td>GPIO PORT错误 </td></tr>
+    <tr><td class="paramname">-EPERM</td><td>GPIO PIN未被申请 </td></tr>
+    <tr><td class="paramname">-ENOSYS</td><td>不支持的API </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：中断、中断底半部、线程 </li>
+</ul>
+</dd></dl>
+<p>&lt;No error</p>
+
+<p class="definition">在文件 <a class="el" href="soc_2gpio_8c_source.html">gpio.c</a> 第 <a class="el" href="soc_2gpio_8c_source.html#l00248">248</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  251</span>{</div>
+<div class="line"><span class="lineno">  252</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__soc__driver.html">xwds_soc_driver</a> * drv;</div>
+<div class="line"><span class="lineno">  253</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pinsts;</div>
+<div class="line"><span class="lineno">  254</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">  255</span> </div>
+<div class="line"><span class="lineno">  256</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>(soc, <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  257</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>((port &lt; soc-&gt;gpio.port_num), <span class="stringliteral">&quot;out-of-range&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#gaa1591a4f3a86360108de5b9ba34980ca">ERANGE</a>);</div>
+<div class="line"><span class="lineno">  258</span> </div>
+<div class="line"><span class="lineno">  259</span>        pinmask &amp;= <a class="code hl_define" href="group__xwcd__ds__soc.html#ga17e4702db508ab711cdb1ad47e834195">XWDS_GPIO_PIN_MASK</a>(soc-&gt;<a class="code hl_variable" href="structxwds__soc.html#a259dade2082633f55eef7d96c1030f85">gpio</a>.<a class="code hl_variable" href="structxwds__soc.html#a9bc616e089cfad153dc7b5ea533b0ba8">pin_num</a>);</div>
+<div class="line"><span class="lineno">  260</span>        rc = <a class="code hl_function" href="group__xwcd__ds__soc.html#ga3298dd6a43e0bee1314ff99ce032d50f">xwds_soc_grab</a>(soc);</div>
+<div class="line"><span class="lineno">  261</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  262</span>                <span class="keywordflow">goto</span> err_soc_grab;</div>
+<div class="line"><span class="lineno">  263</span>        }</div>
+<div class="line"><span class="lineno">  264</span>        pinsts = <a class="code hl_define" href="group__xwos__lib__xwaop.html#ga9a53ba42b71093821567101c3ebcbe77">xwaop_load</a>(<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>, &amp;soc-&gt;<a class="code hl_variable" href="structxwds__soc.html#a259dade2082633f55eef7d96c1030f85">gpio</a>.<a class="code hl_variable" href="structxwds__soc.html#ad3708e7fb7cb4b628a7262598f9fe16b">pins</a>[port], <a class="code hl_enumvalue" href="group__xwos__lib__type.html#gga33d957600264a16ede92db2e6e42f830acdb5a6e088c69ee770c24d3612d12adc">xwaop_mo_relaxed</a>);</div>
+<div class="line"><span class="lineno">  265</span>        <span class="keywordflow">if</span> (pinmask &amp; (~pinsts)) {</div>
+<div class="line"><span class="lineno">  266</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#gadd669d31505a077f769cff8e66c780b3">EPERM</a>;</div>
+<div class="line"><span class="lineno">  267</span>                <span class="keywordflow">goto</span> err_pinsts;</div>
+<div class="line"><span class="lineno">  268</span>        }</div>
+<div class="line"><span class="lineno">  269</span>        drv = <a class="code hl_define" href="group__xwcd__ds.html#ga01391bff32dca44d0fdbe5817e801353">xwds_cast</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__soc__driver.html">xwds_soc_driver</a> *, soc-&gt;<a class="code hl_variable" href="structxwds__soc.html#a22a3eea17154df161c9874895b0cca77">dev</a>.<a class="code hl_variable" href="structxwds__device.html#a1d485436e69d8cd8f38bcd2eb467a640">drv</a>);</div>
+<div class="line"><span class="lineno">  270</span>        <span class="keywordflow">if</span> ((drv) &amp;&amp; (drv-&gt;<a class="code hl_variable" href="structxwds__soc__driver.html#a411318650bf2ad3e595fa40bc00494f3">gpio_output</a>)) {</div>
+<div class="line"><span class="lineno">  271</span>                rc = drv-&gt;<a class="code hl_variable" href="structxwds__soc__driver.html#a411318650bf2ad3e595fa40bc00494f3">gpio_output</a>(soc, port, pinmask, out);</div>
+<div class="line"><span class="lineno">  272</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  273</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#ga43785b9969e0bd1af532dbde06c5540b">ENOSYS</a>;</div>
+<div class="line"><span class="lineno">  274</span>        }</div>
+<div class="line"><span class="lineno">  275</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  276</span>                <span class="keywordflow">goto</span> err_drv_out;</div>
+<div class="line"><span class="lineno">  277</span>        }</div>
+<div class="line"><span class="lineno">  278</span>        <a class="code hl_function" href="group__xwcd__ds__soc.html#ga855673b28d25880362384813d1721825">xwds_soc_put</a>(soc);</div>
+<div class="line"><span class="lineno">  279</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><span class="lineno">  280</span> </div>
+<div class="line"><span class="lineno">  281</span>err_drv_out:</div>
+<div class="line"><span class="lineno">  282</span>err_pinsts:</div>
+<div class="line"><span class="lineno">  283</span>        <a class="code hl_function" href="group__xwcd__ds__soc.html#ga855673b28d25880362384813d1721825">xwds_soc_put</a>(soc);</div>
+<div class="line"><span class="lineno">  284</span>err_soc_grab:</div>
+<div class="line"><span class="lineno">  285</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  286</span>}</div>
+<div class="ttc" id="astructxwds__soc__driver_html_a411318650bf2ad3e595fa40bc00494f3"><div class="ttname"><a href="structxwds__soc__driver.html#a411318650bf2ad3e595fa40bc00494f3">xwds_soc_driver::gpio_output</a></div><div class="ttdeci">xwer_t(* gpio_output)(struct xwds_soc *, xwid_t, xwsq_t, xwsq_t)</div><div class="ttdef"><b>Definition</b> <a href="soc_2chip_8h_source.html#l00086">chip.h:86</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="soc_2gpio_8c_ac7031024c303ba17b0c9433c88bc7f9f_cgraph.png" border="0" usemap="#asoc_2gpio_8c_ac7031024c303ba17b0c9433c88bc7f9f_cgraph" alt=""/></div>
+<map name="asoc_2gpio_8c_ac7031024c303ba17b0c9433c88bc7f9f_cgraph" id="asoc_2gpio_8c_ac7031024c303ba17b0c9433c88bc7f9f_cgraph">
+<area shape="rect" title="XWDS API：并行输出多个SOC的GPIO" alt="" coords="5,31,132,56"/>
+<area shape="rect" href="group__xwcd__ds__soc.html#ga3298dd6a43e0bee1314ff99ce032d50f" title="XWDS API：增加对象的引用计数" alt="" coords="180,5,293,31"/>
+<area shape="poly" title=" " alt="" coords="132,31,166,26,166,31,132,36"/>
+<area shape="rect" href="group__xwcd__ds__soc.html#ga855673b28d25880362384813d1721825" title="XWDS API：减少对象的引用计数" alt="" coords="183,55,290,80"/>
+<area shape="poly" title=" " alt="" coords="132,50,170,55,170,60,132,55"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga00553482e152b68af626de972e2187d7" title="XWDS API：增加对象的引用计数" alt="" coords="341,5,472,31"/>
+<area shape="poly" title=" " alt="" coords="294,15,328,15,328,21,294,21"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga69eb284bb145032e408adea3131b9d36" title="XWDS API：减少对象的引用计数" alt="" coords="345,55,468,80"/>
+<area shape="poly" title=" " alt="" coords="290,65,331,65,331,70,290,70"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af37423c2fa2e07af00eef5f3bdc9f02d" name="af37423c2fa2e07af00eef5f3bdc9f02d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af37423c2fa2e07af00eef5f3bdc9f02d">&#9670;&#160;</a></span>xwds_gpio_req()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwds_gpio_req </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwds__soc.html">xwds_soc</a> *&#160;</td>
+          <td class="paramname"><em>soc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga0bb4d847ba02675e5264444479899532">xwid_t</a>&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>&#160;</td>
+          <td class="paramname"><em>pinmask</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWDS API：申请SOC的GPIO </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">soc</td><td>SOC对象指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">port</td><td>GPIO端口，取值 <a class="el" href="group__xwcd__ds__soc.html#ga9fa1d97777af82dc6af48f8580b0916e">xwds_gpio_port_em</a> 中的一项 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pinmask</td><td>引脚的掩码，取值 <a class="el" href="group__xwcd__ds__soc.html#gab0241f1479024c7f8701e5acd25dbf21">xwds_gpio_pin_em</a> 中的任意项的或运算 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>无效指针 </td></tr>
+    <tr><td class="paramname">-ERANGE</td><td>GPIO PORT错误 </td></tr>
+    <tr><td class="paramname">-EBUSY</td><td>GPIO PIN已被使用 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：中断、中断底半部、线程 </li>
+</ul>
+</dd></dl>
+<p>&lt;No error</p>
+
+<p class="definition">在文件 <a class="el" href="soc_2gpio_8c_source.html">gpio.c</a> 第 <a class="el" href="soc_2gpio_8c_source.html#l00027">27</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   28</span>{</div>
+<div class="line"><span class="lineno">   29</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__soc__driver.html">xwds_soc_driver</a> * drv;</div>
+<div class="line"><span class="lineno">   30</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">   31</span> </div>
+<div class="line"><span class="lineno">   32</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>(soc, <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">   33</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>((port &lt; soc-&gt;gpio.port_num), <span class="stringliteral">&quot;out-of-range&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#gaa1591a4f3a86360108de5b9ba34980ca">ERANGE</a>);</div>
+<div class="line"><span class="lineno">   34</span> </div>
+<div class="line"><span class="lineno">   35</span>        pinmask &amp;= <a class="code hl_define" href="group__xwcd__ds__soc.html#ga17e4702db508ab711cdb1ad47e834195">XWDS_GPIO_PIN_MASK</a>(soc-&gt;<a class="code hl_variable" href="structxwds__soc.html#a259dade2082633f55eef7d96c1030f85">gpio</a>.<a class="code hl_variable" href="structxwds__soc.html#a9bc616e089cfad153dc7b5ea533b0ba8">pin_num</a>);</div>
+<div class="line"><span class="lineno">   36</span>        rc = <a class="code hl_function" href="group__xwcd__ds__soc.html#ga3298dd6a43e0bee1314ff99ce032d50f">xwds_soc_grab</a>(soc);</div>
+<div class="line"><span class="lineno">   37</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">   38</span>                <span class="keywordflow">goto</span> err_soc_grab;</div>
+<div class="line"><span class="lineno">   39</span>        }</div>
+<div class="line"><span class="lineno">   40</span>        rc = <a class="code hl_define" href="group__xwos__lib__xwaop.html#gadc20095dc759f0aa8791e4310bcfe52d">xwaop_t0ma_then_s1m</a>(<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>, &amp;soc-&gt;<a class="code hl_variable" href="structxwds__soc.html#a259dade2082633f55eef7d96c1030f85">gpio</a>.<a class="code hl_variable" href="structxwds__soc.html#ad3708e7fb7cb4b628a7262598f9fe16b">pins</a>[port], pinmask, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><span class="lineno">   41</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">   42</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#ga8368025077a0385849d6817b2007c095">EBUSY</a>;</div>
+<div class="line"><span class="lineno">   43</span>                <span class="keywordflow">goto</span> err_set_pin;</div>
+<div class="line"><span class="lineno">   44</span>        }</div>
+<div class="line"><span class="lineno">   45</span>        drv = <a class="code hl_define" href="group__xwcd__ds.html#ga01391bff32dca44d0fdbe5817e801353">xwds_cast</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__soc__driver.html">xwds_soc_driver</a> *, soc-&gt;<a class="code hl_variable" href="structxwds__soc.html#a22a3eea17154df161c9874895b0cca77">dev</a>.<a class="code hl_variable" href="structxwds__device.html#a1d485436e69d8cd8f38bcd2eb467a640">drv</a>);</div>
+<div class="line"><span class="lineno">   46</span>        <span class="keywordflow">if</span> ((drv) &amp;&amp; (drv-&gt;<a class="code hl_variable" href="structxwds__soc__driver.html#a415463ecdc97492b660544d1b74e864f">gpio_req</a>)) {</div>
+<div class="line"><span class="lineno">   47</span>                rc = drv-&gt;<a class="code hl_variable" href="structxwds__soc__driver.html#a415463ecdc97492b660544d1b74e864f">gpio_req</a>(soc, port, pinmask);</div>
+<div class="line"><span class="lineno">   48</span>                <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">   49</span>                        <span class="keywordflow">goto</span> err_drv_gpio_req;</div>
+<div class="line"><span class="lineno">   50</span>                }</div>
+<div class="line"><span class="lineno">   51</span>        }</div>
+<div class="line"><span class="lineno">   52</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><span class="lineno">   53</span> </div>
+<div class="line"><span class="lineno">   54</span>err_drv_gpio_req:</div>
+<div class="line"><span class="lineno">   55</span>        <a class="code hl_define" href="group__xwos__lib__xwaop.html#ga994e87b2c012362dcd18e5491c6748a0">xwaop_c0m</a>(<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>, &amp;soc-&gt;<a class="code hl_variable" href="structxwds__soc.html#a259dade2082633f55eef7d96c1030f85">gpio</a>.<a class="code hl_variable" href="structxwds__soc.html#ad3708e7fb7cb4b628a7262598f9fe16b">pins</a>[port], pinmask, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><span class="lineno">   56</span>err_set_pin:</div>
+<div class="line"><span class="lineno">   57</span>        <a class="code hl_function" href="group__xwcd__ds__soc.html#ga855673b28d25880362384813d1721825">xwds_soc_put</a>(soc);</div>
+<div class="line"><span class="lineno">   58</span>err_soc_grab:</div>
+<div class="line"><span class="lineno">   59</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">   60</span>}</div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga8368025077a0385849d6817b2007c095"><div class="ttname"><a href="group__xwos__lib__errno.html#ga8368025077a0385849d6817b2007c095">EBUSY</a></div><div class="ttdeci">#define EBUSY</div><div class="ttdoc">Device or resource busy</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00046">errno.h:46</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00028">type.h:28</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__xwaop_html_ga994e87b2c012362dcd18e5491c6748a0"><div class="ttname"><a href="group__xwos__lib__xwaop.html#ga994e87b2c012362dcd18e5491c6748a0">xwaop_c0m</a></div><div class="ttdeci">#define xwaop_c0m(type, a, m, nv, ov)</div><div class="ttdoc">对原子变量进行原子操作：读取－位清0操作－回写</div><div class="ttdef"><b>Definition</b> <a href="xwaop_8h_source.html#l01190">xwaop.h:1190</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__xwaop_html_gadc20095dc759f0aa8791e4310bcfe52d"><div class="ttname"><a href="group__xwos__lib__xwaop.html#gadc20095dc759f0aa8791e4310bcfe52d">xwaop_t0ma_then_s1m</a></div><div class="ttdeci">#define xwaop_t0ma_then_s1m(type, a, m, nv, ov)</div><div class="ttdoc">对原子变量进行原子操作：读取－位测试－位置1操作－回写</div><div class="ttdef"><b>Definition</b> <a href="xwaop_8h_source.html#l01277">xwaop.h:1277</a></div></div>
+<div class="ttc" id="astructxwds__soc__driver_html_a415463ecdc97492b660544d1b74e864f"><div class="ttname"><a href="structxwds__soc__driver.html#a415463ecdc97492b660544d1b74e864f">xwds_soc_driver::gpio_req</a></div><div class="ttdeci">xwer_t(* gpio_req)(struct xwds_soc *, xwid_t, xwsq_t)</div><div class="ttdef"><b>Definition</b> <a href="soc_2chip_8h_source.html#l00076">chip.h:76</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="soc_2gpio_8c_af37423c2fa2e07af00eef5f3bdc9f02d_cgraph.png" border="0" usemap="#asoc_2gpio_8c_af37423c2fa2e07af00eef5f3bdc9f02d_cgraph" alt=""/></div>
+<map name="asoc_2gpio_8c_af37423c2fa2e07af00eef5f3bdc9f02d_cgraph" id="asoc_2gpio_8c_af37423c2fa2e07af00eef5f3bdc9f02d_cgraph">
+<area shape="rect" title="XWDS API：申请SOC的GPIO" alt="" coords="5,31,115,56"/>
+<area shape="rect" href="group__xwcd__ds__soc.html#ga3298dd6a43e0bee1314ff99ce032d50f" title="XWDS API：增加对象的引用计数" alt="" coords="163,5,276,31"/>
+<area shape="poly" title=" " alt="" coords="114,32,149,26,150,32,115,37"/>
+<area shape="rect" href="group__xwcd__ds__soc.html#ga855673b28d25880362384813d1721825" title="XWDS API：减少对象的引用计数" alt="" coords="166,55,273,80"/>
+<area shape="poly" title=" " alt="" coords="115,49,153,55,152,60,114,54"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga00553482e152b68af626de972e2187d7" title="XWDS API：增加对象的引用计数" alt="" coords="324,5,455,31"/>
+<area shape="poly" title=" " alt="" coords="276,15,310,15,310,21,276,21"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga69eb284bb145032e408adea3131b9d36" title="XWDS API：减少对象的引用计数" alt="" coords="328,55,451,80"/>
+<area shape="poly" title=" " alt="" coords="273,65,314,65,314,70,273,70"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="soc_2gpio_8c_af37423c2fa2e07af00eef5f3bdc9f02d_icgraph.png" border="0" usemap="#asoc_2gpio_8c_af37423c2fa2e07af00eef5f3bdc9f02d_icgraph" alt=""/></div>
+<map name="asoc_2gpio_8c_af37423c2fa2e07af00eef5f3bdc9f02d_icgraph" id="asoc_2gpio_8c_af37423c2fa2e07af00eef5f3bdc9f02d_icgraph">
+<area shape="rect" title="XWDS API：申请SOC的GPIO" alt="" coords="447,106,556,131"/>
+<area shape="rect" href="can_2transceiver_2xxx10xx_2driver_8c.html#afbe261e1f74f2a66c32c217464e847cd" title="XXX10XX基本驱动：继续设备" alt="" coords="237,5,396,45"/>
+<area shape="poly" title=" " alt="" coords="468,101,397,60,371,48,373,43,400,55,471,96"/>
+<area shape="rect" href="can_2transceiver_2xxx10xx_2driver_8c.html#adaca5687e00b2c8d61ddd1f298b6d705" title="XXX10XX基本驱动：启动设备" alt="" coords="237,69,396,109"/>
+<area shape="poly" title=" " alt="" coords="433,111,396,105,397,99,434,105"/>
+<area shape="rect" href="i2c_2eeprom_2driver_8c.html#a0c29df25ac0b5af92eb1402779b059aa" title="EEPROM基本驱动：启动设备" alt="" coords="236,134,397,159"/>
+<area shape="poly" title=" " alt="" coords="434,132,398,137,397,132,433,126"/>
+<area shape="rect" href="group__xwcd__peripheral__i2c__iochip__tca9539.html#ga7094c1a22a74de0c6e4ef8714b340fc0" title="TCA9539基本驱动：启动设备" alt="" coords="235,183,399,209"/>
+<area shape="poly" title=" " alt="" coords="468,141,400,174,367,186,365,181,398,170,466,136"/>
+<area shape="rect" href="i2c_2eeprom_2driver_8c.html#afce255dbf65cf1ef67bf822ff34fa7e5" title="EEPROM基本驱动：暂停设备" alt="" coords="7,134,185,159"/>
+<area shape="poly" title=" " alt="" coords="222,149,185,149,185,144,222,144"/>
+<area shape="rect" href="i2c_2iochip_2tca9539_2driver_8c.html#abfead6c8896d3c5ab5aa3a063e2cee30" title="TCA9539基本驱动：继续设备" alt="" coords="5,183,187,209"/>
+<area shape="poly" title=" " alt="" coords="221,199,187,199,187,193,221,193"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a359943605402a078a0017f7e85ead8ee" name="a359943605402a078a0017f7e85ead8ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a359943605402a078a0017f7e85ead8ee">&#9670;&#160;</a></span>xwds_gpio_reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwds_gpio_reset </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwds__soc.html">xwds_soc</a> *&#160;</td>
+          <td class="paramname"><em>soc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga0bb4d847ba02675e5264444479899532">xwid_t</a>&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>&#160;</td>
+          <td class="paramname"><em>pinmask</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWDS API：将SOC的GPIO设置为低电平 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">soc</td><td>SOC对象指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">port</td><td>GPIO端口，取值 <a class="el" href="group__xwcd__ds__soc.html#ga9fa1d97777af82dc6af48f8580b0916e">xwds_gpio_port_em</a> 中的一项 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pinmask</td><td>引脚的掩码，取值 <a class="el" href="group__xwcd__ds__soc.html#gab0241f1479024c7f8701e5acd25dbf21">xwds_gpio_pin_em</a> 中的任意项的或运算 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>无效指针 </td></tr>
+    <tr><td class="paramname">-ERANGE</td><td>GPIO PORT错误 </td></tr>
+    <tr><td class="paramname">-EPERM</td><td>GPIO PIN未被申请 </td></tr>
+    <tr><td class="paramname">-ENOSYS</td><td>不支持的API </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：中断、中断底半部、线程 </li>
+</ul>
+</dd></dl>
+<p>&lt;No error</p>
+
+<p class="definition">在文件 <a class="el" href="soc_2gpio_8c_source.html">gpio.c</a> 第 <a class="el" href="soc_2gpio_8c_source.html#l00170">170</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  171</span>{</div>
+<div class="line"><span class="lineno">  172</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__soc__driver.html">xwds_soc_driver</a> * drv;</div>
+<div class="line"><span class="lineno">  173</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pinsts;</div>
+<div class="line"><span class="lineno">  174</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">  175</span> </div>
+<div class="line"><span class="lineno">  176</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>(soc, <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  177</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>((port &lt; soc-&gt;gpio.port_num), <span class="stringliteral">&quot;out-of-range&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#gaa1591a4f3a86360108de5b9ba34980ca">ERANGE</a>);</div>
+<div class="line"><span class="lineno">  178</span> </div>
+<div class="line"><span class="lineno">  179</span>        pinmask &amp;= <a class="code hl_define" href="group__xwcd__ds__soc.html#ga17e4702db508ab711cdb1ad47e834195">XWDS_GPIO_PIN_MASK</a>(soc-&gt;<a class="code hl_variable" href="structxwds__soc.html#a259dade2082633f55eef7d96c1030f85">gpio</a>.<a class="code hl_variable" href="structxwds__soc.html#a9bc616e089cfad153dc7b5ea533b0ba8">pin_num</a>);</div>
+<div class="line"><span class="lineno">  180</span>        rc = <a class="code hl_function" href="group__xwcd__ds__soc.html#ga3298dd6a43e0bee1314ff99ce032d50f">xwds_soc_grab</a>(soc);</div>
+<div class="line"><span class="lineno">  181</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  182</span>                <span class="keywordflow">goto</span> err_soc_grab;</div>
+<div class="line"><span class="lineno">  183</span>        }</div>
+<div class="line"><span class="lineno">  184</span>        pinsts = <a class="code hl_define" href="group__xwos__lib__xwaop.html#ga9a53ba42b71093821567101c3ebcbe77">xwaop_load</a>(<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>, &amp;soc-&gt;<a class="code hl_variable" href="structxwds__soc.html#a259dade2082633f55eef7d96c1030f85">gpio</a>.<a class="code hl_variable" href="structxwds__soc.html#ad3708e7fb7cb4b628a7262598f9fe16b">pins</a>[port], <a class="code hl_enumvalue" href="group__xwos__lib__type.html#gga33d957600264a16ede92db2e6e42f830acdb5a6e088c69ee770c24d3612d12adc">xwaop_mo_relaxed</a>);</div>
+<div class="line"><span class="lineno">  185</span>        <span class="keywordflow">if</span> (pinmask &amp; (~pinsts)) {</div>
+<div class="line"><span class="lineno">  186</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#gadd669d31505a077f769cff8e66c780b3">EPERM</a>;</div>
+<div class="line"><span class="lineno">  187</span>                <span class="keywordflow">goto</span> err_pinsts;</div>
+<div class="line"><span class="lineno">  188</span>        }</div>
+<div class="line"><span class="lineno">  189</span>        drv = <a class="code hl_define" href="group__xwcd__ds.html#ga01391bff32dca44d0fdbe5817e801353">xwds_cast</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__soc__driver.html">xwds_soc_driver</a> *, soc-&gt;<a class="code hl_variable" href="structxwds__soc.html#a22a3eea17154df161c9874895b0cca77">dev</a>.<a class="code hl_variable" href="structxwds__device.html#a1d485436e69d8cd8f38bcd2eb467a640">drv</a>);</div>
+<div class="line"><span class="lineno">  190</span>        <span class="keywordflow">if</span> ((drv) &amp;&amp; (drv-&gt;<a class="code hl_variable" href="structxwds__soc__driver.html#aee0d7d1d532b2c0592fb2a72372960ea">gpio_reset</a>)) {</div>
+<div class="line"><span class="lineno">  191</span>                rc = drv-&gt;<a class="code hl_variable" href="structxwds__soc__driver.html#aee0d7d1d532b2c0592fb2a72372960ea">gpio_reset</a>(soc, port, pinmask);</div>
+<div class="line"><span class="lineno">  192</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  193</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#ga43785b9969e0bd1af532dbde06c5540b">ENOSYS</a>;</div>
+<div class="line"><span class="lineno">  194</span>        }</div>
+<div class="line"><span class="lineno">  195</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  196</span>                <span class="keywordflow">goto</span> err_drv_reset;</div>
+<div class="line"><span class="lineno">  197</span>        }</div>
+<div class="line"><span class="lineno">  198</span>        <a class="code hl_function" href="group__xwcd__ds__soc.html#ga855673b28d25880362384813d1721825">xwds_soc_put</a>(soc);</div>
+<div class="line"><span class="lineno">  199</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><span class="lineno">  200</span> </div>
+<div class="line"><span class="lineno">  201</span>err_drv_reset:</div>
+<div class="line"><span class="lineno">  202</span>err_pinsts:</div>
+<div class="line"><span class="lineno">  203</span>        <a class="code hl_function" href="group__xwcd__ds__soc.html#ga855673b28d25880362384813d1721825">xwds_soc_put</a>(soc);</div>
+<div class="line"><span class="lineno">  204</span>err_soc_grab:</div>
+<div class="line"><span class="lineno">  205</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  206</span>}</div>
+<div class="ttc" id="astructxwds__soc__driver_html_aee0d7d1d532b2c0592fb2a72372960ea"><div class="ttname"><a href="structxwds__soc__driver.html#aee0d7d1d532b2c0592fb2a72372960ea">xwds_soc_driver::gpio_reset</a></div><div class="ttdeci">xwer_t(* gpio_reset)(struct xwds_soc *, xwid_t, xwsq_t)</div><div class="ttdef"><b>Definition</b> <a href="soc_2chip_8h_source.html#l00093">chip.h:93</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="soc_2gpio_8c_a359943605402a078a0017f7e85ead8ee_cgraph.png" border="0" usemap="#asoc_2gpio_8c_a359943605402a078a0017f7e85ead8ee_cgraph" alt=""/></div>
+<map name="asoc_2gpio_8c_a359943605402a078a0017f7e85ead8ee_cgraph" id="asoc_2gpio_8c_a359943605402a078a0017f7e85ead8ee_cgraph">
+<area shape="rect" title="XWDS API：将SOC的GPIO设置为低电平" alt="" coords="5,31,125,56"/>
+<area shape="rect" href="group__xwcd__ds__soc.html#ga3298dd6a43e0bee1314ff99ce032d50f" title="XWDS API：增加对象的引用计数" alt="" coords="173,5,287,31"/>
+<area shape="poly" title=" " alt="" coords="125,31,160,26,160,31,126,37"/>
+<area shape="rect" href="group__xwcd__ds__soc.html#ga855673b28d25880362384813d1721825" title="XWDS API：减少对象的引用计数" alt="" coords="177,55,283,80"/>
+<area shape="poly" title=" " alt="" coords="126,49,164,55,163,60,125,55"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga00553482e152b68af626de972e2187d7" title="XWDS API：增加对象的引用计数" alt="" coords="335,5,465,31"/>
+<area shape="poly" title=" " alt="" coords="287,15,321,15,321,21,287,21"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga69eb284bb145032e408adea3131b9d36" title="XWDS API：减少对象的引用计数" alt="" coords="339,55,461,80"/>
+<area shape="poly" title=" " alt="" coords="283,65,325,65,325,70,283,70"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="soc_2gpio_8c_a359943605402a078a0017f7e85ead8ee_icgraph.png" border="0" usemap="#asoc_2gpio_8c_a359943605402a078a0017f7e85ead8ee_icgraph" alt=""/></div>
+<map name="asoc_2gpio_8c_a359943605402a078a0017f7e85ead8ee_icgraph" id="asoc_2gpio_8c_a359943605402a078a0017f7e85ead8ee_icgraph">
+<area shape="rect" title="XWDS API：将SOC的GPIO设置为低电平" alt="" coords="669,95,789,121"/>
+<area shape="rect" href="can_2transceiver_2xxx10xx_2driver_8c.html#a716a6992b043aa69eadca987f1693d7a" title="XXX10XX CAN接收器驱动：设置CAN接收器的运行模式" alt="" coords="455,5,613,45"/>
+<area shape="poly" title=" " alt="" coords="689,92,620,60,591,48,593,43,622,55,691,87"/>
+<area shape="rect" href="i2c_2eeprom_2driver_8c.html#abbc7940363660d79e1f8ff57544cdde8" title="EEPROM API：关闭EEPROM的电源" alt="" coords="451,70,617,95"/>
+<area shape="poly" title=" " alt="" coords="656,101,617,96,618,91,656,96"/>
+<area shape="rect" href="i2c_2eeprom_2driver_8c.html#a943d3dc5ecf10a4640759d028660036a" title="EEPROM API：关闭EEPROM的写保护" alt="" coords="447,119,621,145"/>
+<area shape="poly" title=" " alt="" coords="656,120,622,124,621,119,655,114"/>
+<area shape="rect" href="i2c_2iochip_2tca9539_2driver_8c.html#a86c428bbab1cf60be168384be0e8d09c" title="TCA9539 API：复位TCA9539" alt="" coords="463,169,605,194"/>
+<area shape="poly" title=" " alt="" coords="691,129,622,158,584,171,582,166,620,154,689,124"/>
+<area shape="rect" href="group__xwcd__peripheral__i2c__iochip__tca9539.html#ga7094c1a22a74de0c6e4ef8714b340fc0" title="TCA9539基本驱动：启动设备" alt="" coords="235,169,399,194"/>
+<area shape="poly" title=" " alt="" coords="449,184,399,184,399,179,449,179"/>
+<area shape="rect" href="i2c_2iochip_2tca9539_2driver_8c.html#abfead6c8896d3c5ab5aa3a063e2cee30" title="TCA9539基本驱动：继续设备" alt="" coords="5,169,187,194"/>
+<area shape="poly" title=" " alt="" coords="221,184,187,184,187,179,221,179"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a7be304e546f2ce5f6f755cf577c1e742" name="a7be304e546f2ce5f6f755cf577c1e742"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7be304e546f2ce5f6f755cf577c1e742">&#9670;&#160;</a></span>xwds_gpio_rls()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwds_gpio_rls </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwds__soc.html">xwds_soc</a> *&#160;</td>
+          <td class="paramname"><em>soc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga0bb4d847ba02675e5264444479899532">xwid_t</a>&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>&#160;</td>
+          <td class="paramname"><em>pinmask</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWDS API：释放SOC的GPIO </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">soc</td><td>SOC对象指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">port</td><td>GPIO端口，取值 <a class="el" href="group__xwcd__ds__soc.html#ga9fa1d97777af82dc6af48f8580b0916e">xwds_gpio_port_em</a> 中的一项 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pinmask</td><td>引脚的掩码，取值 <a class="el" href="group__xwcd__ds__soc.html#gab0241f1479024c7f8701e5acd25dbf21">xwds_gpio_pin_em</a> 中的任意项的或运算 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>无效指针 </td></tr>
+    <tr><td class="paramname">-ERANGE</td><td>GPIO PORT错误 </td></tr>
+    <tr><td class="paramname">-EPERM</td><td>GPIO PIN未被申请 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：中断、中断底半部、线程 </li>
+</ul>
+</dd></dl>
+<p>&lt;No error</p>
+
+<p class="definition">在文件 <a class="el" href="soc_2gpio_8c_source.html">gpio.c</a> 第 <a class="el" href="soc_2gpio_8c_source.html#l00063">63</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   64</span>{</div>
+<div class="line"><span class="lineno">   65</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__soc__driver.html">xwds_soc_driver</a> * drv;</div>
+<div class="line"><span class="lineno">   66</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pinsts;</div>
+<div class="line"><span class="lineno">   67</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">   68</span> </div>
+<div class="line"><span class="lineno">   69</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>(soc, <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">   70</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>((port &lt; soc-&gt;gpio.port_num), <span class="stringliteral">&quot;out-of-range&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#gaa1591a4f3a86360108de5b9ba34980ca">ERANGE</a>);</div>
+<div class="line"><span class="lineno">   71</span> </div>
+<div class="line"><span class="lineno">   72</span>        pinmask &amp;= <a class="code hl_define" href="group__xwcd__ds__soc.html#ga17e4702db508ab711cdb1ad47e834195">XWDS_GPIO_PIN_MASK</a>(soc-&gt;<a class="code hl_variable" href="structxwds__soc.html#a259dade2082633f55eef7d96c1030f85">gpio</a>.<a class="code hl_variable" href="structxwds__soc.html#a9bc616e089cfad153dc7b5ea533b0ba8">pin_num</a>);</div>
+<div class="line"><span class="lineno">   73</span>        pinsts = <a class="code hl_define" href="group__xwos__lib__xwaop.html#ga9a53ba42b71093821567101c3ebcbe77">xwaop_load</a>(<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>, &amp;soc-&gt;<a class="code hl_variable" href="structxwds__soc.html#a259dade2082633f55eef7d96c1030f85">gpio</a>.<a class="code hl_variable" href="structxwds__soc.html#ad3708e7fb7cb4b628a7262598f9fe16b">pins</a>[port], <a class="code hl_enumvalue" href="group__xwos__lib__type.html#gga33d957600264a16ede92db2e6e42f830acdb5a6e088c69ee770c24d3612d12adc">xwaop_mo_relaxed</a>);</div>
+<div class="line"><span class="lineno">   74</span>        <span class="keywordflow">if</span> (pinmask &amp; (~pinsts)) {</div>
+<div class="line"><span class="lineno">   75</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#gadd669d31505a077f769cff8e66c780b3">EPERM</a>;</div>
+<div class="line"><span class="lineno">   76</span>                <span class="keywordflow">goto</span> err_pinsts;</div>
+<div class="line"><span class="lineno">   77</span>        }</div>
+<div class="line"><span class="lineno">   78</span>        drv = <a class="code hl_define" href="group__xwcd__ds.html#ga01391bff32dca44d0fdbe5817e801353">xwds_cast</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__soc__driver.html">xwds_soc_driver</a> *, soc-&gt;<a class="code hl_variable" href="structxwds__soc.html#a22a3eea17154df161c9874895b0cca77">dev</a>.<a class="code hl_variable" href="structxwds__device.html#a1d485436e69d8cd8f38bcd2eb467a640">drv</a>);</div>
+<div class="line"><span class="lineno">   79</span>        <span class="keywordflow">if</span> ((drv) &amp;&amp; (drv-&gt;<a class="code hl_variable" href="structxwds__soc__driver.html#a44d78fbcef9173c5bfc581f8227c07c4">gpio_rls</a>)) {</div>
+<div class="line"><span class="lineno">   80</span>                rc = drv-&gt;<a class="code hl_variable" href="structxwds__soc__driver.html#a44d78fbcef9173c5bfc581f8227c07c4">gpio_rls</a>(soc, port, pinmask);</div>
+<div class="line"><span class="lineno">   81</span>                <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">   82</span>                        <span class="keywordflow">goto</span> err_drv_gpio_rls;</div>
+<div class="line"><span class="lineno">   83</span>                }</div>
+<div class="line"><span class="lineno">   84</span>        }</div>
+<div class="line"><span class="lineno">   85</span>        <a class="code hl_define" href="group__xwos__lib__xwaop.html#ga994e87b2c012362dcd18e5491c6748a0">xwaop_c0m</a>(<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>, &amp;soc-&gt;<a class="code hl_variable" href="structxwds__soc.html#a259dade2082633f55eef7d96c1030f85">gpio</a>.<a class="code hl_variable" href="structxwds__soc.html#ad3708e7fb7cb4b628a7262598f9fe16b">pins</a>[port], pinmask, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><span class="lineno">   86</span> </div>
+<div class="line"><span class="lineno">   87</span>        <a class="code hl_function" href="group__xwcd__ds__soc.html#ga855673b28d25880362384813d1721825">xwds_soc_put</a>(soc);</div>
+<div class="line"><span class="lineno">   88</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><span class="lineno">   89</span> </div>
+<div class="line"><span class="lineno">   90</span>err_drv_gpio_rls:</div>
+<div class="line"><span class="lineno">   91</span>err_pinsts:</div>
+<div class="line"><span class="lineno">   92</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">   93</span>}</div>
+<div class="ttc" id="astructxwds__soc__driver_html_a44d78fbcef9173c5bfc581f8227c07c4"><div class="ttname"><a href="structxwds__soc__driver.html#a44d78fbcef9173c5bfc581f8227c07c4">xwds_soc_driver::gpio_rls</a></div><div class="ttdeci">xwer_t(* gpio_rls)(struct xwds_soc *, xwid_t, xwid_t)</div><div class="ttdef"><b>Definition</b> <a href="soc_2chip_8h_source.html#l00079">chip.h:79</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="soc_2gpio_8c_a7be304e546f2ce5f6f755cf577c1e742_cgraph.png" border="0" usemap="#asoc_2gpio_8c_a7be304e546f2ce5f6f755cf577c1e742_cgraph" alt=""/></div>
+<map name="asoc_2gpio_8c_a7be304e546f2ce5f6f755cf577c1e742_cgraph" id="asoc_2gpio_8c_a7be304e546f2ce5f6f755cf577c1e742_cgraph">
+<area shape="rect" title="XWDS API：释放SOC的GPIO" alt="" coords="5,5,111,31"/>
+<area shape="rect" href="group__xwcd__ds__soc.html#ga855673b28d25880362384813d1721825" title="XWDS API：减少对象的引用计数" alt="" coords="159,5,265,31"/>
+<area shape="poly" title=" " alt="" coords="111,15,145,15,145,21,111,21"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga69eb284bb145032e408adea3131b9d36" title="XWDS API：减少对象的引用计数" alt="" coords="313,5,436,31"/>
+<area shape="poly" title=" " alt="" coords="266,15,299,15,299,21,266,21"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="soc_2gpio_8c_a7be304e546f2ce5f6f755cf577c1e742_icgraph.png" border="0" usemap="#asoc_2gpio_8c_a7be304e546f2ce5f6f755cf577c1e742_icgraph" alt=""/></div>
+<map name="asoc_2gpio_8c_a7be304e546f2ce5f6f755cf577c1e742_icgraph" id="asoc_2gpio_8c_a7be304e546f2ce5f6f755cf577c1e742_icgraph">
+<area shape="rect" title="XWDS API：释放SOC的GPIO" alt="" coords="452,198,557,223"/>
+<area shape="rect" href="can_2transceiver_2xxx10xx_2driver_8c.html#adaca5687e00b2c8d61ddd1f298b6d705" title="XXX10XX基本驱动：启动设备" alt="" coords="243,5,401,45"/>
+<area shape="poly" title=" " alt="" coords="491,187,457,123,432,89,402,59,384,48,387,43,406,55,436,86,461,121,495,184"/>
+<area shape="rect" href="can_2transceiver_2xxx10xx_2driver_8c.html#a27bdbf25ea364e7c6f0ebd85f10ca687" title="XXX10XX基本驱动：停止设备" alt="" coords="243,69,401,109"/>
+<area shape="poly" title=" " alt="" coords="480,189,446,156,403,124,380,112,383,107,405,119,449,152,484,186"/>
+<area shape="rect" href="can_2transceiver_2xxx10xx_2driver_8c.html#a97a5f1687d928b30fa1be1d8c387cd55" title="XXX10XX基本驱动：暂停设备" alt="" coords="243,133,401,173"/>
+<area shape="poly" title=" " alt="" coords="450,196,385,176,387,171,451,191"/>
+<area shape="rect" href="i2c_2eeprom_2driver_8c.html#a0c29df25ac0b5af92eb1402779b059aa" title="EEPROM基本驱动：启动设备" alt="" coords="241,198,403,223"/>
+<area shape="poly" title=" " alt="" coords="438,213,403,213,403,208,438,208"/>
+<area shape="rect" href="i2c_2eeprom_2driver_8c.html#a8b769f07f281c6af9d92dd233e0abe63" title="EEPROM基本驱动：停止设备" alt="" coords="242,247,402,273"/>
+<area shape="poly" title=" " alt="" coords="445,229,371,250,369,245,443,224"/>
+<area shape="rect" href="group__xwcd__peripheral__i2c__iochip__tca9539.html#ga7094c1a22a74de0c6e4ef8714b340fc0" title="TCA9539基本驱动：启动设备" alt="" coords="240,297,404,322"/>
+<area shape="poly" title=" " alt="" coords="480,235,446,261,405,286,374,299,372,294,403,282,443,257,477,230"/>
+<area shape="rect" href="i2c_2iochip_2tca9539_2driver_8c.html#a5fa21b27603c31436ce2e8d8d62e759f" title="TCA9539基本驱动：停止设备" alt="" coords="241,346,403,371"/>
+<area shape="poly" title=" " alt="" coords="492,237,457,288,433,314,405,337,383,348,380,344,403,332,429,310,453,284,487,234"/>
+<area shape="rect" href="i2c_2eeprom_2driver_8c.html#afce255dbf65cf1ef67bf822ff34fa7e5" title="EEPROM基本驱动：暂停设备" alt="" coords="9,198,188,223"/>
+<area shape="poly" title=" " alt="" coords="228,213,188,213,188,208,228,208"/>
+<area shape="rect" href="i2c_2eeprom_2driver_8c.html#a2a99cd188670708655703c0d2c2e7014" title="EEPROM基本驱动：继续设备" alt="" coords="7,247,191,273"/>
+<area shape="poly" title=" " alt="" coords="228,263,191,263,191,257,228,257"/>
+<area shape="rect" href="i2c_2iochip_2tca9539_2driver_8c.html#abfead6c8896d3c5ab5aa3a063e2cee30" title="TCA9539基本驱动：继续设备" alt="" coords="8,297,189,322"/>
+<area shape="poly" title=" " alt="" coords="226,312,189,312,189,307,226,307"/>
+<area shape="rect" href="i2c_2iochip_2tca9539_2driver_8c.html#a813fd19af286fe928baf0c61e0e8e9ff" title="TCA9539基本驱动：暂停设备" alt="" coords="5,346,192,371"/>
+<area shape="poly" title=" " alt="" coords="227,361,192,361,192,356,227,356"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ac1aa0397839ec980bc4a43c1ef32869b" name="ac1aa0397839ec980bc4a43c1ef32869b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1aa0397839ec980bc4a43c1ef32869b">&#9670;&#160;</a></span>xwds_gpio_set()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwds_gpio_set </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwds__soc.html">xwds_soc</a> *&#160;</td>
+          <td class="paramname"><em>soc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga0bb4d847ba02675e5264444479899532">xwid_t</a>&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>&#160;</td>
+          <td class="paramname"><em>pinmask</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWDS API：将SOC的GPIO设置为高电平 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">soc</td><td>SOC对象指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">port</td><td>GPIO端口，取值 <a class="el" href="group__xwcd__ds__soc.html#ga9fa1d97777af82dc6af48f8580b0916e">xwds_gpio_port_em</a> 中的一项 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pinmask</td><td>引脚的掩码，取值 <a class="el" href="group__xwcd__ds__soc.html#gab0241f1479024c7f8701e5acd25dbf21">xwds_gpio_pin_em</a> 中的任意项的或运算 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>无效指针 </td></tr>
+    <tr><td class="paramname">-ERANGE</td><td>GPIO PORT错误 </td></tr>
+    <tr><td class="paramname">-EPERM</td><td>GPIO PIN未被申请 </td></tr>
+    <tr><td class="paramname">-ENOSYS</td><td>不支持的API </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：中断、中断底半部、线程 </li>
+</ul>
+</dd></dl>
+<p>&lt;No error</p>
+
+<p class="definition">在文件 <a class="el" href="soc_2gpio_8c_source.html">gpio.c</a> 第 <a class="el" href="soc_2gpio_8c_source.html#l00131">131</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  132</span>{</div>
+<div class="line"><span class="lineno">  133</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__soc__driver.html">xwds_soc_driver</a> * drv;</div>
+<div class="line"><span class="lineno">  134</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pinsts;</div>
+<div class="line"><span class="lineno">  135</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">  136</span> </div>
+<div class="line"><span class="lineno">  137</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>(soc, <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  138</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>((port &lt; soc-&gt;gpio.port_num), <span class="stringliteral">&quot;out-of-range&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#gaa1591a4f3a86360108de5b9ba34980ca">ERANGE</a>);</div>
+<div class="line"><span class="lineno">  139</span> </div>
+<div class="line"><span class="lineno">  140</span>        pinmask &amp;= <a class="code hl_define" href="group__xwcd__ds__soc.html#ga17e4702db508ab711cdb1ad47e834195">XWDS_GPIO_PIN_MASK</a>(soc-&gt;<a class="code hl_variable" href="structxwds__soc.html#a259dade2082633f55eef7d96c1030f85">gpio</a>.<a class="code hl_variable" href="structxwds__soc.html#a9bc616e089cfad153dc7b5ea533b0ba8">pin_num</a>);</div>
+<div class="line"><span class="lineno">  141</span>        rc = <a class="code hl_function" href="group__xwcd__ds__soc.html#ga3298dd6a43e0bee1314ff99ce032d50f">xwds_soc_grab</a>(soc);</div>
+<div class="line"><span class="lineno">  142</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  143</span>                <span class="keywordflow">goto</span> err_soc_grab;</div>
+<div class="line"><span class="lineno">  144</span>        }</div>
+<div class="line"><span class="lineno">  145</span>        pinsts = <a class="code hl_define" href="group__xwos__lib__xwaop.html#ga9a53ba42b71093821567101c3ebcbe77">xwaop_load</a>(<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>, &amp;soc-&gt;<a class="code hl_variable" href="structxwds__soc.html#a259dade2082633f55eef7d96c1030f85">gpio</a>.<a class="code hl_variable" href="structxwds__soc.html#ad3708e7fb7cb4b628a7262598f9fe16b">pins</a>[port], <a class="code hl_enumvalue" href="group__xwos__lib__type.html#gga33d957600264a16ede92db2e6e42f830acdb5a6e088c69ee770c24d3612d12adc">xwaop_mo_relaxed</a>);</div>
+<div class="line"><span class="lineno">  146</span>        <span class="keywordflow">if</span> (pinmask &amp; (~pinsts)) {</div>
+<div class="line"><span class="lineno">  147</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#gadd669d31505a077f769cff8e66c780b3">EPERM</a>;</div>
+<div class="line"><span class="lineno">  148</span>                <span class="keywordflow">goto</span> err_pinsts;</div>
+<div class="line"><span class="lineno">  149</span>        }</div>
+<div class="line"><span class="lineno">  150</span>        drv = <a class="code hl_define" href="group__xwcd__ds.html#ga01391bff32dca44d0fdbe5817e801353">xwds_cast</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__soc__driver.html">xwds_soc_driver</a> *, soc-&gt;<a class="code hl_variable" href="structxwds__soc.html#a22a3eea17154df161c9874895b0cca77">dev</a>.<a class="code hl_variable" href="structxwds__device.html#a1d485436e69d8cd8f38bcd2eb467a640">drv</a>);</div>
+<div class="line"><span class="lineno">  151</span>        <span class="keywordflow">if</span> ((drv) &amp;&amp; (drv-&gt;<a class="code hl_variable" href="structxwds__soc__driver.html#ad2ab0514d5d5632383a2713b575ffd4b">gpio_set</a>)) {</div>
+<div class="line"><span class="lineno">  152</span>                rc = drv-&gt;<a class="code hl_variable" href="structxwds__soc__driver.html#ad2ab0514d5d5632383a2713b575ffd4b">gpio_set</a>(soc, port, pinmask);</div>
+<div class="line"><span class="lineno">  153</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  154</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#ga43785b9969e0bd1af532dbde06c5540b">ENOSYS</a>;</div>
+<div class="line"><span class="lineno">  155</span>        }</div>
+<div class="line"><span class="lineno">  156</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  157</span>                <span class="keywordflow">goto</span> err_drv_set;</div>
+<div class="line"><span class="lineno">  158</span>        }</div>
+<div class="line"><span class="lineno">  159</span>        <a class="code hl_function" href="group__xwcd__ds__soc.html#ga855673b28d25880362384813d1721825">xwds_soc_put</a>(soc);</div>
+<div class="line"><span class="lineno">  160</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><span class="lineno">  161</span> </div>
+<div class="line"><span class="lineno">  162</span>err_drv_set:</div>
+<div class="line"><span class="lineno">  163</span>err_pinsts:</div>
+<div class="line"><span class="lineno">  164</span>        <a class="code hl_function" href="group__xwcd__ds__soc.html#ga855673b28d25880362384813d1721825">xwds_soc_put</a>(soc);</div>
+<div class="line"><span class="lineno">  165</span>err_soc_grab:</div>
+<div class="line"><span class="lineno">  166</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  167</span>}</div>
+<div class="ttc" id="astructxwds__soc__driver_html_ad2ab0514d5d5632383a2713b575ffd4b"><div class="ttname"><a href="structxwds__soc__driver.html#ad2ab0514d5d5632383a2713b575ffd4b">xwds_soc_driver::gpio_set</a></div><div class="ttdeci">xwer_t(* gpio_set)(struct xwds_soc *, xwid_t, xwsq_t)</div><div class="ttdef"><b>Definition</b> <a href="soc_2chip_8h_source.html#l00090">chip.h:90</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="soc_2gpio_8c_ac1aa0397839ec980bc4a43c1ef32869b_cgraph.png" border="0" usemap="#asoc_2gpio_8c_ac1aa0397839ec980bc4a43c1ef32869b_cgraph" alt=""/></div>
+<map name="asoc_2gpio_8c_ac1aa0397839ec980bc4a43c1ef32869b_cgraph" id="asoc_2gpio_8c_ac1aa0397839ec980bc4a43c1ef32869b_cgraph">
+<area shape="rect" title="XWDS API：将SOC的GPIO设置为高电平" alt="" coords="5,31,115,56"/>
+<area shape="rect" href="group__xwcd__ds__soc.html#ga3298dd6a43e0bee1314ff99ce032d50f" title="XWDS API：增加对象的引用计数" alt="" coords="163,5,276,31"/>
+<area shape="poly" title=" " alt="" coords="114,32,149,26,150,32,115,37"/>
+<area shape="rect" href="group__xwcd__ds__soc.html#ga855673b28d25880362384813d1721825" title="XWDS API：减少对象的引用计数" alt="" coords="166,55,273,80"/>
+<area shape="poly" title=" " alt="" coords="115,49,153,55,152,60,114,54"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga00553482e152b68af626de972e2187d7" title="XWDS API：增加对象的引用计数" alt="" coords="324,5,455,31"/>
+<area shape="poly" title=" " alt="" coords="276,15,310,15,310,21,276,21"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga69eb284bb145032e408adea3131b9d36" title="XWDS API：减少对象的引用计数" alt="" coords="328,55,451,80"/>
+<area shape="poly" title=" " alt="" coords="273,65,314,65,314,70,273,70"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="soc_2gpio_8c_ac1aa0397839ec980bc4a43c1ef32869b_icgraph.png" border="0" usemap="#asoc_2gpio_8c_ac1aa0397839ec980bc4a43c1ef32869b_icgraph" alt=""/></div>
+<map name="asoc_2gpio_8c_ac1aa0397839ec980bc4a43c1ef32869b_icgraph" id="asoc_2gpio_8c_ac1aa0397839ec980bc4a43c1ef32869b_icgraph">
+<area shape="rect" title="XWDS API：将SOC的GPIO设置为高电平" alt="" coords="667,95,776,121"/>
+<area shape="rect" href="can_2transceiver_2xxx10xx_2driver_8c.html#a716a6992b043aa69eadca987f1693d7a" title="XXX10XX CAN接收器驱动：设置CAN接收器的运行模式" alt="" coords="453,5,612,45"/>
+<area shape="poly" title=" " alt="" coords="683,91,618,60,588,48,590,43,620,55,685,87"/>
+<area shape="rect" href="i2c_2eeprom_2driver_8c.html#af4030224708daeeb573ba16a5ebd6e7d" title="EEPROM API：开启EEPROM的电源" alt="" coords="449,70,616,95"/>
+<area shape="poly" title=" " alt="" coords="652,101,616,96,616,91,653,96"/>
+<area shape="rect" href="i2c_2eeprom_2driver_8c.html#a6be16ae19501878ba34a009a8eaae0d2" title="EEPROM API：开启EEPROM的写保护" alt="" coords="447,119,619,145"/>
+<area shape="poly" title=" " alt="" coords="653,119,619,124,619,118,652,114"/>
+<area shape="rect" href="i2c_2iochip_2tca9539_2driver_8c.html#a86c428bbab1cf60be168384be0e8d09c" title="TCA9539 API：复位TCA9539" alt="" coords="461,169,604,194"/>
+<area shape="poly" title=" " alt="" coords="685,129,620,158,582,171,580,166,618,154,682,124"/>
+<area shape="rect" href="group__xwcd__peripheral__i2c__iochip__tca9539.html#ga7094c1a22a74de0c6e4ef8714b340fc0" title="TCA9539基本驱动：启动设备" alt="" coords="235,169,399,194"/>
+<area shape="poly" title=" " alt="" coords="447,184,399,184,399,179,447,179"/>
+<area shape="rect" href="i2c_2iochip_2tca9539_2driver_8c.html#abfead6c8896d3c5ab5aa3a063e2cee30" title="TCA9539基本驱动：继续设备" alt="" coords="5,169,187,194"/>
+<area shape="poly" title=" " alt="" coords="221,184,187,184,187,179,221,179"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a8b28375822f8f7ba9f67a70c358245ee" name="a8b28375822f8f7ba9f67a70c358245ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b28375822f8f7ba9f67a70c358245ee">&#9670;&#160;</a></span>xwds_gpio_toggle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwds_gpio_toggle </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwds__soc.html">xwds_soc</a> *&#160;</td>
+          <td class="paramname"><em>soc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga0bb4d847ba02675e5264444479899532">xwid_t</a>&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>&#160;</td>
+          <td class="paramname"><em>pinmask</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWDS API：翻转SOC的GPIO电平 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">soc</td><td>SOC对象指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">port</td><td>GPIO端口，取值 <a class="el" href="group__xwcd__ds__soc.html#ga9fa1d97777af82dc6af48f8580b0916e">xwds_gpio_port_em</a> 中的一项 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pinmask</td><td>引脚的掩码，取值 <a class="el" href="group__xwcd__ds__soc.html#gab0241f1479024c7f8701e5acd25dbf21">xwds_gpio_pin_em</a> 中的任意项的或运算 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>无效指针 </td></tr>
+    <tr><td class="paramname">-ERANGE</td><td>GPIO PORT错误 </td></tr>
+    <tr><td class="paramname">-EPERM</td><td>GPIO PIN未被申请 </td></tr>
+    <tr><td class="paramname">-ENOSYS</td><td>不支持的API </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：中断、中断底半部、线程 </li>
+</ul>
+</dd></dl>
+<p>&lt;No error</p>
+
+<p class="definition">在文件 <a class="el" href="soc_2gpio_8c_source.html">gpio.c</a> 第 <a class="el" href="soc_2gpio_8c_source.html#l00209">209</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  210</span>{</div>
+<div class="line"><span class="lineno">  211</span>        <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__soc__driver.html">xwds_soc_driver</a> * drv;</div>
+<div class="line"><span class="lineno">  212</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pinsts;</div>
+<div class="line"><span class="lineno">  213</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">  214</span> </div>
+<div class="line"><span class="lineno">  215</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>(soc, <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  216</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>((port &lt; soc-&gt;gpio.port_num), <span class="stringliteral">&quot;out-of-range&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#gaa1591a4f3a86360108de5b9ba34980ca">ERANGE</a>);</div>
+<div class="line"><span class="lineno">  217</span> </div>
+<div class="line"><span class="lineno">  218</span>        pinmask &amp;= <a class="code hl_define" href="group__xwcd__ds__soc.html#ga17e4702db508ab711cdb1ad47e834195">XWDS_GPIO_PIN_MASK</a>(soc-&gt;<a class="code hl_variable" href="structxwds__soc.html#a259dade2082633f55eef7d96c1030f85">gpio</a>.<a class="code hl_variable" href="structxwds__soc.html#a9bc616e089cfad153dc7b5ea533b0ba8">pin_num</a>);</div>
+<div class="line"><span class="lineno">  219</span>        rc = <a class="code hl_function" href="group__xwcd__ds__soc.html#ga3298dd6a43e0bee1314ff99ce032d50f">xwds_soc_grab</a>(soc);</div>
+<div class="line"><span class="lineno">  220</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  221</span>                <span class="keywordflow">goto</span> err_soc_grab;</div>
+<div class="line"><span class="lineno">  222</span>        }</div>
+<div class="line"><span class="lineno">  223</span>        pinsts = <a class="code hl_define" href="group__xwos__lib__xwaop.html#ga9a53ba42b71093821567101c3ebcbe77">xwaop_load</a>(<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>, &amp;soc-&gt;<a class="code hl_variable" href="structxwds__soc.html#a259dade2082633f55eef7d96c1030f85">gpio</a>.<a class="code hl_variable" href="structxwds__soc.html#ad3708e7fb7cb4b628a7262598f9fe16b">pins</a>[port], <a class="code hl_enumvalue" href="group__xwos__lib__type.html#gga33d957600264a16ede92db2e6e42f830acdb5a6e088c69ee770c24d3612d12adc">xwaop_mo_relaxed</a>);</div>
+<div class="line"><span class="lineno">  224</span>        <span class="keywordflow">if</span> (pinmask &amp; (~pinsts)) {</div>
+<div class="line"><span class="lineno">  225</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#gadd669d31505a077f769cff8e66c780b3">EPERM</a>;</div>
+<div class="line"><span class="lineno">  226</span>                <span class="keywordflow">goto</span> err_pinsts;</div>
+<div class="line"><span class="lineno">  227</span>        }</div>
+<div class="line"><span class="lineno">  228</span>        drv = <a class="code hl_define" href="group__xwcd__ds.html#ga01391bff32dca44d0fdbe5817e801353">xwds_cast</a>(<span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__soc__driver.html">xwds_soc_driver</a> *, soc-&gt;<a class="code hl_variable" href="structxwds__soc.html#a22a3eea17154df161c9874895b0cca77">dev</a>.<a class="code hl_variable" href="structxwds__device.html#a1d485436e69d8cd8f38bcd2eb467a640">drv</a>);</div>
+<div class="line"><span class="lineno">  229</span>        <span class="keywordflow">if</span> ((drv) &amp;&amp; (drv-&gt;<a class="code hl_variable" href="structxwds__soc__driver.html#a965f731f12320af45cd4b48fbe02b775">gpio_toggle</a>)) {</div>
+<div class="line"><span class="lineno">  230</span>                rc = drv-&gt;<a class="code hl_variable" href="structxwds__soc__driver.html#a965f731f12320af45cd4b48fbe02b775">gpio_toggle</a>(soc, port, pinmask);</div>
+<div class="line"><span class="lineno">  231</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  232</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#ga43785b9969e0bd1af532dbde06c5540b">ENOSYS</a>;</div>
+<div class="line"><span class="lineno">  233</span>        }</div>
+<div class="line"><span class="lineno">  234</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  235</span>                <span class="keywordflow">goto</span> err_drv_toggle;</div>
+<div class="line"><span class="lineno">  236</span>        }</div>
+<div class="line"><span class="lineno">  237</span>        <a class="code hl_function" href="group__xwcd__ds__soc.html#ga855673b28d25880362384813d1721825">xwds_soc_put</a>(soc);</div>
+<div class="line"><span class="lineno">  238</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><span class="lineno">  239</span> </div>
+<div class="line"><span class="lineno">  240</span>err_drv_toggle:</div>
+<div class="line"><span class="lineno">  241</span>err_pinsts:</div>
+<div class="line"><span class="lineno">  242</span>        <a class="code hl_function" href="group__xwcd__ds__soc.html#ga855673b28d25880362384813d1721825">xwds_soc_put</a>(soc);</div>
+<div class="line"><span class="lineno">  243</span>err_soc_grab:</div>
+<div class="line"><span class="lineno">  244</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  245</span>}</div>
+<div class="ttc" id="astructxwds__soc__driver_html_a965f731f12320af45cd4b48fbe02b775"><div class="ttname"><a href="structxwds__soc__driver.html#a965f731f12320af45cd4b48fbe02b775">xwds_soc_driver::gpio_toggle</a></div><div class="ttdeci">xwer_t(* gpio_toggle)(struct xwds_soc *, xwid_t, xwsq_t)</div><div class="ttdef"><b>Definition</b> <a href="soc_2chip_8h_source.html#l00096">chip.h:96</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="soc_2gpio_8c_a8b28375822f8f7ba9f67a70c358245ee_cgraph.png" border="0" usemap="#asoc_2gpio_8c_a8b28375822f8f7ba9f67a70c358245ee_cgraph" alt=""/></div>
+<map name="asoc_2gpio_8c_a8b28375822f8f7ba9f67a70c358245ee_cgraph" id="asoc_2gpio_8c_a8b28375822f8f7ba9f67a70c358245ee_cgraph">
+<area shape="rect" title="XWDS API：翻转SOC的GPIO电平" alt="" coords="5,31,132,56"/>
+<area shape="rect" href="group__xwcd__ds__soc.html#ga3298dd6a43e0bee1314ff99ce032d50f" title="XWDS API：增加对象的引用计数" alt="" coords="180,5,293,31"/>
+<area shape="poly" title=" " alt="" coords="132,31,166,26,166,31,132,36"/>
+<area shape="rect" href="group__xwcd__ds__soc.html#ga855673b28d25880362384813d1721825" title="XWDS API：减少对象的引用计数" alt="" coords="183,55,290,80"/>
+<area shape="poly" title=" " alt="" coords="132,50,170,55,170,60,132,55"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga00553482e152b68af626de972e2187d7" title="XWDS API：增加对象的引用计数" alt="" coords="341,5,472,31"/>
+<area shape="poly" title=" " alt="" coords="294,15,328,15,328,21,294,21"/>
+<area shape="rect" href="group__xwcd__ds__device.html#ga69eb284bb145032e408adea3131b9d36" title="XWDS API：减少对象的引用计数" alt="" coords="345,55,468,80"/>
+<area shape="poly" title=" " alt="" coords="290,65,331,65,331,70,290,70"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_91e37f1231cf9910bfa2c11be57d8122.html">xwcd</a></li><li class="navelem"><a class="el" href="dir_7e7acccef388183555cf60cdd0da09f6.html">ds</a></li><li class="navelem"><a class="el" href="dir_49eb41823e8defa1d802d9bf9f7d21b6.html">soc</a></li><li class="navelem"><a class="el" href="soc_2gpio_8c.html">gpio.c</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
+  </ul>
+</div>
+</body>
+</html>

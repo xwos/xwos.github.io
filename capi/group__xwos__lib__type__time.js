@@ -1,0 +1,27 @@
+var group__xwos__lib__type__time =
+[
+    [ "BITS_PER_XWTM_T", "group__xwos__lib__type__time.html#gadd8e1707470d26a83f0352ee9089de83", null ],
+    [ "XWTM_D", "group__xwos__lib__type__time.html#gab66225a3fc633c132d42ec76d5d24ca9", null ],
+    [ "XWTM_H", "group__xwos__lib__type__time.html#gaca9708b06d134d4b57472464743a4a45", null ],
+    [ "XWTM_M", "group__xwos__lib__type__time.html#ga7014b7ceae8bfab41c40a385744354ea", null ],
+    [ "XWTM_MAX", "group__xwos__lib__type__time.html#gad8937a773924ae599c30f9f75a7b7dbf", null ],
+    [ "XWTM_MIN", "group__xwos__lib__type__time.html#ga154fa10e3b5d2d7fd7abeb3dec9d8ab4", null ],
+    [ "XWTM_MS", "group__xwos__lib__type__time.html#gaf09def951be67b8f6a8a743fe86cf062", null ],
+    [ "XWTM_NS", "group__xwos__lib__type__time.html#ga948f79d1f54e757782b17c4aafa28240", null ],
+    [ "XWTM_S", "group__xwos__lib__type__time.html#ga1067c9ab46d341c8a7c6587e9fd2b355", null ],
+    [ "XWTM_T_SHIFT", "group__xwos__lib__type__time.html#gaaba23da1e905deb1bfbfd67021ba2238", null ],
+    [ "XWTM_US", "group__xwos__lib__type__time.html#ga742d1b647e27cebd627be30f2b5075b1", null ],
+    [ "atomic_xwtm_t", "group__xwos__lib__type__time.html#ga822c3a5ecc3b8910984bee4f4de3dd1d", null ],
+    [ "xwtm_t", "group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61", null ],
+    [ "xwtm_add", "group__xwos__lib__type__time.html#gade4f84cfa5b6447fff26b113e15bcd1d", null ],
+    [ "xwtm_add_safely", "group__xwos__lib__type__time.html#ga123646dbc0c9e01824ef8833ec7b8589", null ],
+    [ "xwtm_cmp", "group__xwos__lib__type__time.html#gad9ca66730be82d000b7f7ad74eb835b4", null ],
+    [ "xwtm_d", "group__xwos__lib__type__time.html#gac5f4897ac7d4dab13deb27a4dfc00664", null ],
+    [ "xwtm_h", "group__xwos__lib__type__time.html#gab8dc39e46e811bb80cf0da64bd32c05b", null ],
+    [ "xwtm_m", "group__xwos__lib__type__time.html#gaff72a2297ba154df0faacaac2bcec572", null ],
+    [ "xwtm_ms", "group__xwos__lib__type__time.html#gab18970edccc5abea78ff7596f4c4457f", null ],
+    [ "xwtm_ns", "group__xwos__lib__type__time.html#gaa2aee8e102e1e0f856d852344f530e4c", null ],
+    [ "xwtm_s", "group__xwos__lib__type__time.html#gadc4c88593bb026d7d079e75f52b506d5", null ],
+    [ "xwtm_sub", "group__xwos__lib__type__time.html#gab56c5e504275e66959261373eac938dc", null ],
+    [ "xwtm_us", "group__xwos__lib__type__time.html#gaddac07ff3e61453518e2209de75f4294", null ]
+];

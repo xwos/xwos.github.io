@@ -1,0 +1,127 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>XWOS – Picolibc</title>
+    <link>/docs/Note/Picolibc/</link>
+    <description>Recent content in Picolibc on XWOS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    
+	  <atom:link href="/docs/Note/Picolibc/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: 线程本地存储</title>
+      <link>/docs/Note/Picolibc/TLS/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/Note/Picolibc/TLS/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
+&lt;p&gt;线程本地存储(TLS)是指线程私有的变量。&lt;/p&gt;
+&lt;p&gt;C11标准开始支持线程本地存储，并引入 &lt;code&gt;_Thread_local&lt;/code&gt; 关键字，C2X标准引入 &lt;code&gt;thread_local&lt;/code&gt; 关键字。
+gcc以及clang编译器还引入关键字 &lt;code&gt;__thread&lt;/code&gt; 。&lt;/p&gt;
+&lt;p&gt;当用以上关键字定义全局变量时，每个线程都会拷贝一份此全局变量的副本，然后各自访问各自的副本。&lt;/p&gt;
+&lt;h2 id=&#34;tls的模型&#34;&gt;TLS的模型&lt;/h2&gt;
+&lt;p&gt;gcc以及clang对TLS的实现，有4种模型：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-ftls-model=global-dynamic&lt;/code&gt; ：动态链接时使用，必须配合编译选项 &lt;code&gt;-fpic&lt;/code&gt; 才有效，要求给出 &lt;code&gt;__tls_get_addr()&lt;/code&gt; 的定义，
+若不配合 &lt;code&gt;-fpic&lt;/code&gt; ，实际会变成 &lt;code&gt;-ftls-model=initial-exec&lt;/code&gt; ；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-ftls-model=local-dynamic&lt;/code&gt; ：动态链接时使用，必须配合编译选项 &lt;code&gt;-fpic&lt;/code&gt; 才有效，要求给出 &lt;code&gt;__tls_get_addr()&lt;/code&gt; 的定义，
+若不配合 &lt;code&gt;-fpic&lt;/code&gt; ，实际会变成 &lt;code&gt;-ftls-model=initial-exec&lt;/code&gt; ；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-ftls-model=initial-exec&lt;/code&gt; ：静态链接时使用，要求给出 &lt;code&gt;__aeabi_read_tp()&lt;/code&gt; 的定义，此函数会返回线程 &lt;code&gt;.tdata&lt;/code&gt; 段的首地址。
+然后从 &lt;code&gt;.got&lt;/code&gt; 段中获取TLS变量的 &lt;code&gt;OFFSET&lt;/code&gt; ， 即 &lt;code&gt;OFFSET = GOT[name]&lt;/code&gt; 。最终，变量的地址为 &lt;code&gt;__aeabi_read_tp() + OFFSET&lt;/code&gt; 。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-ftls-model=local-exec&lt;/code&gt; ：静态链接时使用，要求给出 &lt;code&gt;__aeabi_read_tp()&lt;/code&gt; 的定义，此函数会返回线程 &lt;code&gt;.tdata&lt;/code&gt; 段的首地址。
+然后TLS变量的 &lt;code&gt;OFFSET&lt;/code&gt; 是以立即数形式获取。最终，变量的地址为 &lt;code&gt;__aeabi_read_tp() + OFFSET&lt;/code&gt; 。
+相对于 &lt;code&gt;-ftls-model=initial-exec&lt;/code&gt; 少了一次内存访问的操作，效率是4种模型中最高的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;xwos-tls的实现&#34;&gt;XWOS TLS的实现&lt;/h2&gt;
+&lt;p&gt;XWOS同时支持 &lt;code&gt;-ftls-model=initial-exec&lt;/code&gt; 和 &lt;code&gt;-ftls-model=local-exec&lt;/code&gt;，因此，需要在链接脚本中将 &lt;code&gt;.got&lt;/code&gt; 段放入：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-ld&#34; data-lang=&#34;ld&#34;&gt;        .got : {
+                *(.got.plt) *(.igot.plt) *(.got) *(.igot)
+        } &amp;gt; code_mr AT&amp;gt; code_mr
+&lt;/code&gt;&lt;/pre&gt;
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 动态内存管理</title>
+      <link>/docs/Note/Picolibc/MM/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/Note/Picolibc/MM/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;说明&#34;&gt;说明&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;XWOS不使用picolibc提供的动态内存管理的算法。使用的是内存池算法：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;移植方法&#34;&gt;移植方法&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;源码路径：&lt;code&gt;xwmd/libc/picolibcac/mem.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;重写picolibc的函数：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;malloc&lt;/span&gt;(&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;size_t&lt;/span&gt; n);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;realloc&lt;/span&gt;(&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; p, &lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;size_t&lt;/span&gt; n);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;calloc&lt;/span&gt;(&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;size_t&lt;/span&gt; elem_nr, &lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;size_t&lt;/span&gt; elem_sz);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;memalign&lt;/span&gt;(&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;size_t&lt;/span&gt; alignment, &lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;size_t&lt;/span&gt; n);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;valloc&lt;/span&gt;(&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;size_t&lt;/span&gt; n);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;pvalloc&lt;/span&gt;(&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;size_t&lt;/span&gt; n);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;free&lt;/span&gt;(&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; p);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;getpagesize&lt;/span&gt;(&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;void&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;无需重写的函数：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;posix_memalign&lt;/span&gt;(&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;**&lt;/span&gt; memptr, &lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;size_t&lt;/span&gt; align, &lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;size_t&lt;/span&gt; size); &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;// picolibc提供基于memalign实现
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080;font-style:italic&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;aligned_alloc&lt;/span&gt;(&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;size_t&lt;/span&gt; alignment, &lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;size_t&lt;/span&gt; size); &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;// picolibc提供基于memalign实现
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;还没实现的函数：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;mallopt&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;malloc_usable_size&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;malloc_stats&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mallinfo&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: errno</title>
+      <link>/docs/Note/Picolibc/errno/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/Note/Picolibc/errno/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;移植方法&#34;&gt;移植方法&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;设置Picolibc的配置 &lt;code&gt;newlib-global-errno&lt;/code&gt; 为 &lt;code&gt;true&lt;/code&gt; ，不使用 &lt;code&gt;TLS&lt;/code&gt; 机制来实现 &lt;code&gt;errno&lt;/code&gt; ；&lt;/li&gt;
+&lt;li&gt;设置Picolibc的配置 &lt;code&gt;errno-function&lt;/code&gt; 为 &lt;code&gt;&#39;__errno&#39;&lt;/code&gt; ；&lt;/li&gt;
+&lt;li&gt;XWOS在每个线程对象结构体中定义了一个 &lt;code&gt;__errno&lt;/code&gt; 变量，并重新覆盖实现了 &lt;code&gt;int * __errno(void)&lt;/code&gt; 函数，
+返回 &lt;strong&gt;当前&lt;/strong&gt; 线程对象的 &lt;code&gt;__errno&lt;/code&gt; 的地址：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;*&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;__errno&lt;/span&gt;(&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;void&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_thd_d thdd &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;xwos_cthd_self&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;thdd.thd&lt;span style=&#34;color:#666&#34;&gt;-&amp;gt;&lt;/span&gt;osthd.libc.error_number;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;当使用 &lt;code&gt;&amp;lt;errno.h&amp;gt;&lt;/code&gt; 中的 &lt;code&gt;errno&lt;/code&gt; 宏时，就可获取线程自身的 &lt;code&gt;__errno&lt;/code&gt; ，不再依赖libgloss。&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

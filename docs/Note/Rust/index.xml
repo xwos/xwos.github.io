@@ -1,0 +1,333 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>XWOS – Rust开发笔记</title>
+    <link>/docs/Note/Rust/</link>
+    <description>Recent content in Rust开发笔记 on XWOS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    
+	  <atom:link href="/docs/Note/Rust/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: 集成与编译</title>
+      <link>/docs/Note/Rust/Build/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/Note/Rust/Build/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;思路&#34;&gt;思路&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;通过 &lt;code&gt;cargo&lt;/code&gt; 编译 &lt;strong&gt;staticlib&lt;/strong&gt; ，再与XWOS进行链接；&lt;/li&gt;
+&lt;li&gt;由于XWOS支持ARM/PowerPC/RISC-V，因此需要通过 &lt;code&gt;--target=&lt;/code&gt; 选项来进行多平台的交叉编译。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;方案&#34;&gt;方案&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;XWOS启动一个独立线程，调用RUST的主函数，由此进入RUST的世界；&lt;/li&gt;
+&lt;li&gt;RUST的主函数与中间件是一个独立编译的玄武模块；&lt;/li&gt;
+&lt;li&gt;由于RUST的编译依赖工具 &lt;code&gt;cargo&lt;/code&gt; ，可设计一个新的玄武模块编译规则调用 &lt;code&gt;cargo build&lt;/code&gt; ；&lt;/li&gt;
+&lt;li&gt;RUST玄武模块以 &lt;strong&gt;staticlib&lt;/strong&gt; 形式进行编译，最终与XWOS进行静态链接；&lt;/li&gt;
+&lt;li&gt;因为会使用一些 &lt;strong&gt;unstable&lt;/strong&gt; 的特性，所以需安装nightly的RUST。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;编译方案&#34;&gt;编译方案&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;应将 &lt;code&gt;cargo build&lt;/code&gt; 目标设定为 &lt;code&gt;PHONY&lt;/code&gt; ，即可每次 &lt;code&gt;make&lt;/code&gt; 时都调用 &lt;code&gt;cargo build&lt;/code&gt; ，
+由 &lt;code&gt;cargo&lt;/code&gt; 来管理 &lt;code&gt;rust&lt;/code&gt; 源码的编译；&lt;/li&gt;
+&lt;li&gt;环境变量 &lt;code&gt;$(RUST_TARGET)&lt;/code&gt; 在 &lt;code&gt;cpu.mk&lt;/code&gt; 中定义；&lt;/li&gt;
+&lt;li&gt;其他编译选项，由 &lt;code&gt;.cargo/config&lt;/code&gt; 或 &lt;code&gt;build.rs&lt;/code&gt; 定义；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cargo build&lt;/code&gt; 编译结束后，再将输出的.a文件拷贝到输出目录；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;安装rust工具链&#34;&gt;安装rust工具链&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;根据&lt;a href=&#34;https://www.rust-lang.org/tools/install&#34;&gt;官方指导&lt;/a&gt;安装Rust；&lt;/li&gt;
+&lt;li&gt;切换镜像源
+&lt;ul&gt;
+&lt;li&gt;Ubuntu配置文件路径： &lt;code&gt;~/.cargo/config&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Windows配置文件路进： &lt;code&gt;C:\Users\用户名\.cargo\config&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[source.crates-io]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;registry = &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;https://github.com/rust-lang/crates.io-index&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;replace-with = &lt;span style=&#34;color:#b44&#34;&gt;&amp;#39;sjtu&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[source.ustc]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;registry = &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;http://mirrors.ustc.edu.cn/crates.io-index&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[source.sjtu]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;registry = &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;http://mirrors.sjtug.sjtu.edu.cn/git/crates.io-index&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Ubuntu安装unstable版本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup install nightly
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly target add thumbv8m.main-none-eabihf
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly target add thumbv8m.main-none-eabi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly target add thumbv8m.base-none-eabi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly target add thumbv7m-none-eabi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly target add thumbv7em-none-eabihf
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly target add thumbv7em-none-eabi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly target add thumbv6m-none-eabi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly target add riscv32imac-unknown-none-elf
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly component add rust-src
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Windows安装unstable版本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;注意：Windows只支持使用 &lt;code&gt;gnu&lt;/code&gt; 版的工具链&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup install nightly-x86_64-pc-windows-gnu
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly-x86_64-pc-windows-gnu target add thumbv8m.main-none-eabihf
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly-x86_64-pc-windows-gnu target add thumbv8m.main-none-eabi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly-x86_64-pc-windows-gnu target add thumbv8m.base-none-eabi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly-x86_64-pc-windows-gnu target add thumbv7m-none-eabi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly-x86_64-pc-windows-gnu target add thumbv7em-none-eabihf
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly-x86_64-pc-windows-gnu target add thumbv7em-none-eabi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly-x86_64-pc-windows-gnu target add thumbv6m-none-eabi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly-x86_64-pc-windows-gnu target add riscv32imac-unknown-none-elf
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly-x86_64-pc-windows-gnu component add rust-src
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;rust中间件模板&#34;&gt;RUST中间件模板&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;目录结构：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;XWOS
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;└── xwmd
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    └── rust
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        └── xwos
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            ├── Cargo.lock
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            ├── Cargo.toml
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            ├── .cargo
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            │   └── config
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            ├── src
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            │   └── lib.rs
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            └── xwmo.mk
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Cargo.toml&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[package]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;name = &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;xwos&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;version = &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;1.0.0&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;edition = &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;2021&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[lib]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;name = &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;xwos&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;crate-type = [&lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;staticlib&amp;#34;&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[dependencies]
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;.cargo/config.toml&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[unstable]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;build-std = [&lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;core&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;alloc&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;std&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;panic_abort&amp;#34;&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;src/lib.rs&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080&#34;&gt;#![feature(restricted_std)]&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#080&#34;&gt;#[no_mangle]&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;pub&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;unsafe&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;extern&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;C&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;fn&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;xwrust_main&lt;/span&gt;()&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;{&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;&lt;/span&gt;}&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwmo.mk&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-makefile&#34; data-lang=&#34;makefile&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;&#34;&gt;include&lt;/span&gt; &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;$(&lt;/span&gt;&lt;span style=&#34;color:#b8860b&#34;&gt;XWOS_WKSPC_DIR&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;&#34;&gt;/XWOS.cfg&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;&#34;&gt;include&lt;/span&gt; &lt;span style=&#34;&#34;&gt;xwbs/functions.mk&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;&#34;&gt;include&lt;/span&gt; &lt;span style=&#34;&#34;&gt;xwbs/xwmo.rust.mk&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;编译规则 &lt;code&gt;xwbs/xwmo.rust.mk&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Rust方案初验证</title>
+      <link>/docs/Note/Rust/Bringup/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/Note/Rust/Bringup/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;rust的std库&#34;&gt;Rust的std库&lt;/h2&gt;
+&lt;p&gt;RUST的标准库包括：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;std.svg&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;p&gt;在嵌入式系统中，比较有用的是 &lt;code&gt;core&lt;/code&gt; 与 &lt;code&gt;alloc&lt;/code&gt; 。&lt;/p&gt;
+&lt;p&gt;虽然在嵌入式环境中，可以通过 &lt;code&gt;#![feature(restricted_std)]&lt;/code&gt; 强行使用Rust的std库，
+但随着功能的增加，问题也会越来越多，故转向使用 &lt;code&gt;#![no_std]&lt;/code&gt; 。&lt;/p&gt;
+&lt;h2 id=&#34;编译&#34;&gt;编译&lt;/h2&gt;
+&lt;p&gt;在 &lt;code&gt;.cargo/config.toml&lt;/code&gt; 增加编译：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[unstable]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;build-std = [&lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;core&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;alloc&amp;#34;&lt;/span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;global_allocator&#34;&gt;global_allocator&lt;/h2&gt;
+&lt;p&gt;可用来实现自己的内存分配函数的属性，可参考文档&lt;a href=&#34;https://doc.rust-lang.org/std/alloc/index.html&#34;&gt;std::alloc&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;在&lt;a href=&#34;https://lib.rs/&#34;&gt;lib.rs&lt;/a&gt;上可以搜索到&lt;a href=&#34;https://lib.rs/crates/newlib-alloc&#34;&gt;newlib-alloc&lt;/a&gt;，可直接用。&lt;/p&gt;
+&lt;p&gt;在 &lt;code&gt;Cargo.toml&lt;/code&gt; 中增加&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[dependencies]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;libc = &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;0.2&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;newlib-alloc = &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;0.1&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;libc-print = &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;0.1&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;编译libc时需要条件选择 &lt;code&gt;newlib&lt;/code&gt; ，在 &lt;code&gt;.cargo/config&lt;/code&gt; 增加：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[build]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustflags = [
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;--cfg&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;unix&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;--cfg&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;target_env=\&amp;#34;newlib\&amp;#34;&amp;#34;&lt;/span&gt;,
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;]
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;编写测试代码&#34;&gt;编写测试代码&lt;/h2&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080&#34;&gt;#![no_std]&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#080&#34;&gt;#![feature(alloc_error_handler)]&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;use&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;core::panic::PanicInfo;&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#080&#34;&gt;#[panic_handler]&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;fn&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;panic&lt;/span&gt;(_info: &lt;span style=&#34;color:#a2f&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#00f&#34;&gt;PanicInfo&lt;/span&gt;)&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;-&amp;gt; &lt;span style=&#34;color:#666&#34;&gt;!&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;{&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;loop&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;{}&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;&lt;/span&gt;}&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;use&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;newlib_alloc;&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#080&#34;&gt;#[global_allocator]&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;static&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#800&#34;&gt;GLOBAL_ALLOCATOR&lt;/span&gt;: &lt;span style=&#34;color:#00f&#34;&gt;newlib_alloc&lt;/span&gt;::Alloc&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;newlib_alloc::Alloc;&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#080&#34;&gt;#[alloc_error_handler]&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;fn&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;alloc_error_handler&lt;/span&gt;(_layout: &lt;span style=&#34;color:#00f&#34;&gt;core&lt;/span&gt;::alloc::Layout)&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;-&amp;gt; &lt;span style=&#34;color:#666&#34;&gt;!&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;{&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;loop&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;{}&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;&lt;/span&gt;}&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;use&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;libc_print::std_name::println;&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;extern&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;crate&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;alloc;&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;use&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;alloc::vec::&lt;span style=&#34;color:#a2f&#34;&gt;Vec&lt;/span&gt;;&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#080&#34;&gt;#[no_mangle]&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;pub&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;unsafe&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;extern&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;C&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;fn&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;rust_main&lt;/span&gt;()&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;{&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;let&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;mut&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;v&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#a2f&#34;&gt;Vec&lt;/span&gt;::new();&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;    &lt;/span&gt;v.push(&lt;span style=&#34;color:#666&#34;&gt;1&lt;/span&gt;);&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;    &lt;/span&gt;v.push(&lt;span style=&#34;color:#666&#34;&gt;2&lt;/span&gt;);&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;    &lt;/span&gt;v.push(&lt;span style=&#34;color:#666&#34;&gt;3&lt;/span&gt;);&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;    &lt;/span&gt;v.push(&lt;span style=&#34;color:#666&#34;&gt;4&lt;/span&gt;);&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;    &lt;/span&gt;println!(&lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;RUST XWOS!&amp;#34;&lt;/span&gt;);&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;    &lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;for&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;x&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;in&lt;/span&gt;&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;v.iter()&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;{&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;        &lt;/span&gt;println!(&lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;x: &lt;/span&gt;&lt;span style=&#34;color:#b68;font-weight:bold&#34;&gt;{}&lt;/span&gt;&lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#bbb&#34;&gt; &lt;/span&gt;x);&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;    &lt;/span&gt;}&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#bbb&#34;&gt;&lt;/span&gt;}&lt;span style=&#34;color:#bbb&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;串口终端输出&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;RustBringup.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;调试过程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;RustInEclipse.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;测试环境&#34;&gt;测试环境&lt;/h2&gt;
+&lt;h4 id=&#34;硬件环境&#34;&gt;硬件环境&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../quick-guide/STM32/WeActMiniStm32H750&#34;&gt;WeActMiniStm32H750&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;MCU：STM32H750&lt;/li&gt;
+&lt;li&gt;说明：此工程已对接好newlib(如 &lt;code&gt;malloc()&lt;/code&gt; 、 &lt;code&gt;printf()&lt;/code&gt; 等标准函数)，可为Rust的库提供底层支持。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;调试环境&#34;&gt;调试环境&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;IDE：&lt;a href=&#34;https://www.st.com/en/development-tools/stm32cubeide.html&#34;&gt;STM32CubeIDE&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;需要增加Rust插件：Corrosion: Rust edition in Eclipse IDE&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;实验代码&#34;&gt;实验代码&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;代码仓库： &lt;code&gt;git clone --recursive https://gitee.com/xwos/WeActMiniStm32H750.git&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;commit&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a2f&#34;&gt;cd&lt;/span&gt; XWOS
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git pull
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git checkout -b rust-bringup f8fcad24daa4912e4de0886c30e02343b6045dab
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Rust开发环境安装笔记</title>
+      <link>/docs/Note/Rust/Env/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/Note/Rust/Env/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;安装lsp&#34;&gt;安装LSP&lt;/h2&gt;
+&lt;p&gt;LSP(Language Server Protocol，语言服务协议)是新一代查看源码的神器。
+Rust语言的LSP推荐使用rust-analyzer。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;git clone https://github.com/rust-analyzer/rust-analyzer.git
+cd rust-analyzer
+cargo xtask install
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;vscode&#34;&gt;VScode&lt;/h2&gt;
+&lt;p&gt;VSCode需要在安装完成VSCode之后再安装 &lt;code&gt;rust-analyzer&lt;/code&gt; 。安装完成后，VSCode是开箱即用的。&lt;/p&gt;
+&lt;h2 id=&#34;stm32cubeide&#34;&gt;STM32CubeIDE&lt;/h2&gt;
+&lt;p&gt;STM32CubeIDE是基于Eclipse的，因此只需要安装Rust插件。&lt;/p&gt;
+&lt;h3 id=&#34;rust插件&#34;&gt;Rust插件&lt;/h3&gt;
+&lt;p&gt;需要安装版本较新的Rust插件，否则无法支持rust-analyzer。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;菜单： &lt;code&gt;&amp;quot;Help&amp;quot; -&amp;gt; &amp;quot;Install New Software...&amp;quot; -&amp;gt; &amp;quot;Add...&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;仓库： &lt;code&gt;http://mirrors.ustc.edu.cn/eclipse/corrosion/releases/1.2.3/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;插件： &lt;code&gt;Corrosion: Rust edition in Eclipse IDE&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;rust设置&#34;&gt;Rust设置&lt;/h3&gt;
+&lt;p&gt;点击 &lt;code&gt;Window&lt;/code&gt; -&amp;gt; &lt;code&gt;Rust&lt;/code&gt; 检查一下 &lt;code&gt;rustup&lt;/code&gt; ， &lt;code&gt;cargo&lt;/code&gt; ， &lt;code&gt;rust-analyzer&lt;/code&gt; 等的路径是否正确。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;RustPluginSetting.png&#34; alt=&#34;RustPluginSetting.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;调试&#34;&gt;调试&lt;/h3&gt;
+&lt;p&gt;和调试C的代码一样，使用&lt;code&gt;STLink&lt;/code&gt;可在STM32CubeIDE中给Rust的代码设置断点。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../Bringup/RustInEclipse.png&#34; alt=&#34;RustInEclipse&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;已知问题&#34;&gt;已知问题&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;[2023-04-25] 高版本的STM32CubeIDE(&amp;gt;=1.9.0)安装成功后无法启动插件。
+&lt;ul&gt;
+&lt;li&gt;解决方法：不要安装最新(1.2.4)版本的Rust插件，安装1.2.3的插件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 支持多个单元包</title>
+      <link>/docs/Note/Rust/MultiCrates/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/Note/Rust/MultiCrates/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;局限性&#34;&gt;局限性&lt;/h2&gt;
+&lt;p&gt;开发XWOS RUST的过程中，需要将库与应用的代码分离在不同的crate中，在实践过程中，
+发现RUST有如下局限：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;不能将两个crate都编译成staticlib，staticlib的crate不可列举在 &lt;code&gt;[dependencies]&lt;/code&gt; ，
+说明staticlib是用来给C/C++调用的；&lt;/li&gt;
+&lt;li&gt;只有rlib的crate列举在 &lt;code&gt;[dependencies]&lt;/code&gt; ，编译staticlib时，
+所有 &lt;code&gt;[dependencies]&lt;/code&gt; 内的crates都会打包在staticlib内；&lt;/li&gt;
+&lt;li&gt;与C/C++代码链接时，不可存在两个以上的staticlib，除非这些staticlib的依赖完全
+无关系（事实上这很难实现），否则会出现重复定义的链接错误。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;方案&#34;&gt;方案&lt;/h2&gt;
+&lt;p&gt;通过实践，研究出解决方案：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;将 &lt;code&gt;xwrust_main()&lt;/code&gt; 移动到一个电路板模块 &lt;code&gt;bm/rustapp&lt;/code&gt; 中，此模块编译成staticlib；&lt;/li&gt;
+&lt;li&gt;所有RUST的应用只能集中在rustapp内；&lt;/li&gt;
+&lt;li&gt;其他crates只作为 rustapp的 &lt;code&gt;[dependencies]&lt;/code&gt; ；&lt;/li&gt;
+&lt;li&gt;其他crate设置为 &lt;code&gt;crate-type = [&amp;quot;rlib&amp;quot;]&lt;/code&gt; ，并删除 &lt;code&gt;xwmo.mk&lt;/code&gt; ，不再使用XWOS的编译系统进行编译。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;实验代码&#34;&gt;实验代码&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;代码仓库：&lt;code&gt;git clone --recursive https://gitee.com/xwos/WeActMiniStm32H750.git&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;commit&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a2f&#34;&gt;cd&lt;/span&gt; XWOS
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git pull
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git checkout -b rust-multicrates 4d0837bfe227a6316288e4f1fa60a15276504159
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+      </description>
+    </item>
+    
+  </channel>
+</rss>

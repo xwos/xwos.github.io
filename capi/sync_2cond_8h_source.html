@@ -1,0 +1,327 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>XWOS API: xwos/osal/sync/cond.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<a href="/" class="github-corner" title="返回首页">
+  <svg viewBox="0 0 250 250" style="position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path
+      d="M 0 0 L 250 250 L 250 0 L 0 0 z M 181.19336 6.25 A 18.281986 19.638775 0 0 1 192.79297 10.798828 L 241.54492 54.201172 A 6.0939954 6.5462585 0 0 1 237.64453 65.787109 L 233.13477 65.787109 A 3.0469979 3.2731292 0 0 0 230.08789 69.060547 L 230.08789 111.61133 A 18.281986 19.638775 0 0 1 211.80664 131.25 L 205.71289 131.25 A 12.187991 13.092517 0 0 1 193.52344 118.1582 L 193.52344 98.519531 A 12.187991 13.092517 0 0 0 181.33594 85.425781 A 12.187991 13.092517 0 0 0 169.14844 98.519531 L 169.14844 118.1582 A 12.187991 13.092517 0 0 1 156.95898 131.25 L 150.86523 131.25 A 18.281986 19.638775 0 0 1 132.58398 111.61133 L 132.58398 68.994141 A 3.0469979 3.2731292 0 0 0 129.29297 65.722656 L 124.7832 65.722656 A 6.0939954 6.5462585 0 0 1 120.88281 54.201172 L 169.39258 10.798828 A 18.281986 19.638775 0 0 1 181.19336 6.25 z "/>
+  </svg>
+</a>
+<style>.github-corner:hover</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">XWOS API
+   &#160;<span id="projectnumber">3.0</span>
+   </div>
+   <div id="projectbrief">XWOS API参考手册</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('sync_2cond_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">cond.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="sync_2cond_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#ifndef __xwos_osal_sync_cond_h__</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#define __xwos_osal_sync_cond_h__</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;<a class="code" href="xwos_2standard_8h.html">xwos/standard.h</a>&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;<a class="code" href="jack_2sync_2cond_8h.html">xwos/osal/jack/sync/cond.h</a>&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;<a class="code" href="time_8h.html">xwos/osal/time.h</a>&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;<a class="code" href="sync_2sel_8h.html">xwos/osal/sync/sel.h</a>&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;<a class="code" href="lock_2mtx_8h.html">xwos/osal/lock/mtx.h</a>&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="structxwos__cond.html">   90</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structxwos__cond.html">xwos_cond</a> {</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="structxwos__cond.html#a15a9bef9c3b0d633750359abee7944f2">   91</a></span>        <span class="keyword">struct </span>xwosdl_cond <a class="code hl_variable" href="structxwos__cond.html#a15a9bef9c3b0d633750359abee7944f2">oscond</a>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>};</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="structxwos__cond__d.html">   97</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="structxwos__cond__d.html#a913d0a37680ed11aa5adbf08f3b2f5ab">   98</a></span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwos__cond.html">xwos_cond</a> * <a class="code hl_variable" href="structxwos__cond__d.html#a913d0a37680ed11aa5adbf08f3b2f5ab">cond</a>; </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="structxwos__cond__d.html#a851a53bdded7e8ef8c93fc99a7d01dfc">   99</a></span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> <a class="code hl_variable" href="structxwos__cond__d.html#a851a53bdded7e8ef8c93fc99a7d01dfc">tik</a>; </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>} <a class="code hl_struct" href="structxwos__cond__d.html">xwos_cond_d</a>;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="group__xwos__sync__cond.html#gafce3fecec724f443084f53fc44b7c0fa">  105</a></span><span class="preprocessor">#define XWOS_COND_NILD ((xwos_cond_d){NULL, 0,})</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="group__xwos__sync__cond.html#ga02154ceda2ebb3198e0f452d05e84fe8">  117</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__cond.html#ga02154ceda2ebb3198e0f452d05e84fe8">xwos_cond_init</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__cond.html">xwos_cond</a> * cond)</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>{</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        <span class="keywordflow">return</span> xwosdl_cond_init(&amp;cond-&gt;<a class="code hl_variable" href="structxwos__cond.html#a15a9bef9c3b0d633750359abee7944f2">oscond</a>);</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>}</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="group__xwos__sync__cond.html#ga2007c32a3bc08294a77ab09ac17e2e20">  132</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__cond.html#ga2007c32a3bc08294a77ab09ac17e2e20">xwos_cond_fini</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__cond.html">xwos_cond</a> * cond)</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>{</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        <span class="keywordflow">return</span> xwosdl_cond_fini(&amp;cond-&gt;<a class="code hl_variable" href="structxwos__cond.html#a15a9bef9c3b0d633750359abee7944f2">oscond</a>);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>}</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno"><a class="line" href="group__xwos__sync__cond.html#gab8acb77604393deba20d8511707bd820">  151</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__cond.html#gab8acb77604393deba20d8511707bd820">xwos_cond_grab</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__cond.html">xwos_cond</a> * cond)</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>{</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        <span class="keywordflow">return</span> xwosdl_cond_grab(&amp;cond-&gt;<a class="code hl_variable" href="structxwos__cond.html#a15a9bef9c3b0d633750359abee7944f2">oscond</a>);</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>}</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="group__xwos__sync__cond.html#gae52e6bcefc86df3fd676534010c3d2b2">  170</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__cond.html#gae52e6bcefc86df3fd676534010c3d2b2">xwos_cond_put</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__cond.html">xwos_cond</a> * cond)</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>{</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>        <span class="keywordflow">return</span> xwosdl_cond_put(&amp;cond-&gt;<a class="code hl_variable" href="structxwos__cond.html#a15a9bef9c3b0d633750359abee7944f2">oscond</a>);</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>}</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno"><a class="line" href="group__xwos__sync__cond.html#ga8d6ff09dee39723571220a7f25d04eb3">  185</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__cond.html#ga8d6ff09dee39723571220a7f25d04eb3">xwos_cond_create</a>(<a class="code hl_struct" href="structxwos__cond__d.html">xwos_cond_d</a> * condd)</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>{</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>        <span class="keywordflow">return</span> xwosdl_cond_create((xwosdl_cond_d *)condd);</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>}</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span> </div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno"><a class="line" href="group__xwos__sync__cond.html#ga6921e0eb38b073d68cb4af77ecc71c85">  200</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__cond.html#ga6921e0eb38b073d68cb4af77ecc71c85">xwos_cond_delete</a>(<a class="code hl_struct" href="structxwos__cond__d.html">xwos_cond_d</a> condd)</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>{</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>        <span class="keywordflow">return</span> xwosdl_cond_delete(&amp;condd.<a class="code hl_variable" href="structxwos__cond__d.html#a913d0a37680ed11aa5adbf08f3b2f5ab">cond</a>-&gt;<a class="code hl_variable" href="structxwos__cond.html#a15a9bef9c3b0d633750359abee7944f2">oscond</a>, condd.<a class="code hl_variable" href="structxwos__cond__d.html#a851a53bdded7e8ef8c93fc99a7d01dfc">tik</a>);</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>}</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span> </div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno"><a class="line" href="group__xwos__sync__cond.html#ga0b954974711ff4689398312f2861e578">  217</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__cond.html#ga0b954974711ff4689398312f2861e578">xwos_cond_acquire</a>(<a class="code hl_struct" href="structxwos__cond__d.html">xwos_cond_d</a> condd)</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>{</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>        <span class="keywordflow">return</span> xwosdl_cond_acquire(&amp;condd.<a class="code hl_variable" href="structxwos__cond__d.html#a913d0a37680ed11aa5adbf08f3b2f5ab">cond</a>-&gt;<a class="code hl_variable" href="structxwos__cond.html#a15a9bef9c3b0d633750359abee7944f2">oscond</a>, condd.<a class="code hl_variable" href="structxwos__cond__d.html#a851a53bdded7e8ef8c93fc99a7d01dfc">tik</a>);</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>}</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span> </div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno"><a class="line" href="group__xwos__sync__cond.html#gad2319939fb53002f58ac0cd1d32bc2b2">  234</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__cond.html#gad2319939fb53002f58ac0cd1d32bc2b2">xwos_cond_release</a>(<a class="code hl_struct" href="structxwos__cond__d.html">xwos_cond_d</a> condd)</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>{</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>        <span class="keywordflow">return</span> xwosdl_cond_release(&amp;condd.<a class="code hl_variable" href="structxwos__cond__d.html#a913d0a37680ed11aa5adbf08f3b2f5ab">cond</a>-&gt;<a class="code hl_variable" href="structxwos__cond.html#a15a9bef9c3b0d633750359abee7944f2">oscond</a>, condd.<a class="code hl_variable" href="structxwos__cond__d.html#a851a53bdded7e8ef8c93fc99a7d01dfc">tik</a>);</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>}</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span> </div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno"><a class="line" href="group__xwos__sync__cond.html#ga43999bc7016b084c39cbc0865759dfe2">  247</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> <a class="code hl_function" href="group__xwos__sync__cond.html#ga43999bc7016b084c39cbc0865759dfe2">xwos_cond_get_tik</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__cond.html">xwos_cond</a> * cond)</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>{</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>        <span class="keywordflow">return</span> xwosdl_cond_get_tik(&amp;cond-&gt;<a class="code hl_variable" href="structxwos__cond.html#a15a9bef9c3b0d633750359abee7944f2">oscond</a>);</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>}</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span> </div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno"><a class="line" href="group__xwos__sync__cond.html#gaf1c11c175d53880697b38f85bb7d43c3">  260</a></span><a class="code hl_struct" href="structxwos__cond__d.html">xwos_cond_d</a> <a class="code hl_function" href="group__xwos__sync__cond.html#gaf1c11c175d53880697b38f85bb7d43c3">xwos_cond_get_d</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__cond.html">xwos_cond</a> * cond)</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>{</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>        <a class="code hl_struct" href="structxwos__cond__d.html">xwos_cond_d</a> condd;</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>        condd.<a class="code hl_variable" href="structxwos__cond__d.html#a913d0a37680ed11aa5adbf08f3b2f5ab">cond</a> = cond;</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>        condd.<a class="code hl_variable" href="structxwos__cond__d.html#a851a53bdded7e8ef8c93fc99a7d01dfc">tik</a> = xwosdl_cond_get_tik(&amp;cond-&gt;<a class="code hl_variable" href="structxwos__cond.html#a15a9bef9c3b0d633750359abee7944f2">oscond</a>);</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>        <span class="keywordflow">return</span> condd;</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>}</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span> </div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno"><a class="line" href="group__xwos__sync__cond.html#gae2675cc244078d9ba58e9d8ae24faa4b">  286</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__cond.html#gae2675cc244078d9ba58e9d8ae24faa4b">xwos_cond_bind</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__cond.html">xwos_cond</a> * cond, <span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sel.html">xwos_sel</a> * sel, <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pos)</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>{</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>        <span class="keywordflow">return</span> xwosdl_cond_bind(&amp;cond-&gt;<a class="code hl_variable" href="structxwos__cond.html#a15a9bef9c3b0d633750359abee7944f2">oscond</a>, &amp;sel-&gt;<a class="code hl_variable" href="structxwos__sel.html#adaf7f267f13f41092f7d4ce9a8e464d7">ossel</a>, pos);</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>}</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span> </div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno"><a class="line" href="group__xwos__sync__cond.html#gafaf7f192db151d1f3759a2dc8f5e7157">  303</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__cond.html#gafaf7f192db151d1f3759a2dc8f5e7157">xwos_cond_unbind</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__cond.html">xwos_cond</a> * cond, <span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sel.html">xwos_sel</a> * sel)</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>{</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>        <span class="keywordflow">return</span> xwosdl_cond_unbind(&amp;cond-&gt;<a class="code hl_variable" href="structxwos__cond.html#a15a9bef9c3b0d633750359abee7944f2">oscond</a>, &amp;sel-&gt;<a class="code hl_variable" href="structxwos__sel.html#adaf7f267f13f41092f7d4ce9a8e464d7">ossel</a>);</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>}</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span> </div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno"><a class="line" href="group__xwos__sync__cond.html#gae28d45933a9a1cd5fbb282533f3a96d5">  324</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__cond.html#gae28d45933a9a1cd5fbb282533f3a96d5">xwos_cond_freeze</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__cond.html">xwos_cond</a> * cond)</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>{</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>        <span class="keywordflow">return</span> xwosdl_cond_freeze(&amp;cond-&gt;<a class="code hl_variable" href="structxwos__cond.html#a15a9bef9c3b0d633750359abee7944f2">oscond</a>);</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>}</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span> </div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno"><a class="line" href="group__xwos__sync__cond.html#gab932d4d14e734f2f413783512b0b10ac">  343</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__cond.html#gab932d4d14e734f2f413783512b0b10ac">xwos_cond_thaw</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__cond.html">xwos_cond</a> * cond)</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>{</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>        <span class="keywordflow">return</span> xwosdl_cond_thaw(&amp;cond-&gt;<a class="code hl_variable" href="structxwos__cond.html#a15a9bef9c3b0d633750359abee7944f2">oscond</a>);</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>}</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span> </div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno"><a class="line" href="group__xwos__sync__cond.html#ga6a85c4b4f0a48d8f7af6d1eb9edf5828">  361</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__cond.html#ga6a85c4b4f0a48d8f7af6d1eb9edf5828">xwos_cond_broadcast</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__cond.html">xwos_cond</a> * cond)</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>{</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>        <span class="keywordflow">return</span> xwosdl_cond_broadcast(&amp;cond-&gt;<a class="code hl_variable" href="structxwos__cond.html#a15a9bef9c3b0d633750359abee7944f2">oscond</a>);</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>}</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span> </div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno"><a class="line" href="group__xwos__sync__cond.html#gafe8a5951b17d91fe378756815abc8b9b">  379</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__cond.html#gafe8a5951b17d91fe378756815abc8b9b">xwos_cond_unicast</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__cond.html">xwos_cond</a> * cond)</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>{</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>        <span class="keywordflow">return</span> xwosdl_cond_unicast(&amp;cond-&gt;<a class="code hl_variable" href="structxwos__cond.html#a15a9bef9c3b0d633750359abee7944f2">oscond</a>);</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>}</div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span> </div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno"><a class="line" href="group__xwos__sync__cond.html#ga5e036562855a7585904903a707f19ca7">  423</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__cond.html#ga5e036562855a7585904903a707f19ca7">xwos_cond_wait</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__cond.html">xwos_cond</a> * cond,</div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>                      <span class="keyword">union</span> <a class="code hl_union" href="unionxwos__ulock.html">xwos_ulock</a> lock, <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> lktype, <span class="keywordtype">void</span> * lkdata,</div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span>                      <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> * lkst)</div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>{</div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>        <span class="keywordflow">return</span> xwosdl_cond_wait(&amp;cond-&gt;<a class="code hl_variable" href="structxwos__cond.html#a15a9bef9c3b0d633750359abee7944f2">oscond</a>, lock, lktype, lkdata, lkst);</div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span>}</div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span> </div>
+<div class="line"><a id="l00474" name="l00474"></a><span class="lineno">  474</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00475" name="l00475"></a><span class="lineno"><a class="line" href="group__xwos__sync__cond.html#gad8c1310da94bd715059fef8521264cfa">  475</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__cond.html#gad8c1310da94bd715059fef8521264cfa">xwos_cond_wait_to</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__cond.html">xwos_cond</a> * cond,</div>
+<div class="line"><a id="l00476" name="l00476"></a><span class="lineno">  476</span>                         <span class="keyword">union</span> <a class="code hl_union" href="unionxwos__ulock.html">xwos_ulock</a> lock, <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> lktype, <span class="keywordtype">void</span> * lkdata,</div>
+<div class="line"><a id="l00477" name="l00477"></a><span class="lineno">  477</span>                         <a class="code hl_typedef" href="group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a> to, <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> * lkst)</div>
+<div class="line"><a id="l00478" name="l00478"></a><span class="lineno">  478</span>{</div>
+<div class="line"><a id="l00479" name="l00479"></a><span class="lineno">  479</span>        <span class="keywordflow">return</span> xwosdl_cond_wait_to(&amp;cond-&gt;<a class="code hl_variable" href="structxwos__cond.html#a15a9bef9c3b0d633750359abee7944f2">oscond</a>, lock, lktype, lkdata, to, lkst);</div>
+<div class="line"><a id="l00480" name="l00480"></a><span class="lineno">  480</span>}</div>
+<div class="line"><a id="l00481" name="l00481"></a><span class="lineno">  481</span> </div>
+<div class="line"><a id="l00519" name="l00519"></a><span class="lineno">  519</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00520" name="l00520"></a><span class="lineno"><a class="line" href="group__xwos__sync__cond.html#ga176a4bfcec1f402e0e8e127354e58911">  520</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__cond.html#ga176a4bfcec1f402e0e8e127354e58911">xwos_cond_wait_unintr</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__cond.html">xwos_cond</a> * cond,</div>
+<div class="line"><a id="l00521" name="l00521"></a><span class="lineno">  521</span>                             <span class="keyword">union</span> <a class="code hl_union" href="unionxwos__ulock.html">xwos_ulock</a> lock, <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> lktype, <span class="keywordtype">void</span> * lkdata,</div>
+<div class="line"><a id="l00522" name="l00522"></a><span class="lineno">  522</span>                             <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> * lkst)</div>
+<div class="line"><a id="l00523" name="l00523"></a><span class="lineno">  523</span>{</div>
+<div class="line"><a id="l00524" name="l00524"></a><span class="lineno">  524</span>        <span class="keywordflow">return</span> xwosdl_cond_wait_unintr(&amp;cond-&gt;<a class="code hl_variable" href="structxwos__cond.html#a15a9bef9c3b0d633750359abee7944f2">oscond</a>, lock, lktype, lkdata, lkst);</div>
+<div class="line"><a id="l00525" name="l00525"></a><span class="lineno">  525</span>}</div>
+<div class="line"><a id="l00526" name="l00526"></a><span class="lineno">  526</span> </div>
+<div class="line"><a id="l00531" name="l00531"></a><span class="lineno">  531</span><span class="preprocessor">#endif </span><span class="comment">/* xwos/osal/sync/cond.h */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__xwos__lib__compiler_html_ga9210398f1f7e1083da5b23f4693e6b89"><div class="ttname"><a href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div><div class="ttdeci">#define __xwos_inline_api</div><div class="ttdef"><b>Definition</b> <a href="compiler_8h_source.html#l00179">compiler.h:179</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type__time_html_ga3079bb70c0290f939f9c6896fe43ec61"><div class="ttname"><a href="group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a></div><div class="ttdeci">xws64_t xwtm_t</div><div class="ttdoc">XWOS系统时间（有符号)</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00710">type.h:710</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga06847ea8c7edb2b1f166288b230f251f"><div class="ttname"><a href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a></div><div class="ttdeci">signed long xwer_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00554">type.h:554</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga59fe68c80516b22de8dccb84275d23f2"><div class="ttname"><a href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a></div><div class="ttdeci">unsigned long xwsq_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00445">type.h:445</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__cond_html_ga02154ceda2ebb3198e0f452d05e84fe8"><div class="ttname"><a href="group__xwos__sync__cond.html#ga02154ceda2ebb3198e0f452d05e84fe8">xwos_cond_init</a></div><div class="ttdeci">static xwer_t xwos_cond_init(struct xwos_cond *cond)</div><div class="ttdoc">XWOS API：静态方式初始化条件量对象</div><div class="ttdef"><b>Definition</b> <a href="sync_2cond_8h_source.html#l00117">cond.h:117</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__cond_html_ga0b954974711ff4689398312f2861e578"><div class="ttname"><a href="group__xwos__sync__cond.html#ga0b954974711ff4689398312f2861e578">xwos_cond_acquire</a></div><div class="ttdeci">static xwer_t xwos_cond_acquire(xwos_cond_d condd)</div><div class="ttdoc">XWOS API：检查条件量对象的标签并增加引用计数</div><div class="ttdef"><b>Definition</b> <a href="sync_2cond_8h_source.html#l00217">cond.h:217</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__cond_html_ga176a4bfcec1f402e0e8e127354e58911"><div class="ttname"><a href="group__xwos__sync__cond.html#ga176a4bfcec1f402e0e8e127354e58911">xwos_cond_wait_unintr</a></div><div class="ttdeci">static xwer_t xwos_cond_wait_unintr(struct xwos_cond *cond, union xwos_ulock lock, xwsq_t lktype, void *lkdata, xwsq_t *lkst)</div><div class="ttdoc">XWOS API：阻塞当前线程，直到被条件量唤醒，且阻塞不可被中断</div><div class="ttdef"><b>Definition</b> <a href="sync_2cond_8h_source.html#l00520">cond.h:520</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__cond_html_ga2007c32a3bc08294a77ab09ac17e2e20"><div class="ttname"><a href="group__xwos__sync__cond.html#ga2007c32a3bc08294a77ab09ac17e2e20">xwos_cond_fini</a></div><div class="ttdeci">static xwer_t xwos_cond_fini(struct xwos_cond *cond)</div><div class="ttdoc">XWOS API：销毁静态方式初始化的条件量对象</div><div class="ttdef"><b>Definition</b> <a href="sync_2cond_8h_source.html#l00132">cond.h:132</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__cond_html_ga43999bc7016b084c39cbc0865759dfe2"><div class="ttname"><a href="group__xwos__sync__cond.html#ga43999bc7016b084c39cbc0865759dfe2">xwos_cond_get_tik</a></div><div class="ttdeci">static xwsq_t xwos_cond_get_tik(struct xwos_cond *cond)</div><div class="ttdoc">XWOS API：获取条件量对象的标签</div><div class="ttdef"><b>Definition</b> <a href="sync_2cond_8h_source.html#l00247">cond.h:247</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__cond_html_ga5e036562855a7585904903a707f19ca7"><div class="ttname"><a href="group__xwos__sync__cond.html#ga5e036562855a7585904903a707f19ca7">xwos_cond_wait</a></div><div class="ttdeci">static xwer_t xwos_cond_wait(struct xwos_cond *cond, union xwos_ulock lock, xwsq_t lktype, void *lkdata, xwsq_t *lkst)</div><div class="ttdoc">XWOS API：阻塞当前线程，直到被条件量唤醒</div><div class="ttdef"><b>Definition</b> <a href="sync_2cond_8h_source.html#l00423">cond.h:423</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__cond_html_ga6921e0eb38b073d68cb4af77ecc71c85"><div class="ttname"><a href="group__xwos__sync__cond.html#ga6921e0eb38b073d68cb4af77ecc71c85">xwos_cond_delete</a></div><div class="ttdeci">static xwer_t xwos_cond_delete(xwos_cond_d condd)</div><div class="ttdoc">XWOS API：删除动态方式创建的条件量对象</div><div class="ttdef"><b>Definition</b> <a href="sync_2cond_8h_source.html#l00200">cond.h:200</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__cond_html_ga6a85c4b4f0a48d8f7af6d1eb9edf5828"><div class="ttname"><a href="group__xwos__sync__cond.html#ga6a85c4b4f0a48d8f7af6d1eb9edf5828">xwos_cond_broadcast</a></div><div class="ttdeci">static xwer_t xwos_cond_broadcast(struct xwos_cond *cond)</div><div class="ttdoc">XWOS API：广播条件量对象，等待队列中的所有线程都会被唤醒</div><div class="ttdef"><b>Definition</b> <a href="sync_2cond_8h_source.html#l00361">cond.h:361</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__cond_html_ga8d6ff09dee39723571220a7f25d04eb3"><div class="ttname"><a href="group__xwos__sync__cond.html#ga8d6ff09dee39723571220a7f25d04eb3">xwos_cond_create</a></div><div class="ttdeci">static xwer_t xwos_cond_create(xwos_cond_d *condd)</div><div class="ttdoc">XWOS API：动态方式创建条件量对象</div><div class="ttdef"><b>Definition</b> <a href="sync_2cond_8h_source.html#l00185">cond.h:185</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__cond_html_gab8acb77604393deba20d8511707bd820"><div class="ttname"><a href="group__xwos__sync__cond.html#gab8acb77604393deba20d8511707bd820">xwos_cond_grab</a></div><div class="ttdeci">static xwer_t xwos_cond_grab(struct xwos_cond *cond)</div><div class="ttdoc">XWOS API：增加条件量对象的引用计数</div><div class="ttdef"><b>Definition</b> <a href="sync_2cond_8h_source.html#l00151">cond.h:151</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__cond_html_gab932d4d14e734f2f413783512b0b10ac"><div class="ttname"><a href="group__xwos__sync__cond.html#gab932d4d14e734f2f413783512b0b10ac">xwos_cond_thaw</a></div><div class="ttdeci">static xwer_t xwos_cond_thaw(struct xwos_cond *cond)</div><div class="ttdoc">XWOS API：解冻条件量对象</div><div class="ttdef"><b>Definition</b> <a href="sync_2cond_8h_source.html#l00343">cond.h:343</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__cond_html_gad2319939fb53002f58ac0cd1d32bc2b2"><div class="ttname"><a href="group__xwos__sync__cond.html#gad2319939fb53002f58ac0cd1d32bc2b2">xwos_cond_release</a></div><div class="ttdeci">static xwer_t xwos_cond_release(xwos_cond_d condd)</div><div class="ttdoc">XWOS API：检查对象的标签并减少引用计数</div><div class="ttdef"><b>Definition</b> <a href="sync_2cond_8h_source.html#l00234">cond.h:234</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__cond_html_gad8c1310da94bd715059fef8521264cfa"><div class="ttname"><a href="group__xwos__sync__cond.html#gad8c1310da94bd715059fef8521264cfa">xwos_cond_wait_to</a></div><div class="ttdeci">static xwer_t xwos_cond_wait_to(struct xwos_cond *cond, union xwos_ulock lock, xwsq_t lktype, void *lkdata, xwtm_t to, xwsq_t *lkst)</div><div class="ttdoc">XWOS API：限时阻塞当前线程，直到被条件量唤醒</div><div class="ttdef"><b>Definition</b> <a href="sync_2cond_8h_source.html#l00475">cond.h:475</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__cond_html_gae2675cc244078d9ba58e9d8ae24faa4b"><div class="ttname"><a href="group__xwos__sync__cond.html#gae2675cc244078d9ba58e9d8ae24faa4b">xwos_cond_bind</a></div><div class="ttdeci">static xwer_t xwos_cond_bind(struct xwos_cond *cond, struct xwos_sel *sel, xwsq_t pos)</div><div class="ttdoc">XWOS API：绑定条件量对象到信号选择器</div><div class="ttdef"><b>Definition</b> <a href="sync_2cond_8h_source.html#l00286">cond.h:286</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__cond_html_gae28d45933a9a1cd5fbb282533f3a96d5"><div class="ttname"><a href="group__xwos__sync__cond.html#gae28d45933a9a1cd5fbb282533f3a96d5">xwos_cond_freeze</a></div><div class="ttdeci">static xwer_t xwos_cond_freeze(struct xwos_cond *cond)</div><div class="ttdoc">XWOS API：冻结条件量对象</div><div class="ttdef"><b>Definition</b> <a href="sync_2cond_8h_source.html#l00324">cond.h:324</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__cond_html_gae52e6bcefc86df3fd676534010c3d2b2"><div class="ttname"><a href="group__xwos__sync__cond.html#gae52e6bcefc86df3fd676534010c3d2b2">xwos_cond_put</a></div><div class="ttdeci">static xwer_t xwos_cond_put(struct xwos_cond *cond)</div><div class="ttdoc">XWOS API：减少条件量对象的引用计数</div><div class="ttdef"><b>Definition</b> <a href="sync_2cond_8h_source.html#l00170">cond.h:170</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__cond_html_gaf1c11c175d53880697b38f85bb7d43c3"><div class="ttname"><a href="group__xwos__sync__cond.html#gaf1c11c175d53880697b38f85bb7d43c3">xwos_cond_get_d</a></div><div class="ttdeci">static xwos_cond_d xwos_cond_get_d(struct xwos_cond *cond)</div><div class="ttdoc">XWOS API：获取条件量对象描述符</div><div class="ttdef"><b>Definition</b> <a href="sync_2cond_8h_source.html#l00260">cond.h:260</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__cond_html_gafaf7f192db151d1f3759a2dc8f5e7157"><div class="ttname"><a href="group__xwos__sync__cond.html#gafaf7f192db151d1f3759a2dc8f5e7157">xwos_cond_unbind</a></div><div class="ttdeci">static xwer_t xwos_cond_unbind(struct xwos_cond *cond, struct xwos_sel *sel)</div><div class="ttdoc">XWOS API：从信号选择器上解绑条件量对象</div><div class="ttdef"><b>Definition</b> <a href="sync_2cond_8h_source.html#l00303">cond.h:303</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__cond_html_gafe8a5951b17d91fe378756815abc8b9b"><div class="ttname"><a href="group__xwos__sync__cond.html#gafe8a5951b17d91fe378756815abc8b9b">xwos_cond_unicast</a></div><div class="ttdeci">static xwer_t xwos_cond_unicast(struct xwos_cond *cond)</div><div class="ttdoc">XWOS API：单播条件量对象，只会唤醒第一个线程</div><div class="ttdef"><b>Definition</b> <a href="sync_2cond_8h_source.html#l00379">cond.h:379</a></div></div>
+<div class="ttc" id="ajack_2sync_2cond_8h_html"><div class="ttname"><a href="jack_2sync_2cond_8h.html">cond.h</a></div><div class="ttdoc">操作系统抽象层：条件量接口描述</div></div>
+<div class="ttc" id="alock_2mtx_8h_html"><div class="ttname"><a href="lock_2mtx_8h.html">mtx.h</a></div><div class="ttdoc">操作系统抽象层：互斥锁</div></div>
+<div class="ttc" id="astructxwos__cond__d_html"><div class="ttname"><a href="structxwos__cond__d.html">xwos_cond_d</a></div><div class="ttdoc">XWOS API：条件量对象描述符</div><div class="ttdef"><b>Definition</b> <a href="sync_2cond_8h_source.html#l00097">cond.h:97</a></div></div>
+<div class="ttc" id="astructxwos__cond__d_html_a851a53bdded7e8ef8c93fc99a7d01dfc"><div class="ttname"><a href="structxwos__cond__d.html#a851a53bdded7e8ef8c93fc99a7d01dfc">xwos_cond_d::tik</a></div><div class="ttdeci">xwsq_t tik</div><div class="ttdef"><b>Definition</b> <a href="sync_2cond_8h_source.html#l00099">cond.h:99</a></div></div>
+<div class="ttc" id="astructxwos__cond__d_html_a913d0a37680ed11aa5adbf08f3b2f5ab"><div class="ttname"><a href="structxwos__cond__d.html#a913d0a37680ed11aa5adbf08f3b2f5ab">xwos_cond_d::cond</a></div><div class="ttdeci">struct xwos_cond * cond</div><div class="ttdef"><b>Definition</b> <a href="sync_2cond_8h_source.html#l00098">cond.h:98</a></div></div>
+<div class="ttc" id="astructxwos__cond_html"><div class="ttname"><a href="structxwos__cond.html">xwos_cond</a></div><div class="ttdoc">XWOS API：条件量对象</div><div class="ttdef"><b>Definition</b> <a href="sync_2cond_8h_source.html#l00090">cond.h:90</a></div></div>
+<div class="ttc" id="astructxwos__cond_html_a15a9bef9c3b0d633750359abee7944f2"><div class="ttname"><a href="structxwos__cond.html#a15a9bef9c3b0d633750359abee7944f2">xwos_cond::oscond</a></div><div class="ttdeci">struct xwmp_cond oscond</div><div class="ttdef"><b>Definition</b> <a href="sync_2cond_8h_source.html#l00091">cond.h:91</a></div></div>
+<div class="ttc" id="astructxwos__sel_html"><div class="ttname"><a href="structxwos__sel.html">xwos_sel</a></div><div class="ttdoc">XWOS API：信号选择器对象</div><div class="ttdef"><b>Definition</b> <a href="sync_2sel_8h_source.html#l00081">sel.h:81</a></div></div>
+<div class="ttc" id="astructxwos__sel_html_adaf7f267f13f41092f7d4ce9a8e464d7"><div class="ttname"><a href="structxwos__sel.html#adaf7f267f13f41092f7d4ce9a8e464d7">xwos_sel::ossel</a></div><div class="ttdeci">struct xwmp_evt ossel</div><div class="ttdef"><b>Definition</b> <a href="sync_2sel_8h_source.html#l00082">sel.h:82</a></div></div>
+<div class="ttc" id="async_2sel_8h_html"><div class="ttname"><a href="sync_2sel_8h.html">sel.h</a></div><div class="ttdoc">操作系统抽象层：信号选择器</div></div>
+<div class="ttc" id="atime_8h_html"><div class="ttname"><a href="time_8h.html">time.h</a></div><div class="ttdoc">操作系统抽象层：时间</div></div>
+<div class="ttc" id="aunionxwos__ulock_html"><div class="ttname"><a href="unionxwos__ulock.html">xwos_ulock</a></div><div class="ttdoc">所有锁的联合</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00680">type.h:680</a></div></div>
+<div class="ttc" id="axwos_2standard_8h_html"><div class="ttname"><a href="xwos_2standard_8h.html">standard.h</a></div><div class="ttdoc">XWOS的标准头文件</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_43a52829888b753087a6774748486ed5.html">xwos</a></li><li class="navelem"><a class="el" href="dir_acf86ca9b9e1693a183c44f1acf6992c.html">osal</a></li><li class="navelem"><a class="el" href="dir_dc1dda2d8f083c6e53d9aa3dee5f69db.html">sync</a></li><li class="navelem"><a class="el" href="sync_2cond_8h.html">cond.h</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
+  </ul>
+</div>
+</body>
+</html>

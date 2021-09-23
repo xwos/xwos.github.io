@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="XWOS RUST：自旋锁"><title>xwrust::xwos::lock::spinlock - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="xwrust" data-themes="" data-resource-suffix="" data-rustdoc-version="1.76.0-nightly (b10cfcd65 2023-11-29)" data-channel="nightly" data-search-js="search-56a624991a76cfad.js" data-settings-js="settings-fe03fdc259827cd2.js" ><script src="../../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../sidebar-items.js"></script><script defer src="../../../../static.files/main-77dede896d6ac08e.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button></nav><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../../xwrust/index.html">xwrust</a><span class="version">1.0.0</span></h2></div><h2 class="location"><a href="#">Module spinlock</a></h2><div class="sidebar-elems"><section><ul class="block"><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#constants">Constants</a></li></ul></section><h2><a href="../index.html">In xwrust::xwos::lock</a></h2></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Module <a href="../../../index.html">xwrust</a>::<wbr><a href="../../index.html">xwos</a>::<wbr><a href="../index.html">lock</a>::<wbr><a class="mod" href="#">spinlock</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../../../../src/xwrust/xwos/lock/spinlock.rs.html#1-855">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="xwos-rust自旋锁"><a href="#xwos-rust自旋锁">XWOS RUST：自旋锁</a></h2>
+<p>自旋锁是多核系统中为防止多个处理器同时访问临界区而引入的一种锁。
+当一个CPU获得自旋锁并访问临界区时，其他CPU只能 <strong>自旋</strong> 等待。
+所谓 <strong>自旋</strong> ，是指不断循环测试锁的是否可用。</p>
+<p>自旋锁内的操作是不可被打断的。因此，自旋锁还伴随其他操作，
+例如关闭调度器的抢占，关闭中断底半部，关闭中断等。</p>
+<p>在单核(UP)系统中，只有一个CPU，不需要自旋过程，单核系统为了软件接口与多核系统兼容，
+也会实现自旋锁，这种自旋锁只需关闭抢占、中断底半部或中断。</p>
+<p>自旋锁可用在 <strong>任何上下文（Context）</strong> ：</p>
+<ul>
+<li>当临界区只被多个线程访问时，需使用关闭抢占的模式： <a href="enum.SpinlockMode.html#variant.Lock" title="variant xwrust::xwos::lock::spinlock::SpinlockMode::Lock"><code>SpinlockMode::Lock</code></a></li>
+<li>当临界区被中断底半部访问时，需使用关闭中断底半部的模式： <a href="enum.SpinlockMode.html#variant.LockBh" title="variant xwrust::xwos::lock::spinlock::SpinlockMode::LockBh"><code>SpinlockMode::LockBh</code></a></li>
+<li>当临界区被多个线程和单一中断访问时，需使用关闭全局中断的模式： <a href="enum.SpinlockMode.html#variant.LockCpuirq" title="variant xwrust::xwos::lock::spinlock::SpinlockMode::LockCpuirq"><code>SpinlockMode::LockCpuirq</code></a></li>
+<li>当临界区被多个中断上下文访问时，需使用保存中断全局标志并关闭全局中断的模式： <a href="enum.SpinlockMode.html#variant.LockCpuirqSave" title="variant xwrust::xwos::lock::spinlock::SpinlockMode::LockCpuirqSave"><code>SpinlockMode::LockCpuirqSave(None)</code></a></li>
+</ul>
+<h2 id="创建"><a href="#创建">创建</a></h2>
+<p>XWOS RUST的互斥锁可使用 <a href="struct.Spinlock.html#method.new" title="associated function xwrust::xwos::lock::spinlock::Spinlock::new"><code>Spinlock::new()</code></a> 创建：</p>
+<ul>
+<li>可以创建具有静态生命周期 <a href="https://doc.rust-lang.org/std/keyword.static.html"><code>static</code></a> 约束的全局变量：</li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwos::lock::spinlock::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>GLOBAL_SPINLOCK: Spinlock&lt;u32&gt; = Spinlock::new(<span class="number">0</span>);</code></pre></div>
+<ul>
+<li>也可以使用 <a href="https://doc.rust-lang.org/alloc/sync/struct.Arc.html"><code>alloc::sync::Arc</code></a> 在heap中创建：</li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>alloc;
+<span class="kw">use </span>alloc::sync::Arc;
+
+<span class="kw">use </span>xwrust::xwos::lock::spinlock::<span class="kw-2">*</span>;
+
+<span class="kw">pub fn </span>xwrust_example_spinlock() {
+    <span class="kw">let </span>spinlock: Arc&lt;Spinlock&lt;u32&gt;&gt; = Arc::new(Spinlock::new(<span class="number">0</span>));
+}</code></pre></div>
+<h2 id="初始化"><a href="#初始化">初始化</a></h2>
+<p>无论以何种方式创建的自旋锁，都必须在使用前调用 <a href="struct.Spinlock.html#method.init" title="method xwrust::xwos::lock::spinlock::Spinlock::init"><code>Spinlock::init()</code></a> 进行初始化：</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">pub fn </span>xwrust_example_spinlock() {
+    GLOBAL_SPINLOCK.init();
+    spinlock.init();
+}</code></pre></div>
+<h2 id="解锁"><a href="#解锁">解锁</a></h2>
+<p>上锁后返回的 <a href="struct.SpinlockGuard.html" title="struct xwrust::xwos::lock::spinlock::SpinlockGuard"><code>SpinlockGuard</code></a> 。 <a href="struct.SpinlockGuard.html" title="struct xwrust::xwos::lock::spinlock::SpinlockGuard"><code>SpinlockGuard</code></a> 的生命周期结束时，会自动解锁。
+也可调用 <a href="struct.Spinlock.html#method.unlock" title="associated function xwrust::xwos::lock::spinlock::Spinlock::unlock"><code>Spinlock::unlock()</code></a> 主动消费掉 <a href="struct.SpinlockGuard.html" title="struct xwrust::xwos::lock::spinlock::SpinlockGuard"><code>SpinlockGuard</code></a> 来解锁。</p>
+<h2 id="上锁"><a href="#上锁">上锁</a></h2>
+<p>上锁的方法 <a href="struct.Spinlock.html#method.lock" title="method xwrust::xwos::lock::spinlock::Spinlock::lock"><code>Spinlock::lock()</code></a> 除了 <strong>自旋</strong> 等待，还会根据上锁模式增加额外操作：</p>
+<ul>
+<li>只关闭抢占的模式： <a href="enum.SpinlockMode.html#variant.Lock" title="variant xwrust::xwos::lock::spinlock::SpinlockMode::Lock"><code>SpinlockMode::Lock</code></a></li>
+<li>关闭中断底半部的模式： <a href="enum.SpinlockMode.html#variant.LockBh" title="variant xwrust::xwos::lock::spinlock::SpinlockMode::LockBh"><code>SpinlockMode::LockBh</code></a></li>
+<li>关闭全局中断的模式： <a href="enum.SpinlockMode.html#variant.LockCpuirq" title="variant xwrust::xwos::lock::spinlock::SpinlockMode::LockCpuirq"><code>SpinlockMode::LockCpuirq</code></a></li>
+<li>保存中断全局标志并关闭全局中断的模式： <a href="enum.SpinlockMode.html#variant.LockCpuirqSave" title="variant xwrust::xwos::lock::spinlock::SpinlockMode::LockCpuirqSave"><code>SpinlockMode::LockCpuirqSave(None)</code></a></li>
+</ul>
+<h2 id="尝试上锁"><a href="#尝试上锁">尝试上锁</a></h2>
+<p>尝试上锁的方法 <a href="struct.Spinlock.html#method.trylock" title="method xwrust::xwos::lock::spinlock::Spinlock::trylock"><code>Spinlock::trylock()</code></a> 只会测试一下锁，不会 <strong>自旋</strong> 等待，上锁成功后还会根据上锁模式增加额外操作：</p>
+<ul>
+<li>只关闭抢占的模式： <a href="enum.SpinlockMode.html#variant.Lock" title="variant xwrust::xwos::lock::spinlock::SpinlockMode::Lock"><code>SpinlockMode::Lock</code></a></li>
+<li>关闭中断底半部的模式： <a href="enum.SpinlockMode.html#variant.LockBh" title="variant xwrust::xwos::lock::spinlock::SpinlockMode::LockBh"><code>SpinlockMode::LockBh</code></a></li>
+<li>关闭全局中断的模式： <a href="enum.SpinlockMode.html#variant.LockCpuirq" title="variant xwrust::xwos::lock::spinlock::SpinlockMode::LockCpuirq"><code>SpinlockMode::LockCpuirq</code></a></li>
+<li>保存中断全局标志并关闭全局中断的模式： <a href="enum.SpinlockMode.html#variant.LockCpuirqSave" title="variant xwrust::xwos::lock::spinlock::SpinlockMode::LockCpuirqSave"><code>SpinlockMode::LockCpuirqSave(None)</code></a></li>
+</ul>
+<h2 id="示例"><a href="#示例">示例</a></h2>
+<p><a href="https://gitee.com/xwos/XWOS/blob/main/xwam/xwrust-example/xwrust_example_spinlock/src/lib.rs">XWOS/xwam/xwrust-example/xwrust_example_spinlock</a></p>
+</div></details><h2 id="structs" class="small-section-header"><a href="#structs">Structs</a></h2><ul class="item-table"><li><div class="item-name"><a class="struct" href="struct.Spinlock.html" title="struct xwrust::xwos::lock::spinlock::Spinlock">Spinlock</a></div><div class="desc docblock-short">自旋锁结构体</div></li><li><div class="item-name"><a class="struct" href="struct.SpinlockGuard.html" title="struct xwrust::xwos::lock::spinlock::SpinlockGuard">SpinlockGuard</a></div><div class="desc docblock-short">自旋锁的RAII Guard</div></li></ul><h2 id="enums" class="small-section-header"><a href="#enums">Enums</a></h2><ul class="item-table"><li><div class="item-name"><a class="enum" href="enum.SpinlockError.html" title="enum xwrust::xwos::lock::spinlock::SpinlockError">SpinlockError</a></div><div class="desc docblock-short">自旋锁的错误码</div></li><li><div class="item-name"><a class="enum" href="enum.SpinlockMode.html" title="enum xwrust::xwos::lock::spinlock::SpinlockMode">SpinlockMode</a></div><div class="desc docblock-short">自旋锁的上锁模式</div></li></ul><h2 id="constants" class="small-section-header"><a href="#constants">Constants</a></h2><ul class="item-table"><li><div class="item-name"><a class="constant" href="constant.SIZEOF_XWOS_SPLK.html" title="constant xwrust::xwos::lock::spinlock::SIZEOF_XWOS_SPLK">SIZEOF_XWOS_SPLK</a></div><div class="desc docblock-short">XWOS自旋锁占用的内存大小</div></li></ul></section></div></main></body></html>

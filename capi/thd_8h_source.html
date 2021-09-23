@@ -1,0 +1,444 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>XWOS API: xwos/osal/thd.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<a href="/" class="github-corner" title="返回首页">
+  <svg viewBox="0 0 250 250" style="position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path
+      d="M 0 0 L 250 250 L 250 0 L 0 0 z M 181.19336 6.25 A 18.281986 19.638775 0 0 1 192.79297 10.798828 L 241.54492 54.201172 A 6.0939954 6.5462585 0 0 1 237.64453 65.787109 L 233.13477 65.787109 A 3.0469979 3.2731292 0 0 0 230.08789 69.060547 L 230.08789 111.61133 A 18.281986 19.638775 0 0 1 211.80664 131.25 L 205.71289 131.25 A 12.187991 13.092517 0 0 1 193.52344 118.1582 L 193.52344 98.519531 A 12.187991 13.092517 0 0 0 181.33594 85.425781 A 12.187991 13.092517 0 0 0 169.14844 98.519531 L 169.14844 118.1582 A 12.187991 13.092517 0 0 1 156.95898 131.25 L 150.86523 131.25 A 18.281986 19.638775 0 0 1 132.58398 111.61133 L 132.58398 68.994141 A 3.0469979 3.2731292 0 0 0 129.29297 65.722656 L 124.7832 65.722656 A 6.0939954 6.5462585 0 0 1 120.88281 54.201172 L 169.39258 10.798828 A 18.281986 19.638775 0 0 1 181.19336 6.25 z "/>
+  </svg>
+</a>
+<style>.github-corner:hover</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">XWOS API
+   &#160;<span id="projectnumber">3.0</span>
+   </div>
+   <div id="projectbrief">XWOS API参考手册</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('thd_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">thd.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="thd_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#ifndef __xwos_osal_thd_h__</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#define __xwos_osal_thd_h__</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;<a class="code" href="xwos_2standard_8h.html">xwos/standard.h</a>&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;<a class="code" href="jack_2thd_8h.html">xwos/osal/jack/thd.h</a>&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;<a class="code" href="time_8h.html">xwos/osal/time.h</a>&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;<a class="code" href="skd_8h.html">xwos/osal/skd.h</a>&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="structxwos__thd.html">  137</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structxwos__thd.html">xwos_thd</a> {</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="structxwos__thd.html#a169f22151e6b3554bb77006624c45df7">  138</a></span>        <span class="keyword">struct </span>xwosdl_thd <a class="code hl_variable" href="structxwos__thd.html#a169f22151e6b3554bb77006624c45df7">osthd</a>;</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>};</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#ga85c1251db099a47b39527a5709baf911">  144</a></span><span class="keyword">typedef</span> <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> (* <a class="code hl_typedef" href="group__xwos__thd.html#ga85c1251db099a47b39527a5709baf911">xwos_thd_f</a>)(<span class="keywordtype">void</span> *);</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="structxwos__thd__d.html">  149</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="structxwos__thd__d.html#ac1a2fd8dcae4be8d65ac15859ccf2ec6">  150</a></span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwos__thd.html">xwos_thd</a> * <a class="code hl_variable" href="structxwos__thd__d.html#ac1a2fd8dcae4be8d65ac15859ccf2ec6">thd</a>; </div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno"><a class="line" href="structxwos__thd__d.html#abc4a8762dc4e7ed0df8431c56c2be890">  151</a></span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> <a class="code hl_variable" href="structxwos__thd__d.html#abc4a8762dc4e7ed0df8431c56c2be890">tik</a>; </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>} <a class="code hl_struct" href="structxwos__thd__d.html">xwos_thd_d</a>;</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#ga60b998ad71911afa5245d6122fa4608c">  157</a></span><span class="preprocessor">#define XWOS_THD_NILD ((xwos_thd_d){NULL, 0,})</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="structxwos__thd__attr.html">  162</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structxwos__thd__attr.html">xwos_thd_attr</a> {</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno"><a class="line" href="structxwos__thd__attr.html#a531a0aa57810571d5510c56d416f2156">  163</a></span>        <span class="keyword">const</span> <span class="keywordtype">char</span> * <a class="code hl_variable" href="structxwos__thd__attr.html#a531a0aa57810571d5510c56d416f2156">name</a>; </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="structxwos__thd__attr.html#a3d31cc4967799d9e295d6914fc23a041">  164</a></span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga1513340e510d1baad62b5bf2a1ea3153">xwstk_t</a> * <a class="code hl_variable" href="structxwos__thd__attr.html#a3d31cc4967799d9e295d6914fc23a041">stack</a>; </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="structxwos__thd__attr.html#ab27c95de9d8a1ca4861a820e6a9a05ab">  168</a></span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> <a class="code hl_variable" href="structxwos__thd__attr.html#ab27c95de9d8a1ca4861a820e6a9a05ab">stack_size</a>; </div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="structxwos__thd__attr.html#a27accd4bc27498aa11d090ce7c5ded79">  170</a></span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> <a class="code hl_variable" href="structxwos__thd__attr.html#a27accd4bc27498aa11d090ce7c5ded79">stack_guard_size</a>; </div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno"><a class="line" href="structxwos__thd__attr.html#a8b7ad423b933ea28688d78349d71d7da">  172</a></span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga0f916febcfda0944033512f895891018">xwpr_t</a> <a class="code hl_variable" href="structxwos__thd__attr.html#a8b7ad423b933ea28688d78349d71d7da">priority</a>; </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="structxwos__thd__attr.html#a96b7bb207eecfc764bcd6c6ada537f6c">  173</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="structxwos__thd__attr.html#a96b7bb207eecfc764bcd6c6ada537f6c">detached</a>; </div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno"><a class="line" href="structxwos__thd__attr.html#a36bed30a60d5addc933da058125804e4">  174</a></span>        <span class="keywordtype">bool</span> <a class="code hl_variable" href="structxwos__thd__attr.html#a36bed30a60d5addc933da058125804e4">privileged</a>; </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>};</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#gac52bd2805a370eccb1feccb7c720c7b3">  180</a></span><span class="preprocessor">#define XWOS_STACK_SIZE_DEFAULT         XWMMCFG_STACK_SIZE_DEFAULT</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#gab0a22dfb8ea9c3c488402a48c25d40bb">  185</a></span><span class="preprocessor">#define XWOS_STACK_SIZE_MIN             XWMMCFG_STACK_SIZE_MIN</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span> </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#ga57b48722b092e060ff1419b3624b148d">  190</a></span><span class="preprocessor">#define XWOS_STACK_GUARD_SIZE_DEFAULT   XWMMCFG_STACK_GUARD_SIZE_DEFAULT</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span> </div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#ga2d32848efc4ac0b597af272bce340c78">  195</a></span><span class="preprocessor">#define XWOS_THD_LOCAL_DATA_NUM         XWOSDL_THD_LOCAL_DATA_NUM</span></div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno"><a class="line" href="structxwos__thd__desc.html">  200</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structxwos__thd__desc.html">xwos_thd_desc</a> {</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno"><a class="line" href="structxwos__thd__desc.html#a5e13c08889068906e42944f7439fbd6c">  201</a></span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwos__thd__attr.html">xwos_thd_attr</a> <a class="code hl_variable" href="structxwos__thd__desc.html#a5e13c08889068906e42944f7439fbd6c">attr</a>; </div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno"><a class="line" href="structxwos__thd__desc.html#a97ff66d68917773aa486a6f06e4cba4d">  202</a></span>        <a class="code hl_typedef" href="group__xwos__thd.html#ga85c1251db099a47b39527a5709baf911">xwos_thd_f</a> <a class="code hl_variable" href="structxwos__thd__desc.html#a97ff66d68917773aa486a6f06e4cba4d">func</a>; </div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno"><a class="line" href="structxwos__thd__desc.html#a4c84aa09500eab235e937296cf74c878">  203</a></span>        <span class="keywordtype">void</span> * <a class="code hl_variable" href="structxwos__thd__desc.html#a4c84aa09500eab235e937296cf74c878">arg</a>; </div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>};</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#ga393cded78694c660c355165a4bebe2a3">  225</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwos__thd.html#ga393cded78694c660c355165a4bebe2a3">xwos_thd_attr_init</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__thd__attr.html">xwos_thd_attr</a> * attr)</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>{</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>        xwosdl_thd_attr_init((<span class="keyword">struct</span> xwosdl_thd_attr *)attr);</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>}</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> </div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#gad68cf03b2748d10f97a20d5f3fd7ffa4">  263</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__thd.html#gad68cf03b2748d10f97a20d5f3fd7ffa4">xwos_thd_init</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__thd.html">xwos_thd</a> * thd, <a class="code hl_struct" href="structxwos__thd__d.html">xwos_thd_d</a> * thdd,</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>                     <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__thd__attr.html">xwos_thd_attr</a> * attr,</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>                     <a class="code hl_typedef" href="group__xwos__thd.html#ga85c1251db099a47b39527a5709baf911">xwos_thd_f</a> thdfunc, <span class="keywordtype">void</span> * arg)</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>{</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>        <span class="keywordflow">return</span> xwosdl_thd_init(&amp;thd-&gt;<a class="code hl_variable" href="structxwos__thd.html#a169f22151e6b3554bb77006624c45df7">osthd</a>, (xwosdl_thd_d *)thdd,</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>                               (<span class="keyword">const</span> <span class="keyword">struct</span> xwosdl_thd_attr *)attr,</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>                               <span class="comment">// cppcheck-suppress [misra-c2012-11.1]</span></div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>                               (xwosdl_thd_f)thdfunc, arg);</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>}</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span> </div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#ga1183035d75506a5e3d7ea52a096cabe7">  287</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__thd.html#ga1183035d75506a5e3d7ea52a096cabe7">xwos_thd_grab</a>(<a class="code hl_struct" href="structxwos__thd__d.html">xwos_thd_d</a> thdd)</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>{</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>        <span class="keywordflow">return</span> xwosdl_thd_grab(&amp;thdd.<a class="code hl_variable" href="structxwos__thd__d.html#ac1a2fd8dcae4be8d65ac15859ccf2ec6">thd</a>-&gt;<a class="code hl_variable" href="structxwos__thd.html#a169f22151e6b3554bb77006624c45df7">osthd</a>);</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>}</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span> </div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#ga3a3e3d71eed7967d5fd21915317dfe8c">  306</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__thd.html#ga3a3e3d71eed7967d5fd21915317dfe8c">xwos_thd_put</a>(<a class="code hl_struct" href="structxwos__thd__d.html">xwos_thd_d</a> thdd)</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>{</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>        <span class="keywordflow">return</span> xwosdl_thd_put(&amp;thdd.<a class="code hl_variable" href="structxwos__thd__d.html#ac1a2fd8dcae4be8d65ac15859ccf2ec6">thd</a>-&gt;<a class="code hl_variable" href="structxwos__thd.html#a169f22151e6b3554bb77006624c45df7">osthd</a>);</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>}</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span> </div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#ga9ea84b7446f41812f71b7bb81d1ceecb">  331</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__thd.html#ga9ea84b7446f41812f71b7bb81d1ceecb">xwos_thd_create</a>(<a class="code hl_struct" href="structxwos__thd__d.html">xwos_thd_d</a> * thdd,</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>                       <span class="keyword">const</span> <span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__thd__attr.html">xwos_thd_attr</a> * attr,</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>                       <a class="code hl_typedef" href="group__xwos__thd.html#ga85c1251db099a47b39527a5709baf911">xwos_thd_f</a> thdfunc, <span class="keywordtype">void</span> * arg)</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>{</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>        <span class="keywordflow">return</span> xwosdl_thd_create((xwosdl_thd_d *)thdd,</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>                                 (<span class="keyword">const</span> <span class="keyword">struct</span> xwosdl_thd_attr *)attr,</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>                                 <span class="comment">// cppcheck-suppress [misra-c2012-11.1]</span></div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>                                 (xwosdl_thd_f)thdfunc, arg);</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>}</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span> </div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#ga4b75215c8821082a451e274bc07fcd2d">  352</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__thd.html#ga4b75215c8821082a451e274bc07fcd2d">xwos_thd_acquire</a>(<a class="code hl_struct" href="structxwos__thd__d.html">xwos_thd_d</a> thdd)</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>{</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>        <span class="keywordflow">return</span> xwosdl_thd_acquire(&amp;thdd.<a class="code hl_variable" href="structxwos__thd__d.html#ac1a2fd8dcae4be8d65ac15859ccf2ec6">thd</a>-&gt;<a class="code hl_variable" href="structxwos__thd.html#a169f22151e6b3554bb77006624c45df7">osthd</a>, thdd.<a class="code hl_variable" href="structxwos__thd__d.html#abc4a8762dc4e7ed0df8431c56c2be890">tik</a>);</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>}</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span> </div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#ga12a0141b2c54bd3c0b73fe74049155cb">  368</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__thd.html#ga12a0141b2c54bd3c0b73fe74049155cb">xwos_thd_release</a>(<a class="code hl_struct" href="structxwos__thd__d.html">xwos_thd_d</a> thdd)</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>{</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>        <span class="keywordflow">return</span> xwosdl_thd_release(&amp;thdd.<a class="code hl_variable" href="structxwos__thd__d.html#ac1a2fd8dcae4be8d65ac15859ccf2ec6">thd</a>-&gt;<a class="code hl_variable" href="structxwos__thd.html#a169f22151e6b3554bb77006624c45df7">osthd</a>, thdd.<a class="code hl_variable" href="structxwos__thd__d.html#abc4a8762dc4e7ed0df8431c56c2be890">tik</a>);</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>}</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span> </div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#gad442d2083954ac3e519ba9446acb47fc">  385</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__thd.html#gad442d2083954ac3e519ba9446acb47fc">xwos_thd_get_attr</a>(<a class="code hl_struct" href="structxwos__thd__d.html">xwos_thd_d</a> thdd, <span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__thd__attr.html">xwos_thd_attr</a> * attr)</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>{</div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>        <span class="keywordflow">return</span> xwosdl_thd_get_attr(&amp;thdd.<a class="code hl_variable" href="structxwos__thd__d.html#ac1a2fd8dcae4be8d65ac15859ccf2ec6">thd</a>-&gt;<a class="code hl_variable" href="structxwos__thd.html#a169f22151e6b3554bb77006624c45df7">osthd</a>, thdd.<a class="code hl_variable" href="structxwos__thd__d.html#abc4a8762dc4e7ed0df8431c56c2be890">tik</a>,</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>                                   (<span class="keyword">struct</span> xwosdl_thd_attr *)attr);</div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>}</div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span> </div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#ga2fc40de236c05f0a22420a4bca61ac56">  406</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__thd.html#ga2fc40de236c05f0a22420a4bca61ac56">xwos_thd_intr</a>(<a class="code hl_struct" href="structxwos__thd__d.html">xwos_thd_d</a> thdd)</div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>{</div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>        <span class="keywordflow">return</span> xwosdl_thd_intr(&amp;thdd.<a class="code hl_variable" href="structxwos__thd__d.html#ac1a2fd8dcae4be8d65ac15859ccf2ec6">thd</a>-&gt;<a class="code hl_variable" href="structxwos__thd.html#a169f22151e6b3554bb77006624c45df7">osthd</a>, thdd.<a class="code hl_variable" href="structxwos__thd__d.html#abc4a8762dc4e7ed0df8431c56c2be890">tik</a>);</div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>}</div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span> </div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#gab4cdf4d2e068124cc11888b462da5de4">  437</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__thd.html#gab4cdf4d2e068124cc11888b462da5de4">xwos_thd_quit</a>(<a class="code hl_struct" href="structxwos__thd__d.html">xwos_thd_d</a> thdd)</div>
+<div class="line"><a id="l00438" name="l00438"></a><span class="lineno">  438</span>{</div>
+<div class="line"><a id="l00439" name="l00439"></a><span class="lineno">  439</span>        <span class="keywordflow">return</span> xwosdl_thd_quit(&amp;thdd.<a class="code hl_variable" href="structxwos__thd__d.html#ac1a2fd8dcae4be8d65ac15859ccf2ec6">thd</a>-&gt;<a class="code hl_variable" href="structxwos__thd.html#a169f22151e6b3554bb77006624c45df7">osthd</a>, thdd.<a class="code hl_variable" href="structxwos__thd__d.html#abc4a8762dc4e7ed0df8431c56c2be890">tik</a>);</div>
+<div class="line"><a id="l00440" name="l00440"></a><span class="lineno">  440</span>}</div>
+<div class="line"><a id="l00441" name="l00441"></a><span class="lineno">  441</span> </div>
+<div class="line"><a id="l00471" name="l00471"></a><span class="lineno">  471</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00472" name="l00472"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#gae78b56eaf8e520f68c1e06710e78b017">  472</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__thd.html#gae78b56eaf8e520f68c1e06710e78b017">xwos_thd_join</a>(<a class="code hl_struct" href="structxwos__thd__d.html">xwos_thd_d</a> thdd, <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> * trc)</div>
+<div class="line"><a id="l00473" name="l00473"></a><span class="lineno">  473</span>{</div>
+<div class="line"><a id="l00474" name="l00474"></a><span class="lineno">  474</span>        <span class="keywordflow">return</span> xwosdl_thd_join(&amp;thdd.<a class="code hl_variable" href="structxwos__thd__d.html#ac1a2fd8dcae4be8d65ac15859ccf2ec6">thd</a>-&gt;<a class="code hl_variable" href="structxwos__thd.html#a169f22151e6b3554bb77006624c45df7">osthd</a>, thdd.<a class="code hl_variable" href="structxwos__thd__d.html#abc4a8762dc4e7ed0df8431c56c2be890">tik</a>, trc);</div>
+<div class="line"><a id="l00475" name="l00475"></a><span class="lineno">  475</span>}</div>
+<div class="line"><a id="l00476" name="l00476"></a><span class="lineno">  476</span> </div>
+<div class="line"><a id="l00494" name="l00494"></a><span class="lineno">  494</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00495" name="l00495"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#ga26965560c7f4ad21b5089eed17a30e25">  495</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__thd.html#ga26965560c7f4ad21b5089eed17a30e25">xwos_thd_stop</a>(<a class="code hl_struct" href="structxwos__thd__d.html">xwos_thd_d</a> thdd, <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> * trc)</div>
+<div class="line"><a id="l00496" name="l00496"></a><span class="lineno">  496</span>{</div>
+<div class="line"><a id="l00497" name="l00497"></a><span class="lineno">  497</span>        <span class="keywordflow">return</span> xwosdl_thd_stop(&amp;thdd.<a class="code hl_variable" href="structxwos__thd__d.html#ac1a2fd8dcae4be8d65ac15859ccf2ec6">thd</a>-&gt;<a class="code hl_variable" href="structxwos__thd.html#a169f22151e6b3554bb77006624c45df7">osthd</a>, thdd.<a class="code hl_variable" href="structxwos__thd__d.html#abc4a8762dc4e7ed0df8431c56c2be890">tik</a>, trc);</div>
+<div class="line"><a id="l00498" name="l00498"></a><span class="lineno">  498</span>}</div>
+<div class="line"><a id="l00499" name="l00499"></a><span class="lineno">  499</span> </div>
+<div class="line"><a id="l00516" name="l00516"></a><span class="lineno">  516</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00517" name="l00517"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#gab164670a1c253a0980d6035f0900d47e">  517</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__thd.html#gab164670a1c253a0980d6035f0900d47e">xwos_thd_detach</a>(<a class="code hl_struct" href="structxwos__thd__d.html">xwos_thd_d</a> thdd)</div>
+<div class="line"><a id="l00518" name="l00518"></a><span class="lineno">  518</span>{</div>
+<div class="line"><a id="l00519" name="l00519"></a><span class="lineno">  519</span>        <span class="keywordflow">return</span> xwosdl_thd_detach(&amp;thdd.<a class="code hl_variable" href="structxwos__thd__d.html#ac1a2fd8dcae4be8d65ac15859ccf2ec6">thd</a>-&gt;<a class="code hl_variable" href="structxwos__thd.html#a169f22151e6b3554bb77006624c45df7">osthd</a>, thdd.<a class="code hl_variable" href="structxwos__thd__d.html#abc4a8762dc4e7ed0df8431c56c2be890">tik</a>);</div>
+<div class="line"><a id="l00520" name="l00520"></a><span class="lineno">  520</span>}</div>
+<div class="line"><a id="l00521" name="l00521"></a><span class="lineno">  521</span> </div>
+<div class="line"><a id="l00538" name="l00538"></a><span class="lineno">  538</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00539" name="l00539"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#gaccabca6cd9608f56205e634f9676a8f5">  539</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__thd.html#gaccabca6cd9608f56205e634f9676a8f5">xwos_thd_migrate</a>(<a class="code hl_struct" href="structxwos__thd__d.html">xwos_thd_d</a> thdd, <a class="code hl_typedef" href="group__xwos__lib__type.html#ga0bb4d847ba02675e5264444479899532">xwid_t</a> dstcpu)</div>
+<div class="line"><a id="l00540" name="l00540"></a><span class="lineno">  540</span>{</div>
+<div class="line"><a id="l00541" name="l00541"></a><span class="lineno">  541</span>        <span class="keywordflow">return</span> xwosdl_thd_migrate(&amp;thdd.<a class="code hl_variable" href="structxwos__thd__d.html#ac1a2fd8dcae4be8d65ac15859ccf2ec6">thd</a>-&gt;<a class="code hl_variable" href="structxwos__thd.html#a169f22151e6b3554bb77006624c45df7">osthd</a>, thdd.<a class="code hl_variable" href="structxwos__thd__d.html#abc4a8762dc4e7ed0df8431c56c2be890">tik</a>, dstcpu);</div>
+<div class="line"><a id="l00542" name="l00542"></a><span class="lineno">  542</span>}</div>
+<div class="line"><a id="l00543" name="l00543"></a><span class="lineno">  543</span> </div>
+<div class="line"><a id="l00550" name="l00550"></a><span class="lineno">  550</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00551" name="l00551"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#gabfff3f76985ef2f91f20ff317bebfd5d">  551</a></span><a class="code hl_struct" href="structxwos__thd__d.html">xwos_thd_d</a> <a class="code hl_function" href="group__xwos__thd.html#gabfff3f76985ef2f91f20ff317bebfd5d">xwos_cthd_self</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a id="l00552" name="l00552"></a><span class="lineno">  552</span>{</div>
+<div class="line"><a id="l00553" name="l00553"></a><span class="lineno">  553</span>        xwosdl_thd_d thdd;</div>
+<div class="line"><a id="l00554" name="l00554"></a><span class="lineno">  554</span> </div>
+<div class="line"><a id="l00555" name="l00555"></a><span class="lineno">  555</span>        thdd = xwosdl_cthd_self();</div>
+<div class="line"><a id="l00556" name="l00556"></a><span class="lineno">  556</span>        <span class="keywordflow">return</span> (<a class="code hl_struct" href="structxwos__thd__d.html">xwos_thd_d</a>){(<span class="keyword">struct </span><a class="code hl_struct" href="structxwos__thd.html">xwos_thd</a> *)thdd.thd, thdd.tik};</div>
+<div class="line"><a id="l00557" name="l00557"></a><span class="lineno">  557</span>}</div>
+<div class="line"><a id="l00558" name="l00558"></a><span class="lineno">  558</span> </div>
+<div class="line"><a id="l00565" name="l00565"></a><span class="lineno">  565</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00566" name="l00566"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#gaaee92ff801eaac58dd3db294c95a5dd1">  566</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwos__thd.html#gaaee92ff801eaac58dd3db294c95a5dd1">xwos_cthd_get_attr</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__thd__attr.html">xwos_thd_attr</a> * attr)</div>
+<div class="line"><a id="l00567" name="l00567"></a><span class="lineno">  567</span>{</div>
+<div class="line"><a id="l00568" name="l00568"></a><span class="lineno">  568</span>        <span class="comment">// cppcheck-suppress [misra-c2012-17.7]</span></div>
+<div class="line"><a id="l00569" name="l00569"></a><span class="lineno">  569</span>        <a class="code hl_function" href="group__xwos__thd.html#gad442d2083954ac3e519ba9446acb47fc">xwos_thd_get_attr</a>(<a class="code hl_function" href="group__xwos__thd.html#gabfff3f76985ef2f91f20ff317bebfd5d">xwos_cthd_self</a>(), attr);</div>
+<div class="line"><a id="l00570" name="l00570"></a><span class="lineno">  570</span>}</div>
+<div class="line"><a id="l00571" name="l00571"></a><span class="lineno">  571</span> </div>
+<div class="line"><a id="l00577" name="l00577"></a><span class="lineno">  577</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00578" name="l00578"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#gac453f990c2da012a43e7cbe121b8ec10">  578</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwos__thd.html#gac453f990c2da012a43e7cbe121b8ec10">xwos_cthd_yield</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a id="l00579" name="l00579"></a><span class="lineno">  579</span>{</div>
+<div class="line"><a id="l00580" name="l00580"></a><span class="lineno">  580</span>        xwosdl_cthd_yield();</div>
+<div class="line"><a id="l00581" name="l00581"></a><span class="lineno">  581</span>}</div>
+<div class="line"><a id="l00582" name="l00582"></a><span class="lineno">  582</span> </div>
+<div class="line"><a id="l00592" name="l00592"></a><span class="lineno">  592</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00593" name="l00593"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#gac5fbf8b3d9060ff19a12563cb3202beb">  593</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwos__thd.html#gac5fbf8b3d9060ff19a12563cb3202beb">xwos_cthd_exit</a>(<a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc)</div>
+<div class="line"><a id="l00594" name="l00594"></a><span class="lineno">  594</span>{</div>
+<div class="line"><a id="l00595" name="l00595"></a><span class="lineno">  595</span>        xwosdl_cthd_exit(rc);</div>
+<div class="line"><a id="l00596" name="l00596"></a><span class="lineno">  596</span>}</div>
+<div class="line"><a id="l00597" name="l00597"></a><span class="lineno">  597</span> </div>
+<div class="line"><a id="l00606" name="l00606"></a><span class="lineno">  606</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00607" name="l00607"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#ga9bde1c6bafdb881079b41803296b69ee">  607</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__xwos__thd.html#ga9bde1c6bafdb881079b41803296b69ee">xwos_cthd_shld_frz</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a id="l00608" name="l00608"></a><span class="lineno">  608</span>{</div>
+<div class="line"><a id="l00609" name="l00609"></a><span class="lineno">  609</span>        <span class="keywordflow">return</span> xwosdl_cthd_shld_frz();</div>
+<div class="line"><a id="l00610" name="l00610"></a><span class="lineno">  610</span>}</div>
+<div class="line"><a id="l00611" name="l00611"></a><span class="lineno">  611</span> </div>
+<div class="line"><a id="l00632" name="l00632"></a><span class="lineno">  632</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00633" name="l00633"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#ga27ed7a92e01aed514e941e0440e8863b">  633</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__xwos__thd.html#ga27ed7a92e01aed514e941e0440e8863b">xwos_cthd_shld_stop</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a id="l00634" name="l00634"></a><span class="lineno">  634</span>{</div>
+<div class="line"><a id="l00635" name="l00635"></a><span class="lineno">  635</span>        <span class="keywordflow">return</span> xwosdl_cthd_shld_stop();</div>
+<div class="line"><a id="l00636" name="l00636"></a><span class="lineno">  636</span>}</div>
+<div class="line"><a id="l00637" name="l00637"></a><span class="lineno">  637</span> </div>
+<div class="line"><a id="l00670" name="l00670"></a><span class="lineno">  670</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00671" name="l00671"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#gac642513fb53a00db87738c6d2dd8e430">  671</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="group__xwos__thd.html#gac642513fb53a00db87738c6d2dd8e430">xwos_cthd_frz_shld_stop</a>(<span class="keywordtype">bool</span> * frozen)</div>
+<div class="line"><a id="l00672" name="l00672"></a><span class="lineno">  672</span>{</div>
+<div class="line"><a id="l00673" name="l00673"></a><span class="lineno">  673</span>        <span class="keywordflow">return</span> xwosdl_cthd_frz_shld_stop(frozen);</div>
+<div class="line"><a id="l00674" name="l00674"></a><span class="lineno">  674</span>}</div>
+<div class="line"><a id="l00675" name="l00675"></a><span class="lineno">  675</span> </div>
+<div class="line"><a id="l00692" name="l00692"></a><span class="lineno">  692</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00693" name="l00693"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#gad1072fb4ff4803b8181fc7f54fcb3880">  693</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__thd.html#gad1072fb4ff4803b8181fc7f54fcb3880">xwos_cthd_sleep</a>(<a class="code hl_typedef" href="group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a> dur)</div>
+<div class="line"><a id="l00694" name="l00694"></a><span class="lineno">  694</span>{</div>
+<div class="line"><a id="l00695" name="l00695"></a><span class="lineno">  695</span>        <span class="keywordflow">return</span> xwosdl_cthd_sleep_to(<a class="code hl_function" href="group__xwos__time.html#gaf9f8d6de1ed07945ec6635af480aa2f4">xwtm_ft</a>(dur));</div>
+<div class="line"><a id="l00696" name="l00696"></a><span class="lineno">  696</span>}</div>
+<div class="line"><a id="l00697" name="l00697"></a><span class="lineno">  697</span> </div>
+<div class="line"><a id="l00715" name="l00715"></a><span class="lineno">  715</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00716" name="l00716"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#ga067c6169bf591a14813b004494e41f45">  716</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__thd.html#ga067c6169bf591a14813b004494e41f45">xwos_cthd_sleep_to</a>(<a class="code hl_typedef" href="group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a> to)</div>
+<div class="line"><a id="l00717" name="l00717"></a><span class="lineno">  717</span>{</div>
+<div class="line"><a id="l00718" name="l00718"></a><span class="lineno">  718</span>        <span class="keywordflow">return</span> xwosdl_cthd_sleep_to(to);</div>
+<div class="line"><a id="l00719" name="l00719"></a><span class="lineno">  719</span>}</div>
+<div class="line"><a id="l00720" name="l00720"></a><span class="lineno">  720</span> </div>
+<div class="line"><a id="l00744" name="l00744"></a><span class="lineno">  744</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00745" name="l00745"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#ga46e5a1cbd6c58a36dda954a76e44b3e2">  745</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__thd.html#ga46e5a1cbd6c58a36dda954a76e44b3e2">xwos_cthd_sleep_from</a>(<a class="code hl_typedef" href="group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a> * from, <a class="code hl_typedef" href="group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a> dur)</div>
+<div class="line"><a id="l00746" name="l00746"></a><span class="lineno">  746</span>{</div>
+<div class="line"><a id="l00747" name="l00747"></a><span class="lineno">  747</span>        <span class="keywordflow">return</span> xwosdl_cthd_sleep_from(from, dur);</div>
+<div class="line"><a id="l00748" name="l00748"></a><span class="lineno">  748</span>}</div>
+<div class="line"><a id="l00749" name="l00749"></a><span class="lineno">  749</span> </div>
+<div class="line"><a id="l00770" name="l00770"></a><span class="lineno">  770</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00771" name="l00771"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#ga7088d8e2a4c5ee8497dba07ff2dbc32d">  771</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__thd.html#ga7088d8e2a4c5ee8497dba07ff2dbc32d">xwos_cthd_freeze</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a id="l00772" name="l00772"></a><span class="lineno">  772</span>{</div>
+<div class="line"><a id="l00773" name="l00773"></a><span class="lineno">  773</span>        <span class="keywordflow">return</span> xwosdl_cthd_freeze();</div>
+<div class="line"><a id="l00774" name="l00774"></a><span class="lineno">  774</span>}</div>
+<div class="line"><a id="l00775" name="l00775"></a><span class="lineno">  775</span> </div>
+<div class="line"><a id="l00776" name="l00776"></a><span class="lineno">  776</span><span class="preprocessor">#if (XWOS_THD_LOCAL_DATA_NUM &gt; 0U)</span></div>
+<div class="line"><a id="l00789" name="l00789"></a><span class="lineno">  789</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00790" name="l00790"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#ga62529c26dfb773bd973f0841e3c06ed4">  790</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__thd.html#ga62529c26dfb773bd973f0841e3c06ed4">xwos_thd_set_data</a>(<a class="code hl_struct" href="structxwos__thd__d.html">xwos_thd_d</a> thdd, <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pos, <span class="keywordtype">void</span> * data)</div>
+<div class="line"><a id="l00791" name="l00791"></a><span class="lineno">  791</span>{</div>
+<div class="line"><a id="l00792" name="l00792"></a><span class="lineno">  792</span>        <span class="keywordflow">return</span> xwosdl_thd_set_data(&amp;thdd.<a class="code hl_variable" href="structxwos__thd__d.html#ac1a2fd8dcae4be8d65ac15859ccf2ec6">thd</a>-&gt;<a class="code hl_variable" href="structxwos__thd.html#a169f22151e6b3554bb77006624c45df7">osthd</a>, thdd.<a class="code hl_variable" href="structxwos__thd__d.html#abc4a8762dc4e7ed0df8431c56c2be890">tik</a>, pos, data);</div>
+<div class="line"><a id="l00793" name="l00793"></a><span class="lineno">  793</span>}</div>
+<div class="line"><a id="l00794" name="l00794"></a><span class="lineno">  794</span> </div>
+<div class="line"><a id="l00807" name="l00807"></a><span class="lineno">  807</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00808" name="l00808"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#gaf2fdd413163f2868c68199c12467c2a0">  808</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__thd.html#gaf2fdd413163f2868c68199c12467c2a0">xwos_thd_get_data</a>(<a class="code hl_struct" href="structxwos__thd__d.html">xwos_thd_d</a> thdd, <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pos, <span class="keywordtype">void</span> ** databuf)</div>
+<div class="line"><a id="l00809" name="l00809"></a><span class="lineno">  809</span>{</div>
+<div class="line"><a id="l00810" name="l00810"></a><span class="lineno">  810</span>        <span class="keywordflow">return</span> xwosdl_thd_get_data(&amp;thdd.<a class="code hl_variable" href="structxwos__thd__d.html#ac1a2fd8dcae4be8d65ac15859ccf2ec6">thd</a>-&gt;<a class="code hl_variable" href="structxwos__thd.html#a169f22151e6b3554bb77006624c45df7">osthd</a>, thdd.<a class="code hl_variable" href="structxwos__thd__d.html#abc4a8762dc4e7ed0df8431c56c2be890">tik</a>, pos, databuf);</div>
+<div class="line"><a id="l00811" name="l00811"></a><span class="lineno">  811</span>}</div>
+<div class="line"><a id="l00812" name="l00812"></a><span class="lineno">  812</span> </div>
+<div class="line"><a id="l00824" name="l00824"></a><span class="lineno">  824</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00825" name="l00825"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#gae188b894f4ddcf94b3df3c7cd1f071d5">  825</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__thd.html#gae188b894f4ddcf94b3df3c7cd1f071d5">xwos_cthd_set_data</a>(<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pos, <span class="keywordtype">void</span> * data)</div>
+<div class="line"><a id="l00826" name="l00826"></a><span class="lineno">  826</span>{</div>
+<div class="line"><a id="l00827" name="l00827"></a><span class="lineno">  827</span>        <span class="keywordflow">return</span> xwosdl_cthd_set_data(pos, data);</div>
+<div class="line"><a id="l00828" name="l00828"></a><span class="lineno">  828</span>}</div>
+<div class="line"><a id="l00829" name="l00829"></a><span class="lineno">  829</span> </div>
+<div class="line"><a id="l00841" name="l00841"></a><span class="lineno">  841</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00842" name="l00842"></a><span class="lineno"><a class="line" href="group__xwos__thd.html#ga160c44b91fdff5f5610a32e72c822639">  842</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__thd.html#ga160c44b91fdff5f5610a32e72c822639">xwos_cthd_get_data</a>(<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pos, <span class="keywordtype">void</span> ** databuf)</div>
+<div class="line"><a id="l00843" name="l00843"></a><span class="lineno">  843</span>{</div>
+<div class="line"><a id="l00844" name="l00844"></a><span class="lineno">  844</span>        <span class="keywordflow">return</span> xwosdl_cthd_get_data(pos, databuf);</div>
+<div class="line"><a id="l00845" name="l00845"></a><span class="lineno">  845</span> </div>
+<div class="line"><a id="l00846" name="l00846"></a><span class="lineno">  846</span>}</div>
+<div class="line"><a id="l00847" name="l00847"></a><span class="lineno">  847</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00848" name="l00848"></a><span class="lineno">  848</span> </div>
+<div class="line"><a id="l00853" name="l00853"></a><span class="lineno">  853</span><span class="preprocessor">#endif </span><span class="comment">/* xwos/osal/thd.h */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__xwos__lib__compiler_html_ga9210398f1f7e1083da5b23f4693e6b89"><div class="ttname"><a href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div><div class="ttdeci">#define __xwos_inline_api</div><div class="ttdef"><b>Definition</b> <a href="compiler_8h_source.html#l00179">compiler.h:179</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type__time_html_ga3079bb70c0290f939f9c6896fe43ec61"><div class="ttname"><a href="group__xwos__lib__type__time.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a></div><div class="ttdeci">xws64_t xwtm_t</div><div class="ttdoc">XWOS系统时间（有符号)</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00710">type.h:710</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga06847ea8c7edb2b1f166288b230f251f"><div class="ttname"><a href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a></div><div class="ttdeci">signed long xwer_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00554">type.h:554</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga0bb4d847ba02675e5264444479899532"><div class="ttname"><a href="group__xwos__lib__type.html#ga0bb4d847ba02675e5264444479899532">xwid_t</a></div><div class="ttdeci">unsigned long xwid_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00481">type.h:481</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga0f916febcfda0944033512f895891018"><div class="ttname"><a href="group__xwos__lib__type.html#ga0f916febcfda0944033512f895891018">xwpr_t</a></div><div class="ttdeci">xws32_t xwpr_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00534">type.h:534</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga1513340e510d1baad62b5bf2a1ea3153"><div class="ttname"><a href="group__xwos__lib__type.html#ga1513340e510d1baad62b5bf2a1ea3153">xwstk_t</a></div><div class="ttdeci">xwptr_t xwstk_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00392">type.h:392</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga2d00153ecb0cdcc8ea0823c13ee59649"><div class="ttname"><a href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a></div><div class="ttdeci">unsigned long xwsz_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00339">type.h:339</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga59fe68c80516b22de8dccb84275d23f2"><div class="ttname"><a href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a></div><div class="ttdeci">unsigned long xwsq_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00445">type.h:445</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_ga067c6169bf591a14813b004494e41f45"><div class="ttname"><a href="group__xwos__thd.html#ga067c6169bf591a14813b004494e41f45">xwos_cthd_sleep_to</a></div><div class="ttdeci">static xwer_t xwos_cthd_sleep_to(xwtm_t to)</div><div class="ttdoc">XWOS API：线程睡眠到一个时间点</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00716">thd.h:716</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_ga1183035d75506a5e3d7ea52a096cabe7"><div class="ttname"><a href="group__xwos__thd.html#ga1183035d75506a5e3d7ea52a096cabe7">xwos_thd_grab</a></div><div class="ttdeci">static xwer_t xwos_thd_grab(xwos_thd_d thdd)</div><div class="ttdoc">XWOS API：增加线程对象的引用计数</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00287">thd.h:287</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_ga12a0141b2c54bd3c0b73fe74049155cb"><div class="ttname"><a href="group__xwos__thd.html#ga12a0141b2c54bd3c0b73fe74049155cb">xwos_thd_release</a></div><div class="ttdeci">static xwer_t xwos_thd_release(xwos_thd_d thdd)</div><div class="ttdoc">XWOS API：检查对象的标签并减少引用计数</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00368">thd.h:368</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_ga160c44b91fdff5f5610a32e72c822639"><div class="ttname"><a href="group__xwos__thd.html#ga160c44b91fdff5f5610a32e72c822639">xwos_cthd_get_data</a></div><div class="ttdeci">static xwer_t xwos_cthd_get_data(xwsq_t pos, void **databuf)</div><div class="ttdoc">XWOS API：获取当前线程的本地数据指针</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00842">thd.h:842</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_ga26965560c7f4ad21b5089eed17a30e25"><div class="ttname"><a href="group__xwos__thd.html#ga26965560c7f4ad21b5089eed17a30e25">xwos_thd_stop</a></div><div class="ttdeci">static xwer_t xwos_thd_stop(xwos_thd_d thdd, xwer_t *trc)</div><div class="ttdoc">XWOS API：终止线程并等待它退出，回收线程内存资源，并抛出线程的返回值</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00495">thd.h:495</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_ga27ed7a92e01aed514e941e0440e8863b"><div class="ttname"><a href="group__xwos__thd.html#ga27ed7a92e01aed514e941e0440e8863b">xwos_cthd_shld_stop</a></div><div class="ttdeci">static bool xwos_cthd_shld_stop(void)</div><div class="ttdoc">XWOS API：判断当前线程是否可以退出</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00633">thd.h:633</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_ga2fc40de236c05f0a22420a4bca61ac56"><div class="ttname"><a href="group__xwos__thd.html#ga2fc40de236c05f0a22420a4bca61ac56">xwos_thd_intr</a></div><div class="ttdeci">static xwer_t xwos_thd_intr(xwos_thd_d thdd)</div><div class="ttdoc">XWOS API：中断线程的阻塞态和睡眠态</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00406">thd.h:406</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_ga393cded78694c660c355165a4bebe2a3"><div class="ttname"><a href="group__xwos__thd.html#ga393cded78694c660c355165a4bebe2a3">xwos_thd_attr_init</a></div><div class="ttdeci">static void xwos_thd_attr_init(struct xwos_thd_attr *attr)</div><div class="ttdoc">XWOS API：初始化线程属性结构体</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00225">thd.h:225</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_ga3a3e3d71eed7967d5fd21915317dfe8c"><div class="ttname"><a href="group__xwos__thd.html#ga3a3e3d71eed7967d5fd21915317dfe8c">xwos_thd_put</a></div><div class="ttdeci">static xwer_t xwos_thd_put(xwos_thd_d thdd)</div><div class="ttdoc">XWOS API：减少线程对象的引用计数</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00306">thd.h:306</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_ga46e5a1cbd6c58a36dda954a76e44b3e2"><div class="ttname"><a href="group__xwos__thd.html#ga46e5a1cbd6c58a36dda954a76e44b3e2">xwos_cthd_sleep_from</a></div><div class="ttdeci">static xwer_t xwos_cthd_sleep_from(xwtm_t *from, xwtm_t dur)</div><div class="ttdoc">XWOS API：线程从一个时间起点睡眠到另一个时间点</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00745">thd.h:745</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_ga4b75215c8821082a451e274bc07fcd2d"><div class="ttname"><a href="group__xwos__thd.html#ga4b75215c8821082a451e274bc07fcd2d">xwos_thd_acquire</a></div><div class="ttdeci">static xwer_t xwos_thd_acquire(xwos_thd_d thdd)</div><div class="ttdoc">XWOS API：检查线程对象的标签并增加引用计数</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00352">thd.h:352</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_ga62529c26dfb773bd973f0841e3c06ed4"><div class="ttname"><a href="group__xwos__thd.html#ga62529c26dfb773bd973f0841e3c06ed4">xwos_thd_set_data</a></div><div class="ttdeci">static xwer_t xwos_thd_set_data(xwos_thd_d thdd, xwsq_t pos, void *data)</div><div class="ttdoc">XWOS API：设置线程的本地数据指针</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00790">thd.h:790</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_ga7088d8e2a4c5ee8497dba07ff2dbc32d"><div class="ttname"><a href="group__xwos__thd.html#ga7088d8e2a4c5ee8497dba07ff2dbc32d">xwos_cthd_freeze</a></div><div class="ttdeci">static xwer_t xwos_cthd_freeze(void)</div><div class="ttdoc">XWOS API：冻结当前线程</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00771">thd.h:771</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_ga85c1251db099a47b39527a5709baf911"><div class="ttname"><a href="group__xwos__thd.html#ga85c1251db099a47b39527a5709baf911">xwos_thd_f</a></div><div class="ttdeci">xwer_t(* xwos_thd_f)(void *)</div><div class="ttdoc">XWOS API：线程函数指针类型</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00144">thd.h:144</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_ga9bde1c6bafdb881079b41803296b69ee"><div class="ttname"><a href="group__xwos__thd.html#ga9bde1c6bafdb881079b41803296b69ee">xwos_cthd_shld_frz</a></div><div class="ttdeci">static bool xwos_cthd_shld_frz(void)</div><div class="ttdoc">XWOS API：判断当前线程是否可被冻结</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00607">thd.h:607</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_ga9ea84b7446f41812f71b7bb81d1ceecb"><div class="ttname"><a href="group__xwos__thd.html#ga9ea84b7446f41812f71b7bb81d1ceecb">xwos_thd_create</a></div><div class="ttdeci">static xwer_t xwos_thd_create(xwos_thd_d *thdd, const struct xwos_thd_attr *attr, xwos_thd_f thdfunc, void *arg)</div><div class="ttdoc">XWOS API：使用动态申请内存方式创建线程并初始化</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00331">thd.h:331</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_gaaee92ff801eaac58dd3db294c95a5dd1"><div class="ttname"><a href="group__xwos__thd.html#gaaee92ff801eaac58dd3db294c95a5dd1">xwos_cthd_get_attr</a></div><div class="ttdeci">static void xwos_cthd_get_attr(struct xwos_thd_attr *attr)</div><div class="ttdoc">XWOS API：获取线程自身的属性</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00566">thd.h:566</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_gab164670a1c253a0980d6035f0900d47e"><div class="ttname"><a href="group__xwos__thd.html#gab164670a1c253a0980d6035f0900d47e">xwos_thd_detach</a></div><div class="ttdeci">static xwer_t xwos_thd_detach(xwos_thd_d thdd)</div><div class="ttdoc">XWMP API：分离线程</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00517">thd.h:517</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_gab4cdf4d2e068124cc11888b462da5de4"><div class="ttname"><a href="group__xwos__thd.html#gab4cdf4d2e068124cc11888b462da5de4">xwos_thd_quit</a></div><div class="ttdeci">static xwer_t xwos_thd_quit(xwos_thd_d thdd)</div><div class="ttdoc">XWOS API：通知线程退出</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00437">thd.h:437</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_gabfff3f76985ef2f91f20ff317bebfd5d"><div class="ttname"><a href="group__xwos__thd.html#gabfff3f76985ef2f91f20ff317bebfd5d">xwos_cthd_self</a></div><div class="ttdeci">static xwos_thd_d xwos_cthd_self(void)</div><div class="ttdoc">XWOS API：获取当前线程的对象描述符</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00551">thd.h:551</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_gac453f990c2da012a43e7cbe121b8ec10"><div class="ttname"><a href="group__xwos__thd.html#gac453f990c2da012a43e7cbe121b8ec10">xwos_cthd_yield</a></div><div class="ttdeci">static void xwos_cthd_yield(void)</div><div class="ttdoc">XWOS API：通知调度器重新调度线程</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00578">thd.h:578</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_gac5fbf8b3d9060ff19a12563cb3202beb"><div class="ttname"><a href="group__xwos__thd.html#gac5fbf8b3d9060ff19a12563cb3202beb">xwos_cthd_exit</a></div><div class="ttdeci">static void xwos_cthd_exit(xwer_t rc)</div><div class="ttdoc">XWOS API：退出当前线程</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00593">thd.h:593</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_gac642513fb53a00db87738c6d2dd8e430"><div class="ttname"><a href="group__xwos__thd.html#gac642513fb53a00db87738c6d2dd8e430">xwos_cthd_frz_shld_stop</a></div><div class="ttdeci">static bool xwos_cthd_frz_shld_stop(bool *frozen)</div><div class="ttdoc">XWOS API：判断当前线程是否可被冻结，如果是，就冻结线程， 之后再判断线程是否可以退出</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00671">thd.h:671</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_gaccabca6cd9608f56205e634f9676a8f5"><div class="ttname"><a href="group__xwos__thd.html#gaccabca6cd9608f56205e634f9676a8f5">xwos_thd_migrate</a></div><div class="ttdeci">static xwer_t xwos_thd_migrate(xwos_thd_d thdd, xwid_t dstcpu)</div><div class="ttdoc">XWOS API：将线程迁移到目标CPU</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00539">thd.h:539</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_gad1072fb4ff4803b8181fc7f54fcb3880"><div class="ttname"><a href="group__xwos__thd.html#gad1072fb4ff4803b8181fc7f54fcb3880">xwos_cthd_sleep</a></div><div class="ttdeci">static xwer_t xwos_cthd_sleep(xwtm_t dur)</div><div class="ttdoc">XWOS API：线程睡眠一段时间</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00693">thd.h:693</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_gad442d2083954ac3e519ba9446acb47fc"><div class="ttname"><a href="group__xwos__thd.html#gad442d2083954ac3e519ba9446acb47fc">xwos_thd_get_attr</a></div><div class="ttdeci">static xwer_t xwos_thd_get_attr(xwos_thd_d thdd, struct xwos_thd_attr *attr)</div><div class="ttdoc">XWOS API：获取线程的属性</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00385">thd.h:385</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_gad68cf03b2748d10f97a20d5f3fd7ffa4"><div class="ttname"><a href="group__xwos__thd.html#gad68cf03b2748d10f97a20d5f3fd7ffa4">xwos_thd_init</a></div><div class="ttdeci">static xwer_t xwos_thd_init(struct xwos_thd *thd, xwos_thd_d *thdd, const struct xwos_thd_attr *attr, xwos_thd_f thdfunc, void *arg)</div><div class="ttdoc">XWOS API：静态方式初始化线程</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00263">thd.h:263</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_gae188b894f4ddcf94b3df3c7cd1f071d5"><div class="ttname"><a href="group__xwos__thd.html#gae188b894f4ddcf94b3df3c7cd1f071d5">xwos_cthd_set_data</a></div><div class="ttdeci">static xwer_t xwos_cthd_set_data(xwsq_t pos, void *data)</div><div class="ttdoc">XWOS API：设置当前线程的本地数据指针</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00825">thd.h:825</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_gae78b56eaf8e520f68c1e06710e78b017"><div class="ttname"><a href="group__xwos__thd.html#gae78b56eaf8e520f68c1e06710e78b017">xwos_thd_join</a></div><div class="ttdeci">static xwer_t xwos_thd_join(xwos_thd_d thdd, xwer_t *trc)</div><div class="ttdoc">XWOS API：等待线程结束，回收线程内存资源，抛出它的返回值</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00472">thd.h:472</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_gaf2fdd413163f2868c68199c12467c2a0"><div class="ttname"><a href="group__xwos__thd.html#gaf2fdd413163f2868c68199c12467c2a0">xwos_thd_get_data</a></div><div class="ttdeci">static xwer_t xwos_thd_get_data(xwos_thd_d thdd, xwsq_t pos, void **databuf)</div><div class="ttdoc">XWOS API：获取线程的本地数据指针</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00808">thd.h:808</a></div></div>
+<div class="ttc" id="agroup__xwos__time_html_gaf9f8d6de1ed07945ec6635af480aa2f4"><div class="ttname"><a href="group__xwos__time.html#gaf9f8d6de1ed07945ec6635af480aa2f4">xwtm_ft</a></div><div class="ttdeci">static xwtm_t xwtm_ft(xwtm_t dur)</div><div class="ttdoc">XWOS API：获取当前CPU的未来 系统时间 点</div><div class="ttdef"><b>Definition</b> <a href="time_8h_source.html#l00069">time.h:69</a></div></div>
+<div class="ttc" id="ajack_2thd_8h_html"><div class="ttname"><a href="jack_2thd_8h.html">thd.h</a></div><div class="ttdoc">操作系统抽象层：线程接口描述</div></div>
+<div class="ttc" id="askd_8h_html"><div class="ttname"><a href="skd_8h.html">skd.h</a></div><div class="ttdoc">操作系统抽象层：调度器</div></div>
+<div class="ttc" id="astructxwos__thd__attr_html"><div class="ttname"><a href="structxwos__thd__attr.html">xwos_thd_attr</a></div><div class="ttdoc">XWOS API：线程属性</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00162">thd.h:162</a></div></div>
+<div class="ttc" id="astructxwos__thd__attr_html_a27accd4bc27498aa11d090ce7c5ded79"><div class="ttname"><a href="structxwos__thd__attr.html#a27accd4bc27498aa11d090ce7c5ded79">xwos_thd_attr::stack_guard_size</a></div><div class="ttdeci">xwsz_t stack_guard_size</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00170">thd.h:170</a></div></div>
+<div class="ttc" id="astructxwos__thd__attr_html_a36bed30a60d5addc933da058125804e4"><div class="ttname"><a href="structxwos__thd__attr.html#a36bed30a60d5addc933da058125804e4">xwos_thd_attr::privileged</a></div><div class="ttdeci">bool privileged</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00174">thd.h:174</a></div></div>
+<div class="ttc" id="astructxwos__thd__attr_html_a3d31cc4967799d9e295d6914fc23a041"><div class="ttname"><a href="structxwos__thd__attr.html#a3d31cc4967799d9e295d6914fc23a041">xwos_thd_attr::stack</a></div><div class="ttdeci">xwstk_t * stack</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00164">thd.h:164</a></div></div>
+<div class="ttc" id="astructxwos__thd__attr_html_a531a0aa57810571d5510c56d416f2156"><div class="ttname"><a href="structxwos__thd__attr.html#a531a0aa57810571d5510c56d416f2156">xwos_thd_attr::name</a></div><div class="ttdeci">const char * name</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00163">thd.h:163</a></div></div>
+<div class="ttc" id="astructxwos__thd__attr_html_a8b7ad423b933ea28688d78349d71d7da"><div class="ttname"><a href="structxwos__thd__attr.html#a8b7ad423b933ea28688d78349d71d7da">xwos_thd_attr::priority</a></div><div class="ttdeci">xwpr_t priority</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00172">thd.h:172</a></div></div>
+<div class="ttc" id="astructxwos__thd__attr_html_a96b7bb207eecfc764bcd6c6ada537f6c"><div class="ttname"><a href="structxwos__thd__attr.html#a96b7bb207eecfc764bcd6c6ada537f6c">xwos_thd_attr::detached</a></div><div class="ttdeci">bool detached</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00173">thd.h:173</a></div></div>
+<div class="ttc" id="astructxwos__thd__attr_html_ab27c95de9d8a1ca4861a820e6a9a05ab"><div class="ttname"><a href="structxwos__thd__attr.html#ab27c95de9d8a1ca4861a820e6a9a05ab">xwos_thd_attr::stack_size</a></div><div class="ttdeci">xwsz_t stack_size</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00168">thd.h:168</a></div></div>
+<div class="ttc" id="astructxwos__thd__d_html"><div class="ttname"><a href="structxwos__thd__d.html">xwos_thd_d</a></div><div class="ttdoc">XWOS API：线程对象描述符</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00149">thd.h:149</a></div></div>
+<div class="ttc" id="astructxwos__thd__d_html_abc4a8762dc4e7ed0df8431c56c2be890"><div class="ttname"><a href="structxwos__thd__d.html#abc4a8762dc4e7ed0df8431c56c2be890">xwos_thd_d::tik</a></div><div class="ttdeci">xwsq_t tik</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00151">thd.h:151</a></div></div>
+<div class="ttc" id="astructxwos__thd__d_html_ac1a2fd8dcae4be8d65ac15859ccf2ec6"><div class="ttname"><a href="structxwos__thd__d.html#ac1a2fd8dcae4be8d65ac15859ccf2ec6">xwos_thd_d::thd</a></div><div class="ttdeci">struct xwos_thd * thd</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00150">thd.h:150</a></div></div>
+<div class="ttc" id="astructxwos__thd__desc_html"><div class="ttname"><a href="structxwos__thd__desc.html">xwos_thd_desc</a></div><div class="ttdoc">XWOS API：线程描述</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00200">thd.h:200</a></div></div>
+<div class="ttc" id="astructxwos__thd__desc_html_a4c84aa09500eab235e937296cf74c878"><div class="ttname"><a href="structxwos__thd__desc.html#a4c84aa09500eab235e937296cf74c878">xwos_thd_desc::arg</a></div><div class="ttdeci">void * arg</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00203">thd.h:203</a></div></div>
+<div class="ttc" id="astructxwos__thd__desc_html_a5e13c08889068906e42944f7439fbd6c"><div class="ttname"><a href="structxwos__thd__desc.html#a5e13c08889068906e42944f7439fbd6c">xwos_thd_desc::attr</a></div><div class="ttdeci">struct xwos_thd_attr attr</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00201">thd.h:201</a></div></div>
+<div class="ttc" id="astructxwos__thd__desc_html_a97ff66d68917773aa486a6f06e4cba4d"><div class="ttname"><a href="structxwos__thd__desc.html#a97ff66d68917773aa486a6f06e4cba4d">xwos_thd_desc::func</a></div><div class="ttdeci">xwos_thd_f func</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00202">thd.h:202</a></div></div>
+<div class="ttc" id="astructxwos__thd_html"><div class="ttname"><a href="structxwos__thd.html">xwos_thd</a></div><div class="ttdoc">XWOS API：线程对象</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00137">thd.h:137</a></div></div>
+<div class="ttc" id="astructxwos__thd_html_a169f22151e6b3554bb77006624c45df7"><div class="ttname"><a href="structxwos__thd.html#a169f22151e6b3554bb77006624c45df7">xwos_thd::osthd</a></div><div class="ttdeci">struct xwmp_thd osthd</div><div class="ttdef"><b>Definition</b> <a href="thd_8h_source.html#l00138">thd.h:138</a></div></div>
+<div class="ttc" id="atime_8h_html"><div class="ttname"><a href="time_8h.html">time.h</a></div><div class="ttdoc">操作系统抽象层：时间</div></div>
+<div class="ttc" id="axwos_2standard_8h_html"><div class="ttname"><a href="xwos_2standard_8h.html">standard.h</a></div><div class="ttdoc">XWOS的标准头文件</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_43a52829888b753087a6774748486ed5.html">xwos</a></li><li class="navelem"><a class="el" href="dir_acf86ca9b9e1693a183c44f1acf6992c.html">osal</a></li><li class="navelem"><a class="el" href="thd_8h.html">thd.h</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
+  </ul>
+</div>
+</body>
+</html>

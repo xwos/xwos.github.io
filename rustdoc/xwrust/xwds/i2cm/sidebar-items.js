@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["SIZEOF_XWDS_I2CM"],"struct":["I2cm","MsgFlag","XwdsI2cm"]};

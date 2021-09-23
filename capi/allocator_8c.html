@@ -1,0 +1,792 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>XWOS API: xwos/mm/mempool/allocator.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<a href="/" class="github-corner" title="返回首页">
+  <svg viewBox="0 0 250 250" style="position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path
+      d="M 0 0 L 250 250 L 250 0 L 0 0 z M 181.19336 6.25 A 18.281986 19.638775 0 0 1 192.79297 10.798828 L 241.54492 54.201172 A 6.0939954 6.5462585 0 0 1 237.64453 65.787109 L 233.13477 65.787109 A 3.0469979 3.2731292 0 0 0 230.08789 69.060547 L 230.08789 111.61133 A 18.281986 19.638775 0 0 1 211.80664 131.25 L 205.71289 131.25 A 12.187991 13.092517 0 0 1 193.52344 118.1582 L 193.52344 98.519531 A 12.187991 13.092517 0 0 0 181.33594 85.425781 A 12.187991 13.092517 0 0 0 169.14844 98.519531 L 169.14844 118.1582 A 12.187991 13.092517 0 0 1 156.95898 131.25 L 150.86523 131.25 A 18.281986 19.638775 0 0 1 132.58398 111.61133 L 132.58398 68.994141 A 3.0469979 3.2731292 0 0 0 129.29297 65.722656 L 124.7832 65.722656 A 6.0939954 6.5462585 0 0 1 120.88281 54.201172 L 169.39258 10.798828 A 18.281986 19.638775 0 0 1 181.19336 6.25 z "/>
+  </svg>
+</a>
+<style>.github-corner:hover</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">XWOS API
+   &#160;<span id="projectnumber">3.0</span>
+   </div>
+   <div id="projectbrief">XWOS API参考手册</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('allocator_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">宏定义</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">allocator.c 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>XWOS内存管理：内存池：页分配器  
+<a href="#details">更多...</a></p>
+<div class="textblock"><code>#include &lt;<a class="el" href="xwos_2standard_8h_source.html">xwos/standard.h</a>&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="xwbop_8h_source.html">xwos/lib/xwbop.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="xwos_2mm_2common_8h_source.html">xwos/mm/common.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="page_8h_source.html">xwos/mm/mempool/page.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="allocator_8h_source.html">xwos/mm/mempool/allocator.h</a>&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+allocator.c 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="allocator_8c__incl.png" border="0" usemap="#axwos_2mm_2mempool_2allocator_8c" alt=""/></div>
+<map name="axwos_2mm_2mempool_2allocator_8c" id="axwos_2mm_2mempool_2allocator_8c">
+<area shape="rect" title="XWOS内存管理：内存池：页分配器" alt="" coords="743,5,943,31"/>
+<area shape="rect" href="xwos_2standard_8h.html" title="XWOS的标准头文件" alt="" coords="598,460,717,485"/>
+<area shape="poly" title=" " alt="" coords="908,28,1000,48,1100,78,1145,96,1181,116,1205,138,1212,150,1215,163,1215,313,1213,345,1206,371,1192,393,1168,414,1134,431,1088,445,970,462,841,471,730,474,730,469,841,466,969,457,1087,439,1133,426,1165,410,1188,390,1202,369,1208,344,1209,313,1209,164,1207,152,1201,142,1178,120,1142,101,1098,83,999,54,906,33"/>
+<area shape="rect" title=" " alt="" coords="1250,79,1315,104"/>
+<area shape="poly" title=" " alt="" coords="928,28,1070,49,1231,76,1237,77,1236,82,1230,81,1069,54,927,33"/>
+<area shape="rect" href="xwbop_8h.html" title="XWOS通用库：位操作" alt="" coords="923,225,1045,251"/>
+<area shape="poly" title=" " alt="" coords="853,30,971,212,967,215,848,32"/>
+<area shape="rect" href="xwos_2mm_2common_8h.html" title="XWOS内存管理：通用定义" alt="" coords="27,379,171,405"/>
+<area shape="poly" title=" " alt="" coords="743,29,534,47,291,76,180,94,90,116,29,139,13,151,8,164,8,239,15,278,32,313,55,344,78,368,74,372,51,347,28,316,10,279,3,240,3,163,9,148,27,135,88,110,179,89,290,71,533,42,742,24"/>
+<area shape="rect" href="page_8h.html" title="XWOS内存管理：内存池：页分配器" alt="" coords="363,225,541,251"/>
+<area shape="poly" title=" " alt="" coords="743,31,619,50,566,64,531,81,503,110,482,146,468,182,459,213,454,211,463,180,477,143,499,107,528,77,565,59,618,45,742,26"/>
+<area shape="rect" href="allocator_8h.html" title="XWOS内存管理：内存池：页分配器" alt="" coords="541,79,741,104"/>
+<area shape="poly" title=" " alt="" coords="811,33,688,77,686,71,809,28"/>
+<area shape="rect" title=" " alt="" coords="425,680,519,705"/>
+<area shape="poly" title=" " alt="" coords="626,488,586,507,546,535,520,566,501,602,479,668,474,666,496,600,516,563,542,531,583,503,624,483"/>
+<area shape="rect" href="rule_8h.html" title="XWOS通用库：编译规则" alt="" coords="80,533,187,559"/>
+<area shape="poly" title=" " alt="" coords="598,485,201,538,200,533,597,479"/>
+<area shape="rect" href="compiler_8h.html" title="XWOS通用库：编译器宏定义" alt="" coords="282,533,417,559"/>
+<area shape="poly" title=" " alt="" coords="608,488,413,533,412,528,607,483"/>
+<area shape="rect" href="version_8h.html" title="XWOS版本号" alt="" coords="922,533,1033,559"/>
+<area shape="poly" title=" " alt="" coords="709,483,913,528,912,533,708,488"/>
+<area shape="rect" href="type_8h.html" title="XWOS通用库：基本类型定义" alt="" coords="649,607,759,632"/>
+<area shape="poly" title=" " alt="" coords="664,485,681,532,700,593,694,594,676,534,659,487"/>
+<area shape="rect" href="error_8h.html" title="XWOS通用库：错误" alt="" coords="555,533,666,559"/>
+<area shape="poly" title=" " alt="" coords="652,487,628,523,624,520,647,484"/>
+<area shape="rect" title=" " alt="" coords="835,607,973,632"/>
+<area shape="poly" title=" " alt="" coords="717,477,790,494,827,510,860,531,884,561,899,592,894,594,880,563,857,535,824,514,788,499,716,482"/>
+<area shape="rect" href="mb_8h.html" title="XWOS通用库：内存屏障" alt="" coords="743,533,846,559"/>
+<area shape="poly" title=" " alt="" coords="681,483,761,525,759,529,678,488"/>
+<area shape="poly" title=" " alt="" coords="114,561,92,576,73,594,62,613,62,621,67,630,90,647,124,660,167,670,216,678,320,687,411,689,411,694,320,692,216,683,166,676,123,665,87,651,63,634,57,623,57,611,68,590,89,571,111,557"/>
+<area shape="rect" title=" " alt="" coords="78,607,189,632"/>
+<area shape="poly" title=" " alt="" coords="136,559,136,593,131,593,131,559"/>
+<area shape="poly" title=" " alt="" coords="318,561,290,575,264,591,250,611,249,620,254,630,278,647,317,661,411,681,410,686,316,666,276,652,250,634,244,621,245,609,260,588,287,570,316,556"/>
+<area shape="rect" title=" " alt="" coords="264,607,435,632"/>
+<area shape="poly" title=" " alt="" coords="352,559,352,593,347,593,347,559"/>
+<area shape="poly" title=" " alt="" coords="668,635,523,679,522,673,666,629"/>
+<area shape="rect" title=" " alt="" coords="700,680,847,705"/>
+<area shape="poly" title=" " alt="" coords="717,630,755,668,751,672,714,634"/>
+<area shape="rect" title=" " alt="" coords="607,680,676,705"/>
+<area shape="poly" title=" " alt="" coords="696,634,663,671,659,668,692,631"/>
+<area shape="poly" title=" " alt="" coords="627,557,680,596,676,600,624,561"/>
+<area shape="rect" href="errno_8h.html" title="XWOS通用库：错误码" alt="" coords="509,607,624,632"/>
+<area shape="poly" title=" " alt="" coords="606,560,583,596,579,594,601,558"/>
+<area shape="poly" title=" " alt="" coords="798,559,794,596,787,616,774,634,740,648,677,662,533,685,533,680,676,656,738,643,770,630,782,614,789,595,792,559"/>
+<area shape="poly" title=" " alt="" coords="814,556,876,597,873,601,811,561"/>
+<area shape="poly" title=" " alt="" coords="1019,248,1049,261,1075,278,1091,300,1093,312,1087,326,1055,347,995,375,896,415,810,440,730,460,729,454,809,435,894,409,992,370,1052,343,1083,322,1087,312,1086,302,1072,282,1046,266,1017,253"/>
+<area shape="rect" title=" " alt="" coords="914,299,1073,324"/>
+<area shape="poly" title=" " alt="" coords="988,251,993,285,987,286,983,251"/>
+<area shape="poly" title=" " alt="" coords="151,402,190,409,404,440,584,461,584,466,404,445,189,415,150,407"/>
+<area shape="rect" title=" " alt="" coords="64,460,133,485"/>
+<area shape="poly" title=" " alt="" coords="101,405,101,446,96,446,96,405"/>
+<area shape="poly" title=" " alt="" coords="363,252,315,270,293,283,274,300,253,328,242,356,243,383,259,410,280,426,312,439,398,456,496,466,585,469,584,474,495,471,397,462,311,444,278,431,255,414,238,384,237,355,249,326,270,297,290,279,312,265,361,247"/>
+<area shape="poly" title=" " alt="" coords="363,249,277,267,232,282,191,301,169,316,149,334,117,370,113,366,145,330,165,312,188,296,230,277,275,262,362,244"/>
+<area shape="rect" href="bclst_8h.html" title="XWOS通用库：双循环链表" alt="" coords="531,299,645,324"/>
+<area shape="poly" title=" " alt="" coords="475,248,555,290,553,295,473,253"/>
+<area shape="rect" href="rbtree_8h.html" title="XWOS通用库：红黑树" alt="" coords="269,379,387,405"/>
+<area shape="poly" title=" " alt="" coords="364,252,320,270,302,283,286,300,281,317,285,334,295,352,308,368,303,371,290,355,280,336,275,316,282,297,298,279,318,265,362,247"/>
+<area shape="rect" href="lock_2seqlock_8h.html" title="操作系统抽象层：顺序锁" alt="" coords="669,299,838,324"/>
+<area shape="poly" title=" " alt="" coords="501,248,692,293,691,298,500,253"/>
+<area shape="rect" href="i__allocator_8h.html" title="XWOS内存管理：内存池：分配器接口" alt="" coords="296,299,507,324"/>
+<area shape="poly" title=" " alt="" coords="446,253,420,289,415,286,441,249"/>
+<area shape="poly" title=" " alt="" coords="595,323,649,446,644,448,591,325"/>
+<area shape="poly" title=" " alt="" coords="377,402,597,454,596,459,375,407"/>
+<area shape="poly" title=" " alt="" coords="736,326,710,346,686,373,670,410,663,446,657,445,665,409,682,371,706,342,733,322"/>
+<area shape="rect" href="jack_2lock_2seqlock_8h.html" title="操作系统抽象层：顺序锁接口描述" alt="" coords="695,372,833,412"/>
+<area shape="poly" title=" " alt="" coords="758,324,762,358,757,359,752,325"/>
+<area shape="rect" href="irq_8h.html" title="操作系统抽象层：异常与中断" alt="" coords="1013,379,1123,405"/>
+<area shape="poly" title=" " alt="" coords="800,321,1010,373,1008,379,798,327"/>
+<area shape="poly" title=" " alt="" coords="1025,407,994,415,854,442,731,463,730,457,853,436,993,409,1024,402"/>
+<area shape="rect" href="jack_2irq_8h.html" title="操作系统抽象层：中断接口描述" alt="" coords="999,460,1137,485"/>
+<area shape="poly" title=" " alt="" coords="1071,405,1071,446,1065,446,1065,405"/>
+<area shape="poly" title=" " alt="" coords="421,322,629,450,626,455,418,326"/>
+<area shape="poly" title=" " alt="" coords="358,327,156,379,155,373,357,321"/>
+<area shape="poly" title=" " alt="" coords="742,97,871,112,1009,139,1069,157,1118,179,1151,205,1161,220,1164,236,1164,313,1164,369,1157,391,1138,414,1108,432,1065,446,1014,456,956,464,836,472,730,475,730,469,836,467,955,459,1013,451,1064,441,1105,427,1134,410,1152,389,1159,368,1159,313,1159,237,1156,222,1147,208,1116,183,1067,162,1007,144,871,118,741,103"/>
+<area shape="poly" title=" " alt="" coords="583,107,507,124,414,150,314,184,217,228,164,257,145,274,125,300,110,333,103,366,98,365,105,331,120,297,141,270,161,252,215,223,312,179,412,145,506,119,581,101"/>
+<area shape="poly" title=" " alt="" coords="614,106,573,127,530,154,497,185,471,216,466,213,493,181,526,150,570,122,612,102"/>
+<area shape="rect" href="objcache_8h.html" title="XWOS内存管理：内存池：对象缓存" alt="" coords="540,152,743,177"/>
+<area shape="poly" title=" " alt="" coords="644,104,644,138,639,138,639,104"/>
+<area shape="poly" title=" " alt="" coords="681,175,723,192,772,217,817,252,837,274,853,297,863,319,869,346,866,379,847,414,823,437,794,453,762,464,731,470,730,465,761,459,792,448,820,432,843,410,861,377,863,347,858,320,848,300,833,277,814,256,769,222,721,197,679,180"/>
+<area shape="poly" title=" " alt="" coords="697,175,916,220,915,225,696,180"/>
+<area shape="poly" title=" " alt="" coords="540,171,449,181,346,204,294,220,243,242,195,268,151,301,125,333,109,367,104,365,121,330,147,297,192,264,240,237,292,215,344,198,448,176,539,166"/>
+<area shape="poly" title=" " alt="" coords="612,180,497,223,495,218,610,175"/>
+<area shape="poly" title=" " alt="" coords="639,179,599,287,594,285,634,177"/>
+<area shape="poly" title=" " alt="" coords="653,176,738,286,734,290,648,179"/>
+<area shape="poly" title=" " alt="" coords="634,179,601,215,555,253,506,278,457,297,455,292,504,274,552,248,598,211,630,176"/>
+</map>
+</div>
+</div>
+<p><a href="allocator_8c_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:a60823aba59fadea7895981b1b3c2f1ee"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="allocator_8c.html#a60823aba59fadea7895981b1b3c2f1ee">xwmm_mempoollogf</a>(lv,  thd,  fmt, ...)</td></tr>
+<tr class="separator:a60823aba59fadea7895981b1b3c2f1ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:a6e1f6748cc378d09e931897b69231d0d"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="allocator_8c.html#a6e1f6748cc378d09e931897b69231d0d">xwmm_mempool_construct</a> (struct <a class="el" href="structxwmm__mempool.html">xwmm_mempool</a> *mp, const char *name, <a class="el" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a> origin, <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> size, struct <a class="el" href="structxwmm__mempool__page__odrbtree.html">xwmm_mempool_page_odrbtree</a> *odrbtree, struct <a class="el" href="structxwmm__mempool__page.html">xwmm_mempool_page</a> *pgarray)</td></tr>
+<tr class="memdesc:a6e1f6748cc378d09e931897b69231d0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">构建内存池  <br /></td></tr>
+<tr class="separator:a6e1f6748cc378d09e931897b69231d0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaad8340a12043c383e489a786788e89af"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmm__mempool.html#gaad8340a12043c383e489a786788e89af">xwmm_mempool_init</a> (struct <a class="el" href="structxwmm__mempool.html">xwmm_mempool</a> *mp, const char *name, <a class="el" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a> origin, <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> size, <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> pgodr, <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> pre, void **membuf)</td></tr>
+<tr class="memdesc:gaad8340a12043c383e489a786788e89af"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMM API：初始化内存池  <br /></td></tr>
+<tr class="separator:gaad8340a12043c383e489a786788e89af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8b258eb1da7cce5a8bb34c600dd72c11"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmm__mempool.html#ga8b258eb1da7cce5a8bb34c600dd72c11">xwmm_mempool_malloc</a> (struct <a class="el" href="structxwmm__mempool.html">xwmm_mempool</a> *mp, <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> size, void **membuf)</td></tr>
+<tr class="memdesc:ga8b258eb1da7cce5a8bb34c600dd72c11"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMM API：从内存池中申请内存  <br /></td></tr>
+<tr class="separator:ga8b258eb1da7cce5a8bb34c600dd72c11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae8d0ab6282f0c050e0e6e37726d67e88"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmm__mempool.html#gae8d0ab6282f0c050e0e6e37726d67e88">xwmm_mempool_free</a> (struct <a class="el" href="structxwmm__mempool.html">xwmm_mempool</a> *mp, void *mem)</td></tr>
+<tr class="memdesc:gae8d0ab6282f0c050e0e6e37726d67e88"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMM API：释放内存  <br /></td></tr>
+<tr class="separator:gae8d0ab6282f0c050e0e6e37726d67e88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafbd8b2e5fb3f821b9e39cd234c41173b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmm__mempool.html#gafbd8b2e5fb3f821b9e39cd234c41173b">xwmm_mempool_realloc</a> (struct <a class="el" href="structxwmm__mempool.html">xwmm_mempool</a> *mp, <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> size, void **membuf)</td></tr>
+<tr class="memdesc:gafbd8b2e5fb3f821b9e39cd234c41173b"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMM API：调整内存大小  <br /></td></tr>
+<tr class="separator:gafbd8b2e5fb3f821b9e39cd234c41173b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga943844e993429eb0fdf7ccc1df080296"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmm__mempool.html#ga943844e993429eb0fdf7ccc1df080296">xwmm_mempool_memalign</a> (struct <a class="el" href="structxwmm__mempool.html">xwmm_mempool</a> *mp, <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> alignment, <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> size, void **membuf)</td></tr>
+<tr class="memdesc:ga943844e993429eb0fdf7ccc1df080296"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMM API：从内存池中申请对齐的内存  <br /></td></tr>
+<tr class="separator:ga943844e993429eb0fdf7ccc1df080296"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>XWOS内存管理：内存池：页分配器 </p>
+<dl class="section author"><dt>作者</dt><dd><ul>
+<li>隐星魂 (Roy Sun) <a href="#" onclick="location.href='mai'+'lto:'+'xwo'+'s@'+'xwo'+'s.'+'tec'+'h'; return false;">xwos@<span class="obfuscator">.nosp@m.</span>xwos<span class="obfuscator">.nosp@m.</span>.tech</a> </li>
+</ul>
+</dd></dl>
+<dl class="section copyright"><dt>版权所有</dt><dd><ul>
+<li>Copyright © 2015 xwos.tech, All Rights Reserved. <blockquote class="doxtable">
+<p>&zwj;This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at <a href="http://mozilla.org/MPL/2.0/">http://mozilla.org/MPL/2.0/</a>. </p>
+</blockquote>
+</li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="allocator_8c_source.html">allocator.c</a> 中定义.</p>
+</div><h2 class="groupheader">宏定义说明</h2>
+<a id="a60823aba59fadea7895981b1b3c2f1ee" name="a60823aba59fadea7895981b1b3c2f1ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60823aba59fadea7895981b1b3c2f1ee">&#9670;&#160;</a></span>xwmm_mempoollogf</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define xwmm_mempoollogf</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">lv, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">thd, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">fmt, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>&lt; 调试日志开关 </p>
+
+<p class="definition">在文件 <a class="el" href="allocator_8c_source.html">allocator.c</a> 第 <a class="el" href="allocator_8c_source.html#l00025">25</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">函数说明</h2>
+<a id="a6e1f6748cc378d09e931897b69231d0d" name="a6e1f6748cc378d09e931897b69231d0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e1f6748cc378d09e931897b69231d0d">&#9670;&#160;</a></span>xwmm_mempool_construct()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwmm_mempool_construct </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwmm__mempool.html">xwmm_mempool</a> *&#160;</td>
+          <td class="paramname"><em>mp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a>&#160;</td>
+          <td class="paramname"><em>origin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a>&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structxwmm__mempool__page__odrbtree.html">xwmm_mempool_page_odrbtree</a> *&#160;</td>
+          <td class="paramname"><em>odrbtree</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structxwmm__mempool__page.html">xwmm_mempool_page</a> *&#160;</td>
+          <td class="paramname"><em>pgarray</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>构建内存池 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mp</td><td>内存池的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>名字 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">origin</td><td>内存区域的起始地址 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>内存区域的总大小 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">odrbtree</td><td>阶红黑树数组的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pgarray</td><td>页控制块数组的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-E2SMALL</td><td>内存区域太小 </td></tr>
+    <tr><td class="paramname">-EALIGN</td><td>内存区域没有对齐 </td></tr>
+  </table>
+  </dd>
+</dl>
+<p>&lt; 每页内存的字节数</p>
+<p>&lt; 内存管理对齐的字节数</p>
+<p>&lt; 8字节分配器所使用的页的阶数</p>
+<p>&lt; 内存管理对齐的字节数</p>
+<p>&lt; 16字节分配器所使用的页的阶数</p>
+<p>&lt; 内存管理对齐的字节数</p>
+<p>&lt; 32字节分配器所使用的页的阶数</p>
+<p>&lt; 内存管理对齐的字节数</p>
+<p>&lt; 64字节分配器所使用的页的阶数</p>
+<p>&lt; 内存管理对齐的字节数</p>
+<p>&lt; 96字节分配器所使用的页的阶数</p>
+<p>&lt; 内存管理对齐的字节数</p>
+<p>&lt; 128字节分配器所使用的页的阶数</p>
+<p>&lt; 内存管理对齐的字节数</p>
+<p>&lt; 160字节分配器所使用的页的阶数</p>
+<p>&lt; 内存管理对齐的字节数</p>
+<p>&lt; 192字节分配器所使用的页的阶数</p>
+<p>&lt; 内存管理对齐的字节数</p>
+<p>&lt; 256字节分配器所使用的页的阶数</p>
+<p>&lt; 内存管理对齐的字节数</p>
+<p>&lt; 320字节分配器所使用的页的阶数</p>
+<p>&lt; 内存管理对齐的字节数</p>
+<p>&lt; 384字节分配器所使用的页的阶数</p>
+<p>&lt; 内存管理对齐的字节数</p>
+<p>&lt; 512字节分配器所使用的页的阶数</p>
+<p>&lt; 内存管理对齐的字节数</p>
+<p>&lt; 768字节分配器所使用的页的阶数</p>
+<p>&lt; 内存管理对齐的字节数</p>
+<p>&lt; 1024字节分配器所使用的页的阶数</p>
+<p>&lt; 内存管理对齐的字节数</p>
+<p>&lt; 2048字节分配器所使用的页的阶数</p>
+<p>&lt;No error</p>
+
+<p class="definition">在文件 <a class="el" href="allocator_8c_source.html">allocator.c</a> 第 <a class="el" href="allocator_8c_source.html#l00042">42</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   46</span>{</div>
+<div class="line"><span class="lineno">   47</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">   48</span> </div>
+<div class="line"><span class="lineno">   49</span>        rc = <a class="code hl_function" href="group__xwmm__mempool.html#gaeac7d28f7509e0c764b9f995ebd45f12">xwmm_mempool_page_allocator_init</a>(&amp;mp-&gt;<a class="code hl_variable" href="structxwmm__mempool.html#a128e5c1b3f2a3d075de1708b9257bfa1">pa</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>,</div>
+<div class="line"><span class="lineno">   50</span>                                              origin, size, <a class="code hl_define" href="group__xwmm__mempool.html#gad29bb2a3d87539c205b4d0d51f37ce84">XWMM_MEMPOOL_PAGE_SIZE</a>,</div>
+<div class="line"><span class="lineno">   51</span>                                              odrbtree, pgarray);</div>
+<div class="line"><span class="lineno">   52</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">   53</span>                <span class="keywordflow">goto</span> err_pa_init;</div>
+<div class="line"><span class="lineno">   54</span>        }</div>
+<div class="line"><span class="lineno">   55</span> </div>
+<div class="line"><span class="lineno">   56</span>        rc = <a class="code hl_function" href="group__xwmm__mempool.html#ga15d8fc6d72d2ef920927bd6702174c3a">xwmm_mempool_objcache_init</a>(&amp;mp-&gt;<a class="code hl_variable" href="structxwmm__mempool.html#a95faf8f0948c43576b3dd0c555d12661">oc_8</a>, &amp;mp-&gt;<a class="code hl_variable" href="structxwmm__mempool.html#a128e5c1b3f2a3d075de1708b9257bfa1">pa</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>,</div>
+<div class="line"><span class="lineno">   57</span>                                        8, <a class="code hl_define" href="group__xwmm__common.html#ga5fda7561f71a27db613b7fe335ea3259">XWMM_ALIGNMENT</a>,</div>
+<div class="line"><span class="lineno">   58</span>                                        <a class="code hl_define" href="group__xwmm__mempool.html#gabeceac7e5b816ad958870372ffb95b7f">XWMM_MEMPOOL_OC_8_PAGE_ODR</a>,</div>
+<div class="line"><span class="lineno">   59</span>                                        <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><span class="lineno">   60</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">   61</span>                <span class="keywordflow">goto</span> err_oc_8_init;</div>
+<div class="line"><span class="lineno">   62</span>        }</div>
+<div class="line"><span class="lineno">   63</span> </div>
+<div class="line"><span class="lineno">   64</span>        rc = <a class="code hl_function" href="group__xwmm__mempool.html#ga15d8fc6d72d2ef920927bd6702174c3a">xwmm_mempool_objcache_init</a>(&amp;mp-&gt;<a class="code hl_variable" href="structxwmm__mempool.html#af94673c956897aa54efda5550fb9dfab">oc_16</a>, &amp;mp-&gt;<a class="code hl_variable" href="structxwmm__mempool.html#a128e5c1b3f2a3d075de1708b9257bfa1">pa</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>,</div>
+<div class="line"><span class="lineno">   65</span>                                        16, <a class="code hl_define" href="group__xwmm__common.html#ga5fda7561f71a27db613b7fe335ea3259">XWMM_ALIGNMENT</a>,</div>
+<div class="line"><span class="lineno">   66</span>                                        <a class="code hl_define" href="group__xwmm__mempool.html#ga655e461fb32ab02e97bdfe97e74e1ff4">XWMM_MEMPOOL_OC_16_PAGE_ODR</a>,</div>
+<div class="line"><span class="lineno">   67</span>                                        <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><span class="lineno">   68</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">   69</span>                <span class="keywordflow">goto</span> err_oc_16_init;</div>
+<div class="line"><span class="lineno">   70</span>        }</div>
+<div class="line"><span class="lineno">   71</span> </div>
+<div class="line"><span class="lineno">   72</span>        rc = <a class="code hl_function" href="group__xwmm__mempool.html#ga15d8fc6d72d2ef920927bd6702174c3a">xwmm_mempool_objcache_init</a>(&amp;mp-&gt;<a class="code hl_variable" href="structxwmm__mempool.html#a3e7421868bd9e1bf0b438947f5911178">oc_32</a>, &amp;mp-&gt;<a class="code hl_variable" href="structxwmm__mempool.html#a128e5c1b3f2a3d075de1708b9257bfa1">pa</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>,</div>
+<div class="line"><span class="lineno">   73</span>                                        32, <a class="code hl_define" href="group__xwmm__common.html#ga5fda7561f71a27db613b7fe335ea3259">XWMM_ALIGNMENT</a>,</div>
+<div class="line"><span class="lineno">   74</span>                                        <a class="code hl_define" href="group__xwmm__mempool.html#gae3ab9842daa4494115b91a1c9a211eaf">XWMM_MEMPOOL_OC_32_PAGE_ODR</a>,</div>
+<div class="line"><span class="lineno">   75</span>                                        <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><span class="lineno">   76</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">   77</span>                <span class="keywordflow">goto</span> err_oc_32_init;</div>
+<div class="line"><span class="lineno">   78</span>        }</div>
+<div class="line"><span class="lineno">   79</span> </div>
+<div class="line"><span class="lineno">   80</span>        rc = <a class="code hl_function" href="group__xwmm__mempool.html#ga15d8fc6d72d2ef920927bd6702174c3a">xwmm_mempool_objcache_init</a>(&amp;mp-&gt;<a class="code hl_variable" href="structxwmm__mempool.html#aeeba70716570172e17dbbfa6708f1254">oc_64</a>, &amp;mp-&gt;<a class="code hl_variable" href="structxwmm__mempool.html#a128e5c1b3f2a3d075de1708b9257bfa1">pa</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>,</div>
+<div class="line"><span class="lineno">   81</span>                                        64, <a class="code hl_define" href="group__xwmm__common.html#ga5fda7561f71a27db613b7fe335ea3259">XWMM_ALIGNMENT</a>,</div>
+<div class="line"><span class="lineno">   82</span>                                        <a class="code hl_define" href="group__xwmm__mempool.html#ga8f409a6ce2c2b794e5e0195c149727e6">XWMM_MEMPOOL_OC_64_PAGE_ODR</a>,</div>
+<div class="line"><span class="lineno">   83</span>                                        <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><span class="lineno">   84</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">   85</span>                <span class="keywordflow">goto</span> err_oc_64_init;</div>
+<div class="line"><span class="lineno">   86</span>        }</div>
+<div class="line"><span class="lineno">   87</span> </div>
+<div class="line"><span class="lineno">   88</span>        rc = <a class="code hl_function" href="group__xwmm__mempool.html#ga15d8fc6d72d2ef920927bd6702174c3a">xwmm_mempool_objcache_init</a>(&amp;mp-&gt;<a class="code hl_variable" href="structxwmm__mempool.html#a9cb37a0576bc1e6c50a17751f7d4eb9c">oc_96</a>, &amp;mp-&gt;<a class="code hl_variable" href="structxwmm__mempool.html#a128e5c1b3f2a3d075de1708b9257bfa1">pa</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>,</div>
+<div class="line"><span class="lineno">   89</span>                                        96, <a class="code hl_define" href="group__xwmm__common.html#ga5fda7561f71a27db613b7fe335ea3259">XWMM_ALIGNMENT</a>,</div>
+<div class="line"><span class="lineno">   90</span>                                        <a class="code hl_define" href="group__xwmm__mempool.html#gacd0d06d72077a3cb482d7313336a641b">XWMM_MEMPOOL_OC_96_PAGE_ODR</a>,</div>
+<div class="line"><span class="lineno">   91</span>                                        <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><span class="lineno">   92</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">   93</span>                <span class="keywordflow">goto</span> err_oc_96_init;</div>
+<div class="line"><span class="lineno">   94</span>        }</div>
+<div class="line"><span class="lineno">   95</span> </div>
+<div class="line"><span class="lineno">   96</span>        rc = <a class="code hl_function" href="group__xwmm__mempool.html#ga15d8fc6d72d2ef920927bd6702174c3a">xwmm_mempool_objcache_init</a>(&amp;mp-&gt;<a class="code hl_variable" href="structxwmm__mempool.html#ad922ced416de3ef8539dd7f2cc818202">oc_128</a>, &amp;mp-&gt;<a class="code hl_variable" href="structxwmm__mempool.html#a128e5c1b3f2a3d075de1708b9257bfa1">pa</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>,</div>
+<div class="line"><span class="lineno">   97</span>                                        128, <a class="code hl_define" href="group__xwmm__common.html#ga5fda7561f71a27db613b7fe335ea3259">XWMM_ALIGNMENT</a>,</div>
+<div class="line"><span class="lineno">   98</span>                                        <a class="code hl_define" href="group__xwmm__mempool.html#ga43527e6076712848f493cd7573e2ef77">XWMM_MEMPOOL_OC_128_PAGE_ODR</a>,</div>
+<div class="line"><span class="lineno">   99</span>                                        <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><span class="lineno">  100</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  101</span>                <span class="keywordflow">goto</span> err_oc_128_init;</div>
+<div class="line"><span class="lineno">  102</span>        }</div>
+<div class="line"><span class="lineno">  103</span> </div>
+<div class="line"><span class="lineno">  104</span>        rc = <a class="code hl_function" href="group__xwmm__mempool.html#ga15d8fc6d72d2ef920927bd6702174c3a">xwmm_mempool_objcache_init</a>(&amp;mp-&gt;<a class="code hl_variable" href="structxwmm__mempool.html#a8a0afacaee1b1223be08ccf6ce359b37">oc_160</a>, &amp;mp-&gt;<a class="code hl_variable" href="structxwmm__mempool.html#a128e5c1b3f2a3d075de1708b9257bfa1">pa</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>,</div>
+<div class="line"><span class="lineno">  105</span>                                        160, <a class="code hl_define" href="group__xwmm__common.html#ga5fda7561f71a27db613b7fe335ea3259">XWMM_ALIGNMENT</a>,</div>
+<div class="line"><span class="lineno">  106</span>                                        <a class="code hl_define" href="group__xwmm__mempool.html#ga4ca59ba13d69974d8264f4d111cffb16">XWMM_MEMPOOL_OC_160_PAGE_ODR</a>,</div>
+<div class="line"><span class="lineno">  107</span>                                        <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><span class="lineno">  108</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  109</span>                <span class="keywordflow">goto</span> err_oc_160_init;</div>
+<div class="line"><span class="lineno">  110</span>        }</div>
+<div class="line"><span class="lineno">  111</span> </div>
+<div class="line"><span class="lineno">  112</span>        rc = <a class="code hl_function" href="group__xwmm__mempool.html#ga15d8fc6d72d2ef920927bd6702174c3a">xwmm_mempool_objcache_init</a>(&amp;mp-&gt;<a class="code hl_variable" href="structxwmm__mempool.html#a97c3ef398fb9f0ab8b46122af4a6bfbf">oc_192</a>, &amp;mp-&gt;<a class="code hl_variable" href="structxwmm__mempool.html#a128e5c1b3f2a3d075de1708b9257bfa1">pa</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>,</div>
+<div class="line"><span class="lineno">  113</span>                                        192, <a class="code hl_define" href="group__xwmm__common.html#ga5fda7561f71a27db613b7fe335ea3259">XWMM_ALIGNMENT</a>,</div>
+<div class="line"><span class="lineno">  114</span>                                        <a class="code hl_define" href="group__xwmm__mempool.html#gab137f0879efaafd7f437f15de0550257">XWMM_MEMPOOL_OC_192_PAGE_ODR</a>,</div>
+<div class="line"><span class="lineno">  115</span>                                        <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><span class="lineno">  116</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  117</span>                <span class="keywordflow">goto</span> err_oc_192_init;</div>
+<div class="line"><span class="lineno">  118</span>        }</div>
+<div class="line"><span class="lineno">  119</span> </div>
+<div class="line"><span class="lineno">  120</span>        rc = <a class="code hl_function" href="group__xwmm__mempool.html#ga15d8fc6d72d2ef920927bd6702174c3a">xwmm_mempool_objcache_init</a>(&amp;mp-&gt;<a class="code hl_variable" href="structxwmm__mempool.html#ab9056367df7cbe72dd07e3cd68f609b2">oc_256</a>, &amp;mp-&gt;<a class="code hl_variable" href="structxwmm__mempool.html#a128e5c1b3f2a3d075de1708b9257bfa1">pa</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>,</div>
+<div class="line"><span class="lineno">  121</span>                                        256, <a class="code hl_define" href="group__xwmm__common.html#ga5fda7561f71a27db613b7fe335ea3259">XWMM_ALIGNMENT</a>,</div>
+<div class="line"><span class="lineno">  122</span>                                        <a class="code hl_define" href="group__xwmm__mempool.html#ga532c27113052f38ee9b44bc780a0b7dc">XWMM_MEMPOOL_OC_256_PAGE_ODR</a>,</div>
+<div class="line"><span class="lineno">  123</span>                                        <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><span class="lineno">  124</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  125</span>                <span class="keywordflow">goto</span> err_oc_256_init;</div>
+<div class="line"><span class="lineno">  126</span>        }</div>
+<div class="line"><span class="lineno">  127</span> </div>
+<div class="line"><span class="lineno">  128</span>        rc = <a class="code hl_function" href="group__xwmm__mempool.html#ga15d8fc6d72d2ef920927bd6702174c3a">xwmm_mempool_objcache_init</a>(&amp;mp-&gt;<a class="code hl_variable" href="structxwmm__mempool.html#ae4db2c62465ba85764c5dd3f54585ee9">oc_320</a>, &amp;mp-&gt;<a class="code hl_variable" href="structxwmm__mempool.html#a128e5c1b3f2a3d075de1708b9257bfa1">pa</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>,</div>
+<div class="line"><span class="lineno">  129</span>                                        320, <a class="code hl_define" href="group__xwmm__common.html#ga5fda7561f71a27db613b7fe335ea3259">XWMM_ALIGNMENT</a>,</div>
+<div class="line"><span class="lineno">  130</span>                                        <a class="code hl_define" href="group__xwmm__mempool.html#ga52c4d8202e8bd3153be20b5b4ed70a8d">XWMM_MEMPOOL_OC_320_PAGE_ODR</a>,</div>
+<div class="line"><span class="lineno">  131</span>                                        <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><span class="lineno">  132</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  133</span>                <span class="keywordflow">goto</span> err_oc_320_init;</div>
+<div class="line"><span class="lineno">  134</span>        }</div>
+<div class="line"><span class="lineno">  135</span> </div>
+<div class="line"><span class="lineno">  136</span>        rc = <a class="code hl_function" href="group__xwmm__mempool.html#ga15d8fc6d72d2ef920927bd6702174c3a">xwmm_mempool_objcache_init</a>(&amp;mp-&gt;<a class="code hl_variable" href="structxwmm__mempool.html#ae4ade1db7681bd8c4086b9cf81974ed5">oc_384</a>, &amp;mp-&gt;<a class="code hl_variable" href="structxwmm__mempool.html#a128e5c1b3f2a3d075de1708b9257bfa1">pa</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>,</div>
+<div class="line"><span class="lineno">  137</span>                                        384, <a class="code hl_define" href="group__xwmm__common.html#ga5fda7561f71a27db613b7fe335ea3259">XWMM_ALIGNMENT</a>,</div>
+<div class="line"><span class="lineno">  138</span>                                        <a class="code hl_define" href="group__xwmm__mempool.html#ga21e23da6eb1fe95f0419fbd48682f844">XWMM_MEMPOOL_OC_384_PAGE_ODR</a>,</div>
+<div class="line"><span class="lineno">  139</span>                                        <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><span class="lineno">  140</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  141</span>                <span class="keywordflow">goto</span> err_oc_384_init;</div>
+<div class="line"><span class="lineno">  142</span>        }</div>
+<div class="line"><span class="lineno">  143</span> </div>
+<div class="line"><span class="lineno">  144</span>        rc = <a class="code hl_function" href="group__xwmm__mempool.html#ga15d8fc6d72d2ef920927bd6702174c3a">xwmm_mempool_objcache_init</a>(&amp;mp-&gt;<a class="code hl_variable" href="structxwmm__mempool.html#a23363ae543f95164b3ef25bf77ad5263">oc_512</a>, &amp;mp-&gt;<a class="code hl_variable" href="structxwmm__mempool.html#a128e5c1b3f2a3d075de1708b9257bfa1">pa</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>,</div>
+<div class="line"><span class="lineno">  145</span>                                        512, <a class="code hl_define" href="group__xwmm__common.html#ga5fda7561f71a27db613b7fe335ea3259">XWMM_ALIGNMENT</a>,</div>
+<div class="line"><span class="lineno">  146</span>                                        <a class="code hl_define" href="group__xwmm__mempool.html#gaeb9a6c032b909d27aee816cf58f79cf8">XWMM_MEMPOOL_OC_512_PAGE_ODR</a>,</div>
+<div class="line"><span class="lineno">  147</span>                                        <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><span class="lineno">  148</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  149</span>                <span class="keywordflow">goto</span> err_oc_512_init;</div>
+<div class="line"><span class="lineno">  150</span>        }</div>
+<div class="line"><span class="lineno">  151</span> </div>
+<div class="line"><span class="lineno">  152</span>        rc = <a class="code hl_function" href="group__xwmm__mempool.html#ga15d8fc6d72d2ef920927bd6702174c3a">xwmm_mempool_objcache_init</a>(&amp;mp-&gt;<a class="code hl_variable" href="structxwmm__mempool.html#a50ca4020909dd2afbd5de522b5927dfb">oc_768</a>, &amp;mp-&gt;<a class="code hl_variable" href="structxwmm__mempool.html#a128e5c1b3f2a3d075de1708b9257bfa1">pa</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>,</div>
+<div class="line"><span class="lineno">  153</span>                                        768, <a class="code hl_define" href="group__xwmm__common.html#ga5fda7561f71a27db613b7fe335ea3259">XWMM_ALIGNMENT</a>,</div>
+<div class="line"><span class="lineno">  154</span>                                        <a class="code hl_define" href="group__xwmm__mempool.html#gac56cb33d2518180259d23367aaf485d0">XWMM_MEMPOOL_OC_768_PAGE_ODR</a>,</div>
+<div class="line"><span class="lineno">  155</span>                                        <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><span class="lineno">  156</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  157</span>                <span class="keywordflow">goto</span> err_oc_768_init;</div>
+<div class="line"><span class="lineno">  158</span>        }</div>
+<div class="line"><span class="lineno">  159</span> </div>
+<div class="line"><span class="lineno">  160</span>        rc = <a class="code hl_function" href="group__xwmm__mempool.html#ga15d8fc6d72d2ef920927bd6702174c3a">xwmm_mempool_objcache_init</a>(&amp;mp-&gt;<a class="code hl_variable" href="structxwmm__mempool.html#a45dc2f129fa90ee4b52dd54ebba3ab2f">oc_1024</a>, &amp;mp-&gt;<a class="code hl_variable" href="structxwmm__mempool.html#a128e5c1b3f2a3d075de1708b9257bfa1">pa</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>,</div>
+<div class="line"><span class="lineno">  161</span>                                        1024, <a class="code hl_define" href="group__xwmm__common.html#ga5fda7561f71a27db613b7fe335ea3259">XWMM_ALIGNMENT</a>,</div>
+<div class="line"><span class="lineno">  162</span>                                        <a class="code hl_define" href="group__xwmm__mempool.html#gafb879eea2642fa6e80f183f5733271af">XWMM_MEMPOOL_OC_1024_PAGE_ODR</a>,</div>
+<div class="line"><span class="lineno">  163</span>                                        <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><span class="lineno">  164</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  165</span>                <span class="keywordflow">goto</span> err_oc_1024_init;</div>
+<div class="line"><span class="lineno">  166</span>        }</div>
+<div class="line"><span class="lineno">  167</span> </div>
+<div class="line"><span class="lineno">  168</span>        rc = <a class="code hl_function" href="group__xwmm__mempool.html#ga15d8fc6d72d2ef920927bd6702174c3a">xwmm_mempool_objcache_init</a>(&amp;mp-&gt;<a class="code hl_variable" href="structxwmm__mempool.html#aacbadeb03056e73c0513fa3b373d1225">oc_2048</a>, &amp;mp-&gt;<a class="code hl_variable" href="structxwmm__mempool.html#a128e5c1b3f2a3d075de1708b9257bfa1">pa</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>,</div>
+<div class="line"><span class="lineno">  169</span>                                        2048, <a class="code hl_define" href="group__xwmm__common.html#ga5fda7561f71a27db613b7fe335ea3259">XWMM_ALIGNMENT</a>,</div>
+<div class="line"><span class="lineno">  170</span>                                        <a class="code hl_define" href="group__xwmm__mempool.html#gadfca8f662972df88f92813d3ef9ca007">XWMM_MEMPOOL_OC_2048_PAGE_ODR</a>,</div>
+<div class="line"><span class="lineno">  171</span>                                        <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);</div>
+<div class="line"><span class="lineno">  172</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  173</span>                <span class="keywordflow">goto</span> err_oc_2048_init;</div>
+<div class="line"><span class="lineno">  174</span>        }</div>
+<div class="line"><span class="lineno">  175</span> </div>
+<div class="line"><span class="lineno">  176</span>        mp-&gt;<a class="code hl_variable" href="structxwmm__mempool.html#affe3df0f5067d772416a3dff6add3054">name</a> = name;</div>
+<div class="line"><span class="lineno">  177</span> </div>
+<div class="line"><span class="lineno">  178</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><span class="lineno">  179</span> </div>
+<div class="line"><span class="lineno">  180</span>err_oc_2048_init:</div>
+<div class="line"><span class="lineno">  181</span>err_oc_1024_init:</div>
+<div class="line"><span class="lineno">  182</span>err_oc_768_init:</div>
+<div class="line"><span class="lineno">  183</span>err_oc_512_init:</div>
+<div class="line"><span class="lineno">  184</span>err_oc_384_init:</div>
+<div class="line"><span class="lineno">  185</span>err_oc_320_init:</div>
+<div class="line"><span class="lineno">  186</span>err_oc_256_init:</div>
+<div class="line"><span class="lineno">  187</span>err_oc_192_init:</div>
+<div class="line"><span class="lineno">  188</span>err_oc_160_init:</div>
+<div class="line"><span class="lineno">  189</span>err_oc_128_init:</div>
+<div class="line"><span class="lineno">  190</span>err_oc_96_init:</div>
+<div class="line"><span class="lineno">  191</span>err_oc_64_init:</div>
+<div class="line"><span class="lineno">  192</span>err_oc_32_init:</div>
+<div class="line"><span class="lineno">  193</span>err_oc_16_init:</div>
+<div class="line"><span class="lineno">  194</span>err_oc_8_init:</div>
+<div class="line"><span class="lineno">  195</span>err_pa_init:</div>
+<div class="line"><span class="lineno">  196</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  197</span>}</div>
+<div class="ttc" id="agroup__xwmm__common_html_ga5fda7561f71a27db613b7fe335ea3259"><div class="ttname"><a href="group__xwmm__common.html#ga5fda7561f71a27db613b7fe335ea3259">XWMM_ALIGNMENT</a></div><div class="ttdeci">#define XWMM_ALIGNMENT</div><div class="ttdef"><b>Definition</b> <a href="xwos_2mm_2common_8h_source.html#l00029">common.h:29</a></div></div>
+<div class="ttc" id="agroup__xwmm__mempool_html_ga15d8fc6d72d2ef920927bd6702174c3a"><div class="ttname"><a href="group__xwmm__mempool.html#ga15d8fc6d72d2ef920927bd6702174c3a">xwmm_mempool_objcache_init</a></div><div class="ttdeci">xwer_t xwmm_mempool_objcache_init(struct xwmm_mempool_objcache *oc, struct xwmm_mempool_page_allocator *pa, const char *name, xwsz_t objsize, xwsz_t alignment, xwsq_t pg_order, ctor_f ctor, dtor_f dtor)</div><div class="ttdoc">XWMM API：初始化对象缓存</div><div class="ttdef"><b>Definition</b> <a href="objcache_8c_source.html#l00054">objcache.c:54</a></div></div>
+<div class="ttc" id="agroup__xwmm__mempool_html_ga21e23da6eb1fe95f0419fbd48682f844"><div class="ttname"><a href="group__xwmm__mempool.html#ga21e23da6eb1fe95f0419fbd48682f844">XWMM_MEMPOOL_OC_384_PAGE_ODR</a></div><div class="ttdeci">#define XWMM_MEMPOOL_OC_384_PAGE_ODR</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00062">allocator.h:62</a></div></div>
+<div class="ttc" id="agroup__xwmm__mempool_html_ga43527e6076712848f493cd7573e2ef77"><div class="ttname"><a href="group__xwmm__mempool.html#ga43527e6076712848f493cd7573e2ef77">XWMM_MEMPOOL_OC_128_PAGE_ODR</a></div><div class="ttdeci">#define XWMM_MEMPOOL_OC_128_PAGE_ODR</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00057">allocator.h:57</a></div></div>
+<div class="ttc" id="agroup__xwmm__mempool_html_ga4ca59ba13d69974d8264f4d111cffb16"><div class="ttname"><a href="group__xwmm__mempool.html#ga4ca59ba13d69974d8264f4d111cffb16">XWMM_MEMPOOL_OC_160_PAGE_ODR</a></div><div class="ttdeci">#define XWMM_MEMPOOL_OC_160_PAGE_ODR</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00058">allocator.h:58</a></div></div>
+<div class="ttc" id="agroup__xwmm__mempool_html_ga52c4d8202e8bd3153be20b5b4ed70a8d"><div class="ttname"><a href="group__xwmm__mempool.html#ga52c4d8202e8bd3153be20b5b4ed70a8d">XWMM_MEMPOOL_OC_320_PAGE_ODR</a></div><div class="ttdeci">#define XWMM_MEMPOOL_OC_320_PAGE_ODR</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00061">allocator.h:61</a></div></div>
+<div class="ttc" id="agroup__xwmm__mempool_html_ga532c27113052f38ee9b44bc780a0b7dc"><div class="ttname"><a href="group__xwmm__mempool.html#ga532c27113052f38ee9b44bc780a0b7dc">XWMM_MEMPOOL_OC_256_PAGE_ODR</a></div><div class="ttdeci">#define XWMM_MEMPOOL_OC_256_PAGE_ODR</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00060">allocator.h:60</a></div></div>
+<div class="ttc" id="agroup__xwmm__mempool_html_ga655e461fb32ab02e97bdfe97e74e1ff4"><div class="ttname"><a href="group__xwmm__mempool.html#ga655e461fb32ab02e97bdfe97e74e1ff4">XWMM_MEMPOOL_OC_16_PAGE_ODR</a></div><div class="ttdeci">#define XWMM_MEMPOOL_OC_16_PAGE_ODR</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00053">allocator.h:53</a></div></div>
+<div class="ttc" id="agroup__xwmm__mempool_html_ga8f409a6ce2c2b794e5e0195c149727e6"><div class="ttname"><a href="group__xwmm__mempool.html#ga8f409a6ce2c2b794e5e0195c149727e6">XWMM_MEMPOOL_OC_64_PAGE_ODR</a></div><div class="ttdeci">#define XWMM_MEMPOOL_OC_64_PAGE_ODR</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00055">allocator.h:55</a></div></div>
+<div class="ttc" id="agroup__xwmm__mempool_html_gab137f0879efaafd7f437f15de0550257"><div class="ttname"><a href="group__xwmm__mempool.html#gab137f0879efaafd7f437f15de0550257">XWMM_MEMPOOL_OC_192_PAGE_ODR</a></div><div class="ttdeci">#define XWMM_MEMPOOL_OC_192_PAGE_ODR</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00059">allocator.h:59</a></div></div>
+<div class="ttc" id="agroup__xwmm__mempool_html_gabeceac7e5b816ad958870372ffb95b7f"><div class="ttname"><a href="group__xwmm__mempool.html#gabeceac7e5b816ad958870372ffb95b7f">XWMM_MEMPOOL_OC_8_PAGE_ODR</a></div><div class="ttdeci">#define XWMM_MEMPOOL_OC_8_PAGE_ODR</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00052">allocator.h:52</a></div></div>
+<div class="ttc" id="agroup__xwmm__mempool_html_gac56cb33d2518180259d23367aaf485d0"><div class="ttname"><a href="group__xwmm__mempool.html#gac56cb33d2518180259d23367aaf485d0">XWMM_MEMPOOL_OC_768_PAGE_ODR</a></div><div class="ttdeci">#define XWMM_MEMPOOL_OC_768_PAGE_ODR</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00064">allocator.h:64</a></div></div>
+<div class="ttc" id="agroup__xwmm__mempool_html_gacd0d06d72077a3cb482d7313336a641b"><div class="ttname"><a href="group__xwmm__mempool.html#gacd0d06d72077a3cb482d7313336a641b">XWMM_MEMPOOL_OC_96_PAGE_ODR</a></div><div class="ttdeci">#define XWMM_MEMPOOL_OC_96_PAGE_ODR</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00056">allocator.h:56</a></div></div>
+<div class="ttc" id="agroup__xwmm__mempool_html_gad29bb2a3d87539c205b4d0d51f37ce84"><div class="ttname"><a href="group__xwmm__mempool.html#gad29bb2a3d87539c205b4d0d51f37ce84">XWMM_MEMPOOL_PAGE_SIZE</a></div><div class="ttdeci">#define XWMM_MEMPOOL_PAGE_SIZE</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00051">allocator.h:51</a></div></div>
+<div class="ttc" id="agroup__xwmm__mempool_html_gadfca8f662972df88f92813d3ef9ca007"><div class="ttname"><a href="group__xwmm__mempool.html#gadfca8f662972df88f92813d3ef9ca007">XWMM_MEMPOOL_OC_2048_PAGE_ODR</a></div><div class="ttdeci">#define XWMM_MEMPOOL_OC_2048_PAGE_ODR</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00066">allocator.h:66</a></div></div>
+<div class="ttc" id="agroup__xwmm__mempool_html_gae3ab9842daa4494115b91a1c9a211eaf"><div class="ttname"><a href="group__xwmm__mempool.html#gae3ab9842daa4494115b91a1c9a211eaf">XWMM_MEMPOOL_OC_32_PAGE_ODR</a></div><div class="ttdeci">#define XWMM_MEMPOOL_OC_32_PAGE_ODR</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00054">allocator.h:54</a></div></div>
+<div class="ttc" id="agroup__xwmm__mempool_html_gaeac7d28f7509e0c764b9f995ebd45f12"><div class="ttname"><a href="group__xwmm__mempool.html#gaeac7d28f7509e0c764b9f995ebd45f12">xwmm_mempool_page_allocator_init</a></div><div class="ttdeci">xwer_t xwmm_mempool_page_allocator_init(struct xwmm_mempool_page_allocator *pa, const char *name, xwptr_t origin, xwsz_t size, xwsz_t pgsize, struct xwmm_mempool_page_odrbtree *odrbtree, struct xwmm_mempool_page *pgarray)</div><div class="ttdoc">XWMM API：初始化页分配器</div><div class="ttdef"><b>Definition</b> <a href="page_8c_source.html#l00086">page.c:86</a></div></div>
+<div class="ttc" id="agroup__xwmm__mempool_html_gaeb9a6c032b909d27aee816cf58f79cf8"><div class="ttname"><a href="group__xwmm__mempool.html#gaeb9a6c032b909d27aee816cf58f79cf8">XWMM_MEMPOOL_OC_512_PAGE_ODR</a></div><div class="ttdeci">#define XWMM_MEMPOOL_OC_512_PAGE_ODR</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00063">allocator.h:63</a></div></div>
+<div class="ttc" id="agroup__xwmm__mempool_html_gafb879eea2642fa6e80f183f5733271af"><div class="ttname"><a href="group__xwmm__mempool.html#gafb879eea2642fa6e80f183f5733271af">XWMM_MEMPOOL_OC_1024_PAGE_ODR</a></div><div class="ttdeci">#define XWMM_MEMPOOL_OC_1024_PAGE_ODR</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00065">allocator.h:65</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga6a72d49d869215a02342eb465166537b"><div class="ttname"><a href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a></div><div class="ttdeci">#define XWOK</div><div class="ttdoc">No error</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00182">errno.h:182</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga06847ea8c7edb2b1f166288b230f251f"><div class="ttname"><a href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a></div><div class="ttdeci">signed long xwer_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00554">type.h:554</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00028">type.h:28</a></div></div>
+<div class="ttc" id="astructxwmm__mempool_html_a128e5c1b3f2a3d075de1708b9257bfa1"><div class="ttname"><a href="structxwmm__mempool.html#a128e5c1b3f2a3d075de1708b9257bfa1">xwmm_mempool::pa</a></div><div class="ttdeci">struct xwmm_mempool_page_allocator pa</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00099">allocator.h:99</a></div></div>
+<div class="ttc" id="astructxwmm__mempool_html_a23363ae543f95164b3ef25bf77ad5263"><div class="ttname"><a href="structxwmm__mempool.html#a23363ae543f95164b3ef25bf77ad5263">xwmm_mempool::oc_512</a></div><div class="ttdeci">struct xwmm_mempool_objcache oc_512</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00111">allocator.h:111</a></div></div>
+<div class="ttc" id="astructxwmm__mempool_html_a3e7421868bd9e1bf0b438947f5911178"><div class="ttname"><a href="structxwmm__mempool.html#a3e7421868bd9e1bf0b438947f5911178">xwmm_mempool::oc_32</a></div><div class="ttdeci">struct xwmm_mempool_objcache oc_32</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00102">allocator.h:102</a></div></div>
+<div class="ttc" id="astructxwmm__mempool_html_a45dc2f129fa90ee4b52dd54ebba3ab2f"><div class="ttname"><a href="structxwmm__mempool.html#a45dc2f129fa90ee4b52dd54ebba3ab2f">xwmm_mempool::oc_1024</a></div><div class="ttdeci">struct xwmm_mempool_objcache oc_1024</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00113">allocator.h:113</a></div></div>
+<div class="ttc" id="astructxwmm__mempool_html_a50ca4020909dd2afbd5de522b5927dfb"><div class="ttname"><a href="structxwmm__mempool.html#a50ca4020909dd2afbd5de522b5927dfb">xwmm_mempool::oc_768</a></div><div class="ttdeci">struct xwmm_mempool_objcache oc_768</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00112">allocator.h:112</a></div></div>
+<div class="ttc" id="astructxwmm__mempool_html_a8a0afacaee1b1223be08ccf6ce359b37"><div class="ttname"><a href="structxwmm__mempool.html#a8a0afacaee1b1223be08ccf6ce359b37">xwmm_mempool::oc_160</a></div><div class="ttdeci">struct xwmm_mempool_objcache oc_160</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00106">allocator.h:106</a></div></div>
+<div class="ttc" id="astructxwmm__mempool_html_a95faf8f0948c43576b3dd0c555d12661"><div class="ttname"><a href="structxwmm__mempool.html#a95faf8f0948c43576b3dd0c555d12661">xwmm_mempool::oc_8</a></div><div class="ttdeci">struct xwmm_mempool_objcache oc_8</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00100">allocator.h:100</a></div></div>
+<div class="ttc" id="astructxwmm__mempool_html_a97c3ef398fb9f0ab8b46122af4a6bfbf"><div class="ttname"><a href="structxwmm__mempool.html#a97c3ef398fb9f0ab8b46122af4a6bfbf">xwmm_mempool::oc_192</a></div><div class="ttdeci">struct xwmm_mempool_objcache oc_192</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00107">allocator.h:107</a></div></div>
+<div class="ttc" id="astructxwmm__mempool_html_a9cb37a0576bc1e6c50a17751f7d4eb9c"><div class="ttname"><a href="structxwmm__mempool.html#a9cb37a0576bc1e6c50a17751f7d4eb9c">xwmm_mempool::oc_96</a></div><div class="ttdeci">struct xwmm_mempool_objcache oc_96</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00104">allocator.h:104</a></div></div>
+<div class="ttc" id="astructxwmm__mempool_html_aacbadeb03056e73c0513fa3b373d1225"><div class="ttname"><a href="structxwmm__mempool.html#aacbadeb03056e73c0513fa3b373d1225">xwmm_mempool::oc_2048</a></div><div class="ttdeci">struct xwmm_mempool_objcache oc_2048</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00114">allocator.h:114</a></div></div>
+<div class="ttc" id="astructxwmm__mempool_html_ab9056367df7cbe72dd07e3cd68f609b2"><div class="ttname"><a href="structxwmm__mempool.html#ab9056367df7cbe72dd07e3cd68f609b2">xwmm_mempool::oc_256</a></div><div class="ttdeci">struct xwmm_mempool_objcache oc_256</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00108">allocator.h:108</a></div></div>
+<div class="ttc" id="astructxwmm__mempool_html_ad922ced416de3ef8539dd7f2cc818202"><div class="ttname"><a href="structxwmm__mempool.html#ad922ced416de3ef8539dd7f2cc818202">xwmm_mempool::oc_128</a></div><div class="ttdeci">struct xwmm_mempool_objcache oc_128</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00105">allocator.h:105</a></div></div>
+<div class="ttc" id="astructxwmm__mempool_html_ae4ade1db7681bd8c4086b9cf81974ed5"><div class="ttname"><a href="structxwmm__mempool.html#ae4ade1db7681bd8c4086b9cf81974ed5">xwmm_mempool::oc_384</a></div><div class="ttdeci">struct xwmm_mempool_objcache oc_384</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00110">allocator.h:110</a></div></div>
+<div class="ttc" id="astructxwmm__mempool_html_ae4db2c62465ba85764c5dd3f54585ee9"><div class="ttname"><a href="structxwmm__mempool.html#ae4db2c62465ba85764c5dd3f54585ee9">xwmm_mempool::oc_320</a></div><div class="ttdeci">struct xwmm_mempool_objcache oc_320</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00109">allocator.h:109</a></div></div>
+<div class="ttc" id="astructxwmm__mempool_html_aeeba70716570172e17dbbfa6708f1254"><div class="ttname"><a href="structxwmm__mempool.html#aeeba70716570172e17dbbfa6708f1254">xwmm_mempool::oc_64</a></div><div class="ttdeci">struct xwmm_mempool_objcache oc_64</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00103">allocator.h:103</a></div></div>
+<div class="ttc" id="astructxwmm__mempool_html_af94673c956897aa54efda5550fb9dfab"><div class="ttname"><a href="structxwmm__mempool.html#af94673c956897aa54efda5550fb9dfab">xwmm_mempool::oc_16</a></div><div class="ttdeci">struct xwmm_mempool_objcache oc_16</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00101">allocator.h:101</a></div></div>
+<div class="ttc" id="astructxwmm__mempool_html_affe3df0f5067d772416a3dff6add3054"><div class="ttname"><a href="structxwmm__mempool.html#affe3df0f5067d772416a3dff6add3054">xwmm_mempool::name</a></div><div class="ttdeci">const char * name</div><div class="ttdef"><b>Definition</b> <a href="allocator_8h_source.html#l00098">allocator.h:98</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="allocator_8c_a6e1f6748cc378d09e931897b69231d0d_cgraph.png" border="0" usemap="#aallocator_8c_a6e1f6748cc378d09e931897b69231d0d_cgraph" alt=""/></div>
+<map name="aallocator_8c_a6e1f6748cc378d09e931897b69231d0d_cgraph" id="aallocator_8c_a6e1f6748cc378d09e931897b69231d0d_cgraph">
+<area shape="rect" title="构建内存池" alt="" coords="5,722,188,748"/>
+<area shape="rect" href="group__xwmm__mempool.html#ga15d8fc6d72d2ef920927bd6702174c3a" title="XWMM API：初始化对象缓存" alt="" coords="236,652,440,677"/>
+<area shape="poly" title=" " alt="" coords="140,720,280,678,281,684,142,725"/>
+<area shape="rect" href="group__xwmm__mempool.html#gaeac7d28f7509e0c764b9f995ebd45f12" title="XWMM API：初始化页分配器" alt="" coords="716,856,952,881"/>
+<area shape="poly" title=" " alt="" coords="169,745,750,851,749,856,168,750"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga08f9a7aec46aaeee30262e4bbdc65c0a" title="初始化一个链表头。" alt="" coords="505,702,651,728"/>
+<area shape="poly" title=" " alt="" coords="400,675,505,697,504,702,399,680"/>
+<area shape="rect" href="objcache_8c.html#a7214f0b448c3680b68f84d3bb6d7155a" title="i_allocator接口函数：释放内存" alt="" coords="488,396,668,436"/>
+<area shape="poly" title=" " alt="" coords="350,650,546,444,550,448,354,653"/>
+<area shape="rect" href="objcache_8c.html#a27d6631115c7033bfb49d22d5d3d992d" title="i_allocator接口函数：申请内存" alt="" coords="488,576,668,616"/>
+<area shape="poly" title=" " alt="" coords="383,649,493,618,494,623,385,654"/>
+<area shape="rect" href="group__xwos__lock__seqlock.html#ga230119b86fd51047f83cbe1e74982892" title="XWOS API：初始化顺序锁" alt="" coords="1038,798,1146,824"/>
+<area shape="poly" title=" " alt="" coords="441,664,551,672,668,687,775,710,879,739,1044,791,1042,796,878,744,774,715,668,692,550,677,440,670"/>
+<area shape="rect" href="group__xwmm__mempool.html#gae7d39e7ba00cc3926284e6ba8775121b" title="XWMM API：释放对象到对象缓存中" alt="" coords="729,298,939,324"/>
+<area shape="poly" title=" " alt="" coords="627,394,789,327,791,331,629,399"/>
+<area shape="rect" href="group__xwos__lib__lfq.html#ga1cac1b49ec185ccb135f19401e286166" title="将一个节点推入无锁队列（栈式队列）" alt="" coords="1553,29,1661,54"/>
+<area shape="poly" title=" " alt="" coords="849,296,907,251,998,188,1109,123,1170,94,1231,71,1312,51,1396,40,1473,36,1539,36,1539,41,1474,41,1396,46,1313,57,1233,76,1172,99,1112,128,1000,193,910,255,852,300"/>
+<area shape="rect" href="objcache_8c.html#a21221e21cca4abbdfc36138c1cecb3f5" title="释放空闲页" alt="" coords="1002,226,1182,266"/>
+<area shape="poly" title=" " alt="" coords="885,296,998,267,1000,272,886,301"/>
+<area shape="rect" href="objcache_8c.html#a6523b89f414d275f4c4548a684b21092" title="减少页的引用计数" alt="" coords="1002,291,1182,331"/>
+<area shape="poly" title=" " alt="" coords="939,308,988,308,988,314,939,314"/>
+<area shape="rect" href="group__xwmm__mempool.html#gac5da9c9562774fdac8cda7f769d60967" title="依据内存地址查找页" alt="" coords="1000,482,1184,508"/>
+<area shape="poly" title=" " alt="" coords="847,322,907,391,951,432,1001,467,1018,475,1015,480,999,472,948,436,903,395,843,326"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#gab12f3ce1a4e53de3112b10c9ffb06cae" title="删除一个节点，并重新初始化它" alt="" coords="1270,281,1405,306"/>
+<area shape="poly" title=" " alt="" coords="1183,261,1259,276,1258,281,1182,266"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga54d0d6c4a04b8f3c80891f7d0f5a1e62" title="测试链表是否为空。" alt="" coords="1261,232,1413,257"/>
+<area shape="poly" title=" " alt="" coords="1182,243,1247,242,1247,248,1182,248"/>
+<area shape="rect" href="group__xwmm__mempool.html#ga52f11e08dc37a0cc72717169b6ae4131" title="XWMM API：释放一页内存" alt="" coords="1245,497,1430,522"/>
+<area shape="poly" title=" " alt="" coords="1167,264,1186,277,1206,303,1214,327,1221,353,1234,382,1276,439,1316,485,1312,489,1272,442,1230,384,1216,354,1209,329,1201,305,1182,281,1164,268"/>
+<area shape="rect" href="group__xwos__lock__seqlock.html#gabc138d69277ba1017ade0f27c6c282cb" title="XWOS API：开启写临界区，保存本地CPU的中断标志并关闭" alt="" coords="2057,432,2249,457"/>
+<area shape="poly" title=" " alt="" coords="1107,224,1157,170,1192,142,1231,122,1302,98,1364,82,1421,75,1474,74,1528,79,1586,89,1723,122,1811,146,1878,174,1939,213,2011,269,2051,306,2087,347,2139,419,2135,422,2083,350,2047,310,2008,273,1936,217,1875,179,1810,151,1722,127,1585,95,1528,84,1474,79,1421,80,1365,87,1304,103,1233,127,1195,147,1160,174,1110,227"/>
+<area shape="rect" href="group__xwos__lock__seqlock.html#gadcb38d5d6dad7969e1231c47c131f3c8" title="XWOS API：关闭写临界区，恢复本地CPU的中断标志" alt="" coords="2078,624,2229,664"/>
+<area shape="poly" title=" " alt="" coords="1167,223,1278,201,1418,185,1495,183,1572,186,1649,197,1724,217,1799,250,1869,296,1933,350,1989,408,2039,467,2080,523,2137,611,2132,614,2076,526,2035,470,1985,411,1929,353,1866,300,1796,255,1722,222,1648,202,1572,192,1495,188,1419,190,1279,206,1168,228"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#gab7918962f86f86d5c7049922a5173e81" title="删除prev节点与next节点之间的节点" alt="" coords="1523,232,1690,257"/>
+<area shape="poly" title=" " alt="" coords="1404,279,1523,257,1524,262,1405,284"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga3286c94ae92265dea90fd52bfdb85569" title="初始化一个链表节点。" alt="" coords="1533,281,1680,306"/>
+<area shape="poly" title=" " alt="" coords="1405,291,1520,291,1520,296,1405,296"/>
+<area shape="rect" href="group__xwos__lib__rbtree.html#ga528f2863f2774a2f948db55c73ce6ee7" title="初始化红黑树节点" alt="" coords="2078,790,2229,816"/>
+<area shape="poly" title=" " alt="" coords="1372,520,1441,550,1531,594,1631,652,1679,685,1725,721,1739,738,1747,755,1756,770,1772,782,1808,798,1847,809,1927,821,2004,821,2072,815,2072,820,2004,826,1926,826,1846,814,1807,803,1769,787,1752,773,1743,757,1735,741,1721,725,1676,690,1628,657,1529,599,1438,555,1370,525"/>
+<area shape="rect" href="page_8c.html#a8e9302d65eea335934b13f63caea64aa" title="合并空闲的伙伴页" alt="" coords="1501,532,1713,557"/>
+<area shape="poly" title=" " alt="" coords="1430,519,1495,527,1494,533,1430,524"/>
+<area shape="rect" href="page_8c.html#aeea41b96161d6bab8ed17f9df7dbb2f9" title="获取页的序列值" alt="" coords="1502,482,1711,508"/>
+<area shape="poly" title=" " alt="" coords="1430,502,1488,499,1488,504,1430,507"/>
+<area shape="rect" href="page_8c.html#aecba66f62c5f653b61e4dd01d92bcc6c" title="找到页的伙伴页" alt="" coords="1799,503,1981,543"/>
+<area shape="poly" title=" " alt="" coords="1713,534,1785,528,1786,534,1713,539"/>
+<area shape="rect" href="page_8c.html#adc418491ba0dd770fa96b845e96722d9" title="增加页到阶红黑树中" alt="" coords="1771,848,2009,873"/>
+<area shape="poly" title=" " alt="" coords="1619,556,1700,680,1773,783,1812,814,1852,839,1849,844,1809,819,1769,786,1695,683,1614,559"/>
+<area shape="rect" href="page_8c.html#a0803eb38a9059618cf4c98136dc70033" title="从阶红黑树中删除页" alt="" coords="1785,567,1995,607"/>
+<area shape="poly" title=" " alt="" coords="1692,554,1772,567,1771,572,1691,560"/>
+<area shape="rect" href="group__xwos__lib__rbtree.html#gaa09f90f7792b00240a3cecef84946d88" title="插入一个红色节点后修正红黑树的颜色" alt="" coords="2088,840,2219,880"/>
+<area shape="poly" title=" " alt="" coords="2009,858,2074,858,2074,863,2009,863"/>
+<area shape="rect" href="group__xwos__lib__rbtree.html#gaef7f6608cd37a0fb765adb003428ec38" title="链接节点，并设置位置及颜色信息" alt="" coords="2330,888,2449,913"/>
+<area shape="poly" title=" " alt="" coords="1946,871,2058,890,2195,898,2317,899,2317,905,2195,904,2057,895,1945,876"/>
+<area shape="poly" title=" " alt="" coords="1922,845,1967,820,1989,803,2007,783,2021,760,2030,740,2037,702,2041,661,2055,611,2095,531,2134,467,2138,470,2100,534,2060,613,2046,662,2042,702,2035,742,2026,763,2011,786,1992,807,1969,825,1924,850"/>
+<area shape="poly" title=" " alt="" coords="1919,845,1964,820,1987,803,2007,783,2023,755,2029,728,2036,701,2055,675,2064,668,2067,672,2059,678,2041,704,2034,729,2028,757,2011,786,1991,807,1967,824,1922,850"/>
+<area shape="rect" href="group__xwos__lib__rbtree.html#ga3d27937625dc93286c012da5e82945b8" title="反转节点的颜色" alt="" coords="2314,805,2465,830"/>
+<area shape="poly" title=" " alt="" coords="2219,846,2305,830,2306,835,2220,851"/>
+<area shape="rect" href="group__xwos__lib__rbtree.html#ga8e9025d3e8bade2a627001fb58251047" title="返回节点的父节点指针" alt="" coords="2309,740,2469,765"/>
+<area shape="poly" title=" " alt="" coords="2218,838,2248,825,2272,808,2296,790,2341,768,2343,773,2299,795,2275,812,2251,829,2220,843"/>
+<area shape="poly" title=" " alt="" coords="1917,605,2059,724,2127,779,2123,783,2056,728,1914,609"/>
+<area shape="poly" title=" " alt="" coords="1995,565,2057,561,2124,564,2191,580,2222,593,2251,610,2265,623,2272,638,2277,668,2281,698,2287,712,2299,725,2307,731,2304,735,2296,729,2283,714,2276,699,2272,668,2267,640,2260,627,2248,615,2219,597,2189,585,2124,570,2057,566,1996,570"/>
+<area shape="poly" title=" " alt="" coords="1979,565,2008,553,2043,533,2075,509,2128,465,2131,469,2079,514,2046,537,2011,557,1981,569"/>
+<area shape="poly" title=" " alt="" coords="1983,605,2065,623,2064,628,1982,610"/>
+<area shape="rect" href="group__xwos__lib__rbtree.html#gac57fdaeef6a9dc2ee2bedbf5ac885f96" title="删除一个节点，并修正红黑树的颜色" alt="" coords="2082,689,2225,714"/>
+<area shape="poly" title=" " alt="" coords="1925,605,1986,640,2058,674,2083,683,2082,688,2056,679,1983,644,1922,610"/>
+<area shape="poly" title=" " alt="" coords="2179,712,2299,774,2348,797,2345,802,2296,779,2177,717"/>
+<area shape="poly" title=" " alt="" coords="2214,712,2317,734,2316,739,2213,717"/>
+<area shape="poly" title=" " alt="" coords="2175,712,2211,740,2251,776,2275,809,2284,823,2299,840,2325,861,2353,878,2350,883,2322,865,2296,844,2280,827,2271,812,2247,780,2208,744,2172,717"/>
+<area shape="rect" href="group__xwos__lib__rbtree.html#ga2502fed0a895591911885bd8725de911" title="返回节点的后继节点" alt="" coords="2297,592,2481,617"/>
+<area shape="poly" title=" " alt="" coords="2219,687,2248,674,2262,663,2271,651,2281,638,2296,626,2309,620,2311,624,2299,631,2284,642,2275,654,2266,667,2251,679,2221,692"/>
+<area shape="rect" href="group__xwos__lib__rbtree.html#ga692ff81d9c30fac79a823c5c2ff2357d" title="将节点设置为黑色" alt="" coords="2312,641,2467,666"/>
+<area shape="poly" title=" " alt="" coords="2216,686,2312,667,2313,672,2217,692"/>
+<area shape="rect" href="group__xwos__lib__rbtree.html#ga7b281445f2079f235077400ee79f15ea" title="用新节点代替旧节点并继承它的链指针、颜色和位置信息， 但新节点并不接管旧节点的子节点" alt="" coords="2311,690,2467,716"/>
+<area shape="poly" title=" " alt="" coords="2225,699,2298,700,2297,705,2225,705"/>
+<area shape="poly" title=" " alt="" coords="1182,302,1256,297,1256,302,1183,307"/>
+<area shape="poly" title=" " alt="" coords="1159,289,1182,276,1197,261,1205,245,1214,230,1231,217,1300,188,1361,170,1418,162,1472,162,1527,169,1585,181,1723,217,1785,235,1847,259,1962,316,2058,375,2126,421,2123,426,2056,379,1959,321,1845,264,1784,240,1722,222,1584,187,1526,174,1472,167,1418,167,1363,175,1302,193,1233,221,1218,233,1209,248,1201,264,1186,280,1162,293"/>
+<area shape="poly" title=" " alt="" coords="1126,329,1175,356,1233,381,1293,397,1349,409,1450,419,1542,419,1629,414,1715,411,1804,419,1852,428,1902,442,1954,462,2011,489,2050,515,2084,547,2135,611,2131,615,2080,551,2047,519,2008,493,1952,467,1900,447,1851,433,1804,424,1715,417,1629,419,1542,424,1450,425,1348,414,1291,403,1231,386,1173,361,1123,334"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga942be8d64e19cb8efb4dd1cf10e6e706" title="将一个节点加入链表头部（链表头的后面）" alt="" coords="1262,700,1413,725"/>
+<area shape="poly" title=" " alt="" coords="1121,329,1156,362,1186,404,1200,438,1207,468,1208,522,1210,575,1218,603,1234,634,1264,666,1299,691,1296,695,1260,670,1230,637,1213,605,1205,576,1203,522,1201,468,1195,439,1182,407,1152,365,1117,333"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga42c09bc0da5cac8327003314056f43b7" title="将一个新节点加入到prev与next之间" alt="" coords="1521,736,1692,761"/>
+<area shape="poly" title=" " alt="" coords="1413,720,1508,733,1508,738,1413,725"/>
+<area shape="rect" href="page_8c.html#a601e0e3ff8fc5ad5b7348046b545062e" title="从页内存地址获得其页控制块的指针" alt="" coords="1232,598,1443,624"/>
+<area shape="poly" title=" " alt="" coords="1162,505,1186,517,1202,532,1210,548,1219,563,1234,577,1262,591,1259,596,1230,581,1214,566,1206,550,1198,535,1182,521,1160,510"/>
+<area shape="rect" href="group__xwmm__mempool.html#ga86e445faf7ecf95130e042fa9b96a41b" title="XWMM API：从对象缓存中申请一个对象" alt="" coords="744,535,924,575"/>
+<area shape="poly" title=" " alt="" coords="668,579,730,569,731,574,669,585"/>
+<area shape="poly" title=" " alt="" coords="851,533,912,470,953,435,999,403,1048,380,1089,368,1131,358,1183,341,1207,328,1231,317,1260,307,1261,313,1233,322,1209,333,1185,346,1133,363,1091,373,1050,385,1001,408,957,439,916,474,854,537"/>
+<area shape="poly" title=" " alt="" coords="845,534,892,448,950,334,962,299,968,270,977,243,998,212,1054,154,1107,110,1160,79,1215,57,1273,42,1337,32,1490,14,1575,5,1650,3,1716,8,1778,22,1836,45,1892,79,1950,125,2011,184,2059,244,2098,309,2127,370,2146,418,2141,420,2122,372,2093,311,2055,247,2007,188,1947,129,1889,84,1833,50,1776,27,1716,14,1649,8,1575,11,1491,19,1338,37,1274,47,1216,62,1163,83,1110,114,1058,157,1002,215,982,245,973,272,967,301,954,336,897,450,849,536"/>
+<area shape="poly" title=" " alt="" coords="868,573,928,605,964,620,1001,631,1150,659,1303,676,1456,684,1605,685,1744,681,1870,673,2064,654,2065,659,1871,678,1745,686,1605,691,1456,690,1302,681,1149,664,999,636,962,625,926,610,865,577"/>
+<area shape="poly" title=" " alt="" coords="862,573,942,634,1001,675,1063,694,1129,706,1192,712,1248,713,1248,719,1191,717,1128,711,1062,699,999,680,939,639,859,577"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga2aa317fe5cea0989c273b3c69f69d795" title="将一个节点加入链表尾部（链表头的前面）" alt="" coords="1268,749,1407,774"/>
+<area shape="poly" title=" " alt="" coords="868,573,911,604,954,644,968,665,976,684,984,701,1002,717,1031,733,1063,745,1129,761,1195,767,1254,767,1254,772,1194,772,1128,766,1061,750,1029,737,998,721,980,705,971,686,964,668,950,647,907,609,865,577"/>
+<area shape="rect" href="group__xwos__lib__lfq.html#gacbe43c237a9c7c6f21baa98daaf49e68" title="弹出无锁队列中的第一个节点（栈式队列）" alt="" coords="1041,532,1143,557"/>
+<area shape="poly" title=" " alt="" coords="924,549,1028,544,1028,550,924,554"/>
+<area shape="rect" href="objcache_8c.html#a23e4915feeaf7a05d46ec2affe504642" title="获取一页，准备从页内存中分配对象" alt="" coords="1002,418,1182,458"/>
+<area shape="poly" title=" " alt="" coords="869,533,929,501,999,467,1016,460,1018,465,1001,472,932,505,872,537"/>
+<area shape="poly" title=" " alt="" coords="1407,756,1507,751,1508,756,1407,761"/>
+<area shape="poly" title=" " alt="" coords="1142,415,1182,389,1197,371,1205,353,1213,334,1230,317,1255,304,1258,309,1234,321,1217,338,1209,355,1201,373,1186,393,1145,420"/>
+<area shape="poly" title=" " alt="" coords="1113,416,1146,382,1182,341,1195,320,1203,301,1212,284,1230,266,1247,257,1249,262,1234,271,1216,287,1207,304,1200,323,1186,345,1150,386,1117,420"/>
+<area shape="poly" title=" " alt="" coords="1182,436,2044,441,2044,446,1182,441"/>
+<area shape="poly" title=" " alt="" coords="1165,456,1186,468,1202,485,1210,502,1218,517,1233,531,1268,544,1330,557,1499,583,1771,616,1926,630,2064,638,2064,643,1926,635,1770,622,1498,588,1329,562,1267,549,1231,536,1214,521,1205,504,1197,488,1182,472,1162,460"/>
+<area shape="rect" href="objcache_8c.html#a75c1bbc6602c82f1cc906c65303ee59d" title="初始化新页" alt="" coords="1247,331,1427,371"/>
+<area shape="poly" title=" " alt="" coords="1149,415,1266,373,1268,378,1151,420"/>
+<area shape="rect" href="group__xwmm__mempool.html#ga7cbe7d0a7d7052c887dc7723c5010ec1" title="XWMM API：申请一页内存" alt="" coords="1233,828,1441,853"/>
+<area shape="poly" title=" " alt="" coords="1172,456,1186,468,1211,509,1221,549,1220,588,1214,626,1207,664,1205,703,1213,743,1234,784,1255,805,1280,820,1278,824,1252,809,1230,787,1207,744,1200,703,1202,663,1208,625,1215,587,1215,549,1206,511,1182,471,1169,460"/>
+<area shape="poly" title=" " alt="" coords="1421,329,1441,316,1460,293,1469,271,1476,247,1488,218,1541,132,1586,64,1591,67,1545,135,1493,220,1481,249,1474,273,1465,296,1444,320,1424,333"/>
+<area shape="poly" title=" " alt="" coords="1427,329,1490,315,1530,307,1531,312,1491,320,1428,334"/>
+<area shape="rect" href="group__xwos__lib__lfq.html#gac87b1137608605a80577abed410ddc1a" title="初始化无锁队列节点" alt="" coords="1558,330,1655,356"/>
+<area shape="poly" title=" " alt="" coords="1427,346,1544,342,1544,348,1428,351"/>
+<area shape="rect" href="page_8c.html#a6385524c294a6af40c2ea0ff315d60fd" title="将大的页拆分成小的页" alt="" coords="1491,846,1723,872"/>
+<area shape="poly" title=" " alt="" coords="1442,845,1477,847,1477,853,1441,850"/>
+<area shape="rect" href="page_8c.html#ab54f23d0058e1bff33377fc2d7b0a48c" title="从阶红黑树中选择一页" alt="" coords="1785,732,1995,772"/>
+<area shape="poly" title=" " alt="" coords="1418,825,1771,769,1771,774,1418,830"/>
+<area shape="poly" title=" " alt="" coords="1723,857,1757,857,1757,862,1723,862"/>
+<area shape="poly" title=" " alt="" coords="1995,770,2074,785,2073,790,1994,775"/>
+<area shape="poly" title=" " alt="" coords="1995,750,2295,750,2295,755,1995,755"/>
+<area shape="poly" title=" " alt="" coords="1908,731,2007,617,2131,466,2135,470,2011,621,1912,734"/>
+<area shape="poly" title=" " alt="" coords="1965,730,2008,711,2032,693,2056,674,2070,667,2072,672,2059,679,2035,697,2011,716,1967,735"/>
+<area shape="poly" title=" " alt="" coords="1994,730,2073,714,2074,720,1995,735"/>
+<area shape="poly" title=" " alt="" coords="871,879,952,906,1067,937,1200,963,1268,971,1336,974,1608,974,1726,973,1818,963,1861,953,1905,936,1953,913,2008,882,2023,869,2031,855,2040,840,2056,826,2070,818,2073,823,2059,831,2044,844,2036,858,2027,873,2011,887,1956,918,1907,941,1863,958,1819,969,1726,978,1608,979,1336,979,1268,976,1199,968,1066,942,951,911,869,884"/>
+<area shape="poly" title=" " alt="" coords="888,879,942,889,1000,898,1149,903,1346,900,1551,892,1722,880,1794,872,1795,878,1723,886,1551,897,1346,906,1149,909,1000,903,941,895,887,884"/>
+<area shape="poly" title=" " alt="" coords="891,853,1024,823,1025,829,893,858"/>
+<area shape="rect" href="group__xwos__lib__rbtree.html#gaa16ae22ddc5595638dd19df6154f4bb6" title="初始化红黑树" alt="" coords="1034,1014,1150,1040"/>
+<area shape="poly" title=" " alt="" coords="851,879,913,933,956,964,1001,993,1034,1007,1032,1012,999,997,953,969,910,937,847,883"/>
+<area shape="rect" href="page_8c.html#a4fff326383599e57562dd2d1bd8dbc2b" title="i_allocator接口函数：释放内存" alt="" coords="1009,582,1175,622"/>
+<area shape="poly" title=" " alt="" coords="846,854,1060,630,1064,634,850,857"/>
+<area shape="rect" href="page_8c.html#a4b4868cc6b3b9570ba579c040c6d11a2" title="i_allocator接口函数：申请内存" alt="" coords="1009,848,1175,888"/>
+<area shape="poly" title=" " alt="" coords="952,866,995,866,995,871,952,871"/>
+<area shape="poly" title=" " alt="" coords="1148,579,1183,566,1290,525,1292,530,1185,571,1149,584"/>
+<area shape="poly" title=" " alt="" coords="1176,602,1219,604,1219,609,1175,608"/>
+<area shape="poly" title=" " alt="" coords="1175,856,1219,851,1220,856,1176,862"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="allocator_8c_a6e1f6748cc378d09e931897b69231d0d_icgraph.png" border="0" usemap="#aallocator_8c_a6e1f6748cc378d09e931897b69231d0d_icgraph" alt=""/></div>
+<map name="aallocator_8c_a6e1f6748cc378d09e931897b69231d0d_icgraph" id="aallocator_8c_a6e1f6748cc378d09e931897b69231d0d_icgraph">
+<area shape="rect" title="构建内存池" alt="" coords="199,5,381,31"/>
+<area shape="rect" href="group__xwmm__mempool.html#gaad8340a12043c383e489a786788e89af" title="XWMM API：初始化内存池" alt="" coords="5,5,151,31"/>
+<area shape="poly" title=" " alt="" coords="184,21,151,21,151,15,184,15"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_43a52829888b753087a6774748486ed5.html">xwos</a></li><li class="navelem"><a class="el" href="dir_9dc98d2d57b5a37b2d02400b59474658.html">mm</a></li><li class="navelem"><a class="el" href="dir_be5874c8726cf154b99a7d6ef7f00d55.html">mempool</a></li><li class="navelem"><a class="el" href="allocator_8c.html">allocator.c</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
+  </ul>
+</div>
+</body>
+</html>

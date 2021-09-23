@@ -1,0 +1,654 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>XWOS – SOC移植</title>
+    <link>/docs/Note/SOC/</link>
+    <description>Recent content in SOC移植 on XWOS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    
+	  <atom:link href="/docs/Note/SOC/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: ARM-Cortex-M移植说明</title>
+      <link>/docs/Note/SOC/ARM-M/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/Note/SOC/ARM-M/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
+&lt;p&gt;XWOS的源码中，已包含了大部分ARM-Cortex-M架构的代码：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;架构描述层(ADL)
+&lt;ul&gt;
+&lt;li&gt;ARMv7m:  &lt;code&gt;XWOS/xwcd/soc/arm/v7m&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;ARMv6m:  &lt;code&gt;XWOS/xwcd/soc/arm/v6m&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;CPU描述层(CDL)
+&lt;ul&gt;
+&lt;li&gt;m0: &lt;code&gt;XWOS/xwcd/soc/arm/v6m/m0&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;m0p: &lt;code&gt;XWOS/xwcd/soc/arm/v6m/m0p&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;m3: &lt;code&gt;XWOS/xwcd/soc/arm/v7m/m3&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;m4: &lt;code&gt;XWOS/xwcd/soc/arm/v7m/m4&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;m7: &lt;code&gt;XWOS/xwcd/soc/arm/v7m/m7&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;SOC描述层(SDL)
+&lt;ul&gt;
+&lt;li&gt;STM32:
+&lt;ul&gt;
+&lt;li&gt;L0/F0: &lt;code&gt;XWOS/xwcd/soc/arm/v7m/m0/stm32&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;L1/F1: &lt;code&gt;XWOS/xwcd/soc/arm/v7m/m3/stm32&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;L4/F4: &lt;code&gt;XWOS/xwcd/soc/arm/v7m/m4/stm32&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;F7/H7: &lt;code&gt;XWOS/xwcd/soc/arm/v7m/m7/stm32&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;S32K: &lt;code&gt;XWOS/xwcd/soc/arm/v7m/m4/s32k14x&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;i.MX RT1052: &lt;code&gt;XWOS/xwcd/soc/arm/v7m/m7/mimxrt1052&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;新的SOC芯片，只需在CPU文件夹中增加SOC文件夹，其中包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;初始化： &lt;code&gt;soc_init.h&lt;/code&gt; 与 &lt;code&gt;soc_init.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;中断： &lt;code&gt;xwosimpl_irq.h&lt;/code&gt; 与 &lt;code&gt;xwosimpl_irq.c&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;其中需要给出XWOS内核移植层(XWOSPL) &lt;code&gt;XWOS/xwos/ospl/irq.h&lt;/code&gt; 中声明的函数的实现。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;调度器： &lt;code&gt;xwosimpl_skd.h&lt;/code&gt; 与 &lt;code&gt;xwosimpl_skd.c&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;其中需要给出XWOS内核移植层(XWOSPL) &lt;code&gt;XWOS/xwos/ospl/skd.h&lt;/code&gt; 中声明的函数的实现。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;滴答定时器： &lt;code&gt;xwosimpl_syshwt.h&lt;/code&gt; 与 &lt;code&gt;xwosimpl_syshwt.c&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;其中需要给出XWOS内核移植层(XWOSPL) &lt;code&gt;XWOS/xwos/ospl/syshwt.h&lt;/code&gt; 中声明的函数的实现。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.lds&lt;/code&gt; ：链接脚本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;可以复制一个SDL文件夹（例如STM32）作为模板，
+所有Cortex-M的单片机 &lt;code&gt;XWOSIMPL&lt;/code&gt; 都是一样的。&lt;/p&gt;
+&lt;h2 id=&#34;类型的定义&#34;&gt;类型的定义&lt;/h2&gt;
+&lt;p&gt;XWOS移植实现层的 &lt;strong&gt;Adaptee&lt;/strong&gt; 位于：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;XWOS/xwcd/soc/arm/v6m/xwosimpl_soc_type.h
+XWOS/xwcd/soc/arm/v7m/xwosimpl_soc_type.h
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;编译器的宏定义&#34;&gt;编译器的宏定义&lt;/h2&gt;
+&lt;p&gt;XWOS移植实现层的 &lt;strong&gt;Adaptee&lt;/strong&gt; 位于：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;XWOS/xwcd/soc/arm/v6m/xwosimpl_soc_compiler.h
+XWOS/xwcd/soc/arm/v7m/xwosimpl_soc_compiler.h
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;无锁队列的实现&#34;&gt;无锁队列的实现&lt;/h2&gt;
+&lt;p&gt;XWOS移植实现层的 &lt;strong&gt;Adaptee&lt;/strong&gt; 位于：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;XWOS/xwcd/soc/arm/v6m/xwosimpl_soc_lfq.h
+XWOS/xwcd/soc/arm/v6m/xwosimpl_soc_lfq.c
+XWOS/xwcd/soc/arm/v7m/xwosimpl_soc_lfq.h
+XWOS/xwcd/soc/arm/v7m/xwosimpl_soc_lfq.c
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;自旋锁&#34;&gt;自旋锁&lt;/h2&gt;
+&lt;p&gt;XWOS移植实现层的 &lt;strong&gt;Adaptee&lt;/strong&gt; 位于：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;XWOS/xwcd/soc/arm/v6m/xwosimpl_soc_spinlock.h
+XWOS/xwcd/soc/arm/v7m/xwosimpl_soc_spinlock.h
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;架构指令&#34;&gt;架构指令&lt;/h2&gt;
+&lt;p&gt;XWOS移植实现层的 &lt;strong&gt;Adaptee&lt;/strong&gt; 位于：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;XWOS/xwcd/soc/arm/v6m/xwosimpl_soc_isa.h
+XWOS/xwcd/soc/arm/v7m/xwosimpl_soc_isa.h
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;位操作&#34;&gt;位操作&lt;/h2&gt;
+&lt;p&gt;XWOS移植实现层的 &lt;strong&gt;Adaptee&lt;/strong&gt; 位于：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;XWOS/xwcd/soc/arm/v6m/xwosimpl_soc_xwbop.h
+XWOS/xwcd/soc/arm/v6m/asmlib/xwbop/
+XWOS/xwcd/soc/arm/v7m/xwosimpl_soc_xwbop.h
+XWOS/xwcd/soc/arm/v7m/asmlib/xwbop/
+XWOS/xwcd/soc/arm/v7m/asmlib/xwbmpop/
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;8位原子操作&#34;&gt;8位原子操作&lt;/h2&gt;
+&lt;p&gt;XWOS移植实现层的 &lt;strong&gt;Adaptee&lt;/strong&gt; 位于：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;XWOS/xwcd/soc/arm/v6m/xwosimpl_soc_xwaop8.h
+XWOS/xwcd/soc/arm/v6m/asmlib/xwaop/xws8/
+XWOS/xwcd/soc/arm/v6m/asmlib/xwaop/xwu8/
+XWOS/xwcd/soc/arm/v7m/xwosimpl_soc_xwaop8.h
+XWOS/xwcd/soc/arm/v7m/asmlib/xwaop/xws8/
+XWOS/xwcd/soc/arm/v7m/asmlib/xwaop/xwu8/
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;16位原子操作&#34;&gt;16位原子操作&lt;/h2&gt;
+&lt;p&gt;XWOS移植实现层的 &lt;strong&gt;Adaptee&lt;/strong&gt; 位于：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;XWOS/xwcd/soc/arm/v6m/xwosimpl_soc_xwaop16.h
+XWOS/xwcd/soc/arm/v6m/asmlib/xwaop/xws16/
+XWOS/xwcd/soc/arm/v6m/asmlib/xwaop/xwu16/
+XWOS/xwcd/soc/arm/v7m/xwosimpl_soc_xwaop16.h
+XWOS/xwcd/soc/arm/v7m/asmlib/xwaop/xws16/
+XWOS/xwcd/soc/arm/v7m/asmlib/xwaop/xwu16/
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;32位原子操作&#34;&gt;32位原子操作&lt;/h2&gt;
+&lt;p&gt;XWOS移植实现层的 &lt;strong&gt;Adaptee&lt;/strong&gt; 位于：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;XWOS/xwcd/soc/arm/v6m/xwosimpl_soc_xwaop32.h
+XWOS/xwcd/soc/arm/v6m/asmlib/xwaop/xws32/
+XWOS/xwcd/soc/arm/v6m/asmlib/xwaop/xwu32/
+XWOS/xwcd/soc/arm/v7m/xwosimpl_soc_xwaop32.h
+XWOS/xwcd/soc/arm/v7m/asmlib/xwaop/xws32/
+XWOS/xwcd/soc/arm/v7m/asmlib/xwaop/xwu32/
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;64位原子操作&#34;&gt;64位原子操作&lt;/h2&gt;
+&lt;p&gt;XWOS移植实现层的 &lt;strong&gt;Adaptee&lt;/strong&gt; 位于：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;XWOS/xwcd/soc/arm/v6m/xwosimpl_soc_xwaop64.h
+XWOS/xwcd/soc/arm/v6m/asmlib/xwaop/xws64/
+XWOS/xwcd/soc/arm/v6m/asmlib/xwaop/xwu64/
+XWOS/xwcd/soc/arm/v7m/xwosimpl_soc_xwaop64.h
+XWOS/xwcd/soc/arm/v7m/asmlib/xwaop/xws64/
+XWOS/xwcd/soc/arm/v7m/asmlib/xwaop/xwu64/
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;位图原子操作&#34;&gt;位图原子操作&lt;/h2&gt;
+&lt;p&gt;XWOS移植实现层的 &lt;strong&gt;Adaptee&lt;/strong&gt; 位于：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;XWOS/xwcd/soc/arm/v6m/xwosimpl_soc_xwbmpaop.h
+XWOS/xwcd/soc/arm/v7m/xwosimpl_soc_xwbmpaop.h
+XWOS/xwcd/soc/arm/v7m/asmlib/xwbmpaop/
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;setjmplongjmp&#34;&gt;&lt;code&gt;setjmp()/longjmp()&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;XWOS移植实现层的 &lt;strong&gt;Adaptee&lt;/strong&gt; 位于：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;XWOS/xwcd/soc/arm/v7m/xwosimpl_soc_setjmp.h
+XWOS/xwcd/soc/arm/v7m/xwosimpl_soc_setjmp.c
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;C标准库中定义的 &lt;code&gt;setjmp()/longjmp()&lt;/code&gt; 是可在不同函数之间跳转的 &lt;code&gt;goto&lt;/code&gt; ，
+有些libc的实现没有考虑浮点寄存器栈，因此XWOS重新实现了这两个函数。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;完整的栈结构如下：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;-----------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x64&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s31             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x60&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s30             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x5C&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s29             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x58&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s28             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x54&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s27             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x50&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s26             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x4C&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s25             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   FP    &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x48&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s24             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;  Frame  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x44&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s23             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x40&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s22             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x3C&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s21             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x38&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s20             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x34&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s19             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x30&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s18             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x2C&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s17             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x28&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s16             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;-----------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x24&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;r14&lt;/span&gt; (lr)        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x20&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;r13&lt;/span&gt; (sp)        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x1C&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;r11&lt;/span&gt; (fp)        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x18&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;r10&lt;/span&gt; (sl)        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x14&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; r9              &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;  Basic  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x10&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; r8              &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;  Frame  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x0C&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; r7              &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x08&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; r6              &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x04&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; r5              &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x00&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; r4              &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;-----------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;              setjmp&lt;span style=&#34;color:#666&#34;&gt;/&lt;/span&gt;longjmp&lt;span style=&#34;&#34;&gt;寄存器栈结构&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;线程本地存储tls&#34;&gt;线程本地存储TLS&lt;/h2&gt;
+&lt;p&gt;TLS是C11标准开始引入的语言特性。XWOS支持TLS，Cortex-M的MCU采用统一实现：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;XWOS/xwcd/soc/arm/v6m/xwosimpl_tls.c
+XWOS/xwcd/soc/arm/v7m/xwosimpl_tls.c
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;XWOS将TLS数据段放在线程栈内存起始的位置。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; Thread Stack Memmory &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;+----------------------+&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   SP &lt;span style=&#34;color:#666&#34;&gt;---&amp;gt;&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;     Stack Region     &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;+----------------------+&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;     Stack Guard      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;+----------------------+&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;      TLS Region      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;调度器&#34;&gt;调度器&lt;/h2&gt;
+&lt;p&gt;XWOS移植实现层的 &lt;strong&gt;Adaptee&lt;/strong&gt; 位于：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;XWOS/xwcd/soc/arm/v6m/[CPU]/[SOC]/xwosimpl_soc_skd.h
+XWOS/xwcd/soc/arm/v6m/[CPU]/[SOC]/xwosimpl_soc_skd.c
+XWOS/xwcd/soc/arm/v7m/[CPU]/[SOC]/xwosimpl_soc_skd.h
+XWOS/xwcd/soc/arm/v7m/[CPU]/[SOC]/xwosimpl_soc_skd.c
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;由于基于Cortex-M内核的单片机一致性比较好，所以不同的单片机最终都是调用下面文件中的函数来给出具体实现：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;XWOS/xwcd/soc/arm/v6m/arch_skd.h
+XWOS/xwcd/soc/arm/v6m/arch_skd.c
+XWOS/xwcd/soc/arm/v7m/arch_skd.h
+XWOS/xwcd/soc/arm/v7m/arch_skd.c
+&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&#34;线程的栈&#34;&gt;线程的栈&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;XWOS在ARMv6/7-m平台的实现上，使用 &lt;strong&gt;8字节对齐&lt;/strong&gt; 的栈，
+因此必须在芯片初始化的最早阶段将CCR寄存器中的STKALIGN设置为1：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cm_scs.scb.ccr.bit.stkalign &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;1&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;使用满递减栈，即配置文件 &lt;code&gt;cfg/xwos.h&lt;/code&gt; 中 &lt;code&gt;XWMMCFG_FD_STACK&lt;/code&gt; 配置为 &lt;strong&gt;1&lt;/strong&gt; ：&lt;/li&gt;
+&lt;li&gt;当CPU中包含浮点单元时，开启浮点上下文自动保存与恢复，即&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;cm_scs.scb.fpu.fpccr.bit.aspen &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;1&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;线程的栈结构&#34;&gt;线程的栈结构&lt;/h3&gt;
+&lt;p&gt;C语言一般将寄存器分为两部分：易失性的(volatile)和非易失性的(non-volatile)。
+当使用到易失性(volatile)寄存器时不需要保存值和恢复；
+当使用到非易失性(non-volatile)寄存器时需要保存值和恢复。&lt;/p&gt;
+&lt;h5 id=&#34;易失性volatile栈结构&#34;&gt;易失性(volatile)栈结构&lt;/h5&gt;
+&lt;p&gt;ARMv6/v7-m的CPU，从线程模式进入中断模式时，会自动将易失性(volatile)寄存器保存到栈中。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; Prev Frame           &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;+------------+---------+&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x3C&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x38&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; FPSCR      &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x3C&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s15        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x38&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s14        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x34&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s13        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x30&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s12        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x2C&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s11        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x28&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s10        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x24&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s9         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   FP    &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x20&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s8         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;  Frame  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x3C&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s7         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x38&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s6         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x34&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s5         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x30&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s4         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x2C&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s3         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x28&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s2         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x24&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s1         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x20&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s0         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x1C&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; xpsr       &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x18&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; pc         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x14&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; lr         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x10&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;r12&lt;/span&gt; (ip)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;  Basic  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x0C&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; r3         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;  Frame  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x08&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; r2         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x04&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; r1         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x00&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; r0         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;&#34;&gt;易失性&lt;/span&gt;(&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt;)&lt;span style=&#34;&#34;&gt;寄存器栈结构&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h5 id=&#34;非易失性non-volatile栈结构&#34;&gt;非易失性(non-volatile)栈结构&lt;/h5&gt;
+&lt;p&gt;编译器能自动处理非易失性(non-volatile)寄存器，因此在同一个上下文中恢复环境，不需要
+保存非易失性(non-volatile)寄存器。但当操作系统切换任务时，不同的任务的
+非易失性(non-volatile)寄存器环境是不一样的，需要进行保存与恢复。&lt;/p&gt;
+&lt;p&gt;XWOS在ARMv6/7-m平台上的非易失性(non-volatile)寄存器栈结构如下：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;-----------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   Volatile stack Frame    &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;+-----------------+---------+&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x64&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s31             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x60&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s30             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x5C&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s29             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x58&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s28             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x54&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s27             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x50&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s26             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x4C&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s25             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   FP    &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x48&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s24             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;  Frame  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x44&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s23             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x40&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s22             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x3C&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s21             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x38&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s20             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x34&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s19             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x30&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s18             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x2C&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s17             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x28&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; s16             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;-----------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x24&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;lr&lt;/span&gt; (EXC_RETURN) &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x20&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;r11&lt;/span&gt; (fp)        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x1C&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;r10&lt;/span&gt; (sl)        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x18&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; r9              &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x14&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; r8              &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;  Basic  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x10&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; r7              &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;  Frame  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x0C&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; r6              &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x08&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; r5              &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x04&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; r4              &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x00&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; CONTROL         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;-----------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;          &lt;span style=&#34;&#34;&gt;非易失性&lt;/span&gt;(non&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt;)&lt;span style=&#34;&#34;&gt;寄存器栈结构&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;中断&#34;&gt;中断&lt;/h2&gt;
+&lt;p&gt;XWOS移植实现层的 &lt;strong&gt;Adaptee&lt;/strong&gt; 位于：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;xwcd/soc/arm/v6m/[CPU]/[SOC]/xwosimpl_irq.h
+xwcd/soc/arm/v6m/[CPU]/[SOC]/xwosimpl_irq.c
+xwcd/soc/arm/v7m/[CPU]/[SOC]/xwosimpl_irq.h
+xwcd/soc/arm/v7m/[CPU]/[SOC]/xwosimpl_irq.c
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;滴答定时器&#34;&gt;滴答定时器&lt;/h2&gt;
+&lt;p&gt;XWOS移植实现层的 &lt;strong&gt;Adaptee&lt;/strong&gt; 位于：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;xwcd/soc/arm/v6m/[CPU]/[SOC]/xwosimpl_syshwt.h
+xwcd/soc/arm/v6m/[CPU]/[SOC]/xwosimpl_syshwt.c
+xwcd/soc/arm/v7m/[CPU]/[SOC]/xwosimpl_syshwt.h
+xwcd/soc/arm/v7m/[CPU]/[SOC]/xwosimpl_syshwt.c
+&lt;/code&gt;&lt;/pre&gt;
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: ARM-Cortex-M移植说明</title>
+      <link>/docs/Note/SOC/ARM64-A/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/Note/SOC/ARM64-A/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
+&lt;p&gt;XWOS的源码中，已包含了大部分ARM64-Cortex-A架构的代码：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;架构描述层(ADL)
+&lt;ul&gt;
+&lt;li&gt;ARMv8a:  &lt;code&gt;XWOS/xwcd/soc/arm/v8a&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;CPU描述层(CDL)
+&lt;ul&gt;
+&lt;li&gt;m0: &lt;code&gt;XWOS/xwcd/soc/arm/v8a/a72&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;m0p: &lt;code&gt;XWOS/xwcd/soc/arm/v8a/a76_a55&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;SOC描述层(SDL)
+&lt;ul&gt;
+&lt;li&gt;UNISOC UIS7870: &lt;code&gt;XWOS/xwcd/soc/arm/v8a/a76_a55/uis7870&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;树莓派4B SOC: &lt;code&gt;XWOS/xwcd/soc/arm/v8a/a72/bcm2711&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;新的SOC芯片，只需在CPU文件夹中增加SOC文件夹，其中包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;初始化： &lt;code&gt;soc_init.h&lt;/code&gt; 与 &lt;code&gt;soc_init.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;中断： &lt;code&gt;xwosimpl_irq.h&lt;/code&gt; 与 &lt;code&gt;xwosimpl_irq.c&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;其中需要给出XWOS内核移植层(XWOSPL) &lt;code&gt;XWOS/xwos/ospl/irq.h&lt;/code&gt; 中声明的函数的实现。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;调度器： &lt;code&gt;xwosimpl_skd.h&lt;/code&gt; 与 &lt;code&gt;xwosimpl_skd.c&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;其中需要给出XWOS内核移植层(XWOSPL) &lt;code&gt;XWOS/xwos/ospl/skd.h&lt;/code&gt; 中声明的函数的实现。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;滴答定时器： &lt;code&gt;xwosimpl_syshwt.h&lt;/code&gt; 与 &lt;code&gt;xwosimpl_syshwt.c&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;其中需要给出XWOS内核移植层(XWOSPL) &lt;code&gt;XWOS/xwos/ospl/syshwt.h&lt;/code&gt; 中声明的函数的实现。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.lds&lt;/code&gt; ：链接脚本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;类型的定义&#34;&gt;类型的定义&lt;/h2&gt;
+&lt;p&gt;XWOS内核移植层(XWOSPL) &lt;code&gt;XWOS/xwos/ospl/soc/type.h&lt;/code&gt; 要求SOC给出标准类型的定义：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;XWOS/xwcd/soc/arm/v8a/xwosimpl_soc_type.h
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;编译器的宏定义&#34;&gt;编译器的宏定义&lt;/h2&gt;
+&lt;p&gt;XWOS移植实现层的 &lt;strong&gt;Adaptee&lt;/strong&gt; 位于：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;XWOS/xwcd/soc/arm/v8a/xwosimpl_soc_compiler.h
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;gcc: &lt;code&gt;XWOS/xwcd/soc/arm/v8a/compiler/gcc.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;llvm: &lt;code&gt;XWOS/xwcd/soc/arm/v8a/compiler/llvm.h&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;无锁队列的实现&#34;&gt;无锁队列的实现&lt;/h2&gt;
+&lt;p&gt;XWOS移植实现层的 &lt;strong&gt;Adaptee&lt;/strong&gt; 位于：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;XWOS/xwcd/soc/arm/v8a/xwosimpl_soc_lfq.h
+XWOS/xwcd/soc/arm/v8a/xwosimpl_soc_lfq.c
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;自旋锁&#34;&gt;自旋锁&lt;/h2&gt;
+&lt;p&gt;XWOS移植实现层的 &lt;strong&gt;Adaptee&lt;/strong&gt; 位于：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;XWOS/xwcd/soc/arm/v8a/xwosimpl_soc_spinlock.h
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;架构指令&#34;&gt;架构指令&lt;/h2&gt;
+&lt;p&gt;XWOS移植实现层的 &lt;strong&gt;Adaptee&lt;/strong&gt; 位于：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;XWOS/xwcd/soc/arm/v8a/xwosimpl_soc_isa.h
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;位操作&#34;&gt;位操作&lt;/h2&gt;
+&lt;p&gt;XWOS移植实现层的 &lt;strong&gt;Adaptee&lt;/strong&gt; 位于：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;XWOS/xwcd/soc/arm/v8a/xwosimpl_soc_xwbop.h
+XWOS/xwcd/soc/arm/v8a/xwbop/
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;8位原子操作&#34;&gt;8位原子操作&lt;/h2&gt;
+&lt;p&gt;XWOS内核移植层(XWOSPL) &lt;code&gt;XWOS/xwos/ospl/soc/xwaop8.h&lt;/code&gt; 要求SOC在汇编指令层面给出单字节原子操作的实现：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;XWOS/xwcd/soc/arm/v8a/xwosimpl_soc_xwaop8.h
+XWOS/xwcd/soc/arm/v8a/xwaop/xwaops8.c
+XWOS/xwcd/soc/arm/v8a/xwaop/xwaopu8.c
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;16位原子操作&#34;&gt;16位原子操作&lt;/h2&gt;
+&lt;p&gt;XWOS内核移植层(XWOSPL) &lt;code&gt;XWOS/xwos/ospl/soc/xwaop16.h&lt;/code&gt; 要求SOC在汇编指令层面给出双字节原子操作的实现：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;XWOS/xwcd/soc/arm/v8a/xwosimpl_soc_xwaop16.h
+XWOS/xwcd/soc/arm/v8a/xwaop/xwaops16.c
+XWOS/xwcd/soc/arm/v8a/xwaop/xwaopu16.c
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;32位原子操作&#34;&gt;32位原子操作&lt;/h2&gt;
+&lt;p&gt;XWOS内核移植层(XWOSPL) &lt;code&gt;XWOS/xwos/ospl/soc/xwaop32.h&lt;/code&gt; 要求SOC在汇编指令层面给出4字节原子操作的实现：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;XWOS/xwcd/soc/arm/v8a/xwosimpl_soc_xwaop32.h
+XWOS/xwcd/soc/arm/v8a/xwaop/xwaops32.c
+XWOS/xwcd/soc/arm/v8a/xwaop/xwaopu32.c
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;64位原子操作&#34;&gt;64位原子操作&lt;/h2&gt;
+&lt;p&gt;XWOS内核移植层(XWOSPL) &lt;code&gt;XWOS/xwos/ospl/soc/xwaop64.h&lt;/code&gt; 要求SOC在汇编指令层面给出8字节原子操作的实现：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;XWOS/xwcd/soc/arm/v8a/xwosimpl_soc_xwaop64.h
+XWOS/xwcd/soc/arm/v8a/xwaop/xwaop64.c
+XWOS/xwcd/soc/arm/v8a/xwaop/xwaopu64.c
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;位图原子操作&#34;&gt;位图原子操作&lt;/h2&gt;
+&lt;p&gt;XWOS内核移植层(XWOSPL) &lt;code&gt;XWOS/xwos/ospl/soc/xwbmpaop.h&lt;/code&gt; 要求SOC在汇编指令层面给出位图原子操作的实现：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;XWOS/xwcd/soc/arm/v8a/xwosimpl_soc_xwbmpaop.h
+XWOS/xwcd/soc/arm/v8a/xwbmpaop/
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;系统初始化&#34;&gt;系统初始化&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;SPSel&lt;/code&gt; 设置为 &lt;code&gt;1&lt;/code&gt; ，不同EL等级使用不同的SP寄存器&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;SCTLR_EL1.EE = 0&lt;/code&gt; ：选择小端格式&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;SCTLR_EL1.SA = 1&lt;/code&gt; ：开启stack对齐检测&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;SCTLR_EL1.A = 0&lt;/code&gt; ：关闭对齐检测，对齐检测经常导致进sync异常&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;SCTLR_EL1.C = 1&lt;/code&gt; ：开启数据缓存&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;SCTLR_EL1.I = 1&lt;/code&gt; ：开启指令缓存&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;SCTLR_EL2.EE = 0&lt;/code&gt; ：选择小端格式&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;SCTLR_EL2.SA = 1&lt;/code&gt; ：开启stack对齐检测&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;SCTLR_EL2.A = 0&lt;/code&gt; ：关闭对齐检测，对齐检测经常导致进sync异常&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;SCTLR_EL2.C = 1&lt;/code&gt; ：开启数据缓存&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;SCTLR_EL2.I = 1&lt;/code&gt; ：开启指令缓存&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;CPACR_EL1.FPEN = 0b11&lt;/code&gt; ：开启浮点单元&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;暂时不启用虚拟化&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;HCR_EL2.VM = 0&lt;/code&gt;
+&lt;code&gt;HCR_EL2.TGE = 0&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;中断&#34;&gt;中断&lt;/h2&gt;
+&lt;p&gt;XWOS移植实现层的 &lt;strong&gt;Adaptee&lt;/strong&gt; 位于：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;XWOS/xwcd/soc/arm/v8a/[CPU]/[SOC]/xwosimpl_irq.h
+XWOS/xwcd/soc/arm/v8a/[CPU]/[SOC]/xwosimpl_irq.c
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;不在EL3响应异常&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;SCR_EL3.FIQ = 0&lt;/code&gt;
+&lt;code&gt;SCR_EL3.IRQ = 0&lt;/code&gt;
+&lt;code&gt;HCR_EL3.EA = 0&lt;/code&gt;
+&lt;code&gt;HCR_EL3.HCE = 1&lt;/code&gt; 开启 &lt;code&gt;HVC&lt;/code&gt; 指令&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;CPTR_EL3&lt;/code&gt; 中关闭trap&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;CPTR_EL2&lt;/code&gt; 中关闭trap&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;在EL2中处理中断&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;code&gt;HCR_EL2.AMO = 1&lt;/code&gt;
+&lt;code&gt;HCR_EL2.IMO = 1&lt;/code&gt;
+&lt;code&gt;HCR_EL2.FMO = 1&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;注意：&lt;/p&gt;
+&lt;p&gt;Sync, FIQ，IRQ，SError全部在 &lt;code&gt;EL1&lt;/code&gt; 执行；
+EL1中执行 &lt;code&gt;HVC&lt;/code&gt; 指令时才会跑到 &lt;code&gt;EL2&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;HVC&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;HVC&lt;/code&gt; 不能在EL0执行；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;HVC&lt;/code&gt; 不能在Secure的EL1中执行&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SCR_EL3.HCE == 1&lt;/code&gt; 时才能使用 &lt;code&gt;HVC&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SVC&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;SVC&lt;/code&gt; 在EL0中执行时，在EL1处理异常&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SVC&lt;/code&gt; 在EL1中执行时，在EL1处理异常&lt;/li&gt;
+&lt;li&gt;当 &lt;code&gt;HCR_EL2.TGE == 1&lt;/code&gt; 时， &lt;code&gt;SVC&lt;/code&gt; 无论在EL0还是EL1，都会升级到EL2执行；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SMC&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;SMC&lt;/code&gt; 不能在EL0中执行&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;HCR_EL2.TSC == 1&lt;/code&gt; 时， &lt;code&gt;SMC&lt;/code&gt; 在EL2执行&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SCR_EL3.SMD == 1&lt;/code&gt; 时， &lt;code&gt;SMC&lt;/code&gt; 指令才能使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;调度器&#34;&gt;调度器&lt;/h2&gt;
+&lt;p&gt;XWOS内核移植层(XWOSPL) &lt;code&gt;XWOS/xwos/ospl/skd.h&lt;/code&gt; 要求SOC给出调度器切换上下文等操作的实现，各个型号的MCU采用不同的实现：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;XWOS/xwcd/soc/arm/v8a/[CPU]/[SOC]/xwosimpl_soc_skd.h
+XWOS/xwcd/soc/arm/v8a/[CPU]/[SOC]/xwosimpl_soc_skd.c
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;由于基于Cortex-M内核的单片机一致性比较好，所以不同的单片机最终都是调用下面文件中的函数来给出具体实现：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;XWOS/xwcd/soc/arm/v8a/arch_skd.h
+XWOS/xwcd/soc/arm/v8a/arch_skd.c
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;XWOS内核运行在EL2，使用sp_el2&lt;/p&gt;
+&lt;h3 id=&#34;线程&#34;&gt;线程&lt;/h3&gt;
+&lt;p&gt;线程运行在 &lt;code&gt;EL1H&lt;/code&gt; ，不支持EL0的线程。&lt;/p&gt;
+&lt;h2 id=&#34;栈&#34;&gt;栈&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;按照AAPCS64的要求，使用 &lt;strong&gt;16字节对齐&lt;/strong&gt; 的 &lt;strong&gt;满递减&lt;/strong&gt; 栈，
+因此配置文件 &lt;code&gt;cfg/xwos.h&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;XWMMCFG_FD_STACK&lt;/code&gt; 配置为 &lt;code&gt;1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;XWMMCFG_ALIGNMENT&lt;/code&gt; 配置为 &lt;code&gt;16U&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;栈结构&#34;&gt;栈结构&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;+------------+-----------------------------+&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x31c&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; reserved   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x318&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; reserved   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x314&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; reserved   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;                             &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x310&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; FPSR       &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;+------------+-----------------------------+&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x300&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; q31        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x2F0&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; q30        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x2E0&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; q29        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x2D0&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; q28        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x2C0&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; q27        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x2B0&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; q26        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x2A0&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; q25        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x290&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; q24        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x280&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; q23        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x270&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; q22        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x260&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; q21        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x250&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; q20        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x240&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; q19        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x230&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; q18        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x220&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; q17        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x210&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; q16        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;+------------+-----------------------------+&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x200&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; q15        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; non&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (callee&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved) &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x1F0&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; q14        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; non&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (callee&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved) &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x1E0&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; q13        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; non&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (callee&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved) &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x1D0&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; q12        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; non&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (callee&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved) &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x1C0&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; q11        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; non&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (callee&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved) &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x1B0&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; q10        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; non&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (callee&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved) &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x1A0&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; q9         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; non&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (callee&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved) &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x190&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; q8         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; non&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (callee&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved) &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;+------------+-----------------------------+&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x180&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; q7         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x170&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; q6         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x160&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; q5         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x150&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; q4         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x140&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; q3         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x130&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; q2         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x120&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; q1         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x110&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; q0         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;+------------+-----------------------------+&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x108&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; pstate     &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x100&lt;/span&gt; &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; pc         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0xF8&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; sp         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0xF0&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; lr         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   &lt;span style=&#34;color:#666&#34;&gt;---------+------------+-----------------------------+&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0xE8&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; x29        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; non&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (callee&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved) &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0xE0&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; x28        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; non&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (callee&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved) &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0xD8&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; x27        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; non&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (callee&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved) &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0xD0&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; x26        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; non&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (callee&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved) &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0xC8&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; x25        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; non&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (callee&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved) &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0xC0&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; x24        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; non&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (callee&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved) &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0xB8&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; x23        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; non&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (callee&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved) &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0xB0&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; x22        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; non&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (callee&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved) &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0xA8&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; x21        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; non&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (callee&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved) &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0xA0&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; x20        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; non&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (callee&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved) &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x98&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; x19        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; non&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (callee&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved) &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x90&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; x18        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; non&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (callee&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved) &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   &lt;span style=&#34;color:#666&#34;&gt;---------+------------+-----------------------------+&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x88&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; x17        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x80&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; x16        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x78&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; x15        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x70&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; x14        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x68&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; x13        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x60&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; x12        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x58&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; x11        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x50&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; x10        &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x48&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; x9         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x40&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; x8         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x38&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; x7         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x30&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; x6         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x28&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; x5         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x20&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; x4         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x18&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; x3         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x10&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; x2         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x08&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; x1         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;   sp&lt;span style=&#34;color:#666&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#666&#34;&gt;0x00&lt;/span&gt;  &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt; x0         &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;   &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;volatile&lt;/span&gt; (caller&lt;span style=&#34;color:#666&#34;&gt;-&lt;/span&gt;saved)   &lt;span style=&#34;color:#666&#34;&gt;|&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;            &lt;span style=&#34;color:#666&#34;&gt;--------------------------------------------&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;说明：x18寄存器按照官方手册描述，应该为 &lt;strong&gt;caller-saved&lt;/strong&gt; ，
+但Linux内核将此寄存器用作 &lt;strong&gt;ShadowCallStack&lt;/strong&gt; 的指针（配置 &lt;code&gt;CONFIG_SHADOW_CALL_STACK&lt;/code&gt; 为 &lt;code&gt;y&lt;/code&gt; 时），
+此时x18应该为 &lt;strong&gt;callee-saved&lt;/strong&gt; 的。&lt;/li&gt;
+&lt;li&gt;XWOS和Linux保持一致，因此x18也为 &lt;strong&gt;callee-saved&lt;/strong&gt; 。&lt;/li&gt;
+&lt;li&gt;需要增加编译选项 &lt;code&gt;-ffixed-x18&lt;/code&gt; 。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;滴答定时器&#34;&gt;滴答定时器&lt;/h2&gt;
+&lt;p&gt;XWOS内核移植层(XWOSPL) &lt;code&gt;XWOS/xwos/ospl/syshwt.h&lt;/code&gt; 要求SOC给出滴答定时器的实现，各个型号的MCU采用不同的实现：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;xwcd/soc/arm/v8a/[CPU]/[SOC]/xwosimpl_soc_syshwt.h
+xwcd/soc/arm/v8a/[CPU]/[SOC]/xwosimpl_soc_syshwt.c
+&lt;/code&gt;&lt;/pre&gt;
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: RISC-V移植说明</title>
+      <link>/docs/Note/SOC/RISC-V/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/Note/SOC/RISC-V/</guid>
+      <description>
+        
+        
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

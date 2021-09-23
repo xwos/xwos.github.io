@@ -1,0 +1,304 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>XWOS API: xwcd/ds/iochip/chip.c 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<a href="/" class="github-corner" title="返回首页">
+  <svg viewBox="0 0 250 250" style="position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path
+      d="M 0 0 L 250 250 L 250 0 L 0 0 z M 181.19336 6.25 A 18.281986 19.638775 0 0 1 192.79297 10.798828 L 241.54492 54.201172 A 6.0939954 6.5462585 0 0 1 237.64453 65.787109 L 233.13477 65.787109 A 3.0469979 3.2731292 0 0 0 230.08789 69.060547 L 230.08789 111.61133 A 18.281986 19.638775 0 0 1 211.80664 131.25 L 205.71289 131.25 A 12.187991 13.092517 0 0 1 193.52344 118.1582 L 193.52344 98.519531 A 12.187991 13.092517 0 0 0 181.33594 85.425781 A 12.187991 13.092517 0 0 0 169.14844 98.519531 L 169.14844 118.1582 A 12.187991 13.092517 0 0 1 156.95898 131.25 L 150.86523 131.25 A 18.281986 19.638775 0 0 1 132.58398 111.61133 L 132.58398 68.994141 A 3.0469979 3.2731292 0 0 0 129.29297 65.722656 L 124.7832 65.722656 A 6.0939954 6.5462585 0 0 1 120.88281 54.201172 L 169.39258 10.798828 A 18.281986 19.638775 0 0 1 181.19336 6.25 z "/>
+  </svg>
+</a>
+<style>.github-corner:hover</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">XWOS API
+   &#160;<span id="projectnumber">3.0</span>
+   </div>
+   <div id="projectbrief">XWOS API参考手册</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('iochip_2chip_8c_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">chip.c</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="iochip_2chip_8c.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;<a class="code" href="xwcd_2ds_2standard_8h.html">xwcd/ds/standard.h</a>&gt;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;<a class="code" href="iochip_2chip_8h.html">xwcd/ds/iochip/chip.h</a>&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwcd__ds.html#ga60d990e5df4266fbb1b7dada9160c698">__xwds_vop</a></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="iochip_2chip_8c.html#a3f4ea433a4198987dda3ec88927c84ae">xwds_iochip_vop_probe</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__iochip.html">xwds_iochip</a> * iochip);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwcd__ds.html#ga60d990e5df4266fbb1b7dada9160c698">__xwds_vop</a></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="iochip_2chip_8c.html#a137a9814a925ef71ae1582772f423ae1">xwds_iochip_vop_remove</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__iochip.html">xwds_iochip</a> * iochip);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwcd__ds.html#ga60d990e5df4266fbb1b7dada9160c698">__xwds_vop</a></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="iochip_2chip_8c.html#a28f50d60955b75b493dcf9c762795c57">xwds_iochip_vop_start</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__iochip.html">xwds_iochip</a> * iochip);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwcd__ds.html#ga60d990e5df4266fbb1b7dada9160c698">__xwds_vop</a></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="iochip_2chip_8c.html#ae5e43fe20324200b27567c93261663df">xwds_iochip_vop_stop</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__iochip.html">xwds_iochip</a> * iochip);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#if defined(XWCDCFG_ds_PM) &amp;&amp; (1 == XWCDCFG_ds_PM)</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwcd__ds.html#ga60d990e5df4266fbb1b7dada9160c698">__xwds_vop</a></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="iochip_2chip_8c.html#a4682522a9e12cb6b00394aff2e18ba02">xwds_iochip_vop_suspend</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__iochip.html">xwds_iochip</a> * iochip);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwcd__ds.html#ga60d990e5df4266fbb1b7dada9160c698">__xwds_vop</a></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="iochip_2chip_8c.html#a8c7b43b9633138b69ee4d18c9e5d0a12">xwds_iochip_vop_resume</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__iochip.html">xwds_iochip</a> * iochip);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="iochip_2chip_8c.html#ac5900f6c4c3070592a2ae44f48d2a1da">   45</a></span><a class="code hl_define" href="group__xwcd__ds.html#gab6317ea3e673d7755ef26e5798ddd8c0">__xwds_rodata</a> <span class="keyword">const</span> <span class="keyword">struct </span><a class="code hl_struct" href="structxwds__virtual__operation.html">xwds_virtual_operation</a> <a class="code hl_variable" href="iochip_2chip_8c.html#ac5900f6c4c3070592a2ae44f48d2a1da">xwds_iochip_vop</a> = {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        .<a class="code hl_variable" href="structxwds__virtual__operation.html#acf42b4caae0898e31d52d446ee5a93b5">probe</a> = (<span class="keywordtype">void</span> *)<a class="code hl_function" href="iochip_2chip_8c.html#a3f4ea433a4198987dda3ec88927c84ae">xwds_iochip_vop_probe</a>,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        .<a class="code hl_variable" href="structxwds__virtual__operation.html#a7161bf9059d427e44faefacebd501bf7">remove</a> = (<span class="keywordtype">void</span> *)<a class="code hl_function" href="iochip_2chip_8c.html#a137a9814a925ef71ae1582772f423ae1">xwds_iochip_vop_remove</a>,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        .start = (<span class="keywordtype">void</span> *)<a class="code hl_function" href="iochip_2chip_8c.html#a28f50d60955b75b493dcf9c762795c57">xwds_iochip_vop_start</a>,</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        .<a class="code hl_variable" href="structxwds__virtual__operation.html#a662775f25eaaeec5a3c285ff83b9aa49">stop</a> = (<span class="keywordtype">void</span> *)<a class="code hl_function" href="iochip_2chip_8c.html#ae5e43fe20324200b27567c93261663df">xwds_iochip_vop_stop</a>,</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">#if defined(XWCDCFG_ds_PM) &amp;&amp; (1 == XWCDCFG_ds_PM)</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        .suspend = (<span class="keywordtype">void</span> *)<a class="code hl_function" href="iochip_2chip_8c.html#a4682522a9e12cb6b00394aff2e18ba02">xwds_iochip_vop_suspend</a>,</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        .<a class="code hl_variable" href="structxwds__virtual__operation.html#ae755d965bd86d231a3fe69dd115d3ad4">resume</a> = (<span class="keywordtype">void</span> *)<a class="code hl_function" href="iochip_2chip_8c.html#a8c7b43b9633138b69ee4d18c9e5d0a12">xwds_iochip_vop_resume</a>,</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>};</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="comment">/******** ******** ******** constructor &amp; destructor ******** ******** ********/</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><a class="code hl_define" href="group__xwcd__ds.html#ga8dfce3af09db190cd28028a817ae9275">__xwds_api</a></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="group__xwcd__ds__iochip.html#ga86d35bc73081f94d8b019ce366f67263">   58</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwcd__ds__iochip.html#ga86d35bc73081f94d8b019ce366f67263">xwds_iochip_construct</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__iochip.html">xwds_iochip</a> * iochip)</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>{</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <a class="code hl_function" href="group__xwcd__ds__device.html#ga28c4da29c7c95ad0ee437ed6e4a97e9d">xwds_device_construct</a>(&amp;iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#a8f0e9f6d5d418956c51c243712071071">bc</a>.<a class="code hl_variable" href="structxwds__iochip.html#a8467a37cf311a499d312a4b008499c68">dev</a>);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#a8f0e9f6d5d418956c51c243712071071">bc</a>.<a class="code hl_variable" href="structxwds__iochip.html#a8467a37cf311a499d312a4b008499c68">dev</a>.<a class="code hl_variable" href="structxwds__device.html#a7d5ba4f809e2fc89a9ea194edc1f2469">vop</a> = &amp;<a class="code hl_variable" href="iochip_2chip_8c.html#ac5900f6c4c3070592a2ae44f48d2a1da">xwds_iochip_vop</a>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>}</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><a class="code hl_define" href="group__xwcd__ds.html#ga8dfce3af09db190cd28028a817ae9275">__xwds_api</a></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="group__xwcd__ds__iochip.html#gafb0894a0a86e1784f212fdad530210e4">   65</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="group__xwcd__ds__iochip.html#gafb0894a0a86e1784f212fdad530210e4">xwds_iochip_destruct</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__iochip.html">xwds_iochip</a> * iochip)</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>{</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>        <a class="code hl_function" href="group__xwcd__ds__device.html#ga40607e48943c7647201065226dc37fa1">xwds_device_destruct</a>(&amp;iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#a8f0e9f6d5d418956c51c243712071071">bc</a>.<a class="code hl_variable" href="structxwds__iochip.html#a8467a37cf311a499d312a4b008499c68">dev</a>);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>}</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><a class="code hl_define" href="group__xwcd__ds.html#ga8dfce3af09db190cd28028a817ae9275">__xwds_api</a></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="group__xwcd__ds__iochip.html#ga447256e7eb891f10bd4753f32b85107a">   71</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwcd__ds__iochip.html#ga447256e7eb891f10bd4753f32b85107a">xwds_iochip_grab</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__iochip.html">xwds_iochip</a> * iochip)</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>{</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="group__xwcd__ds__device.html#ga00553482e152b68af626de972e2187d7">xwds_device_grab</a>(&amp;iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#a8f0e9f6d5d418956c51c243712071071">bc</a>.<a class="code hl_variable" href="structxwds__iochip.html#a8467a37cf311a499d312a4b008499c68">dev</a>);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>}</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><a class="code hl_define" href="group__xwcd__ds.html#ga8dfce3af09db190cd28028a817ae9275">__xwds_api</a></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="group__xwcd__ds__iochip.html#ga750653544c84171501d58b632fe2ee43">   77</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwcd__ds__iochip.html#ga750653544c84171501d58b632fe2ee43">xwds_iochip_put</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__iochip.html">xwds_iochip</a> * iochip)</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>{</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="group__xwcd__ds__device.html#ga69eb284bb145032e408adea3131b9d36">xwds_device_put</a>(&amp;iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#a8f0e9f6d5d418956c51c243712071071">bc</a>.<a class="code hl_variable" href="structxwds__iochip.html#a8467a37cf311a499d312a4b008499c68">dev</a>);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>}</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="comment">/******** ******** base virtual operations ******** ********/</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwcd__ds.html#ga60d990e5df4266fbb1b7dada9160c698">__xwds_vop</a></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="iochip_2chip_8c.html#a3f4ea433a4198987dda3ec88927c84ae">   88</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="iochip_2chip_8c.html#a3f4ea433a4198987dda3ec88927c84ae">xwds_iochip_vop_probe</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__iochip.html">xwds_iochip</a> * iochip)</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>{</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        <a class="code hl_define" href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a>(iochip-&gt;xwccfg, <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        rc = <a class="code hl_function" href="group__xwcd__ds__device.html#gada012caf11d782b5a3c3b8587990ae40">xwds_device_vop_probe</a>(&amp;iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#a8f0e9f6d5d418956c51c243712071071">bc</a>.<a class="code hl_variable" href="structxwds__iochip.html#a8467a37cf311a499d312a4b008499c68">dev</a>);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>}</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwcd__ds.html#ga60d990e5df4266fbb1b7dada9160c698">__xwds_vop</a></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="iochip_2chip_8c.html#a137a9814a925ef71ae1582772f423ae1">  103</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="iochip_2chip_8c.html#a137a9814a925ef71ae1582772f423ae1">xwds_iochip_vop_remove</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__iochip.html">xwds_iochip</a> * iochip)</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>{</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>        rc = <a class="code hl_function" href="group__xwcd__ds__device.html#ga9971f3ed17fb65399b5528fa4a4e94c8">xwds_device_vop_remove</a>(&amp;iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#a8f0e9f6d5d418956c51c243712071071">bc</a>.<a class="code hl_variable" href="structxwds__iochip.html#a8467a37cf311a499d312a4b008499c68">dev</a>);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>}</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwcd__ds.html#ga60d990e5df4266fbb1b7dada9160c698">__xwds_vop</a></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="iochip_2chip_8c.html#a28f50d60955b75b493dcf9c762795c57">  116</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="iochip_2chip_8c.html#a28f50d60955b75b493dcf9c762795c57">xwds_iochip_vop_start</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__iochip.html">xwds_iochip</a> * iochip)</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>{</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        rc = <a class="code hl_function" href="group__xwcd__ds__device.html#ga0c0a2863095c22abd63f27fd415d8e15">xwds_device_vop_start</a>(&amp;iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#a8f0e9f6d5d418956c51c243712071071">bc</a>.<a class="code hl_variable" href="structxwds__iochip.html#a8467a37cf311a499d312a4b008499c68">dev</a>);</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>}</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwcd__ds.html#ga60d990e5df4266fbb1b7dada9160c698">__xwds_vop</a></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="iochip_2chip_8c.html#ae5e43fe20324200b27567c93261663df">  129</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="iochip_2chip_8c.html#ae5e43fe20324200b27567c93261663df">xwds_iochip_vop_stop</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__iochip.html">xwds_iochip</a> * iochip)</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>{</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        rc = <a class="code hl_function" href="group__xwcd__ds__device.html#ga76d2c2ffbf8a1efc4e7bf1d7ac581fd5">xwds_device_vop_stop</a>(&amp;iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#a8f0e9f6d5d418956c51c243712071071">bc</a>.<a class="code hl_variable" href="structxwds__iochip.html#a8467a37cf311a499d312a4b008499c68">dev</a>);</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>}</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="preprocessor">#if (defined(XWCDCFG_ds_PM)) &amp;&amp; (1 == XWCDCFG_ds_PM)</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="comment">/******** ******** pm ******** ********/</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwcd__ds.html#ga60d990e5df4266fbb1b7dada9160c698">__xwds_vop</a></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="iochip_2chip_8c.html#a4682522a9e12cb6b00394aff2e18ba02">  144</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="iochip_2chip_8c.html#a4682522a9e12cb6b00394aff2e18ba02">xwds_iochip_vop_suspend</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__iochip.html">xwds_iochip</a> * iochip)</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>{</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        rc = <a class="code hl_function" href="group__xwcd__ds__device.html#gaebbbeb318c6f7ce466b12eeee7ae2350">xwds_device_vop_suspend</a>(&amp;iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#a8f0e9f6d5d418956c51c243712071071">bc</a>.<a class="code hl_variable" href="structxwds__iochip.html#a8467a37cf311a499d312a4b008499c68">dev</a>);</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>}</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwcd__ds.html#ga60d990e5df4266fbb1b7dada9160c698">__xwds_vop</a></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="iochip_2chip_8c.html#a8c7b43b9633138b69ee4d18c9e5d0a12">  157</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="iochip_2chip_8c.html#a8c7b43b9633138b69ee4d18c9e5d0a12">xwds_iochip_vop_resume</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwds__iochip.html">xwds_iochip</a> * iochip)</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>{</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        rc = <a class="code hl_function" href="group__xwcd__ds__device.html#gacd2f8a67386345880905e9099924927c">xwds_device_vop_resume</a>(&amp;iochip-&gt;<a class="code hl_variable" href="structxwds__iochip.html#a8f0e9f6d5d418956c51c243712071071">bc</a>.<a class="code hl_variable" href="structxwds__iochip.html#a8467a37cf311a499d312a4b008499c68">dev</a>);</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>}</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_ga00553482e152b68af626de972e2187d7"><div class="ttname"><a href="group__xwcd__ds__device.html#ga00553482e152b68af626de972e2187d7">xwds_device_grab</a></div><div class="ttdeci">static xwer_t xwds_device_grab(struct xwds_device *dev)</div><div class="ttdoc">XWDS API：增加对象的引用计数</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8h_source.html#l00268">device.h:268</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_ga0c0a2863095c22abd63f27fd415d8e15"><div class="ttname"><a href="group__xwcd__ds__device.html#ga0c0a2863095c22abd63f27fd415d8e15">xwds_device_vop_start</a></div><div class="ttdeci">xwer_t xwds_device_vop_start(struct xwds_device *dev)</div><div class="ttdoc">设备基本操作函数：启动设备</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8c_source.html#l00105">device.c:105</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_ga28c4da29c7c95ad0ee437ed6e4a97e9d"><div class="ttname"><a href="group__xwcd__ds__device.html#ga28c4da29c7c95ad0ee437ed6e4a97e9d">xwds_device_construct</a></div><div class="ttdeci">void xwds_device_construct(struct xwds_device *dev)</div><div class="ttdoc">XWDS API：设备的构造函数</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8c_source.html#l00048">device.c:48</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_ga40607e48943c7647201065226dc37fa1"><div class="ttname"><a href="group__xwcd__ds__device.html#ga40607e48943c7647201065226dc37fa1">xwds_device_destruct</a></div><div class="ttdeci">void xwds_device_destruct(struct xwds_device *dev)</div><div class="ttdoc">XWDS API：设备的析构函数</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8c_source.html#l00056">device.c:56</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_ga69eb284bb145032e408adea3131b9d36"><div class="ttname"><a href="group__xwcd__ds__device.html#ga69eb284bb145032e408adea3131b9d36">xwds_device_put</a></div><div class="ttdeci">static xwer_t xwds_device_put(struct xwds_device *dev)</div><div class="ttdoc">XWDS API：减少对象的引用计数</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8h_source.html#l00281">device.h:281</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_ga76d2c2ffbf8a1efc4e7bf1d7ac581fd5"><div class="ttname"><a href="group__xwcd__ds__device.html#ga76d2c2ffbf8a1efc4e7bf1d7ac581fd5">xwds_device_vop_stop</a></div><div class="ttdeci">xwer_t xwds_device_vop_stop(struct xwds_device *dev)</div><div class="ttdoc">设备基本操作函数：停止设备</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8c_source.html#l00124">device.c:124</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_ga9971f3ed17fb65399b5528fa4a4e94c8"><div class="ttname"><a href="group__xwcd__ds__device.html#ga9971f3ed17fb65399b5528fa4a4e94c8">xwds_device_vop_remove</a></div><div class="ttdeci">xwer_t xwds_device_vop_remove(struct xwds_device *dev)</div><div class="ttdoc">设备基本操作函数：删除设备</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8c_source.html#l00086">device.c:86</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_gacd2f8a67386345880905e9099924927c"><div class="ttname"><a href="group__xwcd__ds__device.html#gacd2f8a67386345880905e9099924927c">xwds_device_vop_resume</a></div><div class="ttdeci">xwer_t xwds_device_vop_resume(struct xwds_device *dev)</div><div class="ttdoc">设备基本操作函数：继续设备</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8c_source.html#l00163">device.c:163</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_gada012caf11d782b5a3c3b8587990ae40"><div class="ttname"><a href="group__xwcd__ds__device.html#gada012caf11d782b5a3c3b8587990ae40">xwds_device_vop_probe</a></div><div class="ttdeci">xwer_t xwds_device_vop_probe(struct xwds_device *dev)</div><div class="ttdoc">设备基本操作函数：探测设备</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8c_source.html#l00067">device.c:67</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__device_html_gaebbbeb318c6f7ce466b12eeee7ae2350"><div class="ttname"><a href="group__xwcd__ds__device.html#gaebbbeb318c6f7ce466b12eeee7ae2350">xwds_device_vop_suspend</a></div><div class="ttdeci">xwer_t xwds_device_vop_suspend(struct xwds_device *dev)</div><div class="ttdoc">设备基本操作函数：暂停设备</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8c_source.html#l00144">device.c:144</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__iochip_html_ga447256e7eb891f10bd4753f32b85107a"><div class="ttname"><a href="group__xwcd__ds__iochip.html#ga447256e7eb891f10bd4753f32b85107a">xwds_iochip_grab</a></div><div class="ttdeci">xwer_t xwds_iochip_grab(struct xwds_iochip *iochip)</div><div class="ttdoc">XWDS API：增加对象的引用计数</div><div class="ttdef"><b>Definition</b> <a href="iochip_2chip_8c_source.html#l00071">chip.c:71</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__iochip_html_ga750653544c84171501d58b632fe2ee43"><div class="ttname"><a href="group__xwcd__ds__iochip.html#ga750653544c84171501d58b632fe2ee43">xwds_iochip_put</a></div><div class="ttdeci">xwer_t xwds_iochip_put(struct xwds_iochip *iochip)</div><div class="ttdoc">XWDS API：减少对象的引用计数</div><div class="ttdef"><b>Definition</b> <a href="iochip_2chip_8c_source.html#l00077">chip.c:77</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__iochip_html_ga86d35bc73081f94d8b019ce366f67263"><div class="ttname"><a href="group__xwcd__ds__iochip.html#ga86d35bc73081f94d8b019ce366f67263">xwds_iochip_construct</a></div><div class="ttdeci">void xwds_iochip_construct(struct xwds_iochip *iochip)</div><div class="ttdoc">XWDS API：IOCHIP对象的构造函数</div><div class="ttdef"><b>Definition</b> <a href="iochip_2chip_8c_source.html#l00058">chip.c:58</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds__iochip_html_gafb0894a0a86e1784f212fdad530210e4"><div class="ttname"><a href="group__xwcd__ds__iochip.html#gafb0894a0a86e1784f212fdad530210e4">xwds_iochip_destruct</a></div><div class="ttdeci">void xwds_iochip_destruct(struct xwds_iochip *iochip)</div><div class="ttdoc">XWDS API：IOCHIP对象的析构函数</div><div class="ttdef"><b>Definition</b> <a href="iochip_2chip_8c_source.html#l00065">chip.c:65</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds_html_ga60d990e5df4266fbb1b7dada9160c698"><div class="ttname"><a href="group__xwcd__ds.html#ga60d990e5df4266fbb1b7dada9160c698">__xwds_vop</a></div><div class="ttdeci">#define __xwds_vop</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2standard_8h_source.html#l00036">standard.h:36</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds_html_ga8dfce3af09db190cd28028a817ae9275"><div class="ttname"><a href="group__xwcd__ds.html#ga8dfce3af09db190cd28028a817ae9275">__xwds_api</a></div><div class="ttdeci">#define __xwds_api</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2standard_8h_source.html#l00033">standard.h:33</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds_html_ga9541a62248e32dc84221e1f55d11c2b3"><div class="ttname"><a href="group__xwcd__ds.html#ga9541a62248e32dc84221e1f55d11c2b3">XWDS_VALIDATE</a></div><div class="ttdeci">#define XWDS_VALIDATE(exp, errstr,...)</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2standard_8h_source.html#l00051">standard.h:51</a></div></div>
+<div class="ttc" id="agroup__xwcd__ds_html_gab6317ea3e673d7755ef26e5798ddd8c0"><div class="ttname"><a href="group__xwcd__ds.html#gab6317ea3e673d7755ef26e5798ddd8c0">__xwds_rodata</a></div><div class="ttdeci">#define __xwds_rodata</div><div class="ttdef"><b>Definition</b> <a href="xwcd_2ds_2standard_8h_source.html#l00038">standard.h:38</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga3f317946e043623f9d6b93dbf60e6316"><div class="ttname"><a href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a></div><div class="ttdeci">#define EFAULT</div><div class="ttdoc">Bad address</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00044">errno.h:44</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga06847ea8c7edb2b1f166288b230f251f"><div class="ttname"><a href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a></div><div class="ttdeci">signed long xwer_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00554">type.h:554</a></div></div>
+<div class="ttc" id="aiochip_2chip_8c_html_a137a9814a925ef71ae1582772f423ae1"><div class="ttname"><a href="iochip_2chip_8c.html#a137a9814a925ef71ae1582772f423ae1">xwds_iochip_vop_remove</a></div><div class="ttdeci">static xwer_t xwds_iochip_vop_remove(struct xwds_iochip *iochip)</div><div class="ttdoc">XWDS VOP：移除IOCHIP</div><div class="ttdef"><b>Definition</b> <a href="iochip_2chip_8c_source.html#l00103">chip.c:103</a></div></div>
+<div class="ttc" id="aiochip_2chip_8c_html_a28f50d60955b75b493dcf9c762795c57"><div class="ttname"><a href="iochip_2chip_8c.html#a28f50d60955b75b493dcf9c762795c57">xwds_iochip_vop_start</a></div><div class="ttdeci">static xwer_t xwds_iochip_vop_start(struct xwds_iochip *iochip)</div><div class="ttdoc">XWDS VOP：启动IOCHIP</div><div class="ttdef"><b>Definition</b> <a href="iochip_2chip_8c_source.html#l00116">chip.c:116</a></div></div>
+<div class="ttc" id="aiochip_2chip_8c_html_a3f4ea433a4198987dda3ec88927c84ae"><div class="ttname"><a href="iochip_2chip_8c.html#a3f4ea433a4198987dda3ec88927c84ae">xwds_iochip_vop_probe</a></div><div class="ttdeci">static xwer_t xwds_iochip_vop_probe(struct xwds_iochip *iochip)</div><div class="ttdoc">XWDS VOP：探测IOCHIP</div><div class="ttdef"><b>Definition</b> <a href="iochip_2chip_8c_source.html#l00088">chip.c:88</a></div></div>
+<div class="ttc" id="aiochip_2chip_8c_html_a4682522a9e12cb6b00394aff2e18ba02"><div class="ttname"><a href="iochip_2chip_8c.html#a4682522a9e12cb6b00394aff2e18ba02">xwds_iochip_vop_suspend</a></div><div class="ttdeci">static xwer_t xwds_iochip_vop_suspend(struct xwds_iochip *iochip)</div><div class="ttdoc">XWDS VOP：暂停IOCHIP</div><div class="ttdef"><b>Definition</b> <a href="iochip_2chip_8c_source.html#l00144">chip.c:144</a></div></div>
+<div class="ttc" id="aiochip_2chip_8c_html_a8c7b43b9633138b69ee4d18c9e5d0a12"><div class="ttname"><a href="iochip_2chip_8c.html#a8c7b43b9633138b69ee4d18c9e5d0a12">xwds_iochip_vop_resume</a></div><div class="ttdeci">static xwer_t xwds_iochip_vop_resume(struct xwds_iochip *iochip)</div><div class="ttdoc">XWDS VOP：继续IOCHIP</div><div class="ttdef"><b>Definition</b> <a href="iochip_2chip_8c_source.html#l00157">chip.c:157</a></div></div>
+<div class="ttc" id="aiochip_2chip_8c_html_ac5900f6c4c3070592a2ae44f48d2a1da"><div class="ttname"><a href="iochip_2chip_8c.html#ac5900f6c4c3070592a2ae44f48d2a1da">xwds_iochip_vop</a></div><div class="ttdeci">const struct xwds_virtual_operation xwds_iochip_vop</div><div class="ttdef"><b>Definition</b> <a href="iochip_2chip_8c_source.html#l00045">chip.c:45</a></div></div>
+<div class="ttc" id="aiochip_2chip_8c_html_ae5e43fe20324200b27567c93261663df"><div class="ttname"><a href="iochip_2chip_8c.html#ae5e43fe20324200b27567c93261663df">xwds_iochip_vop_stop</a></div><div class="ttdeci">static xwer_t xwds_iochip_vop_stop(struct xwds_iochip *iochip)</div><div class="ttdoc">XWDS VOP：停止IOCHIP</div><div class="ttdef"><b>Definition</b> <a href="iochip_2chip_8c_source.html#l00129">chip.c:129</a></div></div>
+<div class="ttc" id="aiochip_2chip_8h_html"><div class="ttname"><a href="iochip_2chip_8h.html">chip.h</a></div><div class="ttdoc">玄武设备栈：IO扩展芯片</div></div>
+<div class="ttc" id="astructxwds__device_html_a7d5ba4f809e2fc89a9ea194edc1f2469"><div class="ttname"><a href="structxwds__device.html#a7d5ba4f809e2fc89a9ea194edc1f2469">xwds_device::vop</a></div><div class="ttdeci">const struct xwds_virtual_operation * vop</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8h_source.html#l00138">device.h:138</a></div></div>
+<div class="ttc" id="astructxwds__iochip_html"><div class="ttname"><a href="structxwds__iochip.html">xwds_iochip</a></div><div class="ttdoc">IO扩展芯片</div><div class="ttdef"><b>Definition</b> <a href="iochip_2chip_8h_source.html#l00095">chip.h:95</a></div></div>
+<div class="ttc" id="astructxwds__iochip_html_a8467a37cf311a499d312a4b008499c68"><div class="ttname"><a href="structxwds__iochip.html#a8467a37cf311a499d312a4b008499c68">xwds_iochip::dev</a></div><div class="ttdeci">struct xwds_device dev</div><div class="ttdef"><b>Definition</b> <a href="iochip_2chip_8h_source.html#l00097">chip.h:97</a></div></div>
+<div class="ttc" id="astructxwds__iochip_html_a8f0e9f6d5d418956c51c243712071071"><div class="ttname"><a href="structxwds__iochip.html#a8f0e9f6d5d418956c51c243712071071">xwds_iochip::bc</a></div><div class="ttdeci">union xwds_iochip::@19 bc</div></div>
+<div class="ttc" id="astructxwds__virtual__operation_html"><div class="ttname"><a href="structxwds__virtual__operation.html">xwds_virtual_operation</a></div><div class="ttdoc">基本操作的虚函数表（类似C++的虚函数表）</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8h_source.html#l00099">device.h:99</a></div></div>
+<div class="ttc" id="astructxwds__virtual__operation_html_a662775f25eaaeec5a3c285ff83b9aa49"><div class="ttname"><a href="structxwds__virtual__operation.html#a662775f25eaaeec5a3c285ff83b9aa49">xwds_virtual_operation::stop</a></div><div class="ttdeci">xwer_t(* stop)(struct xwds_device *)</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8h_source.html#l00103">device.h:103</a></div></div>
+<div class="ttc" id="astructxwds__virtual__operation_html_a7161bf9059d427e44faefacebd501bf7"><div class="ttname"><a href="structxwds__virtual__operation.html#a7161bf9059d427e44faefacebd501bf7">xwds_virtual_operation::remove</a></div><div class="ttdeci">xwer_t(* remove)(struct xwds_device *)</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8h_source.html#l00101">device.h:101</a></div></div>
+<div class="ttc" id="astructxwds__virtual__operation_html_acf42b4caae0898e31d52d446ee5a93b5"><div class="ttname"><a href="structxwds__virtual__operation.html#acf42b4caae0898e31d52d446ee5a93b5">xwds_virtual_operation::probe</a></div><div class="ttdeci">xwer_t(* probe)(struct xwds_device *)</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8h_source.html#l00100">device.h:100</a></div></div>
+<div class="ttc" id="astructxwds__virtual__operation_html_ae755d965bd86d231a3fe69dd115d3ad4"><div class="ttname"><a href="structxwds__virtual__operation.html#ae755d965bd86d231a3fe69dd115d3ad4">xwds_virtual_operation::resume</a></div><div class="ttdeci">xwer_t(* resume)(struct xwds_device *)</div><div class="ttdef"><b>Definition</b> <a href="ds_2device_8h_source.html#l00106">device.h:106</a></div></div>
+<div class="ttc" id="axwcd_2ds_2standard_8h_html"><div class="ttname"><a href="xwcd_2ds_2standard_8h.html">standard.h</a></div><div class="ttdoc">玄武设备栈：顶级头文件</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_91e37f1231cf9910bfa2c11be57d8122.html">xwcd</a></li><li class="navelem"><a class="el" href="dir_7e7acccef388183555cf60cdd0da09f6.html">ds</a></li><li class="navelem"><a class="el" href="dir_30f1e19aebdfafb1f2bd4e6032cfaf91.html">iochip</a></li><li class="navelem"><a class="el" href="iochip_2chip_8c.html">chip.c</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
+  </ul>
+</div>
+</body>
+</html>

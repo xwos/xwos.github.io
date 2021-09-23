@@ -1,0 +1,346 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>XWOS – 通用库</title>
+    <link>/docs/TechRefManual/Xwlib/</link>
+    <description>Recent content in 通用库 on XWOS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    
+	  <atom:link href="/docs/TechRefManual/Xwlib/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: 位操作库</title>
+      <link>/docs/TechRefManual/Xwlib/Xwbop/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/TechRefManual/Xwlib/Xwbop/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;位操作&#34;&gt;位操作&lt;/h2&gt;
+&lt;p&gt;XWOS提供了位操作模板库， &lt;a href=&#34;../../XwosStd#%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B&#34;&gt;基本类型&lt;/a&gt; 中定义的
+各种 &lt;strong&gt;非函数指针类型&lt;/strong&gt; 都可使用位操作。位操作函数模板包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwbop_s1m()&lt;/code&gt; ：将数据掩码部分的位全部置1&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_c0m()&lt;/code&gt; ：将数据掩码部分的位全部清0&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_x1m()&lt;/code&gt; ：将数据掩码部分的位全部翻转&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_rbit()&lt;/code&gt; ：将数据的位镜面翻转&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_re()&lt;/code&gt; ：将数据的大小端翻转&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_ffs()&lt;/code&gt; ：在数据中从最低位起查找第一个被置1的位&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_fls()&lt;/code&gt; ：在数据中从最高位起查找第一个被置1的位1的位&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_ffz()&lt;/code&gt; ：在数据中从最低位起查找第一个被清0的位&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_flz()&lt;/code&gt; ：在数据中从最高位起查找第一个被清0的位&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_weight()&lt;/code&gt; ：统计数据中1的个数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;所有位操作函数的第一个参数均为 &lt;a href=&#34;../../XwosStd#%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B&#34;&gt;基本类型&lt;/a&gt; ，
+第二个参数是数据或数据的指针，例如：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;xwssq_t&lt;/span&gt; idx;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 从最低位开始查找&amp;#34;xwu32_t&amp;#34;类型的数据&amp;#34;0&amp;#34;中第一个被置1的位，结果为-1 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;idx &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;xwbop_ffs&lt;/span&gt;(&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;xwu32_t&lt;/span&gt;, &lt;span style=&#34;color:#666&#34;&gt;0&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 从最低位开始查找&amp;#34;xwu32_t&amp;#34;类型的数据&amp;#34;0xF0&amp;#34;中第一个被置1的位，结果为4 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;idx &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;xwbop_ffs&lt;/span&gt;(&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;xwu32_t&lt;/span&gt;, &lt;span style=&#34;color:#666&#34;&gt;0xF0&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt; &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 将&amp;#34;xwu32_t&amp;#34;类型的数据&amp;#34;0xAA&amp;#34;进行镜像翻转，结果为0x55 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;xwu32_t&lt;/span&gt; rdata &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;xwbop_rbit&lt;/span&gt;(&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;xwu32_t&lt;/span&gt;, &lt;span style=&#34;color:#666&#34;&gt;0xAA&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;位图操作&#34;&gt;位图操作&lt;/h2&gt;
+&lt;p&gt;XWOS提供了基本类型 &lt;code&gt;xwbmp_t&lt;/code&gt; ，用于定义位图，位图是 &lt;code&gt;xwbmp_t&lt;/code&gt; 的数组。
+用户可以声明任意位数的位图，XWOS提供了函数集方便用户操作位图：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwbmpop_declare()&lt;/code&gt; ：声明位图&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpop_assign()&lt;/code&gt; ：赋值&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpop_cmp()&lt;/code&gt; ：比较两个位图&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpop_s1all()&lt;/code&gt; ：所有位置 &lt;strong&gt;1&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpop_c0all()&lt;/code&gt; ：所有位清 &lt;strong&gt;0&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpop_s1i()&lt;/code&gt; ：将位图中某位置 &lt;strong&gt;1&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpop_s1m()&lt;/code&gt; ：将位图中掩码部分置 &lt;strong&gt;1&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpop_c0i()&lt;/code&gt; ：将位图中某位清 &lt;strong&gt;0&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpop_c0m()&lt;/code&gt; ：将位图中掩码部分清 &lt;strong&gt;0&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpop_x1i()&lt;/code&gt; ：将位图中某位翻转&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpop_x1m()&lt;/code&gt; ：将位图中掩码部分翻转&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpop_t1i()&lt;/code&gt; ：测试位图中的某位是否为 &lt;strong&gt;1&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpop_t1ma()&lt;/code&gt; ：测试位图中掩码部分是否全部为 &lt;strong&gt;1&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpop_t1ma_then_c0m()&lt;/code&gt; ：测试位图中掩码部分是否全部为1，如果是，就将掩码部分全部清 &lt;strong&gt;0&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpop_t1mo()&lt;/code&gt; ：测试位图中掩码部分是否至少有一位为 &lt;strong&gt;1&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpop_t1mo_then_c0m()&lt;/code&gt; ：测试位图中掩码部分是否至少有一位为1，如果是，就将掩码部分全部清 &lt;strong&gt;0&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpop_t0ma()&lt;/code&gt; ：测试位图中掩码部分是否全部为 &lt;strong&gt;0&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpop_t0ma_then_s1m()&lt;/code&gt; ：测试位图中掩码部分是否全部为 &lt;strong&gt;0&lt;/strong&gt; ，如果是，就将掩码部分全部置 &lt;strong&gt;1&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpop_t0mo()&lt;/code&gt; ：测试位图中掩码部分是否至少有一位为 &lt;strong&gt;0&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpop_t0mo_then_s1m()&lt;/code&gt; ：测试位图中掩码部分是否至少有一位为 &lt;strong&gt;0&lt;/strong&gt; ，如果是，就将掩码部分全部置 &lt;strong&gt;1&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpop_not()&lt;/code&gt; ：非运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpop_and()&lt;/code&gt; ：与运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpop_or()&lt;/code&gt; ：或运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpop_xor()&lt;/code&gt; ：异或运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpop_ffs()&lt;/code&gt; ：从最低位起查找第一个被置1的位&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpop_fls()&lt;/code&gt; ：从最高位起查找第一个被置1的位&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpop_ffz()&lt;/code&gt; ：从最低位起查找第一个被清0的位&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpop_flz()&lt;/code&gt; ：从最高位起查找第一个被清0的位&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpop_weight()&lt;/code&gt; ：统计 &lt;strong&gt;1&lt;/strong&gt; 的个数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;api参考&#34;&gt;API参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lib__xwbop.html&#34;&gt;&lt;strong&gt;头文件 &amp;lt;xwos/lib/xwbop.h&amp;gt;&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 原子操作库</title>
+      <link>/docs/TechRefManual/Xwlib/Xwaop/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/TechRefManual/Xwlib/Xwaop/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;内存模型&#34;&gt;内存模型&lt;/h2&gt;
+&lt;p&gt;与标准库一样，XWOS的原子操作分为6种内存模型：&lt;/p&gt;
+&lt;h4 id=&#34;xwaop_mo_relaxed&#34;&gt;&lt;code&gt;xwaop_mo_relaxed&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;松散序，不作任何内存屏障操作。&lt;/p&gt;
+&lt;h4 id=&#34;xwaop_mo_consume&#34;&gt;&lt;code&gt;xwaop_mo_consume&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;消费序，会在读操作之间增加 &lt;strong&gt;Data dependency barrier&lt;/strong&gt; 。
+这个屏障并不常见，对于常见的x86/ARM都是自动处理 &lt;strong&gt;Data dependency barrier&lt;/strong&gt; 的。
+据作者所知，目前只有Alpha架构的CPU需要程序员关注 &lt;strong&gt;Data dependency barrier&lt;/strong&gt; 。
+Rust语言干脆连这个内存序都不提供。&lt;/p&gt;
+&lt;h4 id=&#34;xwaop_mo_acquire&#34;&gt;&lt;code&gt;xwaop_mo_acquire&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;获得序，常常与配合读一起使用，形成 &lt;strong&gt;load-acquire&lt;/strong&gt; 。&lt;/p&gt;
+&lt;h4 id=&#34;xwaop_mo_release&#34;&gt;&lt;code&gt;xwaop_mo_release&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;释放序，常常与配合写一起使用，形成 &lt;strong&gt;store-release&lt;/strong&gt; 。&lt;/p&gt;
+&lt;h4 id=&#34;xwaop_mo_acq_rel&#34;&gt;&lt;code&gt;xwaop_mo_acq_rel&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;获得释放序，加载时是 &lt;strong&gt;acquire&lt;/strong&gt; 的，回写时是 &lt;strong&gt;release&lt;/strong&gt; 的。通常用于 &lt;strong&gt;读-改-回写&lt;/strong&gt; 这种原子操作。&lt;/p&gt;
+&lt;h4 id=&#34;xwaop_mo_seq_cst&#34;&gt;&lt;code&gt;xwaop_mo_seq_cst&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;一致序，表明CPU对内存的访问顺序是严格按照程序代码（编译后的）的顺序所进行的。这在期刊文献中被称为 &lt;strong&gt;Sequential Consistency&lt;/strong&gt; 。&lt;/p&gt;
+&lt;h2 id=&#34;原子操作&#34;&gt;原子操作&lt;/h2&gt;
+&lt;p&gt;XWOS提供了原子操作模板库， &lt;a href=&#34;../../XwosStd#%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B&#34;&gt;基本类型&lt;/a&gt; 中定义的各种 &lt;strong&gt;基本类型&lt;/strong&gt; 都可使用原子操作。
+XWOS的原子操作库，可以与标准库 &lt;code&gt;&amp;lt;stdatomic.h&amp;gt;&lt;/code&gt; 中的原子操作混合使用。&lt;/p&gt;
+&lt;p&gt;原子操作函数模板包括：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;读
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwaop_load()&lt;/code&gt; ：加载
+&lt;ul&gt;
+&lt;li&gt;可以指定6种内存序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwaop_read()&lt;/code&gt; ：读
+&lt;ul&gt;
+&lt;li&gt;内存序： &lt;code&gt;xwaop_mo_acquire&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;写
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwaop_store()&lt;/code&gt; ：存储
+&lt;ul&gt;
+&lt;li&gt;可以指定6种内存序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwaop_write()&lt;/code&gt; ：写
+&lt;ul&gt;
+&lt;li&gt;内存序： &lt;code&gt;xwaop_mo_release&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;读-改-写
+&lt;ul&gt;
+&lt;li&gt;基本运算
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwaop_add()&lt;/code&gt; ：加&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwaop_sub()&lt;/code&gt; ：减&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwaop_rsb()&lt;/code&gt; ：反向减法&lt;/li&gt;
+&lt;li&gt;内存序： &lt;code&gt;xwaop_mo_acq_rel&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;位运算
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwaop_and()&lt;/code&gt; ：与&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwaop_or()&lt;/code&gt; ：或&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwaop_xor()&lt;/code&gt; ：异或&lt;/li&gt;
+&lt;li&gt;内存序： &lt;code&gt;xwaop_mo_acq_rel&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;位操作
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwaop_s1m()&lt;/code&gt; ：将数据掩码部分的位全部置1&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwaop_c0m()&lt;/code&gt; ：将数据掩码部分的位全部清0&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwaop_x1m()&lt;/code&gt; ：将数据掩码部分的位全部翻转&lt;/li&gt;
+&lt;li&gt;内存序： &lt;code&gt;xwaop_mo_acq_rel&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;读-测试-改-写
+&lt;ul&gt;
+&lt;li&gt;所有名称匹配正则表达式 &lt;code&gt;xwaop_t.+_then_.+&lt;/code&gt; 的函数
+&lt;ul&gt;
+&lt;li&gt;分为两种情况
+&lt;ul&gt;
+&lt;li&gt;测试成功，继续执行“改-写”操作，此时内存序为 &lt;code&gt;xwaop_mo_acq_rel&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;测试失败，相当于读操作，此时内存序为 &lt;code&gt;xwaop_mo_consume&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;所有原子操作函数的第一个参数均为 &lt;a href=&#34;../../XwosStd#%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B&#34;&gt;基本类型&lt;/a&gt; ，第二个参数是原子数据的指针，例如：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;xwer_t&lt;/span&gt; rc;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;xwsq_a refcnt &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; v;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;xwsq_t&lt;/span&gt; nv, ov;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/*
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080;font-style:italic&#34;&gt; * 测试refcnt是否为0：
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080;font-style:italic&#34;&gt; * + ture: refcnt增加1，nv返回refcnt增加以后的新值，ov返回refcnt增加以前的旧值，
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080;font-style:italic&#34;&gt; *         内存序：acq_rel，rc为返回值XWOK；
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080;font-style:italic&#34;&gt; * + false: nv与ov都返回refcnt的值，内存序：consume，rc为返回值-EACCES；
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080;font-style:italic&#34;&gt; */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rc &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#00a000&#34;&gt;xwaop_teq_then_add&lt;/span&gt;(&lt;span style=&#34;color:#0b0;font-weight:bold&#34;&gt;xwsq_t&lt;/span&gt;, &lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;refcnt, &lt;span style=&#34;color:#666&#34;&gt;0&lt;/span&gt;, &lt;span style=&#34;color:#666&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;nv, &lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;ov);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;位图原子操作&#34;&gt;位图原子操作&lt;/h2&gt;
+&lt;p&gt;位图（ &lt;code&gt;xwbmp_t&lt;/code&gt; 数组）可进行原子操作，XWOS提供了基本函数库：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;声明
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwbmpaop_define()&lt;/code&gt; ：声明原子位图&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;读
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwbmpaop_t1i()&lt;/code&gt; ：测试位图中的某位是否被置1&lt;/li&gt;
+&lt;li&gt;内存序： &lt;code&gt;consume&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;写
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwbmpaop_s1all()&lt;/code&gt; ：将位图所有位置1&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpaop_c0all()&lt;/code&gt; ：将位图所有位清0&lt;/li&gt;
+&lt;li&gt;内存序： &lt;code&gt;acq_rel&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;读-改-写
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwbmpaop_s1i()&lt;/code&gt; ：将位图中某位置1&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpaop_c1i()&lt;/code&gt; ：将位图中某位清0&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpaop_x1i()&lt;/code&gt; ：将位图中某位翻转&lt;/li&gt;
+&lt;li&gt;内存序： &lt;code&gt;acq_rel&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;读-测试-改-写
+&lt;ul&gt;
+&lt;li&gt;所有名字匹配正则表达式 &lt;code&gt;xwbmpaop_.+_then_.+&lt;/code&gt; 的函数
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwbmpaop_t0i_then_s1i()&lt;/code&gt; ：测试位图中某位是否为0，如果是，就将它置1&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpaop_t1i_then_c0i()&lt;/code&gt; ：测试位图中某位是否为1，如果是，就将它清0&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpaop_fls_then_c0i()&lt;/code&gt; ：从最高位起查找位图中第一个为1的位并将它清0&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpaop_flz_then_s1i()&lt;/code&gt; ：从最高位起查找位图中第一个为0的位并将它置1&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpaop_ffs_then_c0i()&lt;/code&gt; ：从最低位起查找位图中第一个为1的位并将它清0&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpaop_ffz_then_s1i()&lt;/code&gt; ：从最低位起查找位图中第一个为0的位并将它置1&lt;/li&gt;
+&lt;li&gt;分为两种情况
+&lt;ul&gt;
+&lt;li&gt;测试成功，继续执行“改-写”操作，此时内存序为 &lt;code&gt;xwaop_mo_acq_rel&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;测试失败，相当于读操作，此时内存序为 &lt;code&gt;xwaop_mo_consume&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;api参考&#34;&gt;API参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;原子操作&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lib__xwaop.html&#34;&gt;&lt;strong&gt;头文件 &amp;lt;xwos/lib/xwaop.h&amp;gt;&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;位图原子操作&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lib__xwbmpaop.html&#34;&gt;&lt;strong&gt;头文件 &amp;lt;xwos/lib/xwbmpaop.h&amp;gt;&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 日志</title>
+      <link>/docs/TechRefManual/Xwlib/Log/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/TechRefManual/Xwlib/Log/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
+&lt;p&gt;XWOS提供了日志框架，用户可以输出带有等级的日志：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;VERBOSE，等级1，冗长&lt;/li&gt;
+&lt;li&gt;DEBUG，等级2，调试&lt;/li&gt;
+&lt;li&gt;INFO，等级3，信息&lt;/li&gt;
+&lt;li&gt;NOTICE，等级4，提醒&lt;/li&gt;
+&lt;li&gt;WARNING，等级5，警告&lt;/li&gt;
+&lt;li&gt;ERR，等级6，错误&lt;/li&gt;
+&lt;li&gt;CRIT，等级7，危险&lt;/li&gt;
+&lt;li&gt;EMERG，等级8，紧急&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;用户可以通过配置 &lt;code&gt;XWLIBCFG_XWLOG_LEVEL&lt;/code&gt; 来控制各种等级的日志是否输出：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;当等级大于等于 &lt;code&gt;XWLIBCFG_XWLOG_LEVEL&lt;/code&gt; 的日志才会输出，&lt;/li&gt;
+&lt;li&gt;当 &lt;code&gt;XWLIBCFG_XWLOG_LEVEL&lt;/code&gt; 配置为 &lt;code&gt;0&lt;/code&gt; 将关闭所有日志。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;XWOS的日志框架需要用户在BSP中提供后端驱动接口，以决定日志最终输出到串口、SD卡、还是别的设备：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;当配置 &lt;code&gt;SOCCFG_LOG&lt;/code&gt; 为 &lt;code&gt;1&lt;/code&gt; 时，BSP中需要提供函数 &lt;code&gt;soc_log_write()&lt;/code&gt; ；&lt;/li&gt;
+&lt;li&gt;当配置 &lt;code&gt;BRDCFG_LOG&lt;/code&gt; 为 &lt;code&gt;1&lt;/code&gt; 时，BSP中需要提供函数&lt;code&gt; board_log_write()&lt;/code&gt; ；&lt;/li&gt;
+&lt;li&gt;当配置 &lt;code&gt;SOCCFG_LOG&lt;/code&gt; 与配置 &lt;code&gt;BRDCFG_LOG&lt;/code&gt; 同时为 &lt;code&gt;1&lt;/code&gt; 时， &lt;code&gt;SOCCFG_LOG&lt;/code&gt; 具有更高优先级；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;api参考&#34;&gt;API参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lib__xwlog.html&#34;&gt;&lt;strong&gt;头文件 &amp;lt;xwos/lib/xwlog.h&amp;gt;&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: CRC</title>
+      <link>/docs/TechRefManual/Xwlib/Crc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/TechRefManual/Xwlib/Crc/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;api参考&#34;&gt;API参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;CRC8&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lib__crc8.html&#34;&gt;&lt;strong&gt;头文件 &amp;lt;xwos/lib/crc8.h&amp;gt;&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;CRC32&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../capi/group__xwos__lib__crc32.html&#34;&gt;&lt;strong&gt;头文件 &amp;lt;xwos/lib/crc32.h&amp;gt;&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>
