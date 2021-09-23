@@ -1,0 +1,47 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="XWOS RUST：软件定时器"><meta name="keywords" content="rust, rustlang, rust-lang, swt"><title>xwrust::xwos::swt - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script>
+    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../xwrust/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../../xwrust/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"><a href="#">Module swt</a></h2><div class="sidebar-elems"><section><div class="block"><ul><li><a href="#structs">Structs</a></li><li><a href="#constants">Constants</a></li></ul></div></section><div id="sidebar-vars" data-name="swt" data-ty="mod" data-relpath="./"></div><script defer src="./sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../xwrust/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><div id="settings-menu" tabindex="-1">
+                                <a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div>
+                        </div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
+    <h1 class="fqn"><span class="in-band">Module <a href="../../index.html">xwrust</a>::<wbr><a href="../index.html">xwos</a>::<wbr><a class="mod" href="#">swt</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../../../src/xwrust/xwos/swt.rs.html#1-294">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="xwos-rust软件定时器"><a href="#xwos-rust软件定时器">XWOS RUST：软件定时器</a></h2>
+<p>XWOS RUST的软件定时器是基于XWOS内核中的软件定时器来实现的。</p>
+<p>软件定时器的 <strong>回调函数</strong> 运行在中断上下文或中断底半部上下文，是由硬件的中断驱动的。</p>
+<p>RUST的编译器无法获知硬件的运行状态，所以无法预测 <strong>回调函数</strong> 什么时候会执行，也无法检测软件定时器对象的生命周期。</p>
+<p>如果 <strong>回调函数</strong> 是闭包，编译器也无法检测捕获环境中引用的生命周期。</p>
+<p><strong>回调函数</strong> 甚至可能不执行，如果变量移动到 <strong>回调函数</strong> ，有可能因 <strong>回调函数</strong> 不执行而无法被 <a href="https://doc.rust-lang.org/core/ops/trait.Drop.html#tymethod.drop"><code>drop()</code></a> 。</p>
+<p>因此，软件定时器对象只能定义为静态生命周期的全局变量，软件定时器的 <strong>回调函数</strong> 只能是 [<code>fn</code>] 或什么也不捕获的 <a href="https://doc.rust-lang.org/std/keyword.fn.html"><code>Fn()</code></a> 。</p>
+<h2 id="创建"><a href="#创建">创建</a></h2>
+<p>XWOS RUST的软件定时器可使用 <a href="struct.Swt.html#method.new" title="Swt::new()"><code>Swt::new()</code></a> 创建。只能创建具有静态生命周期 <a href="https://doc.rust-lang.org/std/keyword.static.html"><code>static</code></a> 约束的全局变量：</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">xwrust::xwos::swt</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident">xwrust::xwos::lock::spinlock</span>::<span class="kw-2">*</span>;
+
+<span class="comment">// 创建一个带有自选锁的软件定时器</span>
+<span class="kw">static</span> <span class="ident">SWT</span>: <span class="ident">Swt</span><span class="op">&lt;</span><span class="ident">Spinlock</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Swt::new</span>(<span class="ident">Spinlock::new</span>(<span class="number">1</span>));</code></pre></div>
+<h2 id="内部数据"><a href="#内部数据">内部数据</a></h2>
+<p>软件定时器可以携带内部数据 <code>T</code> ，由于软件定时器具有静态生命周期，因此内部数据 <code>T</code> 也为静态生命周期。
+访问 <code>T</code> 时需要上锁，防止不同上下文之间竞争数据。但由于软件定时器的 <strong>回调函数</strong> 只能运行在中断上下文或中断底半部上下文，
+锁只能是 <a href="../lock/spinlock/struct.Spinlock.html"><code>Spinlock</code></a> 或 <a href="../lock/seqlock/struct.Seqlock.html"><code>Seqlock</code></a> 。</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="comment">// 内部数据 `T` 为 `Spinlock&lt;u32&gt;`</span>
+<span class="kw">static</span> <span class="ident">SWT</span>: <span class="ident">Swt</span><span class="op">&lt;</span><span class="ident">Spinlock</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Swt::new</span>(<span class="ident">Spinlock::new</span>(<span class="number">1</span>));</code></pre></div>
+<h2 id="回调函数"><a href="#回调函数">回调函数</a></h2>
+<p>软件定时器的 <strong>回调函数</strong> 的形式为 <code>fn(&amp;Swt)</code> ，其中 <code>&amp;Swt</code> 是指向软件定时器自己的一个引用。
+通过此应用，可以访问定时器携带的数据。</p>
+<p><a href="struct.Swt.html#method.as_ref" title="Swt::as_ref()"><code>Swt::as_ref()</code></a> 可以获取定时器内部数据 <code>T</code> 的引用。
+<a href="struct.Swt.html#method.as_mut" title="Swt::as_mut()"><code>Swt::as_mut()</code></a> 可以获取定时器内部数据 <code>T</code> 的可变引用。</p>
+<h2 id="启动"><a href="#启动">启动</a></h2>
+<p>软件定时器由两种启动方式：</p>
+<p><a href="struct.Swt.html#method.once" title="Swt::once()"><code>Swt::once()</code></a> 软件定时器只会运行一次；
+<a href="struct.Swt.html#method.repeat" title="Swt::repeat()"><code>Swt::repeat()</code></a> 软件定时器会重复运行。</p>
+<h2 id="停止"><a href="#停止">停止</a></h2>
+<p><a href="struct.Swt.html#method.stop" title="Swt::stop()"><code>Swt::stop()</code></a> 可用于停止软件定时器，若软件定时器未到达超时时间，回调函数不会被调用。</p>
+</div></details><h2 id="structs" class="small-section-header"><a href="#structs">Structs</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.Swt.html" title="xwrust::xwos::swt::Swt struct">Swt</a></div><div class="item-right docblock-short"><p>软件定时器对象结构体</p>
+</div></div></div><h2 id="constants" class="small-section-header"><a href="#constants">Constants</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="constant" href="constant.SIZEOF_XWOS_SWT.html" title="xwrust::xwos::swt::SIZEOF_XWOS_SWT constant">SIZEOF_XWOS_SWT</a></div><div class="item-right docblock-short"><p>XWOS软件定时器对象占用的内存大小</p>
+</div></div></div></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="xwrust" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (ee160f2f5 2022-05-23)" ></div>
+</body></html>

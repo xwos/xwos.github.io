@@ -1,0 +1,151 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>XWOS – 上手指南</title>
+    <link>/docs/quick-guide/</link>
+    <description>Recent content in 上手指南 on XWOS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	  <atom:link href="/docs/quick-guide/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: STM32</title>
+      <link>/docs/quick-guide/STM32/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/quick-guide/STM32/</guid>
+      <description>
+        
+        
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: GD32</title>
+      <link>/docs/quick-guide/GD32/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/quick-guide/GD32/</guid>
+      <description>
+        
+        
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: GD32V</title>
+      <link>/docs/quick-guide/GD32V/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/quick-guide/GD32V/</guid>
+      <description>
+        
+        
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: S32K</title>
+      <link>/docs/quick-guide/S32K/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/quick-guide/S32K/</guid>
+      <description>
+        
+        
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 玄武内核模块</title>
+      <link>/docs/quick-guide/XWKO/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/quick-guide/XWKO/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;安装编译工具&#34;&gt;安装编译工具&lt;/h2&gt;
+&lt;h3 id=&#34;emacs&#34;&gt;emacs&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;用途：执行elisp脚本&lt;/li&gt;
+&lt;li&gt;安装方法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt-add-repository ppa:kelleyk/emacs
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt-get update
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt install emacs27
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;bash&#34;&gt;bash&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;用途：执行shell脚本&lt;/li&gt;
+&lt;li&gt;安装方法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo dpkg-reconfigure dash &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;# 选择“否”&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;build-essential&#34;&gt;build-essential&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;用途：这是一个虚包，此包会通过依赖将相关的一系列工具(make, gcc, …)
+全部安装到系统。&lt;/li&gt;
+&lt;li&gt;安装方法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt install build-essential
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;在linux内核中运行玄武内核模块&#34;&gt;在Linux内核中运行玄武内核模块&lt;/h2&gt;
+&lt;p&gt;假定工作目录为 &lt;strong&gt;~&lt;/strong&gt; 。&lt;/p&gt;
+&lt;h3 id=&#34;下载源码&#34;&gt;下载源码&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a2f&#34;&gt;cd&lt;/span&gt; ~
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git clone https://gitee.com/xwos/XWKO.git
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;编译&#34;&gt;编译&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a2f&#34;&gt;cd&lt;/span&gt; ~/XWKO/xwbd/pc
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;make
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;img src=&#34;XwkoBuilding.png&#34; alt=&#34;img&#34; title=&#34;编译过程&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;运行演示代码hixwos&#34;&gt;运行演示代码：hixwos&lt;/h3&gt;
+&lt;p&gt;玄武内核模块中已经包含演示代码：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;路径：&lt;code&gt;xwam/example/hixwos&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;源文件：&lt;code&gt;xwmo.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;头文件：&lt;code&gt;mif.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;编译规则：&lt;code&gt;xwmo.mk&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;hixwos的运行流程&#34;&gt;hixwos的运行流程&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;在&lt;code&gt;xwbd/pc/cfg/xwam.h&lt;/code&gt;中将宏开关&lt;code&gt;XWAMCFG_example_hixwos&lt;/code&gt;定义为&lt;code&gt;1&lt;/code&gt;即可；&lt;/li&gt;
+&lt;li&gt;玄武内核模块安装到内核(&lt;code&gt;insmod&lt;/code&gt;)时，位于&lt;code&gt;xwbd/pc/bdl/board.c&lt;/code&gt;中
+的&lt;code&gt;board_example_init()&lt;/code&gt;函数会调用&lt;code&gt;hixwos_init()&lt;/code&gt;完成初始化工作；&lt;/li&gt;
+&lt;li&gt;玄武内核模块卸载(&lt;code&gt;rmmod&lt;/code&gt;)时，&lt;code&gt;board_example_exit()&lt;/code&gt;会调用&lt;code&gt;hixwos_exit()&lt;/code&gt;完成清理工作。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;安装模块&#34;&gt;安装模块&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a2f&#34;&gt;cd&lt;/span&gt; ~/XWKO/xwbd/pc
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo insmod wkspc/xwos.ko
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;查看玄武内核模块的输出&#34;&gt;查看玄武内核模块的输出&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;dmesg
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;此演示代码中创建了两个线程，Producer线程与Consumer线程，从log中可以看到
+两个线程通过信号量进行同步，3秒钟后退出。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;XwkoRunning.png&#34; alt=&#34;img&#34; title=&#34;运行过程&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;卸载模块&#34;&gt;卸载模块&lt;/h4&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo rmmod xwos.ko
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 编译与集成</title>
+      <link>/docs/quick-guide/build/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/quick-guide/build/</guid>
+      <description>
+        
+        
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

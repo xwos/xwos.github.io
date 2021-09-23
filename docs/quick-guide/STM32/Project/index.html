@@ -1,0 +1,1245 @@
+<!doctype html>
+<html lang="zh-cn" class="no-js">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="generator" content="Hugo 0.100.1" />
+<meta name="robots" content="index, follow">
+
+
+<link rel="shortcut icon" href="/favicons/favicon.ico" >
+<link rel="apple-touch-icon" href="/favicons/apple-touch-icon-180x180.png" sizes="180x180">
+<link rel="icon" type="image/png" href="/favicons/favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" href="/favicons/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/favicons/android-36x36.png" sizes="36x36">
+<link rel="icon" type="image/png" href="/favicons/android-48x48.png" sizes="48x48">
+<link rel="icon" type="image/png" href="/favicons/android-72x72.png" sizes="72x72">
+<link rel="icon" type="image/png" href="/favicons/android-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
+<link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
+
+<title>新建工程指南 | XWOS</title>
+<meta name="description" content="新建STM32工程指南
+">
+<meta property="og:title" content="新建工程指南" />
+<meta property="og:description" content="新建STM32工程指南
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/docs/quick-guide/STM32/Project/" /><meta property="article:section" content="docs" />
+
+<meta property="article:modified_time" content="2021-09-22T02:24:13+08:00" /><meta property="og:site_name" content="XWOS" />
+
+<meta itemprop="name" content="新建工程指南">
+<meta itemprop="description" content="新建STM32工程指南
+">
+<meta itemprop="dateModified" content="2021-09-22T02:24:13+08:00" />
+<meta itemprop="wordCount" content="299">
+<meta itemprop="keywords" content="STM32," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="新建工程指南"/>
+<meta name="twitter:description" content="新建STM32工程指南
+"/>
+
+
+
+
+<link rel="preload" href="/scss/main.min.ded98da04fc425affd0cbb3b389531f25f0629faada88a8042c47564f5649e31.css" as="style">
+<link href="/scss/main.min.ded98da04fc425affd0cbb3b389531f25f0629faada88a8042c47564f5649e31.css" rel="stylesheet" integrity="">
+
+<script
+  src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"
+  integrity="sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK"
+  crossorigin="anonymous"></script>
+<script
+  src="https://unpkg.com/lunr@2.3.9/lunr.min.js"
+  integrity="sha384-203J0SNzyqHby3iU6hzvzltrWi/M41wOP5Gu+BiJMz5nwKykbkUx8Kp7iti0Lpli"
+  crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/css/prism.css"/>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-556RX9P3T5"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-556RX9P3T5', { 'anonymize_ip': false });
+}
+</script>
+
+  </head>
+  <body class="td-page">
+    <header>
+      
+<nav class="js-navbar-scroll navbar navbar-expand navbar-dark flex-column flex-md-row td-navbar">
+        <a class="navbar-brand" href="/">
+		<span class="navbar-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2560 2560"><path fill="#00bfff" d="M0 1810.1553l219.82044-530.1552L.13063863 749.84488 530.28555 530.28549 749.71426 125e-7 1280 219.82035 1810.1553.26115l219.5592 530.02434L2560 749.71425 2340.1796 1280.0001l219.559 530.1552-530.1549 219.5592L1810.0244 2560 1280 2340.1796 749.84499 2559.739 530.28576 2029.7145.0 1810.286zM341.42045 891.16725 502.4652 1280.0001 341.42045 1668.8329l388.70206 160.9142 161.04475 388.8328L1280 2057.535l388.8328 161.0449 160.9142-388.8328 388.8326-160.9142-161.045-388.8328 161.045-388.83285-388.702-161.045-160.9144-388.70199L1280 502.46518 891.16726 341.42026 730.12251 730.12225z"/></svg></span><span class="font-weight-bold">XWOS</span>
+	</a>
+	<div class="td-navbar-nav-scroll ml-md-auto" id="main_navbar">
+		<ul class="navbar-nav mt-2 mt-lg-0">
+			
+			
+			<li class="nav-item mr-4 mb-2 mb-lg-0">
+				
+				
+				
+				
+				
+				
+				
+				
+				<a class="nav-link active" href="/docs/" ><i class="fas fa-book"></i><span class="active">文档</span></a>
+			</li>
+			
+			<li class="nav-item mr-4 mb-2 mb-lg-0">
+				
+				
+				
+				
+				
+				
+				<a class="nav-link" href="/api" ><i class='fas fa-cogs'></i><span>CAPI</span></a>
+			</li>
+			
+			<li class="nav-item mr-4 mb-2 mb-lg-0">
+				
+				
+				
+				
+				
+				
+				<a class="nav-link" href="/luadoc" ><i class='xwico-lua'></i><span>LuaAPI</span></a>
+			</li>
+			
+			<li class="nav-item mr-4 mb-2 mb-lg-0">
+				
+				
+				
+				
+				
+				
+				<a class="nav-link" href="/rustdoc/xwrust" ><i class='xwico-rust'></i><span>RustAPI</span></a>
+			</li>
+			
+			<li class="nav-item mr-4 mb-2 mb-lg-0">
+				
+				
+				
+				
+				
+				
+				<a class="nav-link" href="https://gitee.com/xwos/XWOS/" target="_blank" ><i class='xwico-gitee'></i><span>gitee</span></a>
+			</li>
+			
+			<li class="nav-item mr-4 mb-2 mb-lg-0">
+				
+				
+				
+				
+				
+				
+				<a class="nav-link" href="https://github.com/xwos/XWOS/" target="_blank" ><i class='fab fa-github'></i><span>github</span></a>
+			</li>
+			
+			
+			
+		</ul>
+	</div>
+	<div class="navbar-nav d-none d-lg-block"><input
+  type="search"
+  class="form-control td-search-input"
+  placeholder="&#xf002; 站内搜索…"
+  aria-label="站内搜索…"
+  autocomplete="off"
+  
+  data-offline-search-index-json-src="/offline-search-index.dfcb183bd25dc7522b50e8642f26c710.json"
+  data-offline-search-base-href="/"
+  data-offline-search-max-results="10"
+>
+</div>
+</nav>
+
+    </header>
+    <div class="container-fluid td-outer">
+      <div class="td-main">
+        <div class="row flex-xl-nowrap">
+          <aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
+            
+  <script>
+    $(function() {
+    $("#td-section-nav a").removeClass("active");
+    $("#td-section-nav #m-docsquick-guidestm32project").addClass("active"); 
+    $("#td-section-nav #m-docsquick-guidestm32project-li span").addClass("td-sidebar-nav-active-item"); 
+    $("#td-section-nav #m-docsquick-guidestm32project").parents("li").addClass("active-path"); 
+    $("#td-section-nav li.active-path").addClass("show"); 
+    $("#td-section-nav li.active-path").children("input").prop('checked', true);
+    $("#td-section-nav #m-docsquick-guidestm32project-li").siblings("li").addClass("show");  
+    $("#td-section-nav #m-docsquick-guidestm32project-li").children("ul").children("li").addClass("show");  
+    $("#td-sidebar-menu").toggleClass("d-none"); 
+    });
+  </script>
+  
+<div id="td-sidebar-menu" class="td-sidebar__inner d-none">
+  <form class="td-sidebar__search d-flex align-items-center">
+    <input
+  type="search"
+  class="form-control td-search-input"
+  placeholder="&#xf002; 站内搜索…"
+  aria-label="站内搜索…"
+  autocomplete="off"
+  
+  data-offline-search-index-json-src="/offline-search-index.dfcb183bd25dc7522b50e8642f26c710.json"
+  data-offline-search-base-href="/"
+  data-offline-search-max-results="10"
+>
+
+    <button class="btn btn-link td-sidebar__toggle d-md-none p-0 ml-3 fas fa-bars" type="button" data-toggle="collapse" data-target="#td-section-nav" aria-controls="td-docs-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    </button>
+  </form>
+  <nav class="collapse td-sidebar-nav foldable-nav" id="td-section-nav">
+    <ul class="td-sidebar-nav__section pr-md-3 ul-0">
+      <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-docs-li">
+  <a href="/docs/" class="align-left pl-0 td-sidebar-link td-sidebar-link__section tree-root" id="m-docs"><span class="">文档</span></a>
+  <ul class="ul-1">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-docsquick-guide-li">
+  <input type="checkbox" id="m-docsquick-guide-check"/>
+  <label for="m-docsquick-guide-check"><a href="/docs/quick-guide/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsquick-guide"><span class="">上手指南</span></a></label>
+  
+  <ul class="ul-2 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-docsquick-guidestm32-li">
+  <input type="checkbox" id="m-docsquick-guidestm32-check"/>
+  <label for="m-docsquick-guidestm32-check"><a href="/docs/quick-guide/STM32/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsquick-guidestm32"><span class="">STM32</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsquick-guidestm32env-li">
+  <input type="checkbox" id="m-docsquick-guidestm32env-check"/>
+  <label for="m-docsquick-guidestm32env-check"><a href="/docs/quick-guide/STM32/Env/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsquick-guidestm32env"><span class="">开发环境</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsquick-guidestm32project-li">
+  <input type="checkbox" id="m-docsquick-guidestm32project-check"/>
+  <label for="m-docsquick-guidestm32project-check"><a href="/docs/quick-guide/STM32/Project/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsquick-guidestm32project"><span class="">新建工程指南</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsquick-guidestm32weactministm32h750-li">
+  <input type="checkbox" id="m-docsquick-guidestm32weactministm32h750-check"/>
+  <label for="m-docsquick-guidestm32weactministm32h750-check"><a href="/docs/quick-guide/STM32/WeActMiniStm32H750/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsquick-guidestm32weactministm32h750"><span class="">微行电子MiniStm32H750</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsquick-guidestm32fk429m1-li">
+  <input type="checkbox" id="m-docsquick-guidestm32fk429m1-check"/>
+  <label for="m-docsquick-guidestm32fk429m1-check"><a href="/docs/quick-guide/STM32/FK429M1/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsquick-guidestm32fk429m1"><span class="">反客FK429核心板</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsquick-guidestm32fk750m1-li">
+  <input type="checkbox" id="m-docsquick-guidestm32fk750m1-check"/>
+  <label for="m-docsquick-guidestm32fk750m1-check"><a href="/docs/quick-guide/STM32/FK750M1/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsquick-guidestm32fk750m1"><span class="">反客FK750M1核心板</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsquick-guidestm32fk750m3-li">
+  <input type="checkbox" id="m-docsquick-guidestm32fk750m3-check"/>
+  <label for="m-docsquick-guidestm32fk750m3-check"><a href="/docs/quick-guide/STM32/FK750M3/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsquick-guidestm32fk750m3"><span class="">反客FK750M3核心板</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsquick-guidestm32embedfirestm32h743-li">
+  <input type="checkbox" id="m-docsquick-guidestm32embedfirestm32h743-check"/>
+  <label for="m-docsquick-guidestm32embedfirestm32h743-check"><a href="/docs/quick-guide/STM32/EmbedFireStm32H743/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsquick-guidestm32embedfirestm32h743"><span class="">野火Stm32H743 Pro开发板</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsquick-guidestm32atkstm32h743-li">
+  <input type="checkbox" id="m-docsquick-guidestm32atkstm32h743-check"/>
+  <label for="m-docsquick-guidestm32atkstm32h743-check"><a href="/docs/quick-guide/STM32/ATKStm32H743/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsquick-guidestm32atkstm32h743"><span class="">正点原子阿波罗Stm32H743开发板</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsquick-guidestm32atkstm32f407core-li">
+  <input type="checkbox" id="m-docsquick-guidestm32atkstm32f407core-check"/>
+  <label for="m-docsquick-guidestm32atkstm32f407core-check"><a href="/docs/quick-guide/STM32/ATKStm32F407Core/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsquick-guidestm32atkstm32f407core"><span class="">正点原子Stm32F407核心板</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsquick-guidestm32atkstm32f103core-li">
+  <input type="checkbox" id="m-docsquick-guidestm32atkstm32f103core-check"/>
+  <label for="m-docsquick-guidestm32atkstm32f103core-check"><a href="/docs/quick-guide/STM32/ATKStm32F103Core/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsquick-guidestm32atkstm32f103core"><span class="">正点原子Stm32F103核心板</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-docsquick-guidegd32-li">
+  <input type="checkbox" id="m-docsquick-guidegd32-check"/>
+  <label for="m-docsquick-guidegd32-check"><a href="/docs/quick-guide/GD32/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsquick-guidegd32"><span class="">GD32</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsquick-guidegd32env-li">
+  <input type="checkbox" id="m-docsquick-guidegd32env-check"/>
+  <label for="m-docsquick-guidegd32env-check"><a href="/docs/quick-guide/GD32/Env/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsquick-guidegd32env"><span class="">开发环境</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-docsquick-guidegd32v-li">
+  <input type="checkbox" id="m-docsquick-guidegd32v-check"/>
+  <label for="m-docsquick-guidegd32v-check"><a href="/docs/quick-guide/GD32V/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsquick-guidegd32v"><span class="">GD32V</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsquick-guidegd32venv-li">
+  <input type="checkbox" id="m-docsquick-guidegd32venv-check"/>
+  <label for="m-docsquick-guidegd32venv-check"><a href="/docs/quick-guide/GD32V/Env/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsquick-guidegd32venv"><span class="">开发环境</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-docsquick-guides32k-li">
+  <input type="checkbox" id="m-docsquick-guides32k-check"/>
+  <label for="m-docsquick-guides32k-check"><a href="/docs/quick-guide/S32K/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsquick-guides32k"><span class="">S32K</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsquick-guides32kenv-li">
+  <input type="checkbox" id="m-docsquick-guides32kenv-check"/>
+  <label for="m-docsquick-guides32kenv-check"><a href="/docs/quick-guide/S32K/Env/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsquick-guides32kenv"><span class="">开发环境</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsquick-guidexwko-li">
+  <input type="checkbox" id="m-docsquick-guidexwko-check"/>
+  <label for="m-docsquick-guidexwko-check"><a href="/docs/quick-guide/XWKO/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsquick-guidexwko"><span class="">玄武内核模块</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-docsquick-guidebuild-li">
+  <input type="checkbox" id="m-docsquick-guidebuild-check"/>
+  <label for="m-docsquick-guidebuild-check"><a href="/docs/quick-guide/build/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsquick-guidebuild"><span class="">编译与集成</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsquick-guidebuildxwmo-li">
+  <input type="checkbox" id="m-docsquick-guidebuildxwmo-check"/>
+  <label for="m-docsquick-guidebuildxwmo-check"><a href="/docs/quick-guide/build/xwmo/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsquick-guidebuildxwmo"><span class="">增加玄武模块</span></a></label>
+  
+</li>
+  </ul>
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-docsuser-manual-li">
+  <input type="checkbox" id="m-docsuser-manual-check"/>
+  <label for="m-docsuser-manual-check"><a href="/docs/user-manual/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsuser-manual"><span class="">用户手册</span></a></label>
+  
+  <ul class="ul-2 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manualarchitecture-li">
+  <input type="checkbox" id="m-docsuser-manualarchitecture-check"/>
+  <label for="m-docsuser-manualarchitecture-check"><a href="/docs/user-manual/architecture/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsuser-manualarchitecture"><span class="">软件架构</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manualbasic-promise-li">
+  <input type="checkbox" id="m-docsuser-manualbasic-promise-check"/>
+  <label for="m-docsuser-manualbasic-promise-check"><a href="/docs/user-manual/basic-promise/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsuser-manualbasic-promise"><span class="">基本概念</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manualconfiguration-li">
+  <input type="checkbox" id="m-docsuser-manualconfiguration-check"/>
+  <label for="m-docsuser-manualconfiguration-check"><a href="/docs/user-manual/configuration/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsuser-manualconfiguration"><span class="">配置</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manualbuild-system-li">
+  <input type="checkbox" id="m-docsuser-manualbuild-system-check"/>
+  <label for="m-docsuser-manualbuild-system-check"><a href="/docs/user-manual/build-system/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsuser-manualbuild-system"><span class="">构建系统</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manualboot-flow-li">
+  <input type="checkbox" id="m-docsuser-manualboot-flow-check"/>
+  <label for="m-docsuser-manualboot-flow-check"><a href="/docs/user-manual/boot-flow/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsuser-manualboot-flow"><span class="">启动流程</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manualxwobj-li">
+  <input type="checkbox" id="m-docsuser-manualxwobj-check"/>
+  <label for="m-docsuser-manualxwobj-check"><a href="/docs/user-manual/xwobj/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsuser-manualxwobj"><span class="">XWOS对象</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manualirq-li">
+  <input type="checkbox" id="m-docsuser-manualirq-check"/>
+  <label for="m-docsuser-manualirq-check"><a href="/docs/user-manual/irq/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsuser-manualirq"><span class="">中断控制</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manualskd-li">
+  <input type="checkbox" id="m-docsuser-manualskd-check"/>
+  <label for="m-docsuser-manualskd-check"><a href="/docs/user-manual/skd/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsuser-manualskd"><span class="">调度器</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manualthd-li">
+  <input type="checkbox" id="m-docsuser-manualthd-check"/>
+  <label for="m-docsuser-manualthd-check"><a href="/docs/user-manual/thd/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsuser-manualthd"><span class="">线程</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manualswt-li">
+  <input type="checkbox" id="m-docsuser-manualswt-check"/>
+  <label for="m-docsuser-manualswt-check"><a href="/docs/user-manual/swt/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsuser-manualswt"><span class="">软件定时器</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-docsuser-manuallock-li">
+  <input type="checkbox" id="m-docsuser-manuallock-check"/>
+  <label for="m-docsuser-manuallock-check"><a href="/docs/user-manual/lock/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsuser-manuallock"><span class="">锁</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manuallockspinlock-li">
+  <input type="checkbox" id="m-docsuser-manuallockspinlock-check"/>
+  <label for="m-docsuser-manuallockspinlock-check"><a href="/docs/user-manual/lock/spinlock/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsuser-manuallockspinlock"><span class="">自旋锁</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manuallockseqlock-li">
+  <input type="checkbox" id="m-docsuser-manuallockseqlock-check"/>
+  <label for="m-docsuser-manuallockseqlock-check"><a href="/docs/user-manual/lock/seqlock/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsuser-manuallockseqlock"><span class="">顺序锁</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manuallockmutex-li">
+  <input type="checkbox" id="m-docsuser-manuallockmutex-check"/>
+  <label for="m-docsuser-manuallockmutex-check"><a href="/docs/user-manual/lock/mutex/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsuser-manuallockmutex"><span class="">互斥锁</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-docsuser-manualsync-li">
+  <input type="checkbox" id="m-docsuser-manualsync-check"/>
+  <label for="m-docsuser-manualsync-check"><a href="/docs/user-manual/sync/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsuser-manualsync"><span class="">同步</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manualsyncsem-li">
+  <input type="checkbox" id="m-docsuser-manualsyncsem-check"/>
+  <label for="m-docsuser-manualsyncsem-check"><a href="/docs/user-manual/sync/sem/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsuser-manualsyncsem"><span class="">信号量</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manualsynccond-li">
+  <input type="checkbox" id="m-docsuser-manualsynccond-check"/>
+  <label for="m-docsuser-manualsynccond-check"><a href="/docs/user-manual/sync/cond/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsuser-manualsynccond"><span class="">条件量</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manualsyncflg-li">
+  <input type="checkbox" id="m-docsuser-manualsyncflg-check"/>
+  <label for="m-docsuser-manualsyncflg-check"><a href="/docs/user-manual/sync/flg/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsuser-manualsyncflg"><span class="">事件标志</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manualsyncbr-li">
+  <input type="checkbox" id="m-docsuser-manualsyncbr-check"/>
+  <label for="m-docsuser-manualsyncbr-check"><a href="/docs/user-manual/sync/br/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsuser-manualsyncbr"><span class="">线程栅栏</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manualsyncsel-li">
+  <input type="checkbox" id="m-docsuser-manualsyncsel-check"/>
+  <label for="m-docsuser-manualsyncsel-check"><a href="/docs/user-manual/sync/sel/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsuser-manualsyncsel"><span class="">信号选择器</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-docsuser-manualmm-li">
+  <input type="checkbox" id="m-docsuser-manualmm-check"/>
+  <label for="m-docsuser-manualmm-check"><a href="/docs/user-manual/mm/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsuser-manualmm"><span class="">内存管理</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manualmmsma-li">
+  <input type="checkbox" id="m-docsuser-manualmmsma-check"/>
+  <label for="m-docsuser-manualmmsma-check"><a href="/docs/user-manual/mm/sma/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsuser-manualmmsma"><span class="">简单内存分配器</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manualmmmemslice-li">
+  <input type="checkbox" id="m-docsuser-manualmmmemslice-check"/>
+  <label for="m-docsuser-manualmmmemslice-check"><a href="/docs/user-manual/mm/memslice/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsuser-manualmmmemslice"><span class="">内存切片分配器</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manualmmbma-li">
+  <input type="checkbox" id="m-docsuser-manualmmbma-check"/>
+  <label for="m-docsuser-manualmmbma-check"><a href="/docs/user-manual/mm/bma/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsuser-manualmmbma"><span class="">伙伴算法分配器</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manualmmmempool-li">
+  <input type="checkbox" id="m-docsuser-manualmmmempool-check"/>
+  <label for="m-docsuser-manualmmmempool-check"><a href="/docs/user-manual/mm/mempool/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsuser-manualmmmempool"><span class="">内存池</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manualpm-li">
+  <input type="checkbox" id="m-docsuser-manualpm-check"/>
+  <label for="m-docsuser-manualpm-check"><a href="/docs/user-manual/pm/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsuser-manualpm"><span class="">电源管理</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-docsuser-manualxwlib-li">
+  <input type="checkbox" id="m-docsuser-manualxwlib-check"/>
+  <label for="m-docsuser-manualxwlib-check"><a href="/docs/user-manual/xwlib/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsuser-manualxwlib"><span class="">通用库</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manualxwlibxwbop-li">
+  <input type="checkbox" id="m-docsuser-manualxwlibxwbop-check"/>
+  <label for="m-docsuser-manualxwlibxwbop-check"><a href="/docs/user-manual/xwlib/xwbop/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsuser-manualxwlibxwbop"><span class="">位操作库</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manualxwlibxwaop-li">
+  <input type="checkbox" id="m-docsuser-manualxwlibxwaop-check"/>
+  <label for="m-docsuser-manualxwlibxwaop-check"><a href="/docs/user-manual/xwlib/xwaop/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsuser-manualxwlibxwaop"><span class="">原子操作库</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manualxwliblog-li">
+  <input type="checkbox" id="m-docsuser-manualxwliblog-check"/>
+  <label for="m-docsuser-manualxwliblog-check"><a href="/docs/user-manual/xwlib/log/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsuser-manualxwliblog"><span class="">日志</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manualxwlibcrc-li">
+  <input type="checkbox" id="m-docsuser-manualxwlibcrc-check"/>
+  <label for="m-docsuser-manualxwlibcrc-check"><a href="/docs/user-manual/xwlib/crc/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsuser-manualxwlibcrc"><span class="">CRC</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-docsuser-manualc-c-li">
+  <input type="checkbox" id="m-docsuser-manualc-c-check"/>
+  <label for="m-docsuser-manualc-c-check"><a href="/docs/user-manual/c-c&#43;&#43;/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsuser-manualc-c"><span class="">C/C&#43;&#43;</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manualc-clibc-li">
+  <input type="checkbox" id="m-docsuser-manualc-clibc-check"/>
+  <label for="m-docsuser-manualc-clibc-check"><a href="/docs/user-manual/c-c&#43;&#43;/libc/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsuser-manualc-clibc"><span class="">libc</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manualc-cc-li">
+  <input type="checkbox" id="m-docsuser-manualc-cc-check"/>
+  <label for="m-docsuser-manualc-cc-check"><a href="/docs/user-manual/c-c&#43;&#43;/c&#43;&#43;/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsuser-manualc-cc"><span class="">C&#43;&#43;</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-docsuser-manualisc-li">
+  <input type="checkbox" id="m-docsuser-manualisc-check"/>
+  <label for="m-docsuser-manualisc-check"><a href="/docs/user-manual/isc/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsuser-manualisc"><span class="">通讯</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manualiscxwcq-li">
+  <input type="checkbox" id="m-docsuser-manualiscxwcq-check"/>
+  <label for="m-docsuser-manualiscxwcq-check"><a href="/docs/user-manual/isc/xwcq/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsuser-manualiscxwcq"><span class="">循环队列</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manualiscxwmq-li">
+  <input type="checkbox" id="m-docsuser-manualiscxwmq-check"/>
+  <label for="m-docsuser-manualiscxwmq-check"><a href="/docs/user-manual/isc/xwmq/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsuser-manualiscxwmq"><span class="">消息队列</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manualiscxwpcp-li">
+  <input type="checkbox" id="m-docsuser-manualiscxwpcp-check"/>
+  <label for="m-docsuser-manualiscxwpcp-check"><a href="/docs/user-manual/isc/xwpcp/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsuser-manualiscxwpcp"><span class="">点对点通讯协议</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manualiscxwscp-li">
+  <input type="checkbox" id="m-docsuser-manualiscxwscp-check"/>
+  <label for="m-docsuser-manualiscxwscp-check"><a href="/docs/user-manual/isc/xwscp/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsuser-manualiscxwscp"><span class="">精简的点对点通讯协议</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsuser-manuallua-li">
+  <input type="checkbox" id="m-docsuser-manuallua-check"/>
+  <label for="m-docsuser-manuallua-check"><a href="/docs/user-manual/lua/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsuser-manuallua"><span class="">Lua语言</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-docsnote-li">
+  <input type="checkbox" id="m-docsnote-check"/>
+  <label for="m-docsnote-check"><a href="/docs/note/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsnote"><span class="">笔记</span></a></label>
+  
+  <ul class="ul-2 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-docsnotesoc-li">
+  <input type="checkbox" id="m-docsnotesoc-check"/>
+  <label for="m-docsnotesoc-check"><a href="/docs/note/soc/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsnotesoc"><span class="">SOC移植</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-docsnotesocarm-m-li">
+  <input type="checkbox" id="m-docsnotesocarm-m-check"/>
+  <label for="m-docsnotesocarm-m-check"><a href="/docs/note/soc/ARM-M/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsnotesocarm-m"><span class="">ARM-Cortex-M移植说明</span></a></label>
+  
+  <ul class="ul-4 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsnotesocarm-mstm32-li">
+  <input type="checkbox" id="m-docsnotesocarm-mstm32-check"/>
+  <label for="m-docsnotesocarm-mstm32-check"><a href="/docs/note/soc/ARM-M/STM32/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsnotesocarm-mstm32"><span class="">STM32移植说明</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-docsnotesocrisc-v-li">
+  <input type="checkbox" id="m-docsnotesocrisc-v-check"/>
+  <label for="m-docsnotesocrisc-v-check"><a href="/docs/note/soc/RISC-V/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsnotesocrisc-v"><span class="">RISC-V移植说明</span></a></label>
+  
+  <ul class="ul-4 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsnotesocrisc-vgd32v-li">
+  <input type="checkbox" id="m-docsnotesocrisc-vgd32v-check"/>
+  <label for="m-docsnotesocrisc-vgd32v-check"><a href="/docs/note/soc/RISC-V/GD32V/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsnotesocrisc-vgd32v"><span class="">GD32V移植说明</span></a></label>
+  
+</li>
+  </ul>
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-docsnotenewlib-li">
+  <input type="checkbox" id="m-docsnotenewlib-check"/>
+  <label for="m-docsnotenewlib-check"><a href="/docs/note/newlib/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsnotenewlib"><span class="">newlib</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsnotenewlibmulti-thread-li">
+  <input type="checkbox" id="m-docsnotenewlibmulti-thread-check"/>
+  <label for="m-docsnotenewlibmulti-thread-check"><a href="/docs/note/newlib/multi-thread/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsnotenewlibmulti-thread"><span class="">多线程</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsnotenewlibmm-li">
+  <input type="checkbox" id="m-docsnotenewlibmm-check"/>
+  <label for="m-docsnotenewlibmm-check"><a href="/docs/note/newlib/mm/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsnotenewlibmm"><span class="">动态内存管理</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsnotenewliberrno-li">
+  <input type="checkbox" id="m-docsnotenewliberrno-check"/>
+  <label for="m-docsnotenewliberrno-check"><a href="/docs/note/newlib/errno/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsnotenewliberrno"><span class="">errno</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-docsnotelua-li">
+  <input type="checkbox" id="m-docsnotelua-check"/>
+  <label for="m-docsnotelua-check"><a href="/docs/note/lua/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsnotelua"><span class="">Lua开发笔记</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsnoteluaenv-li">
+  <input type="checkbox" id="m-docsnoteluaenv-check"/>
+  <label for="m-docsnoteluaenv-check"><a href="/docs/note/lua/env/" title="Lua开发环境" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsnoteluaenv"><span class="">开发环境</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-docsnoterust-li">
+  <input type="checkbox" id="m-docsnoterust-check"/>
+  <label for="m-docsnoterust-check"><a href="/docs/note/rust/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docsnoterust"><span class="">Rust开发笔记</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsnoterustbuild-li">
+  <input type="checkbox" id="m-docsnoterustbuild-check"/>
+  <label for="m-docsnoterustbuild-check"><a href="/docs/note/rust/build/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsnoterustbuild"><span class="">集成与编译</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsnoterustbringup-li">
+  <input type="checkbox" id="m-docsnoterustbringup-check"/>
+  <label for="m-docsnoterustbringup-check"><a href="/docs/note/rust/bringup/" title="Rust Bringup" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsnoterustbringup"><span class="">Bringup</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsnoterustenv-li">
+  <input type="checkbox" id="m-docsnoterustenv-check"/>
+  <label for="m-docsnoterustenv-check"><a href="/docs/note/rust/env/" title="Rust开发环境" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsnoterustenv"><span class="">开发环境</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docsnoterustmulti-crates-li">
+  <input type="checkbox" id="m-docsnoterustmulti-crates-check"/>
+  <label for="m-docsnoterustmulti-crates-check"><a href="/docs/note/rust/multi-crates/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docsnoterustmulti-crates"><span class="">支持多个单元包</span></a></label>
+  
+</li>
+  </ul>
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-docscriterion-li">
+  <input type="checkbox" id="m-docscriterion-check"/>
+  <label for="m-docscriterion-check"><a href="/docs/criterion/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docscriterion"><span class="">规范</span></a></label>
+  
+  <ul class="ul-2 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docscriteriongit-msg-li">
+  <input type="checkbox" id="m-docscriteriongit-msg-check"/>
+  <label for="m-docscriteriongit-msg-check"><a href="/docs/criterion/git-msg/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docscriteriongit-msg"><span class="">git-msg规范</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docscriterionversion-branch-li">
+  <input type="checkbox" id="m-docscriterionversion-branch-check"/>
+  <label for="m-docscriterionversion-branch-check"><a href="/docs/criterion/version-branch/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docscriterionversion-branch"><span class="">分支与版本号规范</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-docschangelist-li">
+  <input type="checkbox" id="m-docschangelist-check"/>
+  <label for="m-docschangelist-check"><a href="/docs/changelist/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docschangelist"><span class="">版本说明</span></a></label>
+  
+  <ul class="ul-2 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docschangelistv10-li">
+  <input type="checkbox" id="m-docschangelistv10-check"/>
+  <label for="m-docschangelistv10-check"><a href="/docs/changelist/V1.0/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docschangelistv10"><span class="">V1.0</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docschangelistv20-li">
+  <input type="checkbox" id="m-docschangelistv20-check"/>
+  <label for="m-docschangelistv20-check"><a href="/docs/changelist/V2.0/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docschangelistv20"><span class="">V2.0</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docschangelistv30-li">
+  <input type="checkbox" id="m-docschangelistv30-check"/>
+  <label for="m-docschangelistv30-check"><a href="/docs/changelist/V3.0/" class="align-left pl-0  td-sidebar-link td-sidebar-link__section" id="m-docschangelistv30"><span class="">V3.0</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-docslicense-li">
+  <input type="checkbox" id="m-docslicense-check"/>
+  <label for="m-docslicense-check"><a href="/docs/license/" class="align-left pl-0  td-sidebar-link td-sidebar-link__page" id="m-docslicense"><span class="">开源协议</span></a></label>
+  
+</li>
+  </ul>
+</li>
+    </ul>
+  </nav>
+</div>
+
+
+          </aside>
+          <aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
+            
+<div class="td-page-meta ml-2 pb-1 pt-2 mb-0">
+<a href="https://gitee.com/xwos/XWOS/tree/page/content/zh-cn/docs/quick-guide/STM32/Project/index.md" class="td-page-meta--view" target="_blank" rel="noopener"><i class="fa fa-file-alt fa-fw"></i> 查看页面源码</a>
+  <a href="https://gitee.com/xwos/XWOS/edit/page/content/zh-cn/docs/quick-guide/STM32/Project/index.md" class="td-page-meta--edit" target="_blank" rel="noopener"><i class="fa fa-edit fa-fw"></i> 编辑此页</a>
+  <a href="https://gitee.com/xwos/XWOS/new/page/content/zh-cn/docs/quick-guide/STM32/Project/index.md?filename=change-me.md&amp;value=---%0Atitle%3A&#43;%22Long&#43;Page&#43;Title%22%0AlinkTitle%3A&#43;%22Short&#43;Nav&#43;Title%22%0Aweight%3A&#43;100%0Adescription%3A&#43;%3E-%0A&#43;&#43;&#43;&#43;&#43;Page&#43;description&#43;for&#43;heading&#43;and&#43;indexes.%0A---%0A%0A%23%23&#43;Heading%0A%0AEdit&#43;this&#43;template&#43;to&#43;create&#43;your&#43;new&#43;page.%0A%0A%2A&#43;Give&#43;it&#43;a&#43;good&#43;name%2C&#43;ending&#43;in&#43;%60.md%60&#43;-&#43;e.g.&#43;%60getting-started.md%60%0A%2A&#43;Edit&#43;the&#43;%22front&#43;matter%22&#43;section&#43;at&#43;the&#43;top&#43;of&#43;the&#43;page&#43;%28weight&#43;controls&#43;how&#43;its&#43;ordered&#43;amongst&#43;other&#43;pages&#43;in&#43;the&#43;same&#43;directory%3B&#43;lowest&#43;number&#43;first%29.%0A%2A&#43;Add&#43;a&#43;good&#43;commit&#43;message&#43;at&#43;the&#43;bottom&#43;of&#43;the&#43;page&#43;%28%3C80&#43;characters%3B&#43;use&#43;the&#43;extended&#43;description&#43;field&#43;for&#43;more&#43;detail%29.%0A%2A&#43;Create&#43;a&#43;new&#43;branch&#43;so&#43;you&#43;can&#43;preview&#43;your&#43;new&#43;file&#43;and&#43;request&#43;a&#43;review&#43;via&#43;Pull&#43;Request.%0A" class="td-page-meta--child" target="_blank" rel="noopener"><i class="fa fa-edit fa-fw"></i> 添加子页面</a>
+  <a href="https://gitee.com/xwos/XWOS/issues/new?title=%e6%96%b0%e5%bb%ba%e5%b7%a5%e7%a8%8b%e6%8c%87%e5%8d%97" class="td-page-meta--issue" target="_blank" rel="noopener"><i class="fab fa-github fa-fw"></i> 提交文档问题</a>
+  <a href="https://gitee.com/xwos/XWOS/issues/new" class="td-page-meta--project-issue" target="_blank" rel="noopener"><i class="fas fa-tasks fa-fw"></i> 提交项目问题</a>
+  
+</div>
+
+            
+
+
+<div class="td-toc"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#选择合适的模板">选择合适的模板</a></li>
+    <li><a href="#修改工程配置">修改工程配置</a>
+      <ul>
+        <li><a href="#工程总配置">工程总配置</a></li>
+        <li><a href="#工程其他配置">工程其他配置</a></li>
+      </ul>
+    </li>
+    <li><a href="#修改链接脚本">修改链接脚本</a>
+      <ul>
+        <li><a href="#ivt_lmr--ivt_vmr"><code>ivt_lmr</code> &amp; <code>ivt_vmr</code></a></li>
+        <li><a href="#image_description_mr"><code>image_description_mr</code></a></li>
+        <li><a href="#code_mr"><code>code_mr</code></a></li>
+        <li><a href="#xwos_data_mr"><code>xwos_data_mr</code></a></li>
+        <li><a href="#data_mr"><code>data_mr</code></a></li>
+        <li><a href="#xwos_stk_mr"><code>xwos_stk_mr</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#集成stm32cubemx生成的代码">集成STM32CubeMx生成的代码</a>
+      <ul>
+        <li><a href="#stm32cubexwac"><code>stm32cube/xwac</code></a></li>
+        <li><a href="#stm32cubemifc与stm32cubemifh"><code>stm32cube/mif.c与stm32cube/mif.h</code></a></li>
+        <li><a href="#xwmomk"><code>xwmo.mk</code></a></li>
+      </ul>
+    </li>
+    <li><a href="#配置stm32cubemx">配置STM32CubeMX</a>
+      <ul>
+        <li><a href="#中断优先级">中断优先级</a></li>
+      </ul>
+    </li>
+    <li><a href="#建立入口函数">建立入口函数</a></li>
+    <li><a href="#代码启动流程">代码启动流程</a></li>
+    <li><a href="#使用stm32cubeide">使用STM32CubeIDE</a>
+      <ul>
+        <li><a href="#新建工程">新建工程</a></li>
+        <li><a href="#设置编译环境">设置编译环境</a></li>
+        <li><a href="#环境变量path设置">环境变量<strong>PATH</strong>设置</a></li>
+        <li><a href="#调试配置">调试配置</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+
+
+
+            
+
+	
+		
+
+
+
+  
+  
+    <div class="taxonomy taxonomy-terms-cloud taxo-categories">
+      
+        <h5 class="taxonomy-title">Categories</h5>
+      
+      <ul class="taxonomy-terms">
+        
+          <li><a class="taxonomy-term" href="/categories/GD32/" data-taxonomy-term="GD32"><span class="taxonomy-label">GD32</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="/categories/GD32V/" data-taxonomy-term="GD32V"><span class="taxonomy-label">GD32V</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="/categories/S32K/" data-taxonomy-term="S32K"><span class="taxonomy-label">S32K</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="/categories/STM32/" data-taxonomy-term="STM32"><span class="taxonomy-label">STM32</span><span class="taxonomy-count">10</span></a></li>
+        
+          <li><a class="taxonomy-term" href="/categories/XWKO/" data-taxonomy-term="XWKO"><span class="taxonomy-label">XWKO</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="/categories/XWLUA/" data-taxonomy-term="XWLUA"><span class="taxonomy-label">XWLUA</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="/categories/XWMD/" data-taxonomy-term="XWMD"><span class="taxonomy-label">XWMD</span><span class="taxonomy-count">5</span></a></li>
+        
+          <li><a class="taxonomy-term" href="/categories/XWOS/" data-taxonomy-term="XWOS"><span class="taxonomy-label">XWOS</span><span class="taxonomy-count">35</span></a></li>
+        
+      </ul>
+    </div>
+  
+
+	
+		
+
+
+
+  
+  
+    <div class="taxonomy taxonomy-terms-cloud taxo-tags">
+      
+        <h5 class="taxonomy-title">Tags</h5>
+      
+      <ul class="taxonomy-terms">
+        
+          <li><a class="taxonomy-term" href="/tags/GD32/" data-taxonomy-term="GD32"><span class="taxonomy-label">GD32</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="/tags/GD32V/" data-taxonomy-term="GD32V"><span class="taxonomy-label">GD32V</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="/tags/S32K/" data-taxonomy-term="S32K"><span class="taxonomy-label">S32K</span><span class="taxonomy-count">1</span></a></li>
+        
+          <li><a class="taxonomy-term" href="/tags/STM32/" data-taxonomy-term="STM32"><span class="taxonomy-label">STM32</span><span class="taxonomy-count">10</span></a></li>
+        
+          <li><a class="taxonomy-term" href="/tags/XWKO/" data-taxonomy-term="XWKO"><span class="taxonomy-label">XWKO</span><span class="taxonomy-count">1</span></a></li>
+        
+      </ul>
+    </div>
+  
+
+	
+
+          </aside>
+          <main class="col-12 col-md-9 col-xl-8 pl-md-5" role="main">
+            
+  
+
+            <nav aria-label="breadcrumb" class="td-breadcrumbs">
+  <ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="/docs/">文档</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href="/docs/quick-guide/">上手指南</a>
+  </li>
+  <li class="breadcrumb-item">
+    <a href="/docs/quick-guide/STM32/">STM32</a>
+  </li>
+  <li class="breadcrumb-item active" aria-current="page">
+    <a href="/docs/quick-guide/STM32/Project/">新建工程指南</a>
+  </li>
+  </ol>
+</nav>
+            
+<div class="td-content">
+	<h1>新建工程指南</h1>
+	<div class="lead">新建STM32工程指南</div>
+	<header class="article-meta">
+		
+
+  
+    
+
+
+<div class="taxonomy taxonomy-terms-article taxo-categories">
+  <h5 class="taxonomy-title">Categories:</h5>
+  <ul class="taxonomy-terms">
+    
+      <li><a class="taxonomy-term" href="/categories/STM32/" data-taxonomy-term="STM32"><span class="taxonomy-label">STM32</span></a></li>
+    
+  </ul>
+</div>
+
+  
+    
+
+
+<div class="taxonomy taxonomy-terms-article taxo-tags">
+  <h5 class="taxonomy-title">Tags:</h5>
+  <ul class="taxonomy-terms">
+    
+      <li><a class="taxonomy-term" href="/tags/STM32/" data-taxonomy-term="STM32"><span class="taxonomy-label">STM32</span></a></li>
+    
+  </ul>
+</div>
+
+  
+
+		
+			<p class="reading-time"><i class="fa fa-clock" aria-hidden="true"></i>&nbsp; 2 分钟阅读 &nbsp;</p>
+
+		
+	</header>    
+	<h2 id="选择合适的模板">选择合适的模板</h2>
+<p>STM32的工程比较多，可以选择其中一个来作为模板进行修改：</p>
+<ul>
+<li><strong>电路板文件夹</strong>位于<code>XWOS/xwbd</code>内部：
+<ul>
+<li><a href="../WeActMiniStm32H750">WeActMiniStm32H750</a>
+<ul>
+<li>MCU：STM32H750VBT6</li>
+<li><strong>电路板文件夹</strong>：<code>XWOS/xwbd/WeActMiniStm32H750</code>
+<ul>
+<li>代码仓库：<code>git clone --recursive https://gitee.com/xwos/WeActMiniStm32H750.git</code></li>
+</ul>
+</li>
+<li><strong>Bootloader电路板文件夹</strong>：<code>XWOS/xwbd/WeActMiniStm32H750Bootloader</code>
+<ul>
+<li>代码仓库：<code>git clone --recursive https://gitee.com/xwos/WeActMiniStm32H750Bootloader.git</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="../EmbedFireStm32H743">EmbedFireStm32H743</a>
+<ul>
+<li>MCU：STM32H743XIH6</li>
+<li>代码仓库：<code>git clone --recursive https://gitee.com/xwos/EmbedFireStm32H743.git</code></li>
+<li><strong>电路板文件夹</strong>：<code>XWOS/xwbd/EmbedFireStm32H743</code></li>
+</ul>
+</li>
+<li><a href="../FK429M1">FK429M1</a>
+<ul>
+<li>MCU：STM32F429BIT6</li>
+<li>代码仓库：<code>git clone --recursive https://gitee.com/xwos/FK429M1.git</code></li>
+<li><strong>电路板文件夹</strong>：<code>XWOS/xwbd/FK429M1</code></li>
+</ul>
+</li>
+<li><a href="../ATKStm32H743">ATKStm32H743</a>
+<ul>
+<li>MCU：STM32H743IIT6</li>
+<li>代码仓库：<code>git clone --recursive https://gitee.com/xwos/ATKStm32H743.git</code></li>
+<li><strong>电路板文件夹</strong>：<code>XWOS/xwbd/ATKStm32H743</code></li>
+</ul>
+</li>
+<li><a href="../ATKStm32F407Core">ATKStm32F407Core</a>
+<ul>
+<li>MCU：STM32F407ZET6</li>
+<li>代码仓库：<code>git clone --recursive https://gitee.com/xwos/ATKStm32F407Core.git</code></li>
+<li><strong>电路板文件夹</strong>：<code>XWOS/xwbd/ATKStm32F407Core</code></li>
+</ul>
+</li>
+<li><a href="../ATKStm32F103Core">ATKStm32F103Core</a>
+<ul>
+<li>MCU：STM32F103ZET6</li>
+<li>代码仓库：<code>git clone --recursive https://gitee.com/xwos/ATKStm32F103Core.git</code></li>
+<li><strong>电路板文件夹</strong>：<code>XWOS/xwbd/ATKStm32F103Core</code></li>
+</ul>
+</li>
+<li>Stm32F103HiXWOS：STM32F103的模板空工程
+<ul>
+<li>MCU：STM32F103C8T6</li>
+<li><strong>电路板文件夹</strong>：<code>XWOS/xwbd/Stm32F103HiXWOS</code></li>
+</ul>
+</li>
+<li>Stm32F072HiXWOS：STM32F072的模板空工程
+<ul>
+<li>MCU：STM32F072C8T6</li>
+<li><strong>电路板文件夹</strong>：<code>XWOS/xwbd/Stm32F072HiXWOS</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>电路板文件夹</strong>位于<code>XWOS</code>外部：
+<ul>
+<li><a href="../FK750M1">FK750M1</a>
+<ul>
+<li>MCU：STM32H750VBT6</li>
+<li>代码仓库：<code>git clone --recursive https://gitee.com/xwos/FK750M1.git</code></li>
+<li>bootloader代码仓库：<code>git clone --recursive https://gitee.com/xwos/FK750M1Bootloader.git</code></li>
+<li><strong>电路板文件夹</strong>：<code>brd</code></li>
+</ul>
+</li>
+<li><a href="../FK750M3">FK750M3</a>
+<ul>
+<li>MCU：STM32H750VBT6</li>
+<li>代码仓库：<code>git clone --recursive https://gitee.com/xwos/FK750M3.git</code></li>
+<li>bootloader代码仓库：<code>git clone --recursive https://gitee.com/xwos/FK750M3Bootloader.git</code></li>
+<li><strong>电路板文件夹</strong>：<code>brd</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="修改工程配置">修改工程配置</h2>
+<h3 id="工程总配置">工程总配置</h3>
+<ul>
+<li>配置文件：<strong>电路板文件夹</strong>内的<code>cfg/XuanWuOS.h</code></li>
+<li><code>XuanWuOS_CFG_SUBARCH</code>：CPU的子架构
+<ul>
+<li><code>v7m</code>：ARMv7-M</li>
+<li><code>v6m</code>：ARMv6-M</li>
+</ul>
+</li>
+<li><code>XuanWuOS_CFG_COMPILER</code>：编译器
+<ul>
+<li><code>gcc</code>：gcc/g++</li>
+<li><code>llvm</code>：clang/clang++</li>
+</ul>
+</li>
+<li><code>XuanWuOS_CFG_LDSCRIPT</code>：配置链接脚本的路径，此路径相对于<strong>电路板文件夹</strong></li>
+<li><code>XuanWuOS_CFG_CPU</code>：CPU型号
+<ul>
+<li><code>m0</code>：Cortex M0</li>
+<li><code>m0p</code>：Cortex M0 Plus</li>
+<li><code>m3</code>：Cortex M3</li>
+<li><code>m4</code>：Cortex M4</li>
+<li><code>m7</code>：Cortex M7</li>
+</ul>
+</li>
+<li><code>XuanWuOS_CFG_BOARD</code>：电路板文件夹的名称
+<ul>
+<li>若工程位于<code>XWOS/xwbd</code>内部，则此名称需要和文件夹名称一致，并且区分大小写。</li>
+</ul>
+</li>
+<li><code>XuanWuOS_CFG_CORE</code>：单核还是多核
+<ul>
+<li><code>mp</code>：使用多核内核</li>
+<li><code>up</code>：使用单核内核</li>
+</ul>
+</li>
+<li><code>XuanWuOS_CFG_XWCD</code>：是否启用<code>XWOS/xwcd/</code>内的玄武模块
+<ul>
+<li><code>1</code>：是</li>
+<li><code>0</code>：否</li>
+</ul>
+</li>
+<li><code>XuanWuOS_CFG_XWMD</code>：是否启用<code>XWOS/xwmd</code>内的玄武模块
+<ul>
+<li><code>1</code>：是</li>
+<li><code>0</code>：否</li>
+</ul>
+</li>
+<li><code>XuanWuOS_CFG_XWEM</code>：是否启用<code>XWOS/xwem</code>内的玄武模块
+<ul>
+<li><code>1</code>：是</li>
+<li><code>0</code>：否</li>
+</ul>
+</li>
+<li><code>XuanWuOS_CFG_XWAM</code>：是否启用<code>XWOS/xwam</code>内的玄武模块
+<ul>
+<li><code>1</code>：是</li>
+<li><code>0</code>：否</li>
+</ul>
+</li>
+<li><code>XuanWuOS_CFG_OEMPATH</code>：配置OEM文件夹路径
+<ul>
+<li>此路径通常配置为相对路径，相对于<strong>电路板文件夹</strong>；</li>
+<li>此路径也可以是绝对路径；</li>
+<li>此路径可以是任意路径，并不一定要在XWOS内部；</li>
+</ul>
+</li>
+</ul>
+<h3 id="工程其他配置">工程其他配置</h3>
+<p>参考<a href="../../../user-manual/configuration">配置</a>的详细说明。</p>
+<h2 id="修改链接脚本">修改链接脚本</h2>
+<p>链接脚本由配置<code>XuanWuOS_CFG_LDSCRIPT</code>指定，通常为<code>cfg/XuanWuOS.lds</code></p>
+<p>STM32的链接脚本是按照可复用的方式设计的，分为两部分：</p>
+<ul>
+<li>SDL中的链接脚本：描述各个段(<code>SECTIONS</code>)如何分布在镜像文件中
+<ul>
+<li>STM32F0：<code>xwcd/soc/arm/v7m/gcc/m0/stm32/f0.lds</code></li>
+<li>STM32G0：<code>xwcd/soc/arm/v7m/gcc/m0p/stm32/g0.lds</code></li>
+<li>STM32F1：<code>xwcd/soc/arm/v7m/gcc/m3/stm32/f1.lds</code></li>
+<li>STM32L1：<code>xwcd/soc/arm/v7m/gcc/m3/stm32/l1.lds</code></li>
+<li>STM32F4：<code>xwcd/soc/arm/v7m/gcc/m4/stm32/f4.lds</code></li>
+<li>STM32L4：<code>xwcd/soc/arm/v7m/gcc/m4/stm32/l4.lds</code></li>
+<li>STM32F7：<code>xwcd/soc/arm/v7m/gcc/m7/stm32/f7.lds</code></li>
+<li>STM32H7：<code>xwcd/soc/arm/v7m/gcc/m7/stm32/h7.lds</code></li>
+</ul>
+</li>
+<li>BDL中的链接脚本：只描述内存区域<code>MEMORY</code></li>
+</ul>
+<h3 id="ivt_lmr--ivt_vmr"><code>ivt_lmr</code> &amp; <code>ivt_vmr</code></h3>
+<p>XWOS的中断向量表区域，其中<strong>LMR</strong>表示中断向量的加载地址区域，
+也即是中断向量在Flash中的存储位置，VMR表示中断向量的运行地址区域，
+也即是上电运行时的中断向量的地址。</p>
+<ul>
+<li>如果<strong>LMR</strong>与<strong>VMR</strong>都指向Flash，且起始地址(org)与大小(len)完全一致，表示加载地址
+就是运行地址，XWOS在初始化阶段不会对中断向量执行拷贝操作；</li>
+<li>如果<strong>VMR</strong>指向RAM的某个地址，XWOS会在初始化阶段把Flash中的中断向量表拷贝到
+<strong>VMR</strong>指定的RAM内，并设置ARM的VTOR寄存器；</li>
+<li>需要注意ARM的VTOR寄存器低7位(0~6)必须保持为0，因此VMR的起始地址也必须满足
+此规则。</li>
+</ul>
+<h3 id="image_description_mr"><code>image_description_mr</code></h3>
+<p>此段中包含镜像文件的一些基本信息，例如起始位置，结尾标志位置等，可用在升级固件功能中。</p>
+<h3 id="code_mr"><code>code_mr</code></h3>
+<p>存放代码和常量的地方。</p>
+<h3 id="xwos_data_mr"><code>xwos_data_mr</code></h3>
+<p>存放xwos全局数据的地方，这些变量在定义时带有修饰符：<code>__xwos_data</code>，此段可以
+不存在，若不存在，需要在SDL中的链接脚本中将此段的数据放到<code>data_mr</code>中。</p>
+<h3 id="data_mr"><code>data_mr</code></h3>
+<p>存放全局变量的地方。当连接器ld安排完全局变量后，剩余的部分会交给XWOS
+的<strong>默认的内核内存分配器</strong>进行管理，用于为动态创建内核对象的API提供动态内存申请的接口。</p>
+<h3 id="xwos_stk_mr"><code>xwos_stk_mr</code></h3>
+<p>XWOS内核的栈内存，XWOS内核处理中断时会使用此内存作为函数的栈。</p>
+<h2 id="集成stm32cubemx生成的代码">集成STM32CubeMx生成的代码</h2>
+<p>STM32的时钟、外设驱动需要在STM32CubeMx中配置，并生成代码，再交由XWOS调用。
+STM32CubeMx生成的代码采用<a href="../../../user-manual/build-system#%E7%8E%84%E6%AD%A6%E6%A8%A1%E5%9D%97">玄武模块</a>的方式集成：</p>
+<ul>
+<li>路径：<strong>电路板文件夹</strong>内的<code>bm/stm32cube</code></li>
+<li>编译开关：配置<code>cfg/board.h</code>内的<code>BMCFG_stm32cube</code></li>
+<li>STM32CubeMX配置文件：<code>stm32cube/cubemx/XXX.ioc</code></li>
+<li>STM32CubeMX源码目录：<code>stm32cube/cubemx</code></li>
+<li>中断向量表：<code>stm32cube/cubemx/IVT</code>
+<ul>
+<li>中断向量表是使用命令自动生成：<code>XWOS/xwbs/util/el/stm32ivt/stm32ivt.el stm32cube的路径</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="stm32cubexwac"><code>stm32cube/xwac</code></h3>
+<p>其中包括适配XWOS的源码：</p>
+<ul>
+<li><code>stm32cube/xwac/xwos/hook.c</code>
+<ul>
+<li>定义Hook函数<code>stm32cube_systick_hook()</code>，并在其中调用<code>HAL_IncTick();</code>，
+再由<code>board_xwskd_syshwt_hook()</code>调用<code>stm32cube_systick_hook()</code>；</li>
+<li>函数<code>board_xwskd_syshwt_hook()</code>定义在<strong>电路板文件夹</strong>内的<code>bdl/xwac/xwskd_hook.c</code>，
+当<code>cfg/board.h</code>内的配置<code>BRDCFG_XWSKD_SYSHWT_HOOK</code>为<code>1</code>时，
+由XWOS内核在滴答时钟中断函数内调用此函数。</li>
+</ul>
+</li>
+<li><code>stm32cube/xwac/fatfs</code>：文件系统<code>XWOS/xwem/fs/fatfs</code>底层适配代码，
+STM32CubeMX生成的的硬件读写代码由此处调用，若不需要文件系统，可删除。</li>
+<li><code>stm32cube/xwac/lua</code>：Lua语言<code>XWOS/xwem/vm/lua</code>底层适配代码，若不需要Lua，可删除。</li>
+<li><code>stm32cube/xwac/newlib</code>：C标准库的底层适配代码，若不使用，可删除。</li>
+<li><code>stm32cube/xwac/xwds</code>：C标准库的底层适配代码，若不使用，可删除。</li>
+<li><code>stm32cube/xwac/xwlib</code>：XWOS的通用库的底层适配代码，其中定义了log如何输出，CRC算法的硬件支持等，
+若MCU不提供支持，可删除。</li>
+</ul>
+<h3 id="stm32cubemifc与stm32cubemifh"><code>stm32cube/mif.c与stm32cube/mif.h</code></h3>
+<p>其中定义了模块对外的接口，其中有两个接口在启动流程中被调用：</p>
+<ul>
+<li><code>stm32cube_lowlevel_init()</code>：由<code>board_lowlevel_init()</code>调用；</li>
+<li><code>stm32cube_init()</code>：由<code>board_init()</code>调用。</li>
+</ul>
+<h3 id="xwmomk"><code>xwmo.mk</code></h3>
+<p>由于STM32CubeMX生成多少<code>.c</code>文件不确定，因此需要从STM32CubeMX生成的Makefile中获取
+此信息，为此可使用脚本<code>XWOS/xwbs/util/el/makefile-grep-variable.el</code>，具体可参考已有
+工程中的<code>xwmo.mk</code></p>
+<h2 id="配置stm32cubemx">配置STM32CubeMX</h2>
+<p>需要将<strong>Project Manager</strong>中的<code>Toolchain/IDE</code>设置为Makefile。</p>
+<p><img src="../Env/STM32CubeMX-ProjectManager.png" alt="img" title="Project Manager"></p>
+<h3 id="中断优先级">中断优先级</h3>
+<ul>
+<li>XWOS对中断优先级的要求：</li>
+</ul>
+<pre tabindex="0"><code>切换上下文的中断 &lt;= 滴答定时器的中断 &lt; 调度器服务中断
+切换上下文的中断 &lt; 其他中断 &lt; 调度器服务中断
+</code></pre><ul>
+<li>NVIC设置
+<ul>
+<li>设置3个抢占优先级位和1个子优先级位</li>
+<li>SVC中断设置成<strong>最高</strong>优先级，即<strong>Preemption Priority</strong>为0；</li>
+<li>PendSV中断设置成<strong>最低</strong>优先级，即<strong>Preemption Priority</strong>为7；</li>
+<li>Systick中断设置成<strong>最低</strong>优先级，即<strong>Preemption Priority</strong>为7；</li>
+<li>系统Fault的优先级设置为<strong>0</strong>；</li>
+<li>其他中断的优先级只可在<strong>1~6</strong>之间。。</li>
+</ul>
+</li>
+</ul>
+<p><img src="../Env/STM32-IRQ-Priority.svg" alt="img" title="中断优先级"></p>
+<h2 id="建立入口函数">建立入口函数</h2>
+<p>XWOS启动流程结束后的入口函数是<code>xwos_main()</code>，可以通过一个玄武模块定义，例如<code>bm/main</code>，
+简单的应用也可以定义在<code>bdl/</code>的某个<code>.c</code>文件内。</p>
+<h2 id="代码启动流程">代码启动流程</h2>
+<p><img src="../Env/stm32-boot-flow.svg" alt="img" title="STM32启动流程"></p>
+<h2 id="使用stm32cubeide">使用STM32CubeIDE</h2>
+<h3 id="新建工程">新建工程</h3>
+<p>在STM32CubeIDE的workspace目录新建一个文件夹，将<code>stm32cube/cubemx/XXX.ioc</code>、源码放在一起：</p>
+<div class="highlight"><pre tabindex="0" style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>.
+</span></span><span style="display:flex;"><span>├── XXX.ioc
+</span></span><span style="display:flex;"><span>└── XWOS
+</span></span></code></pre></div><p>在STM32CubeIDE中打开
+菜单<strong>File &ndash;&gt; New &ndash;&gt; STM32 Project from an Exsiting STM32CubeMX Configuration File(.ioc)</strong>，
+选择<code>XXX.ioc</code>。</p>
+<p>将生成的代码<code>Core/</code>、<code>Drivers/</code>、<code>*.ld</code>删除，在XWOS中用不到。</p>
+<h3 id="设置编译环境">设置编译环境</h3>
+<ul>
+<li>打开菜单**&ldquo;Project &ndash;&gt; Properties &ndash;&gt; C/C++ Build &ndash;&gt; Environment&rdquo;**；</li>
+<li>点击**&ldquo;Restore Defaults&rdquo;**；</li>
+<li>修改Debug配置的环境变量：
+<ul>
+<li><code>WKSPC</code>:<code>../../../${ConfigName}</code></li>
+<li><code>~D</code>:<code>1</code></li>
+<li><code>~V</code>:<code>1</code></li>
+</ul>
+</li>
+</ul>
+<p><img src="../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH-Debug.png" alt="img" title="Debug配置"></p>
+<ul>
+<li>修改Release配置的环境变量：
+<ul>
+<li><code>WKSPC</code>:<code>../../../${ConfigName}</code></li>
+<li><code>~D</code>:<code>0</code></li>
+<li><code>~V</code>:<code>1</code></li>
+</ul>
+</li>
+</ul>
+<p><img src="../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH-Release.png" alt="img" title="Release配置"></p>
+<h3 id="环境变量path设置">环境变量<strong>PATH</strong>设置</h3>
+<ul>
+<li>修改Debug和Release两个配置的<strong>PATH</strong>环境变量
+<ul>
+<li>将STM32CubeIDE自带的工具链路径从PATH环境变量中删除；</li>
+<li>将xwtc工具链的路径放置到PATH环境变量中。</li>
+</ul>
+</li>
+</ul>
+<p><img src="../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH.svg" alt="img" title="设置PATH"></p>
+<ul>
+<li>注意，<strong>STM32CubeIDE自带的工具链在windows可能会导致编译失败</strong>，
+需将STM32CubeIDE自带的工具链路径从PATH环境变量中删除，
+并使用xwtc工具链：</li>
+</ul>
+<pre tabindex="0"><code>make (e=3): 系统找不到指定的路径。
+make (e=3): The system cannot find the file specified.
+</code></pre><p><img src="../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH-Windows.svg" alt="img" title="Windows PATH"></p>
+<h3 id="调试配置">调试配置</h3>
+<p>打开菜单<strong>Run &ndash;&gt; Debug Configurations&hellip;</strong>，根据仿真器类型，选择调试配置：</p>
+<ul>
+<li><strong>WeActMiniStm32H750</strong>：<strong>gdb</strong> + <strong>STLink GDB Server</strong> + <strong>STLink调试器</strong>；</li>
+</ul>
+<p><img src="../Env/STM32CubeIDE-Debug_Configurations.png" alt="img" title="调试配置"></p>
+<ul>
+<li>设置外部QSPI Flash的下载算法需要拷贝到STM32CubeIDE的安装目录： <code>plugins/com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.&lt;版本号&gt;/tools/bin/ExternalLoader</code>；</li>
+</ul>
+<p><img src="../Env/STM32CubeIDE-Debug-ExternalLoader.svg" alt="img" title="设置ExternalLoader"></p>
+
+	
+	
+	<div class="text-muted mt-5 pt-3 border-top">
+  最后修改 September 22, 2021: <a href="https://gitee.com/xwos/XWOS/commit/9b7b6ed8e482f9427a5bfe1fcd099b722c2a60c6">chore: :tada: 创建工程 —— 玄武操作系统网站 (9b7b6ed)</a>
+</div>
+
+</div>
+
+
+          </main>
+        </div>
+      </div>
+      
+<footer class="bg-dark py-5 row d-print-none">
+  <div class="container-fluid mx-sm-5">
+    <div class="row">
+      <div class="col-6 col-sm-4 text-xs-center order-sm-2">
+        
+      </div>
+      <div class="col-6 col-sm-4 text-right text-xs-center order-sm-3">
+        
+      </div>
+      <div class="col-12 text-center py-2 order-sm-2">
+        <small class="text-white">&copy; 2022 xwos.tech 版权所有  | Documentation Distributed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC-BY-SA 4.0</a></small>
+        
+	
+		
+	
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    </div>
+    <script src="https://unpkg.com/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    crossorigin="anonymous"></script>
+<script src="https://unpkg.com/bootstrap@4.6.1/dist/js/bootstrap.min.js"
+    integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA=="
+    crossorigin="anonymous"></script>
+
+
+<script src="https://unpkg.com/mermaid@8.13.4/dist/mermaid.min.js" integrity="sha512-JERecFUBbsm75UpkVheAuDOE8NdHjQBrPACfEQYPwvPG+fjgCpHAz1Jw2ci9EXmd3DdfiWth3O3CQvcfEg8gsA==" crossorigin="anonymous"></script>
+
+
+
+
+<script src='/js/tabpane-persist.js'></script>
+
+
+
+<script src='/js/deflate.js'></script>
+
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/katex@0.15.1/dist/katex.min.css"
+    integrity="sha512-vJqxkZ+Sugf/6WRlpcxN01qVfX/29hF6qc33eHF1va3NgoV+U+wCi+uTAsQ10sDoGyBxHLdaHvGwDlV3yVYboA==" crossorigin="anonymous">
+
+<script defer src="https://unpkg.com/katex@0.15.1/dist/katex.min.js"
+    integrity="sha512-5ufNcHqOYgilGEHPfuRIQ5B/vDS1M8+UC+DESZ5CwVgGTg+b2Ol/15rYL/GiCWJ/Sx8oVo0FPFok1dPk8U9INQ=="
+    crossorigin="anonymous"></script>
+
+
+
+<script defer src="https://unpkg.com/katex@0.15.1/dist/contrib/mhchem.min.js"
+    integrity="sha512-HWb6LyQhO6UkmYLjdSblpgiOvvbdkoMRjln0POPhOVbZu3l4QdqwZnMJ/cuwKScU5pWARejB495TAAAz0WNsXQ=="
+    crossorigin="anonymous"></script>
+
+
+<script defer src='https://unpkg.com/katex@0.15.1/dist/contrib/auto-render.min.js'
+    integrity='sha512-ZA/RPrAo88DlwRnnoNVqKINnQNcWERzRK03PDaA4GIJiVZvGFIWQbdWCsUebMZfkWohnfngsDjXzU6PokO4jGw==' crossorigin='anonymous' 
+    onload='renderMathInElement(document.body, null);'></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/main.min.266a23ed5c820a5af7be2951150fe42c3cf32144b75c96e456f1b59b9bbdd2ab.js" integrity="sha256-Jmoj7VyCClr3vilRFQ/kLDzzIUS3XJbkVvG1m5u90qs=" crossorigin="anonymous"></script>
+
+
+
+<script src='/js/prism.js'></script>
+
+
+
+  </body>
+</html>

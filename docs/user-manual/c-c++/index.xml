@@ -1,0 +1,212 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>XWOS – C/C&#43;&#43;</title>
+    <link>/docs/user-manual/c-c&#43;&#43;/</link>
+    <description>Recent content in C/C&#43;&#43; on XWOS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	  <atom:link href="/docs/user-manual/c-c++/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: libc</title>
+      <link>/docs/user-manual/c-c&#43;&#43;/libc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/user-manual/c-c&#43;&#43;/libc/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;xwos内核对libc的依赖&#34;&gt;XWOS内核对libc的依赖&lt;/h2&gt;
+&lt;p&gt;XWOS使用newlib作为默认的libc，具体依赖的情况如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;string.h&lt;/code&gt;的&lt;code&gt;memset()&lt;/code&gt;、&lt;code&gt;memcpy()&lt;/code&gt;函数，
+&lt;code&gt;xwmd/libc/newlibac/string.c&lt;/code&gt;中已提供覆盖newlib的实现；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;stdlib.h&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;当配置了&lt;code&gt;XWMPCFG_SKD_THD_STDC_MM&lt;/code&gt;、&lt;code&gt;XWMPCFG_SKD_SWT_STDC_MM&lt;/code&gt;、
+&lt;code&gt;XWMPCFG_SYNC_SEM_STDC_MM&lt;/code&gt;、&lt;code&gt;XWMPCFG_SYNC_COND_STDC_MM&lt;/code&gt;、
+&lt;code&gt;XWMPCFG_SYNC_EVT_STDC_MM&lt;/code&gt;或&lt;code&gt;XWMPCFG_LOCK_MTX_STDC_MM&lt;/code&gt;时，
+需要使用&lt;code&gt;stdlib.h&lt;/code&gt;的&lt;code&gt;malloc()&lt;/code&gt;和&lt;code&gt;free()&lt;/code&gt;函数动态创建和删除对象：&lt;/li&gt;
+&lt;li&gt;低成本的应用中，可能会使用小内存的MCU，不能使用动态内存管理，配置中也不能将&lt;code&gt;XWMPCFG_SKD_THD_STDC_MM&lt;/code&gt;、&lt;code&gt;XWMPCFG_SKD_SWT_STDC_MM&lt;/code&gt;、
+&lt;code&gt;XWMPCFG_SYNC_SEM_STDC_MM&lt;/code&gt;、&lt;code&gt;XWMPCFG_SYNC_COND_STDC_MM&lt;/code&gt;、
+&lt;code&gt;XWMPCFG_SYNC_EVT_STDC_MM&lt;/code&gt;和&lt;code&gt;XWMPCFG_LOCK_MTX_STDC_MM&lt;/code&gt;配置为&lt;code&gt;1&lt;/code&gt;，此时，XWOS内核不再需要&lt;code&gt;stdlib.h&lt;/code&gt;；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;inttypes.h&lt;/code&gt;、&lt;code&gt;stdint.h&lt;/code&gt;、&lt;code&gt;stddef.h&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;XWOS的&lt;a href=&#34;../../basic-promise#%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B&#34;&gt;基本类型&lt;/a&gt;基于标准C的基本类型进行定义：
+&lt;code&gt;uint8_t&lt;/code&gt;、&lt;code&gt;int8_t&lt;/code&gt;、&lt;code&gt;uint16_t&lt;/code&gt;、&lt;code&gt;int16_t&lt;/code&gt;、&lt;code&gt;uint32_t&lt;/code&gt;、&lt;code&gt;int32_t&lt;/code&gt;、
+&lt;code&gt;uint64_t&lt;/code&gt;、&lt;code&gt;int64_t&lt;/code&gt;、&lt;code&gt;size_t&lt;/code&gt;、&lt;code&gt;ssize_t&lt;/code&gt;等；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;stdbool.h&lt;/code&gt;：bool类型；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;stdatomic.h&lt;/code&gt;：C11标准中原子操作内存屏障的定义，XWOS有自己的原子操作库，不依赖C11标准中的原子操作函数，但用户也可以在自己的代码中使用；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;stdarg.h&lt;/code&gt;：变参函数；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;stdio.h&lt;/code&gt;：&lt;code&gt;vsnprintf()&lt;/code&gt;，用于&lt;code&gt;xwos/lib/xwlog.c&lt;/code&gt;中格式化日志，若配置&lt;code&gt;XWLIBCFG_LOG&lt;/code&gt;为&lt;code&gt;0&lt;/code&gt;，则不需要这个函数；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;文件操作&#34;&gt;文件操作&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 头文件&lt;code&gt;stdio.h&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;code&gt;fopen()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;code&gt;fclose()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;code&gt;fread()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;code&gt;fwrite()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;code&gt;fseek()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;code&gt;remove()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;code&gt;rename()&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这些函数由&lt;code&gt;xwmd/libc/newlibac/fops.c&lt;/code&gt;提供底层支持，&lt;code&gt;xwmd/libc/newlibac/fops.c&lt;/code&gt;
+又依赖第三方软件&lt;a href=&#34;http://elm-chan.org/fsw/ff/00index_e.html&#34;&gt;&lt;code&gt;xwem/fs/fatfs&lt;/code&gt;&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;FatFs需要BSP中提供对块设备操作的支持，因此不同的电路板对文件操作的支持情况不一致，
+可以参考快速开发指南获得说明：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../quick-guide/STM32/WeActMiniStm32H750#libc&#34;&gt;WeActMiniStm32H750&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../quick-guide/STM32/EmbedFireStm32H743#libc&#34;&gt;EmbedFireStm32H743&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../quick-guide/STM32/FK750M1#libc&#34;&gt;FK750M1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../quick-guide/STM32/FK750M3#libc&#34;&gt;FK750M3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../quick-guide/STM32/FK429M1#libc&#34;&gt;FK429M1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../quick-guide/STM32/ATKStm32H743#libc&#34;&gt;ATKStm32H743&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../quick-guide/STM32/ATKStm32F407Core#libc&#34;&gt;ATKStm32F407Core&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../quick-guide/STM32/ATKStm32F103Core#libc&#34;&gt;ATKStm32F103Core&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;动态内存管理&#34;&gt;动态内存管理&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;code&gt;stdlib.h&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;code&gt;malloc()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;code&gt;free()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;code&gt;realloc()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;code&gt;calloc()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;code&gt;memalign()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;code&gt;aligned_alloc()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;code&gt;valloc()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; &lt;code&gt;pvalloc()&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这些函数由&lt;code&gt;xwmd/libc/newlibac/mem.c&lt;/code&gt;提供底层支持：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwmd/libc/newlibac/mem.c&lt;/code&gt;覆盖了newlib中原有的实现。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd/libc/newlibac/mem.c&lt;/code&gt;中的实现是对&lt;a href=&#34;../../mm/mempool&#34;&gt;mempool&lt;/a&gt;的封装，
+mempool需要在&lt;code&gt;board_init()&lt;/code&gt;中选择内存设备进行初始化后才可使用；&lt;/li&gt;
+&lt;li&gt;用户也可使用newlib提供的内存管理算法，只需将配置&lt;code&gt;XWMDCFG_libc_newlibac_mem&lt;/code&gt;改为&lt;code&gt;0&lt;/code&gt;即可；&lt;/li&gt;
+&lt;li&gt;用户也可自己提供动态内存算法，只需改写&lt;code&gt;xwmd/libc/newlibac/mem.c&lt;/code&gt;中的函数&lt;code&gt;_malloc_r()&lt;/code&gt;、&lt;code&gt;_realloc_r()&lt;/code&gt;、&lt;code&gt;_calloc_r()&lt;/code&gt;、&lt;code&gt;_memalign_r()&lt;/code&gt;、
+&lt;code&gt;_valloc_r()&lt;/code&gt;、&lt;code&gt;_pvalloc_r()&lt;/code&gt;、&lt;code&gt;_free_r()&lt;/code&gt;即可。&lt;/li&gt;
+&lt;li&gt;由于各电路板硬件配置不一样，动态内存管理的函数支持情况也不一样，可以参考快速开发指南获得说明：
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../quick-guide/STM32/WeActMiniStm32H750#libc&#34;&gt;WeActMiniStm32H750&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../quick-guide/STM32/EmbedFireStm32H743#libc&#34;&gt;EmbedFireStm32H743&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../quick-guide/STM32/FK750M1#libc&#34;&gt;FK750M1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../quick-guide/STM32/FK750M3#libc&#34;&gt;FK750M3&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../quick-guide/STM32/FK429M1#libc&#34;&gt;FK429M1&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../quick-guide/STM32/ATKStm32H743#libc&#34;&gt;ATKStm32H743&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../quick-guide/STM32/ATKStm32F407Core#libc&#34;&gt;ATKStm32F407Core&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../quick-guide/STM32/ATKStm32F103Core#libc&#34;&gt;ATKStm32F103Core&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;setjmplongjmp&#34;&gt;&lt;code&gt;setjmp()/longjmp()&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;setjmp()&lt;/code&gt;和&lt;code&gt;longjmp()&lt;/code&gt;函数对可实现在不同函数间的&lt;code&gt;goto&lt;/code&gt;。
+用户应该使用头文件&lt;code&gt;xwos/lib/setjmp.h&lt;/code&gt;中代替标准C的头文件&lt;code&gt;setjmp.h&lt;/code&gt;，
+并且也应该使用&lt;code&gt;xwlib_setjmp()&lt;/code&gt;与&lt;code&gt;xwlib_longjmp()&lt;/code&gt;函数对代替&lt;code&gt;setjmp()/longjmp()&lt;/code&gt;函数&lt;code&gt;setjmp()&lt;/code&gt;和&lt;code&gt;longjmp()&lt;/code&gt;函数对。&lt;/p&gt;
+&lt;h2 id=&#34;errno&#34;&gt;&lt;code&gt;errno&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;XWOS重构了&lt;code&gt;errno&lt;/code&gt;的实现，将&lt;code&gt;errno&lt;/code&gt;改为每个线程的私有变量，
+线程访问&lt;code&gt;errno&lt;/code&gt;时，只会访问自己的&lt;code&gt;errno&lt;/code&gt;。
+用户应该使用&lt;code&gt;xwos/lib/errno.h&lt;/code&gt;替代libc中的&lt;code&gt;errno.h&lt;/code&gt;。
+&lt;code&gt;errno&lt;/code&gt;的实现位于&lt;code&gt;xwmd/libc/newlibac/errno.c&lt;/code&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;其他libc的功能&#34;&gt;其他libc的功能&lt;/h2&gt;
+&lt;p&gt;其他libc由newlib提供，用户可参考newlib的源码或资料获取帮助，不完全清单如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; libm: 数学库&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; ctype: 字符类型&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; wchar: 多字节字符&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; iconv: 字符集转换&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; locale: 区域&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; search: 查找&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; argz: 字符串数组&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; time: 时间，暂时不支持，需要底层提供RTC的驱动&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: C&#43;&#43;</title>
+      <link>/docs/user-manual/c-c&#43;&#43;/c&#43;&#43;/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/user-manual/c-c&#43;&#43;/c&#43;&#43;/</guid>
+      <description>
+        
+        
+        &lt;p&gt;XWOS内核是使用纯C语言开发的，不依赖C++的标准库。
+用户可在线程中使用C++语言以及C++标准库，C++标准库由编译器提供，不完全功能清单如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; g++, libstdc++, libsupc++
+&lt;ul&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; new, delete, new[], delete[], placement new, aligned new (C++17)&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 容器
+&lt;ul&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; array&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; vector&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; deque&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; map, multimap, unordered_map, unordered_multimap&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; set, multiset, unordered_set, unordered_multiset&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; list, forward_list&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; stack, queue, priority_queue&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; I/O stream&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; string&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; atomic&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; RTTI&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; exception&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; unwind&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; chrono&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; thread&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; mutex&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; condition_variable&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; llvm(clang++), libc++, libc++abi
+&lt;ul&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; new, delete, new[], delete[], placement new, aligned new (C++17)&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 容器
+&lt;ul&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; array&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; vector&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; deque&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; map, multimap, unordered_map, unordered_multimap&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; set, multiset, unordered_set, unordered_multiset&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; list, forward_list&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; stack, queue, priority_queue&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; I/O stream&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; string&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; atomic&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; RTTI&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; exception&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; unwind&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; chrono&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; thread&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; mutex&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; condition_variable&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,88 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="XWOS RUST：循环队列"><meta name="keywords" content="rust, rustlang, rust-lang, xwcq"><title>xwrust::xwmd::xwcq - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script>
+    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../xwrust/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../../xwrust/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"><a href="#">Module xwcq</a></h2><div class="sidebar-elems"><section><div class="block"><ul><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#constants">Constants</a></li></ul></div></section><div id="sidebar-vars" data-name="xwcq" data-ty="mod" data-relpath="./"></div><script defer src="./sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../xwrust/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><div id="settings-menu" tabindex="-1">
+                                <a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div>
+                        </div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
+    <h1 class="fqn"><span class="in-band">Module <a href="../../index.html">xwrust</a>::<wbr><a href="../index.html">xwmd</a>::<wbr><a class="mod" href="#">xwcq</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../../../src/xwrust/xwmd/xwcq.rs.html#1-1536">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="xwos-rust循环队列"><a href="#xwos-rust循环队列">XWOS RUST：循环队列</a></h2>
+<p>XWOS RUST的循环队列是不依赖任何动态内存申请与释放而实现的多线程间的通讯机制。</p>
+<p>循环队列有 <code>N</code> 个数据槽，每个数据槽的大小固定为 <code>S</code> 。
+在创建循环队列时，需要指明类型常数 <code>S</code> 和 <code>N</code>，其内存完全由编译器进行分配。</p>
+<p>发送时，可以将数据发送到队列后面（入队），也可以将数据发送到队列前面（插队）。
+如果循环队列已满，不会阻塞发送者，循环队列会丢弃一份数据，腾出数据槽，再将新数据放入队列。</p>
+<p>发送时，数据类型是泛型 <code>T</code> ，<code>T</code> 必须是 <a href="https://doc.rust-lang.org/std/marker/trait.Sized.html"><code>Sized</code></a> 的，数据是被逐字节地被拷贝到循环队列的数据槽内的。
+当发送的数据类型大小大于循环队列的数据槽大小 <code>S</code> ，发送会失败。</p>
+<p>接收时，可以从循环队列的前面取出数据（离队），也可以从循环队列的后面取出数据（反向离队）。
+还可以从循环队列的前面拷贝数据（前向偷窥），以及从循环队列的后面拷贝数据（后向偷窥）。</p>
+<p>接收时，数据类型是泛型 <code>T</code> ， <code>T</code> 必须是 <a href="https://doc.rust-lang.org/std/marker/trait.Sized.html"><code>Sized</code></a> 的，数据是被逐字节地从循环队列的数据槽中拷贝到出来的。
+循环队列不会对接收时的 <code>T</code> 与 发送时的 <code>T</code> 进行检查，因此用户必须确保两个类型是一样的，或能安全地进行转换。</p>
+<p>循环队列的 <strong>入队</strong> 与 <strong>离队</strong> ，<strong>插队</strong> 与 <strong>反向离队</strong> 分别组成了 <strong>先进先出(FIFO)</strong> 的关系。</p>
+<p>由于不使用动态内存申请，又无法预测各个线程的生命周期，因此循环队列只能被定义为 <a href="https://doc.rust-lang.org/std/keyword.static.html"><code>static</code></a> 限定的全局变量。</p>
+<p>与 <a href="https://doc.rust-lang.org/std/sync/mpsc/index.html"><code>std::sync::mpsc</code></a> 不同，循环队列不区分发送者与接收者，任何线程都可以发送与接收。</p>
+<h2 id="创建"><a href="#创建">创建</a></h2>
+<p>XWOS RUST的循环队列可使用 <a href="struct.Xwcq.html#method.new" title="Xwcq::new()"><code>Xwcq::new()</code></a> 创建。创建时需要指定两个常量参数：数据槽的大小 <code>S</code> 以及数量 <code>N</code> 。
+循环队列只能创建为具有静态生命周期 <a href="https://doc.rust-lang.org/std/keyword.static.html"><code>static</code></a> 约束的全局变量：</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">xwrust::xwmd::xwcq</span>::<span class="kw-2">*</span>;
+
+<span class="kw">static</span> <span class="ident">CQ</span>: <span class="ident">Xwcq</span><span class="op">&lt;</span><span class="number">64</span>, <span class="number">16</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Xwcq::new</span>(); <span class="comment">// 数据槽大小 `S` = 64; 数量 `N` = 16</span></code></pre></div>
+<h2 id="初始化"><a href="#初始化">初始化</a></h2>
+<p>使用前，必须调用 <a href="struct.Xwcq.html#method.init" title="Xwcq::init()"><code>Xwcq::init()</code></a> 对循环队列进行初始化。如果创建循环队列时的常量参数不合适，初始化将以错误码返回。</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">xwrust_example_xwcq</span>() {
+    <span class="kw">let</span> <span class="ident">rc</span> <span class="op">=</span> <span class="ident">CQ</span>.<span class="ident">init</span>();
+}</code></pre></div>
+<h2 id="发送"><a href="#发送">发送</a></h2>
+<p>发送不会阻塞发送者，因此可在任意上下文进行发送。</p>
+<h4 id="入队"><a href="#入队">入队</a></h4>
+<p><strong>入队 (EnQueue)</strong> <a href="struct.Xwcq.html#method.eq" title="Xwcq::eq"><code>Xwcq::eq</code></a> 是指将数据发送到循环队列最后面。</p>
+<h4 id="插队"><a href="#插队">插队</a></h4>
+<p><strong>插队 (Jump the Queue)</strong> <a href="struct.Xwcq.html#method.jq" title="Xwcq::jq"><code>Xwcq::jq</code></a> 是指将数据发送到循环队列最前面。</p>
+<h2 id="接收"><a href="#接收">接收</a></h2><h4 id="离队"><a href="#离队">离队</a></h4>
+<p>离队是指从循环队列的最前面取出数据。取出数据后，数据槽被释放。</p>
+<ul>
+<li><a href="struct.Xwcq.html#method.dq" title="Xwcq::dq()"><code>Xwcq::dq()</code></a> 若循环队列中为空，就无限等待，直到循环队列中有数据可取出或被中断。</li>
+<li><a href="struct.Xwcq.html#method.dq_to" title="Xwcq::dq_to()"><code>Xwcq::dq_to()</code></a> 若循环队列中为空，就限时等待，直到循环队列中有数据可取出或被中断或等待超时。</li>
+<li><a href="struct.Xwcq.html#method.trydq" title="Xwcq::trydq()"><code>Xwcq::trydq()</code></a> 若循环队列中为空，就立即返回，可在中断中使用。</li>
+</ul>
+<h4 id="反向离队"><a href="#反向离队">反向离队</a></h4>
+<p>反向离队是指从循环队列的最后面取出数据。取出数据后，数据槽被释放。</p>
+<ul>
+<li><a href="struct.Xwcq.html#method.rq" title="Xwcq::rq()"><code>Xwcq::rq()</code></a> 若循环队列中为空，就无限等待，直到循环队列中有数据可取出或被中断。</li>
+<li><a href="struct.Xwcq.html#method.rq_to" title="Xwcq::rq_to()"><code>Xwcq::rq_to()</code></a> 若循环队列中为空，就限时等待，直到循环队列中有数据可取出或被中断或等待超时。</li>
+<li><a href="struct.Xwcq.html#method.tryrq" title="Xwcq::tryrq()"><code>Xwcq::tryrq()</code></a> 若循环队列中为空，就立即返回，可在中断中使用。</li>
+</ul>
+<h4 id="从循环队列前面拷贝数据"><a href="#从循环队列前面拷贝数据">从循环队列前面拷贝数据</a></h4>
+<p>从循环队列前面拷贝数据时，数据不会取走数据，数据槽不会被释放。因此命名为 <strong>前向偷窥 (Peek at the Front of Queue)</strong> 。</p>
+<ul>
+<li><a href="struct.Xwcq.html#method.pfq" title="Xwcq::pfq()"><code>Xwcq::pfq()</code></a> 若循环队列中为空，就无限等待，直到循环队列中有数据可取出或被中断。</li>
+<li><a href="struct.Xwcq.html#method.pfq_to" title="Xwcq::pfq_to()"><code>Xwcq::pfq_to()</code></a> 若循环队列中为空，就限时等待，直到循环队列中有数据可取出或被中断或等待超时。</li>
+<li><a href="struct.Xwcq.html#method.trypfq" title="Xwcq::trypfq()"><code>Xwcq::trypfq()</code></a> 若循环队列中为空，就立即返回，可在中断中使用。</li>
+</ul>
+<h4 id="从循环队列后面拷贝数据"><a href="#从循环队列后面拷贝数据">从循环队列后面拷贝数据</a></h4>
+<p>从循环队列后面拷贝数据，数据不会取走数据，数据槽不会被释放。因此命名为 <strong>后向偷窥 (Peek at the Rear of Queue)</strong> 。</p>
+<ul>
+<li><a href="struct.Xwcq.html#method.prq" title="Xwcq::prq()"><code>Xwcq::prq()</code></a> 若循环队列中为空，就无限等待，直到循环队列中有数据可取出或被中断。</li>
+<li><a href="struct.Xwcq.html#method.prq_to" title="Xwcq::prq_to()"><code>Xwcq::prq_to()</code></a> 若循环队列中为空，就限时等待，直到循环队列中有数据可取出或被中断或等待超时。</li>
+<li><a href="struct.Xwcq.html#method.tryprq" title="Xwcq::tryprq()"><code>Xwcq::tryprq()</code></a> 若循环队列中为空，就立即返回，可在中断中使用。</li>
+</ul>
+<h2 id="清空循环队列"><a href="#清空循环队列">清空循环队列</a></h2>
+<p><a href="struct.Xwcq.html#method.flush" title="Xwcq::flush()"><code>Xwcq::flush()</code></a> 可将循环队列的所有数据槽清空。</p>
+<h2 id="获取循环队列容量"><a href="#获取循环队列容量">获取循环队列容量</a></h2>
+<p><a href="struct.Xwcq.html#method.capacity" title="Xwcq::capacity()"><code>Xwcq::capacity()</code></a> 可获取循环队列的数据槽的数量 <code>N</code> 。</p>
+<h2 id="获取循环队列数据槽的大小"><a href="#获取循环队列数据槽的大小">获取循环队列数据槽的大小</a></h2>
+<p><a href="struct.Xwcq.html#method.size" title="Xwcq::size()"><code>Xwcq::size()</code></a> 可获取循环队列数据槽的大小 <code>S</code> ，若 <code>S</code> 不满足内存对齐的要求，会自动向上调整。</p>
+<h2 id="获取循环队列中可被接收的数据的数量"><a href="#获取循环队列中可被接收的数据的数量">获取循环队列中可被接收的数据的数量</a></h2>
+<p><a href="struct.Xwcq.html#method.availability" title="Xwcq::availability()"><code>Xwcq::availability()</code></a> 可获取循环队列可被接收的数据的数量。</p>
+<h2 id="示例"><a href="#示例">示例</a></h2>
+<p><a href="https://gitee.com/xwos/XWOS/blob/main/xwam/xwrust-example/xwrust_example_xwcq/src/lib.rs">XWOS/xwam/xwrust-example/xwrust_example_xwcq</a></p>
+</div></details><h2 id="structs" class="small-section-header"><a href="#structs">Structs</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="struct" href="struct.Xwcq.html" title="xwrust::xwmd::xwcq::Xwcq struct">Xwcq</a></div><div class="item-right docblock-short"><p>循环队列对象结构体</p>
+</div></div></div><h2 id="enums" class="small-section-header"><a href="#enums">Enums</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="enum" href="enum.XwcqError.html" title="xwrust::xwmd::xwcq::XwcqError enum">XwcqError</a></div><div class="item-right docblock-short"><p>循环队列的错误码</p>
+</div></div></div><h2 id="constants" class="small-section-header"><a href="#constants">Constants</a></h2>
+<div class="item-table"><div class="item-row"><div class="item-left module-item"><a class="constant" href="constant.SIZEOF_XWCQ.html" title="xwrust::xwmd::xwcq::SIZEOF_XWCQ constant">SIZEOF_XWCQ</a></div><div class="item-right docblock-short"><p>循环队列对象占用的内存大小</p>
+</div></div></div></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="xwrust" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (ee160f2f5 2022-05-23)" ></div>
+</body></html>

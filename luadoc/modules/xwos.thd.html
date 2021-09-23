@@ -1,0 +1,281 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>XWLUA参考手册</title>
+    <link rel="stylesheet" href="../ldoc_new.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>XWLUA</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/xwtm.html">xwtm</a></li>
+  <li><a href="../modules/xwxt.html">xwxt</a></li>
+  <li><a href="../modules/xwos.skd.html">xwos.skd</a></li>
+  <li><strong>xwos.thd</strong></li>
+  <li><a href="../modules/xwos.cthd.html">xwos.cthd</a></li>
+  <li><a href="../modules/xwos.lock.mtx.html">xwos.lock.mtx</a></li>
+  <li><a href="../modules/xwos.lock.splk.html">xwos.lock.splk</a></li>
+  <li><a href="../modules/xwos.lock.sqlk.html">xwos.lock.sqlk</a></li>
+  <li><a href="../modules/xwos.sync.sem.html">xwos.sync.sem</a></li>
+  <li><a href="../modules/xwos.sync.cond.html">xwos.sync.cond</a></li>
+  <li><a href="../modules/xwos.sync.flg.html">xwos.sync.flg</a></li>
+  <li><a href="../modules/xwos.sync.br.html">xwos.sync.br</a></li>
+  <li><a href="../modules/xwos.sync.sel.html">xwos.sync.sel</a></li>
+  <li><a href="../modules/xwos.pm.html">xwos.pm</a></li>
+</ul>
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><a href="../classes/xwlib.bmp.html">xwlib.bmp</a></li>
+  <li><a href="../classes/thdsp.html">thdsp</a></li>
+  <li><a href="../classes/mtxsp.html">mtxsp</a></li>
+  <li><a href="../classes/splksp.html">splksp</a></li>
+  <li><a href="../classes/sqlksp.html">sqlksp</a></li>
+  <li><a href="../classes/semsp.html">semsp</a></li>
+  <li><a href="../classes/condsp.html">condsp</a></li>
+  <li><a href="../classes/flgsp.html">flgsp</a></li>
+  <li><a href="../classes/brsp.html">brsp</a></li>
+  <li><a href="../classes/selsp.html">selsp</a></li>
+  <li><a href="../classes/xwds.soc.html">xwds.soc</a></li>
+  <li><a href="../classes/xwds.uart.html">xwds.uart</a></li>
+  <li><a href="../classes/xwds.i2cm.html">xwds.i2cm</a></li>
+  <li><a href="../classes/xwds.spim.html">xwds.spim</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>xwos.thd</code></h1>
+<p>XWLUA模块：线程</p>
+<p>原生的Lua语言不支持多线程（Lua中的类型<strong>thread</strong>并不是真正的线程，而是协程。），脚本中的全局变量只能由执行脚本的线程自身访问。
+XWLUA在C语言层面开发了多线程的功能，每个线程都拥有一个独立的Lua虚拟机。</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#dofile">dofile (file)</a></td>
+	<td class="summary">从文件系统中读取脚本文件<strong>file</strong>，然后新建一个线程运行脚本<br>
+<br></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#dostring">dostring (str)</a></td>
+	<td class="summary">建立一个新的线程执行字符串<strong>str</strong><br>
+ <br></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#call">call (func)</a></td>
+	<td class="summary">建立一个新的线程调用函数<strong>func</strong><br>
+ <br></td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "dofile"></a>
+    <strong>dofile (file)</strong>
+    </dt>
+    <dd>
+    从文件系统中读取脚本文件<strong>file</strong>，然后新建一个线程运行脚本<br>
+<br>
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">file</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+         (<strong>in</strong>) lua脚本文件的路径<br>
+<br>
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">userdata</span></span>
+        新的线程对象的强指针 <a href="../classes/thdsp.html#">thdsp</a>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <li><pre class="example">childthdsp = xwos.thd.<span class="global">dofile</span>(<span class="string">"sd:/hw.lua"</span>)
+childthdsp:stop() <span class="comment">-- 停止线程并等待线程退出，然后回收其内存资源</span></pre></li>
+        <li><pre class="example"><span class="backtick"><code>终端输出：</code></span>
+&gt; childthdsp = xwos.thd.<span class="global">dofile</span>(<span class="string">"sd:/hw.lua"</span>)
+<span class="backtick"><code>XWLUA Test Script
+
+Thread strong pointer:	{0x20000880, 63}
+pi =	3.1415926535898
+2^11 =	-2.5060358315688e-94
+exp(10) =	22026.465794807
+t1 = 5
+t1[5] = 5
+1	1
+2	2
+3	false
+4	4
+5	5
+6	6
+7	7
+c	c
+b	b
+a	a</code></span>
+
+&gt; childthdsp:stop()
+<span class="backtick"><code>0	0</code></span></pre></li>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "dostring"></a>
+    <strong>dostring (str)</strong>
+    </dt>
+    <dd>
+    建立一个新的线程执行字符串<strong>str</strong><br>
+ <br>
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">str</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+         (<strong>in</strong>) 字符串<br>
+ <br>
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">userdata</span></span>
+        新的线程对象的强指针 <a href="../classes/thdsp.html#">thdsp</a>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <li><pre class="example">script = <span class="string">[[
+mythdsp = xwos.cthd.sp()
+print("Thread strong pointer:", mythdsp)
+]]</span>
+strthdsp = xwos.thd.dostring(script)
+strthdsp
+strthdsp:stop()</pre></li>
+        <li><pre class="example"><span class="backtick"><code>终端输出：</code></span>
+&gt; script = <span class="string">[[
+&gt;&gt; mythdsp = xwos.cthd.sp()
+&gt;&gt; print("Thread strong pointer:", mythdsp)
+&gt;&gt; ]]</span>
+&gt; strthdsp = xwos.thd.dostring(script)
+<span class="backtick"><code>Thread strong pointer:	{0x20000660, 67}</code></span>
+
+&gt; strthdsp
+<span class="backtick"><code>{0x20000660, 67}</code></span>
+&gt; strthdsp:stop()
+<span class="backtick"><code>0	0</code></span></pre></li>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "call"></a>
+    <strong>call (func)</strong>
+    </dt>
+    <dd>
+    建立一个新的线程调用函数<strong>func</strong><br>
+ <br>
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">func</span>
+            <span class="types"><span class="type">function</span></span>
+         (<strong>in</strong>) 函数<br>
+ <br>
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">userdata</span></span>
+        新的线程对象的强指针 <a href="../classes/thdsp.html#">thdsp</a>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <li><pre class="example"><span class="keyword">function</span> childthd_main ()
+  mythdsp = xwos.cthd.sp()
+  <span class="global">print</span>(<span class="string">"Thread strong pointer:"</span>, mythdsp)
+<span class="keyword">end</span>
+cthdsp = xwos.thd.call(childthd_main)
+cthdsp
+cthdsp:stop()</pre></li>
+        <li><pre class="example"><span class="backtick"><code>终端输出：</code></span>
+&gt; <span class="keyword">function</span> childthd_main ()
+&gt;&gt;   mythdsp = xwos.cthd.sp()
+&gt;&gt;   <span class="global">print</span>(<span class="string">"Thread strong pointer:"</span>, mythdsp)
+&gt;&gt; <span class="keyword">end</span>
+&gt; cthdsp = xwos.thd.call(childthd_main)
+&gt; Thread strong pointer:	{<span class="number">0x20000550</span>, <span class="number">69</span>}
+
+&gt; cthdsp
+<span class="backtick"><code>{0x20000550, 69}</code></span>
+&gt; cthdsp:stop()
+<span class="backtick"><code>0	0</code></span></pre></li>
+    </ul>
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2022-06-12 00:34:12 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

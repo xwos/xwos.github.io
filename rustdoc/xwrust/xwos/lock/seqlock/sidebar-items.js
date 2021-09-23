@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["SIZEOF_XWOS_SQLK","XWOS顺序锁占用的内存大小"]],"enum":[["SeqlockError","顺序锁的错误码"],["SeqlockMode","顺序锁的上锁模式"]],"struct":[["Seqlock","顺序锁结构体"],["SeqlockGuard","顺序锁的RAII Guard"],["SeqlockReadGuard","顺序锁共享读临界区的守卫"]]});

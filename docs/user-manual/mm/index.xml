@@ -1,0 +1,171 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>XWOS – 内存管理</title>
+    <link>/docs/user-manual/mm/</link>
+    <description>Recent content in 内存管理 on XWOS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	  <atom:link href="/docs/user-manual/mm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: 简单内存分配器</title>
+      <link>/docs/user-manual/mm/sma/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/user-manual/mm/sma/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
+&lt;p&gt;简单内存分配器只分配大小最适应内存块，不对内存进行回收。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;优点：
+&lt;ul&gt;
+&lt;li&gt;简单，代码量非常小；&lt;/li&gt;
+&lt;li&gt;运行时间稳定。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;缺点：内存一旦分配出去不再回收，&lt;code&gt;free()&lt;/code&gt; 只是一个 &lt;strong&gt;Dummy&lt;/strong&gt; 函数；&lt;/li&gt;
+&lt;li&gt;适用性：简单的RTOS应用场合或不需要回收内存的场合&lt;/li&gt;
+&lt;li&gt;上下文的安全性：在任何上下文（中断、中断底半部、线程）都是安全的。&lt;/li&gt;
+&lt;li&gt;说明：此内存管理算法只是为了满足XWOS的API而提供的默认算法，XWOS在编译时会自动计算数据区剩余的内存，
+将它们全部纳入简单内存分配器的管理范围。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;api参考&#34;&gt;API参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwmm__sma.html&#34;&gt;&lt;strong&gt;头文件 &amp;lt;xwos/mm/sma.h&amp;gt;&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 内存切片分配器</title>
+      <link>/docs/user-manual/mm/memslice/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/user-manual/mm/memslice/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
+&lt;p&gt;内存切片分配器将内存切割成等量的块，就像 &lt;strong&gt;卡片&lt;/strong&gt; 一样，然后将它们连接在一起形成队列，
+每次分配时取一块内存，回收时再把内存切片放回到队列中。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;优点：
+&lt;ul&gt;
+&lt;li&gt;简单，代码量较小；&lt;/li&gt;
+&lt;li&gt;支持释放操作；&lt;/li&gt;
+&lt;li&gt;申请与释放操作的运行时间是稳定的；&lt;/li&gt;
+&lt;li&gt;反复申请与释放不会造成内存碎片。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;缺点：
+&lt;ul&gt;
+&lt;li&gt;内存块大小固定，如果要求的内存过小，会造成内存浪费；
+如果要求的内存超过内存块的大小，无法满足需求；&lt;/li&gt;
+&lt;li&gt;连续申请的两块内存不能保证是连续的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;适用性：对时间稳定性要求高的RTOS应用场合。&lt;/li&gt;
+&lt;li&gt;上下文的安全性：在任何上下文（中断、中断底半部、线程）都是安全的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;api参考&#34;&gt;API参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwmm__memslice.html&#34;&gt;&lt;strong&gt;头文件 &amp;lt;xwos/mm/memslice.h&amp;gt;&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 伙伴算法分配器</title>
+      <link>/docs/user-manual/mm/bma/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/user-manual/mm/bma/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
+&lt;p&gt;伙伴算法分配器在分配时，会将内存不断地二等分，直到切割到能满足要求的最小内存大小为止。
+释放时会检查与之相邻并等长的内存块（称为伙伴）是否也空闲，
+如果是，就和“伙伴”合并成更大的内存块，
+然后继续检测合并后的内存块是否也存在可以合并的伙伴，一直向上合并到不能合并为止。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;优点：
+&lt;ul&gt;
+&lt;li&gt;支持释放操作；&lt;/li&gt;
+&lt;li&gt;支持大小不固定的内存申请操作；&lt;/li&gt;
+&lt;li&gt;反复申请与释放不会造成内存碎片。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;缺点：
+&lt;ul&gt;
+&lt;li&gt;代码稍微复杂；&lt;/li&gt;
+&lt;li&gt;因为存在合并与切割的循环，申请与释放操作的所需要的时间不是特别稳定；&lt;/li&gt;
+&lt;li&gt;内存大小固定为2的指数，如果申请的内存过小，会造成内存浪费。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;适用性：对内存复用性要求高的应用场合。&lt;/li&gt;
+&lt;li&gt;上下文的安全性：在任何上下文（中断、中断底半部、线程）都是安全的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;api参考&#34;&gt;API参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwmm__bma.html&#34;&gt;&lt;strong&gt;头文件 &amp;lt;xwos/mm/bma.h&amp;gt;&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 内存池</title>
+      <link>/docs/user-manual/mm/mempool/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/user-manual/mm/mempool/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
+&lt;p&gt;内存池是结合了内存切片分配器与伙伴算法分配器的算法。内存管理的基本单位为页，
+一页内存为4096字节，页内存使用伙伴算法分配器管理。
+内存池还使用对象缓存算法建立各种小尺寸的块：8字节、16字节、32字节、
+64字节、96字节、128字节、160字节、192字节、256字节、320字节、384字节、
+512字节、768字节、1024字节、2048字节。
+当申请内存大于2048字节，直接分配页内存；当申请的内存小于等于2048字节，
+就从尺寸最合适的对象缓存分配器中分配一块内存。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;优点：
+&lt;ul&gt;
+&lt;li&gt;支持释放操作；&lt;/li&gt;
+&lt;li&gt;支持大小不固定的内存申请操作；&lt;/li&gt;
+&lt;li&gt;反复申请与释放不会造成内存碎片；&lt;/li&gt;
+&lt;li&gt;小内存块不会浪费过多的内存。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;缺点：
+&lt;ul&gt;
+&lt;li&gt;代码复杂；&lt;/li&gt;
+&lt;li&gt;申请与释放操作的所需要的时间不稳定。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;适用性：外接尺寸较大的SRAM或SDRAM的内存管理，C++和Lua虚拟机的对象池。&lt;/li&gt;
+&lt;li&gt;上下文的安全性：在任何上下文（中断、中断底半部、线程）都是安全的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;api参考&#34;&gt;API参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwmm__mempool.html&#34;&gt;&lt;strong&gt;头文件 &amp;lt;xwos/mm/mempool.h&amp;gt;&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

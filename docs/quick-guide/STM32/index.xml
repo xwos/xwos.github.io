@@ -1,0 +1,3085 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>XWOS – STM32</title>
+    <link>/docs/quick-guide/STM32/</link>
+    <description>Recent content in STM32 on XWOS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	  <atom:link href="/docs/quick-guide/STM32/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: 开发环境</title>
+      <link>/docs/quick-guide/STM32/Env/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/quick-guide/STM32/Env/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;工具链&#34;&gt;工具链&lt;/h2&gt;
+&lt;p&gt;参考&lt;a href=&#34;../../../user-manual/build-system#%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE&#34;&gt;用户手册-构建系统-编译环境设置&lt;/a&gt;安装工具链：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://pan.baidu.com/s/1WwSaEajt6JqgMOLOa8iPEQ&#34;&gt;https://pan.baidu.com/s/1WwSaEajt6JqgMOLOa8iPEQ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;提取码：xwos&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;ubuntu&#34;&gt;ubuntu&lt;/h2&gt;
+&lt;h3 id=&#34;stm32cubeide&#34;&gt;STM32CubeIDE&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;下载&lt;a href=&#34;https://www.st.com/content/st_com/en/products/development-tools/software-development-tools/stm32-software-development-tools/stm32-ides/stm32cubeide.html&#34;&gt;STM32CubeIDE-DEB&lt;/a&gt;进行安装；&lt;/li&gt;
+&lt;li&gt;安装过程中，需要接受许可证，许可证比较长，可以按 &lt;strong&gt;q&lt;/strong&gt; 键跳过。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;jre&#34;&gt;JRE&lt;/h4&gt;
+&lt;p&gt;STM323CubeIDE需要java运行环境，在Ubuntu系统中可以直接安装：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt install openjdk-11-jdk &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;# 最好安装LTS版本的jdk，例如8或11&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;安装openocd插件&#34;&gt;安装OpenOCD插件&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;打开菜单 &lt;strong&gt;Help –&amp;gt; Install New Software…&lt;/strong&gt; ；&lt;/li&gt;
+&lt;li&gt;等待刷新，选择安装
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;C/C++ OpenOCD Debugging&lt;/strong&gt; 插件；
+&lt;ul&gt;
+&lt;li&gt;搜索: &lt;code&gt;OpenOCD&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;C/C++ J-Link Debugging&lt;/strong&gt; 插件；
+&lt;ul&gt;
+&lt;li&gt;搜索: &lt;code&gt;J-Link&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;stm32cubemx&#34;&gt;STM32CubeMX&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;可到&lt;a href=&#34;https://www.st.com/en/development-tools/stm32cubemx.html&#34;&gt;STM32CubeMX官网&lt;/a&gt;下载安装。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;windows-64bit&#34;&gt;Windows-64bit&lt;/h2&gt;
+&lt;h3 id=&#34;stm32cubeide-1&#34;&gt;STM32CubeIDE&lt;/h3&gt;
+&lt;h4 id=&#34;安装ide&#34;&gt;安装IDE&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;下载&lt;a href=&#34;https://www.st.com/content/st_com/en/products/development-tools/software-development-tools/stm32-software-development-tools/stm32-ides/stm32cubeide.html&#34;&gt;STM32CubeIDE-Win&lt;/a&gt;进行安装；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;安装调试器插件&#34;&gt;安装调试器插件&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;打开菜单 &lt;strong&gt;Help –&amp;gt; Install New Software…&lt;/strong&gt; ；&lt;/li&gt;
+&lt;li&gt;选择安装
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;C/C++ OpenOCD Debugging&lt;/strong&gt; 插件；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;C/C++ J-Link Debugging&lt;/strong&gt; 插件；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;stm32cubemx-1&#34;&gt;STM32CubeMX&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;可到&lt;a href=&#34;https://www.st.com/en/development-tools/stm32cubemx.html&#34;&gt;STM32CubeMX官网&lt;/a&gt;下载安装。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;rust开发环境&#34;&gt;Rust开发环境&lt;/h2&gt;
+&lt;h3 id=&#34;rust工具链&#34;&gt;Rust工具链&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;根据&lt;a href=&#34;https://www.rust-lang.org/tools/install&#34;&gt;官方指导&lt;/a&gt;安装rust；&lt;/li&gt;
+&lt;li&gt;切换镜像源
+&lt;ul&gt;
+&lt;li&gt;Ubuntu配置文件路径： &lt;code&gt;~/.cargo/config&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Windows配置文件路进： &lt;code&gt;C:\Users\用户名\.cargo\config&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-toml&#34; data-lang=&#34;toml&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[source.crates-io]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;registry = &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;https://github.com/rust-lang/crates.io-index&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;replace-with = &lt;span style=&#34;color:#b44&#34;&gt;&amp;#39;sjtu&amp;#39;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[source.ustc]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;registry = &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;http://mirrors.ustc.edu.cn/crates.io-index&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;[source.sjtu]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;registry = &lt;span style=&#34;color:#b44&#34;&gt;&amp;#34;http://mirrors.sjtug.sjtu.edu.cn/git/crates.io-index&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Ubuntu安装unstable版本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup install nightly
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly target add thumbv8m.main-none-eabihf
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly target add thumbv8m.main-none-eabi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly target add thumbv8m.base-none-eabi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly target add thumbv7m-none-eabi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly target add thumbv7em-none-eabihf
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly target add thumbv7em-none-eabi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly target add thumbv6m-none-eabi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly target add riscv32imac-unknown-none-elf
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly component add rust-src
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Windows安装unstable版本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;注意：Window只支持使用 &lt;code&gt;gnu&lt;/code&gt; 版的工具链&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup install nightly-x86_64-pc-windows-gnu
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly-x86_64-pc-windows-gnu target add thumbv8m.main-none-eabihf
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly-x86_64-pc-windows-gnu target add thumbv8m.main-none-eabi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly-x86_64-pc-windows-gnu target add thumbv8m.base-none-eabi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly-x86_64-pc-windows-gnu target add thumbv7m-none-eabi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly-x86_64-pc-windows-gnu target add thumbv7em-none-eabihf
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly-x86_64-pc-windows-gnu target add thumbv7em-none-eabi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly-x86_64-pc-windows-gnu target add thumbv6m-none-eabi
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly-x86_64-pc-windows-gnu target add riscv32imac-unknown-none-elf
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;rustup +nightly-x86_64-pc-windows-gnu component add rust-src
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;stm32cubeid的rust插件&#34;&gt;STM32CubeID的Rust插件&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;在对话框 &lt;code&gt;Help&lt;/code&gt; -&amp;gt; &lt;code&gt;Install New Softwares...&lt;/code&gt; -&amp;gt; &lt;code&gt;Add...&lt;/code&gt; 中增加插件的URL：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;http://mirrors.ustc.edu.cn/eclipse/corrosion/releases/latest/
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;在对话框 &lt;code&gt;Help&lt;/code&gt; -&amp;gt; &lt;code&gt;Eclipse Marketplace...&lt;/code&gt; 中搜索 &lt;code&gt;Rust&lt;/code&gt; 并安装。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../../../note/rust/env/RustPlugin.png&#34; alt=&#34;RustPlugin.png&#34;&gt;&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 新建工程指南</title>
+      <link>/docs/quick-guide/STM32/Project/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/quick-guide/STM32/Project/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;选择合适的模板&#34;&gt;选择合适的模板&lt;/h2&gt;
+&lt;p&gt;STM32的工程比较多，可以选择其中一个来作为模板进行修改：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;电路板文件夹&lt;/strong&gt;位于&lt;code&gt;XWOS/xwbd&lt;/code&gt;内部：
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../WeActMiniStm32H750&#34;&gt;WeActMiniStm32H750&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;MCU：STM32H750VBT6&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;电路板文件夹&lt;/strong&gt;：&lt;code&gt;XWOS/xwbd/WeActMiniStm32H750&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;代码仓库：&lt;code&gt;git clone --recursive https://gitee.com/xwos/WeActMiniStm32H750.git&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Bootloader电路板文件夹&lt;/strong&gt;：&lt;code&gt;XWOS/xwbd/WeActMiniStm32H750Bootloader&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;代码仓库：&lt;code&gt;git clone --recursive https://gitee.com/xwos/WeActMiniStm32H750Bootloader.git&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../EmbedFireStm32H743&#34;&gt;EmbedFireStm32H743&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;MCU：STM32H743XIH6&lt;/li&gt;
+&lt;li&gt;代码仓库：&lt;code&gt;git clone --recursive https://gitee.com/xwos/EmbedFireStm32H743.git&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;电路板文件夹&lt;/strong&gt;：&lt;code&gt;XWOS/xwbd/EmbedFireStm32H743&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../FK429M1&#34;&gt;FK429M1&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;MCU：STM32F429BIT6&lt;/li&gt;
+&lt;li&gt;代码仓库：&lt;code&gt;git clone --recursive https://gitee.com/xwos/FK429M1.git&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;电路板文件夹&lt;/strong&gt;：&lt;code&gt;XWOS/xwbd/FK429M1&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../ATKStm32H743&#34;&gt;ATKStm32H743&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;MCU：STM32H743IIT6&lt;/li&gt;
+&lt;li&gt;代码仓库：&lt;code&gt;git clone --recursive https://gitee.com/xwos/ATKStm32H743.git&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;电路板文件夹&lt;/strong&gt;：&lt;code&gt;XWOS/xwbd/ATKStm32H743&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../ATKStm32F407Core&#34;&gt;ATKStm32F407Core&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;MCU：STM32F407ZET6&lt;/li&gt;
+&lt;li&gt;代码仓库：&lt;code&gt;git clone --recursive https://gitee.com/xwos/ATKStm32F407Core.git&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;电路板文件夹&lt;/strong&gt;：&lt;code&gt;XWOS/xwbd/ATKStm32F407Core&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../ATKStm32F103Core&#34;&gt;ATKStm32F103Core&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;MCU：STM32F103ZET6&lt;/li&gt;
+&lt;li&gt;代码仓库：&lt;code&gt;git clone --recursive https://gitee.com/xwos/ATKStm32F103Core.git&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;电路板文件夹&lt;/strong&gt;：&lt;code&gt;XWOS/xwbd/ATKStm32F103Core&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Stm32F103HiXWOS：STM32F103的模板空工程
+&lt;ul&gt;
+&lt;li&gt;MCU：STM32F103C8T6&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;电路板文件夹&lt;/strong&gt;：&lt;code&gt;XWOS/xwbd/Stm32F103HiXWOS&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Stm32F072HiXWOS：STM32F072的模板空工程
+&lt;ul&gt;
+&lt;li&gt;MCU：STM32F072C8T6&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;电路板文件夹&lt;/strong&gt;：&lt;code&gt;XWOS/xwbd/Stm32F072HiXWOS&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;电路板文件夹&lt;/strong&gt;位于&lt;code&gt;XWOS&lt;/code&gt;外部：
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../FK750M1&#34;&gt;FK750M1&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;MCU：STM32H750VBT6&lt;/li&gt;
+&lt;li&gt;代码仓库：&lt;code&gt;git clone --recursive https://gitee.com/xwos/FK750M1.git&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;bootloader代码仓库：&lt;code&gt;git clone --recursive https://gitee.com/xwos/FK750M1Bootloader.git&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;电路板文件夹&lt;/strong&gt;：&lt;code&gt;brd&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../FK750M3&#34;&gt;FK750M3&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;MCU：STM32H750VBT6&lt;/li&gt;
+&lt;li&gt;代码仓库：&lt;code&gt;git clone --recursive https://gitee.com/xwos/FK750M3.git&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;bootloader代码仓库：&lt;code&gt;git clone --recursive https://gitee.com/xwos/FK750M3Bootloader.git&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;电路板文件夹&lt;/strong&gt;：&lt;code&gt;brd&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;修改工程配置&#34;&gt;修改工程配置&lt;/h2&gt;
+&lt;h3 id=&#34;工程总配置&#34;&gt;工程总配置&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;配置文件：&lt;strong&gt;电路板文件夹&lt;/strong&gt;内的&lt;code&gt;cfg/XuanWuOS.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;XuanWuOS_CFG_SUBARCH&lt;/code&gt;：CPU的子架构
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;v7m&lt;/code&gt;：ARMv7-M&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;v6m&lt;/code&gt;：ARMv6-M&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;XuanWuOS_CFG_COMPILER&lt;/code&gt;：编译器
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;gcc&lt;/code&gt;：gcc/g++&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;llvm&lt;/code&gt;：clang/clang++&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;XuanWuOS_CFG_LDSCRIPT&lt;/code&gt;：配置链接脚本的路径，此路径相对于&lt;strong&gt;电路板文件夹&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;XuanWuOS_CFG_CPU&lt;/code&gt;：CPU型号
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;m0&lt;/code&gt;：Cortex M0&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;m0p&lt;/code&gt;：Cortex M0 Plus&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;m3&lt;/code&gt;：Cortex M3&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;m4&lt;/code&gt;：Cortex M4&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;m7&lt;/code&gt;：Cortex M7&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;XuanWuOS_CFG_BOARD&lt;/code&gt;：电路板文件夹的名称
+&lt;ul&gt;
+&lt;li&gt;若工程位于&lt;code&gt;XWOS/xwbd&lt;/code&gt;内部，则此名称需要和文件夹名称一致，并且区分大小写。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;XuanWuOS_CFG_CORE&lt;/code&gt;：单核还是多核
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;mp&lt;/code&gt;：使用多核内核&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;up&lt;/code&gt;：使用单核内核&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;XuanWuOS_CFG_XWCD&lt;/code&gt;：是否启用&lt;code&gt;XWOS/xwcd/&lt;/code&gt;内的玄武模块
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;1&lt;/code&gt;：是&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;0&lt;/code&gt;：否&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;XuanWuOS_CFG_XWMD&lt;/code&gt;：是否启用&lt;code&gt;XWOS/xwmd&lt;/code&gt;内的玄武模块
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;1&lt;/code&gt;：是&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;0&lt;/code&gt;：否&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;XuanWuOS_CFG_XWEM&lt;/code&gt;：是否启用&lt;code&gt;XWOS/xwem&lt;/code&gt;内的玄武模块
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;1&lt;/code&gt;：是&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;0&lt;/code&gt;：否&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;XuanWuOS_CFG_XWAM&lt;/code&gt;：是否启用&lt;code&gt;XWOS/xwam&lt;/code&gt;内的玄武模块
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;1&lt;/code&gt;：是&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;0&lt;/code&gt;：否&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;XuanWuOS_CFG_OEMPATH&lt;/code&gt;：配置OEM文件夹路径
+&lt;ul&gt;
+&lt;li&gt;此路径通常配置为相对路径，相对于&lt;strong&gt;电路板文件夹&lt;/strong&gt;；&lt;/li&gt;
+&lt;li&gt;此路径也可以是绝对路径；&lt;/li&gt;
+&lt;li&gt;此路径可以是任意路径，并不一定要在XWOS内部；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;工程其他配置&#34;&gt;工程其他配置&lt;/h3&gt;
+&lt;p&gt;参考&lt;a href=&#34;../../../user-manual/configuration&#34;&gt;配置&lt;/a&gt;的详细说明。&lt;/p&gt;
+&lt;h2 id=&#34;修改链接脚本&#34;&gt;修改链接脚本&lt;/h2&gt;
+&lt;p&gt;链接脚本由配置&lt;code&gt;XuanWuOS_CFG_LDSCRIPT&lt;/code&gt;指定，通常为&lt;code&gt;cfg/XuanWuOS.lds&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;STM32的链接脚本是按照可复用的方式设计的，分为两部分：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SDL中的链接脚本：描述各个段(&lt;code&gt;SECTIONS&lt;/code&gt;)如何分布在镜像文件中
+&lt;ul&gt;
+&lt;li&gt;STM32F0：&lt;code&gt;xwcd/soc/arm/v7m/gcc/m0/stm32/f0.lds&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32G0：&lt;code&gt;xwcd/soc/arm/v7m/gcc/m0p/stm32/g0.lds&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32F1：&lt;code&gt;xwcd/soc/arm/v7m/gcc/m3/stm32/f1.lds&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32L1：&lt;code&gt;xwcd/soc/arm/v7m/gcc/m3/stm32/l1.lds&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32F4：&lt;code&gt;xwcd/soc/arm/v7m/gcc/m4/stm32/f4.lds&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32L4：&lt;code&gt;xwcd/soc/arm/v7m/gcc/m4/stm32/l4.lds&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32F7：&lt;code&gt;xwcd/soc/arm/v7m/gcc/m7/stm32/f7.lds&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32H7：&lt;code&gt;xwcd/soc/arm/v7m/gcc/m7/stm32/h7.lds&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;BDL中的链接脚本：只描述内存区域&lt;code&gt;MEMORY&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;ivt_lmr--ivt_vmr&#34;&gt;&lt;code&gt;ivt_lmr&lt;/code&gt; &amp;amp; &lt;code&gt;ivt_vmr&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;XWOS的中断向量表区域，其中&lt;strong&gt;LMR&lt;/strong&gt;表示中断向量的加载地址区域，
+也即是中断向量在Flash中的存储位置，VMR表示中断向量的运行地址区域，
+也即是上电运行时的中断向量的地址。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如果&lt;strong&gt;LMR&lt;/strong&gt;与&lt;strong&gt;VMR&lt;/strong&gt;都指向Flash，且起始地址(org)与大小(len)完全一致，表示加载地址
+就是运行地址，XWOS在初始化阶段不会对中断向量执行拷贝操作；&lt;/li&gt;
+&lt;li&gt;如果&lt;strong&gt;VMR&lt;/strong&gt;指向RAM的某个地址，XWOS会在初始化阶段把Flash中的中断向量表拷贝到
+&lt;strong&gt;VMR&lt;/strong&gt;指定的RAM内，并设置ARM的VTOR寄存器；&lt;/li&gt;
+&lt;li&gt;需要注意ARM的VTOR寄存器低7位(0~6)必须保持为0，因此VMR的起始地址也必须满足
+此规则。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;image_description_mr&#34;&gt;&lt;code&gt;image_description_mr&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;此段中包含镜像文件的一些基本信息，例如起始位置，结尾标志位置等，可用在升级固件功能中。&lt;/p&gt;
+&lt;h3 id=&#34;code_mr&#34;&gt;&lt;code&gt;code_mr&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;存放代码和常量的地方。&lt;/p&gt;
+&lt;h3 id=&#34;xwos_data_mr&#34;&gt;&lt;code&gt;xwos_data_mr&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;存放xwos全局数据的地方，这些变量在定义时带有修饰符：&lt;code&gt;__xwos_data&lt;/code&gt;，此段可以
+不存在，若不存在，需要在SDL中的链接脚本中将此段的数据放到&lt;code&gt;data_mr&lt;/code&gt;中。&lt;/p&gt;
+&lt;h3 id=&#34;data_mr&#34;&gt;&lt;code&gt;data_mr&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;存放全局变量的地方。当连接器ld安排完全局变量后，剩余的部分会交给XWOS
+的&lt;strong&gt;默认的内核内存分配器&lt;/strong&gt;进行管理，用于为动态创建内核对象的API提供动态内存申请的接口。&lt;/p&gt;
+&lt;h3 id=&#34;xwos_stk_mr&#34;&gt;&lt;code&gt;xwos_stk_mr&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;XWOS内核的栈内存，XWOS内核处理中断时会使用此内存作为函数的栈。&lt;/p&gt;
+&lt;h2 id=&#34;集成stm32cubemx生成的代码&#34;&gt;集成STM32CubeMx生成的代码&lt;/h2&gt;
+&lt;p&gt;STM32的时钟、外设驱动需要在STM32CubeMx中配置，并生成代码，再交由XWOS调用。
+STM32CubeMx生成的代码采用&lt;a href=&#34;../../../user-manual/build-system#%E7%8E%84%E6%AD%A6%E6%A8%A1%E5%9D%97&#34;&gt;玄武模块&lt;/a&gt;的方式集成：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;路径：&lt;strong&gt;电路板文件夹&lt;/strong&gt;内的&lt;code&gt;bm/stm32cube&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;编译开关：配置&lt;code&gt;cfg/board.h&lt;/code&gt;内的&lt;code&gt;BMCFG_stm32cube&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32CubeMX配置文件：&lt;code&gt;stm32cube/cubemx/XXX.ioc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32CubeMX源码目录：&lt;code&gt;stm32cube/cubemx&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;中断向量表：&lt;code&gt;stm32cube/cubemx/IVT&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;中断向量表是使用命令自动生成：&lt;code&gt;XWOS/xwbs/util/el/stm32ivt/stm32ivt.el stm32cube的路径&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;stm32cubexwac&#34;&gt;&lt;code&gt;stm32cube/xwac&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;其中包括适配XWOS的源码：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;stm32cube/xwac/xwos/hook.c&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;定义Hook函数&lt;code&gt;stm32cube_systick_hook()&lt;/code&gt;，并在其中调用&lt;code&gt;HAL_IncTick();&lt;/code&gt;，
+再由&lt;code&gt;board_xwskd_syshwt_hook()&lt;/code&gt;调用&lt;code&gt;stm32cube_systick_hook()&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;函数&lt;code&gt;board_xwskd_syshwt_hook()&lt;/code&gt;定义在&lt;strong&gt;电路板文件夹&lt;/strong&gt;内的&lt;code&gt;bdl/xwac/xwskd_hook.c&lt;/code&gt;，
+当&lt;code&gt;cfg/board.h&lt;/code&gt;内的配置&lt;code&gt;BRDCFG_XWSKD_SYSHWT_HOOK&lt;/code&gt;为&lt;code&gt;1&lt;/code&gt;时，
+由XWOS内核在滴答时钟中断函数内调用此函数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;stm32cube/xwac/fatfs&lt;/code&gt;：文件系统&lt;code&gt;XWOS/xwem/fs/fatfs&lt;/code&gt;底层适配代码，
+STM32CubeMX生成的的硬件读写代码由此处调用，若不需要文件系统，可删除。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;stm32cube/xwac/lua&lt;/code&gt;：Lua语言&lt;code&gt;XWOS/xwem/vm/lua&lt;/code&gt;底层适配代码，若不需要Lua，可删除。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;stm32cube/xwac/newlib&lt;/code&gt;：C标准库的底层适配代码，若不使用，可删除。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;stm32cube/xwac/xwds&lt;/code&gt;：C标准库的底层适配代码，若不使用，可删除。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;stm32cube/xwac/xwlib&lt;/code&gt;：XWOS的通用库的底层适配代码，其中定义了log如何输出，CRC算法的硬件支持等，
+若MCU不提供支持，可删除。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;stm32cubemifc与stm32cubemifh&#34;&gt;&lt;code&gt;stm32cube/mif.c与stm32cube/mif.h&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;其中定义了模块对外的接口，其中有两个接口在启动流程中被调用：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;stm32cube_lowlevel_init()&lt;/code&gt;：由&lt;code&gt;board_lowlevel_init()&lt;/code&gt;调用；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;stm32cube_init()&lt;/code&gt;：由&lt;code&gt;board_init()&lt;/code&gt;调用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;xwmomk&#34;&gt;&lt;code&gt;xwmo.mk&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;由于STM32CubeMX生成多少&lt;code&gt;.c&lt;/code&gt;文件不确定，因此需要从STM32CubeMX生成的Makefile中获取
+此信息，为此可使用脚本&lt;code&gt;XWOS/xwbs/util/el/makefile-grep-variable.el&lt;/code&gt;，具体可参考已有
+工程中的&lt;code&gt;xwmo.mk&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;配置stm32cubemx&#34;&gt;配置STM32CubeMX&lt;/h2&gt;
+&lt;p&gt;需要将&lt;strong&gt;Project Manager&lt;/strong&gt;中的&lt;code&gt;Toolchain/IDE&lt;/code&gt;设置为Makefile。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeMX-ProjectManager.png&#34; alt=&#34;img&#34; title=&#34;Project Manager&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;中断优先级&#34;&gt;中断优先级&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;XWOS对中断优先级的要求：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;切换上下文的中断 &amp;lt;= 滴答定时器的中断 &amp;lt; 调度器服务中断
+切换上下文的中断 &amp;lt; 其他中断 &amp;lt; 调度器服务中断
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;NVIC设置
+&lt;ul&gt;
+&lt;li&gt;设置3个抢占优先级位和1个子优先级位&lt;/li&gt;
+&lt;li&gt;SVC中断设置成&lt;strong&gt;最高&lt;/strong&gt;优先级，即&lt;strong&gt;Preemption Priority&lt;/strong&gt;为0；&lt;/li&gt;
+&lt;li&gt;PendSV中断设置成&lt;strong&gt;最低&lt;/strong&gt;优先级，即&lt;strong&gt;Preemption Priority&lt;/strong&gt;为7；&lt;/li&gt;
+&lt;li&gt;Systick中断设置成&lt;strong&gt;最低&lt;/strong&gt;优先级，即&lt;strong&gt;Preemption Priority&lt;/strong&gt;为7；&lt;/li&gt;
+&lt;li&gt;系统Fault的优先级设置为&lt;strong&gt;0&lt;/strong&gt;；&lt;/li&gt;
+&lt;li&gt;其他中断的优先级只可在&lt;strong&gt;1~6&lt;/strong&gt;之间。。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32-IRQ-Priority.svg&#34; alt=&#34;img&#34; title=&#34;中断优先级&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;建立入口函数&#34;&gt;建立入口函数&lt;/h2&gt;
+&lt;p&gt;XWOS启动流程结束后的入口函数是&lt;code&gt;xwos_main()&lt;/code&gt;，可以通过一个玄武模块定义，例如&lt;code&gt;bm/main&lt;/code&gt;，
+简单的应用也可以定义在&lt;code&gt;bdl/&lt;/code&gt;的某个&lt;code&gt;.c&lt;/code&gt;文件内。&lt;/p&gt;
+&lt;h2 id=&#34;代码启动流程&#34;&gt;代码启动流程&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/stm32-boot-flow.svg&#34; alt=&#34;img&#34; title=&#34;STM32启动流程&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;使用stm32cubeide&#34;&gt;使用STM32CubeIDE&lt;/h2&gt;
+&lt;h3 id=&#34;新建工程&#34;&gt;新建工程&lt;/h3&gt;
+&lt;p&gt;在STM32CubeIDE的workspace目录新建一个文件夹，将&lt;code&gt;stm32cube/cubemx/XXX.ioc&lt;/code&gt;、源码放在一起：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;├── XXX.ioc
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;└── XWOS
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;在STM32CubeIDE中打开
+菜单&lt;strong&gt;File &amp;ndash;&amp;gt; New &amp;ndash;&amp;gt; STM32 Project from an Exsiting STM32CubeMX Configuration File(.ioc)&lt;/strong&gt;，
+选择&lt;code&gt;XXX.ioc&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;将生成的代码&lt;code&gt;Core/&lt;/code&gt;、&lt;code&gt;Drivers/&lt;/code&gt;、&lt;code&gt;*.ld&lt;/code&gt;删除，在XWOS中用不到。&lt;/p&gt;
+&lt;h3 id=&#34;设置编译环境&#34;&gt;设置编译环境&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;打开菜单**&amp;ldquo;Project &amp;ndash;&amp;gt; Properties &amp;ndash;&amp;gt; C/C++ Build &amp;ndash;&amp;gt; Environment&amp;rdquo;**；&lt;/li&gt;
+&lt;li&gt;点击**&amp;ldquo;Restore Defaults&amp;rdquo;**；&lt;/li&gt;
+&lt;li&gt;修改Debug配置的环境变量：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;WKSPC&lt;/code&gt;:&lt;code&gt;../../../${ConfigName}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~D&lt;/code&gt;:&lt;code&gt;1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~V&lt;/code&gt;:&lt;code&gt;1&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH-Debug.png&#34; alt=&#34;img&#34; title=&#34;Debug配置&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;修改Release配置的环境变量：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;WKSPC&lt;/code&gt;:&lt;code&gt;../../../${ConfigName}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~D&lt;/code&gt;:&lt;code&gt;0&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~V&lt;/code&gt;:&lt;code&gt;1&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH-Release.png&#34; alt=&#34;img&#34; title=&#34;Release配置&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;环境变量path设置&#34;&gt;环境变量&lt;strong&gt;PATH&lt;/strong&gt;设置&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;修改Debug和Release两个配置的&lt;strong&gt;PATH&lt;/strong&gt;环境变量
+&lt;ul&gt;
+&lt;li&gt;将STM32CubeIDE自带的工具链路径从PATH环境变量中删除；&lt;/li&gt;
+&lt;li&gt;将xwtc工具链的路径放置到PATH环境变量中。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH.svg&#34; alt=&#34;img&#34; title=&#34;设置PATH&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;注意，&lt;strong&gt;STM32CubeIDE自带的工具链在windows可能会导致编译失败&lt;/strong&gt;，
+需将STM32CubeIDE自带的工具链路径从PATH环境变量中删除，
+并使用xwtc工具链：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;make (e=3): 系统找不到指定的路径。
+make (e=3): The system cannot find the file specified.
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH-Windows.svg&#34; alt=&#34;img&#34; title=&#34;Windows PATH&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;调试配置&#34;&gt;调试配置&lt;/h3&gt;
+&lt;p&gt;打开菜单&lt;strong&gt;Run &amp;ndash;&amp;gt; Debug Configurations&amp;hellip;&lt;/strong&gt;，根据仿真器类型，选择调试配置：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;WeActMiniStm32H750&lt;/strong&gt;：&lt;strong&gt;gdb&lt;/strong&gt; + &lt;strong&gt;STLink GDB Server&lt;/strong&gt; + &lt;strong&gt;STLink调试器&lt;/strong&gt;；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Debug_Configurations.png&#34; alt=&#34;img&#34; title=&#34;调试配置&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;设置外部QSPI Flash的下载算法需要拷贝到STM32CubeIDE的安装目录： &lt;code&gt;plugins/com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.&amp;lt;版本号&amp;gt;/tools/bin/ExternalLoader&lt;/code&gt;；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Debug-ExternalLoader.svg&#34; alt=&#34;img&#34; title=&#34;设置ExternalLoader&#34;&gt;&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 微行电子MiniStm32H750</title>
+      <link>/docs/quick-guide/STM32/WeActMiniStm32H750/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/quick-guide/STM32/WeActMiniStm32H750/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;WeActMiniStm32H750.jpg&#34; alt=&#34;img&#34; title=&#34;WeActMiniStm32H750&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;MCU：STM32H750&lt;/li&gt;
+&lt;li&gt;更多介绍：参考&lt;a href=&#34;https://gitee.com/WeAct-TC/MiniSTM32H7xx.git&#34;&gt;电路板主页&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;电路板目录：&lt;code&gt;xwbd/WeActMiniStm32H750&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;开发环境&#34;&gt;开发环境&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;编译集成环境可参考：&lt;a href=&#34;../Env&#34;&gt;开发环境搭建指南&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;源码&#34;&gt;源码&lt;/h2&gt;
+&lt;p&gt;WeActMiniStm32H750开发板使用外置的QSPI Flash存储代码，因此工程分为Bootloader和XWOS。&lt;/p&gt;
+&lt;h3 id=&#34;bootloader&#34;&gt;Bootloader&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;描述：位于内置Flash，负责初始化QSPI Flash后跳转至QSPI Flash中执行代码；&lt;/li&gt;
+&lt;li&gt;仓库：&lt;a href=&#34;https://gitee.com/xwos/WeActMiniStm32H750Bootloader.git&#34;&gt;https://gitee.com/xwos/WeActMiniStm32H750Bootloader.git&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;下载：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git clone --recursive https://gitee.com/xwos/WeActMiniStm32H750Bootloader.git
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;在已有的仓库中同步代码：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git pull
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git submodule update
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;xwos&#34;&gt;XWOS&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;描述：XWOS，位于QSPI Flash&lt;/li&gt;
+&lt;li&gt;仓库：&lt;a href=&#34;https://gitee.com/xwos/WeActMiniStm32H750.git&#34;&gt;https://gitee.com/xwos/WeActMiniStm32H750.git&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;下载：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git clone --recursive https://gitee.com/xwos/WeActMiniStm32H750.git
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;在已有的仓库中同步代码：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git pull
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git submodule update
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;导入工程到stm32cubeide&#34;&gt;导入工程到STM32CubeIDE&lt;/h2&gt;
+&lt;p&gt;工程需放在STM32CubeIDE的工作目录内（即STM32CubeIDE启动时指定的目录）。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;菜单： &lt;strong&gt;File &amp;ndash;&amp;gt; Import&amp;hellip; &amp;ndash;&amp;gt; General &amp;ndash;&amp;gt; Projects from Folder or Archive&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;设置编译环境&#34;&gt;设置编译环境&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;打开菜单 &lt;strong&gt;Project &amp;ndash;&amp;gt; Properties &amp;ndash;&amp;gt; C/C++ Build &amp;ndash;&amp;gt; Environment&lt;/strong&gt; ；&lt;/li&gt;
+&lt;li&gt;点击 &lt;strong&gt;Restore Defaults&lt;/strong&gt; ；&lt;/li&gt;
+&lt;li&gt;修改Debug配置的环境变量：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;WKSPC&lt;/code&gt; : &lt;code&gt;../../../${ConfigName}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~D&lt;/code&gt; : &lt;code&gt;1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~V&lt;/code&gt; : &lt;code&gt;1&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH-Debug.png&#34; alt=&#34;img&#34; title=&#34;Debug配置&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;修改Release配置的环境变量：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;WKSPC&lt;/code&gt; : &lt;code&gt;../../../${ConfigName}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~D&lt;/code&gt; : &lt;code&gt;0&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~V&lt;/code&gt; : &lt;code&gt;1&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH-Release.png&#34; alt=&#34;img&#34; title=&#34;Release配置&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;环境变量path设置&#34;&gt;环境变量&lt;strong&gt;PATH&lt;/strong&gt;设置&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;修改Debug和Release两个配置的 &lt;strong&gt;PATH&lt;/strong&gt; 环境变量
+&lt;ul&gt;
+&lt;li&gt;将STM32CubeIDE自带的工具链路径从PATH环境变量中删除；&lt;/li&gt;
+&lt;li&gt;将 &lt;strong&gt;xwtc&lt;/strong&gt; 工具链的路径放置到PATH环境变量中。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH.svg&#34; alt=&#34;img&#34; title=&#34;设置PATH&#34;&gt;&lt;/p&gt;
+
+
+&lt;div class=&#34;alert alert-warning&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;注意&lt;/h4&gt;
+
+    &lt;p&gt;STM32CubeIDE自带的工具链在windows可能会导致编译失败。
+需将STM32CubeIDE自带的工具链路径从PATH环境变量中删除，并使用 &lt;strong&gt;xwtc&lt;/strong&gt; 工具链：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;make (e=3): 系统找不到指定的路径。
+make (e=3): The system cannot find the file specified.
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH-Windows.svg&#34; alt=&#34;img&#34; title=&#34;Windows PATH&#34;&gt;&lt;/p&gt;
+
+
+&lt;/div&gt;
+
+&lt;h2 id=&#34;stm32cubemx配置工程&#34;&gt;STM32CubeMX配置工程&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;STM32CubeMX配置文件：&lt;code&gt;xwbd/WeActMiniStm32H750/bm/stm32cube/cubemx/WeActMiniStm32H750.ioc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;XWOS对中断优先级的要求：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;切换上下文的中断 &amp;lt;= 滴答定时器的中断 &amp;lt; 调度器服务中断
+切换上下文的中断 &amp;lt; 其他中断 &amp;lt; 调度器服务中断
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;NVIC设置
+&lt;ul&gt;
+&lt;li&gt;设置3个抢占优先级位和1个子优先级位&lt;/li&gt;
+&lt;li&gt;SVC中断设置成 &lt;strong&gt;最高&lt;/strong&gt; 优先级，即 &lt;strong&gt;Preemption Priority&lt;/strong&gt; 为 &lt;strong&gt;0&lt;/strong&gt; ；&lt;/li&gt;
+&lt;li&gt;PendSV中断设置成 &lt;strong&gt;最低&lt;/strong&gt; 优先级，即 &lt;strong&gt;Preemption Priority&lt;/strong&gt; 为 &lt;strong&gt;7&lt;/strong&gt; ；&lt;/li&gt;
+&lt;li&gt;Systick中断设置成 &lt;strong&gt;最低&lt;/strong&gt; 优先级，即 &lt;strong&gt;Preemption Priority&lt;/strong&gt; 为 &lt;strong&gt;7&lt;/strong&gt; ；&lt;/li&gt;
+&lt;li&gt;系统Fault的优先级设置为 &lt;strong&gt;0&lt;/strong&gt; ；&lt;/li&gt;
+&lt;li&gt;其他中断的优先级只可在 &lt;strong&gt;1~6&lt;/strong&gt; 之间。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32-IRQ-Priority.svg&#34; alt=&#34;img&#34; title=&#34;中断优先级&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;编译&#34;&gt;编译&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Build.png&#34; alt=&#34;img&#34; title=&#34;编译&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;调试&#34;&gt;调试&lt;/h2&gt;
+&lt;p&gt;打开菜单 &lt;strong&gt;Run &amp;ndash;&amp;gt; Debug Configurations&amp;hellip;&lt;/strong&gt; ，根据仿真器类型，选择调试配置：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;WeActMiniStm32H750&lt;/strong&gt; ： &lt;strong&gt;gdb&lt;/strong&gt; + &lt;strong&gt;STLink GDB Server&lt;/strong&gt; + &lt;strong&gt;STLink调试器&lt;/strong&gt; ；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Debug_Configurations.png&#34; alt=&#34;img&#34; title=&#34;调试配置&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;设置外部QSPI Flash的下载算法
+&lt;ul&gt;
+&lt;li&gt;算法文件： &lt;code&gt;xwbd/WeActMiniStm32H750/cfg/stldr/STM32H750_W25Q128_D11D12E2D13B2B6.stldr&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;需要拷贝到STM32CubeIDE的安装目录： &lt;code&gt;plugins/com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.&amp;lt;版本号&amp;gt;/tools/bin/ExternalLoader&lt;/code&gt; ；&lt;/li&gt;
+&lt;li&gt;设置 &lt;strong&gt;External Loader&lt;/strong&gt; 为 &lt;strong&gt;W25Q128_STM32H7xx_WeActStudio, 0x90000000, SPI_FLASH, STM32H750_W25Q128_D11D12E2D13B2B6.stldr&lt;/strong&gt; 。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Debug-ExternalLoader.svg&#34; alt=&#34;img&#34; title=&#34;设置ExternalLoader&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;调试步骤&#34;&gt;调试步骤&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;准备一张SD卡，格式化为FAT32文件系统；&lt;/li&gt;
+&lt;li&gt;将文件夹 &lt;code&gt;xwam/example/lua&lt;/code&gt; 内的lua脚本，拷贝到SD卡内；&lt;/li&gt;
+&lt;li&gt;将SD卡插入开发板；&lt;/li&gt;
+&lt;li&gt;使用USB串口与开发板上的 &lt;code&gt;USART1(TX:PB14,RX:PB15)&lt;/code&gt; 链接；&lt;/li&gt;
+&lt;li&gt;打开终端工具（windows可选putty、SecretCRT，Linux可选gtkterm、picocom、minicom），串口参数：1M波特率/8位数据/1位停止位/无奇偶校验&lt;/li&gt;
+&lt;li&gt;上电，并在STM32CubeIDE中启动调试，等待MCU运行到初始断点；&lt;/li&gt;
+&lt;li&gt;开始单步调试或连续运行调试。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;调试技巧&#34;&gt;调试技巧&lt;/h3&gt;
+&lt;h4 id=&#34;关闭dcache&#34;&gt;关闭DCache&lt;/h4&gt;
+&lt;p&gt;ARMv7-m7内核的MCU带有Cache，常常会对定位程序BUG带来困扰。
+将下面的宏开关注释掉或定义改为0后可关闭Cache：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* xwbd/WeActMiniStm32H750/bm/stm32cube/cfg.h */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080&#34;&gt;#define STM32CUBECFG_DCACHE             1
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080&#34;&gt;#define STM32CUBECFG_ICACHE             1
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;运行过程&#34;&gt;运行过程&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;程序入口： &lt;code&gt;xwbd/WeActMiniStm32H750/bm/main/main.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;启动流程：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos_main()&lt;/code&gt; 创建一个主线程 &lt;code&gt;main_task()&lt;/code&gt; ；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;main_task()&lt;/code&gt; 依次调用各个 &lt;strong&gt;玄武模块&lt;/strong&gt; 的 &lt;code&gt;xxx_start()&lt;/code&gt; 函数完成对各个模块加载；&lt;/li&gt;
+&lt;li&gt;开始并行执行各个模块中创建的线程；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;lua交互式终端&#34;&gt;Lua交互式终端&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&#34;../../../user-manual/lua/xwlua-repl.png&#34; alt=&#34;img&#34; title=&#34;XWLUA交互式解释器&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;示例&#34;&gt;示例&lt;/h2&gt;
+&lt;p&gt;XWOS中有很多示例，可帮助用户快速了解API的用法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;线程
+&lt;ul&gt;
+&lt;li&gt;创建线程： &lt;code&gt;xwam/example/thd/new&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;线程睡眠： &lt;code&gt;xwam/example/thd/sleep&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;线程退出： &lt;code&gt;xwam/example/thd/exit&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;定时器： &lt;code&gt;xwam/example/swt&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;同步
+&lt;ul&gt;
+&lt;li&gt;信号量： &lt;code&gt;xwam/example/sync/sme&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;条件量： &lt;code&gt;xwam/example/sync/cond&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;事件标志： &lt;code&gt;xwam/example/sync/flg&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;线程栅栏： &lt;code&gt;xwam/example/sync/br&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;信号选择器： &lt;code&gt;xwam/example/sync/sel&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;锁
+&lt;ul&gt;
+&lt;li&gt;中断管理： &lt;code&gt;xwam/example/lock/cpuirq&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;自旋锁： &lt;code&gt;xwam/example/lock/spinlock&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;顺序锁： &lt;code&gt;xwam/example/lock/seqlock&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;互斥锁： &lt;code&gt;xwam/example/lock/mtx&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;内存管理
+&lt;ul&gt;
+&lt;li&gt;简单内存分配器： &lt;code&gt;xwam/example/mm/sma&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;内存切片分配器： &lt;code&gt;xwam/example/mm/memslice&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;伙伴算法分配器： &lt;code&gt;xwam/example/mm/bma&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;玄武C库
+&lt;ul&gt;
+&lt;li&gt;CRC： &lt;code&gt;xwam/example/xwlib/crc&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;C++： &lt;code&gt;xwam/example/cxx&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;每个示例中都有一个启动函数 &lt;code&gt;xwos_example_XXX()&lt;/code&gt; ，可在 &lt;code&gt;xwbd/WeActMiniStm32H750/bm/main/main.c&lt;/code&gt; 文件中的主线程 &lt;code&gt;main_task()&lt;/code&gt; 调用启动示例，但最好一次只启动一个示例，避免日志冲突。&lt;/p&gt;
+&lt;p&gt;实验过程中最好将Lua虚拟机关闭，防止竞争串口导致输出混乱。
+方法是将配置文件 &lt;code&gt;xwbd/WeActMiniStm32H750/cfg/xwem.h&lt;/code&gt; 中的配置 &lt;code&gt;XWEMCFG_vm_lua&lt;/code&gt; 改为 &lt;code&gt;0&lt;/code&gt; 。&lt;/p&gt;
+&lt;h2 id=&#34;系统集成的原理&#34;&gt;系统集成的原理&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;所有移植的第三方组件、驱动包、示例代码等都是以 &lt;strong&gt;玄武模块&lt;/strong&gt; 独立编译成静态库 &lt;strong&gt;.a&lt;/strong&gt; ，
+之后再将它们链接成 &lt;strong&gt;ELF&lt;/strong&gt; 文件，再由 &lt;strong&gt;ELF&lt;/strong&gt; 生成 &lt;strong&gt;bin&lt;/strong&gt; 、 &lt;strong&gt;hex&lt;/strong&gt; 和 &lt;strong&gt;smot&lt;/strong&gt; 文件；&lt;/li&gt;
+&lt;li&gt;每个 &lt;strong&gt;玄武模块&lt;/strong&gt; 都是一个独立的子工程并进行独立编译，设计上借鉴了安卓系统的 &lt;strong&gt;Android.mk&lt;/strong&gt; ：
+&lt;ul&gt;
+&lt;li&gt;每个 &lt;strong&gt;玄武模块&lt;/strong&gt; 中都有一个 &lt;code&gt;xwmo.mk&lt;/code&gt; 文件，其中定义的 &lt;strong&gt;编译参数&lt;/strong&gt; 、 &lt;strong&gt;头文件路径&lt;/strong&gt; 等 &lt;strong&gt;只&lt;/strong&gt; 对 &lt;strong&gt;当前&lt;/strong&gt; 的 &lt;strong&gt;玄武模块&lt;/strong&gt; 生效；&lt;/li&gt;
+&lt;li&gt;每个 &lt;strong&gt;玄武模块&lt;/strong&gt; 都是一个封闭的包，外部一般不能直接引用内部头文件，需要封装对外可见的 &lt;strong&gt;类型&lt;/strong&gt; 以及 &lt;strong&gt;接口函数&lt;/strong&gt; ，并统一放在专门的 &lt;strong&gt;API头文件&lt;/strong&gt; 内&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;API头文件&lt;/strong&gt; 通常以 &lt;strong&gt;mif.h&lt;/strong&gt; 作为文件名，含义是 &lt;strong&gt;模块接口(Module InterFace)&lt;/strong&gt; ；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;XWOS内已经包含了大量&lt;strong&gt;玄武模块&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwcd&lt;/code&gt; ：外设芯片的驱动；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwam&lt;/code&gt; ：示例与应用；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd&lt;/code&gt; ：中间件；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwem&lt;/code&gt; ：第三方开源软件；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;玄武模块&lt;/strong&gt; 的具体信息可以参考&lt;a href=&#34;../../../user-manual/build-system#%E7%8E%84%E6%AD%A6%E6%A8%A1%E5%9D%97&#34;&gt;用户手册-构建系统-玄武模块&lt;/a&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;代码启动流程&#34;&gt;代码启动流程&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/stm32-boot-flow.svg&#34; alt=&#34;img&#34; title=&#34;STM32启动流程&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;stm32cube_lowlevel_init()&lt;/code&gt; ：初始化时钟&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;stm32cube_init()&lt;/code&gt; ：初始化内存管理、cache、GPIO、DMA等基础设备&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;main_task()&lt;/code&gt; ：初始化其他设备、启动其他子线程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;功能&#34;&gt;功能&lt;/h2&gt;
+&lt;h3 id=&#34;bsp&#34;&gt;BSP&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;STM32Cube模块： &lt;code&gt;xwbd/WeActMiniStm32H750/bm/stm32cube&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32CubeMX配置文件： &lt;code&gt;xwbd/WeActMiniStm32H750/bm/stm32cube/cubemx/WeActMiniStm32H750.ioc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32CubeMX生成源码目录： &lt;code&gt;xwbd/WeActMiniStm32H750/bm/stm32cube/cubemx&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;适配XWOS的源码： &lt;code&gt;xwbd/WeActMiniStm32H750/bm/stm32cube/xwac&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;中断向量表： &lt;code&gt;xwbd/WeActMiniStm32H750/bm/stm32cube/cubemx/IVT&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;中断向量表使用命令自动生成： &lt;code&gt;xwbs/util/el/stm32ivt/stm32ivt.el xwbd/WeActMiniStm32H750/bm/stm32cube&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;终端UART
+&lt;ul&gt;
+&lt;li&gt;设备：USART1&lt;/li&gt;
+&lt;li&gt;参数：1M波特率/8位数据/1位停止位/无奇偶校验&lt;/li&gt;
+&lt;li&gt;驱动
+&lt;ul&gt;
+&lt;li&gt;设备栈驱动框架： &lt;code&gt;xwmd/ds/uart/dma.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;设备栈驱动： &lt;code&gt;xwbd/WeActMiniStm32H750/bm/stm32cube/xwac/xwds/uart.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;HAL库驱动： &lt;code&gt;xwbd/WeActMiniStm32H750/bm/stm32cube/cubemx/Core/Src/usart.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;注意：HAL库中的驱动存在BUG，XWOS中所提供的代码已修复&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;AXI-SRAM
+&lt;ul&gt;
+&lt;li&gt;映射地址： &lt;strong&gt;0x24000000&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;大小： &lt;strong&gt;512KiB&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;内存池
+&lt;ul&gt;
+&lt;li&gt;头文件
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwbd/WeActMiniStm32H750/bdl/axisram.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/mm/mempool/allocator.h&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;内存池对象： &lt;code&gt;axisram_mempool&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;初始化： &lt;code&gt;xwbd/WeActMiniStm32H750/bdl/board_init.c&lt;/code&gt; : &lt;code&gt;sys_mm_init()&lt;/code&gt; : &lt;code&gt;xwmm_mempool_init()&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;QSPI Flash
+&lt;ul&gt;
+&lt;li&gt;映射地址： &lt;strong&gt;0x90000000&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;大小： &lt;strong&gt;8MiB&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;驱动： &lt;code&gt;xwbd/WeActMiniStm32H750Bootloader/bm/stm32cube/cubemx/Core/Src/quadspi.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;SPI
+&lt;ul&gt;
+&lt;li&gt;驱动
+&lt;ul&gt;
+&lt;li&gt;设备栈驱动框架： &lt;code&gt;xwmd/ds/spi/master.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;设备栈驱动： &lt;code&gt;xwbd/WeActMiniStm32H750/bm/stm32cube/xwac/xwds/spim.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;HAL库驱动： &lt;code&gt;xwbd/WeActMiniStm32H750/bm/stm32cube/cubemx/Core/Src/spi.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;SPI Flash
+&lt;ul&gt;
+&lt;li&gt;大小： &lt;strong&gt;8MiB&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;驱动
+&lt;ul&gt;
+&lt;li&gt;设备栈驱动框架： &lt;code&gt;xwcd/perpheral/spi/flash/w25qxx&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;设备栈驱动： &lt;code&gt;xwbd/WeActMiniStm32H750/bm/stm32cube/xwac/xwds/w25q64jv.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;SPI LCD
+&lt;ul&gt;
+&lt;li&gt;分辨率： &lt;strong&gt;160x80&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;驱动
+&lt;ul&gt;
+&lt;li&gt;设备栈驱动框架： &lt;code&gt;xwcd/perpheral/spi/lcd/st7735&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;设备栈驱动： &lt;code&gt;xwbd/WeActMiniStm32H750/bm/stm32cube/xwac/xwds/st7735.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;SD
+&lt;ul&gt;
+&lt;li&gt;驱动： &lt;code&gt;xwbd/WeActMiniStm32H750/bm/stm32cube/cubemx/Core/Src/sdmmc.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;lua&#34;&gt;Lua&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;版本： &lt;strong&gt;5.4&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;源码： &lt;code&gt;xwem/vm/lua&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;适配代码： &lt;code&gt;xwbd/WeActMiniStm32H750/bm/stm32cube/xwac/lua&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;已注册的驱动库： &lt;code&gt;xwbd/WeActMiniStm32H750/bm/luamod/ds.c&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; SOC: &lt;code&gt;stm32&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; UART: &lt;code&gt;uart1&lt;/code&gt; , &lt;code&gt;uart3&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 命令终端&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 运行sd卡中的脚本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;fatfs&#34;&gt;FATFS&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;版本： &lt;strong&gt;0.14b&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;源码： &lt;code&gt;xwem/fs/fatfs&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;适配代码： &lt;code&gt;xwbd/WeActMiniStm32H750/bm/stm32cube/xwac/fatfs&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;文件系统：路径以 &lt;code&gt;&amp;quot;sd:/&amp;quot;&lt;/code&gt; 开始&lt;/li&gt;
+&lt;li&gt;SD卡
+&lt;ul&gt;
+&lt;li&gt;驱动： &lt;code&gt;xwbd/WeActMiniStm32H750/bm/stm32cube/cubemx/Core/Src/sdmmc.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;libc&#34;&gt;libc&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;适配代码： &lt;code&gt;xwbd/WeActMiniStm32H750/bm/stm32cube/xwac/newlib&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;标准输入、输出/错误：重定向至 &lt;strong&gt;USART1&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;文件系统：位于SD卡内，从路径 &lt;code&gt;sd:/&lt;/code&gt; 开始&lt;/li&gt;
+&lt;li&gt;动态内存管理：由AXISRAM的内存池提供&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;电源管理&#34;&gt;电源管理&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;适配代码： &lt;code&gt;xwbd/WeActMiniStm32H750/bm/stm32cube/xwac/xwds/pm.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;rust&#34;&gt;Rust&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;入口： &lt;code&gt;xwbd/WeActMiniStm32H750/bm/rustapp&lt;/code&gt; : &lt;code&gt;xwrust_main()&lt;/code&gt; 被主线程 &lt;code&gt;main_task()&lt;/code&gt; 调用&lt;/li&gt;
+&lt;li&gt;示例
+&lt;ul&gt;
+&lt;li&gt;动态线程： &lt;code&gt;xwam/xwrust-example/xwrust_example_dthd&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;静态线程： &lt;code&gt;xwam/xwrust-example/xwrust_example_sthd&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;软件定时器： &lt;code&gt;xwam/xwrust-example/xwrust_example_swt&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;锁
+&lt;ul&gt;
+&lt;li&gt;互斥锁： &lt;code&gt;xwam/xwrust-example/xwrust_example_mutex&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;自旋锁： &lt;code&gt;xwam/xwrust-example/xwrust_example_spinlock&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;顺序锁： &lt;code&gt;xwam/xwrust-example/xwrust_example_seqlock&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;同步
+&lt;ul&gt;
+&lt;li&gt;信号量： &lt;code&gt;xwam/xwrust-example/xwrust_example_sem&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;条件量： &lt;code&gt;xwam/xwrust-example/xwrust_example_cond&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;事件标志： &lt;code&gt;xwam/xwrust-example/xwrust_example_flg&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;线程栅栏： &lt;code&gt;xwam/xwrust-example/xwrust_example_br&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;信号选择器： &lt;code&gt;xwam/xwrust-example/xwrust_example_sel&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;循环队列： &lt;code&gt;xwam/xwrust-example/xwrust_example_xwcq&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;消息队列： &lt;code&gt;xwam/xwrust-example/xwrust_example_xwmq&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 反客FK429核心板</title>
+      <link>/docs/quick-guide/STM32/FK429M1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/quick-guide/STM32/FK429M1/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;FK429M1.jpg&#34; alt=&#34;img&#34; title=&#34;FK429M1核心板&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;MCU: STM32F429BIT6&lt;/li&gt;
+&lt;li&gt;SDRAM: 16MiB&lt;/li&gt;
+&lt;li&gt;更多介绍: &lt;a href=&#34;https://item.taobao.com/item.htm?spm=a1z09.2.0.0.4c352e8d5rd5Yx&amp;amp;id=550765849476&amp;amp;_u=23vm7h323f95&#34;&gt;淘宝店铺介绍&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;电路板目录： &lt;code&gt;xwbd/FK429M1&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;开发环境&#34;&gt;开发环境&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;编译集成环境可参考：&lt;a href=&#34;../Env&#34;&gt;开发环境搭建指南&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;源码&#34;&gt;源码&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;仓库：&lt;a href=&#34;https://gitee.com/xwos/FK429M1.git&#34;&gt;https://gitee.com/xwos/FK429M1.git&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;下载：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git clone --recursive https://gitee.com/xwos/FK429M1.git
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;在已有的仓库中同步代码：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git pull
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git submodule update
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;导入工程到stm32cubeide&#34;&gt;导入工程到STM32CubeIDE&lt;/h2&gt;
+&lt;p&gt;工程需放在STM32CubeIDE的工作目录内（即STM32CubeIDE启动时指定的目录），&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;菜单：&lt;strong&gt;File &amp;ndash;&amp;gt; Import&amp;hellip; &amp;ndash;&amp;gt; General &amp;ndash;&amp;gt; Projects from Folder or Archive&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;设置编译环境&#34;&gt;设置编译环境&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;打开菜单**&amp;ldquo;Project &amp;ndash;&amp;gt; Properties &amp;ndash;&amp;gt; C/C++ Build &amp;ndash;&amp;gt; Environment&amp;rdquo;**；&lt;/li&gt;
+&lt;li&gt;点击**&amp;ldquo;Restore Defaults&amp;rdquo;**；&lt;/li&gt;
+&lt;li&gt;修改Debug配置的环境变量：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;WKSPC&lt;/code&gt;:&lt;code&gt;../../../${ConfigName}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~D&lt;/code&gt;:&lt;code&gt;1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~V&lt;/code&gt;:&lt;code&gt;1&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH-Debug.png&#34; alt=&#34;img&#34; title=&#34;Debug配置&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;修改Release配置的环境变量：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;WKSPC&lt;/code&gt;:&lt;code&gt;../../../${ConfigName}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~D&lt;/code&gt;:&lt;code&gt;0&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~V&lt;/code&gt;:&lt;code&gt;1&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH-Release.png&#34; alt=&#34;img&#34; title=&#34;Release配置&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;环境变量path设置&#34;&gt;环境变量&lt;strong&gt;PATH&lt;/strong&gt;设置&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;修改Debug和Release两个配置的&lt;strong&gt;PATH&lt;/strong&gt;环境变量
+&lt;ul&gt;
+&lt;li&gt;将STM32CubeIDE自带的工具链路径从PATH环境变量中删除；&lt;/li&gt;
+&lt;li&gt;将XWMCU工具链的路径放置到PATH环境变量中。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH.svg&#34; alt=&#34;img&#34; title=&#34;设置PATH&#34;&gt;&lt;/p&gt;
+
+
+&lt;div class=&#34;alert alert-warning&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;注意&lt;/h4&gt;
+
+    &lt;p&gt;STM32CubeIDE自带的工具链在windows可能会导致编译失败。
+需将STM32CubeIDE自带的工具链路径从PATH环境变量中删除，并使用xwtc工具链：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;make (e=3): 系统找不到指定的路径。
+make (e=3): The system cannot find the file specified.
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH-Windows.svg&#34; alt=&#34;img&#34; title=&#34;Windows PATH&#34;&gt;&lt;/p&gt;
+
+
+&lt;/div&gt;
+
+&lt;h2 id=&#34;stm32cubemx配置工程&#34;&gt;STM32CubeMX配置工程&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;STM32CubeMX配置文件：&lt;code&gt;xwbd/FK429M1/bm/stm32cube/cubemx/FK429M1.ioc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;XWOS对中断优先级的要求：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;切换上下文的中断 &amp;lt;= 滴答定时器的中断 &amp;lt; 调度器服务中断
+切换上下文的中断 &amp;lt; 其他中断 &amp;lt; 调度器服务中断
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;NVIC设置
+&lt;ul&gt;
+&lt;li&gt;设置3个抢占优先级位和1个子优先级位&lt;/li&gt;
+&lt;li&gt;SVC中断设置成&lt;strong&gt;最高&lt;/strong&gt;优先级，即&lt;strong&gt;Preemption Priority&lt;/strong&gt;为0；&lt;/li&gt;
+&lt;li&gt;PendSV中断设置成&lt;strong&gt;最低&lt;/strong&gt;优先级，即&lt;strong&gt;Preemption Priority&lt;/strong&gt;为7；&lt;/li&gt;
+&lt;li&gt;Systick中断设置成&lt;strong&gt;最低&lt;/strong&gt;优先级，即&lt;strong&gt;Preemption Priority&lt;/strong&gt;为7；&lt;/li&gt;
+&lt;li&gt;系统Fault的优先级设置为0；&lt;/li&gt;
+&lt;li&gt;其他中断的优先级只可在&lt;strong&gt;1~6&lt;/strong&gt;之间。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32-IRQ-Priority.svg&#34; alt=&#34;img&#34; title=&#34;中断优先级&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;编译&#34;&gt;编译&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Build.png&#34; alt=&#34;img&#34; title=&#34;编译&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;调试&#34;&gt;调试&lt;/h2&gt;
+&lt;p&gt;打开菜单&lt;strong&gt;Run &amp;ndash;&amp;gt; Debug Configurations&amp;hellip;&lt;/strong&gt;，根据仿真器类型，选择调试配置：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;FK429M1-openocd-daplink&lt;/strong&gt;：&lt;strong&gt;gdb&lt;/strong&gt; + &lt;strong&gt;openocd&lt;/strong&gt; + &lt;strong&gt;DAPLink调试器&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;FK429M1-openocd-jlink&lt;/strong&gt;：&lt;strong&gt;gdb&lt;/strong&gt; + &lt;strong&gt;openocd&lt;/strong&gt; + &lt;strong&gt;JLink调试器&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;res/figure/STM32CubeIDE-Debug_Configurations.png&#34; alt=&#34;img&#34; title=&#34;调试配置&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;调试步骤&#34;&gt;调试步骤&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;准备一张SD卡，格式化为FAT32文件系统；&lt;/li&gt;
+&lt;li&gt;将文件夹&lt;code&gt;xwem/vm/lua/test/&lt;/code&gt;内的lua脚本，拷贝到SD卡内；&lt;/li&gt;
+&lt;li&gt;将SD卡插入开发板；&lt;/li&gt;
+&lt;li&gt;使用MiniUSB线连接电路板上的USB-232接口与PC；&lt;/li&gt;
+&lt;li&gt;打开终端工具（windows可选putty、SecretCRT，Linux可选gtkterm、picocom、minicom）,
+但先不要在终端工具中打开串口，否则MCU会进入下载模式；&lt;/li&gt;
+&lt;li&gt;上电，并在STM32CubeIDE中启动调试，等待MCU运行到初始断点；&lt;/li&gt;
+&lt;li&gt;在终端工具中打开串口，参数：1M波特率/8位数据/1位停止位/无奇偶校验；&lt;/li&gt;
+&lt;li&gt;开始单步调试或连续运行调试。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;调试技巧&#34;&gt;调试技巧&lt;/h3&gt;
+&lt;h4 id=&#34;关闭dcache&#34;&gt;关闭DCache&lt;/h4&gt;
+&lt;p&gt;ARMv7-m4内核的MCU带有写缓冲区，常常会对定位程序BUG带来困扰，可以在调试时关闭。
+将下面的宏开关注释掉或定义改为1后可关闭写缓冲区：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* xwbd/FK429M1/bm/stm32cube/cfg.h */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080&#34;&gt;#define STM32CUBECFG_DISDEFWBUF         0
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;运行过程&#34;&gt;运行过程&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;程序入口：&lt;code&gt;xwbd/FK429M1/bm/main/main.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;启动流程：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos_main()&lt;/code&gt;创建一个主线程&lt;code&gt;main_task()&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;main_task()&lt;/code&gt;依次调用各个&lt;strong&gt;玄武模块&lt;/strong&gt;的&lt;code&gt;xxx_start()&lt;/code&gt;函数完成对各个模块加载；&lt;/li&gt;
+&lt;li&gt;开始并行执行各个模块中创建的线程；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;lua交互式终端&#34;&gt;Lua交互式终端&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&#34;../../../user-manual/lua/xwlua-repl.png&#34; alt=&#34;img&#34; title=&#34;XWLUA交互式解释器&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;示例&#34;&gt;示例&lt;/h2&gt;
+&lt;p&gt;XWOS中有多个示例可帮助用户快速了解API的用法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;线程
+&lt;ul&gt;
+&lt;li&gt;创建线程： &lt;code&gt;xwam/example/thd/new&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;线程睡眠： &lt;code&gt;xwam/example/thd/sleep&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;线程退出： &lt;code&gt;xwam/example/thd/exit&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;定时器： &lt;code&gt;xwam/example/swt&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;同步
+&lt;ul&gt;
+&lt;li&gt;信号量： &lt;code&gt;xwam/example/sync/sme&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;条件量： &lt;code&gt;xwam/example/sync/cond&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;事件标志： &lt;code&gt;xwam/example/sync/flg&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;线程栅栏： &lt;code&gt;xwam/example/sync/br&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;信号选择器： &lt;code&gt;xwam/example/sync/sel&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;锁
+&lt;ul&gt;
+&lt;li&gt;中断管理： &lt;code&gt;xwam/example/lock/cpuirq&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;自旋锁： &lt;code&gt;xwam/example/lock/spinlock&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;顺序锁： &lt;code&gt;xwam/example/lock/seqlock&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;互斥锁： &lt;code&gt;xwam/example/lock/mtx&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;内存管理
+&lt;ul&gt;
+&lt;li&gt;简单内存分配器： &lt;code&gt;xwam/example/mm/sma&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;内存切片分配器： &lt;code&gt;xwam/example/mm/memslice&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;伙伴算法分配器： &lt;code&gt;xwam/example/mm/bma&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;玄武C库
+&lt;ul&gt;
+&lt;li&gt;CRC： &lt;code&gt;xwam/example/xwlib/crc&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;C++： &lt;code&gt;xwam/example/cxx&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;每个示例中都有一个启动函数 &lt;code&gt;xwos_example_XXX()&lt;/code&gt; ，可在 &lt;code&gt;xwbd/FK429M1/bm/main/main.c&lt;/code&gt; 文件中的主线程 &lt;code&gt;main_task()&lt;/code&gt; 调用启动示例，但最好一次只启动一个示例，避免日志冲突。&lt;/p&gt;
+&lt;p&gt;实验过程中最好将Lua虚拟机关闭，防止竞争串口导致输出混乱。
+方法是将配置文件 &lt;code&gt;xwbd/FK429M1/cfg/xwem.h&lt;/code&gt; 中的配置 &lt;code&gt;XWEMCFG_vm_lua&lt;/code&gt; 改为 &lt;code&gt;0&lt;/code&gt; 。&lt;/p&gt;
+&lt;h2 id=&#34;系统集成的原理&#34;&gt;系统集成的原理&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;所有移植的第三方组件、驱动包、示例代码等都是以&lt;strong&gt;玄武模块&lt;/strong&gt;独立编译成静态库**.a**，
+之后再将它们链接成&lt;strong&gt;ELF&lt;/strong&gt;文件，再由&lt;strong&gt;ELF&lt;/strong&gt;生成&lt;strong&gt;bin&lt;/strong&gt;、&lt;strong&gt;hex&lt;/strong&gt;和&lt;strong&gt;smot&lt;/strong&gt;文件。&lt;/li&gt;
+&lt;li&gt;每个&lt;strong&gt;玄武模块&lt;/strong&gt;都是一个独立的子工程并进行独立编译，设计上借鉴了安卓系统的&lt;strong&gt;Android.mk&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;每个&lt;strong&gt;玄武模块&lt;/strong&gt;中都有一个&lt;code&gt;xwmo.mk&lt;/code&gt;文件，其中定义的&lt;strong&gt;编译参数&lt;/strong&gt;、&lt;strong&gt;头文件路径&lt;/strong&gt;等
+&lt;strong&gt;只&lt;/strong&gt;对&lt;strong&gt;当前&lt;/strong&gt;的&lt;strong&gt;玄武模块&lt;/strong&gt;生效；&lt;/li&gt;
+&lt;li&gt;每个&lt;strong&gt;玄武模块&lt;/strong&gt;都是一个封闭的包，外部一般不能直接引用内部头文件，需要封装对外可见的
+&lt;strong&gt;类型&lt;/strong&gt;以及&lt;strong&gt;接口函数&lt;/strong&gt;，并统一放在专门的&lt;strong&gt;API头文件&lt;/strong&gt;中；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;API头文件&lt;/strong&gt;通常以&lt;strong&gt;mif.h&lt;/strong&gt;作为文件名，含义是&lt;strong&gt;模块接口(Module InterFace)&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;XWOS内已经包含了大量&lt;strong&gt;玄武模块&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwcd&lt;/code&gt;：外设芯片的驱动；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwam&lt;/code&gt;：示例与应用；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd&lt;/code&gt;：中间件；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwem&lt;/code&gt;：第三方开源软件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;玄武模块&lt;/strong&gt;的具体信息可以参考&lt;a href=&#34;../../../user-manual/build-system#%E7%8E%84%E6%AD%A6%E6%A8%A1%E5%9D%97&#34;&gt;用户手册-构建系统-玄武模块&lt;/a&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;代码启动流程&#34;&gt;代码启动流程&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/stm32-boot-flow.svg&#34; alt=&#34;img&#34; title=&#34;STM32启动流程&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;stm32cube_lowlevel_init()&lt;/code&gt;：初始化时钟&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;stm32cube_init()&lt;/code&gt;：初始化内存管理、cache、GPIO、DMA等基础设备&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;main_task()&lt;/code&gt;：初始化其他设备、启动其他子线程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;功能&#34;&gt;功能&lt;/h2&gt;
+&lt;h3 id=&#34;bsp&#34;&gt;BSP&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;STM32Cube模块：&lt;code&gt;xwbd/FK429M1/bm/stm32cube&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32CubeMX配置文件：&lt;code&gt;xwbd/FK429M1/bm/stm32cube/cubemx/FK429M1.ioc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32CubeMX生成源码目录：&lt;code&gt;xwbd/FK429M1/bm/stm32cube/cubemx&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32Cube适配XWOS的源码：&lt;code&gt;xwbd/FK429M1/bm/stm32cube/xwac&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;中断向量表：&lt;code&gt;xwbd/FK429M1/bm/stm32cube/cubemx/IVT&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;中断向量表使用命令自动生成：&lt;code&gt;xwbs/util/el/stm32ivt/stm32ivt.el xwbd/FK429M1/bm/stm32cube&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;终端UART
+&lt;ul&gt;
+&lt;li&gt;设备：USART1&lt;/li&gt;
+&lt;li&gt;参数：1M波特率/8位数据/1位停止位/无奇偶校验&lt;/li&gt;
+&lt;li&gt;驱动
+&lt;ul&gt;
+&lt;li&gt;驱动框架 —— 设备栈：&lt;code&gt;xwmd/ds/uart/dma.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;设备栈驱动：&lt;code&gt;xwbd/FK429M1/bm/stm32cube/xwac/xwds/uart.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;HAL库驱动：&lt;code&gt;xwbd/FK429M1/bm/stm32cube/cubemx/Core/Src/usart.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;注意：HAL库中的驱动存在BUG，XWOS中所提供的代码已修复&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;SDRAM
+&lt;ul&gt;
+&lt;li&gt;映射地址：&lt;strong&gt;0xD0000000&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;大小：&lt;strong&gt;16MiB&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;驱动：&lt;code&gt;xwbd/FK429M1/bm/stm32cube/cubemx/Core/Src/fmc.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;内存池
+&lt;ul&gt;
+&lt;li&gt;头文件
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwbd/FK429M1/bm/stm32cube/mif.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/mm/mempool/allocator.h&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;内存池对象：&lt;code&gt;sdram_mempool&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;lua&#34;&gt;Lua&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;版本：&lt;strong&gt;5.4&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;源码：&lt;code&gt;xwem/vm/lua&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;适配代码：&lt;code&gt;xwbd/FK429M1/bm/stm32cube/xwac/lua&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;已注册的驱动库：&lt;code&gt;xwbd/FK429M1/bm/luamod/ds.c&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; SOC: &lt;code&gt;stm32&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; REPL&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 运行sd卡中的脚本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;fatfs&#34;&gt;FATFS&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;版本：&lt;strong&gt;0.14&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;源码：&lt;code&gt;xwem/fs/fatfs&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;适配代码：&lt;code&gt;xwbd/FK429M1/bm/stm32cube/xwac/fatfs&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;文件系统：路径以&lt;code&gt;&amp;quot;sd:/&amp;quot;&lt;/code&gt;开始&lt;/li&gt;
+&lt;li&gt;SD卡
+&lt;ul&gt;
+&lt;li&gt;驱动：&lt;code&gt;xwbd/FK429M1/bm/stm32cube/cubemx/Core/Src/sdmmc.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;libc&#34;&gt;libc&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;适配代码：&lt;code&gt;xwbd/FK429M1/bm/stm32cube/xwac/newlib&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;标准输入、输出/错误：重定向至&lt;strong&gt;USART1&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;文件系统：位于SD卡内，从路径&lt;code&gt;sd:/&lt;/code&gt;开始&lt;/li&gt;
+&lt;li&gt;动态内存管理：由SDRAM的内存池提供&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;电源管理&#34;&gt;电源管理&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;适配代码：&lt;code&gt;xwbd/FK429M1/bm/stm32cube/xwac/xwds/pm.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 反客FK750M1核心板</title>
+      <link>/docs/quick-guide/STM32/FK750M1/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/quick-guide/STM32/FK750M1/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;FK750M1.png&#34; alt=&#34;img&#34; title=&#34;FK750M1&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;MCU：STM32H750&lt;/li&gt;
+&lt;li&gt;更多介绍：参考&lt;a href=&#34;https://item.taobao.com/item.htm?spm=a230r.1.14.1.2bcf4720O4Xwlt&amp;amp;id=622185298542&amp;amp;ns=1&amp;amp;abbucket=3#detail&#34;&gt;淘宝店铺介绍&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;开发环境&#34;&gt;开发环境&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;编译集成环境可参考：&lt;a href=&#34;../Env&#34;&gt;开发环境搭建指南&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;源码&#34;&gt;源码&lt;/h2&gt;
+&lt;p&gt;FK750M1开发板使用外置的QSPI Flash存储代码，因此工程分为Bootloader和XWOS。
+FK750M1的工程采用的是&lt;strong&gt;电路板源码在XWOS源码外部&lt;/strong&gt;的模式。&lt;/p&gt;
+&lt;h3 id=&#34;bootloader&#34;&gt;Bootloader&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;描述：位于内置Flash，负责初始化QSPI Flash后跳转至QSPI Flash中执行代码；&lt;/li&gt;
+&lt;li&gt;仓库：&lt;a href=&#34;https://gitee.com/xwos/FK750M1Bootloader.git&#34;&gt;https://gitee.com/xwos/FK750M1Bootloader.git&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;下载：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git clone --recursive https://gitee.com/xwos/FK750M1Bootloader.git
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;在已有的仓库中同步代码：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git pull
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git submodule update
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;xwos&#34;&gt;XWOS&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;描述：XWOS，位于QSPI Flash&lt;/li&gt;
+&lt;li&gt;仓库：&lt;a href=&#34;https://gitee.com/xwos/FK750M1.git&#34;&gt;https://gitee.com/xwos/FK750M1.git&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;下载：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git clone --recursive https://gitee.com/xwos/FK750M1.git
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;在已有的仓库中同步代码：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git pull
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git submodule update
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;导入工程到stm32cubeide&#34;&gt;导入工程到STM32CubeIDE&lt;/h2&gt;
+&lt;p&gt;工程需放在STM32CubeIDE的工作目录内（即STM32CubeIDE启动时指定的目录）。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;菜单：&lt;strong&gt;File &amp;ndash;&amp;gt; Import&amp;hellip; &amp;ndash;&amp;gt; General &amp;ndash;&amp;gt; Projects from Folder or Archive&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;环境变量path设置&#34;&gt;环境变量&lt;strong&gt;PATH&lt;/strong&gt;设置&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;修改Debug和Release两个配置的&lt;strong&gt;PATH&lt;/strong&gt;环境变量
+&lt;ul&gt;
+&lt;li&gt;将STM32CubeIDE自带的工具链路径从PATH环境变量中删除；&lt;/li&gt;
+&lt;li&gt;将xwtc工具链的路径放置到PATH环境变量中。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH.svg&#34; alt=&#34;img&#34; title=&#34;设置PATH&#34;&gt;&lt;/p&gt;
+
+
+&lt;div class=&#34;alert alert-warning&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;注意&lt;/h4&gt;
+
+    &lt;p&gt;STM32CubeIDE自带的工具链在windows可能会导致编译失败。
+需将STM32CubeIDE自带的工具链路径从PATH环境变量中删除，并使用xwtc工具链：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;make (e=3): 系统找不到指定的路径。
+make (e=3): The system cannot find the file specified.
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH-Windows.svg&#34; alt=&#34;img&#34; title=&#34;Windows PATH&#34;&gt;&lt;/p&gt;
+
+
+&lt;/div&gt;
+
+&lt;h2 id=&#34;stm32cubemx配置工程&#34;&gt;STM32CubeMX配置工程&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;STM32CubeMX配置文件：&lt;code&gt;brd/bm/stm32cube/cubemx/FK750M1.ioc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;XWOS对中断优先级的要求：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;切换上下文的中断 &amp;lt;= 滴答定时器的中断 &amp;lt; 调度器服务中断
+切换上下文的中断 &amp;lt; 其他中断 &amp;lt; 调度器服务中断
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;NVIC设置
+&lt;ul&gt;
+&lt;li&gt;设置3个抢占优先级位和1个子优先级位&lt;/li&gt;
+&lt;li&gt;SVC中断设置成&lt;strong&gt;最高&lt;/strong&gt;优先级，即&lt;strong&gt;Preemption Priority&lt;/strong&gt;为0；&lt;/li&gt;
+&lt;li&gt;PendSV中断设置成&lt;strong&gt;最低&lt;/strong&gt;优先级，即&lt;strong&gt;Preemption Priority&lt;/strong&gt;为7；&lt;/li&gt;
+&lt;li&gt;Systick中断设置成&lt;strong&gt;最低&lt;/strong&gt;优先级，即&lt;strong&gt;Preemption Priority&lt;/strong&gt;为7；&lt;/li&gt;
+&lt;li&gt;系统Fault的优先级设置为&lt;strong&gt;0&lt;/strong&gt;；&lt;/li&gt;
+&lt;li&gt;其他中断的优先级只可在&lt;strong&gt;1~6&lt;/strong&gt;之间。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32-IRQ-Priority.svg&#34; alt=&#34;img&#34; title=&#34;中断优先级&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;调试&#34;&gt;调试&lt;/h2&gt;
+&lt;p&gt;打开菜单&lt;strong&gt;Run &amp;ndash;&amp;gt; Debug Configurations&amp;hellip;&lt;/strong&gt;，根据仿真器类型，选择调试配置：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;FK750M1&lt;/strong&gt;：&lt;strong&gt;gdb&lt;/strong&gt; + &lt;strong&gt;STLink GDB Server&lt;/strong&gt; + &lt;strong&gt;STLink调试器&lt;/strong&gt;；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Debug_Configurations.png&#34; alt=&#34;img&#34; title=&#34;调试配置&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;设置外部QSPI Flash的下载算法
+&lt;ul&gt;
+&lt;li&gt;算法文件：&lt;code&gt;brd/cfg/stldr/STM32H750_W25Q128_D11D12E2D13B2B6.stldr&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;需要拷贝到STM32CubeIDE的安装目录： &lt;code&gt;plugins/com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.&amp;lt;版本号&amp;gt;/tools/bin/ExternalLoader&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;设置&lt;strong&gt;External Loader&lt;/strong&gt;为&lt;strong&gt;W25Q128_STM32H7xx_WeActStudio, 0x90000000, SPI_FLASH, STM32H750_W25Q128_D11D12E2D13B2B6.stldr&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Debug-ExternalLoader.svg&#34; alt=&#34;img&#34; title=&#34;设置ExternalLoader&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;调试步骤&#34;&gt;调试步骤&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;准备一张SD卡，格式化为FAT32文件系统；&lt;/li&gt;
+&lt;li&gt;将文件夹&lt;code&gt;xwam/example/lua&lt;/code&gt;内的lua脚本，拷贝到SD卡内；&lt;/li&gt;
+&lt;li&gt;将SD卡插入开发板；&lt;/li&gt;
+&lt;li&gt;使用USB串口与开发板上的USART1(TX:PA9,RX:PA10)链接；&lt;/li&gt;
+&lt;li&gt;打开终端工具（windows可选putty、SecretCRT，Linux可选gtkterm、picocom、minicom），
+串口参数：1M波特率/8位数据/1位停止位/无奇偶校验&lt;/li&gt;
+&lt;li&gt;上电，并在STM32CubeIDE中启动调试，等待MCU运行到初始断点；&lt;/li&gt;
+&lt;li&gt;开始单步调试或连续运行调试。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;调试技巧&#34;&gt;调试技巧&lt;/h3&gt;
+&lt;h4 id=&#34;关闭dcache&#34;&gt;关闭DCache&lt;/h4&gt;
+&lt;p&gt;ARMv7-m7内核的MCU带有Cache，常常会对定位程序BUG带来困扰。
+将下面的宏开关注释掉或定义改为0后可关闭Cache：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* brd/bm/stm32cube/cfg.h */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080&#34;&gt;#define STM32CUBECFG_DCACHE             1
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080&#34;&gt;#define STM32CUBECFG_ICACHE             1
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;运行过程&#34;&gt;运行过程&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;程序入口：&lt;code&gt;brd/bm/main/main.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;启动流程：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos_main()&lt;/code&gt;创建一个主线程&lt;code&gt;main_task()&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;main_task()&lt;/code&gt;依次调用各个&lt;strong&gt;玄武模块&lt;/strong&gt;的&lt;code&gt;xxx_start()&lt;/code&gt;函数完成对各个模块加载；&lt;/li&gt;
+&lt;li&gt;开始并行执行各个模块中创建的线程；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;lua交互式终端&#34;&gt;Lua交互式终端&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&#34;../../../user-manual/lua/xwlua-repl.png&#34; alt=&#34;img&#34; title=&#34;XWLUA交互式解释器&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;示例&#34;&gt;示例&lt;/h2&gt;
+&lt;p&gt;XWOS中有很多示例，可帮助用户快速了解API的用法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;线程
+&lt;ul&gt;
+&lt;li&gt;创建线程： &lt;code&gt;xwam/example/thd/new&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;线程睡眠： &lt;code&gt;xwam/example/thd/sleep&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;线程退出： &lt;code&gt;xwam/example/thd/exit&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;定时器： &lt;code&gt;xwam/example/swt&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;同步
+&lt;ul&gt;
+&lt;li&gt;信号量： &lt;code&gt;xwam/example/sync/sme&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;条件量： &lt;code&gt;xwam/example/sync/cond&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;事件标志： &lt;code&gt;xwam/example/sync/flg&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;线程栅栏： &lt;code&gt;xwam/example/sync/br&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;信号选择器： &lt;code&gt;xwam/example/sync/sel&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;锁
+&lt;ul&gt;
+&lt;li&gt;中断管理： &lt;code&gt;xwam/example/lock/cpuirq&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;自旋锁： &lt;code&gt;xwam/example/lock/spinlock&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;顺序锁： &lt;code&gt;xwam/example/lock/seqlock&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;互斥锁： &lt;code&gt;xwam/example/lock/mtx&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;内存管理
+&lt;ul&gt;
+&lt;li&gt;简单内存分配器： &lt;code&gt;xwam/example/mm/sma&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;内存切片分配器： &lt;code&gt;xwam/example/mm/memslice&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;伙伴算法分配器： &lt;code&gt;xwam/example/mm/bma&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;玄武C库
+&lt;ul&gt;
+&lt;li&gt;CRC： &lt;code&gt;xwam/example/xwlib/crc&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;C++： &lt;code&gt;xwam/example/cxx&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;每个示例中都有一个启动函数 &lt;code&gt;xwos_example_XXX()&lt;/code&gt; ，可在 &lt;code&gt;brd/bm/main/main.c&lt;/code&gt; 文件中的主线程 &lt;code&gt;main_task()&lt;/code&gt; 调用启动示例，但最好一次只启动一个示例，避免日志冲突。&lt;/p&gt;
+&lt;p&gt;实验过程中最好将Lua虚拟机关闭，防止竞争串口导致输出混乱。
+方法是将配置文件&lt;code&gt;brd/cfg/xwem.h&lt;/code&gt;中的配置&lt;code&gt;XWEMCFG_vm_lua&lt;/code&gt;改为 &lt;code&gt;0&lt;/code&gt; 。&lt;/p&gt;
+&lt;h2 id=&#34;系统集成的原理&#34;&gt;系统集成的原理&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;所有移植的第三方组件、驱动包、示例代码等都是以&lt;strong&gt;玄武模块&lt;/strong&gt;独立编译成静态库**.a**，
+之后再将它们链接成&lt;strong&gt;ELF&lt;/strong&gt;文件，再由&lt;strong&gt;ELF&lt;/strong&gt;生成&lt;strong&gt;bin&lt;/strong&gt;、&lt;strong&gt;hex&lt;/strong&gt;和&lt;strong&gt;smot&lt;/strong&gt;文件；&lt;/li&gt;
+&lt;li&gt;每个&lt;strong&gt;玄武模块&lt;/strong&gt;都是一个独立的子工程并进行独立编译，设计上借鉴了安卓系统的&lt;strong&gt;Android.mk&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;每个&lt;strong&gt;玄武模块&lt;/strong&gt;中都有一个&lt;code&gt;xwmo.mk&lt;/code&gt;文件，其中定义的&lt;strong&gt;编译参数&lt;/strong&gt;、&lt;strong&gt;头文件路径&lt;/strong&gt;等
+&lt;strong&gt;只&lt;/strong&gt;对&lt;strong&gt;当前&lt;/strong&gt;的&lt;strong&gt;玄武模块&lt;/strong&gt;生效；&lt;/li&gt;
+&lt;li&gt;每个&lt;strong&gt;玄武模块&lt;/strong&gt;都是一个封闭的包，外部一般不能直接引用内部头文件，需要封装对外可见的
+&lt;strong&gt;类型&lt;/strong&gt;以及&lt;strong&gt;接口函数&lt;/strong&gt;，并统一放在专门的&lt;strong&gt;API头文件&lt;/strong&gt;内&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;API头文件&lt;/strong&gt;通常以&lt;strong&gt;mif.h&lt;/strong&gt;作为文件名，含义是&lt;strong&gt;模块接口(Module InterFace)&lt;/strong&gt;；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;XWOS内已经包含了大量&lt;strong&gt;玄武模块&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwcd&lt;/code&gt;：外设芯片的驱动；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwam&lt;/code&gt;：示例与应用；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd&lt;/code&gt;：中间件；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwem&lt;/code&gt;：第三方开源软件；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;玄武模块&lt;/strong&gt;的具体信息可以参考&lt;a href=&#34;../../../user-manual/build-system#%E7%8E%84%E6%AD%A6%E6%A8%A1%E5%9D%97&#34;&gt;用户手册-构建系统-玄武模块&lt;/a&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;代码启动流程&#34;&gt;代码启动流程&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/stm32-boot-flow.svg&#34; alt=&#34;img&#34; title=&#34;STM32启动流程&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;stm32cube_lowlevel_init()&lt;/code&gt;：初始化时钟&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;stm32cube_init()&lt;/code&gt;：初始化内存管理、cache、GPIO、DMA等基础设备&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;main_task()&lt;/code&gt;：初始化其他设备、启动其他子线程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;功能&#34;&gt;功能&lt;/h2&gt;
+&lt;h3 id=&#34;bsp&#34;&gt;BSP&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;STM32Cube模块：&lt;code&gt;brd/bm/stm32cube&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32CubeMX配置文件：&lt;code&gt;brd/bm/stm32cube/cubemx/FK750M1.ioc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32CubeMX生成源码目录：&lt;code&gt;brd/bm/stm32cube/cubemx&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;适配XWOS的源码：&lt;code&gt;brd/bm/stm32cube/xwac&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;中断向量表：&lt;code&gt;brd/bm/stm32cube/cubemx/IVT&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;中断向量表使用命令自动生成：&lt;code&gt;xwbs/util/el/stm32ivt/stm32ivt.el brd/bm/stm32cube&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;终端UART
+&lt;ul&gt;
+&lt;li&gt;设备：USART1&lt;/li&gt;
+&lt;li&gt;参数：1M波特率/8位数据/1位停止位/无奇偶校验&lt;/li&gt;
+&lt;li&gt;驱动
+&lt;ul&gt;
+&lt;li&gt;设备栈驱动框架：&lt;code&gt;xwmd/ds/uart/dma.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;设备栈驱动：&lt;code&gt;brd/bm/stm32cube/xwac/xwds/uart.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;HAL库驱动：&lt;code&gt;brd/bm/stm32cube/cubemx/Core/Src/usart.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;注意：HAL库中的驱动存在BUG，XWOS中所提供的代码已修复&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;AXI-SRAM
+&lt;ul&gt;
+&lt;li&gt;映射地址：&lt;strong&gt;0x24000000&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;大小：&lt;strong&gt;512KiB&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;内存池
+&lt;ul&gt;
+&lt;li&gt;头文件
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;brd/bdl/axisram.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/mm/mempool/allocator.h&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;内存池对象：&lt;code&gt;axisram_mempool&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;QSPI Flash
+&lt;ul&gt;
+&lt;li&gt;映射地址：&lt;strong&gt;0x90000000&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;大小：&lt;strong&gt;8MiB&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;驱动：&lt;code&gt;[Bootloader工程]/brd/bm/stm32cube/cubemx/Core/Src/quadspi.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;lua&#34;&gt;Lua&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;版本：&lt;strong&gt;5.4&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;源码：&lt;code&gt;xwem/vm/lua&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;适配代码：&lt;code&gt;brd/bm/stm32cube/xwac/lua&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;已注册的驱动库：&lt;code&gt;brd/bm/luamod/ds.c&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; SOC: &lt;code&gt;stm32&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; UART: &lt;code&gt;uart1&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; REPL&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 运行sd卡中的脚本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;fatfs&#34;&gt;FATFS&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;版本：&lt;strong&gt;0.14&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;源码：&lt;code&gt;xwem/fs/fatfs&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;适配代码：&lt;code&gt;brd/bm/stm32cube/xwac/fatfs&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;文件系统：路径以&lt;code&gt;&amp;quot;sd:/&amp;quot;&lt;/code&gt;开始&lt;/li&gt;
+&lt;li&gt;SD卡
+&lt;ul&gt;
+&lt;li&gt;驱动：&lt;code&gt;brd/bm/stm32cube/cubemx/Core/Src/sdmmc.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;libc&#34;&gt;libc&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;适配代码：&lt;code&gt;brd/bm/stm32cube/xwac/newlib&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;标准输入、输出/错误：重定向至&lt;strong&gt;USART1&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;文件系统：位于SD卡内，从路径&lt;code&gt;sd:/&lt;/code&gt;开始&lt;/li&gt;
+&lt;li&gt;动态内存管理：由AXI-SRAM的内存池提供&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;电源管理&#34;&gt;电源管理&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;适配代码：&lt;code&gt;brd/bm/stm32cube/xwac/xwds/pm.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 反客FK750M3核心板</title>
+      <link>/docs/quick-guide/STM32/FK750M3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/quick-guide/STM32/FK750M3/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;FK750M3.png&#34; alt=&#34;img&#34; title=&#34;FK750M3&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;MCU：STM32H750&lt;/li&gt;
+&lt;li&gt;更多介绍：参考&lt;a href=&#34;https://item.taobao.com/item.htm?spm=a230r.1.14.7.2bcf4720O4Xwlt&amp;amp;id=635266689326&amp;amp;ns=1&amp;amp;abbucket=3#detail&#34;&gt;淘宝店铺介绍&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;开发环境&#34;&gt;开发环境&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;编译集成环境可参考：&lt;a href=&#34;../Env&#34;&gt;开发环境搭建指南&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;源码&#34;&gt;源码&lt;/h2&gt;
+&lt;p&gt;FK750M3开发板使用外置的QSPI Flash存储代码，因此工程分为Bootloader和XWOS。
+FK750M3的工程采用的是&lt;strong&gt;电路板源码在XWOS源码外部&lt;/strong&gt;的模式。&lt;/p&gt;
+&lt;h3 id=&#34;bootloader&#34;&gt;Bootloader&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;描述：位于内置Flash，负责初始化QSPI Flash后跳转至QSPI Flash中执行代码；&lt;/li&gt;
+&lt;li&gt;仓库：&lt;a href=&#34;https://gitee.com/xwos/FK750M3Bootloader.git&#34;&gt;https://gitee.com/xwos/FK750M3Bootloader.git&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;下载：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git clone --recursive https://gitee.com/xwos/FK750M3Bootloader.git
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;在已有的仓库中同步代码：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git pull
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git submodule update
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;xwos&#34;&gt;XWOS&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;描述：XWOS，位于QSPI Flash&lt;/li&gt;
+&lt;li&gt;仓库：&lt;a href=&#34;https://gitee.com/xwos/FK750M3.git&#34;&gt;https://gitee.com/xwos/FK750M3.git&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;下载：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git clone --recursive https://gitee.com/xwos/FK750M3.git
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;在已有的仓库中同步代码：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git pull
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git submodule update
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;导入工程到stm32cubeide&#34;&gt;导入工程到STM32CubeIDE&lt;/h2&gt;
+&lt;p&gt;工程需放在STM32CubeIDE的工作目录内（即STM32CubeIDE启动时指定的目录）。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;菜单：&lt;strong&gt;File &amp;ndash;&amp;gt; Import&amp;hellip; &amp;ndash;&amp;gt; General &amp;ndash;&amp;gt; Projects from Folder or Archive&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;环境变量path设置&#34;&gt;环境变量&lt;strong&gt;PATH&lt;/strong&gt;设置&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;修改Debug和Release两个配置的&lt;strong&gt;PATH&lt;/strong&gt;环境变量
+&lt;ul&gt;
+&lt;li&gt;将STM32CubeIDE自带的工具链路径从PATH环境变量中删除；&lt;/li&gt;
+&lt;li&gt;将xwtc工具链的路径放置到PATH环境变量中。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH.svg&#34; alt=&#34;img&#34; title=&#34;设置PATH&#34;&gt;&lt;/p&gt;
+
+
+&lt;div class=&#34;alert alert-warning&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;注意&lt;/h4&gt;
+
+    &lt;p&gt;STM32CubeIDE自带的工具链在windows可能会导致编译失败。
+需将STM32CubeIDE自带的工具链路径从PATH环境变量中删除，并使用xwtc工具链：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;make (e=3): 系统找不到指定的路径。
+make (e=3): The system cannot find the file specified.
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH-Windows.svg&#34; alt=&#34;img&#34; title=&#34;Windows PATH&#34;&gt;&lt;/p&gt;
+
+
+&lt;/div&gt;
+
+&lt;h2 id=&#34;stm32cubemx配置工程&#34;&gt;STM32CubeMX配置工程&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;STM32CubeMX配置文件：&lt;code&gt;brd/bm/stm32cube/cubemx/FK750M3.ioc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;XWOS对中断优先级的要求：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;切换上下文的中断 &amp;lt;= 滴答定时器的中断 &amp;lt; 调度器服务中断
+切换上下文的中断 &amp;lt; 其他中断 &amp;lt; 调度器服务中断
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;NVIC设置
+&lt;ul&gt;
+&lt;li&gt;设置3个抢占优先级位和1个子优先级位&lt;/li&gt;
+&lt;li&gt;SVC中断设置成&lt;strong&gt;最高&lt;/strong&gt;优先级，即&lt;strong&gt;Preemption Priority&lt;/strong&gt;为0；&lt;/li&gt;
+&lt;li&gt;PendSV中断设置成&lt;strong&gt;最低&lt;/strong&gt;优先级，即&lt;strong&gt;Preemption Priority&lt;/strong&gt;为7；&lt;/li&gt;
+&lt;li&gt;Systick中断设置成&lt;strong&gt;最低&lt;/strong&gt;优先级，即&lt;strong&gt;Preemption Priority&lt;/strong&gt;为7；&lt;/li&gt;
+&lt;li&gt;系统Fault的优先级设置为&lt;strong&gt;0&lt;/strong&gt;；&lt;/li&gt;
+&lt;li&gt;其他中断的优先级只可在&lt;strong&gt;1~6&lt;/strong&gt;之间。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32-IRQ-Priority.svg&#34; alt=&#34;img&#34; title=&#34;中断优先级&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;调试&#34;&gt;调试&lt;/h2&gt;
+&lt;p&gt;打开菜单&lt;strong&gt;Run &amp;ndash;&amp;gt; Debug Configurations&amp;hellip;&lt;/strong&gt;，根据仿真器类型，选择调试配置：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;FK750M3&lt;/strong&gt;：&lt;strong&gt;gdb&lt;/strong&gt; + &lt;strong&gt;STLink GDB Server&lt;/strong&gt; + &lt;strong&gt;STLink调试器&lt;/strong&gt;；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Debug_Configurations.png&#34; alt=&#34;img&#34; title=&#34;调试配置&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;设置外部QSPI Flash的下载算法
+&lt;ul&gt;
+&lt;li&gt;算法文件：&lt;code&gt;brd/cfg/stldr/STM32H750_W25Q128_D11D12E2D13B2B6.stldr&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;需要拷贝到STM32CubeIDE的安装目录： &lt;code&gt;plugins/com.st.stm32cube.ide.mcu.externaltools.cubeprogrammer.&amp;lt;版本号&amp;gt;/tools/bin/ExternalLoader&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;设置&lt;strong&gt;External Loader&lt;/strong&gt;为&lt;strong&gt;W25Q128_STM32H7xx_WeActStudio, 0x90000000, SPI_FLASH, STM32H750_W25Q128_D11D12E2D13B2B6.stldr&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Debug-ExternalLoader.svg&#34; alt=&#34;img&#34; title=&#34;设置ExternalLoader&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;调试步骤&#34;&gt;调试步骤&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;准备一张SD卡，格式化为FAT32文件系统；&lt;/li&gt;
+&lt;li&gt;将文件夹&lt;code&gt;xwam/example/lua&lt;/code&gt;内的lua脚本，拷贝到SD卡内；&lt;/li&gt;
+&lt;li&gt;将SD卡插入开发板；&lt;/li&gt;
+&lt;li&gt;使用USB串口与开发板上的USART1(TX:PA9,RX:PA10)链接；&lt;/li&gt;
+&lt;li&gt;打开终端工具（windows可选putty、SecretCRT，Linux可选gtkterm、picocom、minicom），
+串口参数：1M波特率/8位数据/1位停止位/无奇偶校验&lt;/li&gt;
+&lt;li&gt;上电，并在STM32CubeIDE中启动调试，等待MCU运行到初始断点；&lt;/li&gt;
+&lt;li&gt;开始单步调试或连续运行调试。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;调试技巧&#34;&gt;调试技巧&lt;/h3&gt;
+&lt;h4 id=&#34;关闭dcache&#34;&gt;关闭DCache&lt;/h4&gt;
+&lt;p&gt;ARMv7-m7内核的MCU带有Cache，常常会对定位程序BUG带来困扰。
+将下面的宏开关注释掉或定义改为0后可关闭Cache：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* brd/bm/stm32cube/cfg.h */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080&#34;&gt;#define STM32CUBECFG_DCACHE             1
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080&#34;&gt;#define STM32CUBECFG_ICACHE             1
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;运行过程&#34;&gt;运行过程&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;程序入口：&lt;code&gt;brd/bm/main/main.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;启动流程：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos_main()&lt;/code&gt;创建一个主线程&lt;code&gt;main_task()&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;main_task()&lt;/code&gt;依次调用各个&lt;strong&gt;玄武模块&lt;/strong&gt;的&lt;code&gt;xxx_start()&lt;/code&gt;函数完成对各个模块加载；&lt;/li&gt;
+&lt;li&gt;开始并行执行各个模块中创建的线程；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;lua交互式终端&#34;&gt;Lua交互式终端&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&#34;../../../user-manual/lua/xwlua-repl.png&#34; alt=&#34;img&#34; title=&#34;XWLUA交互式解释器&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;示例&#34;&gt;示例&lt;/h2&gt;
+&lt;p&gt;XWOS中有很多示例，可帮助用户快速了解API的用法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;线程
+&lt;ul&gt;
+&lt;li&gt;创建线程： &lt;code&gt;xwam/example/thd/new&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;线程睡眠： &lt;code&gt;xwam/example/thd/sleep&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;线程退出： &lt;code&gt;xwam/example/thd/exit&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;定时器： &lt;code&gt;xwam/example/swt&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;同步
+&lt;ul&gt;
+&lt;li&gt;信号量： &lt;code&gt;xwam/example/sync/sme&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;条件量： &lt;code&gt;xwam/example/sync/cond&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;事件标志： &lt;code&gt;xwam/example/sync/flg&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;线程栅栏： &lt;code&gt;xwam/example/sync/br&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;信号选择器： &lt;code&gt;xwam/example/sync/sel&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;锁
+&lt;ul&gt;
+&lt;li&gt;中断管理： &lt;code&gt;xwam/example/lock/cpuirq&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;自旋锁： &lt;code&gt;xwam/example/lock/spinlock&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;顺序锁： &lt;code&gt;xwam/example/lock/seqlock&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;互斥锁： &lt;code&gt;xwam/example/lock/mtx&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;内存管理
+&lt;ul&gt;
+&lt;li&gt;简单内存分配器： &lt;code&gt;xwam/example/mm/sma&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;内存切片分配器： &lt;code&gt;xwam/example/mm/memslice&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;伙伴算法分配器： &lt;code&gt;xwam/example/mm/bma&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;玄武C库
+&lt;ul&gt;
+&lt;li&gt;CRC： &lt;code&gt;xwam/example/xwlib/crc&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;C++： &lt;code&gt;xwam/example/cxx&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;每个示例中都有一个启动函数 &lt;code&gt;xwos_example_XXX()&lt;/code&gt; ，可在 &lt;code&gt;brd/bm/main/main.c&lt;/code&gt; 文件中的主线程 &lt;code&gt;main_task()&lt;/code&gt; 调用启动示例，但最好一次只启动一个示例，避免日志冲突。&lt;/p&gt;
+&lt;p&gt;实验过程中最好将Lua虚拟机关闭，防止竞争串口导致输出混乱。
+方法是将配置文件&lt;code&gt;brd/cfg/xwem.h&lt;/code&gt;中的配置&lt;code&gt;XWEMCFG_vm_lua&lt;/code&gt;改为 &lt;code&gt;0&lt;/code&gt; 。&lt;/p&gt;
+&lt;h2 id=&#34;系统集成的原理&#34;&gt;系统集成的原理&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;所有移植的第三方组件、驱动包、示例代码等都是以&lt;strong&gt;玄武模块&lt;/strong&gt;独立编译成静态库**.a**，
+之后再将它们链接成&lt;strong&gt;ELF&lt;/strong&gt;文件，再由&lt;strong&gt;ELF&lt;/strong&gt;生成&lt;strong&gt;bin&lt;/strong&gt;、&lt;strong&gt;hex&lt;/strong&gt;和&lt;strong&gt;smot&lt;/strong&gt;文件；&lt;/li&gt;
+&lt;li&gt;每个&lt;strong&gt;玄武模块&lt;/strong&gt;都是一个独立的子工程并进行独立编译，设计上借鉴了安卓系统的&lt;strong&gt;Android.mk&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;每个&lt;strong&gt;玄武模块&lt;/strong&gt;中都有一个&lt;code&gt;xwmo.mk&lt;/code&gt;文件，其中定义的&lt;strong&gt;编译参数&lt;/strong&gt;、&lt;strong&gt;头文件路径&lt;/strong&gt;等
+&lt;strong&gt;只&lt;/strong&gt;对&lt;strong&gt;当前&lt;/strong&gt;的&lt;strong&gt;玄武模块&lt;/strong&gt;生效；&lt;/li&gt;
+&lt;li&gt;每个&lt;strong&gt;玄武模块&lt;/strong&gt;都是一个封闭的包，外部一般不能直接引用内部头文件，需要封装对外可见的
+&lt;strong&gt;类型&lt;/strong&gt;以及&lt;strong&gt;接口函数&lt;/strong&gt;，并统一放在专门的&lt;strong&gt;API头文件&lt;/strong&gt;内&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;API头文件&lt;/strong&gt;通常以&lt;strong&gt;mif.h&lt;/strong&gt;作为文件名，含义是&lt;strong&gt;模块接口(Module InterFace)&lt;/strong&gt;；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;XWOS内已经包含了大量&lt;strong&gt;玄武模块&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwcd&lt;/code&gt;：外设芯片的驱动；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwam&lt;/code&gt;：示例与应用；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd&lt;/code&gt;：中间件；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwem&lt;/code&gt;：第三方开源软件；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;玄武模块&lt;/strong&gt;的具体信息可以参考&lt;a href=&#34;../../../user-manual/build-system#%E7%8E%84%E6%AD%A6%E6%A8%A1%E5%9D%97&#34;&gt;用户手册-构建系统-玄武模块&lt;/a&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;代码启动流程&#34;&gt;代码启动流程&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/stm32-boot-flow.svg&#34; alt=&#34;img&#34; title=&#34;STM32启动流程&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;stm32cube_lowlevel_init()&lt;/code&gt;：初始化时钟&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;stm32cube_init()&lt;/code&gt;：初始化内存管理、cache、GPIO、DMA等基础设备&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;main_task()&lt;/code&gt;：初始化其他设备、启动其他子线程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;功能&#34;&gt;功能&lt;/h2&gt;
+&lt;h3 id=&#34;bsp&#34;&gt;BSP&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;STM32Cube模块：&lt;code&gt;brd/bm/stm32cube&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32CubeMX配置文件：&lt;code&gt;brd/bm/stm32cube/cubemx/FK750M3.ioc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32CubeMX生成源码目录：&lt;code&gt;brd/bm/stm32cube/cubemx&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;适配XWOS的源码：&lt;code&gt;brd/bm/stm32cube/xwac&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;中断向量表：&lt;code&gt;brd/bm/stm32cube/cubemx/IVT&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;中断向量表使用命令自动生成：&lt;code&gt;xwbs/util/el/stm32ivt/stm32ivt.el brd/bm/stm32cube&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;终端UART
+&lt;ul&gt;
+&lt;li&gt;设备：USART1&lt;/li&gt;
+&lt;li&gt;参数：1M波特率/8位数据/1位停止位/无奇偶校验&lt;/li&gt;
+&lt;li&gt;驱动
+&lt;ul&gt;
+&lt;li&gt;设备栈驱动框架：&lt;code&gt;xwmd/ds/uart/dma.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;设备栈驱动：&lt;code&gt;brd/bm/stm32cube/xwac/xwds/uart.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;HAL库驱动：&lt;code&gt;brd/bm/stm32cube/cubemx/Core/Src/usart.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;注意：HAL库中的驱动存在BUG，XWOS中所提供的代码已修复&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;AXI-SRAM
+&lt;ul&gt;
+&lt;li&gt;映射地址：&lt;strong&gt;0x24000000&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;大小：&lt;strong&gt;512KiB&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;内存池
+&lt;ul&gt;
+&lt;li&gt;头文件
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;brd/bdl/axisram.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/mm/mempool/allocator.h&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;内存池对象：&lt;code&gt;axisram_mempool&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;QSPI Flash
+&lt;ul&gt;
+&lt;li&gt;映射地址：&lt;strong&gt;0x90000000&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;大小：&lt;strong&gt;8MiB&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;驱动：&lt;code&gt;[Bootloader工程]/brd/bm/stm32cube/cubemx/Core/Src/quadspi.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;lua&#34;&gt;Lua&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;版本：&lt;strong&gt;5.4&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;源码：&lt;code&gt;xwem/vm/lua&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;适配代码：&lt;code&gt;brd/bm/stm32cube/xwac/lua&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;已注册的驱动库：&lt;code&gt;brd/bm/luamod/ds.c&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; SOC: &lt;code&gt;stm32&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; UART: &lt;code&gt;uart1&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; REPL&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 运行sd卡中的脚本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;fatfs&#34;&gt;FATFS&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;版本：&lt;strong&gt;0.14&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;源码：&lt;code&gt;xwem/fs/fatfs&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;适配代码：&lt;code&gt;brd/bm/stm32cube/xwac/fatfs&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;文件系统：路径以&lt;code&gt;&amp;quot;sd:/&amp;quot;&lt;/code&gt;开始&lt;/li&gt;
+&lt;li&gt;SD卡
+&lt;ul&gt;
+&lt;li&gt;驱动：&lt;code&gt;brd/bm/stm32cube/cubemx/Core/Src/sdmmc.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;libc&#34;&gt;libc&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;适配代码：&lt;code&gt;brd/bm/stm32cube/xwac/newlib&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;标准输入、输出/错误：重定向至&lt;strong&gt;USART1&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;文件系统：位于SD卡内，从路径&lt;code&gt;sd:/&lt;/code&gt;开始&lt;/li&gt;
+&lt;li&gt;动态内存管理：由AXI-SRAM的内存池提供&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;电源管理&#34;&gt;电源管理&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;适配代码：&lt;code&gt;brd/bm/stm32cube/xwac/xwds/pm.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 野火Stm32H743 Pro开发板</title>
+      <link>/docs/quick-guide/STM32/EmbedFireStm32H743/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/quick-guide/STM32/EmbedFireStm32H743/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;EmbedFireStm32H743.jpg&#34; alt=&#34;img&#34; title=&#34;EmbedFireStm32H743开发板&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;MCU: STM32H743XIHx&lt;/li&gt;
+&lt;li&gt;SDRAM: 64MiB&lt;/li&gt;
+&lt;li&gt;更多介绍: &lt;a href=&#34;http://doc.embedfire.com/products/link/zh/latest/stm32/ebf_stm32h743_pro/download/stm32h743_pro.html&#34;&gt;主页&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;电路板目录：&lt;code&gt;xwbd/EmbedFireStm32H743&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;开发环境&#34;&gt;开发环境&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;编译集成环境可参考：&lt;a href=&#34;../Env&#34;&gt;开发环境搭建指南&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;源码&#34;&gt;源码&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;仓库：&lt;a href=&#34;https://gitee.com/xwos/EmbedFireStm32H743.git&#34;&gt;https://gitee.com/xwos/EmbedFireStm32H743.git&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;下载：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git clone --recursive https://gitee.com/xwos/EmbedFireStm32H743.git
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;在已有的仓库中同步代码：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git pull
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git submodule update
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;导入工程到stm32cubeide&#34;&gt;导入工程到STM32CubeIDE&lt;/h2&gt;
+&lt;p&gt;工程需放在STM32CubeIDE的工作目录内（即STM32CubeIDE启动时指定的目录）。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;菜单： &lt;strong&gt;File &amp;ndash;&amp;gt; Import&amp;hellip; &amp;ndash;&amp;gt; General &amp;ndash;&amp;gt; Projects from Folder or Archive&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;设置编译环境&#34;&gt;设置编译环境&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;打开菜单 &lt;strong&gt;Project &amp;ndash;&amp;gt; Properties &amp;ndash;&amp;gt; C/C++ Build &amp;ndash;&amp;gt; Environment&lt;/strong&gt; ；&lt;/li&gt;
+&lt;li&gt;点击 &lt;strong&gt;Restore Defaults&lt;/strong&gt; ；&lt;/li&gt;
+&lt;li&gt;修改Debug配置的环境变量：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;WKSPC&lt;/code&gt; : &lt;code&gt;../../../${ConfigName}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~D&lt;/code&gt; : &lt;code&gt;1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~V&lt;/code&gt; : &lt;code&gt;1&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH-Debug.png&#34; alt=&#34;img&#34; title=&#34;Debug配置&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;修改Release配置的环境变量：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;WKSPC&lt;/code&gt; : &lt;code&gt;../../../${ConfigName}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~D&lt;/code&gt; : &lt;code&gt;0&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~V&lt;/code&gt; : &lt;code&gt;1&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH-Release.png&#34; alt=&#34;img&#34; title=&#34;Release配置&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;环境变量-path-设置&#34;&gt;环境变量 &lt;strong&gt;PATH&lt;/strong&gt; 设置&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;修改Debug和Release两个配置的 &lt;strong&gt;PATH&lt;/strong&gt; 环境变量
+&lt;ul&gt;
+&lt;li&gt;将STM32CubeIDE自带的工具链路径从 &lt;strong&gt;PATH&lt;/strong&gt; 环境变量中删除；&lt;/li&gt;
+&lt;li&gt;将 &lt;strong&gt;xwtc&lt;/strong&gt; 工具链的路径放置到PATH环境变量中。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH.svg&#34; alt=&#34;img&#34; title=&#34;设置PATH&#34;&gt;&lt;/p&gt;
+
+
+&lt;div class=&#34;alert alert-warning&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;注意&lt;/h4&gt;
+
+    &lt;p&gt;STM32CubeIDE自带的工具链在windows可能会导致编译失败。
+需将STM32CubeIDE自带的工具链路径从PATH环境变量中删除，并使用 &lt;strong&gt;xwtc&lt;/strong&gt; 工具链：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;make (e=3): 系统找不到指定的路径。
+make (e=3): The system cannot find the file specified.
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH-Windows.svg&#34; alt=&#34;img&#34; title=&#34;Windows PATH&#34;&gt;&lt;/p&gt;
+
+
+&lt;/div&gt;
+
+&lt;h2 id=&#34;stm32cubemx配置工程&#34;&gt;STM32CubeMX配置工程&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;STM32CubeMX配置文件： &lt;code&gt;xwbd/EmbedFireStm32H743/bm/stm32cube/cubemx/EmbedFireStm32H743.ioc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;XWOS对中断优先级的要求：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;切换上下文的中断 &amp;lt;= 滴答定时器的中断 &amp;lt; 调度器服务中断
+切换上下文的中断 &amp;lt; 其他中断 &amp;lt; 调度器服务中断
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;NVIC设置
+&lt;ul&gt;
+&lt;li&gt;设置3个抢占优先级位和1个子优先级位&lt;/li&gt;
+&lt;li&gt;SVC中断设置成 &lt;strong&gt;最高&lt;/strong&gt; 优先级，即 &lt;strong&gt;Preemption Priority&lt;/strong&gt; 为 &lt;strong&gt;0&lt;/strong&gt; ；&lt;/li&gt;
+&lt;li&gt;PendSV中断设置成 &lt;strong&gt;最低&lt;/strong&gt; 优先级，即 &lt;strong&gt;Preemption Priority&lt;/strong&gt;为 &lt;strong&gt;7&lt;/strong&gt; ；&lt;/li&gt;
+&lt;li&gt;Systick中断设置成 &lt;strong&gt;最低&lt;/strong&gt; 优先级，即 &lt;strong&gt;Preemption Priority&lt;/strong&gt;为 &lt;strong&gt;7&lt;/strong&gt; ；&lt;/li&gt;
+&lt;li&gt;系统Fault的优先级设置为 &lt;strong&gt;0&lt;/strong&gt;；&lt;/li&gt;
+&lt;li&gt;其他中断的优先级只可在 &lt;strong&gt;1~6&lt;/strong&gt; 之间。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32-IRQ-Priority.svg&#34; alt=&#34;img&#34; title=&#34;中断优先级&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;编译&#34;&gt;编译&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Build.png&#34; alt=&#34;img&#34; title=&#34;编译&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;调试&#34;&gt;调试&lt;/h2&gt;
+&lt;p&gt;打开菜单 &lt;strong&gt;Run &amp;ndash;&amp;gt; Debug Configurations&amp;hellip;&lt;/strong&gt; ，根据仿真器类型，选择调试配置：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;EmbedFireStm32H743-openocd-daplink&lt;/strong&gt; ： &lt;strong&gt;gdb&lt;/strong&gt; + &lt;strong&gt;openocd&lt;/strong&gt; + &lt;strong&gt;DAPLink调试器&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;EmbedFireStm32H743-openocd-jlink&lt;/strong&gt; ： &lt;strong&gt;gdb&lt;/strong&gt; + &lt;strong&gt;openocd&lt;/strong&gt; + &lt;strong&gt;JLink调试器&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;EmbedFireStm32H743-stlink&lt;/strong&gt; ： &lt;strong&gt;gdb&lt;/strong&gt; + &lt;strong&gt;STLink GDB Server&lt;/strong&gt; + &lt;strong&gt;JLink调试器&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Debug_Configurations.png&#34; alt=&#34;img&#34; title=&#34;调试配置&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;调试步骤&#34;&gt;调试步骤&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;准备一张SD卡，格式化为FAT32文件系统；&lt;/li&gt;
+&lt;li&gt;将文件夹 &lt;code&gt;xwam/example/lua&lt;/code&gt; 内的lua脚本，拷贝到SD卡内；&lt;/li&gt;
+&lt;li&gt;将SD卡插入开发板；&lt;/li&gt;
+&lt;li&gt;使用MiniUSB线连接电路板上的USB-232接口与PC；&lt;/li&gt;
+&lt;li&gt;打开终端工具（windows可选putty、SecretCRT，Linux可选gtkterm、picocom、minicom）,但先不要在终端工具中打开串口，否则MCU会进入下载模式；&lt;/li&gt;
+&lt;li&gt;上电，并在STM32CubeIDE中启动调试，等待MCU运行到初始断点；&lt;/li&gt;
+&lt;li&gt;在终端工具中打开串口，参数：1M波特率/8位数据/1位停止位/无奇偶校验；&lt;/li&gt;
+&lt;li&gt;开始单步调试或连续运行调试。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;调试技巧&#34;&gt;调试技巧&lt;/h3&gt;
+&lt;h4 id=&#34;关闭dcache&#34;&gt;关闭DCache&lt;/h4&gt;
+&lt;p&gt;ARMv7-m7内核的MCU带有Cache，常常会对定位程序BUG带来困扰。
+将下面的宏开关注释掉或定义改为0后可关闭Cache：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* xwbd/EmbedFireStm32H743/bm/stm32cube/cfg.h */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080&#34;&gt;#define STM32CUBECFG_DCACHE             1
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080&#34;&gt;#define STM32CUBECFG_ICACHE             1
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;openocd--daplink-调试时的复位问题&#34;&gt;&lt;strong&gt;OpenOCD + DAPLink&lt;/strong&gt; 调试时的复位问题&lt;/h4&gt;
+&lt;p&gt;若在调试中无法通过IDE的 &lt;strong&gt;Restart&lt;/strong&gt; 按钮复位系统，可按下面步骤处理：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;暂停运行；&lt;/li&gt;
+&lt;li&gt;在程序的初始化流程中设置一个断点，例如 &lt;code&gt;xwos_main()&lt;/code&gt; 或 &lt;code&gt;arch_isr_reset()&lt;/code&gt; 函数内部；&lt;/li&gt;
+&lt;li&gt;继续运行；&lt;/li&gt;
+&lt;li&gt;按一下板子上的复位按键。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;运行过程&#34;&gt;运行过程&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;程序入口： &lt;code&gt;xwbd/EmbedFireStm32H743/bm/main/main.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;启动流程：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos_main()&lt;/code&gt; 创建一个主线程 &lt;code&gt;main_task()&lt;/code&gt; ；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;main_task()&lt;/code&gt; 依次调用各个 &lt;strong&gt;玄武模块&lt;/strong&gt; 的 &lt;code&gt;xxx_start()&lt;/code&gt; 函数完成对各个模块加载；&lt;/li&gt;
+&lt;li&gt;开始并行执行各个模块中创建的线程。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;lua交互式终端&#34;&gt;Lua交互式终端&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&#34;../../../user-manual/lua/xwlua-repl.png&#34; alt=&#34;img&#34; title=&#34;XWLUA交互式解释器&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;示例&#34;&gt;示例&lt;/h2&gt;
+&lt;p&gt;XWOS中有很多示例，可帮助用户快速了解API的用法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;线程
+&lt;ul&gt;
+&lt;li&gt;创建线程： &lt;code&gt;xwam/example/thd/new&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;线程睡眠： &lt;code&gt;xwam/example/thd/sleep&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;线程退出： &lt;code&gt;xwam/example/thd/exit&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;定时器： &lt;code&gt;xwam/example/swt&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;同步
+&lt;ul&gt;
+&lt;li&gt;信号量： &lt;code&gt;xwam/example/sync/sme&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;条件量： &lt;code&gt;xwam/example/sync/cond&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;事件标志： &lt;code&gt;xwam/example/sync/flg&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;线程栅栏： &lt;code&gt;xwam/example/sync/br&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;信号选择器： &lt;code&gt;xwam/example/sync/sel&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;锁
+&lt;ul&gt;
+&lt;li&gt;中断管理： &lt;code&gt;xwam/example/lock/cpuirq&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;自旋锁： &lt;code&gt;xwam/example/lock/spinlock&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;顺序锁： &lt;code&gt;xwam/example/lock/seqlock&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;互斥锁： &lt;code&gt;xwam/example/lock/mtx&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;内存管理
+&lt;ul&gt;
+&lt;li&gt;简单内存分配器： &lt;code&gt;xwam/example/mm/sma&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;内存切片分配器： &lt;code&gt;xwam/example/mm/memslice&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;伙伴算法分配器： &lt;code&gt;xwam/example/mm/bma&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;玄武C库
+&lt;ul&gt;
+&lt;li&gt;CRC： &lt;code&gt;xwam/example/xwlib/crc&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;C++： &lt;code&gt;xwam/example/cxx&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;每个示例中都有一个启动函数 &lt;code&gt;xwos_example_XXX()&lt;/code&gt; ，可在 &lt;code&gt;xwbd/EmbedFireStm32H743/bm/main/main.c&lt;/code&gt; 文件中的主线程 &lt;code&gt;main_task()&lt;/code&gt; 调用启动示例，但最好一次只启动一个示例，避免日志冲突。&lt;/p&gt;
+&lt;p&gt;实验过程中最好将Lua虚拟机关闭，防止竞争串口导致输出混乱。
+方法是将配置文件 &lt;code&gt;xwbd/EmbedFireStm32H743/cfg/xwem.h&lt;/code&gt; 中的配置 &lt;code&gt;XWEMCFG_vm_lua&lt;/code&gt; 改为 &lt;code&gt;0&lt;/code&gt; 。&lt;/p&gt;
+&lt;h2 id=&#34;系统集成的原理&#34;&gt;系统集成的原理&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;所有移植的第三方组件、驱动包、示例代码等都是以 &lt;strong&gt;玄武模块&lt;/strong&gt; 独立编译成静态库 &lt;strong&gt;.a&lt;/strong&gt; ，
+之后再将它们链接成 &lt;strong&gt;ELF&lt;/strong&gt; 文件，再由 &lt;strong&gt;ELF&lt;/strong&gt; 生成 &lt;strong&gt;bin&lt;/strong&gt; 、 &lt;strong&gt;hex&lt;/strong&gt; 和 &lt;strong&gt;smot&lt;/strong&gt; 文件；&lt;/li&gt;
+&lt;li&gt;每个 &lt;strong&gt;玄武模块&lt;/strong&gt; 都是一个独立的子工程并进行独立编译，设计上借鉴了安卓系统的 &lt;strong&gt;Android.mk&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;每个 &lt;strong&gt;玄武模块&lt;/strong&gt; 中都有一个 &lt;code&gt;xwmo.mk&lt;/code&gt; 文件，其中定义的 &lt;strong&gt;编译参数&lt;/strong&gt; 、 &lt;strong&gt;头文件路径&lt;/strong&gt; 等 &lt;strong&gt;只&lt;/strong&gt; 对 &lt;strong&gt;当前&lt;/strong&gt; 的 &lt;strong&gt;玄武模块&lt;/strong&gt; 生效；&lt;/li&gt;
+&lt;li&gt;每个 &lt;strong&gt;玄武模块&lt;/strong&gt; 都是一个封闭的包，外部一般不能直接引用内部头文件，需要封装对外可见的 &lt;strong&gt;类型&lt;/strong&gt; 以及 &lt;strong&gt;接口函数&lt;/strong&gt; ，并统一放在专门的 &lt;strong&gt;API头文件&lt;/strong&gt; 内；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;API头文件&lt;/strong&gt; 通常以 &lt;strong&gt;mif.h&lt;/strong&gt; 作为文件名，含义是 &lt;strong&gt;模块接口(Module InterFace)&lt;/strong&gt; ；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;XWOS内已经包含了大量 &lt;strong&gt;玄武模块&lt;/strong&gt; ：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwcd&lt;/code&gt; ： 外设芯片的驱动；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwam&lt;/code&gt; ： 示例与应用；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd&lt;/code&gt; ： 中间件；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwem&lt;/code&gt; ： 第三方开源软件；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;玄武模块&lt;/strong&gt; 的具体信息可以参考&lt;a href=&#34;../../../user-manual/build-system#%E7%8E%84%E6%AD%A6%E6%A8%A1%E5%9D%97&#34;&gt;用户手册-构建系统-玄武模块&lt;/a&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;代码启动流程&#34;&gt;代码启动流程&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/stm32-boot-flow.svg&#34; alt=&#34;img&#34; title=&#34;STM32启动流程&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;stm32cube_lowlevel_init()&lt;/code&gt; ：初始化时钟&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;stm32cube_init()&lt;/code&gt; ：初始化内存管理、cache、GPIO、DMA等基础设备&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;main_task()&lt;/code&gt; ：初始化其他设备、启动其他子线程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;功能&#34;&gt;功能&lt;/h2&gt;
+&lt;h3 id=&#34;bsp&#34;&gt;BSP&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;STM32Cube模块： &lt;code&gt;xwbd/EmbedFireStm32H743/bm/stm32cube&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32CubeMX配置文件： &lt;code&gt;xwbd/EmbedFireStm32H743/bm/stm32cube/cubemx/EmbedFireStm32H743.ioc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32CubeMX生成源码目录： &lt;code&gt;xwbd/EmbedFireStm32H743/bm/stm32cube/cubemx&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;适配XWOS的源码： &lt;code&gt;xwbd/EmbedFireStm32H743/bm/stm32cube/xwac&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;中断向量表： &lt;code&gt;xwbd/EmbedFireStm32H743/bm/stm32cube/cubemx/IVT&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;中断向量表使用命令自动生成： &lt;code&gt;xwbs/util/el/stm32ivt/stm32ivt.el xwbd/EmbedFireStm32H743/bm/stm32cube&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;终端UART
+&lt;ul&gt;
+&lt;li&gt;设备：USART1&lt;/li&gt;
+&lt;li&gt;参数：1M波特率/8位数据/1位停止位/无奇偶校验&lt;/li&gt;
+&lt;li&gt;驱动
+&lt;ul&gt;
+&lt;li&gt;驱动框架 —— 设备栈： &lt;code&gt;xwmd/ds/uart/dma.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;设备栈驱动： &lt;code&gt;xwbd/EmbedFireStm32H743/bm/stm32cube/xwac/xwds/uart.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;HAL库驱动： &lt;code&gt;xwbd/EmbedFireStm32H743/bm/stm32cube/cubemx/Core/Src/usart.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;注意：HAL库中的驱动存在BUG，XWOS中所提供的代码已修复&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;QSPI Flash
+&lt;ul&gt;
+&lt;li&gt;映射地址： &lt;strong&gt;0x90000000&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;大小：&lt;strong&gt;32MiB&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;驱动： &lt;code&gt;xwbd/EmbedFireStm32H743/bm/stm32cube/cubemx/Core/Src/quadspi.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;SDRAM
+&lt;ul&gt;
+&lt;li&gt;映射地址： &lt;strong&gt;0xD0000000&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;大小： &lt;strong&gt;64MiB&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;驱动： &lt;code&gt;xwbd/EmbedFireStm32H743/bm/stm32cube/cubemx/Core/Src/fmc.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;内存池
+&lt;ul&gt;
+&lt;li&gt;头文件
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwbd/EmbedFireStm32H743/bm/stm32cube/mif.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/mm/mempool/allocator.h&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;内存池对象： &lt;code&gt;newlibac_mempool&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;SD
+&lt;ul&gt;
+&lt;li&gt;驱动： &lt;code&gt;xwbd/EmbedFireStm32H743/bm/stm32cube/cubemx/Core/Src/sdmmc.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;lua&#34;&gt;Lua&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;版本： &lt;strong&gt;5.4&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;源码： &lt;code&gt;xwem/vm/lua&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;适配代码： &lt;code&gt;xwbd/EmbedFireStm32H743/bm/stm32cube/xwac/lua&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;已注册的驱动库： &lt;code&gt;xwbd/EmbedFireStm32H743/bm/luamod/ds.c&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; SOC: &lt;code&gt;stm32&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; UART: &lt;code&gt;uart1&lt;/code&gt;, &lt;code&gt;uart5&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; REPL&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 运行sd卡中的脚本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;fatfs&#34;&gt;FATFS&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;版本： &lt;strong&gt;0.14b&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;源码： &lt;code&gt;xwem/fs/fatfs&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;适配代码： &lt;code&gt;xwbd/EmbedFireStm32H743/bm/stm32cube/xwac/fatfs&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;文件系统：路径以 &lt;code&gt;&amp;quot;sd:/&amp;quot;&lt;/code&gt; 开始&lt;/li&gt;
+&lt;li&gt;SD卡
+&lt;ul&gt;
+&lt;li&gt;驱动： &lt;code&gt;xwbd/EmbedFireStm32H743/bm/stm32cube/cubemx/Core/Src/sdmmc.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;libc&#34;&gt;libc&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;适配代码： &lt;code&gt;xwbd/EmbedFireStm32H743/bm/stm32cube/xwac/newlib&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;标准输入、输出/错误：重定向至 &lt;strong&gt;USART1&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;文件系统：位于SD卡内，从路径 &lt;code&gt;sd:/&lt;/code&gt; 开始&lt;/li&gt;
+&lt;li&gt;动态内存管理：由SDRAM的内存池提供&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;电源管理&#34;&gt;电源管理&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;适配代码： &lt;code&gt;xwbd/EmbedFireStm32H743/bm/stm32cube/xwac/xwds/pm.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;rust&#34;&gt;Rust&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;入口： &lt;code&gt;xwbd/EmbedFireStm32H743/bm/rustapp&lt;/code&gt; : &lt;code&gt;xwrust_main()&lt;/code&gt; 被主线程 &lt;code&gt;main_task()&lt;/code&gt; 调用&lt;/li&gt;
+&lt;li&gt;示例
+&lt;ul&gt;
+&lt;li&gt;动态线程： &lt;code&gt;xwam/xwrust-example/xwrust_example_dthd&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;静态线程： &lt;code&gt;xwam/xwrust-example/xwrust_example_sthd&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;软件定时器： &lt;code&gt;xwam/xwrust-example/xwrust_example_swt&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;锁
+&lt;ul&gt;
+&lt;li&gt;互斥锁： &lt;code&gt;xwam/xwrust-example/xwrust_example_mutex&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;自旋锁： &lt;code&gt;xwam/xwrust-example/xwrust_example_spinlock&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;顺序锁： &lt;code&gt;xwam/xwrust-example/xwrust_example_seqlock&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;同步
+&lt;ul&gt;
+&lt;li&gt;信号量： &lt;code&gt;xwam/xwrust-example/xwrust_example_sem&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;条件量： &lt;code&gt;xwam/xwrust-example/xwrust_example_cond&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;事件标志： &lt;code&gt;xwam/xwrust-example/xwrust_example_flg&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;线程栅栏： &lt;code&gt;xwam/xwrust-example/xwrust_example_br&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;信号选择器： &lt;code&gt;xwam/xwrust-example/xwrust_example_sel&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;循环队列： &lt;code&gt;xwam/xwrust-example/xwrust_example_xwcq&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;消息队列： &lt;code&gt;xwam/xwrust-example/xwrust_example_xwmq&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 正点原子阿波罗Stm32H743开发板</title>
+      <link>/docs/quick-guide/STM32/ATKStm32H743/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/quick-guide/STM32/ATKStm32H743/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;ATKStm32H743.jpg&#34; alt=&#34;img&#34; title=&#34;ATKStm32H743开发板&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;MCU: STM32H743IIT6&lt;/li&gt;
+&lt;li&gt;SDRAM: 32MiB&lt;/li&gt;
+&lt;li&gt;更多介绍: &lt;a href=&#34;http://www.openedv.com/docs/boards/stm32/zdyz_stm32h743_apollo.html&#34;&gt;主页&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;电路板目录： &lt;code&gt;xwbd/ATKStm32H743&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;开发环境&#34;&gt;开发环境&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;编译集成环境可参考：&lt;a href=&#34;../Env&#34;&gt;开发环境搭建指南&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;源码&#34;&gt;源码&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;仓库：&lt;a href=&#34;https://gitee.com/xwos/ATKStm32H743.git&#34;&gt;https://gitee.com/xwos/ATKStm32H743.git&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;下载：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git clone --recursive https://gitee.com/xwos/ATKStm32H743.git
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;在已有的仓库中同步代码：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git pull
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git submodule update
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;导入工程到stm32cubeide&#34;&gt;导入工程到STM32CubeIDE&lt;/h2&gt;
+&lt;p&gt;工程需放在STM32CubeIDE的工作目录内（即STM32CubeIDE启动时指定的目录）。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;菜单： &lt;strong&gt;File &amp;ndash;&amp;gt; Import&amp;hellip; &amp;ndash;&amp;gt; General &amp;ndash;&amp;gt; Projects from Folder or Archive&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;设置编译环境&#34;&gt;设置编译环境&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;打开菜单 &lt;strong&gt;Project &amp;ndash;&amp;gt; Properties &amp;ndash;&amp;gt; C/C++ Build &amp;ndash;&amp;gt; Environment&lt;/strong&gt;；&lt;/li&gt;
+&lt;li&gt;点击 &lt;strong&gt;Restore Defaults&lt;/strong&gt; ；&lt;/li&gt;
+&lt;li&gt;修改Debug配置的环境变量：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;WKSPC&lt;/code&gt; : &lt;code&gt;../../../${ConfigName}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~D&lt;/code&gt; : &lt;code&gt;1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~V&lt;/code&gt; : &lt;code&gt;1&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH-Debug.png&#34; alt=&#34;img&#34; title=&#34;Debug配置&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;修改Release配置的环境变量：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;WKSPC&lt;/code&gt;:&lt;code&gt;../../../${ConfigName}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~D&lt;/code&gt;:&lt;code&gt;0&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~V&lt;/code&gt;:&lt;code&gt;1&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH-Release.png&#34; alt=&#34;img&#34; title=&#34;Release配置&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;环境变量-path-设置&#34;&gt;环境变量 &lt;strong&gt;PATH&lt;/strong&gt; 设置&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;修改Debug和Release两个配置的 &lt;strong&gt;PATH&lt;/strong&gt; 环境变量
+&lt;ul&gt;
+&lt;li&gt;将STM32CubeIDE自带的工具链路径从 &lt;strong&gt;PATH&lt;/strong&gt; 环境变量中删除；&lt;/li&gt;
+&lt;li&gt;将 &lt;strong&gt;xwtc&lt;/strong&gt; 工具链的路径放置到 &lt;strong&gt;PATH&lt;/strong&gt; 环境变量中。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH.svg&#34; alt=&#34;img&#34; title=&#34;设置PATH&#34;&gt;&lt;/p&gt;
+
+
+&lt;div class=&#34;alert alert-warning&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;注意&lt;/h4&gt;
+
+    &lt;p&gt;STM32CubeIDE自带的工具链在windows可能会导致编译失败。
+需将STM32CubeIDE自带的工具链路径从PATH环境变量中删除，并使用 &lt;strong&gt;xwtc&lt;/strong&gt; 工具链：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;make (e=3): 系统找不到指定的路径。
+make (e=3): The system cannot find the file specified.
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH-Windows.svg&#34; alt=&#34;img&#34; title=&#34;Windows PATH&#34;&gt;&lt;/p&gt;
+
+
+&lt;/div&gt;
+
+&lt;h2 id=&#34;stm32cubemx配置工程&#34;&gt;STM32CubeMX配置工程&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;STM32CubeMX配置文件： &lt;code&gt;xwbd/ATKStm32H743/bm/stm32cube/cubemx/ATKStm32H743.ioc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;XWOS对中断优先级的要求：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;切换上下文的中断 &amp;lt;= 滴答定时器的中断 &amp;lt; 调度器服务中断
+切换上下文的中断 &amp;lt; 其他中断 &amp;lt; 调度器服务中断
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;NVIC设置
+&lt;ul&gt;
+&lt;li&gt;设置3个抢占优先级位和1个子优先级位&lt;/li&gt;
+&lt;li&gt;SVC中断设置成 &lt;strong&gt;最高&lt;/strong&gt; 优先级，即 &lt;strong&gt;Preemption Priority&lt;/strong&gt; 为 &lt;strong&gt;0&lt;/strong&gt; ；&lt;/li&gt;
+&lt;li&gt;PendSV中断设置成 &lt;strong&gt;最低&lt;/strong&gt; 优先级，即 &lt;strong&gt;Preemption Priority&lt;/strong&gt;为 &lt;strong&gt;7&lt;/strong&gt; ；&lt;/li&gt;
+&lt;li&gt;Systick中断设置成 &lt;strong&gt;最低&lt;/strong&gt; 优先级，即 &lt;strong&gt;Preemption Priority&lt;/strong&gt;为 &lt;strong&gt;7&lt;/strong&gt; ；&lt;/li&gt;
+&lt;li&gt;系统Fault的优先级设置为 &lt;strong&gt;0&lt;/strong&gt;；&lt;/li&gt;
+&lt;li&gt;其他中断的优先级只可在 &lt;strong&gt;1~6&lt;/strong&gt; 之间。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32-IRQ-Priority.svg&#34; alt=&#34;img&#34; title=&#34;中断优先级&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;编译&#34;&gt;编译&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Build.png&#34; alt=&#34;img&#34; title=&#34;编译&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;调试&#34;&gt;调试&lt;/h2&gt;
+&lt;p&gt;打开菜单&lt;strong&gt;Run &amp;ndash;&amp;gt; Debug Configurations&amp;hellip;&lt;/strong&gt;，根据仿真器类型，选择调试配置：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;ATKStm32H743-openocd-daplink&lt;/strong&gt; ： &lt;strong&gt;gdb&lt;/strong&gt; + &lt;strong&gt;openocd&lt;/strong&gt; + &lt;strong&gt;DAPLink调试器&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ATKStm32H743-openocd-jlink&lt;/strong&gt; ： &lt;strong&gt;gdb&lt;/strong&gt; + &lt;strong&gt;openocd&lt;/strong&gt; + &lt;strong&gt;JLink调试器&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ATKStm32H743-stlink&lt;/strong&gt; ： &lt;strong&gt;gdb&lt;/strong&gt; + &lt;strong&gt;STLink GDB Server&lt;/strong&gt; + &lt;strong&gt;JLink调试器&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Debug_Configurations.png&#34; alt=&#34;img&#34; title=&#34;调试配置&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;调试步骤&#34;&gt;调试步骤&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;准备一张SD卡，格式化为FAT32文件系统；&lt;/li&gt;
+&lt;li&gt;将文件夹 &lt;code&gt;xwam/example/lua&lt;/code&gt; 内的lua脚本，拷贝到SD卡内；&lt;/li&gt;
+&lt;li&gt;将SD卡插入开发板；&lt;/li&gt;
+&lt;li&gt;使用MiniUSB线连接电路板上的USB-232接口与PC；&lt;/li&gt;
+&lt;li&gt;打开终端工具（windows可选putty、SecretCRT，Linux可选gtkterm、picocom、minicom）,但先不要在终端工具中打开串口，否则MCU会进入下载模式；&lt;/li&gt;
+&lt;li&gt;上电，并在STM32CubeIDE中启动调试，等待MCU运行到初始断点；&lt;/li&gt;
+&lt;li&gt;在终端工具中打开串口，参数：1M波特率/8位数据/1位停止位/无奇偶校验；&lt;/li&gt;
+&lt;li&gt;开始单步调试或连续运行调试。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;调试技巧&#34;&gt;调试技巧&lt;/h3&gt;
+&lt;h4 id=&#34;关闭dcache&#34;&gt;关闭DCache&lt;/h4&gt;
+&lt;p&gt;ARMv7-m7内核的MCU带有Cache，常常会对定位程序BUG带来困扰。
+将下面的宏开关注释掉或定义改为0后可关闭Cache：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* xwbd/ATKStm32H743/bm/stm32cube/cfg.h */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080&#34;&gt;#define STM32CUBECFG_DCACHE             1
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#080&#34;&gt;#define STM32CUBECFG_ICACHE             1
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h4 id=&#34;openocd--daplink-调试时的复位问题&#34;&gt;&lt;strong&gt;OpenOCD + DAPLink&lt;/strong&gt; 调试时的复位问题&lt;/h4&gt;
+&lt;p&gt;若在调试中无法通过IDE的 &lt;strong&gt;Restart&lt;/strong&gt; 按钮复位系统，可按下面步骤处理：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;暂停运行；&lt;/li&gt;
+&lt;li&gt;在程序的初始化流程中设置一个断点，例如 &lt;code&gt;xwos_main()&lt;/code&gt; 或 &lt;code&gt;arch_isr_reset()&lt;/code&gt; 函数内部；&lt;/li&gt;
+&lt;li&gt;继续运行；&lt;/li&gt;
+&lt;li&gt;按一下板子上的复位按键。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;运行过程&#34;&gt;运行过程&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;程序入口： &lt;code&gt;xwbd/ATKStm32H743/bm/main/main.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;启动流程：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos_main()&lt;/code&gt;创建一个主线程 &lt;code&gt;main_task()&lt;/code&gt; ；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;main_task()&lt;/code&gt;依次调用各个 &lt;strong&gt;玄武模块&lt;/strong&gt; 的 &lt;code&gt;xxx_start()&lt;/code&gt; 函数完成对各个模块加载；&lt;/li&gt;
+&lt;li&gt;开始并行执行各个模块中创建的线程。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;lua交互式终端&#34;&gt;Lua交互式终端&lt;/h5&gt;
+&lt;p&gt;&lt;img src=&#34;../../../user-manual/lua/xwlua-repl.png&#34; alt=&#34;img&#34; title=&#34;XWLUA交互式解释器&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;示例&#34;&gt;示例&lt;/h2&gt;
+&lt;p&gt;XWOS中有很多示例，可帮助用户快速了解API的用法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;线程
+&lt;ul&gt;
+&lt;li&gt;创建线程： &lt;code&gt;xwam/example/thd/new&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;线程睡眠： &lt;code&gt;xwam/example/thd/sleep&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;线程退出： &lt;code&gt;xwam/example/thd/exit&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;定时器： &lt;code&gt;xwam/example/swt&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;同步
+&lt;ul&gt;
+&lt;li&gt;信号量： &lt;code&gt;xwam/example/sync/sme&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;条件量： &lt;code&gt;xwam/example/sync/cond&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;事件标志： &lt;code&gt;xwam/example/sync/flg&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;线程栅栏： &lt;code&gt;xwam/example/sync/br&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;信号选择器： &lt;code&gt;xwam/example/sync/sel&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;锁
+&lt;ul&gt;
+&lt;li&gt;中断管理： &lt;code&gt;xwam/example/lock/cpuirq&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;自旋锁： &lt;code&gt;xwam/example/lock/spinlock&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;顺序锁： &lt;code&gt;xwam/example/lock/seqlock&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;互斥锁： &lt;code&gt;xwam/example/lock/mtx&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;内存管理
+&lt;ul&gt;
+&lt;li&gt;简单内存分配器： &lt;code&gt;xwam/example/mm/sma&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;内存切片分配器： &lt;code&gt;xwam/example/mm/memslice&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;伙伴算法分配器： &lt;code&gt;xwam/example/mm/bma&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;玄武C库
+&lt;ul&gt;
+&lt;li&gt;CRC： &lt;code&gt;xwam/example/xwlib/crc&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;C++： &lt;code&gt;xwam/example/cxx&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;每个示例中都有一个启动函数 &lt;code&gt;xwos_example_XXX()&lt;/code&gt; ，可在 &lt;code&gt;xwbd/ATKStm32H743/bm/main/main.c&lt;/code&gt; 文件中的主线程 &lt;code&gt;main_task()&lt;/code&gt; 调用启动示例，但最好一次只启动一个示例，避免日志冲突。&lt;/p&gt;
+&lt;p&gt;实验过程中最好将Lua虚拟机关闭，防止竞争串口导致输出混乱。
+方法是将配置文件 &lt;code&gt;xwbd/ATKStm32H743/cfg/xwem.h&lt;/code&gt; 中的配置 &lt;code&gt;XWEMCFG_vm_lua&lt;/code&gt; 改为 &lt;code&gt;0&lt;/code&gt; 。&lt;/p&gt;
+&lt;h2 id=&#34;系统集成的原理&#34;&gt;系统集成的原理&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;所有移植的第三方组件、驱动包、示例代码等都是以 &lt;strong&gt;玄武模块&lt;/strong&gt; 独立编译成静态库 &lt;strong&gt;.a&lt;/strong&gt; ，
+之后再将它们链接成 &lt;strong&gt;ELF&lt;/strong&gt; 文件，再由 &lt;strong&gt;ELF&lt;/strong&gt; 生成 &lt;strong&gt;bin&lt;/strong&gt; 、 &lt;strong&gt;hex&lt;/strong&gt; 和 &lt;strong&gt;smot&lt;/strong&gt; 文件；&lt;/li&gt;
+&lt;li&gt;每个 &lt;strong&gt;玄武模块&lt;/strong&gt; 都是一个独立的子工程并进行独立编译，设计上借鉴了安卓系统的 &lt;strong&gt;Android.mk&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;每个 &lt;strong&gt;玄武模块&lt;/strong&gt; 中都有一个 &lt;code&gt;xwmo.mk&lt;/code&gt; 文件，其中定义的 &lt;strong&gt;编译参数&lt;/strong&gt; 、 &lt;strong&gt;头文件路径&lt;/strong&gt; 等 &lt;strong&gt;只&lt;/strong&gt; 对 &lt;strong&gt;当前&lt;/strong&gt; 的 &lt;strong&gt;玄武模块&lt;/strong&gt; 生效；&lt;/li&gt;
+&lt;li&gt;每个 &lt;strong&gt;玄武模块&lt;/strong&gt; 都是一个封闭的包，外部一般不能直接引用内部头文件，需要封装对外可见的 &lt;strong&gt;类型&lt;/strong&gt; 以及 &lt;strong&gt;接口函数&lt;/strong&gt; ，并统一放在专门的 &lt;strong&gt;API头文件&lt;/strong&gt; 内；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;API头文件&lt;/strong&gt; 通常以 &lt;strong&gt;mif.h&lt;/strong&gt; 作为文件名，含义是 &lt;strong&gt;模块接口(Module InterFace)&lt;/strong&gt; ；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;XWOS内已经包含了大量 &lt;strong&gt;玄武模块&lt;/strong&gt; ：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwcd&lt;/code&gt; ： 外设芯片的驱动；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwam&lt;/code&gt; ： 示例与应用；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd&lt;/code&gt; ： 中间件；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwem&lt;/code&gt; ： 第三方开源软件；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;玄武模块&lt;/strong&gt; 的具体信息可以参考&lt;a href=&#34;../../../user-manual/build-system#%E7%8E%84%E6%AD%A6%E6%A8%A1%E5%9D%97&#34;&gt;用户手册-构建系统-玄武模块&lt;/a&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;代码启动流程&#34;&gt;代码启动流程&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/stm32-boot-flow.svg&#34; alt=&#34;img&#34; title=&#34;STM32启动流程&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;stm32cube_lowlevel_init()&lt;/code&gt; ：初始化时钟&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;stm32cube_init()&lt;/code&gt; ：初始化内存管理、cache、GPIO、DMA等基础设备&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;main_task()&lt;/code&gt; ：初始化其他设备、启动其他子线程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;功能&#34;&gt;功能&lt;/h2&gt;
+&lt;h3 id=&#34;bsp&#34;&gt;BSP&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;STM32Cube模块： &lt;code&gt;xwbd/ATKStm32H743/bm/stm32cube&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32CubeMX配置文件： &lt;code&gt;xwbd/ATKStm32H743/bm/stm32cube/cubemx/ATKStm32H743.ioc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32CubeMX生成源码目录： &lt;code&gt;xwbd/ATKStm32H743/bm/stm32cube/cubemx&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;适配XWOS的源码： &lt;code&gt;xwbd/ATKStm32H743/bm/stm32cube/xwac&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;中断向量表： &lt;code&gt;xwbd/ATKStm32H743/bm/stm32cube/cubemx/IVT&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;中断向量表使用命令自动生成： &lt;code&gt;xwbs/util/el/stm32ivt/stm32ivt.el xwbd/ATKStm32H743/bm/stm32cube&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;终端UART
+&lt;ul&gt;
+&lt;li&gt;设备：USART1&lt;/li&gt;
+&lt;li&gt;参数：1M波特率/8位数据/1位停止位/无奇偶校验&lt;/li&gt;
+&lt;li&gt;驱动
+&lt;ul&gt;
+&lt;li&gt;驱动框架 —— 设备栈： &lt;code&gt;xwmd/ds/uart/dma.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;设备栈驱动： &lt;code&gt;xwbd/ATKStm32H743/bm/stm32cube/xwac/xwds/uart.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;HAL库驱动： &lt;code&gt;xwbd/ATKStm32H743/bm/stm32cube/cubemx/Core/Src/usart.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;注意：HAL库中的驱动存在BUG，XWOS中所提供的代码已修复&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;QSPI Flash
+&lt;ul&gt;
+&lt;li&gt;映射地址： &lt;strong&gt;0x90000000&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;大小： &lt;strong&gt;32MiB&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;驱动： &lt;code&gt;xwbd/ATKStm32H743/bm/stm32cube/cubemx/Core/Src/quadspi.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;SDRAM
+&lt;ul&gt;
+&lt;li&gt;映射地址： &lt;strong&gt;0xC0000000&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;大小： &lt;strong&gt;32MiB&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;驱动： &lt;code&gt;xwbd/ATKStm32H743/bm/stm32cube/cubemx/Core/Src/fmc.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;内存池
+&lt;ul&gt;
+&lt;li&gt;头文件
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwbd/ATKStm32H743/bm/stm32cube/mif.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/mm/mempool/allocator.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;内存池对象： &lt;code&gt;sdram_mempool&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;SPI
+&lt;ul&gt;
+&lt;li&gt;驱动
+&lt;ul&gt;
+&lt;li&gt;设备栈驱动框架： &lt;code&gt;xwmd/ds/spi/master.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;设备栈驱动： &lt;code&gt;xwbd/ATKStm32H743/bm/stm32cube/xwac/xwds/spim.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;HAL库驱动： &lt;code&gt;xwbd/ATKStm32H743/bm/stm32cube/cubemx/Core/Src/spi.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;I2C
+&lt;ul&gt;
+&lt;li&gt;驱动
+&lt;ul&gt;
+&lt;li&gt;设备栈驱动框架： &lt;code&gt;xwmd/ds/i2c/master.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;设备栈驱动： &lt;code&gt;xwbd/ATKStm32H743/bm/stm32cube/xwac/xwds/i2cm.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;HAL库驱动： &lt;code&gt;xwbd/ATKStm32H743/bm/stm32cube/cubemx/Core/Src/i2c.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;I2C EEPROM
+&lt;ul&gt;
+&lt;li&gt;大小： &lt;strong&gt;256B&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;驱动
+&lt;ul&gt;
+&lt;li&gt;设备栈驱动框架： &lt;code&gt;xwcd/perpheral/i2c/eeprom&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;设备栈驱动： &lt;code&gt;xwbd/ATKStm32H743/bm/stm32cube/xwac/xwds/at24c02.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;SD
+&lt;ul&gt;
+&lt;li&gt;驱动： &lt;code&gt;xwbd/ATKStm32H743/bm/stm32cube/cubemx/Core/Src/sdmmc.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;lua&#34;&gt;Lua&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;版本：&lt;strong&gt;5.4&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;源码： &lt;code&gt;xwem/vm/lua&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;适配代码： &lt;code&gt;xwbd/ATKStm32H743/bm/stm32cube/xwac/lua&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;已注册的驱动库： &lt;code&gt;xwbd/ATKStm32H743/bm/luamod/ds.c&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; SOC: &lt;code&gt;stm32&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; UART: &lt;code&gt;uart1&lt;/code&gt;, &lt;code&gt;uart2&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; I2C: &lt;code&gt;i2c2m&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; SPI: &lt;code&gt;spi1m&lt;/code&gt;, &lt;code&gt;spi2m&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; REPL&lt;/li&gt;
+&lt;li&gt;&lt;input checked=&#34;&#34; disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 运行sd卡中的脚本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;fatfs&#34;&gt;FATFS&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;版本： &lt;strong&gt;0.14b&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;源码： &lt;code&gt;xwem/fs/fatfs&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;适配代码： &lt;code&gt;xwbd/ATKStm32H743/bm/stm32cube/xwac/fatfs&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;文件系统：路径以&lt;code&gt;&amp;quot;sd:/&amp;quot;&lt;/code&gt;开始&lt;/li&gt;
+&lt;li&gt;SD卡
+&lt;ul&gt;
+&lt;li&gt;驱动： &lt;code&gt;xwbd/ATKStm32H743/bm/stm32cube/cubemx/Core/Src/sdmmc.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;libc&#34;&gt;libc&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;适配代码： &lt;code&gt;xwbd/ATKStm32H743/bm/stm32cube/xwac/newlib&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;标准输入、输出/错误：重定向至 &lt;strong&gt;USART1&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;文件系统：位于SD卡内，从路径 &lt;code&gt;sd:/&lt;/code&gt; 开始&lt;/li&gt;
+&lt;li&gt;动态内存管理：由SDRAM的内存池提供&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;电源管理&#34;&gt;电源管理&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;适配代码： &lt;code&gt;xwbd/ATKStm32H743/bm/stm32cube/xwac/xwds/pm.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;rust&#34;&gt;Rust&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;入口： &lt;code&gt;xwbd/ATKStm32H743/bm/rustapp&lt;/code&gt; : &lt;code&gt;xwrust_main()&lt;/code&gt; 被主线程 &lt;code&gt;main_task()&lt;/code&gt; 调用&lt;/li&gt;
+&lt;li&gt;示例
+&lt;ul&gt;
+&lt;li&gt;动态线程： &lt;code&gt;xwam/xwrust-example/xwrust_example_dthd&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;静态线程： &lt;code&gt;xwam/xwrust-example/xwrust_example_sthd&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;软件定时器： &lt;code&gt;xwam/xwrust-example/xwrust_example_swt&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;锁
+&lt;ul&gt;
+&lt;li&gt;互斥锁： &lt;code&gt;xwam/xwrust-example/xwrust_example_mutex&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;自旋锁： &lt;code&gt;xwam/xwrust-example/xwrust_example_spinlock&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;顺序锁： &lt;code&gt;xwam/xwrust-example/xwrust_example_seqlock&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;同步
+&lt;ul&gt;
+&lt;li&gt;信号量： &lt;code&gt;xwam/xwrust-example/xwrust_example_sem&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;条件量： &lt;code&gt;xwam/xwrust-example/xwrust_example_cond&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;事件标志： &lt;code&gt;xwam/xwrust-example/xwrust_example_flg&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;线程栅栏： &lt;code&gt;xwam/xwrust-example/xwrust_example_br&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;信号选择器： &lt;code&gt;xwam/xwrust-example/xwrust_example_sel&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;循环队列： &lt;code&gt;xwam/xwrust-example/xwrust_example_xwcq&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;消息队列： &lt;code&gt;xwam/xwrust-example/xwrust_example_xwmq&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 正点原子Stm32F407核心板</title>
+      <link>/docs/quick-guide/STM32/ATKStm32F407Core/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/quick-guide/STM32/ATKStm32F407Core/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;ATKStm32F407Core.jpg&#34; alt=&#34;img&#34; title=&#34;正点原子F407核心板&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;MCU: STM32F407ZET6&lt;/li&gt;
+&lt;li&gt;SRAM: 1MiB&lt;/li&gt;
+&lt;li&gt;更多介绍: &lt;a href=&#34;http://www.openedv.com/docs/boards/stm32/zdyz_stm32f407_mini_sysboard.html&#34;&gt;主页&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;电路板目录：&lt;code&gt;xwbd/ATKStm32F407Core&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;开发环境&#34;&gt;开发环境&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;编译集成环境可参考：&lt;a href=&#34;../Env&#34;&gt;开发环境搭建指南&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;源码&#34;&gt;源码&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;仓库：&lt;a href=&#34;https://gitee.com/xwos/ATKStm32F407Core.git&#34;&gt;https://gitee.com/xwos/ATKStm32F407Core.git&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;下载：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git clone --recursive https://gitee.com/xwos/ATKStm32F407Core.git
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;在已有的仓库中同步代码：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git pull
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git submodule update
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;导入工程到stm32cubeide&#34;&gt;导入工程到STM32CubeIDE&lt;/h2&gt;
+&lt;p&gt;工程需放在STM32CubeIDE的工作目录内（即STM32CubeIDE启动时指定的目录），&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;菜单：&lt;strong&gt;File &amp;ndash;&amp;gt; Import&amp;hellip; &amp;ndash;&amp;gt; General &amp;ndash;&amp;gt; Projects from Folder or Archive&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;设置编译环境&#34;&gt;设置编译环境&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;打开菜单**&amp;ldquo;Project &amp;ndash;&amp;gt; Properties &amp;ndash;&amp;gt; C/C++ Build &amp;ndash;&amp;gt; Environment&amp;rdquo;**；&lt;/li&gt;
+&lt;li&gt;点击**&amp;ldquo;Restore Defaults&amp;rdquo;**；&lt;/li&gt;
+&lt;li&gt;修改Debug配置的环境变量：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;WKSPC&lt;/code&gt;:&lt;code&gt;../../../${ConfigName}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~D&lt;/code&gt;:&lt;code&gt;1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~V&lt;/code&gt;:&lt;code&gt;1&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH-Debug.png&#34; alt=&#34;img&#34; title=&#34;Debug配置&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;修改Release配置的环境变量：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;WKSPC&lt;/code&gt;:&lt;code&gt;../../../${ConfigName}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~D&lt;/code&gt;:&lt;code&gt;0&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~V&lt;/code&gt;:&lt;code&gt;1&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH-Release.png&#34; alt=&#34;img&#34; title=&#34;Release配置&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;环境变量path设置&#34;&gt;环境变量&lt;strong&gt;PATH&lt;/strong&gt;设置&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;修改Debug和Release两个配置的&lt;strong&gt;PATH&lt;/strong&gt;环境变量
+&lt;ul&gt;
+&lt;li&gt;将STM32CubeIDE自带的工具链路径从PATH环境变量中删除；&lt;/li&gt;
+&lt;li&gt;将XWMCU工具链的路径放置到PATH环境变量中。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH.svg&#34; alt=&#34;img&#34; title=&#34;设置PATH&#34;&gt;&lt;/p&gt;
+
+
+&lt;div class=&#34;alert alert-warning&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;注意&lt;/h4&gt;
+
+    &lt;p&gt;STM32CubeIDE自带的工具链在windows可能会导致编译失败。
+需将STM32CubeIDE自带的工具链路径从PATH环境变量中删除，并使用xwtc工具链：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;make (e=3): 系统找不到指定的路径。
+make (e=3): The system cannot find the file specified.
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH-Windows.svg&#34; alt=&#34;img&#34; title=&#34;Windows PATH&#34;&gt;&lt;/p&gt;
+
+
+&lt;/div&gt;
+
+&lt;h2 id=&#34;stm32cubemx配置工程&#34;&gt;STM32CubeMX配置工程&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;STM32CubeMX配置文件：&lt;code&gt;xwbd/ATKStm32F407Core/bm/stm32cube/cubemx/ATKStm32F407Core.ioc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;XWOS对中断优先级的要求：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;切换上下文的中断 &amp;lt;= 滴答定时器的中断 &amp;lt; 调度器服务中断
+切换上下文的中断 &amp;lt; 其他中断 &amp;lt; 调度器服务中断
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;NVIC设置
+&lt;ul&gt;
+&lt;li&gt;设置3个抢占优先级位和1个子优先级位&lt;/li&gt;
+&lt;li&gt;SVC中断设置成&lt;strong&gt;最高&lt;/strong&gt;优先级，即&lt;strong&gt;Preemption Priority&lt;/strong&gt;为0；&lt;/li&gt;
+&lt;li&gt;PendSV中断设置成&lt;strong&gt;最低&lt;/strong&gt;优先级，即&lt;strong&gt;Preemption Priority&lt;/strong&gt;为7；&lt;/li&gt;
+&lt;li&gt;Systick中断设置成&lt;strong&gt;最低&lt;/strong&gt;优先级，即&lt;strong&gt;Preemption Priority&lt;/strong&gt;为7；&lt;/li&gt;
+&lt;li&gt;系统Fault的优先级设置为0；&lt;/li&gt;
+&lt;li&gt;其他中断的优先级只可在&lt;strong&gt;1~6&lt;/strong&gt;之间。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32-IRQ-Priority.svg&#34; alt=&#34;img&#34; title=&#34;中断优先级&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;编译&#34;&gt;编译&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Build.png&#34; alt=&#34;img&#34; title=&#34;编译&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;调试&#34;&gt;调试&lt;/h2&gt;
+&lt;p&gt;打开菜单&lt;strong&gt;Run &amp;ndash;&amp;gt; Debug Configurations&amp;hellip;&lt;/strong&gt;，根据仿真器类型，选择调试配置：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;ATKStm32F407Core-openocd-daplink&lt;/strong&gt;：&lt;strong&gt;gdb&lt;/strong&gt; + &lt;strong&gt;openocd&lt;/strong&gt; + &lt;strong&gt;DAPLink调试器&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ATKStm32F407Core-openocd-jlink&lt;/strong&gt;：&lt;strong&gt;gdb&lt;/strong&gt; + &lt;strong&gt;openocd&lt;/strong&gt; + &lt;strong&gt;JLink调试器&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ATKStm32F407Core-stlink&lt;/strong&gt;：&lt;strong&gt;gdb&lt;/strong&gt; + &lt;strong&gt;STLink GDB Server&lt;/strong&gt; + &lt;strong&gt;JLink调试器&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Debug_Configurations.png&#34; alt=&#34;img&#34; title=&#34;调试配置&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;调试步骤&#34;&gt;调试步骤&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;使用MicroUSB线连接电路板上的USB-232接口与PC；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;ATKStm32F407Core-PCB.png&#34; alt=&#34;img&#34; title=&#34;正点原子F407核心板PCB&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;插入一张4GB左右的SD卡，并在之前格式化为FAT32文件系统；&lt;/li&gt;
+&lt;li&gt;打开终端工具（windows可选putty、SecretCRT，Linux可选gtkterm、picocom、minicom）,
+但先不要在终端工具中打开串口，否则MCU会进入下载模式；&lt;/li&gt;
+&lt;li&gt;上电，STM32CubeIDE中启动调试，等待MCU运行到初始断点；&lt;/li&gt;
+&lt;li&gt;在终端工具中打开串口，参数：1M波特率/8位数据/1位停止位/无奇偶校验；&lt;/li&gt;
+&lt;li&gt;开始单步调试或连续运行调试。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;调试技巧&#34;&gt;调试技巧&lt;/h3&gt;
+&lt;h4 id=&#34;复位系统&#34;&gt;复位系统&lt;/h4&gt;
+&lt;p&gt;若在调试中无法通过IDE的 &lt;strong&gt;Restart&lt;/strong&gt; 按钮复位系统，可按下面步骤处理：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;暂停运行；&lt;/li&gt;
+&lt;li&gt;在程序的初始化流程中设置一个断点，例如 &lt;code&gt;xwos_main()&lt;/code&gt; 或 &lt;code&gt;arch_isr_reset()&lt;/code&gt; 函数内部；&lt;/li&gt;
+&lt;li&gt;继续运行；&lt;/li&gt;
+&lt;li&gt;按一下板子上的复位按键。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;示例&#34;&gt;示例&lt;/h2&gt;
+&lt;p&gt;XWOS中有很多示例，可帮助用户快速了解API的用法：&lt;/p&gt;
+&lt;p&gt;XWOS中有很多示例，可帮助用户快速了解API的用法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;线程
+&lt;ul&gt;
+&lt;li&gt;创建线程： &lt;code&gt;xwam/example/thd/new&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;线程睡眠： &lt;code&gt;xwam/example/thd/sleep&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;线程退出： &lt;code&gt;xwam/example/thd/exit&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;定时器： &lt;code&gt;xwam/example/swt&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;同步
+&lt;ul&gt;
+&lt;li&gt;信号量： &lt;code&gt;xwam/example/sync/sme&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;条件量： &lt;code&gt;xwam/example/sync/cond&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;事件标志： &lt;code&gt;xwam/example/sync/flg&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;线程栅栏： &lt;code&gt;xwam/example/sync/br&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;信号选择器： &lt;code&gt;xwam/example/sync/sel&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;锁
+&lt;ul&gt;
+&lt;li&gt;中断管理： &lt;code&gt;xwam/example/lock/cpuirq&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;自旋锁： &lt;code&gt;xwam/example/lock/spinlock&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;顺序锁： &lt;code&gt;xwam/example/lock/seqlock&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;互斥锁： &lt;code&gt;xwam/example/lock/mtx&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;内存管理
+&lt;ul&gt;
+&lt;li&gt;简单内存分配器： &lt;code&gt;xwam/example/mm/sma&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;内存切片分配器： &lt;code&gt;xwam/example/mm/memslice&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;伙伴算法分配器： &lt;code&gt;xwam/example/mm/bma&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;玄武C库
+&lt;ul&gt;
+&lt;li&gt;CRC： &lt;code&gt;xwam/example/xwlib/crc&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;C++： &lt;code&gt;xwam/example/cxx&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;每个示例中都有一个启动函数 &lt;code&gt;xwos_example_XXX()&lt;/code&gt; ，可在 &lt;code&gt;xwbd/ATKStm32F407Core/bm/main/main.c&lt;/code&gt; 文件中的主线程 &lt;code&gt;main_task()&lt;/code&gt; 调用启动示例，但最好一次只启动一个示例，避免日志冲突。&lt;/p&gt;
+&lt;h2 id=&#34;系统集成的原理&#34;&gt;系统集成的原理&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;所有移植的第三方组件、驱动包、示例代码等都是以&lt;strong&gt;玄武模块&lt;/strong&gt;独立编译成静态库**.a**，
+之后再将它们链接成&lt;strong&gt;ELF&lt;/strong&gt;文件，再由&lt;strong&gt;ELF&lt;/strong&gt;生成&lt;strong&gt;bin&lt;/strong&gt;、&lt;strong&gt;hex&lt;/strong&gt;和&lt;strong&gt;smot&lt;/strong&gt;文件。&lt;/li&gt;
+&lt;li&gt;每个&lt;strong&gt;玄武模块&lt;/strong&gt;都是一个独立的子工程并进行独立编译，设计上借鉴了安卓系统的&lt;strong&gt;Android.mk&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;每个&lt;strong&gt;玄武模块&lt;/strong&gt;中都有一个&lt;code&gt;xwmo.mk&lt;/code&gt;文件，其中定义的&lt;strong&gt;编译参数&lt;/strong&gt;、&lt;strong&gt;头文件路径&lt;/strong&gt;等
+&lt;strong&gt;只&lt;/strong&gt;对&lt;strong&gt;当前&lt;/strong&gt;的&lt;strong&gt;玄武模块&lt;/strong&gt;生效；&lt;/li&gt;
+&lt;li&gt;每个&lt;strong&gt;玄武模块&lt;/strong&gt;都是一个封闭的包，外部一般不能直接引用内部头文件，需要封装对外可见的
+&lt;strong&gt;类型&lt;/strong&gt;以及&lt;strong&gt;接口函数&lt;/strong&gt;，并统一放在专门的&lt;strong&gt;API头文件&lt;/strong&gt;中；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;API头文件&lt;/strong&gt;通常以&lt;strong&gt;mif.h&lt;/strong&gt;作为文件名，含义是&lt;strong&gt;模块接口(Module InterFace)&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;XWOS内已经包含了大量&lt;strong&gt;玄武模块&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwcd&lt;/code&gt;：外设芯片的驱动；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwam&lt;/code&gt;：示例与应用；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd&lt;/code&gt;：中间件；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwem&lt;/code&gt;：第三方开源软件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;玄武模块&lt;/strong&gt;的具体信息可以参考&lt;a href=&#34;../../../user-manual/build-system#%E7%8E%84%E6%AD%A6%E6%A8%A1%E5%9D%97&#34;&gt;用户手册-构建系统-玄武模块&lt;/a&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;代码启动流程&#34;&gt;代码启动流程&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/stm32-boot-flow.svg&#34; alt=&#34;img&#34; title=&#34;STM32启动流程&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;stm32cube_lowlevel_init()&lt;/code&gt;：初始化时钟&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;stm32cube_init()&lt;/code&gt;：初始化内存管理、cache、GPIO、DMA等基础设备&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;main_task()&lt;/code&gt;：初始化其他设备、启动其他子线程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;功能&#34;&gt;功能&lt;/h2&gt;
+&lt;h3 id=&#34;bsp&#34;&gt;BSP&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;STM32Cube模块：&lt;code&gt;xwbd/ATKStm32F407Core/bm/stm32cube&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32CubeMX配置文件：&lt;code&gt;xwbd/ATKStm32F407Core/bm/stm32cube/cubemx/ATKStm32F407Core.ioc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32CubeMX生成源码目录：&lt;code&gt;xwbd/ATKStm32F407Core/bm/stm32cube/cubemx&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;适配XWOS的源码：&lt;code&gt;xwbd/ATKStm32F407Core/bm/stm32cube/xwac&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;中断向量表：&lt;code&gt;xwbd/ATKStm32F407Core/bm/stm32cube/cubemx/IVT&lt;/code&gt;：
+&lt;ul&gt;
+&lt;li&gt;中断向量表使用命令自动生成：&lt;code&gt;xwbs/util/el/stm32ivt/stm32ivt.el xwbd/ATKStm32F407Core/bm/stm32cube&lt;/code&gt;；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;终端UART
+&lt;ul&gt;
+&lt;li&gt;设备：USART1&lt;/li&gt;
+&lt;li&gt;参数：1M波特率/8位数据/1位停止位/无奇偶校验&lt;/li&gt;
+&lt;li&gt;驱动
+&lt;ul&gt;
+&lt;li&gt;驱动框架 —— 设备栈：&lt;code&gt;xwmd/ds/uart/dma.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;设备栈驱动：&lt;code&gt;xwbd/ATKStm32F407Core/bm/stm32cube/xwac/xwds/uart.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;HAL库驱动：&lt;code&gt;xwbd/ATKStm32F407Core/bm/stm32cube/cubemx/Core/Src/usart.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;注意：HAL库中的驱动存在BUG，XWOS中所提供的代码已修复；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;SRAM
+&lt;ul&gt;
+&lt;li&gt;映射地址：&lt;strong&gt;0x68000000&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;大小：&lt;strong&gt;1MiB&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;驱动：&lt;code&gt;xwbd/ATKStm32F407Core/bm/stm32cube/cubemx/Core/Src/fsmc.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;内存池
+&lt;ul&gt;
+&lt;li&gt;头文件
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwbd/ATKStm32F407Core/bm/stm32cube/mif.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/mm/mempool/allocator.h&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;内存池对象：&lt;code&gt;sram_mempool&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;SD卡
+&lt;ul&gt;
+&lt;li&gt;驱动：&lt;code&gt;xwbd/ATKStm32F407Core/bm/stm32cube/cubemx/Core/Src/sdio.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 正点原子Stm32F103核心板</title>
+      <link>/docs/quick-guide/STM32/ATKStm32F103Core/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/quick-guide/STM32/ATKStm32F103Core/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;ATKStm32F103Core.jpg&#34; alt=&#34;img&#34; title=&#34;正点原子F103核心板&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;MCU: STM32F103ZET6&lt;/li&gt;
+&lt;li&gt;SRAM: 1MiB&lt;/li&gt;
+&lt;li&gt;更多介绍: &lt;a href=&#34;http://www.openedv.com/docs/boards/stm32/zdyz_stm32f103_mini_sysboard.html&#34;&gt;主页&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;电路板目录：&lt;code&gt;xwbd/ATKStm32F103Core&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;开发环境&#34;&gt;开发环境&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;编译集成环境可参考：&lt;a href=&#34;../Env&#34;&gt;开发环境搭建指南&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;源码&#34;&gt;源码&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;仓库：&lt;a href=&#34;https://gitee.com/xwos/ATKStm32F103Core.git&#34;&gt;https://gitee.com/xwos/ATKStm32F103Core.git&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;下载：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git clone --recursive https://gitee.com/xwos/ATKStm32F103Core.git
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;在已有的仓库中同步代码：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git pull
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git submodule update
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;导入工程到stm32cubeide&#34;&gt;导入工程到STM32CubeIDE&lt;/h2&gt;
+&lt;p&gt;工程需放在STM32CubeIDE的工作目录内（即STM32CubeIDE启动时指定的目录），&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;菜单：&lt;strong&gt;File &amp;ndash;&amp;gt; Import&amp;hellip; &amp;ndash;&amp;gt; General &amp;ndash;&amp;gt; Projects from Folder or Archive&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;设置编译环境&#34;&gt;设置编译环境&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;打开菜单**&amp;ldquo;Project &amp;ndash;&amp;gt; Properties &amp;ndash;&amp;gt; C/C++ Build &amp;ndash;&amp;gt; Environment&amp;rdquo;**；&lt;/li&gt;
+&lt;li&gt;点击**&amp;ldquo;Restore Defaults&amp;rdquo;**；&lt;/li&gt;
+&lt;li&gt;修改Debug配置的环境变量：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;WKSPC&lt;/code&gt;:&lt;code&gt;../../../${ConfigName}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~D&lt;/code&gt;:&lt;code&gt;1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~V&lt;/code&gt;:&lt;code&gt;1&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH-Debug.png&#34; alt=&#34;img&#34; title=&#34;Debug配置&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;修改Release配置的环境变量：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;WKSPC&lt;/code&gt;:&lt;code&gt;../../../${ConfigName}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~D&lt;/code&gt;:&lt;code&gt;0&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~V&lt;/code&gt;:&lt;code&gt;1&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH-Release.png&#34; alt=&#34;img&#34; title=&#34;Release配置&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;环境变量path设置&#34;&gt;环境变量&lt;strong&gt;PATH&lt;/strong&gt;设置&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;修改Debug和Release两个配置的&lt;strong&gt;PATH&lt;/strong&gt;环境变量
+&lt;ul&gt;
+&lt;li&gt;将STM32CubeIDE自带的工具链路径从PATH环境变量中删除；&lt;/li&gt;
+&lt;li&gt;将XWMCU工具链的路径放置到PATH环境变量中。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH.svg&#34; alt=&#34;img&#34; title=&#34;设置PATH&#34;&gt;&lt;/p&gt;
+
+
+&lt;div class=&#34;alert alert-warning&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;注意&lt;/h4&gt;
+
+    &lt;p&gt;STM32CubeIDE自带的工具链在windows可能会导致编译失败。
+需将STM32CubeIDE自带的工具链路径从PATH环境变量中删除，并使用xwtc工具链：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;make (e=3): 系统找不到指定的路径。
+make (e=3): The system cannot find the file specified.
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Properties-C_C++_Build-Environment-PATH-Windows.svg&#34; alt=&#34;img&#34; title=&#34;Windows PATH&#34;&gt;&lt;/p&gt;
+
+
+&lt;/div&gt;
+
+&lt;h2 id=&#34;stm32cubemx配置工程&#34;&gt;STM32CubeMX配置工程&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;STM32CubeMX配置文件：&lt;code&gt;xwbd/ATKStm32F103Core/bm/stm32cube/cubemx/ATKStm32F103Core.ioc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;XWOS对中断优先级的要求：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;切换上下文的中断 &amp;lt;= 滴答定时器的中断 &amp;lt; 调度器服务中断
+切换上下文的中断 &amp;lt; 其他中断 &amp;lt; 调度器服务中断
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;NVIC设置
+&lt;ul&gt;
+&lt;li&gt;设置3个抢占优先级位和1个子优先级位&lt;/li&gt;
+&lt;li&gt;SVC中断设置成&lt;strong&gt;最高&lt;/strong&gt;优先级，即&lt;strong&gt;Preemption Priority&lt;/strong&gt;为0；&lt;/li&gt;
+&lt;li&gt;PendSV中断设置成&lt;strong&gt;最低&lt;/strong&gt;优先级，即&lt;strong&gt;Preemption Priority&lt;/strong&gt;为7；&lt;/li&gt;
+&lt;li&gt;Systick中断设置成&lt;strong&gt;最低&lt;/strong&gt;优先级，即&lt;strong&gt;Preemption Priority&lt;/strong&gt;为7；&lt;/li&gt;
+&lt;li&gt;系统Fault的优先级设置为0；&lt;/li&gt;
+&lt;li&gt;其他中断的优先级只可在&lt;strong&gt;1~6&lt;/strong&gt;之间。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32-IRQ-Priority.svg&#34; alt=&#34;img&#34; title=&#34;中断优先级&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;编译&#34;&gt;编译&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Build.png&#34; alt=&#34;img&#34; title=&#34;编译&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;调试&#34;&gt;调试&lt;/h2&gt;
+&lt;p&gt;打开菜单&lt;strong&gt;Run &amp;ndash;&amp;gt; Debug Configurations&amp;hellip;&lt;/strong&gt;，根据仿真器类型，选择调试配置：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;ATKStm32F103Core-openocd-daplink&lt;/strong&gt;：&lt;strong&gt;gdb&lt;/strong&gt; + &lt;strong&gt;openocd&lt;/strong&gt; + &lt;strong&gt;DAPLink调试器&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ATKStm32F103Core-openocd-jlink&lt;/strong&gt;：&lt;strong&gt;gdb&lt;/strong&gt; + &lt;strong&gt;openocd&lt;/strong&gt; + &lt;strong&gt;JLink调试器&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ATKStm32F103Core-stlink&lt;/strong&gt;：&lt;strong&gt;gdb&lt;/strong&gt; + &lt;strong&gt;STLink GDB Server&lt;/strong&gt; + &lt;strong&gt;JLink调试器&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/STM32CubeIDE-Debug_Configurations.png&#34; alt=&#34;img&#34; title=&#34;调试配置&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;调试步骤&#34;&gt;调试步骤&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;使用MicroUSB线连接电路板上的USB-232接口与PC；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;ATKStm32F407Core-PCB.png&#34; alt=&#34;img&#34; title=&#34;正点原子F407核心板PCB&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;插入一张4GB左右的SD卡，并在之前格式化为FAT32文件系统；&lt;/li&gt;
+&lt;li&gt;打开终端工具（windows可选putty、SecretCRT，Linux可选gtkterm、picocom、minicom）,
+但先不要在终端工具中打开串口，否则MCU会进入下载模式；&lt;/li&gt;
+&lt;li&gt;上电，STM32CubeIDE中启动调试，等待MCU运行到初始断点；&lt;/li&gt;
+&lt;li&gt;在终端工具中打开串口，参数：1M波特率/8位数据/1位停止位/无奇偶校验；&lt;/li&gt;
+&lt;li&gt;开始单步调试或连续运行调试。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;调试技巧&#34;&gt;调试技巧&lt;/h3&gt;
+&lt;h4 id=&#34;复位系统&#34;&gt;复位系统&lt;/h4&gt;
+&lt;p&gt;若在调试中无法通过IDE的 &lt;strong&gt;Restart&lt;/strong&gt; 按钮复位系统，可按下面步骤处理：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;暂停运行；&lt;/li&gt;
+&lt;li&gt;在程序的初始化流程中设置一个断点，例如 &lt;code&gt;xwos_main()&lt;/code&gt; 或 &lt;code&gt;arch_isr_reset()&lt;/code&gt; 函数内部；&lt;/li&gt;
+&lt;li&gt;继续运行；&lt;/li&gt;
+&lt;li&gt;按一下板子上的复位按键。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;示例&#34;&gt;示例&lt;/h2&gt;
+&lt;p&gt;XWOS中有多个示例可帮助用户快速了解API的用法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;线程
+&lt;ul&gt;
+&lt;li&gt;创建线程： &lt;code&gt;xwam/example/thd/new&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;线程睡眠： &lt;code&gt;xwam/example/thd/sleep&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;线程退出： &lt;code&gt;xwam/example/thd/exit&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;定时器： &lt;code&gt;xwam/example/swt&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;同步
+&lt;ul&gt;
+&lt;li&gt;信号量： &lt;code&gt;xwam/example/sync/sme&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;条件量： &lt;code&gt;xwam/example/sync/cond&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;事件标志： &lt;code&gt;xwam/example/sync/flg&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;线程栅栏： &lt;code&gt;xwam/example/sync/br&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;信号选择器： &lt;code&gt;xwam/example/sync/sel&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;锁
+&lt;ul&gt;
+&lt;li&gt;中断管理： &lt;code&gt;xwam/example/lock/cpuirq&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;自旋锁： &lt;code&gt;xwam/example/lock/spinlock&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;顺序锁： &lt;code&gt;xwam/example/lock/seqlock&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;互斥锁： &lt;code&gt;xwam/example/lock/mtx&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;内存管理
+&lt;ul&gt;
+&lt;li&gt;简单内存分配器： &lt;code&gt;xwam/example/mm/sma&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;内存切片分配器： &lt;code&gt;xwam/example/mm/memslice&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;伙伴算法分配器： &lt;code&gt;xwam/example/mm/bma&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;玄武C库
+&lt;ul&gt;
+&lt;li&gt;CRC： &lt;code&gt;xwam/example/xwlib/crc&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;每个示例中都有一个启动函数 &lt;code&gt;xwos_example_XXX()&lt;/code&gt; ，可在 &lt;code&gt;xwbd/ATKStm32F103Core/bm/main/main.c&lt;/code&gt; 文件中的主线程 &lt;code&gt;main_task()&lt;/code&gt; 调用启动示例，但最好一次只启动一个示例，避免日志冲突。&lt;/p&gt;
+&lt;h2 id=&#34;系统集成的原理&#34;&gt;系统集成的原理&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;所有移植的第三方组件、驱动包、示例代码等都是以&lt;strong&gt;玄武模块&lt;/strong&gt;独立编译成静态库**.a**，
+之后再将它们链接成&lt;strong&gt;ELF&lt;/strong&gt;文件，再由&lt;strong&gt;ELF&lt;/strong&gt;生成&lt;strong&gt;bin&lt;/strong&gt;、&lt;strong&gt;hex&lt;/strong&gt;和&lt;strong&gt;smot&lt;/strong&gt;文件。&lt;/li&gt;
+&lt;li&gt;每个&lt;strong&gt;玄武模块&lt;/strong&gt;都是一个独立的子工程并进行独立编译，设计上借鉴了安卓系统的&lt;strong&gt;Android.mk&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;每个&lt;strong&gt;玄武模块&lt;/strong&gt;中都有一个&lt;code&gt;xwmo.mk&lt;/code&gt;文件，其中定义的&lt;strong&gt;编译参数&lt;/strong&gt;、&lt;strong&gt;头文件路径&lt;/strong&gt;等
+&lt;strong&gt;只&lt;/strong&gt;对&lt;strong&gt;当前&lt;/strong&gt;的&lt;strong&gt;玄武模块&lt;/strong&gt;生效；&lt;/li&gt;
+&lt;li&gt;每个&lt;strong&gt;玄武模块&lt;/strong&gt;都是一个封闭的包，外部一般不能直接引用内部头文件，需要封装对外可见的
+&lt;strong&gt;类型&lt;/strong&gt;以及&lt;strong&gt;接口函数&lt;/strong&gt;，并统一放在专门的&lt;strong&gt;API头文件&lt;/strong&gt;中；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;API头文件&lt;/strong&gt;通常以&lt;strong&gt;mif.h&lt;/strong&gt;作为文件名，含义是&lt;strong&gt;模块接口(Module InterFace)&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;XWOS内已经包含了大量&lt;strong&gt;玄武模块&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwcd&lt;/code&gt;：外设芯片的驱动；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwam&lt;/code&gt;：示例与应用；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmd&lt;/code&gt;：中间件；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwem&lt;/code&gt;：第三方开源软件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;玄武模块&lt;/strong&gt;的具体信息可以参考&lt;a href=&#34;../../../user-manual/build-system#%E7%8E%84%E6%AD%A6%E6%A8%A1%E5%9D%97&#34;&gt;用户手册-构建系统-玄武模块&lt;/a&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;代码启动流程&#34;&gt;代码启动流程&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;../Env/stm32-boot-flow.svg&#34; alt=&#34;img&#34; title=&#34;STM32启动流程&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;stm32cube_lowlevel_init()&lt;/code&gt;：初始化时钟&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;stm32cube_init()&lt;/code&gt;：初始化内存管理、cache、GPIO、DMA等基础设备&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;main_task()&lt;/code&gt;：初始化其他设备、启动其他子线程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;功能&#34;&gt;功能&lt;/h2&gt;
+&lt;h3 id=&#34;bsp&#34;&gt;BSP&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;STM32Cube模块：&lt;code&gt;xwbd/ATKStm32F103Core/bm/stm32cube&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32CubeMX配置文件：&lt;code&gt;xwbd/ATKStm32F103Core/bm/stm32cube/cubemx/ATKStm32F103Core.ioc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32CubeMX生成源码目录：&lt;code&gt;xwbd/ATKStm32F103Core/bm/stm32cube/cubemx&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;STM32Cube适配XWOS的源码：&lt;code&gt;xwbd/ATKStm32F103Core/bm/stm32cube/xwac&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;中断向量表：&lt;code&gt;xwbd/ATKStm32F103Core/bm/stm32cube/cubemx/IVT&lt;/code&gt;：
+&lt;ul&gt;
+&lt;li&gt;中断向量表使用命令自动生成：&lt;code&gt;xwbs/util/el/stm32ivt/stm32ivt.el xwbd/ATKStm32F103Core/bm/stm32cube&lt;/code&gt;；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;终端UART
+&lt;ul&gt;
+&lt;li&gt;设备：USART1&lt;/li&gt;
+&lt;li&gt;参数：1M波特率/8位数据/1位停止位/无奇偶校验&lt;/li&gt;
+&lt;li&gt;驱动
+&lt;ul&gt;
+&lt;li&gt;驱动框架 —— 设备栈：&lt;code&gt;xwmd/ds/uart/dma.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;设备栈驱动：&lt;code&gt;xwbd/ATKStm32F103Core/bm/stm32cube/xwac/xwds/uart.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;HAL库驱动：&lt;code&gt;xwbd/ATKStm32F103Core/bm/stm32cube/cubemx/Core/Src/usart.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;注意：HAL库中的驱动存在BUG，XWOS中所提供的代码已修复；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;SRAM
+&lt;ul&gt;
+&lt;li&gt;映射地址：&lt;strong&gt;0x68000000&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;大小：&lt;strong&gt;1MiB&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;驱动：&lt;code&gt;xwbd/ATKStm32F103Core/bm/stm32cube/cubemx/Core/Src/fsmc.c&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;内存池
+&lt;ul&gt;
+&lt;li&gt;头文件
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwbd/ATKStm32F103Core/bm/stm32cube/mif.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/mm/mempool/allocator.h&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;内存池对象：&lt;code&gt;sram_mempool&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;SD卡
+&lt;ul&gt;
+&lt;li&gt;驱动：&lt;code&gt;xwbd/ATKStm32F103Core/bm/stm32cube/cubemx/Core/Src/sdio.c&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

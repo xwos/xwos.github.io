@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["xwrust_alloc_error_handler","申请内存失败时的错误处理函数"],["xwrust_panic","XWOS RUST的panic处理函数"]]});

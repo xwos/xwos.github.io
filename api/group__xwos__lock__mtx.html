@@ -1,0 +1,1189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.3"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>XWOS API: 互斥锁</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<a href="/" class="github-corner" title="返回首页">
+  <svg viewBox="0 0 250 250" style="position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path
+      d="M 0 0 L 250 250 L 250 0 L 0 0 z M 181.19336 6.25 A 18.281986 19.638775 0 0 1 192.79297 10.798828 L 241.54492 54.201172 A 6.0939954 6.5462585 0 0 1 237.64453 65.787109 L 233.13477 65.787109 A 3.0469979 3.2731292 0 0 0 230.08789 69.060547 L 230.08789 111.61133 A 18.281986 19.638775 0 0 1 211.80664 131.25 L 205.71289 131.25 A 12.187991 13.092517 0 0 1 193.52344 118.1582 L 193.52344 98.519531 A 12.187991 13.092517 0 0 0 181.33594 85.425781 A 12.187991 13.092517 0 0 0 169.14844 98.519531 L 169.14844 118.1582 A 12.187991 13.092517 0 0 1 156.95898 131.25 L 150.86523 131.25 A 18.281986 19.638775 0 0 1 132.58398 111.61133 L 132.58398 68.994141 A 3.0469979 3.2731292 0 0 0 129.29297 65.722656 L 124.7832 65.722656 A 6.0939954 6.5462585 0 0 1 120.88281 54.201172 L 169.39258 10.798828 A 18.281986 19.638775 0 0 1 181.19336 6.25 z "/>
+  </svg>
+</a>
+<style>.github-corner:hover</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">XWOS API
+   &#160;<span id="projectnumber">3.0</span>
+   </div>
+   <div id="projectbrief">XWOS API参考手册</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.3 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('group__xwos__lock__mtx.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">结构体</a> &#124;
+<a href="#define-members">宏定义</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">互斥锁<div class="ingroups"><a class="el" href="group__xwos__lock.html">玄武OS的锁</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+互斥锁 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwos__lock__mtx.png" border="0" usemap="#agroup____xwos____lock____mtx" alt=""/></div>
+<map name="agroup____xwos____lock____mtx" id="agroup____xwos____lock____mtx">
+<area shape="rect" href="group__xwos__lock.html" title=" " alt="" coords="5,5,99,31"/>
+<area shape="rect" title=" " alt="" coords="147,5,208,31"/>
+</map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+结构体</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structxwos__mtx.html">xwos_mtx</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：互斥锁  <a href="structxwos__mtx.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structxwos__mtx__d.html">xwos_mtx_d</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：互斥锁对象描述符  <a href="structxwos__mtx__d.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:gaf77ca8087cfc305055f0cae92050c195"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__mtx.html#gaf77ca8087cfc305055f0cae92050c195">XWOS_MTX_NILD</a>&#160;&#160;&#160;((<a class="el" href="structxwos__mtx__d.html">xwos_mtx_d</a>){<a class="el" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, 0,})</td></tr>
+<tr class="memdesc:gaf77ca8087cfc305055f0cae92050c195"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：空的互斥锁对象描述符  <a href="group__xwos__lock__mtx.html#gaf77ca8087cfc305055f0cae92050c195">更多...</a><br /></td></tr>
+<tr class="separator:gaf77ca8087cfc305055f0cae92050c195"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:ga05ea2a9762a817291b0ae6d76586e022"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__mtx.html#ga05ea2a9762a817291b0ae6d76586e022">xwos_mtx_init</a> (struct <a class="el" href="structxwos__mtx.html">xwos_mtx</a> *mtx, <a class="el" href="group__xwos__lib__type.html#ga09911776cdd1a37b8f46b130e1d1f806">xwpr_t</a> sprio)</td></tr>
+<tr class="memdesc:ga05ea2a9762a817291b0ae6d76586e022"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：静态方式初始化互斥锁  <a href="group__xwos__lock__mtx.html#ga05ea2a9762a817291b0ae6d76586e022">更多...</a><br /></td></tr>
+<tr class="separator:ga05ea2a9762a817291b0ae6d76586e022"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7b2464babb829bdc7fd0e433ff54bdca"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__mtx.html#ga7b2464babb829bdc7fd0e433ff54bdca">xwos_mtx_fini</a> (struct <a class="el" href="structxwos__mtx.html">xwos_mtx</a> *mtx)</td></tr>
+<tr class="memdesc:ga7b2464babb829bdc7fd0e433ff54bdca"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：销毁静态方式初始化的互斥锁  <a href="group__xwos__lock__mtx.html#ga7b2464babb829bdc7fd0e433ff54bdca">更多...</a><br /></td></tr>
+<tr class="separator:ga7b2464babb829bdc7fd0e433ff54bdca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2a560b50a5329f098f2a4cdd4331fef6"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__mtx.html#ga2a560b50a5329f098f2a4cdd4331fef6">xwos_mtx_grab</a> (struct <a class="el" href="structxwos__mtx.html">xwos_mtx</a> *mtx)</td></tr>
+<tr class="memdesc:ga2a560b50a5329f098f2a4cdd4331fef6"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：增加互斥锁对象的引用计数  <a href="group__xwos__lock__mtx.html#ga2a560b50a5329f098f2a4cdd4331fef6">更多...</a><br /></td></tr>
+<tr class="separator:ga2a560b50a5329f098f2a4cdd4331fef6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafaef1dadab1c11783c1aab9a7ffff589"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__mtx.html#gafaef1dadab1c11783c1aab9a7ffff589">xwos_mtx_put</a> (struct <a class="el" href="structxwos__mtx.html">xwos_mtx</a> *mtx)</td></tr>
+<tr class="memdesc:gafaef1dadab1c11783c1aab9a7ffff589"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：减少互斥锁对象的引用计数  <a href="group__xwos__lock__mtx.html#gafaef1dadab1c11783c1aab9a7ffff589">更多...</a><br /></td></tr>
+<tr class="separator:gafaef1dadab1c11783c1aab9a7ffff589"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga815282818f9a5ed5c1cd580e097a868b"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__mtx.html#ga815282818f9a5ed5c1cd580e097a868b">xwos_mtx_create</a> (<a class="el" href="structxwos__mtx__d.html">xwos_mtx_d</a> *mtxd, <a class="el" href="group__xwos__lib__type.html#ga09911776cdd1a37b8f46b130e1d1f806">xwpr_t</a> sprio)</td></tr>
+<tr class="memdesc:ga815282818f9a5ed5c1cd580e097a868b"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：动态方式创建互斥锁  <a href="group__xwos__lock__mtx.html#ga815282818f9a5ed5c1cd580e097a868b">更多...</a><br /></td></tr>
+<tr class="separator:ga815282818f9a5ed5c1cd580e097a868b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8f76d838298d8b5e1ae06889c7a5c3e0"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__mtx.html#ga8f76d838298d8b5e1ae06889c7a5c3e0">xwos_mtx_delete</a> (<a class="el" href="structxwos__mtx__d.html">xwos_mtx_d</a> mtxd)</td></tr>
+<tr class="memdesc:ga8f76d838298d8b5e1ae06889c7a5c3e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：删除动态方式创建的互斥锁  <a href="group__xwos__lock__mtx.html#ga8f76d838298d8b5e1ae06889c7a5c3e0">更多...</a><br /></td></tr>
+<tr class="separator:ga8f76d838298d8b5e1ae06889c7a5c3e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga84e1bbb7833198a00678b9a3e5f83941"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__mtx.html#ga84e1bbb7833198a00678b9a3e5f83941">xwos_mtx_acquire</a> (<a class="el" href="structxwos__mtx__d.html">xwos_mtx_d</a> mtxd)</td></tr>
+<tr class="memdesc:ga84e1bbb7833198a00678b9a3e5f83941"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：检查互斥锁对象的标签并增加引用计数  <a href="group__xwos__lock__mtx.html#ga84e1bbb7833198a00678b9a3e5f83941">更多...</a><br /></td></tr>
+<tr class="separator:ga84e1bbb7833198a00678b9a3e5f83941"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga698748b62131af5a434bfa5dae6dcda2"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__mtx.html#ga698748b62131af5a434bfa5dae6dcda2">xwos_mtx_release</a> (<a class="el" href="structxwos__mtx__d.html">xwos_mtx_d</a> mtxd)</td></tr>
+<tr class="memdesc:ga698748b62131af5a434bfa5dae6dcda2"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：检查对象的标签并减少引用计数  <a href="group__xwos__lock__mtx.html#ga698748b62131af5a434bfa5dae6dcda2">更多...</a><br /></td></tr>
+<tr class="separator:ga698748b62131af5a434bfa5dae6dcda2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8621daa2071b8a4beb41b4a6358eb2f3"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__mtx.html#ga8621daa2071b8a4beb41b4a6358eb2f3">xwos_mtx_gettik</a> (struct <a class="el" href="structxwos__mtx.html">xwos_mtx</a> *mtx)</td></tr>
+<tr class="memdesc:ga8621daa2071b8a4beb41b4a6358eb2f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：获取互斥锁对象的标签  <a href="group__xwos__lock__mtx.html#ga8621daa2071b8a4beb41b4a6358eb2f3">更多...</a><br /></td></tr>
+<tr class="separator:ga8621daa2071b8a4beb41b4a6358eb2f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaed30ed3fc034adb10441743e2e5c0316"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structxwos__mtx__d.html">xwos_mtx_d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__mtx.html#gaed30ed3fc034adb10441743e2e5c0316">xwos_mtx_getd</a> (struct <a class="el" href="structxwos__mtx.html">xwos_mtx</a> *mtx)</td></tr>
+<tr class="memdesc:gaed30ed3fc034adb10441743e2e5c0316"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：获取互斥锁对象的描述符  <a href="group__xwos__lock__mtx.html#gaed30ed3fc034adb10441743e2e5c0316">更多...</a><br /></td></tr>
+<tr class="separator:gaed30ed3fc034adb10441743e2e5c0316"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa6b3a2ce561acc043d826e47a9470919"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__mtx.html#gaa6b3a2ce561acc043d826e47a9470919">xwos_mtx_unlock</a> (struct <a class="el" href="structxwos__mtx.html">xwos_mtx</a> *mtx)</td></tr>
+<tr class="memdesc:gaa6b3a2ce561acc043d826e47a9470919"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：解锁互斥锁  <a href="group__xwos__lock__mtx.html#gaa6b3a2ce561acc043d826e47a9470919">更多...</a><br /></td></tr>
+<tr class="separator:gaa6b3a2ce561acc043d826e47a9470919"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabd23c15c16510525e6a91fc3fcfa20f3"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__mtx.html#gabd23c15c16510525e6a91fc3fcfa20f3">xwos_mtx_lock</a> (struct <a class="el" href="structxwos__mtx.html">xwos_mtx</a> *mtx)</td></tr>
+<tr class="memdesc:gabd23c15c16510525e6a91fc3fcfa20f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：等待并获取互斥锁  <a href="group__xwos__lock__mtx.html#gabd23c15c16510525e6a91fc3fcfa20f3">更多...</a><br /></td></tr>
+<tr class="separator:gabd23c15c16510525e6a91fc3fcfa20f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga37eb46fa1271ff0ecebd4e0ceb0f4420"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__mtx.html#ga37eb46fa1271ff0ecebd4e0ceb0f4420">xwos_mtx_lock_to</a> (struct <a class="el" href="structxwos__mtx.html">xwos_mtx</a> *mtx, <a class="el" href="group__xwos__lib__type.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a> to)</td></tr>
+<tr class="memdesc:ga37eb46fa1271ff0ecebd4e0ceb0f4420"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：限时等待上锁互斥锁  <a href="group__xwos__lock__mtx.html#ga37eb46fa1271ff0ecebd4e0ceb0f4420">更多...</a><br /></td></tr>
+<tr class="separator:ga37eb46fa1271ff0ecebd4e0ceb0f4420"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac72f69bffd93d6d8fa7dcc6bf0302574"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__mtx.html#gac72f69bffd93d6d8fa7dcc6bf0302574">xwos_mtx_lock_unintr</a> (struct <a class="el" href="structxwos__mtx.html">xwos_mtx</a> *mtx)</td></tr>
+<tr class="memdesc:gac72f69bffd93d6d8fa7dcc6bf0302574"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：等待并获取互斥锁，且等待不可被中断  <a href="group__xwos__lock__mtx.html#gac72f69bffd93d6d8fa7dcc6bf0302574">更多...</a><br /></td></tr>
+<tr class="separator:gac72f69bffd93d6d8fa7dcc6bf0302574"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5fd796bb80d4d1dfa65bf60741f05241"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__mtx.html#ga5fd796bb80d4d1dfa65bf60741f05241">xwos_mtx_trylock</a> (struct <a class="el" href="structxwos__mtx.html">xwos_mtx</a> *mtx)</td></tr>
+<tr class="memdesc:ga5fd796bb80d4d1dfa65bf60741f05241"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：尝试获取互斥锁，不会阻塞调用线程  <a href="group__xwos__lock__mtx.html#ga5fd796bb80d4d1dfa65bf60741f05241">更多...</a><br /></td></tr>
+<tr class="separator:ga5fd796bb80d4d1dfa65bf60741f05241"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7a514a3d694f1734f53bbbe719dfa768"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__mtx.html#ga7a514a3d694f1734f53bbbe719dfa768">xwos_mtx_getlkst</a> (struct <a class="el" href="structxwos__mtx.html">xwos_mtx</a> *mtx, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> *lkst)</td></tr>
+<tr class="memdesc:ga7a514a3d694f1734f53bbbe719dfa768"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：获取锁的状态  <a href="group__xwos__lock__mtx.html#ga7a514a3d694f1734f53bbbe719dfa768">更多...</a><br /></td></tr>
+<tr class="separator:ga7a514a3d694f1734f53bbbe719dfa768"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<h2 class="groupheader">宏定义说明</h2>
+<a id="gaf77ca8087cfc305055f0cae92050c195" name="gaf77ca8087cfc305055f0cae92050c195"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf77ca8087cfc305055f0cae92050c195">&#9670;&nbsp;</a></span>XWOS_MTX_NILD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XWOS_MTX_NILD&#160;&#160;&#160;((<a class="el" href="structxwos__mtx__d.html">xwos_mtx_d</a>){<a class="el" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, 0,})</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWOS API：空的互斥锁对象描述符 </p>
+
+<p class="definition">在文件 <a class="el" href="lock_2mtx_8h_source.html">mtx.h</a> 第 <a class="el" href="lock_2mtx_8h_source.html#l00045">45</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">函数说明</h2>
+<a id="ga84e1bbb7833198a00678b9a3e5f83941" name="ga84e1bbb7833198a00678b9a3e5f83941"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga84e1bbb7833198a00678b9a3e5f83941">&#9670;&nbsp;</a></span>xwos_mtx_acquire()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_mtx_acquire </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structxwos__mtx__d.html">xwos_mtx_d</a>&#160;</td>
+          <td class="paramname"><em>mtxd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：检查互斥锁对象的标签并增加引用计数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mtxd</td><td>互斥锁对象描述符 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-ENILOBJD</td><td>空的对象描述符 </td></tr>
+    <tr><td class="paramname">-EOBJDEAD</td><td>对象无效 </td></tr>
+    <tr><td class="paramname">-EACCES</td><td>对象标签检查失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="lock_2mtx_8h_source.html">mtx.h</a> 第 <a class="el" href="lock_2mtx_8h_source.html#l00162">162</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  163</span>{</div>
+<div class="line"><span class="lineno">  164</span>        <span class="keywordflow">return</span> xwosdl_mtx_acquire(&amp;mtxd.<a class="code hl_variable" href="structxwos__mtx__d.html#aa9e5d8a213c3fd087623bf5833e17a67">mtx</a>-&gt;<a class="code hl_variable" href="structxwos__mtx.html#ae5f1426b9968cdcf385c17afb625e02c">osmtx</a>, mtxd.<a class="code hl_variable" href="structxwos__mtx__d.html#a230d90593af91f885bc914b3e91f0ee5">tik</a>);</div>
+<div class="line"><span class="lineno">  165</span>}</div>
+<div class="ttc" id="astructxwos__mtx__d_html_a230d90593af91f885bc914b3e91f0ee5"><div class="ttname"><a href="structxwos__mtx__d.html#a230d90593af91f885bc914b3e91f0ee5">xwos_mtx_d::tik</a></div><div class="ttdeci">xwsq_t tik</div><div class="ttdef"><b>Definition:</b> <a href="lock_2mtx_8h_source.html#l00039">mtx.h:39</a></div></div>
+<div class="ttc" id="astructxwos__mtx__d_html_aa9e5d8a213c3fd087623bf5833e17a67"><div class="ttname"><a href="structxwos__mtx__d.html#aa9e5d8a213c3fd087623bf5833e17a67">xwos_mtx_d::mtx</a></div><div class="ttdeci">struct xwos_mtx * mtx</div><div class="ttdef"><b>Definition:</b> <a href="lock_2mtx_8h_source.html#l00038">mtx.h:38</a></div></div>
+<div class="ttc" id="astructxwos__mtx_html_ae5f1426b9968cdcf385c17afb625e02c"><div class="ttname"><a href="structxwos__mtx.html#ae5f1426b9968cdcf385c17afb625e02c">xwos_mtx::osmtx</a></div><div class="ttdeci">struct xwmp_mtx osmtx</div><div class="ttdef"><b>Definition:</b> <a href="lock_2mtx_8h_source.html#l00031">mtx.h:31</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga815282818f9a5ed5c1cd580e097a868b" name="ga815282818f9a5ed5c1cd580e097a868b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga815282818f9a5ed5c1cd580e097a868b">&#9670;&nbsp;</a></span>xwos_mtx_create()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_mtx_create </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structxwos__mtx__d.html">xwos_mtx_d</a> *&#160;</td>
+          <td class="paramname"><em>mtxd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga09911776cdd1a37b8f46b130e1d1f806">xwpr_t</a>&#160;</td>
+          <td class="paramname"><em>sprio</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：动态方式创建互斥锁 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">mtxd</td><td>指向缓冲区的指针，通过此缓冲区返回互斥锁对象描述符 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sprio</td><td>互斥锁的静态优先级 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>无效的指针或空指针 </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>无效参数 </td></tr>
+    <tr><td class="paramname">-ENOMEM</td><td>内存不足 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="lock_2mtx_8h_source.html">mtx.h</a> 第 <a class="el" href="lock_2mtx_8h_source.html#l00130">130</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  131</span>{</div>
+<div class="line"><span class="lineno">  132</span>        <span class="keywordflow">return</span> xwosdl_mtx_create((xwosdl_mtx_d *)mtxd, sprio);</div>
+<div class="line"><span class="lineno">  133</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga8f76d838298d8b5e1ae06889c7a5c3e0" name="ga8f76d838298d8b5e1ae06889c7a5c3e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8f76d838298d8b5e1ae06889c7a5c3e0">&#9670;&nbsp;</a></span>xwos_mtx_delete()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_mtx_delete </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structxwos__mtx__d.html">xwos_mtx_d</a>&#160;</td>
+          <td class="paramname"><em>mtxd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：删除动态方式创建的互斥锁 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mtxd</td><td>互斥锁对象描述符 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>无效的指针或空指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="lock_2mtx_8h_source.html">mtx.h</a> 第 <a class="el" href="lock_2mtx_8h_source.html#l00145">145</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  146</span>{</div>
+<div class="line"><span class="lineno">  147</span>        <span class="keywordflow">return</span> xwosdl_mtx_delete(&amp;mtxd.<a class="code hl_variable" href="structxwos__mtx__d.html#aa9e5d8a213c3fd087623bf5833e17a67">mtx</a>-&gt;<a class="code hl_variable" href="structxwos__mtx.html#ae5f1426b9968cdcf385c17afb625e02c">osmtx</a>, mtxd.<a class="code hl_variable" href="structxwos__mtx__d.html#a230d90593af91f885bc914b3e91f0ee5">tik</a>);</div>
+<div class="line"><span class="lineno">  148</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga7b2464babb829bdc7fd0e433ff54bdca" name="ga7b2464babb829bdc7fd0e433ff54bdca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7b2464babb829bdc7fd0e433ff54bdca">&#9670;&nbsp;</a></span>xwos_mtx_fini()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_mtx_fini </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__mtx.html">xwos_mtx</a> *&#160;</td>
+          <td class="paramname"><em>mtx</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：销毁静态方式初始化的互斥锁 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mtx</td><td>互斥锁的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>无效的指针或空指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="lock_2mtx_8h_source.html">mtx.h</a> 第 <a class="el" href="lock_2mtx_8h_source.html#l00074">74</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   75</span>{</div>
+<div class="line"><span class="lineno">   76</span>        <span class="keywordflow">return</span> xwosdl_mtx_fini(&amp;mtx-&gt;<a class="code hl_variable" href="structxwos__mtx.html#ae5f1426b9968cdcf385c17afb625e02c">osmtx</a>);</div>
+<div class="line"><span class="lineno">   77</span>}</div>
+</div><!-- fragment --><div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwos__lock__mtx_ga7b2464babb829bdc7fd0e433ff54bdca_icgraph.png" border="0" usemap="#agroup__xwos__lock__mtx_ga7b2464babb829bdc7fd0e433ff54bdca_icgraph" alt=""/></div>
+<map name="agroup__xwos__lock__mtx_ga7b2464babb829bdc7fd0e433ff54bdca_icgraph" id="agroup__xwos__lock__mtx_ga7b2464babb829bdc7fd0e433ff54bdca_icgraph">
+<area shape="rect" title="XWOS API：销毁静态方式初始化的互斥锁" alt="" coords="276,81,383,108"/>
+<area shape="rect" href="xwpcp_2mif_8c.html#abfe30b29e52be2c6e4677bf00fae972e" title="XWPCP的垃圾回收函数" alt="" coords="147,5,228,32"/>
+<area shape="rect" href="group__xwmd__isc__xwpcp.html#ga9a2d336c79ea57b2f8b5fb247999e10a" title="XWPCP API: 启动XWPCP" alt="" coords="5,44,99,71"/>
+<area shape="rect" href="xwscp_2mif_8c.html#a56a1ab8f1e93801145beef0486bf745a" title="XWSCP的垃圾回收函数" alt="" coords="147,107,228,133"/>
+<area shape="rect" href="group__xwmd__isc__xwscp.html#ga459e293c6005220d6aabe23dde1e441c" title="XWSCP API: 启动XWSCP" alt="" coords="5,120,99,147"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="gaed30ed3fc034adb10441743e2e5c0316" name="gaed30ed3fc034adb10441743e2e5c0316"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaed30ed3fc034adb10441743e2e5c0316">&#9670;&nbsp;</a></span>xwos_mtx_getd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="structxwos__mtx__d.html">xwos_mtx_d</a> xwos_mtx_getd </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__mtx.html">xwos_mtx</a> *&#160;</td>
+          <td class="paramname"><em>mtx</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：获取互斥锁对象的描述符 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mtx</td><td>互斥锁对象的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>互斥锁对象的描述符 </dd></dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="lock_2mtx_8h_source.html">mtx.h</a> 第 <a class="el" href="lock_2mtx_8h_source.html#l00205">205</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  206</span>{</div>
+<div class="line"><span class="lineno">  207</span>        <a class="code hl_struct" href="structxwos__mtx__d.html">xwos_mtx_d</a> mtxd;</div>
+<div class="line"><span class="lineno">  208</span> </div>
+<div class="line"><span class="lineno">  209</span>        mtxd.<a class="code hl_variable" href="structxwos__mtx__d.html#aa9e5d8a213c3fd087623bf5833e17a67">mtx</a> = mtx;</div>
+<div class="line"><span class="lineno">  210</span>        mtxd.<a class="code hl_variable" href="structxwos__mtx__d.html#a230d90593af91f885bc914b3e91f0ee5">tik</a> = xwosdl_mtx_gettik(&amp;mtx-&gt;<a class="code hl_variable" href="structxwos__mtx.html#ae5f1426b9968cdcf385c17afb625e02c">osmtx</a>);</div>
+<div class="line"><span class="lineno">  211</span>        <span class="keywordflow">return</span> mtxd;</div>
+<div class="line"><span class="lineno">  212</span>}</div>
+<div class="ttc" id="astructxwos__mtx__d_html"><div class="ttname"><a href="structxwos__mtx__d.html">xwos_mtx_d</a></div><div class="ttdoc">XWOS API：互斥锁对象描述符</div><div class="ttdef"><b>Definition:</b> <a href="lock_2mtx_8h_source.html#l00037">mtx.h:37</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga7a514a3d694f1734f53bbbe719dfa768" name="ga7a514a3d694f1734f53bbbe719dfa768"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7a514a3d694f1734f53bbbe719dfa768">&#9670;&nbsp;</a></span>xwos_mtx_getlkst()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_mtx_getlkst </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__mtx.html">xwos_mtx</a> *&#160;</td>
+          <td class="paramname"><em>mtx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> *&#160;</td>
+          <td class="paramname"><em>lkst</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：获取锁的状态 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mtx</td><td>互斥锁对象的指针 </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">lkst</td><td>指向缓冲区的指针，通过此缓冲区返回锁的状态 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>空指针<ul>
+<li></li>
+</ul>
+</td></tr>
+    <tr><td class="paramname">-EOBJDEAD</td><td>互斥锁对象无效 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="lock_2mtx_8h_source.html">mtx.h</a> 第 <a class="el" href="lock_2mtx_8h_source.html#l00333">333</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  334</span>{</div>
+<div class="line"><span class="lineno">  335</span>        <span class="keywordflow">return</span> xwosdl_mtx_getlkst(&amp;mtx-&gt;<a class="code hl_variable" href="structxwos__mtx.html#ae5f1426b9968cdcf385c17afb625e02c">osmtx</a>, lkst);</div>
+<div class="line"><span class="lineno">  336</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga8621daa2071b8a4beb41b4a6358eb2f3" name="ga8621daa2071b8a4beb41b4a6358eb2f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8621daa2071b8a4beb41b4a6358eb2f3">&#9670;&nbsp;</a></span>xwos_mtx_gettik()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> xwos_mtx_gettik </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__mtx.html">xwos_mtx</a> *&#160;</td>
+          <td class="paramname"><em>mtx</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：获取互斥锁对象的标签 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mtx</td><td>互斥锁对象的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>互斥锁对象的标签 </dd></dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="lock_2mtx_8h_source.html">mtx.h</a> 第 <a class="el" href="lock_2mtx_8h_source.html#l00192">192</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  193</span>{</div>
+<div class="line"><span class="lineno">  194</span>        <span class="keywordflow">return</span> xwosdl_mtx_gettik(&amp;mtx-&gt;<a class="code hl_variable" href="structxwos__mtx.html#ae5f1426b9968cdcf385c17afb625e02c">osmtx</a>);</div>
+<div class="line"><span class="lineno">  195</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga2a560b50a5329f098f2a4cdd4331fef6" name="ga2a560b50a5329f098f2a4cdd4331fef6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2a560b50a5329f098f2a4cdd4331fef6">&#9670;&nbsp;</a></span>xwos_mtx_grab()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_mtx_grab </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__mtx.html">xwos_mtx</a> *&#160;</td>
+          <td class="paramname"><em>mtx</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：增加互斥锁对象的引用计数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mtx</td><td>互斥锁对象的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>空指针 </td></tr>
+    <tr><td class="paramname">-EOBJDEAD</td><td>对象无效 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意</li>
+</ul>
+</dd></dl>
+<p>此函数主要用于管理 <b>静态对象</b> 的引用计数。 若用于 <b>动态对象</b> ，需要确保对象的指针一定不是野指针。 </p>
+
+<p class="definition">在文件 <a class="el" href="lock_2mtx_8h_source.html">mtx.h</a> 第 <a class="el" href="lock_2mtx_8h_source.html#l00093">93</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   94</span>{</div>
+<div class="line"><span class="lineno">   95</span>        <span class="keywordflow">return</span> xwosdl_mtx_grab(&amp;mtx-&gt;<a class="code hl_variable" href="structxwos__mtx.html#ae5f1426b9968cdcf385c17afb625e02c">osmtx</a>);</div>
+<div class="line"><span class="lineno">   96</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga05ea2a9762a817291b0ae6d76586e022" name="ga05ea2a9762a817291b0ae6d76586e022"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga05ea2a9762a817291b0ae6d76586e022">&#9670;&nbsp;</a></span>xwos_mtx_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_mtx_init </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__mtx.html">xwos_mtx</a> *&#160;</td>
+          <td class="paramname"><em>mtx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga09911776cdd1a37b8f46b130e1d1f806">xwpr_t</a>&#160;</td>
+          <td class="paramname"><em>sprio</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：静态方式初始化互斥锁 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mtx</td><td>互斥锁的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sprio</td><td>互斥锁的静态优先级 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>无效的指针或空指针 </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>无效参数 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="lock_2mtx_8h_source.html">mtx.h</a> 第 <a class="el" href="lock_2mtx_8h_source.html#l00059">59</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   60</span>{</div>
+<div class="line"><span class="lineno">   61</span>        <span class="keywordflow">return</span> xwosdl_mtx_init(&amp;mtx-&gt;<a class="code hl_variable" href="structxwos__mtx.html#ae5f1426b9968cdcf385c17afb625e02c">osmtx</a>, sprio);</div>
+<div class="line"><span class="lineno">   62</span>}</div>
+</div><!-- fragment --><div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwos__lock__mtx_ga05ea2a9762a817291b0ae6d76586e022_icgraph.png" border="0" usemap="#agroup__xwos__lock__mtx_ga05ea2a9762a817291b0ae6d76586e022_icgraph" alt=""/></div>
+<map name="agroup__xwos__lock__mtx_ga05ea2a9762a817291b0ae6d76586e022_icgraph" id="agroup__xwos__lock__mtx_ga05ea2a9762a817291b0ae6d76586e022_icgraph">
+<area shape="rect" title="XWOS API：静态方式初始化互斥锁" alt="" coords="147,31,253,57"/>
+<area shape="rect" href="group__xwmd__isc__xwpcp.html#ga9a2d336c79ea57b2f8b5fb247999e10a" title="XWPCP API: 启动XWPCP" alt="" coords="5,5,99,32"/>
+<area shape="rect" href="group__xwmd__isc__xwscp.html#ga459e293c6005220d6aabe23dde1e441c" title="XWSCP API: 启动XWSCP" alt="" coords="5,56,99,83"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="gabd23c15c16510525e6a91fc3fcfa20f3" name="gabd23c15c16510525e6a91fc3fcfa20f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabd23c15c16510525e6a91fc3fcfa20f3">&#9670;&nbsp;</a></span>xwos_mtx_lock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_mtx_lock </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__mtx.html">xwos_mtx</a> *&#160;</td>
+          <td class="paramname"><em>mtx</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：等待并获取互斥锁 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mtx</td><td>互斥锁对象的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>无效的指针或空指针<ul>
+<li></li>
+</ul>
+</td></tr>
+    <tr><td class="paramname">-EOBJDEAD</td><td>互斥锁对象无效 </td></tr>
+    <tr><td class="paramname">-EINTR</td><td>等待被中断 </td></tr>
+    <tr><td class="paramname">-ENOTTHDCTX</td><td>不在线程上下文中 </td></tr>
+    <tr><td class="paramname">-EDSPMPT</td><td>抢占被关闭 </td></tr>
+    <tr><td class="paramname">-EDSBH</td><td>中断底半部被关闭 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：线程</li>
+</ul>
+</dd></dl>
+<p>若线程无法获取互斥锁，就阻塞等待，直到能获得锁为之。</p>
+<p >线程的阻塞等待可能被中断，此时，API返回 <code>-EINTR</code> 。 </p>
+
+<p class="definition">在文件 <a class="el" href="lock_2mtx_8h_source.html">mtx.h</a> 第 <a class="el" href="lock_2mtx_8h_source.html#l00251">251</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  252</span>{</div>
+<div class="line"><span class="lineno">  253</span>        <span class="keywordflow">return</span> xwosdl_mtx_lock(&amp;mtx-&gt;<a class="code hl_variable" href="structxwos__mtx.html#ae5f1426b9968cdcf385c17afb625e02c">osmtx</a>);</div>
+<div class="line"><span class="lineno">  254</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga37eb46fa1271ff0ecebd4e0ceb0f4420" name="ga37eb46fa1271ff0ecebd4e0ceb0f4420"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga37eb46fa1271ff0ecebd4e0ceb0f4420">&#9670;&nbsp;</a></span>xwos_mtx_lock_to()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_mtx_lock_to </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__mtx.html">xwos_mtx</a> *&#160;</td>
+          <td class="paramname"><em>mtx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a>&#160;</td>
+          <td class="paramname"><em>to</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：限时等待上锁互斥锁 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mtx</td><td>互斥锁对象的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">to</td><td>期望唤醒的时间点 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>无效的指针或空指针<ul>
+<li></li>
+</ul>
+</td></tr>
+    <tr><td class="paramname">-EOBJDEAD</td><td>互斥锁对象无效 </td></tr>
+    <tr><td class="paramname">-EINTR</td><td>等待被中断 </td></tr>
+    <tr><td class="paramname">-ETIMEDOUT</td><td>超时 </td></tr>
+    <tr><td class="paramname">-ENOTTHDCTX</td><td>不在线程上下文中 </td></tr>
+    <tr><td class="paramname">-EDSPMPT</td><td>抢占被关闭 </td></tr>
+    <tr><td class="paramname">-EDSBH</td><td>中断底半部被关闭 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：线程</li>
+</ul>
+</dd></dl>
+<p>如果 <code>to</code> 是过去的时间点，将直接返回 <code>-ETIMEDOUT</code> 。 </p>
+
+<p class="definition">在文件 <a class="el" href="lock_2mtx_8h_source.html">mtx.h</a> 第 <a class="el" href="lock_2mtx_8h_source.html#l00275">275</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  276</span>{</div>
+<div class="line"><span class="lineno">  277</span>        <span class="keywordflow">return</span> xwosdl_mtx_lock_to(&amp;mtx-&gt;<a class="code hl_variable" href="structxwos__mtx.html#ae5f1426b9968cdcf385c17afb625e02c">osmtx</a>, to);</div>
+<div class="line"><span class="lineno">  278</span>}</div>
+</div><!-- fragment --><div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwos__lock__mtx_ga37eb46fa1271ff0ecebd4e0ceb0f4420_icgraph.png" border="0" usemap="#agroup__xwos__lock__mtx_ga37eb46fa1271ff0ecebd4e0ceb0f4420_icgraph" alt=""/></div>
+<map name="agroup__xwos__lock__mtx_ga37eb46fa1271ff0ecebd4e0ceb0f4420_icgraph" id="agroup__xwos__lock__mtx_ga37eb46fa1271ff0ecebd4e0ceb0f4420_icgraph">
+<area shape="rect" title="XWOS API：限时等待上锁互斥锁" alt="" coords="363,51,493,77"/>
+<area shape="rect" href="group__xwmd__isc__xwscp.html#gabfd46e6c8923953c85a475ecd7a5d7a4" title="XWSCP API: 连接远程端" alt="" coords="5,13,119,40"/>
+<area shape="rect" href="xwscp_2mif_8c.html#a6132b5e52d009c56d267093f3cfb4cee" title=" " alt="" coords="167,25,315,52"/>
+<area shape="rect" href="group__xwmd__isc__xwscp.html#ga504a9e3c119efb5e5515c03335c717a2" title="XWSCP API: 发送一条报文，并在限定的时间等待回应" alt="" coords="23,89,101,116"/>
+<area shape="rect" href="xwscp_2mif_8c.html#a015c5794c6c2be9ac5d0da6459b41755" title=" " alt="" coords="184,127,297,153"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="gac72f69bffd93d6d8fa7dcc6bf0302574" name="gac72f69bffd93d6d8fa7dcc6bf0302574"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac72f69bffd93d6d8fa7dcc6bf0302574">&#9670;&nbsp;</a></span>xwos_mtx_lock_unintr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_mtx_lock_unintr </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__mtx.html">xwos_mtx</a> *&#160;</td>
+          <td class="paramname"><em>mtx</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：等待并获取互斥锁，且等待不可被中断 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mtx</td><td>互斥锁对象的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>无效的指针或空指针<ul>
+<li></li>
+</ul>
+</td></tr>
+    <tr><td class="paramname">-EOBJDEAD</td><td>互斥锁对象无效 </td></tr>
+    <tr><td class="paramname">-ENOTTHDCTX</td><td>不在线程上下文中 </td></tr>
+    <tr><td class="paramname">-EDSPMPT</td><td>抢占被关闭 </td></tr>
+    <tr><td class="paramname">-EDSBH</td><td>中断底半部被关闭 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：线程 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="lock_2mtx_8h_source.html">mtx.h</a> 第 <a class="el" href="lock_2mtx_8h_source.html#l00294">294</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  295</span>{</div>
+<div class="line"><span class="lineno">  296</span>        <span class="keywordflow">return</span> xwosdl_mtx_lock_unintr(&amp;mtx-&gt;<a class="code hl_variable" href="structxwos__mtx.html#ae5f1426b9968cdcf385c17afb625e02c">osmtx</a>);</div>
+<div class="line"><span class="lineno">  297</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="gafaef1dadab1c11783c1aab9a7ffff589" name="gafaef1dadab1c11783c1aab9a7ffff589"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafaef1dadab1c11783c1aab9a7ffff589">&#9670;&nbsp;</a></span>xwos_mtx_put()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_mtx_put </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__mtx.html">xwos_mtx</a> *&#160;</td>
+          <td class="paramname"><em>mtx</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：减少互斥锁对象的引用计数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mtx</td><td>互斥锁对象的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>空指针 </td></tr>
+    <tr><td class="paramname">-EOBJDEAD</td><td>对象无效 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意</li>
+</ul>
+</dd></dl>
+<p>此函数主要用于管理 <b>静态对象</b> 的引用计数。 若用于 <b>动态对象</b> ，需要确保对象的指针一定不是野指针。 </p>
+
+<p class="definition">在文件 <a class="el" href="lock_2mtx_8h_source.html">mtx.h</a> 第 <a class="el" href="lock_2mtx_8h_source.html#l00112">112</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  113</span>{</div>
+<div class="line"><span class="lineno">  114</span>        <span class="keywordflow">return</span> xwosdl_mtx_put(&amp;mtx-&gt;<a class="code hl_variable" href="structxwos__mtx.html#ae5f1426b9968cdcf385c17afb625e02c">osmtx</a>);</div>
+<div class="line"><span class="lineno">  115</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga698748b62131af5a434bfa5dae6dcda2" name="ga698748b62131af5a434bfa5dae6dcda2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga698748b62131af5a434bfa5dae6dcda2">&#9670;&nbsp;</a></span>xwos_mtx_release()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_mtx_release </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structxwos__mtx__d.html">xwos_mtx_d</a>&#160;</td>
+          <td class="paramname"><em>mtxd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：检查对象的标签并减少引用计数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mtxd</td><td>互斥锁对象描述符 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-ENILOBJD</td><td>空的对象描述符 </td></tr>
+    <tr><td class="paramname">-EOBJDEAD</td><td>对象无效 </td></tr>
+    <tr><td class="paramname">-EACCES</td><td>对象标签检查失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="lock_2mtx_8h_source.html">mtx.h</a> 第 <a class="el" href="lock_2mtx_8h_source.html#l00179">179</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  180</span>{</div>
+<div class="line"><span class="lineno">  181</span>        <span class="keywordflow">return</span> xwosdl_mtx_release(&amp;mtxd.<a class="code hl_variable" href="structxwos__mtx__d.html#aa9e5d8a213c3fd087623bf5833e17a67">mtx</a>-&gt;<a class="code hl_variable" href="structxwos__mtx.html#ae5f1426b9968cdcf385c17afb625e02c">osmtx</a>, mtxd.<a class="code hl_variable" href="structxwos__mtx__d.html#a230d90593af91f885bc914b3e91f0ee5">tik</a>);</div>
+<div class="line"><span class="lineno">  182</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga5fd796bb80d4d1dfa65bf60741f05241" name="ga5fd796bb80d4d1dfa65bf60741f05241"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5fd796bb80d4d1dfa65bf60741f05241">&#9670;&nbsp;</a></span>xwos_mtx_trylock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_mtx_trylock </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__mtx.html">xwos_mtx</a> *&#160;</td>
+          <td class="paramname"><em>mtx</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：尝试获取互斥锁，不会阻塞调用线程 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mtx</td><td>互斥锁对象的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>无效的指针或空指针<ul>
+<li></li>
+</ul>
+</td></tr>
+    <tr><td class="paramname">-EOBJDEAD</td><td>互斥锁对象无效 </td></tr>
+    <tr><td class="paramname">-EWOULDBLOCK</td><td>尝试获取锁失败 </td></tr>
+    <tr><td class="paramname">-ENOTTHDCTX</td><td>不在线程上下文中 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：线程</li>
+</ul>
+</dd></dl>
+<p>此函数虽然不会阻塞调用线程，但也不可在中断上下文中使用， 因为在OS中互斥锁通常需要记录自己的拥有者（一般是线程对象结构体）， 中断上下文不存在对应的线程对象结构体。 </p>
+
+<p class="definition">在文件 <a class="el" href="lock_2mtx_8h_source.html">mtx.h</a> 第 <a class="el" href="lock_2mtx_8h_source.html#l00316">316</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  317</span>{</div>
+<div class="line"><span class="lineno">  318</span>        <span class="keywordflow">return</span> xwosdl_mtx_trylock(&amp;mtx-&gt;<a class="code hl_variable" href="structxwos__mtx.html#ae5f1426b9968cdcf385c17afb625e02c">osmtx</a>);</div>
+<div class="line"><span class="lineno">  319</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="gaa6b3a2ce561acc043d826e47a9470919" name="gaa6b3a2ce561acc043d826e47a9470919"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa6b3a2ce561acc043d826e47a9470919">&#9670;&nbsp;</a></span>xwos_mtx_unlock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_mtx_unlock </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__mtx.html">xwos_mtx</a> *&#160;</td>
+          <td class="paramname"><em>mtx</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：解锁互斥锁 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mtx</td><td>互斥锁对象的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>无效的指针或空指针<ul>
+<li></li>
+</ul>
+</td></tr>
+    <tr><td class="paramname">-EOBJDEAD</td><td>互斥锁对象无效 </td></tr>
+    <tr><td class="paramname">-EOWNER</td><td>线程并没有锁定此互斥锁 </td></tr>
+    <tr><td class="paramname">-ENOTTHDCTX</td><td>不在线程上下文中 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：线程 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="lock_2mtx_8h_source.html">mtx.h</a> 第 <a class="el" href="lock_2mtx_8h_source.html#l00227">227</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  228</span>{</div>
+<div class="line"><span class="lineno">  229</span>        <span class="keywordflow">return</span> xwosdl_mtx_unlock(&amp;mtx-&gt;<a class="code hl_variable" href="structxwos__mtx.html#ae5f1426b9968cdcf385c17afb625e02c">osmtx</a>);</div>
+<div class="line"><span class="lineno">  230</span>}</div>
+</div><!-- fragment --><div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwos__lock__mtx_gaa6b3a2ce561acc043d826e47a9470919_icgraph.png" border="0" usemap="#agroup__xwos__lock__mtx_gaa6b3a2ce561acc043d826e47a9470919_icgraph" alt=""/></div>
+<map name="agroup__xwos__lock__mtx_gaa6b3a2ce561acc043d826e47a9470919_icgraph" id="agroup__xwos__lock__mtx_gaa6b3a2ce561acc043d826e47a9470919_icgraph">
+<area shape="rect" title="XWOS API：解锁互斥锁" alt="" coords="363,51,489,78"/>
+<area shape="rect" href="group__xwmd__isc__xwscp.html#gabfd46e6c8923953c85a475ecd7a5d7a4" title="XWSCP API: 连接远程端" alt="" coords="5,14,119,40"/>
+<area shape="rect" href="xwscp_2mif_8c.html#a6132b5e52d009c56d267093f3cfb4cee" title=" " alt="" coords="167,26,315,52"/>
+<area shape="rect" href="group__xwmd__isc__xwscp.html#ga504a9e3c119efb5e5515c03335c717a2" title="XWSCP API: 发送一条报文，并在限定的时间等待回应" alt="" coords="23,90,101,116"/>
+<area shape="rect" href="xwscp_2mif_8c.html#a015c5794c6c2be9ac5d0da6459b41755" title=" " alt="" coords="184,127,297,154"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
+  </ul>
+</div>
+</body>
+</html>

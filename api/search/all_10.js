@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['pa_0',['pa',['../structxwmm__mempool.html#a128e5c1b3f2a3d075de1708b9257bfa1',1,'xwmm_mempool::pa()'],['../structxwmm__mempool__objcache.html#a053bc33ff6399770874b14c65bdb5390',1,'xwmm_mempool_objcache::pa()']]],
+  ['page_2ec_1',['page.c',['../page_8c.html',1,'']]],
+  ['page_2eh_2',['page.h',['../page_8h.html',1,'']]],
+  ['page_5flist_3',['page_list',['../structxwmm__mempool__objcache.html#af5710f3b100420dbdd54cfcb952877fc',1,'xwmm_mempool_objcache']]],
+  ['pg_5fobjnr_4',['pg_objnr',['../structxwmm__mempool__objcache.html#abd4c454f4dd3f8389fd1ada1a2504d02',1,'xwmm_mempool_objcache']]],
+  ['pg_5forder_5',['pg_order',['../structxwmm__mempool__objcache.html#ae62b80a7807877435a82a08b2e62cfbd',1,'xwmm_mempool_objcache']]],
+  ['pgarray_6',['pgarray',['../structxwmm__mempool__page__allocator.html#a14b5d8b9c229f18b0978ad64860bf174',1,'xwmm_mempool_page_allocator']]],
+  ['pgsize_7',['pgsize',['../structxwmm__mempool__page__allocator.html#a2216cfe5628f8cb83492d737e0495898',1,'xwmm_mempool_page_allocator']]],
+  ['pm_2eh_8',['pm.h',['../pm_8h.html',1,'(全局命名空间)'],['../jack_2pm_8h.html',1,'(全局命名空间)']]],
+  ['pm_2ehxx_9',['pm.hxx',['../pm_8hxx.html',1,'']]],
+  ['pointer_10',['pointer',['../structxwmm__mempool__page.html#aa997969308003528ca5ee76a3077c351',1,'xwmm_mempool_page']]],
+  ['pos_11',['pos',['../structxwmm__sma.html#ac0189129729e6b6224f57b2009f9dc10',1,'xwmm_sma::pos()'],['../structxwlib__rbtree__node.html#a7ce1873c40a33e7f01adf04f3525ff64',1,'xwlib_rbtree_node::pos()']]],
+  ['prev_12',['prev',['../structxwlib__bclst__node.html#aaea836d0c4d36b18d5374368205b69d6',1,'xwlib_bclst_node']]],
+  ['priority_13',['priority',['../structxwos__thd__attr.html#a8b7ad423b933ea28688d78349d71d7da',1,'xwos_thd_attr']]],
+  ['privileged_14',['privileged',['../structxwos__thd__attr.html#a36bed30a60d5addc933da058125804e4',1,'xwos_thd_attr']]],
+  ['ptr_15',['ptr',['../unionxwos__ulock.html#a3d5fa5d0e7f7cbedb82fa937a54acfcf',1,'xwos_ulock']]],
+  ['ptr_5ferr_16',['ptr_err',['../group__xwos__lib__error.html#ga83451b4fa6b93e2bfe7f0b70cdf609fd',1,'error.h']]]
+];

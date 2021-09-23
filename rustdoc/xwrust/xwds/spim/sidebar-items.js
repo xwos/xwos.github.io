@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["SIZEOF_XWDS_SPIM","XWOS自旋锁占用的内存大小"]],"struct":[["Spim","SPI主机模式控制器"],["XwdsSpim","SPI主机模式控制器"]]});

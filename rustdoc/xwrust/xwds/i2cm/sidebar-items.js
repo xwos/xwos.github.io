@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["SIZEOF_XWDS_I2CM","XWOS自旋锁占用的内存大小"]],"struct":[["I2cm","I2C主机模式控制器"],["MsgFlag","外部中断标志"],["XwdsI2cm","I2C主机模式控制器"]]});

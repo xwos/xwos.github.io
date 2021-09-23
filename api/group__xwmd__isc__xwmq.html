@@ -1,0 +1,1971 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.3"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>XWOS API: 消息队列</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<a href="/" class="github-corner" title="返回首页">
+  <svg viewBox="0 0 250 250" style="position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path
+      d="M 0 0 L 250 250 L 250 0 L 0 0 z M 181.19336 6.25 A 18.281986 19.638775 0 0 1 192.79297 10.798828 L 241.54492 54.201172 A 6.0939954 6.5462585 0 0 1 237.64453 65.787109 L 233.13477 65.787109 A 3.0469979 3.2731292 0 0 0 230.08789 69.060547 L 230.08789 111.61133 A 18.281986 19.638775 0 0 1 211.80664 131.25 L 205.71289 131.25 A 12.187991 13.092517 0 0 1 193.52344 118.1582 L 193.52344 98.519531 A 12.187991 13.092517 0 0 0 181.33594 85.425781 A 12.187991 13.092517 0 0 0 169.14844 98.519531 L 169.14844 118.1582 A 12.187991 13.092517 0 0 1 156.95898 131.25 L 150.86523 131.25 A 18.281986 19.638775 0 0 1 132.58398 111.61133 L 132.58398 68.994141 A 3.0469979 3.2731292 0 0 0 129.29297 65.722656 L 124.7832 65.722656 A 6.0939954 6.5462585 0 0 1 120.88281 54.201172 L 169.39258 10.798828 A 18.281986 19.638775 0 0 1 181.19336 6.25 z "/>
+  </svg>
+</a>
+<style>.github-corner:hover</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">XWOS API
+   &#160;<span id="projectnumber">3.0</span>
+   </div>
+   <div id="projectbrief">XWOS API参考手册</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.3 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('group__xwmd__isc__xwmq.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">结构体</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">消息队列<div class="ingroups"><a class="el" href="group__xwmd.html">XWOS中间件</a> &raquo; <a class="el" href="group__xwmd__isc.html">XWOS的通讯机制</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+消息队列 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmd__isc__xwmq.png" border="0" usemap="#agroup____xwmd____isc____xwmq" alt=""/></div>
+<map name="agroup____xwmd____isc____xwmq" id="agroup____xwmd____isc____xwmq">
+<area shape="rect" href="group__xwmd__isc.html" title=" " alt="" coords="5,5,133,31"/>
+<area shape="rect" title=" " alt="" coords="181,5,256,31"/>
+</map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+结构体</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structxwmq__msg.html">xwmq_msg</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMQ消息  <a href="structxwmq__msg.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structxwmq.html">xwmq</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">消息队列对象  <a href="structxwmq.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:ga51603f04fac6de40ea6726d69b264cc7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwmq.html#ga51603f04fac6de40ea6726d69b264cc7">xwmq_init</a> (struct <a class="el" href="structxwmq.html">xwmq</a> *mq, struct <a class="el" href="structxwmq__msg.html">xwmq_msg</a> *txq, <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num)</td></tr>
+<tr class="memdesc:ga51603f04fac6de40ea6726d69b264cc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMQ API：静态方式初始化消息队列  <a href="group__xwmd__isc__xwmq.html#ga51603f04fac6de40ea6726d69b264cc7">更多...</a><br /></td></tr>
+<tr class="separator:ga51603f04fac6de40ea6726d69b264cc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga57fec3e151fbf8044a2b7092ab2972b3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwmq.html#ga57fec3e151fbf8044a2b7092ab2972b3">xwmq_fini</a> (struct <a class="el" href="structxwmq.html">xwmq</a> *mq)</td></tr>
+<tr class="memdesc:ga57fec3e151fbf8044a2b7092ab2972b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMQ API：销毁静态方式初始化的消息队列对象  <a href="group__xwmd__isc__xwmq.html#ga57fec3e151fbf8044a2b7092ab2972b3">更多...</a><br /></td></tr>
+<tr class="separator:ga57fec3e151fbf8044a2b7092ab2972b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8b86e4a1725d0d9363ee8a31095222c9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwmq.html#ga8b86e4a1725d0d9363ee8a31095222c9">xwmq_grab</a> (struct <a class="el" href="structxwmq.html">xwmq</a> *mq)</td></tr>
+<tr class="memdesc:ga8b86e4a1725d0d9363ee8a31095222c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMQ API：增加消息队列对象的引用计数  <a href="group__xwmd__isc__xwmq.html#ga8b86e4a1725d0d9363ee8a31095222c9">更多...</a><br /></td></tr>
+<tr class="separator:ga8b86e4a1725d0d9363ee8a31095222c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3a7d5f642c3629ebfcf03e7721efd4c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwmq.html#ga3a7d5f642c3629ebfcf03e7721efd4c2">xwmq_put</a> (struct <a class="el" href="structxwmq.html">xwmq</a> *mq)</td></tr>
+<tr class="memdesc:ga3a7d5f642c3629ebfcf03e7721efd4c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMQ API：减少消息队列对象的引用计数  <a href="group__xwmd__isc__xwmq.html#ga3a7d5f642c3629ebfcf03e7721efd4c2">更多...</a><br /></td></tr>
+<tr class="separator:ga3a7d5f642c3629ebfcf03e7721efd4c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadc12d18c62f75bd8ec71a26eaed895a8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwmq.html#gadc12d18c62f75bd8ec71a26eaed895a8">xwmq_gettik</a> (struct <a class="el" href="structxwmq.html">xwmq</a> *mq)</td></tr>
+<tr class="memdesc:gadc12d18c62f75bd8ec71a26eaed895a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMQ API：获取消息队列对象的标签  <a href="group__xwmd__isc__xwmq.html#gadc12d18c62f75bd8ec71a26eaed895a8">更多...</a><br /></td></tr>
+<tr class="separator:gadc12d18c62f75bd8ec71a26eaed895a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga56d7abee4028c69998cbc48a81be7a6e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwmq.html#ga56d7abee4028c69998cbc48a81be7a6e">xwmq_acquire</a> (struct <a class="el" href="structxwmq.html">xwmq</a> *mq, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> tik)</td></tr>
+<tr class="memdesc:ga56d7abee4028c69998cbc48a81be7a6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMQ API：检查消息队列对象的标签并增加引用计数  <a href="group__xwmd__isc__xwmq.html#ga56d7abee4028c69998cbc48a81be7a6e">更多...</a><br /></td></tr>
+<tr class="separator:ga56d7abee4028c69998cbc48a81be7a6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad59d65cfc07928213263d3a8a3c031bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwmq.html#gad59d65cfc07928213263d3a8a3c031bd">xwmq_release</a> (struct <a class="el" href="structxwmq.html">xwmq</a> *mq, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> tik)</td></tr>
+<tr class="memdesc:gad59d65cfc07928213263d3a8a3c031bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMQ API：检查消息队列对象的标签并减少引用计数  <a href="group__xwmd__isc__xwmq.html#gad59d65cfc07928213263d3a8a3c031bd">更多...</a><br /></td></tr>
+<tr class="separator:gad59d65cfc07928213263d3a8a3c031bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad8d2b0b29234d2959a05eeb67a23ff45"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwmq.html#gad8d2b0b29234d2959a05eeb67a23ff45">xwmq_eq</a> (struct <a class="el" href="structxwmq.html">xwmq</a> *mq, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> topic, void *data)</td></tr>
+<tr class="memdesc:gad8d2b0b29234d2959a05eeb67a23ff45"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMQ API：等待消息槽，然后将消息放入到消息队列的尾端（入队）  <a href="group__xwmd__isc__xwmq.html#gad8d2b0b29234d2959a05eeb67a23ff45">更多...</a><br /></td></tr>
+<tr class="separator:gad8d2b0b29234d2959a05eeb67a23ff45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8359c9ba02c8fb2a74e6c4c6094d94cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwmq.html#ga8359c9ba02c8fb2a74e6c4c6094d94cc">xwmq_eq_to</a> (struct <a class="el" href="structxwmq.html">xwmq</a> *mq, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> topic, void *data, <a class="el" href="group__xwos__lib__type.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a> to)</td></tr>
+<tr class="memdesc:ga8359c9ba02c8fb2a74e6c4c6094d94cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMQ API：限时等待消息槽，然后将消息放入到消息队列的尾端（入队）  <a href="group__xwmd__isc__xwmq.html#ga8359c9ba02c8fb2a74e6c4c6094d94cc">更多...</a><br /></td></tr>
+<tr class="separator:ga8359c9ba02c8fb2a74e6c4c6094d94cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga30b3fc4cf9323d3597eb8a383bdf611f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwmq.html#ga30b3fc4cf9323d3597eb8a383bdf611f">xwmq_tryeq</a> (struct <a class="el" href="structxwmq.html">xwmq</a> *mq, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> topic, void *data)</td></tr>
+<tr class="memdesc:ga30b3fc4cf9323d3597eb8a383bdf611f"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMQ API：尝试获取消息槽，然后将消息放入到消息队列的尾端（入队）  <a href="group__xwmd__isc__xwmq.html#ga30b3fc4cf9323d3597eb8a383bdf611f">更多...</a><br /></td></tr>
+<tr class="separator:ga30b3fc4cf9323d3597eb8a383bdf611f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga18b4d97f9de46feb6eebd197738aabf6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwmq.html#ga18b4d97f9de46feb6eebd197738aabf6">xwmq_jq</a> (struct <a class="el" href="structxwmq.html">xwmq</a> *mq, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> topic, void *data)</td></tr>
+<tr class="memdesc:ga18b4d97f9de46feb6eebd197738aabf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMQ API：等待消息槽，然后将消息放入到消息队列的首端（插队）  <a href="group__xwmd__isc__xwmq.html#ga18b4d97f9de46feb6eebd197738aabf6">更多...</a><br /></td></tr>
+<tr class="separator:ga18b4d97f9de46feb6eebd197738aabf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0eb1aa3f3e83b696612a7cd9cc90a6f2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwmq.html#ga0eb1aa3f3e83b696612a7cd9cc90a6f2">xwmq_jq_to</a> (struct <a class="el" href="structxwmq.html">xwmq</a> *mq, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> topic, void *data, <a class="el" href="group__xwos__lib__type.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a> to)</td></tr>
+<tr class="memdesc:ga0eb1aa3f3e83b696612a7cd9cc90a6f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMQ API：限时等待消息槽，然后将消息放入到消息队列的首端（插队）  <a href="group__xwmd__isc__xwmq.html#ga0eb1aa3f3e83b696612a7cd9cc90a6f2">更多...</a><br /></td></tr>
+<tr class="separator:ga0eb1aa3f3e83b696612a7cd9cc90a6f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga706a753c885996d85ec7fbf6d7461385"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwmq.html#ga706a753c885996d85ec7fbf6d7461385">xwmq_tryjq</a> (struct <a class="el" href="structxwmq.html">xwmq</a> *mq, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> topic, void *data)</td></tr>
+<tr class="memdesc:ga706a753c885996d85ec7fbf6d7461385"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMQ API：尝试获取消息槽，然后将消息放入到消息队列的首端（插队）  <a href="group__xwmd__isc__xwmq.html#ga706a753c885996d85ec7fbf6d7461385">更多...</a><br /></td></tr>
+<tr class="separator:ga706a753c885996d85ec7fbf6d7461385"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6dac123dd10ceaf0f24181b66d49d39a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwmq.html#ga6dac123dd10ceaf0f24181b66d49d39a">xwmq_dq</a> (struct <a class="el" href="structxwmq.html">xwmq</a> *mq, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> *topic, void **databuf)</td></tr>
+<tr class="memdesc:ga6dac123dd10ceaf0f24181b66d49d39a"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMQ API: 等待从消息队列头部取出一条消息  <a href="group__xwmd__isc__xwmq.html#ga6dac123dd10ceaf0f24181b66d49d39a">更多...</a><br /></td></tr>
+<tr class="separator:ga6dac123dd10ceaf0f24181b66d49d39a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9b11a75d7c8d792d305154b32c3dedee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwmq.html#ga9b11a75d7c8d792d305154b32c3dedee">xwmq_dq_to</a> (struct <a class="el" href="structxwmq.html">xwmq</a> *mq, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> *topic, void **databuf, <a class="el" href="group__xwos__lib__type.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a> to)</td></tr>
+<tr class="memdesc:ga9b11a75d7c8d792d305154b32c3dedee"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMQ API: 限时等待从消息接收队列头部取出一条消息  <a href="group__xwmd__isc__xwmq.html#ga9b11a75d7c8d792d305154b32c3dedee">更多...</a><br /></td></tr>
+<tr class="separator:ga9b11a75d7c8d792d305154b32c3dedee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga113bc97ec8121f3eb884e8da900497eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwmq.html#ga113bc97ec8121f3eb884e8da900497eb">xwmq_trydq</a> (struct <a class="el" href="structxwmq.html">xwmq</a> *mq, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> *topic, void **databuf)</td></tr>
+<tr class="memdesc:ga113bc97ec8121f3eb884e8da900497eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMQ API: 尝试从消息队列头部取出一条消息  <a href="group__xwmd__isc__xwmq.html#ga113bc97ec8121f3eb884e8da900497eb">更多...</a><br /></td></tr>
+<tr class="separator:ga113bc97ec8121f3eb884e8da900497eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga79b5a6769a655a4e5946f3d60729b342"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwmq.html#ga79b5a6769a655a4e5946f3d60729b342">xwmq_rq</a> (struct <a class="el" href="structxwmq.html">xwmq</a> *mq, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> *topic, void **databuf)</td></tr>
+<tr class="memdesc:ga79b5a6769a655a4e5946f3d60729b342"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMQ API: 等待从消息队列尾部取出一条消息  <a href="group__xwmd__isc__xwmq.html#ga79b5a6769a655a4e5946f3d60729b342">更多...</a><br /></td></tr>
+<tr class="separator:ga79b5a6769a655a4e5946f3d60729b342"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaacdb3c6bfb639e6d2444f479e9557c38"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwmq.html#gaacdb3c6bfb639e6d2444f479e9557c38">xwmq_rq_to</a> (struct <a class="el" href="structxwmq.html">xwmq</a> *mq, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> *topic, void **databuf, <a class="el" href="group__xwos__lib__type.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a> to)</td></tr>
+<tr class="memdesc:gaacdb3c6bfb639e6d2444f479e9557c38"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMQ API: 限时等待从消息接收队列尾部取出一条消息  <a href="group__xwmd__isc__xwmq.html#gaacdb3c6bfb639e6d2444f479e9557c38">更多...</a><br /></td></tr>
+<tr class="separator:gaacdb3c6bfb639e6d2444f479e9557c38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7c48b58030cf580f089d2cb42bc644fd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwmq.html#ga7c48b58030cf580f089d2cb42bc644fd">xwmq_tryrq</a> (struct <a class="el" href="structxwmq.html">xwmq</a> *mq, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> *topic, void **databuf)</td></tr>
+<tr class="memdesc:ga7c48b58030cf580f089d2cb42bc644fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMQ API: 尝试从消息队列尾部取出一条消息  <a href="group__xwmd__isc__xwmq.html#ga7c48b58030cf580f089d2cb42bc644fd">更多...</a><br /></td></tr>
+<tr class="separator:ga7c48b58030cf580f089d2cb42bc644fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<h2 class="groupheader">函数说明</h2>
+<a id="ga56d7abee4028c69998cbc48a81be7a6e" name="ga56d7abee4028c69998cbc48a81be7a6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga56d7abee4028c69998cbc48a81be7a6e">&#9670;&nbsp;</a></span>xwmq_acquire()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwmq_acquire </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwmq.html">xwmq</a> *&#160;</td>
+          <td class="paramname"><em>mq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>&#160;</td>
+          <td class="paramname"><em>tik</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWMQ API：检查消息队列对象的标签并增加引用计数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mq</td><td>消息队列对象指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">tik</td><td>标签 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-ENILOBJD</td><td>空的对象描述符 </td></tr>
+    <tr><td class="paramname">-EOBJDEAD</td><td>对象无效 </td></tr>
+    <tr><td class="paramname">-EACCES</td><td>对象标签检查失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="xwmq_8c_source.html">xwmq.c</a> 第 <a class="el" href="xwmq_8c_source.html#l00058">58</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   59</span>{</div>
+<div class="line"><span class="lineno">   60</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="group__xwos__lib__xwobj.html#gac510a6eb1b6a08450ec6d65fe3bf7694">xwos_object_acquire</a>(&amp;mq-&gt;<a class="code hl_variable" href="structxwmq.html#a2adc72e15cceb2273b322bb1280462da">xwobj</a>, tik);</div>
+<div class="line"><span class="lineno">   61</span>}</div>
+<div class="ttc" id="agroup__xwos__lib__xwobj_html_gac510a6eb1b6a08450ec6d65fe3bf7694"><div class="ttname"><a href="group__xwos__lib__xwobj.html#gac510a6eb1b6a08450ec6d65fe3bf7694">xwos_object_acquire</a></div><div class="ttdeci">xwer_t xwos_object_acquire(struct xwos_object *obj, xwsq_t tik)</div><div class="ttdoc">检查对象的标签并增加引用计数</div><div class="ttdef"><b>Definition:</b> <a href="object_8c_source.html#l00195">object.c:195</a></div></div>
+<div class="ttc" id="astructxwmq_html_a2adc72e15cceb2273b322bb1280462da"><div class="ttname"><a href="structxwmq.html#a2adc72e15cceb2273b322bb1280462da">xwmq::xwobj</a></div><div class="ttdeci">struct xwos_object xwobj</div><div class="ttdef"><b>Definition:</b> <a href="xwmq_2mif_8h_source.html#l00043">mif.h:43</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmd__isc__xwmq_ga56d7abee4028c69998cbc48a81be7a6e_cgraph.png" border="0" usemap="#agroup__xwmd__isc__xwmq_ga56d7abee4028c69998cbc48a81be7a6e_cgraph" alt=""/></div>
+<map name="agroup__xwmd__isc__xwmq_ga56d7abee4028c69998cbc48a81be7a6e_cgraph" id="agroup__xwmd__isc__xwmq_ga56d7abee4028c69998cbc48a81be7a6e_cgraph">
+<area shape="rect" title="XWMQ API：检查消息队列对象的标签并增加引用计数" alt="" coords="5,46,112,73"/>
+<area shape="rect" href="group__xwos__lib__xwobj.html#gac510a6eb1b6a08450ec6d65fe3bf7694" title="检查对象的标签并增加引用计数" alt="" coords="160,46,304,73"/>
+<area shape="rect" href="object_8c.html#ad9c8346b5ea34f808ceb236094452aa9" title=" " alt="" coords="352,5,496,47"/>
+<area shape="rect" href="object_8c.html#a4613deb6ad50ee8bb3acd1da5842d4ff" title=" " alt="" coords="352,71,496,112"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga6dac123dd10ceaf0f24181b66d49d39a" name="ga6dac123dd10ceaf0f24181b66d49d39a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6dac123dd10ceaf0f24181b66d49d39a">&#9670;&nbsp;</a></span>xwmq_dq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwmq_dq </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwmq.html">xwmq</a> *&#160;</td>
+          <td class="paramname"><em>mq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> *&#160;</td>
+          <td class="paramname"><em>topic</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void **&#160;</td>
+          <td class="paramname"><em>databuf</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWMQ API: 等待从消息队列头部取出一条消息 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mq</td><td>消息队列对象的指针 </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">:data</td><td>指向缓冲区的指针，通过此缓冲区返回接收消息的数据 </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">:topic</td><td>指向缓冲区的指针，通过此缓冲区返回接收消息的标题 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>空指针 </td></tr>
+    <tr><td class="paramname">-EINTR</td><td>等待被中断 </td></tr>
+    <tr><td class="paramname">-ENOTTHDCTX</td><td>不在线程上下文中 </td></tr>
+    <tr><td class="paramname">-EDSPMPT</td><td>抢占被关闭 </td></tr>
+    <tr><td class="paramname">-EDSBH</td><td>中断底半部被关闭 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：线程</li>
+</ul>
+</dd></dl>
+<p>若接收队列中没有消息，就阻塞接收线程，直到有新的消息槽或被中断。</p>
+<p >如果等待被中断，此CAPI将返回 <code>-EINTR</code> 。 </p>
+
+<p class="definition">在文件 <a class="el" href="xwmq_8c_source.html">xwmq.c</a> 第 <a class="el" href="xwmq_8c_source.html#l00327">327</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  328</span>{</div>
+<div class="line"><span class="lineno">  329</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="group__xwmd__isc__xwmq.html#ga9b11a75d7c8d792d305154b32c3dedee">xwmq_dq_to</a>(mq, topic, databuf, <a class="code hl_define" href="group__xwos__lib__type.html#gad8937a773924ae599c30f9f75a7b7dbf">XWTM_MAX</a>);</div>
+<div class="line"><span class="lineno">  330</span>}</div>
+<div class="ttc" id="agroup__xwmd__isc__xwmq_html_ga9b11a75d7c8d792d305154b32c3dedee"><div class="ttname"><a href="group__xwmd__isc__xwmq.html#ga9b11a75d7c8d792d305154b32c3dedee">xwmq_dq_to</a></div><div class="ttdeci">xwer_t xwmq_dq_to(struct xwmq *mq, xwsq_t *topic, void **databuf, xwtm_t to)</div><div class="ttdoc">XWMQ API: 限时等待从消息接收队列头部取出一条消息</div><div class="ttdef"><b>Definition:</b> <a href="xwmq_8c_source.html#l00333">xwmq.c:333</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_gad8937a773924ae599c30f9f75a7b7dbf"><div class="ttname"><a href="group__xwos__lib__type.html#gad8937a773924ae599c30f9f75a7b7dbf">XWTM_MAX</a></div><div class="ttdeci">#define XWTM_MAX</div><div class="ttdef"><b>Definition:</b> <a href="type_8h_source.html#l00485">type.h:485</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmd__isc__xwmq_ga6dac123dd10ceaf0f24181b66d49d39a_cgraph.png" border="0" usemap="#agroup__xwmd__isc__xwmq_ga6dac123dd10ceaf0f24181b66d49d39a_cgraph" alt=""/></div>
+<map name="agroup__xwmd__isc__xwmq_ga6dac123dd10ceaf0f24181b66d49d39a_cgraph" id="agroup__xwmd__isc__xwmq_ga6dac123dd10ceaf0f24181b66d49d39a_cgraph">
+<area shape="rect" title="XWMQ API: 等待从消息队列头部取出一条消息" alt="" coords="5,195,84,221"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga9b11a75d7c8d792d305154b32c3dedee" title="XWMQ API: 限时等待从消息接收队列头部取出一条消息" alt="" coords="132,195,228,221"/>
+<area shape="rect" href="xwmq_8c.html#afcc2194eee03bb360b90d0c47b246072" title="从消息接收队列头部选择一条消息" alt="" coords="276,107,417,133"/>
+<area shape="rect" href="xwmq_8c.html#a5a70d91d330701da212249f5728fb5e4" title="释放一个消息槽" alt="" coords="289,169,404,196"/>
+<area shape="rect" href="group__xwos__sync__sem.html#gaf6f291eaa8c268dccb6ebc675a24755b" title="XWOS API：发布信号量" alt="" coords="288,220,405,247"/>
+<area shape="rect" href="group__xwos__sync__sem.html#gab9fce6b4dc3add4c714dfa1c8041593f" title="XWOS API：限时等待并获取信号量" alt="" coords="279,271,414,297"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#gab12f3ce1a4e53de3112b10c9ffb06cae" title="删除一个节点，并重新初始化它" alt="" coords="489,31,624,57"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gad393963b449be923d8af40538b9befdf" title="XWOS API：上锁自旋锁，保存本地CPU的中断标志并关闭" alt="" coords="471,81,642,108"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gaa83b4a8f3340ddf35346dbedf9ce3979" title="XWOS API：解锁自旋锁，并恢复本地CPU的中断标志" alt="" coords="465,132,648,159"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#gab7918962f86f86d5c7049922a5173e81" title="删除prev节点与next节点之间的节点" alt="" coords="696,5,863,32"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga3286c94ae92265dea90fd52bfdb85569" title="初始化一个链表节点。" alt="" coords="706,56,853,83"/>
+<area shape="rect" href="group__xwmm__memslice.html#ga337a549e8b2fc9e95d1e9c240bde1e31" title="XWMM API：释放一片内存切片" alt="" coords="480,183,633,209"/>
+<area shape="rect" href="group__xwos__lib__lfq.html#gac200bdfc5370284b5b3afde010b49c56" title="将一个节点推入无锁队列（栈式队列）" alt="" coords="725,183,833,209"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga9b11a75d7c8d792d305154b32c3dedee" name="ga9b11a75d7c8d792d305154b32c3dedee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9b11a75d7c8d792d305154b32c3dedee">&#9670;&nbsp;</a></span>xwmq_dq_to()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwmq_dq_to </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwmq.html">xwmq</a> *&#160;</td>
+          <td class="paramname"><em>mq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> *&#160;</td>
+          <td class="paramname"><em>topic</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void **&#160;</td>
+          <td class="paramname"><em>databuf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a>&#160;</td>
+          <td class="paramname"><em>to</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWMQ API: 限时等待从消息接收队列头部取出一条消息 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mq</td><td>消息队列对象的指针 </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">:data</td><td>指向缓冲区的指针，通过此缓冲区返回接收消息的数据 </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">:topic</td><td>指向缓冲区的指针，通过此缓冲区返回接收消息的标题 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">to</td><td>期望唤醒的时间点 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>空指针 </td></tr>
+    <tr><td class="paramname">-EINTR</td><td>等待被中断 </td></tr>
+    <tr><td class="paramname">-ETIMEDOUT</td><td>超时 </td></tr>
+    <tr><td class="paramname">-ENOTTHDCTX</td><td>不在线程上下文中 </td></tr>
+    <tr><td class="paramname">-EDSPMPT</td><td>抢占被关闭 </td></tr>
+    <tr><td class="paramname">-EDSBH</td><td>中断底半部被关闭 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：线程</li>
+</ul>
+</dd></dl>
+<p>若接收队列中没有消息，就阻塞接收线程，直到新的消息槽或被中断或超时。</p>
+<p >如果等待被中断，此CAPI将返回 <code>-EINTR</code> 。</p>
+<p >如果 <code>to</code> 是过去的时间点，此CAPI将直接返回 <code>-ETIMEDOUT</code> 。 </p>
+<p >&lt;Bad address</p>
+<p >&lt;Bad address</p>
+<p >&lt;No error</p>
+
+<p class="definition">在文件 <a class="el" href="xwmq_8c_source.html">xwmq.c</a> 第 <a class="el" href="xwmq_8c_source.html#l00333">333</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  334</span>{</div>
+<div class="line"><span class="lineno">  335</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">  336</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwmq__msg.html">xwmq_msg</a> * msg;</div>
+<div class="line"><span class="lineno">  337</span> </div>
+<div class="line"><span class="lineno">  338</span>        <a class="code hl_define" href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a>((mq), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  339</span>        <a class="code hl_define" href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a>((databuf), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  340</span> </div>
+<div class="line"><span class="lineno">  341</span>        rc = <a class="code hl_function" href="group__xwos__sync__sem.html#gab9fce6b4dc3add4c714dfa1c8041593f">xwos_sem_wait_to</a>(&amp;mq-&gt;<a class="code hl_variable" href="structxwmq.html#a287dc420d0b42e9c77135a78f08f1ef8">rxqsem</a>, to);</div>
+<div class="line"><span class="lineno">  342</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  343</span>                <span class="keywordflow">goto</span> err_sem_wait_to;</div>
+<div class="line"><span class="lineno">  344</span>        }</div>
+<div class="line"><span class="lineno">  345</span>        msg = <a class="code hl_function" href="xwmq_8c.html#afcc2194eee03bb360b90d0c47b246072">xwmq_choose_head</a>(mq);</div>
+<div class="line"><span class="lineno">  346</span>        *databuf = msg-&gt;<a class="code hl_variable" href="structxwmq__msg.html#abb9c4759c5d64abb5fdb9d79e6f56cd1">data</a>;</div>
+<div class="line"><span class="lineno">  347</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="structxwmq__msg.html#ac4d91a1198be2297329071a39ce28f5d">topic</a>) {</div>
+<div class="line"><span class="lineno">  348</span>                *<a class="code hl_variable" href="structxwmq__msg.html#ac4d91a1198be2297329071a39ce28f5d">topic</a> = msg-&gt;<a class="code hl_variable" href="structxwmq__msg.html#ac4d91a1198be2297329071a39ce28f5d">topic</a>;</div>
+<div class="line"><span class="lineno">  349</span>        }</div>
+<div class="line"><span class="lineno">  350</span>        <a class="code hl_function" href="xwmq_8c.html#a5a70d91d330701da212249f5728fb5e4">xwmq_msg_put</a>(mq, msg);</div>
+<div class="line"><span class="lineno">  351</span>        <a class="code hl_function" href="group__xwos__sync__sem.html#gaf6f291eaa8c268dccb6ebc675a24755b">xwos_sem_post</a>(&amp;mq-&gt;<a class="code hl_variable" href="structxwmq.html#a35a574ad328c5ac780f7baa931966c72">txqsem</a>);</div>
+<div class="line"><span class="lineno">  352</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><span class="lineno">  353</span> </div>
+<div class="line"><span class="lineno">  354</span>err_sem_wait_to:</div>
+<div class="line"><span class="lineno">  355</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  356</span>}</div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga3f317946e043623f9d6b93dbf60e6316"><div class="ttname"><a href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a></div><div class="ttdeci">#define EFAULT</div><div class="ttdoc">Bad address</div><div class="ttdef"><b>Definition:</b> <a href="errno_8h_source.html#l00044">errno.h:44</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga6a72d49d869215a02342eb465166537b"><div class="ttname"><a href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a></div><div class="ttdeci">#define XWOK</div><div class="ttdoc">No error</div><div class="ttdef"><b>Definition:</b> <a href="errno_8h_source.html#l00182">errno.h:182</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga06847ea8c7edb2b1f166288b230f251f"><div class="ttname"><a href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a></div><div class="ttdeci">signed long xwer_t</div><div class="ttdef"><b>Definition:</b> <a href="type_8h_source.html#l00193">type.h:193</a></div></div>
+<div class="ttc" id="agroup__xwos__standard_html_ga0c63a67f52b315298e2be98f79cd0c08"><div class="ttname"><a href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a></div><div class="ttdeci">#define XWOS_VALIDATE(exp, errstr,...)</div><div class="ttdoc">检查函数参数是否有效</div><div class="ttdef"><b>Definition:</b> <a href="standard_8h_source.html#l00078">standard.h:78</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__sem_html_gab9fce6b4dc3add4c714dfa1c8041593f"><div class="ttname"><a href="group__xwos__sync__sem.html#gab9fce6b4dc3add4c714dfa1c8041593f">xwos_sem_wait_to</a></div><div class="ttdeci">static xwer_t xwos_sem_wait_to(struct xwos_sem *sem, xwtm_t to)</div><div class="ttdoc">XWOS API：限时等待并获取信号量</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sem_8h_source.html#l00349">sem.h:349</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__sem_html_gaf6f291eaa8c268dccb6ebc675a24755b"><div class="ttname"><a href="group__xwos__sync__sem.html#gaf6f291eaa8c268dccb6ebc675a24755b">xwos_sem_post</a></div><div class="ttdeci">static xwer_t xwos_sem_post(struct xwos_sem *sem)</div><div class="ttdoc">XWOS API：发布信号量</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sem_8h_source.html#l00307">sem.h:307</a></div></div>
+<div class="ttc" id="astructxwmq__msg_html"><div class="ttname"><a href="structxwmq__msg.html">xwmq_msg</a></div><div class="ttdoc">XWMQ消息</div><div class="ttdef"><b>Definition:</b> <a href="xwmq_2mif_8h_source.html#l00033">mif.h:33</a></div></div>
+<div class="ttc" id="astructxwmq__msg_html_abb9c4759c5d64abb5fdb9d79e6f56cd1"><div class="ttname"><a href="structxwmq__msg.html#abb9c4759c5d64abb5fdb9d79e6f56cd1">xwmq_msg::data</a></div><div class="ttdeci">void * data</div><div class="ttdef"><b>Definition:</b> <a href="xwmq_2mif_8h_source.html#l00034">mif.h:34</a></div></div>
+<div class="ttc" id="astructxwmq__msg_html_ac4d91a1198be2297329071a39ce28f5d"><div class="ttname"><a href="structxwmq__msg.html#ac4d91a1198be2297329071a39ce28f5d">xwmq_msg::topic</a></div><div class="ttdeci">xwsq_t topic</div><div class="ttdef"><b>Definition:</b> <a href="xwmq_2mif_8h_source.html#l00035">mif.h:35</a></div></div>
+<div class="ttc" id="astructxwmq_html_a287dc420d0b42e9c77135a78f08f1ef8"><div class="ttname"><a href="structxwmq.html#a287dc420d0b42e9c77135a78f08f1ef8">xwmq::rxqsem</a></div><div class="ttdeci">struct xwos_sem rxqsem</div><div class="ttdef"><b>Definition:</b> <a href="xwmq_2mif_8h_source.html#l00049">mif.h:49</a></div></div>
+<div class="ttc" id="astructxwmq_html_a35a574ad328c5ac780f7baa931966c72"><div class="ttname"><a href="structxwmq.html#a35a574ad328c5ac780f7baa931966c72">xwmq::txqsem</a></div><div class="ttdeci">struct xwos_sem txqsem</div><div class="ttdef"><b>Definition:</b> <a href="xwmq_2mif_8h_source.html#l00046">mif.h:46</a></div></div>
+<div class="ttc" id="axwmq_8c_html_a5a70d91d330701da212249f5728fb5e4"><div class="ttname"><a href="xwmq_8c.html#a5a70d91d330701da212249f5728fb5e4">xwmq_msg_put</a></div><div class="ttdeci">static void xwmq_msg_put(struct xwmq *mq, struct xwmq_msg *msg)</div><div class="ttdoc">释放一个消息槽</div><div class="ttdef"><b>Definition:</b> <a href="xwmq_8c_source.html#l00163">xwmq.c:163</a></div></div>
+<div class="ttc" id="axwmq_8c_html_afcc2194eee03bb360b90d0c47b246072"><div class="ttname"><a href="xwmq_8c.html#afcc2194eee03bb360b90d0c47b246072">xwmq_choose_head</a></div><div class="ttdeci">static struct xwmq_msg * xwmq_choose_head(struct xwmq *mq)</div><div class="ttdoc">从消息接收队列头部选择一条消息</div><div class="ttdef"><b>Definition:</b> <a href="xwmq_8c_source.html#l00293">xwmq.c:293</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmd__isc__xwmq_ga9b11a75d7c8d792d305154b32c3dedee_cgraph.png" border="0" usemap="#agroup__xwmd__isc__xwmq_ga9b11a75d7c8d792d305154b32c3dedee_cgraph" alt=""/></div>
+<map name="agroup__xwmd__isc__xwmq_ga9b11a75d7c8d792d305154b32c3dedee_cgraph" id="agroup__xwmd__isc__xwmq_ga9b11a75d7c8d792d305154b32c3dedee_cgraph">
+<area shape="rect" title="XWMQ API: 限时等待从消息接收队列头部取出一条消息" alt="" coords="5,195,101,221"/>
+<area shape="rect" href="xwmq_8c.html#afcc2194eee03bb360b90d0c47b246072" title="从消息接收队列头部选择一条消息" alt="" coords="149,107,291,133"/>
+<area shape="rect" href="xwmq_8c.html#a5a70d91d330701da212249f5728fb5e4" title="释放一个消息槽" alt="" coords="163,169,277,196"/>
+<area shape="rect" href="group__xwos__sync__sem.html#gaf6f291eaa8c268dccb6ebc675a24755b" title="XWOS API：发布信号量" alt="" coords="161,220,279,247"/>
+<area shape="rect" href="group__xwos__sync__sem.html#gab9fce6b4dc3add4c714dfa1c8041593f" title="XWOS API：限时等待并获取信号量" alt="" coords="153,271,287,297"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#gab12f3ce1a4e53de3112b10c9ffb06cae" title="删除一个节点，并重新初始化它" alt="" coords="363,31,497,57"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gad393963b449be923d8af40538b9befdf" title="XWOS API：上锁自旋锁，保存本地CPU的中断标志并关闭" alt="" coords="345,81,515,108"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gaa83b4a8f3340ddf35346dbedf9ce3979" title="XWOS API：解锁自旋锁，并恢复本地CPU的中断标志" alt="" coords="339,132,521,159"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#gab7918962f86f86d5c7049922a5173e81" title="删除prev节点与next节点之间的节点" alt="" coords="569,5,736,32"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga3286c94ae92265dea90fd52bfdb85569" title="初始化一个链表节点。" alt="" coords="579,56,726,83"/>
+<area shape="rect" href="group__xwmm__memslice.html#ga337a549e8b2fc9e95d1e9c240bde1e31" title="XWMM API：释放一片内存切片" alt="" coords="353,183,507,209"/>
+<area shape="rect" href="group__xwos__lib__lfq.html#gac200bdfc5370284b5b3afde010b49c56" title="将一个节点推入无锁队列（栈式队列）" alt="" coords="599,183,707,209"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmd__isc__xwmq_ga9b11a75d7c8d792d305154b32c3dedee_icgraph.png" border="0" usemap="#agroup__xwmd__isc__xwmq_ga9b11a75d7c8d792d305154b32c3dedee_icgraph" alt=""/></div>
+<map name="agroup__xwmd__isc__xwmq_ga9b11a75d7c8d792d305154b32c3dedee_icgraph" id="agroup__xwmd__isc__xwmq_ga9b11a75d7c8d792d305154b32c3dedee_icgraph">
+<area shape="rect" title="XWMQ API: 限时等待从消息接收队列头部取出一条消息" alt="" coords="132,5,228,32"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga6dac123dd10ceaf0f24181b66d49d39a" title="XWMQ API: 等待从消息队列头部取出一条消息" alt="" coords="5,5,84,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="gad8d2b0b29234d2959a05eeb67a23ff45" name="gad8d2b0b29234d2959a05eeb67a23ff45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad8d2b0b29234d2959a05eeb67a23ff45">&#9670;&nbsp;</a></span>xwmq_eq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwmq_eq </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwmq.html">xwmq</a> *&#160;</td>
+          <td class="paramname"><em>mq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>&#160;</td>
+          <td class="paramname"><em>topic</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWMQ API：等待消息槽，然后将消息放入到消息队列的尾端（入队） </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mq</td><td>消息队列对象的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">topic</td><td>消息的标题 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>消息的数据 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>空指针 </td></tr>
+    <tr><td class="paramname">-EINTR</td><td>等待被中断 </td></tr>
+    <tr><td class="paramname">-ENOTTHDCTX</td><td>不在线程上下文中 </td></tr>
+    <tr><td class="paramname">-EDSPMPT</td><td>抢占被关闭 </td></tr>
+    <tr><td class="paramname">-EDSBH</td><td>中断底半部被关闭 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：线程</li>
+</ul>
+</dd></dl>
+<p>若消息槽队列中没有空闲的消息槽，就阻塞发送线程，直到有空闲的消息槽或被中断。</p>
+<p >如果等待被中断，此CAPI将返回 <code>-EINTR</code> 。 </p>
+
+<p class="definition">在文件 <a class="el" href="xwmq_8c_source.html">xwmq.c</a> 第 <a class="el" href="xwmq_8c_source.html#l00169">169</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  170</span>{</div>
+<div class="line"><span class="lineno">  171</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="group__xwmd__isc__xwmq.html#ga8359c9ba02c8fb2a74e6c4c6094d94cc">xwmq_eq_to</a>(mq, topic, data, <a class="code hl_define" href="group__xwos__lib__type.html#gad8937a773924ae599c30f9f75a7b7dbf">XWTM_MAX</a>);</div>
+<div class="line"><span class="lineno">  172</span>}</div>
+<div class="ttc" id="agroup__xwmd__isc__xwmq_html_ga8359c9ba02c8fb2a74e6c4c6094d94cc"><div class="ttname"><a href="group__xwmd__isc__xwmq.html#ga8359c9ba02c8fb2a74e6c4c6094d94cc">xwmq_eq_to</a></div><div class="ttdeci">xwer_t xwmq_eq_to(struct xwmq *mq, xwsq_t topic, void *data, xwtm_t to)</div><div class="ttdoc">XWMQ API：限时等待消息槽，然后将消息放入到消息队列的尾端（入队）</div><div class="ttdef"><b>Definition:</b> <a href="xwmq_8c_source.html#l00175">xwmq.c:175</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmd__isc__xwmq_gad8d2b0b29234d2959a05eeb67a23ff45_cgraph.png" border="0" usemap="#agroup__xwmd__isc__xwmq_gad8d2b0b29234d2959a05eeb67a23ff45_cgraph" alt=""/></div>
+<map name="agroup__xwmd__isc__xwmq_gad8d2b0b29234d2959a05eeb67a23ff45_cgraph" id="agroup__xwmd__isc__xwmq_gad8d2b0b29234d2959a05eeb67a23ff45_cgraph">
+<area shape="rect" title="XWMQ API：等待消息槽，然后将消息放入到消息队列的尾端（入队）" alt="" coords="5,132,84,159"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga8359c9ba02c8fb2a74e6c4c6094d94cc" title="XWMQ API：限时等待消息槽，然后将消息放入到消息队列的尾端（入队）" alt="" coords="132,132,228,159"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga2aa317fe5cea0989c273b3c69f69d795" title="将一个节点加入链表尾部（链表头的前面）" alt="" coords="298,5,437,32"/>
+<area shape="rect" href="xwmq_8c.html#a266a048d37f3f16990f8d6bcf3ac2828" title="获取一个消息槽" alt="" coords="310,56,425,83"/>
+<area shape="rect" href="group__xwos__sync__sem.html#gaf6f291eaa8c268dccb6ebc675a24755b" title="XWOS API：发布信号量" alt="" coords="309,107,426,133"/>
+<area shape="rect" href="group__xwos__sync__sem.html#gab9fce6b4dc3add4c714dfa1c8041593f" title="XWOS API：限时等待并获取信号量" alt="" coords="300,157,435,184"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gad393963b449be923d8af40538b9befdf" title="XWOS API：上锁自旋锁，保存本地CPU的中断标志并关闭" alt="" coords="282,208,453,235"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gaa83b4a8f3340ddf35346dbedf9ce3979" title="XWOS API：解锁自旋锁，并恢复本地CPU的中断标志" alt="" coords="276,259,459,285"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga42c09bc0da5cac8327003314056f43b7" title="将一个新节点加入到prev与next之间" alt="" coords="507,5,677,32"/>
+<area shape="rect" href="group__xwmm__memslice.html#ga6b9a1ff8b0ea0720d3e684a6b673dbe6" title="XWMM API：申请一片内存切片" alt="" coords="513,56,671,83"/>
+<area shape="rect" href="group__xwos__lib__lfq.html#ga914f507948cdc286defd940f259cb826" title="弹出无锁队列中的第一个节点（栈式队列）" alt="" coords="725,56,827,83"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga8359c9ba02c8fb2a74e6c4c6094d94cc" name="ga8359c9ba02c8fb2a74e6c4c6094d94cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8359c9ba02c8fb2a74e6c4c6094d94cc">&#9670;&nbsp;</a></span>xwmq_eq_to()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwmq_eq_to </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwmq.html">xwmq</a> *&#160;</td>
+          <td class="paramname"><em>mq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>&#160;</td>
+          <td class="paramname"><em>topic</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a>&#160;</td>
+          <td class="paramname"><em>to</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWMQ API：限时等待消息槽，然后将消息放入到消息队列的尾端（入队） </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mq</td><td>消息队列对象的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">topic</td><td>消息的标题 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>消息的数据 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">to</td><td>期望唤醒的时间点 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>空指针 </td></tr>
+    <tr><td class="paramname">-EINTR</td><td>等待被中断 </td></tr>
+    <tr><td class="paramname">-ETIMEDOUT</td><td>超时 </td></tr>
+    <tr><td class="paramname">-ENOTTHDCTX</td><td>不在线程上下文中 </td></tr>
+    <tr><td class="paramname">-EDSPMPT</td><td>抢占被关闭 </td></tr>
+    <tr><td class="paramname">-EDSBH</td><td>中断底半部被关闭 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：线程</li>
+</ul>
+</dd></dl>
+<p>若消息槽队列中没有空闲的消息槽，就阻塞发送线程，直到有空闲的消息槽或被中断或超时。</p>
+<p >如果等待被中断，此CAPI将返回 <code>-EINTR</code> 。</p>
+<p >如果 <code>to</code> 是过去的时间点，此CAPI将直接返回 <code>-ETIMEDOUT</code> 。 </p>
+<p >&lt;Bad address</p>
+<p >&lt;Bad address</p>
+<p >&lt;No error</p>
+
+<p class="definition">在文件 <a class="el" href="xwmq_8c_source.html">xwmq.c</a> 第 <a class="el" href="xwmq_8c_source.html#l00175">175</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  176</span>{</div>
+<div class="line"><span class="lineno">  177</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">  178</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#gaf8126ee3732e83d788722e2232a20948">xwreg_t</a> cpuirq;</div>
+<div class="line"><span class="lineno">  179</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwmq__msg.html">xwmq_msg</a> * msg;</div>
+<div class="line"><span class="lineno">  180</span> </div>
+<div class="line"><span class="lineno">  181</span>        <a class="code hl_define" href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a>((mq), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  182</span>        <a class="code hl_define" href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a>((<a class="code hl_variable" href="structxwmq__msg.html#abb9c4759c5d64abb5fdb9d79e6f56cd1">data</a>), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  183</span> </div>
+<div class="line"><span class="lineno">  184</span>        rc = <a class="code hl_function" href="group__xwos__sync__sem.html#gab9fce6b4dc3add4c714dfa1c8041593f">xwos_sem_wait_to</a>(&amp;mq-&gt;<a class="code hl_variable" href="structxwmq.html#a35a574ad328c5ac780f7baa931966c72">txqsem</a>, to);</div>
+<div class="line"><span class="lineno">  185</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  186</span>                <span class="keywordflow">goto</span> err_sem_wait_to;</div>
+<div class="line"><span class="lineno">  187</span>        }</div>
+<div class="line"><span class="lineno">  188</span>        msg = <a class="code hl_function" href="xwmq_8c.html#a266a048d37f3f16990f8d6bcf3ac2828">xwmq_msg_get</a>(mq);</div>
+<div class="line"><span class="lineno">  189</span>        msg-&gt;<a class="code hl_variable" href="structxwmq__msg.html#ac4d91a1198be2297329071a39ce28f5d">topic</a> = <a class="code hl_variable" href="structxwmq__msg.html#ac4d91a1198be2297329071a39ce28f5d">topic</a>;</div>
+<div class="line"><span class="lineno">  190</span>        msg-&gt;<a class="code hl_variable" href="structxwmq__msg.html#abb9c4759c5d64abb5fdb9d79e6f56cd1">data</a> = <a class="code hl_variable" href="structxwmq__msg.html#abb9c4759c5d64abb5fdb9d79e6f56cd1">data</a>;</div>
+<div class="line"><span class="lineno">  191</span>        <a class="code hl_function" href="group__xwos__lock__spinlock.html#gad393963b449be923d8af40538b9befdf">xwos_splk_lock_cpuirqsv</a>(&amp;mq-&gt;<a class="code hl_variable" href="structxwmq.html#a46776d84330e7e63acf6b90d13e9cf6d">rxqlock</a>, &amp;cpuirq);</div>
+<div class="line"><span class="lineno">  192</span>        <a class="code hl_function" href="group__xwos__lib__bclst.html#ga2aa317fe5cea0989c273b3c69f69d795">xwlib_bclst_add_tail</a>(&amp;mq-&gt;<a class="code hl_variable" href="structxwmq.html#a437c514f793850e7e665ac7183320a9a">rxq</a>, &amp;msg-&gt;<a class="code hl_variable" href="structxwmq__msg.html#a7b605404c02bc7dcf8d6cb6eb4a74022">node</a>);</div>
+<div class="line"><span class="lineno">  193</span>        <a class="code hl_function" href="group__xwos__lock__spinlock.html#gaa83b4a8f3340ddf35346dbedf9ce3979">xwos_splk_unlock_cpuirqrs</a>(&amp;mq-&gt;<a class="code hl_variable" href="structxwmq.html#a46776d84330e7e63acf6b90d13e9cf6d">rxqlock</a>, cpuirq);</div>
+<div class="line"><span class="lineno">  194</span>        <a class="code hl_function" href="group__xwos__sync__sem.html#gaf6f291eaa8c268dccb6ebc675a24755b">xwos_sem_post</a>(&amp;mq-&gt;<a class="code hl_variable" href="structxwmq.html#a287dc420d0b42e9c77135a78f08f1ef8">rxqsem</a>);</div>
+<div class="line"><span class="lineno">  195</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><span class="lineno">  196</span> </div>
+<div class="line"><span class="lineno">  197</span>err_sem_wait_to:</div>
+<div class="line"><span class="lineno">  198</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  199</span>}</div>
+<div class="ttc" id="agroup__xwos__lib__bclst_html_ga2aa317fe5cea0989c273b3c69f69d795"><div class="ttname"><a href="group__xwos__lib__bclst.html#ga2aa317fe5cea0989c273b3c69f69d795">xwlib_bclst_add_tail</a></div><div class="ttdeci">static void xwlib_bclst_add_tail(struct xwlib_bclst_node *head, struct xwlib_bclst_node *newn)</div><div class="ttdoc">将一个节点加入链表尾部（链表头的前面）</div><div class="ttdef"><b>Definition:</b> <a href="bclst_8h_source.html#l00357">bclst.h:357</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_gaf8126ee3732e83d788722e2232a20948"><div class="ttname"><a href="group__xwos__lib__type.html#gaf8126ee3732e83d788722e2232a20948">xwreg_t</a></div><div class="ttdeci">unsigned long xwreg_t</div><div class="ttdef"><b>Definition:</b> <a href="type_8h_source.html#l00129">type.h:129</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__spinlock_html_gaa83b4a8f3340ddf35346dbedf9ce3979"><div class="ttname"><a href="group__xwos__lock__spinlock.html#gaa83b4a8f3340ddf35346dbedf9ce3979">xwos_splk_unlock_cpuirqrs</a></div><div class="ttdeci">static void xwos_splk_unlock_cpuirqrs(struct xwos_splk *spl, xwreg_t cpuirq)</div><div class="ttdoc">XWOS API：解锁自旋锁，并恢复本地CPU的中断标志</div><div class="ttdef"><b>Definition:</b> <a href="lock_2spinlock_8h_source.html#l00175">spinlock.h:175</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__spinlock_html_gad393963b449be923d8af40538b9befdf"><div class="ttname"><a href="group__xwos__lock__spinlock.html#gad393963b449be923d8af40538b9befdf">xwos_splk_lock_cpuirqsv</a></div><div class="ttdeci">static void xwos_splk_lock_cpuirqsv(struct xwos_splk *spl, xwreg_t *cpuirq)</div><div class="ttdoc">XWOS API：上锁自旋锁，保存本地CPU的中断标志并关闭</div><div class="ttdef"><b>Definition:</b> <a href="lock_2spinlock_8h_source.html#l00143">spinlock.h:143</a></div></div>
+<div class="ttc" id="astructxwmq__msg_html_a7b605404c02bc7dcf8d6cb6eb4a74022"><div class="ttname"><a href="structxwmq__msg.html#a7b605404c02bc7dcf8d6cb6eb4a74022">xwmq_msg::node</a></div><div class="ttdeci">struct xwlib_bclst_node node</div><div class="ttdef"><b>Definition:</b> <a href="xwmq_2mif_8h_source.html#l00036">mif.h:36</a></div></div>
+<div class="ttc" id="astructxwmq_html_a437c514f793850e7e665ac7183320a9a"><div class="ttname"><a href="structxwmq.html#a437c514f793850e7e665ac7183320a9a">xwmq::rxq</a></div><div class="ttdeci">struct xwlib_bclst_node rxq</div><div class="ttdef"><b>Definition:</b> <a href="xwmq_2mif_8h_source.html#l00047">mif.h:47</a></div></div>
+<div class="ttc" id="astructxwmq_html_a46776d84330e7e63acf6b90d13e9cf6d"><div class="ttname"><a href="structxwmq.html#a46776d84330e7e63acf6b90d13e9cf6d">xwmq::rxqlock</a></div><div class="ttdeci">struct xwos_splk rxqlock</div><div class="ttdef"><b>Definition:</b> <a href="xwmq_2mif_8h_source.html#l00048">mif.h:48</a></div></div>
+<div class="ttc" id="axwmq_8c_html_a266a048d37f3f16990f8d6bcf3ac2828"><div class="ttname"><a href="xwmq_8c.html#a266a048d37f3f16990f8d6bcf3ac2828">xwmq_msg_get</a></div><div class="ttdeci">static struct xwmq_msg * xwmq_msg_get(struct xwmq *mq)</div><div class="ttdoc">获取一个消息槽</div><div class="ttdef"><b>Definition:</b> <a href="xwmq_8c_source.html#l00148">xwmq.c:148</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmd__isc__xwmq_ga8359c9ba02c8fb2a74e6c4c6094d94cc_cgraph.png" border="0" usemap="#agroup__xwmd__isc__xwmq_ga8359c9ba02c8fb2a74e6c4c6094d94cc_cgraph" alt=""/></div>
+<map name="agroup__xwmd__isc__xwmq_ga8359c9ba02c8fb2a74e6c4c6094d94cc_cgraph" id="agroup__xwmd__isc__xwmq_ga8359c9ba02c8fb2a74e6c4c6094d94cc_cgraph">
+<area shape="rect" title="XWMQ API：限时等待消息槽，然后将消息放入到消息队列的尾端（入队）" alt="" coords="5,132,101,159"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga2aa317fe5cea0989c273b3c69f69d795" title="将一个节点加入链表尾部（链表头的前面）" alt="" coords="171,5,310,32"/>
+<area shape="rect" href="xwmq_8c.html#a266a048d37f3f16990f8d6bcf3ac2828" title="获取一个消息槽" alt="" coords="183,56,298,83"/>
+<area shape="rect" href="group__xwos__sync__sem.html#gaf6f291eaa8c268dccb6ebc675a24755b" title="XWOS API：发布信号量" alt="" coords="182,107,299,133"/>
+<area shape="rect" href="group__xwos__sync__sem.html#gab9fce6b4dc3add4c714dfa1c8041593f" title="XWOS API：限时等待并获取信号量" alt="" coords="173,157,308,184"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gad393963b449be923d8af40538b9befdf" title="XWOS API：上锁自旋锁，保存本地CPU的中断标志并关闭" alt="" coords="155,208,326,235"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gaa83b4a8f3340ddf35346dbedf9ce3979" title="XWOS API：解锁自旋锁，并恢复本地CPU的中断标志" alt="" coords="149,259,332,285"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga42c09bc0da5cac8327003314056f43b7" title="将一个新节点加入到prev与next之间" alt="" coords="380,5,551,32"/>
+<area shape="rect" href="group__xwmm__memslice.html#ga6b9a1ff8b0ea0720d3e684a6b673dbe6" title="XWMM API：申请一片内存切片" alt="" coords="386,56,545,83"/>
+<area shape="rect" href="group__xwos__lib__lfq.html#ga914f507948cdc286defd940f259cb826" title="弹出无锁队列中的第一个节点（栈式队列）" alt="" coords="599,56,700,83"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmd__isc__xwmq_ga8359c9ba02c8fb2a74e6c4c6094d94cc_icgraph.png" border="0" usemap="#agroup__xwmd__isc__xwmq_ga8359c9ba02c8fb2a74e6c4c6094d94cc_icgraph" alt=""/></div>
+<map name="agroup__xwmd__isc__xwmq_ga8359c9ba02c8fb2a74e6c4c6094d94cc_icgraph" id="agroup__xwmd__isc__xwmq_ga8359c9ba02c8fb2a74e6c4c6094d94cc_icgraph">
+<area shape="rect" title="XWMQ API：限时等待消息槽，然后将消息放入到消息队列的尾端（入队）" alt="" coords="132,5,228,32"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#gad8d2b0b29234d2959a05eeb67a23ff45" title="XWMQ API：等待消息槽，然后将消息放入到消息队列的尾端（入队）" alt="" coords="5,5,84,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga57fec3e151fbf8044a2b7092ab2972b3" name="ga57fec3e151fbf8044a2b7092ab2972b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga57fec3e151fbf8044a2b7092ab2972b3">&#9670;&nbsp;</a></span>xwmq_fini()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwmq_fini </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwmq.html">xwmq</a> *&#160;</td>
+          <td class="paramname"><em>mq</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWMQ API：销毁静态方式初始化的消息队列对象 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mq</td><td>消息队列对象的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>空指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意 </li>
+</ul>
+</dd></dl>
+<p >&lt;Bad address</p>
+
+<p class="definition">在文件 <a class="el" href="xwmq_8c_source.html">xwmq.c</a> 第 <a class="el" href="xwmq_8c_source.html#l00124">124</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  125</span>{</div>
+<div class="line"><span class="lineno">  126</span>        <a class="code hl_define" href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a>((mq), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  127</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="group__xwmd__isc__xwmq.html#ga3a7d5f642c3629ebfcf03e7721efd4c2">xwmq_put</a>(mq);</div>
+<div class="line"><span class="lineno">  128</span>}</div>
+<div class="ttc" id="agroup__xwmd__isc__xwmq_html_ga3a7d5f642c3629ebfcf03e7721efd4c2"><div class="ttname"><a href="group__xwmd__isc__xwmq.html#ga3a7d5f642c3629ebfcf03e7721efd4c2">xwmq_put</a></div><div class="ttdeci">xwer_t xwmq_put(struct xwmq *mq)</div><div class="ttdoc">XWMQ API：减少消息队列对象的引用计数</div><div class="ttdef"><b>Definition:</b> <a href="xwmq_8c_source.html#l00078">xwmq.c:78</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmd__isc__xwmq_ga57fec3e151fbf8044a2b7092ab2972b3_cgraph.png" border="0" usemap="#agroup__xwmd__isc__xwmq_ga57fec3e151fbf8044a2b7092ab2972b3_cgraph" alt=""/></div>
+<map name="agroup__xwmd__isc__xwmq_ga57fec3e151fbf8044a2b7092ab2972b3_cgraph" id="agroup__xwmd__isc__xwmq_ga57fec3e151fbf8044a2b7092ab2972b3_cgraph">
+<area shape="rect" title="XWMQ API：销毁静态方式初始化的消息队列对象" alt="" coords="5,5,87,32"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga3a7d5f642c3629ebfcf03e7721efd4c2" title="XWMQ API：减少消息队列对象的引用计数" alt="" coords="135,5,217,32"/>
+<area shape="rect" href="group__xwos__lib__xwobj.html#gad75451193241a605aef8b9fc6f934dcb" title="减少对象的引用计数" alt="" coords="265,5,385,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="gadc12d18c62f75bd8ec71a26eaed895a8" name="gadc12d18c62f75bd8ec71a26eaed895a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadc12d18c62f75bd8ec71a26eaed895a8">&#9670;&nbsp;</a></span>xwmq_gettik()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> xwmq_gettik </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwmq.html">xwmq</a> *&#160;</td>
+          <td class="paramname"><em>mq</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWMQ API：获取消息队列对象的标签 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mq</td><td>消息队列对象的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>消息队列对象的标签 </dd></dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="xwmq_8c_source.html">xwmq.c</a> 第 <a class="el" href="xwmq_8c_source.html#l00045">45</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   46</span>{</div>
+<div class="line"><span class="lineno">   47</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> tik;</div>
+<div class="line"><span class="lineno">   48</span> </div>
+<div class="line"><span class="lineno">   49</span>        <span class="keywordflow">if</span> (mq) {</div>
+<div class="line"><span class="lineno">   50</span>                tik = mq-&gt;<a class="code hl_variable" href="structxwmq.html#a2adc72e15cceb2273b322bb1280462da">xwobj</a>.<a class="code hl_variable" href="structxwos__object.html#ab5ec53f5e4ed98664c3cffabb82435bf">tik</a>;</div>
+<div class="line"><span class="lineno">   51</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">   52</span>                tik = 0;</div>
+<div class="line"><span class="lineno">   53</span>        }</div>
+<div class="line"><span class="lineno">   54</span>        <span class="keywordflow">return</span> tik;</div>
+<div class="line"><span class="lineno">   55</span>}</div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga59fe68c80516b22de8dccb84275d23f2"><div class="ttname"><a href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a></div><div class="ttdeci">unsigned long xwsq_t</div><div class="ttdef"><b>Definition:</b> <a href="type_8h_source.html#l00145">type.h:145</a></div></div>
+<div class="ttc" id="astructxwos__object_html_ab5ec53f5e4ed98664c3cffabb82435bf"><div class="ttname"><a href="structxwos__object.html#ab5ec53f5e4ed98664c3cffabb82435bf">xwos_object::tik</a></div><div class="ttdeci">xwsq_t tik</div><div class="ttdef"><b>Definition:</b> <a href="object_8h_source.html#l00051">object.h:51</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga8b86e4a1725d0d9363ee8a31095222c9" name="ga8b86e4a1725d0d9363ee8a31095222c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8b86e4a1725d0d9363ee8a31095222c9">&#9670;&nbsp;</a></span>xwmq_grab()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwmq_grab </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwmq.html">xwmq</a> *&#160;</td>
+          <td class="paramname"><em>mq</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWMQ API：增加消息队列对象的引用计数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mq</td><td>消息队列控制块对象指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>空指针 </td></tr>
+    <tr><td class="paramname">-EOBJDEAD</td><td>对象无效 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意 </li>
+</ul>
+</dd></dl>
+<p >&lt;Bad address</p>
+
+<p class="definition">在文件 <a class="el" href="xwmq_8c_source.html">xwmq.c</a> 第 <a class="el" href="xwmq_8c_source.html#l00070">70</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   71</span>{</div>
+<div class="line"><span class="lineno">   72</span>        <a class="code hl_define" href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a>((mq), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">   73</span> </div>
+<div class="line"><span class="lineno">   74</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="group__xwos__lib__xwobj.html#ga78e0a4c3320e9e2348d4443294147458">xwos_object_grab</a>(&amp;mq-&gt;<a class="code hl_variable" href="structxwmq.html#a2adc72e15cceb2273b322bb1280462da">xwobj</a>);</div>
+<div class="line"><span class="lineno">   75</span>}</div>
+<div class="ttc" id="agroup__xwos__lib__xwobj_html_ga78e0a4c3320e9e2348d4443294147458"><div class="ttname"><a href="group__xwos__lib__xwobj.html#ga78e0a4c3320e9e2348d4443294147458">xwos_object_grab</a></div><div class="ttdeci">xwer_t xwos_object_grab(struct xwos_object *obj)</div><div class="ttdoc">增加对象的引用计数</div><div class="ttdef"><b>Definition:</b> <a href="object_8c_source.html#l00286">object.c:286</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmd__isc__xwmq_ga8b86e4a1725d0d9363ee8a31095222c9_cgraph.png" border="0" usemap="#agroup__xwmd__isc__xwmq_ga8b86e4a1725d0d9363ee8a31095222c9_cgraph" alt=""/></div>
+<map name="agroup__xwmd__isc__xwmq_ga8b86e4a1725d0d9363ee8a31095222c9_cgraph" id="agroup__xwmd__isc__xwmq_ga8b86e4a1725d0d9363ee8a31095222c9_cgraph">
+<area shape="rect" title="XWMQ API：增加消息队列对象的引用计数" alt="" coords="5,5,95,32"/>
+<area shape="rect" href="group__xwos__lib__xwobj.html#ga78e0a4c3320e9e2348d4443294147458" title="增加对象的引用计数" alt="" coords="143,5,269,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga51603f04fac6de40ea6726d69b264cc7" name="ga51603f04fac6de40ea6726d69b264cc7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga51603f04fac6de40ea6726d69b264cc7">&#9670;&nbsp;</a></span>xwmq_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwmq_init </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwmq.html">xwmq</a> *&#160;</td>
+          <td class="paramname"><em>mq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structxwmq__msg.html">xwmq_msg</a> *&#160;</td>
+          <td class="paramname"><em>txq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a>&#160;</td>
+          <td class="paramname"><em>num</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWMQ API：静态方式初始化消息队列 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mq</td><td>消息队列对象的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">txq</td><td>消息槽内存池 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">num</td><td>消息槽数量 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>空指针 </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>无效参数 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意 </li>
+</ul>
+</dd></dl>
+<p >&lt;Bad address</p>
+<p >&lt;Bad address</p>
+
+<p class="definition">在文件 <a class="el" href="xwmq_8c_source.html">xwmq.c</a> 第 <a class="el" href="xwmq_8c_source.html#l00114">114</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  115</span>{</div>
+<div class="line"><span class="lineno">  116</span>        <a class="code hl_define" href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a>((mq), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  117</span>        <a class="code hl_define" href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a>((txq), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  118</span> </div>
+<div class="line"><span class="lineno">  119</span>        <a class="code hl_function" href="xwmq_8c.html#abc2e4af423bc161255edee85031ae292">xwmq_construct</a>(mq);</div>
+<div class="line"><span class="lineno">  120</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="xwmq_8c.html#aa0841cf7abe8c4dfd5626a12bf99f72d">xwmq_activate</a>(mq, txq, num, <a class="code hl_function" href="xwmq_8c.html#a01dea4c4051f477fd25d9be87d2ef5b6">xwmq_gc</a>);</div>
+<div class="line"><span class="lineno">  121</span>}</div>
+<div class="ttc" id="axwmq_8c_html_a01dea4c4051f477fd25d9be87d2ef5b6"><div class="ttname"><a href="xwmq_8c.html#a01dea4c4051f477fd25d9be87d2ef5b6">xwmq_gc</a></div><div class="ttdeci">static xwer_t xwmq_gc(void *obj)</div><div class="ttdef"><b>Definition:</b> <a href="xwmq_8c_source.html#l00034">xwmq.c:34</a></div></div>
+<div class="ttc" id="axwmq_8c_html_aa0841cf7abe8c4dfd5626a12bf99f72d"><div class="ttname"><a href="xwmq_8c.html#aa0841cf7abe8c4dfd5626a12bf99f72d">xwmq_activate</a></div><div class="ttdeci">static xwer_t xwmq_activate(struct xwmq *mq, struct xwmq_msg *txq, xwsz_t num, xwobj_gc_f gcfunc)</div><div class="ttdef"><b>Definition:</b> <a href="xwmq_8c_source.html#l00089">xwmq.c:89</a></div></div>
+<div class="ttc" id="axwmq_8c_html_abc2e4af423bc161255edee85031ae292"><div class="ttname"><a href="xwmq_8c.html#abc2e4af423bc161255edee85031ae292">xwmq_construct</a></div><div class="ttdeci">static void xwmq_construct(struct xwmq *mq)</div><div class="ttdef"><b>Definition:</b> <a href="xwmq_8c_source.html#l00022">xwmq.c:22</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmd__isc__xwmq_ga51603f04fac6de40ea6726d69b264cc7_cgraph.png" border="0" usemap="#agroup__xwmd__isc__xwmq_ga51603f04fac6de40ea6726d69b264cc7_cgraph" alt=""/></div>
+<map name="agroup__xwmd__isc__xwmq_ga51603f04fac6de40ea6726d69b264cc7_cgraph" id="agroup__xwmd__isc__xwmq_ga51603f04fac6de40ea6726d69b264cc7_cgraph">
+<area shape="rect" title="XWMQ API：静态方式初始化消息队列" alt="" coords="5,309,87,336"/>
+<area shape="rect" href="xwmq_8c.html#aa0841cf7abe8c4dfd5626a12bf99f72d" title=" " alt="" coords="139,157,249,184"/>
+<area shape="rect" href="xwmq_8c.html#abc2e4af423bc161255edee85031ae292" title=" " alt="" coords="135,309,253,336"/>
+<area shape="rect" href="xwmq_8c.html#a01dea4c4051f477fd25d9be87d2ef5b6" title=" " alt="" coords="155,360,233,387"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga08f9a7aec46aaeee30262e4bbdc65c0a" title="初始化一个链表头。" alt="" coords="306,5,453,32"/>
+<area shape="rect" href="group__xwmm__memslice.html#ga56a8e2e7b5977d6fdd53fa8946d92368" title="XWMM API：静态方式初始化内存切片分配器" alt="" coords="305,56,453,83"/>
+<area shape="rect" href="xwmq_8c.html#aa541ce78f6d54996c529dd82f8f4b404" title="消息槽的构造函数" alt="" coords="304,107,455,133"/>
+<area shape="rect" href="group__xwos__lib__xwobj.html#ga82ce393acdabdb355bf091c21f784444" title="激活一个XWOS对象（将其引用计数初始化位1）" alt="" coords="305,157,453,184"/>
+<area shape="rect" href="group__xwos__sync__sem.html#gaef37596ed9c49312579530b2218150ad" title="XWOS API：静态方式初始化信号量对象" alt="" coords="325,208,434,235"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gac8bbb82a3177f919e10ef3c3d21c7608" title="XWOS API：初始化自旋锁" alt="" coords="325,259,433,285"/>
+<area shape="rect" href="group__xwos__lib__lfq.html#gac87b1137608605a80577abed410ddc1a" title="初始化无锁队列节点" alt="" coords="531,5,629,32"/>
+<area shape="rect" href="group__xwos__lib__lfq.html#gac200bdfc5370284b5b3afde010b49c56" title="将一个节点推入无锁队列（栈式队列）" alt="" coords="526,56,634,83"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga3286c94ae92265dea90fd52bfdb85569" title="初始化一个链表节点。" alt="" coords="507,107,653,133"/>
+<area shape="rect" href="object_8c.html#afbe8a125041d1dc6a3c1178aa08fbcd6" title="从对象标签分配器获取一个标签" alt="" coords="522,157,638,184"/>
+<area shape="rect" href="group__xwos__irq.html#gab348bfecc115e0d9bb7fc54646f26ebd" title="XWOS API：恢复本地CPU的中断" alt="" coords="703,107,861,133"/>
+<area shape="rect" href="group__xwos__irq.html#ga6786862246388dace5c878fa112fac4d" title="XWOS API：保存然后关闭本地CPU的中断" alt="" coords="709,157,855,184"/>
+<area shape="rect" href="group__xwos__skd.html#ga0bb2baaefcfc0f62687977ea70fcaa28" title="XWOS API：获取当前CPU的ID" alt="" coords="725,208,839,235"/>
+<area shape="rect" href="group__xwos__lib__xwobj.html#ga908c48f09f38f5be9d69758fe30c5d3f" title="XWOS对象的构造函数" alt="" coords="301,309,457,336"/>
+<area shape="rect" href="xwmq_8c.html#a3f9c27ae15a4910f44b4c9ae62507a0f" title=" " alt="" coords="324,360,435,387"/>
+<area shape="rect" href="group__xwos__sync__sem.html#ga91a3f44977a865f10e9a46f13e261d3a" title="XWOS API：销毁静态方式初始化的信号量对象" alt="" coords="325,411,434,437"/>
+<area shape="rect" href="group__xwos__lib__xwobj.html#gaaaa2a74387092ee01a9e495a2994d1fa" title="XWOS对象的析构函数" alt="" coords="505,360,655,387"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga18b4d97f9de46feb6eebd197738aabf6" name="ga18b4d97f9de46feb6eebd197738aabf6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga18b4d97f9de46feb6eebd197738aabf6">&#9670;&nbsp;</a></span>xwmq_jq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwmq_jq </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwmq.html">xwmq</a> *&#160;</td>
+          <td class="paramname"><em>mq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>&#160;</td>
+          <td class="paramname"><em>topic</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWMQ API：等待消息槽，然后将消息放入到消息队列的首端（插队） </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mq</td><td>消息队列对象的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">topic</td><td>消息的标题 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>消息的数据 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>空指针 </td></tr>
+    <tr><td class="paramname">-EINTR</td><td>等待被中断 </td></tr>
+    <tr><td class="paramname">-ENOTTHDCTX</td><td>不在线程上下文中 </td></tr>
+    <tr><td class="paramname">-EDSPMPT</td><td>抢占被关闭 </td></tr>
+    <tr><td class="paramname">-EDSBH</td><td>中断底半部被关闭 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：线程</li>
+</ul>
+</dd></dl>
+<p>若消息槽队列中没有空闲的消息槽，就阻塞发送线程，直到有空闲的消息槽或被中断。</p>
+<p >如果等待被中断，此CAPI将返回 <code>-EINTR</code> 。 </p>
+
+<p class="definition">在文件 <a class="el" href="xwmq_8c_source.html">xwmq.c</a> 第 <a class="el" href="xwmq_8c_source.html#l00229">229</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  230</span>{</div>
+<div class="line"><span class="lineno">  231</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="group__xwmd__isc__xwmq.html#ga0eb1aa3f3e83b696612a7cd9cc90a6f2">xwmq_jq_to</a>(mq, topic, data, <a class="code hl_define" href="group__xwos__lib__type.html#gad8937a773924ae599c30f9f75a7b7dbf">XWTM_MAX</a>);</div>
+<div class="line"><span class="lineno">  232</span>}</div>
+<div class="ttc" id="agroup__xwmd__isc__xwmq_html_ga0eb1aa3f3e83b696612a7cd9cc90a6f2"><div class="ttname"><a href="group__xwmd__isc__xwmq.html#ga0eb1aa3f3e83b696612a7cd9cc90a6f2">xwmq_jq_to</a></div><div class="ttdeci">xwer_t xwmq_jq_to(struct xwmq *mq, xwsq_t topic, void *data, xwtm_t to)</div><div class="ttdoc">XWMQ API：限时等待消息槽，然后将消息放入到消息队列的首端（插队）</div><div class="ttdef"><b>Definition:</b> <a href="xwmq_8c_source.html#l00235">xwmq.c:235</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmd__isc__xwmq_ga18b4d97f9de46feb6eebd197738aabf6_cgraph.png" border="0" usemap="#agroup__xwmd__isc__xwmq_ga18b4d97f9de46feb6eebd197738aabf6_cgraph" alt=""/></div>
+<map name="agroup__xwmd__isc__xwmq_ga18b4d97f9de46feb6eebd197738aabf6_cgraph" id="agroup__xwmd__isc__xwmq_ga18b4d97f9de46feb6eebd197738aabf6_cgraph">
+<area shape="rect" title="XWMQ API：等待消息槽，然后将消息放入到消息队列的首端（插队）" alt="" coords="5,132,80,159"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga0eb1aa3f3e83b696612a7cd9cc90a6f2" title="XWMQ API：限时等待消息槽，然后将消息放入到消息队列的首端（插队）" alt="" coords="128,132,220,159"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga942be8d64e19cb8efb4dd1cf10e6e706" title="将一个节点加入链表头部（链表头的后面）" alt="" coords="284,5,435,32"/>
+<area shape="rect" href="xwmq_8c.html#a266a048d37f3f16990f8d6bcf3ac2828" title="获取一个消息槽" alt="" coords="302,56,417,83"/>
+<area shape="rect" href="group__xwos__sync__sem.html#gaf6f291eaa8c268dccb6ebc675a24755b" title="XWOS API：发布信号量" alt="" coords="301,107,418,133"/>
+<area shape="rect" href="group__xwos__sync__sem.html#gab9fce6b4dc3add4c714dfa1c8041593f" title="XWOS API：限时等待并获取信号量" alt="" coords="292,157,427,184"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gad393963b449be923d8af40538b9befdf" title="XWOS API：上锁自旋锁，保存本地CPU的中断标志并关闭" alt="" coords="274,208,445,235"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gaa83b4a8f3340ddf35346dbedf9ce3979" title="XWOS API：解锁自旋锁，并恢复本地CPU的中断标志" alt="" coords="268,259,451,285"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga42c09bc0da5cac8327003314056f43b7" title="将一个新节点加入到prev与next之间" alt="" coords="499,5,669,32"/>
+<area shape="rect" href="group__xwmm__memslice.html#ga6b9a1ff8b0ea0720d3e684a6b673dbe6" title="XWMM API：申请一片内存切片" alt="" coords="505,56,663,83"/>
+<area shape="rect" href="group__xwos__lib__lfq.html#ga914f507948cdc286defd940f259cb826" title="弹出无锁队列中的第一个节点（栈式队列）" alt="" coords="717,56,819,83"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga0eb1aa3f3e83b696612a7cd9cc90a6f2" name="ga0eb1aa3f3e83b696612a7cd9cc90a6f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0eb1aa3f3e83b696612a7cd9cc90a6f2">&#9670;&nbsp;</a></span>xwmq_jq_to()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwmq_jq_to </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwmq.html">xwmq</a> *&#160;</td>
+          <td class="paramname"><em>mq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>&#160;</td>
+          <td class="paramname"><em>topic</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a>&#160;</td>
+          <td class="paramname"><em>to</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWMQ API：限时等待消息槽，然后将消息放入到消息队列的首端（插队） </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mq</td><td>消息队列对象的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">topic</td><td>消息的标题 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>消息的数据 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">to</td><td>期望唤醒的时间点 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>空指针 </td></tr>
+    <tr><td class="paramname">-EINTR</td><td>等待被中断 </td></tr>
+    <tr><td class="paramname">-ETIMEDOUT</td><td>超时 </td></tr>
+    <tr><td class="paramname">-ENOTTHDCTX</td><td>不在线程上下文中 </td></tr>
+    <tr><td class="paramname">-EDSPMPT</td><td>抢占被关闭 </td></tr>
+    <tr><td class="paramname">-EDSBH</td><td>中断底半部被关闭 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：线程</li>
+</ul>
+</dd></dl>
+<p>若消息槽队列中没有空闲的消息槽，就阻塞发送线程，直到有空闲的消息槽或被中断或超时。</p>
+<p >如果等待被中断，此CAPI将返回 <code>-EINTR</code> 。</p>
+<p >如果 <code>to</code> 是过去的时间点，此CAPI将直接返回 <code>-ETIMEDOUT</code> 。 </p>
+<p >&lt;Bad address</p>
+<p >&lt;Bad address</p>
+<p >&lt;No error</p>
+
+<p class="definition">在文件 <a class="el" href="xwmq_8c_source.html">xwmq.c</a> 第 <a class="el" href="xwmq_8c_source.html#l00235">235</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  236</span>{</div>
+<div class="line"><span class="lineno">  237</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">  238</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#gaf8126ee3732e83d788722e2232a20948">xwreg_t</a> cpuirq;</div>
+<div class="line"><span class="lineno">  239</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwmq__msg.html">xwmq_msg</a> * msg;</div>
+<div class="line"><span class="lineno">  240</span> </div>
+<div class="line"><span class="lineno">  241</span>        <a class="code hl_define" href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a>((mq), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  242</span>        <a class="code hl_define" href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a>((<a class="code hl_variable" href="structxwmq__msg.html#abb9c4759c5d64abb5fdb9d79e6f56cd1">data</a>), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  243</span> </div>
+<div class="line"><span class="lineno">  244</span>        rc = <a class="code hl_function" href="group__xwos__sync__sem.html#gab9fce6b4dc3add4c714dfa1c8041593f">xwos_sem_wait_to</a>(&amp;mq-&gt;<a class="code hl_variable" href="structxwmq.html#a35a574ad328c5ac780f7baa931966c72">txqsem</a>, to);</div>
+<div class="line"><span class="lineno">  245</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  246</span>                <span class="keywordflow">goto</span> err_sem_wait_to;</div>
+<div class="line"><span class="lineno">  247</span>        }</div>
+<div class="line"><span class="lineno">  248</span>        msg = <a class="code hl_function" href="xwmq_8c.html#a266a048d37f3f16990f8d6bcf3ac2828">xwmq_msg_get</a>(mq);</div>
+<div class="line"><span class="lineno">  249</span>        msg-&gt;<a class="code hl_variable" href="structxwmq__msg.html#ac4d91a1198be2297329071a39ce28f5d">topic</a> = <a class="code hl_variable" href="structxwmq__msg.html#ac4d91a1198be2297329071a39ce28f5d">topic</a>;</div>
+<div class="line"><span class="lineno">  250</span>        msg-&gt;<a class="code hl_variable" href="structxwmq__msg.html#abb9c4759c5d64abb5fdb9d79e6f56cd1">data</a> = <a class="code hl_variable" href="structxwmq__msg.html#abb9c4759c5d64abb5fdb9d79e6f56cd1">data</a>;</div>
+<div class="line"><span class="lineno">  251</span>        <a class="code hl_function" href="group__xwos__lock__spinlock.html#gad393963b449be923d8af40538b9befdf">xwos_splk_lock_cpuirqsv</a>(&amp;mq-&gt;<a class="code hl_variable" href="structxwmq.html#a46776d84330e7e63acf6b90d13e9cf6d">rxqlock</a>, &amp;cpuirq);</div>
+<div class="line"><span class="lineno">  252</span>        <a class="code hl_function" href="group__xwos__lib__bclst.html#ga942be8d64e19cb8efb4dd1cf10e6e706">xwlib_bclst_add_head</a>(&amp;mq-&gt;<a class="code hl_variable" href="structxwmq.html#a437c514f793850e7e665ac7183320a9a">rxq</a>, &amp;msg-&gt;<a class="code hl_variable" href="structxwmq__msg.html#a7b605404c02bc7dcf8d6cb6eb4a74022">node</a>);</div>
+<div class="line"><span class="lineno">  253</span>        <a class="code hl_function" href="group__xwos__lock__spinlock.html#gaa83b4a8f3340ddf35346dbedf9ce3979">xwos_splk_unlock_cpuirqrs</a>(&amp;mq-&gt;<a class="code hl_variable" href="structxwmq.html#a46776d84330e7e63acf6b90d13e9cf6d">rxqlock</a>, cpuirq);</div>
+<div class="line"><span class="lineno">  254</span>        <a class="code hl_function" href="group__xwos__sync__sem.html#gaf6f291eaa8c268dccb6ebc675a24755b">xwos_sem_post</a>(&amp;mq-&gt;<a class="code hl_variable" href="structxwmq.html#a287dc420d0b42e9c77135a78f08f1ef8">rxqsem</a>);</div>
+<div class="line"><span class="lineno">  255</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><span class="lineno">  256</span> </div>
+<div class="line"><span class="lineno">  257</span>err_sem_wait_to:</div>
+<div class="line"><span class="lineno">  258</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  259</span>}</div>
+<div class="ttc" id="agroup__xwos__lib__bclst_html_ga942be8d64e19cb8efb4dd1cf10e6e706"><div class="ttname"><a href="group__xwos__lib__bclst.html#ga942be8d64e19cb8efb4dd1cf10e6e706">xwlib_bclst_add_head</a></div><div class="ttdeci">static void xwlib_bclst_add_head(struct xwlib_bclst_node *head, struct xwlib_bclst_node *newn)</div><div class="ttdoc">将一个节点加入链表头部（链表头的后面）</div><div class="ttdef"><b>Definition:</b> <a href="bclst_8h_source.html#l00345">bclst.h:345</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmd__isc__xwmq_ga0eb1aa3f3e83b696612a7cd9cc90a6f2_cgraph.png" border="0" usemap="#agroup__xwmd__isc__xwmq_ga0eb1aa3f3e83b696612a7cd9cc90a6f2_cgraph" alt=""/></div>
+<map name="agroup__xwmd__isc__xwmq_ga0eb1aa3f3e83b696612a7cd9cc90a6f2_cgraph" id="agroup__xwmd__isc__xwmq_ga0eb1aa3f3e83b696612a7cd9cc90a6f2_cgraph">
+<area shape="rect" title="XWMQ API：限时等待消息槽，然后将消息放入到消息队列的首端（插队）" alt="" coords="5,132,97,159"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga942be8d64e19cb8efb4dd1cf10e6e706" title="将一个节点加入链表头部（链表头的后面）" alt="" coords="161,5,312,32"/>
+<area shape="rect" href="xwmq_8c.html#a266a048d37f3f16990f8d6bcf3ac2828" title="获取一个消息槽" alt="" coords="179,56,294,83"/>
+<area shape="rect" href="group__xwos__sync__sem.html#gaf6f291eaa8c268dccb6ebc675a24755b" title="XWOS API：发布信号量" alt="" coords="178,107,295,133"/>
+<area shape="rect" href="group__xwos__sync__sem.html#gab9fce6b4dc3add4c714dfa1c8041593f" title="XWOS API：限时等待并获取信号量" alt="" coords="169,157,304,184"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gad393963b449be923d8af40538b9befdf" title="XWOS API：上锁自旋锁，保存本地CPU的中断标志并关闭" alt="" coords="151,208,322,235"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gaa83b4a8f3340ddf35346dbedf9ce3979" title="XWOS API：解锁自旋锁，并恢复本地CPU的中断标志" alt="" coords="145,259,328,285"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga42c09bc0da5cac8327003314056f43b7" title="将一个新节点加入到prev与next之间" alt="" coords="376,5,547,32"/>
+<area shape="rect" href="group__xwmm__memslice.html#ga6b9a1ff8b0ea0720d3e684a6b673dbe6" title="XWMM API：申请一片内存切片" alt="" coords="382,56,541,83"/>
+<area shape="rect" href="group__xwos__lib__lfq.html#ga914f507948cdc286defd940f259cb826" title="弹出无锁队列中的第一个节点（栈式队列）" alt="" coords="595,56,696,83"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmd__isc__xwmq_ga0eb1aa3f3e83b696612a7cd9cc90a6f2_icgraph.png" border="0" usemap="#agroup__xwmd__isc__xwmq_ga0eb1aa3f3e83b696612a7cd9cc90a6f2_icgraph" alt=""/></div>
+<map name="agroup__xwmd__isc__xwmq_ga0eb1aa3f3e83b696612a7cd9cc90a6f2_icgraph" id="agroup__xwmd__isc__xwmq_ga0eb1aa3f3e83b696612a7cd9cc90a6f2_icgraph">
+<area shape="rect" title="XWMQ API：限时等待消息槽，然后将消息放入到消息队列的首端（插队）" alt="" coords="128,5,220,32"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga18b4d97f9de46feb6eebd197738aabf6" title="XWMQ API：等待消息槽，然后将消息放入到消息队列的首端（插队）" alt="" coords="5,5,80,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga3a7d5f642c3629ebfcf03e7721efd4c2" name="ga3a7d5f642c3629ebfcf03e7721efd4c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3a7d5f642c3629ebfcf03e7721efd4c2">&#9670;&nbsp;</a></span>xwmq_put()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwmq_put </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwmq.html">xwmq</a> *&#160;</td>
+          <td class="paramname"><em>mq</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWMQ API：减少消息队列对象的引用计数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mq</td><td>消息队列控制块对象指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EOBJDEAD</td><td>对象无效 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意 </li>
+</ul>
+</dd></dl>
+<p >&lt;Bad address</p>
+
+<p class="definition">在文件 <a class="el" href="xwmq_8c_source.html">xwmq.c</a> 第 <a class="el" href="xwmq_8c_source.html#l00078">78</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   79</span>{</div>
+<div class="line"><span class="lineno">   80</span>        <a class="code hl_define" href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a>((mq), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">   81</span> </div>
+<div class="line"><span class="lineno">   82</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="group__xwos__lib__xwobj.html#gad75451193241a605aef8b9fc6f934dcb">xwos_object_put</a>(&amp;mq-&gt;<a class="code hl_variable" href="structxwmq.html#a2adc72e15cceb2273b322bb1280462da">xwobj</a>);</div>
+<div class="line"><span class="lineno">   83</span>}</div>
+<div class="ttc" id="agroup__xwos__lib__xwobj_html_gad75451193241a605aef8b9fc6f934dcb"><div class="ttname"><a href="group__xwos__lib__xwobj.html#gad75451193241a605aef8b9fc6f934dcb">xwos_object_put</a></div><div class="ttdeci">xwer_t xwos_object_put(struct xwos_object *obj)</div><div class="ttdoc">减少对象的引用计数</div><div class="ttdef"><b>Definition:</b> <a href="object_8c_source.html#l00305">object.c:305</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmd__isc__xwmq_ga3a7d5f642c3629ebfcf03e7721efd4c2_cgraph.png" border="0" usemap="#agroup__xwmd__isc__xwmq_ga3a7d5f642c3629ebfcf03e7721efd4c2_cgraph" alt=""/></div>
+<map name="agroup__xwmd__isc__xwmq_ga3a7d5f642c3629ebfcf03e7721efd4c2_cgraph" id="agroup__xwmd__isc__xwmq_ga3a7d5f642c3629ebfcf03e7721efd4c2_cgraph">
+<area shape="rect" title="XWMQ API：减少消息队列对象的引用计数" alt="" coords="5,5,88,32"/>
+<area shape="rect" href="group__xwos__lib__xwobj.html#gad75451193241a605aef8b9fc6f934dcb" title="减少对象的引用计数" alt="" coords="136,5,256,32"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmd__isc__xwmq_ga3a7d5f642c3629ebfcf03e7721efd4c2_icgraph.png" border="0" usemap="#agroup__xwmd__isc__xwmq_ga3a7d5f642c3629ebfcf03e7721efd4c2_icgraph" alt=""/></div>
+<map name="agroup__xwmd__isc__xwmq_ga3a7d5f642c3629ebfcf03e7721efd4c2_icgraph" id="agroup__xwmd__isc__xwmq_ga3a7d5f642c3629ebfcf03e7721efd4c2_icgraph">
+<area shape="rect" title="XWMQ API：减少消息队列对象的引用计数" alt="" coords="135,5,217,32"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga57fec3e151fbf8044a2b7092ab2972b3" title="XWMQ API：销毁静态方式初始化的消息队列对象" alt="" coords="5,5,87,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="gad59d65cfc07928213263d3a8a3c031bd" name="gad59d65cfc07928213263d3a8a3c031bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad59d65cfc07928213263d3a8a3c031bd">&#9670;&nbsp;</a></span>xwmq_release()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwmq_release </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwmq.html">xwmq</a> *&#160;</td>
+          <td class="paramname"><em>mq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>&#160;</td>
+          <td class="paramname"><em>tik</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWMQ API：检查消息队列对象的标签并减少引用计数 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mq</td><td>消息队列对象指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">tik</td><td>标签 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-ENILOBJD</td><td>空的对象描述符 </td></tr>
+    <tr><td class="paramname">-EOBJDEAD</td><td>对象无效 </td></tr>
+    <tr><td class="paramname">-EACCES</td><td>对象标签检查失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="xwmq_8c_source.html">xwmq.c</a> 第 <a class="el" href="xwmq_8c_source.html#l00064">64</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   65</span>{</div>
+<div class="line"><span class="lineno">   66</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="group__xwos__lib__xwobj.html#gac2826d86066a8dfdcc77fe7a8c53edfc">xwos_object_release</a>(&amp;mq-&gt;<a class="code hl_variable" href="structxwmq.html#a2adc72e15cceb2273b322bb1280462da">xwobj</a>, tik);</div>
+<div class="line"><span class="lineno">   67</span>}</div>
+<div class="ttc" id="agroup__xwos__lib__xwobj_html_gac2826d86066a8dfdcc77fe7a8c53edfc"><div class="ttname"><a href="group__xwos__lib__xwobj.html#gac2826d86066a8dfdcc77fe7a8c53edfc">xwos_object_release</a></div><div class="ttdeci">xwer_t xwos_object_release(struct xwos_object *obj, xwsq_t tik)</div><div class="ttdoc">检查对象的标签并减少引用计数</div><div class="ttdef"><b>Definition:</b> <a href="object_8c_source.html#l00254">object.c:254</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmd__isc__xwmq_gad59d65cfc07928213263d3a8a3c031bd_cgraph.png" border="0" usemap="#agroup__xwmd__isc__xwmq_gad59d65cfc07928213263d3a8a3c031bd_cgraph" alt=""/></div>
+<map name="agroup__xwmd__isc__xwmq_gad59d65cfc07928213263d3a8a3c031bd_cgraph" id="agroup__xwmd__isc__xwmq_gad59d65cfc07928213263d3a8a3c031bd_cgraph">
+<area shape="rect" title="XWMQ API：检查消息队列对象的标签并减少引用计数" alt="" coords="5,46,112,73"/>
+<area shape="rect" href="group__xwos__lib__xwobj.html#gac2826d86066a8dfdcc77fe7a8c53edfc" title="检查对象的标签并减少引用计数" alt="" coords="160,46,304,73"/>
+<area shape="rect" href="object_8c.html#a4d298f16411f2f31955972446e7de771" title=" " alt="" coords="352,5,496,47"/>
+<area shape="rect" href="object_8c.html#a5031cf72886d5d649a52fad1e5ebabd0" title=" " alt="" coords="352,71,496,112"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga79b5a6769a655a4e5946f3d60729b342" name="ga79b5a6769a655a4e5946f3d60729b342"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga79b5a6769a655a4e5946f3d60729b342">&#9670;&nbsp;</a></span>xwmq_rq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwmq_rq </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwmq.html">xwmq</a> *&#160;</td>
+          <td class="paramname"><em>mq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> *&#160;</td>
+          <td class="paramname"><em>topic</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void **&#160;</td>
+          <td class="paramname"><em>databuf</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWMQ API: 等待从消息队列尾部取出一条消息 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mq</td><td>消息队列对象的指针 </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">:data</td><td>指向缓冲区的指针，通过此缓冲区返回接收消息的数据 </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">:topic</td><td>指向缓冲区的指针，通过此缓冲区返回接收消息的标题 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>空指针 </td></tr>
+    <tr><td class="paramname">-EINTR</td><td>等待被中断 </td></tr>
+    <tr><td class="paramname">-ENOTTHDCTX</td><td>不在线程上下文中 </td></tr>
+    <tr><td class="paramname">-EDSPMPT</td><td>抢占被关闭 </td></tr>
+    <tr><td class="paramname">-EDSBH</td><td>中断底半部被关闭 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：线程</li>
+</ul>
+</dd></dl>
+<p>若接收队列中没有消息，就阻塞接收线程，直到有新的消息槽或被中断。</p>
+<p >如果等待被中断，此CAPI将返回 <code>-EINTR</code> 。 </p>
+
+<p class="definition">在文件 <a class="el" href="xwmq_8c_source.html">xwmq.c</a> 第 <a class="el" href="xwmq_8c_source.html#l00385">385</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  386</span>{</div>
+<div class="line"><span class="lineno">  387</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="group__xwmd__isc__xwmq.html#gaacdb3c6bfb639e6d2444f479e9557c38">xwmq_rq_to</a>(mq, topic, databuf, <a class="code hl_define" href="group__xwos__lib__type.html#gad8937a773924ae599c30f9f75a7b7dbf">XWTM_MAX</a>);</div>
+<div class="line"><span class="lineno">  388</span>}</div>
+<div class="ttc" id="agroup__xwmd__isc__xwmq_html_gaacdb3c6bfb639e6d2444f479e9557c38"><div class="ttname"><a href="group__xwmd__isc__xwmq.html#gaacdb3c6bfb639e6d2444f479e9557c38">xwmq_rq_to</a></div><div class="ttdeci">xwer_t xwmq_rq_to(struct xwmq *mq, xwsq_t *topic, void **databuf, xwtm_t to)</div><div class="ttdoc">XWMQ API: 限时等待从消息接收队列尾部取出一条消息</div><div class="ttdef"><b>Definition:</b> <a href="xwmq_8c_source.html#l00391">xwmq.c:391</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmd__isc__xwmq_ga79b5a6769a655a4e5946f3d60729b342_cgraph.png" border="0" usemap="#agroup__xwmd__isc__xwmq_ga79b5a6769a655a4e5946f3d60729b342_cgraph" alt=""/></div>
+<map name="agroup__xwmd__isc__xwmq_ga79b5a6769a655a4e5946f3d60729b342_cgraph" id="agroup__xwmd__isc__xwmq_ga79b5a6769a655a4e5946f3d60729b342_cgraph">
+<area shape="rect" title="XWMQ API: 等待从消息队列尾部取出一条消息" alt="" coords="5,195,80,221"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#gaacdb3c6bfb639e6d2444f479e9557c38" title="XWMQ API: 限时等待从消息接收队列尾部取出一条消息" alt="" coords="128,195,221,221"/>
+<area shape="rect" href="xwmq_8c.html#ab11ae57b63b75fd37debce2e7bfc7881" title="从消息接收队列尾部选择一条消息" alt="" coords="271,107,402,133"/>
+<area shape="rect" href="xwmq_8c.html#a5a70d91d330701da212249f5728fb5e4" title="释放一个消息槽" alt="" coords="279,169,394,196"/>
+<area shape="rect" href="group__xwos__sync__sem.html#gaf6f291eaa8c268dccb6ebc675a24755b" title="XWOS API：发布信号量" alt="" coords="278,220,395,247"/>
+<area shape="rect" href="group__xwos__sync__sem.html#gab9fce6b4dc3add4c714dfa1c8041593f" title="XWOS API：限时等待并获取信号量" alt="" coords="269,271,404,297"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#gab12f3ce1a4e53de3112b10c9ffb06cae" title="删除一个节点，并重新初始化它" alt="" coords="476,31,611,57"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gad393963b449be923d8af40538b9befdf" title="XWOS API：上锁自旋锁，保存本地CPU的中断标志并关闭" alt="" coords="458,81,629,108"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gaa83b4a8f3340ddf35346dbedf9ce3979" title="XWOS API：解锁自旋锁，并恢复本地CPU的中断标志" alt="" coords="452,132,635,159"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#gab7918962f86f86d5c7049922a5173e81" title="删除prev节点与next节点之间的节点" alt="" coords="683,5,849,32"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga3286c94ae92265dea90fd52bfdb85569" title="初始化一个链表节点。" alt="" coords="693,56,839,83"/>
+<area shape="rect" href="group__xwmm__memslice.html#ga337a549e8b2fc9e95d1e9c240bde1e31" title="XWMM API：释放一片内存切片" alt="" coords="467,183,620,209"/>
+<area shape="rect" href="group__xwos__lib__lfq.html#gac200bdfc5370284b5b3afde010b49c56" title="将一个节点推入无锁队列（栈式队列）" alt="" coords="712,183,820,209"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="gaacdb3c6bfb639e6d2444f479e9557c38" name="gaacdb3c6bfb639e6d2444f479e9557c38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaacdb3c6bfb639e6d2444f479e9557c38">&#9670;&nbsp;</a></span>xwmq_rq_to()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwmq_rq_to </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwmq.html">xwmq</a> *&#160;</td>
+          <td class="paramname"><em>mq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> *&#160;</td>
+          <td class="paramname"><em>topic</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void **&#160;</td>
+          <td class="paramname"><em>databuf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a>&#160;</td>
+          <td class="paramname"><em>to</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWMQ API: 限时等待从消息接收队列尾部取出一条消息 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mq</td><td>消息队列对象的指针 </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">:data</td><td>指向缓冲区的指针，通过此缓冲区返回接收消息的数据 </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">:topic</td><td>指向缓冲区的指针，通过此缓冲区返回接收消息的标题 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">to</td><td>期望唤醒的时间点 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>空指针 </td></tr>
+    <tr><td class="paramname">-EINTR</td><td>等待被中断 </td></tr>
+    <tr><td class="paramname">-ETIMEDOUT</td><td>超时 </td></tr>
+    <tr><td class="paramname">-ENOTTHDCTX</td><td>不在线程上下文中 </td></tr>
+    <tr><td class="paramname">-EDSPMPT</td><td>抢占被关闭 </td></tr>
+    <tr><td class="paramname">-EDSBH</td><td>中断底半部被关闭 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：线程</li>
+</ul>
+</dd></dl>
+<p>若接收队列中没有消息，就阻塞接收线程，直到新的消息槽或被中断或超时。</p>
+<p >如果等待被中断，此CAPI将返回 <code>-EINTR</code> 。</p>
+<p >如果 <code>to</code> 是过去的时间点，此CAPI将直接返回 <code>-ETIMEDOUT</code> 。 </p>
+<p >&lt;Bad address</p>
+<p >&lt;Bad address</p>
+<p >&lt;No error</p>
+
+<p class="definition">在文件 <a class="el" href="xwmq_8c_source.html">xwmq.c</a> 第 <a class="el" href="xwmq_8c_source.html#l00391">391</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  392</span>{</div>
+<div class="line"><span class="lineno">  393</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">  394</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwmq__msg.html">xwmq_msg</a> * msg;</div>
+<div class="line"><span class="lineno">  395</span> </div>
+<div class="line"><span class="lineno">  396</span>        <a class="code hl_define" href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a>((mq), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  397</span>        <a class="code hl_define" href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a>((databuf), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  398</span> </div>
+<div class="line"><span class="lineno">  399</span>        rc = <a class="code hl_function" href="group__xwos__sync__sem.html#gab9fce6b4dc3add4c714dfa1c8041593f">xwos_sem_wait_to</a>(&amp;mq-&gt;<a class="code hl_variable" href="structxwmq.html#a287dc420d0b42e9c77135a78f08f1ef8">rxqsem</a>, to);</div>
+<div class="line"><span class="lineno">  400</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  401</span>                <span class="keywordflow">goto</span> err_sem_wait_to;</div>
+<div class="line"><span class="lineno">  402</span>        }</div>
+<div class="line"><span class="lineno">  403</span>        msg = <a class="code hl_function" href="xwmq_8c.html#ab11ae57b63b75fd37debce2e7bfc7881">xwmq_choose_tail</a>(mq);</div>
+<div class="line"><span class="lineno">  404</span>        *databuf = msg-&gt;<a class="code hl_variable" href="structxwmq__msg.html#abb9c4759c5d64abb5fdb9d79e6f56cd1">data</a>;</div>
+<div class="line"><span class="lineno">  405</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="structxwmq__msg.html#ac4d91a1198be2297329071a39ce28f5d">topic</a>) {</div>
+<div class="line"><span class="lineno">  406</span>                *<a class="code hl_variable" href="structxwmq__msg.html#ac4d91a1198be2297329071a39ce28f5d">topic</a> = msg-&gt;<a class="code hl_variable" href="structxwmq__msg.html#ac4d91a1198be2297329071a39ce28f5d">topic</a>;</div>
+<div class="line"><span class="lineno">  407</span>        }</div>
+<div class="line"><span class="lineno">  408</span>        <a class="code hl_function" href="xwmq_8c.html#a5a70d91d330701da212249f5728fb5e4">xwmq_msg_put</a>(mq, msg);</div>
+<div class="line"><span class="lineno">  409</span>        <a class="code hl_function" href="group__xwos__sync__sem.html#gaf6f291eaa8c268dccb6ebc675a24755b">xwos_sem_post</a>(&amp;mq-&gt;<a class="code hl_variable" href="structxwmq.html#a35a574ad328c5ac780f7baa931966c72">txqsem</a>);</div>
+<div class="line"><span class="lineno">  410</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><span class="lineno">  411</span> </div>
+<div class="line"><span class="lineno">  412</span>err_sem_wait_to:</div>
+<div class="line"><span class="lineno">  413</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  414</span>}</div>
+<div class="ttc" id="axwmq_8c_html_ab11ae57b63b75fd37debce2e7bfc7881"><div class="ttname"><a href="xwmq_8c.html#ab11ae57b63b75fd37debce2e7bfc7881">xwmq_choose_tail</a></div><div class="ttdeci">static struct xwmq_msg * xwmq_choose_tail(struct xwmq *mq)</div><div class="ttdoc">从消息接收队列尾部选择一条消息</div><div class="ttdef"><b>Definition:</b> <a href="xwmq_8c_source.html#l00312">xwmq.c:312</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmd__isc__xwmq_gaacdb3c6bfb639e6d2444f479e9557c38_cgraph.png" border="0" usemap="#agroup__xwmd__isc__xwmq_gaacdb3c6bfb639e6d2444f479e9557c38_cgraph" alt=""/></div>
+<map name="agroup__xwmd__isc__xwmq_gaacdb3c6bfb639e6d2444f479e9557c38_cgraph" id="agroup__xwmd__isc__xwmq_gaacdb3c6bfb639e6d2444f479e9557c38_cgraph">
+<area shape="rect" title="XWMQ API: 限时等待从消息接收队列尾部取出一条消息" alt="" coords="5,195,99,221"/>
+<area shape="rect" href="xwmq_8c.html#ab11ae57b63b75fd37debce2e7bfc7881" title="从消息接收队列尾部选择一条消息" alt="" coords="149,107,279,133"/>
+<area shape="rect" href="xwmq_8c.html#a5a70d91d330701da212249f5728fb5e4" title="释放一个消息槽" alt="" coords="157,169,271,196"/>
+<area shape="rect" href="group__xwos__sync__sem.html#gaf6f291eaa8c268dccb6ebc675a24755b" title="XWOS API：发布信号量" alt="" coords="155,220,273,247"/>
+<area shape="rect" href="group__xwos__sync__sem.html#gab9fce6b4dc3add4c714dfa1c8041593f" title="XWOS API：限时等待并获取信号量" alt="" coords="147,271,281,297"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#gab12f3ce1a4e53de3112b10c9ffb06cae" title="删除一个节点，并重新初始化它" alt="" coords="353,31,488,57"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gad393963b449be923d8af40538b9befdf" title="XWOS API：上锁自旋锁，保存本地CPU的中断标志并关闭" alt="" coords="335,81,506,108"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gaa83b4a8f3340ddf35346dbedf9ce3979" title="XWOS API：解锁自旋锁，并恢复本地CPU的中断标志" alt="" coords="329,132,512,159"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#gab7918962f86f86d5c7049922a5173e81" title="删除prev节点与next节点之间的节点" alt="" coords="560,5,727,32"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga3286c94ae92265dea90fd52bfdb85569" title="初始化一个链表节点。" alt="" coords="570,56,717,83"/>
+<area shape="rect" href="group__xwmm__memslice.html#ga337a549e8b2fc9e95d1e9c240bde1e31" title="XWMM API：释放一片内存切片" alt="" coords="344,183,497,209"/>
+<area shape="rect" href="group__xwos__lib__lfq.html#gac200bdfc5370284b5b3afde010b49c56" title="将一个节点推入无锁队列（栈式队列）" alt="" coords="589,183,697,209"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmd__isc__xwmq_gaacdb3c6bfb639e6d2444f479e9557c38_icgraph.png" border="0" usemap="#agroup__xwmd__isc__xwmq_gaacdb3c6bfb639e6d2444f479e9557c38_icgraph" alt=""/></div>
+<map name="agroup__xwmd__isc__xwmq_gaacdb3c6bfb639e6d2444f479e9557c38_icgraph" id="agroup__xwmd__isc__xwmq_gaacdb3c6bfb639e6d2444f479e9557c38_icgraph">
+<area shape="rect" title="XWMQ API: 限时等待从消息接收队列尾部取出一条消息" alt="" coords="128,5,221,32"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga79b5a6769a655a4e5946f3d60729b342" title="XWMQ API: 等待从消息队列尾部取出一条消息" alt="" coords="5,5,80,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga113bc97ec8121f3eb884e8da900497eb" name="ga113bc97ec8121f3eb884e8da900497eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga113bc97ec8121f3eb884e8da900497eb">&#9670;&nbsp;</a></span>xwmq_trydq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwmq_trydq </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwmq.html">xwmq</a> *&#160;</td>
+          <td class="paramname"><em>mq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> *&#160;</td>
+          <td class="paramname"><em>topic</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void **&#160;</td>
+          <td class="paramname"><em>databuf</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWMQ API: 尝试从消息队列头部取出一条消息 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mq</td><td>消息队列对象的指针 </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">ptrbuf</td><td>指向缓冲区的指针，此缓冲区用于接收消息 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>空指针 </td></tr>
+    <tr><td class="paramname">-ENODATA</td><td>接收队列为空 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意</li>
+</ul>
+</dd></dl>
+<p>若接收队列中没有新的消息，就立即返回 <code>-ENODATA</code> ，因此可在中断中使用。 </p>
+<p >&lt;Bad address</p>
+<p >&lt;Bad address</p>
+<p >&lt;No error</p>
+
+<p class="definition">在文件 <a class="el" href="xwmq_8c_source.html">xwmq.c</a> 第 <a class="el" href="xwmq_8c_source.html#l00359">359</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  360</span>{</div>
+<div class="line"><span class="lineno">  361</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">  362</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwmq__msg.html">xwmq_msg</a> * msg;</div>
+<div class="line"><span class="lineno">  363</span> </div>
+<div class="line"><span class="lineno">  364</span>        <a class="code hl_define" href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a>((mq), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  365</span>        <a class="code hl_define" href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a>((databuf), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  366</span> </div>
+<div class="line"><span class="lineno">  367</span>        rc = <a class="code hl_function" href="group__xwos__sync__sem.html#ga453bbb4747cdd5cc94ddb9b988ee0866">xwos_sem_trywait</a>(&amp;mq-&gt;<a class="code hl_variable" href="structxwmq.html#a287dc420d0b42e9c77135a78f08f1ef8">rxqsem</a>);</div>
+<div class="line"><span class="lineno">  368</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  369</span>                <span class="keywordflow">goto</span> err_sem_trywait;</div>
+<div class="line"><span class="lineno">  370</span>        }</div>
+<div class="line"><span class="lineno">  371</span>        msg = <a class="code hl_function" href="xwmq_8c.html#afcc2194eee03bb360b90d0c47b246072">xwmq_choose_head</a>(mq);</div>
+<div class="line"><span class="lineno">  372</span>        *databuf = msg-&gt;<a class="code hl_variable" href="structxwmq__msg.html#abb9c4759c5d64abb5fdb9d79e6f56cd1">data</a>;</div>
+<div class="line"><span class="lineno">  373</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="structxwmq__msg.html#ac4d91a1198be2297329071a39ce28f5d">topic</a>) {</div>
+<div class="line"><span class="lineno">  374</span>                *<a class="code hl_variable" href="structxwmq__msg.html#ac4d91a1198be2297329071a39ce28f5d">topic</a> = msg-&gt;<a class="code hl_variable" href="structxwmq__msg.html#ac4d91a1198be2297329071a39ce28f5d">topic</a>;</div>
+<div class="line"><span class="lineno">  375</span>        }</div>
+<div class="line"><span class="lineno">  376</span>        <a class="code hl_function" href="xwmq_8c.html#a5a70d91d330701da212249f5728fb5e4">xwmq_msg_put</a>(mq, msg);</div>
+<div class="line"><span class="lineno">  377</span>        <a class="code hl_function" href="group__xwos__sync__sem.html#gaf6f291eaa8c268dccb6ebc675a24755b">xwos_sem_post</a>(&amp;mq-&gt;<a class="code hl_variable" href="structxwmq.html#a35a574ad328c5ac780f7baa931966c72">txqsem</a>);</div>
+<div class="line"><span class="lineno">  378</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><span class="lineno">  379</span> </div>
+<div class="line"><span class="lineno">  380</span>err_sem_trywait:</div>
+<div class="line"><span class="lineno">  381</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  382</span>}</div>
+<div class="ttc" id="agroup__xwos__sync__sem_html_ga453bbb4747cdd5cc94ddb9b988ee0866"><div class="ttname"><a href="group__xwos__sync__sem.html#ga453bbb4747cdd5cc94ddb9b988ee0866">xwos_sem_trywait</a></div><div class="ttdeci">static xwer_t xwos_sem_trywait(struct xwos_sem *sem)</div><div class="ttdoc">XWOS API：尝试获取信号量</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sem_8h_source.html#l00385">sem.h:385</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmd__isc__xwmq_ga113bc97ec8121f3eb884e8da900497eb_cgraph.png" border="0" usemap="#agroup__xwmd__isc__xwmq_ga113bc97ec8121f3eb884e8da900497eb_cgraph" alt=""/></div>
+<map name="agroup__xwmd__isc__xwmq_ga113bc97ec8121f3eb884e8da900497eb_cgraph" id="agroup__xwmd__isc__xwmq_ga113bc97ec8121f3eb884e8da900497eb_cgraph">
+<area shape="rect" title="XWMQ API: 尝试从消息队列头部取出一条消息" alt="" coords="5,195,99,221"/>
+<area shape="rect" href="xwmq_8c.html#afcc2194eee03bb360b90d0c47b246072" title="从消息接收队列头部选择一条消息" alt="" coords="147,107,288,133"/>
+<area shape="rect" href="xwmq_8c.html#a5a70d91d330701da212249f5728fb5e4" title="释放一个消息槽" alt="" coords="160,169,275,196"/>
+<area shape="rect" href="group__xwos__sync__sem.html#gaf6f291eaa8c268dccb6ebc675a24755b" title="XWOS API：发布信号量" alt="" coords="159,220,276,247"/>
+<area shape="rect" href="group__xwos__sync__sem.html#ga453bbb4747cdd5cc94ddb9b988ee0866" title="XWOS API：尝试获取信号量" alt="" coords="152,271,283,297"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#gab12f3ce1a4e53de3112b10c9ffb06cae" title="删除一个节点，并重新初始化它" alt="" coords="360,31,495,57"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gad393963b449be923d8af40538b9befdf" title="XWOS API：上锁自旋锁，保存本地CPU的中断标志并关闭" alt="" coords="342,81,513,108"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gaa83b4a8f3340ddf35346dbedf9ce3979" title="XWOS API：解锁自旋锁，并恢复本地CPU的中断标志" alt="" coords="336,132,519,159"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#gab7918962f86f86d5c7049922a5173e81" title="删除prev节点与next节点之间的节点" alt="" coords="567,5,733,32"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga3286c94ae92265dea90fd52bfdb85569" title="初始化一个链表节点。" alt="" coords="577,56,723,83"/>
+<area shape="rect" href="group__xwmm__memslice.html#ga337a549e8b2fc9e95d1e9c240bde1e31" title="XWMM API：释放一片内存切片" alt="" coords="351,183,504,209"/>
+<area shape="rect" href="group__xwos__lib__lfq.html#gac200bdfc5370284b5b3afde010b49c56" title="将一个节点推入无锁队列（栈式队列）" alt="" coords="596,183,704,209"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga30b3fc4cf9323d3597eb8a383bdf611f" name="ga30b3fc4cf9323d3597eb8a383bdf611f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga30b3fc4cf9323d3597eb8a383bdf611f">&#9670;&nbsp;</a></span>xwmq_tryeq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwmq_tryeq </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwmq.html">xwmq</a> *&#160;</td>
+          <td class="paramname"><em>mq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>&#160;</td>
+          <td class="paramname"><em>topic</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWMQ API：尝试获取消息槽，然后将消息放入到消息队列的尾端（入队） </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mq</td><td>消息队列对象的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">topic</td><td>消息的标题 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>消息的数据 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>空指针 </td></tr>
+    <tr><td class="paramname">-ENODATA</td><td>接收队列为空 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意</li>
+</ul>
+</dd></dl>
+<p>若消息槽队列中没有空闲的消息槽，就立即返回 <code>-ENODATA</code>，不会阻塞。 </p>
+<p >&lt;Bad address</p>
+<p >&lt;Bad address</p>
+<p >&lt;No error</p>
+
+<p class="definition">在文件 <a class="el" href="xwmq_8c_source.html">xwmq.c</a> 第 <a class="el" href="xwmq_8c_source.html#l00202">202</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  203</span>{</div>
+<div class="line"><span class="lineno">  204</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">  205</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#gaf8126ee3732e83d788722e2232a20948">xwreg_t</a> cpuirq;</div>
+<div class="line"><span class="lineno">  206</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwmq__msg.html">xwmq_msg</a> * msg;</div>
+<div class="line"><span class="lineno">  207</span> </div>
+<div class="line"><span class="lineno">  208</span>        <a class="code hl_define" href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a>((mq), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  209</span>        <a class="code hl_define" href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a>((<a class="code hl_variable" href="structxwmq__msg.html#abb9c4759c5d64abb5fdb9d79e6f56cd1">data</a>), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  210</span> </div>
+<div class="line"><span class="lineno">  211</span>        rc = <a class="code hl_function" href="group__xwos__sync__sem.html#ga453bbb4747cdd5cc94ddb9b988ee0866">xwos_sem_trywait</a>(&amp;mq-&gt;<a class="code hl_variable" href="structxwmq.html#a35a574ad328c5ac780f7baa931966c72">txqsem</a>);</div>
+<div class="line"><span class="lineno">  212</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  213</span>                <span class="keywordflow">goto</span> err_sem_trywait;</div>
+<div class="line"><span class="lineno">  214</span>        }</div>
+<div class="line"><span class="lineno">  215</span>        msg = <a class="code hl_function" href="xwmq_8c.html#a266a048d37f3f16990f8d6bcf3ac2828">xwmq_msg_get</a>(mq);</div>
+<div class="line"><span class="lineno">  216</span>        msg-&gt;<a class="code hl_variable" href="structxwmq__msg.html#ac4d91a1198be2297329071a39ce28f5d">topic</a> = <a class="code hl_variable" href="structxwmq__msg.html#ac4d91a1198be2297329071a39ce28f5d">topic</a>;</div>
+<div class="line"><span class="lineno">  217</span>        msg-&gt;<a class="code hl_variable" href="structxwmq__msg.html#abb9c4759c5d64abb5fdb9d79e6f56cd1">data</a> = <a class="code hl_variable" href="structxwmq__msg.html#abb9c4759c5d64abb5fdb9d79e6f56cd1">data</a>;</div>
+<div class="line"><span class="lineno">  218</span>        <a class="code hl_function" href="group__xwos__lock__spinlock.html#gad393963b449be923d8af40538b9befdf">xwos_splk_lock_cpuirqsv</a>(&amp;mq-&gt;<a class="code hl_variable" href="structxwmq.html#a46776d84330e7e63acf6b90d13e9cf6d">rxqlock</a>, &amp;cpuirq);</div>
+<div class="line"><span class="lineno">  219</span>        <a class="code hl_function" href="group__xwos__lib__bclst.html#ga2aa317fe5cea0989c273b3c69f69d795">xwlib_bclst_add_tail</a>(&amp;mq-&gt;<a class="code hl_variable" href="structxwmq.html#a437c514f793850e7e665ac7183320a9a">rxq</a>, &amp;msg-&gt;<a class="code hl_variable" href="structxwmq__msg.html#a7b605404c02bc7dcf8d6cb6eb4a74022">node</a>);</div>
+<div class="line"><span class="lineno">  220</span>        <a class="code hl_function" href="group__xwos__lock__spinlock.html#gaa83b4a8f3340ddf35346dbedf9ce3979">xwos_splk_unlock_cpuirqrs</a>(&amp;mq-&gt;<a class="code hl_variable" href="structxwmq.html#a46776d84330e7e63acf6b90d13e9cf6d">rxqlock</a>, cpuirq);</div>
+<div class="line"><span class="lineno">  221</span>        <a class="code hl_function" href="group__xwos__sync__sem.html#gaf6f291eaa8c268dccb6ebc675a24755b">xwos_sem_post</a>(&amp;mq-&gt;<a class="code hl_variable" href="structxwmq.html#a287dc420d0b42e9c77135a78f08f1ef8">rxqsem</a>);</div>
+<div class="line"><span class="lineno">  222</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><span class="lineno">  223</span> </div>
+<div class="line"><span class="lineno">  224</span>err_sem_trywait:</div>
+<div class="line"><span class="lineno">  225</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  226</span>}</div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmd__isc__xwmq_ga30b3fc4cf9323d3597eb8a383bdf611f_cgraph.png" border="0" usemap="#agroup__xwmd__isc__xwmq_ga30b3fc4cf9323d3597eb8a383bdf611f_cgraph" alt=""/></div>
+<map name="agroup__xwmd__isc__xwmq_ga30b3fc4cf9323d3597eb8a383bdf611f_cgraph" id="agroup__xwmd__isc__xwmq_ga30b3fc4cf9323d3597eb8a383bdf611f_cgraph">
+<area shape="rect" title="XWMQ API：尝试获取消息槽，然后将消息放入到消息队列的尾端（入队）" alt="" coords="5,132,99,159"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga2aa317fe5cea0989c273b3c69f69d795" title="将一个节点加入链表尾部（链表头的前面）" alt="" coords="169,5,307,32"/>
+<area shape="rect" href="xwmq_8c.html#a266a048d37f3f16990f8d6bcf3ac2828" title="获取一个消息槽" alt="" coords="181,56,295,83"/>
+<area shape="rect" href="group__xwos__sync__sem.html#gaf6f291eaa8c268dccb6ebc675a24755b" title="XWOS API：发布信号量" alt="" coords="179,107,297,133"/>
+<area shape="rect" href="group__xwos__sync__sem.html#ga453bbb4747cdd5cc94ddb9b988ee0866" title="XWOS API：尝试获取信号量" alt="" coords="173,157,303,184"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gad393963b449be923d8af40538b9befdf" title="XWOS API：上锁自旋锁，保存本地CPU的中断标志并关闭" alt="" coords="153,208,323,235"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gaa83b4a8f3340ddf35346dbedf9ce3979" title="XWOS API：解锁自旋锁，并恢复本地CPU的中断标志" alt="" coords="147,259,329,285"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga42c09bc0da5cac8327003314056f43b7" title="将一个新节点加入到prev与next之间" alt="" coords="377,5,548,32"/>
+<area shape="rect" href="group__xwmm__memslice.html#ga6b9a1ff8b0ea0720d3e684a6b673dbe6" title="XWMM API：申请一片内存切片" alt="" coords="383,56,542,83"/>
+<area shape="rect" href="group__xwos__lib__lfq.html#ga914f507948cdc286defd940f259cb826" title="弹出无锁队列中的第一个节点（栈式队列）" alt="" coords="596,56,697,83"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga706a753c885996d85ec7fbf6d7461385" name="ga706a753c885996d85ec7fbf6d7461385"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga706a753c885996d85ec7fbf6d7461385">&#9670;&nbsp;</a></span>xwmq_tryjq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwmq_tryjq </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwmq.html">xwmq</a> *&#160;</td>
+          <td class="paramname"><em>mq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>&#160;</td>
+          <td class="paramname"><em>topic</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWMQ API：尝试获取消息槽，然后将消息放入到消息队列的首端（插队） </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mq</td><td>消息队列对象的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">topic</td><td>消息的标题 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>消息的数据 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>空指针 </td></tr>
+    <tr><td class="paramname">-ENODATA</td><td>接收队列为空 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意</li>
+</ul>
+</dd></dl>
+<p>若消息槽队列中没有空闲的消息槽，就立即返回 <code>-ENODATA</code>，不会阻塞。 </p>
+<p >&lt;Bad address</p>
+<p >&lt;Bad address</p>
+<p >&lt;No error</p>
+
+<p class="definition">在文件 <a class="el" href="xwmq_8c_source.html">xwmq.c</a> 第 <a class="el" href="xwmq_8c_source.html#l00262">262</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  263</span>{</div>
+<div class="line"><span class="lineno">  264</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">  265</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#gaf8126ee3732e83d788722e2232a20948">xwreg_t</a> cpuirq;</div>
+<div class="line"><span class="lineno">  266</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwmq__msg.html">xwmq_msg</a> * msg;</div>
+<div class="line"><span class="lineno">  267</span> </div>
+<div class="line"><span class="lineno">  268</span>        <a class="code hl_define" href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a>((mq), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  269</span>        <a class="code hl_define" href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a>((<a class="code hl_variable" href="structxwmq__msg.html#abb9c4759c5d64abb5fdb9d79e6f56cd1">data</a>), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  270</span> </div>
+<div class="line"><span class="lineno">  271</span>        rc = <a class="code hl_function" href="group__xwos__sync__sem.html#ga453bbb4747cdd5cc94ddb9b988ee0866">xwos_sem_trywait</a>(&amp;mq-&gt;<a class="code hl_variable" href="structxwmq.html#a35a574ad328c5ac780f7baa931966c72">txqsem</a>);</div>
+<div class="line"><span class="lineno">  272</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  273</span>                <span class="keywordflow">goto</span> err_sem_trywait;</div>
+<div class="line"><span class="lineno">  274</span>        }</div>
+<div class="line"><span class="lineno">  275</span>        msg = <a class="code hl_function" href="xwmq_8c.html#a266a048d37f3f16990f8d6bcf3ac2828">xwmq_msg_get</a>(mq);</div>
+<div class="line"><span class="lineno">  276</span>        msg-&gt;<a class="code hl_variable" href="structxwmq__msg.html#ac4d91a1198be2297329071a39ce28f5d">topic</a> = <a class="code hl_variable" href="structxwmq__msg.html#ac4d91a1198be2297329071a39ce28f5d">topic</a>;</div>
+<div class="line"><span class="lineno">  277</span>        msg-&gt;<a class="code hl_variable" href="structxwmq__msg.html#abb9c4759c5d64abb5fdb9d79e6f56cd1">data</a> = <a class="code hl_variable" href="structxwmq__msg.html#abb9c4759c5d64abb5fdb9d79e6f56cd1">data</a>;</div>
+<div class="line"><span class="lineno">  278</span>        <a class="code hl_function" href="group__xwos__lock__spinlock.html#gad393963b449be923d8af40538b9befdf">xwos_splk_lock_cpuirqsv</a>(&amp;mq-&gt;<a class="code hl_variable" href="structxwmq.html#a46776d84330e7e63acf6b90d13e9cf6d">rxqlock</a>, &amp;cpuirq);</div>
+<div class="line"><span class="lineno">  279</span>        <a class="code hl_function" href="group__xwos__lib__bclst.html#ga942be8d64e19cb8efb4dd1cf10e6e706">xwlib_bclst_add_head</a>(&amp;mq-&gt;<a class="code hl_variable" href="structxwmq.html#a437c514f793850e7e665ac7183320a9a">rxq</a>, &amp;msg-&gt;<a class="code hl_variable" href="structxwmq__msg.html#a7b605404c02bc7dcf8d6cb6eb4a74022">node</a>);</div>
+<div class="line"><span class="lineno">  280</span>        <a class="code hl_function" href="group__xwos__lock__spinlock.html#gaa83b4a8f3340ddf35346dbedf9ce3979">xwos_splk_unlock_cpuirqrs</a>(&amp;mq-&gt;<a class="code hl_variable" href="structxwmq.html#a46776d84330e7e63acf6b90d13e9cf6d">rxqlock</a>, cpuirq);</div>
+<div class="line"><span class="lineno">  281</span>        <a class="code hl_function" href="group__xwos__sync__sem.html#gaf6f291eaa8c268dccb6ebc675a24755b">xwos_sem_post</a>(&amp;mq-&gt;<a class="code hl_variable" href="structxwmq.html#a287dc420d0b42e9c77135a78f08f1ef8">rxqsem</a>);</div>
+<div class="line"><span class="lineno">  282</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><span class="lineno">  283</span> </div>
+<div class="line"><span class="lineno">  284</span>err_sem_trywait:</div>
+<div class="line"><span class="lineno">  285</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  286</span>}</div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmd__isc__xwmq_ga706a753c885996d85ec7fbf6d7461385_cgraph.png" border="0" usemap="#agroup__xwmd__isc__xwmq_ga706a753c885996d85ec7fbf6d7461385_cgraph" alt=""/></div>
+<map name="agroup__xwmd__isc__xwmq_ga706a753c885996d85ec7fbf6d7461385_cgraph" id="agroup__xwmd__isc__xwmq_ga706a753c885996d85ec7fbf6d7461385_cgraph">
+<area shape="rect" title="XWMQ API：尝试获取消息槽，然后将消息放入到消息队列的首端（插队）" alt="" coords="5,132,95,159"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga942be8d64e19cb8efb4dd1cf10e6e706" title="将一个节点加入链表头部（链表头的后面）" alt="" coords="159,5,309,32"/>
+<area shape="rect" href="xwmq_8c.html#a266a048d37f3f16990f8d6bcf3ac2828" title="获取一个消息槽" alt="" coords="177,56,291,83"/>
+<area shape="rect" href="group__xwos__sync__sem.html#gaf6f291eaa8c268dccb6ebc675a24755b" title="XWOS API：发布信号量" alt="" coords="175,107,293,133"/>
+<area shape="rect" href="group__xwos__sync__sem.html#ga453bbb4747cdd5cc94ddb9b988ee0866" title="XWOS API：尝试获取信号量" alt="" coords="169,157,299,184"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gad393963b449be923d8af40538b9befdf" title="XWOS API：上锁自旋锁，保存本地CPU的中断标志并关闭" alt="" coords="149,208,319,235"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gaa83b4a8f3340ddf35346dbedf9ce3979" title="XWOS API：解锁自旋锁，并恢复本地CPU的中断标志" alt="" coords="143,259,325,285"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga42c09bc0da5cac8327003314056f43b7" title="将一个新节点加入到prev与next之间" alt="" coords="373,5,544,32"/>
+<area shape="rect" href="group__xwmm__memslice.html#ga6b9a1ff8b0ea0720d3e684a6b673dbe6" title="XWMM API：申请一片内存切片" alt="" coords="379,56,538,83"/>
+<area shape="rect" href="group__xwos__lib__lfq.html#ga914f507948cdc286defd940f259cb826" title="弹出无锁队列中的第一个节点（栈式队列）" alt="" coords="592,56,693,83"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga7c48b58030cf580f089d2cb42bc644fd" name="ga7c48b58030cf580f089d2cb42bc644fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7c48b58030cf580f089d2cb42bc644fd">&#9670;&nbsp;</a></span>xwmq_tryrq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwmq_tryrq </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwmq.html">xwmq</a> *&#160;</td>
+          <td class="paramname"><em>mq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> *&#160;</td>
+          <td class="paramname"><em>topic</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void **&#160;</td>
+          <td class="paramname"><em>databuf</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWMQ API: 尝试从消息队列尾部取出一条消息 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mq</td><td>消息队列对象的指针 </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">ptrbuf</td><td>指向缓冲区的指针，此缓冲区用于接收消息 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>空指针 </td></tr>
+    <tr><td class="paramname">-ENODATA</td><td>接收队列为空 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意</li>
+</ul>
+</dd></dl>
+<p>若接收队列中没有新的消息，就立即返回 <code>-ENODATA</code> ，因此可在中断中使用。 </p>
+<p >&lt;Bad address</p>
+<p >&lt;Bad address</p>
+<p >&lt;No error</p>
+
+<p class="definition">在文件 <a class="el" href="xwmq_8c_source.html">xwmq.c</a> 第 <a class="el" href="xwmq_8c_source.html#l00417">417</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  418</span>{</div>
+<div class="line"><span class="lineno">  419</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">  420</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwmq__msg.html">xwmq_msg</a> * msg;</div>
+<div class="line"><span class="lineno">  421</span> </div>
+<div class="line"><span class="lineno">  422</span>        <a class="code hl_define" href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a>((mq), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  423</span>        <a class="code hl_define" href="group__xwos__standard.html#ga0c63a67f52b315298e2be98f79cd0c08">XWOS_VALIDATE</a>((databuf), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  424</span> </div>
+<div class="line"><span class="lineno">  425</span>        rc = <a class="code hl_function" href="group__xwos__sync__sem.html#ga453bbb4747cdd5cc94ddb9b988ee0866">xwos_sem_trywait</a>(&amp;mq-&gt;<a class="code hl_variable" href="structxwmq.html#a287dc420d0b42e9c77135a78f08f1ef8">rxqsem</a>);</div>
+<div class="line"><span class="lineno">  426</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  427</span>                <span class="keywordflow">goto</span> err_sem_trywait;</div>
+<div class="line"><span class="lineno">  428</span>        }</div>
+<div class="line"><span class="lineno">  429</span>        msg = <a class="code hl_function" href="xwmq_8c.html#ab11ae57b63b75fd37debce2e7bfc7881">xwmq_choose_tail</a>(mq);</div>
+<div class="line"><span class="lineno">  430</span>        *databuf = msg-&gt;<a class="code hl_variable" href="structxwmq__msg.html#abb9c4759c5d64abb5fdb9d79e6f56cd1">data</a>;</div>
+<div class="line"><span class="lineno">  431</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="structxwmq__msg.html#ac4d91a1198be2297329071a39ce28f5d">topic</a>) {</div>
+<div class="line"><span class="lineno">  432</span>                *<a class="code hl_variable" href="structxwmq__msg.html#ac4d91a1198be2297329071a39ce28f5d">topic</a> = msg-&gt;<a class="code hl_variable" href="structxwmq__msg.html#ac4d91a1198be2297329071a39ce28f5d">topic</a>;</div>
+<div class="line"><span class="lineno">  433</span>        }</div>
+<div class="line"><span class="lineno">  434</span>        <a class="code hl_function" href="xwmq_8c.html#a5a70d91d330701da212249f5728fb5e4">xwmq_msg_put</a>(mq, msg);</div>
+<div class="line"><span class="lineno">  435</span>        <a class="code hl_function" href="group__xwos__sync__sem.html#gaf6f291eaa8c268dccb6ebc675a24755b">xwos_sem_post</a>(&amp;mq-&gt;<a class="code hl_variable" href="structxwmq.html#a35a574ad328c5ac780f7baa931966c72">txqsem</a>);</div>
+<div class="line"><span class="lineno">  436</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><span class="lineno">  437</span> </div>
+<div class="line"><span class="lineno">  438</span>err_sem_trywait:</div>
+<div class="line"><span class="lineno">  439</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  440</span>}</div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmd__isc__xwmq_ga7c48b58030cf580f089d2cb42bc644fd_cgraph.png" border="0" usemap="#agroup__xwmd__isc__xwmq_ga7c48b58030cf580f089d2cb42bc644fd_cgraph" alt=""/></div>
+<map name="agroup__xwmd__isc__xwmq_ga7c48b58030cf580f089d2cb42bc644fd_cgraph" id="agroup__xwmd__isc__xwmq_ga7c48b58030cf580f089d2cb42bc644fd_cgraph">
+<area shape="rect" title="XWMQ API: 尝试从消息队列尾部取出一条消息" alt="" coords="5,195,96,221"/>
+<area shape="rect" href="xwmq_8c.html#ab11ae57b63b75fd37debce2e7bfc7881" title="从消息接收队列尾部选择一条消息" alt="" coords="144,107,275,133"/>
+<area shape="rect" href="xwmq_8c.html#a5a70d91d330701da212249f5728fb5e4" title="释放一个消息槽" alt="" coords="152,169,267,196"/>
+<area shape="rect" href="group__xwos__sync__sem.html#gaf6f291eaa8c268dccb6ebc675a24755b" title="XWOS API：发布信号量" alt="" coords="151,220,268,247"/>
+<area shape="rect" href="group__xwos__sync__sem.html#ga453bbb4747cdd5cc94ddb9b988ee0866" title="XWOS API：尝试获取信号量" alt="" coords="144,271,275,297"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#gab12f3ce1a4e53de3112b10c9ffb06cae" title="删除一个节点，并重新初始化它" alt="" coords="347,31,481,57"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gad393963b449be923d8af40538b9befdf" title="XWOS API：上锁自旋锁，保存本地CPU的中断标志并关闭" alt="" coords="329,81,499,108"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gaa83b4a8f3340ddf35346dbedf9ce3979" title="XWOS API：解锁自旋锁，并恢复本地CPU的中断标志" alt="" coords="323,132,505,159"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#gab7918962f86f86d5c7049922a5173e81" title="删除prev节点与next节点之间的节点" alt="" coords="553,5,720,32"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga3286c94ae92265dea90fd52bfdb85569" title="初始化一个链表节点。" alt="" coords="563,56,710,83"/>
+<area shape="rect" href="group__xwmm__memslice.html#ga337a549e8b2fc9e95d1e9c240bde1e31" title="XWMM API：释放一片内存切片" alt="" coords="337,183,491,209"/>
+<area shape="rect" href="group__xwos__lib__lfq.html#gac200bdfc5370284b5b3afde010b49c56" title="将一个节点推入无锁队列（栈式队列）" alt="" coords="583,183,691,209"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
+  </ul>
+</div>
+</body>
+</html>

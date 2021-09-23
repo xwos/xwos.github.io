@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["get_stage","获取当前电源管理阶段"],["resume","唤醒系统"],["set_cb","设置电源管理的回调函数"],["suspend","将系统切换为低功耗状态"]],"struct":[["PmStage",""]],"type":[["PmCallback","电源管理回调函数类型"]]});

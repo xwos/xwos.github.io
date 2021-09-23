@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["SIZEOF_XWOS_SEM","XWOS信号量对象占用的内存大小"]],"enum":[["SemError","信号量的错误码"]],"struct":[["Sem","信号量对象结构体"],["SemSel","信号量的选择子"]]});

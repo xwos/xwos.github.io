@@ -1,0 +1,187 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="条件量对象结构体"><meta name="keywords" content="rust, rustlang, rust-lang, Cond"><title>Cond in xwrust::xwos::sync::cond - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../../storage.js"></script><script src="../../../../crates.js"></script><script defer src="../../../../main.js"></script>
+    <noscript><link rel="stylesheet" href="../../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../../favicon.svg"></head><body class="rustdoc struct"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../../xwrust/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../../../xwrust/index.html"><div class="logo-container"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"><a href="#">Cond</a></h2><div class="sidebar-elems"><section><div class="block"><h3 class="sidebar-title"><a href="#implementations">Methods</a></h3><ul><li><a href="#method.bind">bind</a></li><li><a href="#method.broadcast">broadcast</a></li><li><a href="#method.freeze">freeze</a></li><li><a href="#method.init">init</a></li><li><a href="#method.new">new</a></li><li><a href="#method.thaw">thaw</a></li><li><a href="#method.unicast">unicast</a></li></ul></div><div class="block"><h3 class="sidebar-title"><a href="#trait-implementations">Trait Implementations</a></h3><ul><li><a href="#impl-Drop">Drop</a></li><li><a href="#impl-Send">Send</a></li><li><a href="#impl-Sync">Sync</a></li></ul></div><div class="block"><h3 class="sidebar-title"><a href="#synthetic-implementations">Auto Trait Implementations</a></h3><ul><li><a href="#impl-RefUnwindSafe">!RefUnwindSafe</a></li><li><a href="#impl-Unpin">Unpin</a></li><li><a href="#impl-UnwindSafe">UnwindSafe</a></li></ul></div><div class="block"><h3 class="sidebar-title"><a href="#blanket-implementations">Blanket Implementations</a></h3><ul><li><a href="#impl-Any">Any</a></li><li><a href="#impl-Borrow%3CT%3E">Borrow&lt;T&gt;</a></li><li><a href="#impl-BorrowMut%3CT%3E">BorrowMut&lt;T&gt;</a></li><li><a href="#impl-From%3CT%3E">From&lt;T&gt;</a></li><li><a href="#impl-Into%3CU%3E">Into&lt;U&gt;</a></li><li><a href="#impl-TryFrom%3CU%3E">TryFrom&lt;U&gt;</a></li><li><a href="#impl-TryInto%3CU%3E">TryInto&lt;U&gt;</a></li></ul></div></section><h2 class="location"><a href="index.html">In xwrust::xwos::sync::cond</a></h2><div id="sidebar-vars" data-name="Cond" data-ty="struct" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../../xwrust/index.html"><img class="rust-logo" src="../../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><div id="settings-menu" tabindex="-1">
+                                <a href="../../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../../wheel.svg"></a></div>
+                        </div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
+    <h1 class="fqn"><span class="in-band">Struct <a href="../../../index.html">xwrust</a>::<wbr><a href="../../index.html">xwos</a>::<wbr><a href="../index.html">sync</a>::<wbr><a href="index.html">cond</a>::<wbr><a class="struct" href="#">Cond</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../../../../src/xwrust/xwos/sync/cond.rs.html#288-293">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><div class="docblock item-decl"><pre class="rust struct"><code>pub struct Cond { /* private fields */ }</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>条件量对象结构体</p>
+</div></details><h2 id="implementations" class="small-section-header">Implementations<a href="#implementations" class="anchor"></a></h2><div id="implementations-list"><details class="rustdoc-toggle implementors-toggle" open><summary><section id="impl" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../../../../src/xwrust/xwos/sync/cond.rs.html#306-339">source</a></span><a href="#impl" class="anchor"></a><h3 class="code-header in-band">impl <a class="struct" href="struct.Cond.html" title="struct xwrust::xwos::sync::cond::Cond">Cond</a></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.new" class="method has-srclink"><span class="rightside"><a class="srclink" href="../../../../src/xwrust/xwos/sync/cond.rs.html#333-338">source</a></span><a href="#method.new" class="anchor"></a><h4 class="code-header">pub const fn <a href="#method.new" class="fnname">new</a>() -&gt; Self</h4></section></summary><div class="docblock"><p>新建条件量对象</p>
+<p>此方法是编译期方法。</p>
+<h5 id="示例"><a href="#示例">示例</a></h5>
+<ul>
+<li>具有 <a href="https://doc.rust-lang.org/std/keyword.static.html"><code>static</code></a> 约束的全局变量全局变量：</li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">xwrust::xwos::sync::cond</span>::<span class="kw-2">*</span>;
+
+<span class="kw">static</span> <span class="ident">GLOBAL_COND</span>: <span class="ident">Cond</span>  <span class="op">=</span> <span class="ident">Cond::new</span>();</code></pre></div>
+<ul>
+<li>在heap中创建：</li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">alloc</span>;
+<span class="kw">use</span> <span class="ident">alloc::sync::Arc</span>;
+
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">xwrust_example_cond</span>() {
+    <span class="kw">let</span> <span class="ident">cond</span> <span class="op">=</span> <span class="ident">Arc::new</span>(<span class="ident">Cond::new</span>());
+}</code></pre></div>
+</div></details></div></details><details class="rustdoc-toggle implementors-toggle" open><summary><section id="impl-1" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../../../../src/xwrust/xwos/sync/cond.rs.html#341-638">source</a></span><a href="#impl-1" class="anchor"></a><h3 class="code-header in-band">impl <a class="struct" href="struct.Cond.html" title="struct xwrust::xwos::sync::cond::Cond">Cond</a></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.init" class="method has-srclink"><span class="rightside"><a class="srclink" href="../../../../src/xwrust/xwos/sync/cond.rs.html#363-373">source</a></span><a href="#method.init" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.init" class="fnname">init</a>(&amp;self)</h4></section></summary><div class="docblock"><p>初始化条件量对象</p>
+<p>条件量对象必须调用此方法一次，方可正常使用。</p>
+<h5 id="上下文"><a href="#上下文">上下文</a></h5>
+<ul>
+<li>任意</li>
+</ul>
+<h5 id="示例-1"><a href="#示例-1">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">xwrust::xwos::sync::cond</span>::<span class="kw-2">*</span>;
+
+<span class="kw">static</span> <span class="ident">GLOBAL_COND</span>: <span class="ident">Cond</span> <span class="op">=</span> <span class="ident">Cond::new</span>();
+
+<span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">xwrust_main</span>() {
+    <span class="comment">// ...省略...</span>
+    <span class="ident">GLOBAL_COND</span>.<span class="ident">init</span>();
+    <span class="comment">// 从此处开始 GLOBAL_COND 可正常使用</span>
+}</code></pre></div>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.freeze" class="method has-srclink"><span class="rightside"><a class="srclink" href="../../../../src/xwrust/xwos/sync/cond.rs.html#401-418">source</a></span><a href="#method.freeze" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.freeze" class="fnname">freeze</a>(&amp;self) -&gt; <a class="enum" href="enum.CondError.html" title="enum xwrust::xwos::sync::cond::CondError">CondError</a></h4></section></summary><div class="docblock"><p>冻结条件量</p>
+<p>条件量被冻结后，可被线程等待，但被能被单播 <a href="struct.Cond.html#method.unicast" title="Cond::unicast()"><code>Cond::unicast()</code></a> 或广播 <a href="struct.Cond.html#method.broadcast" title="Cond::broadcast()"><code>Cond::broadcast()</code></a> 。</p>
+<h5 id="上下文-1"><a href="#上下文-1">上下文</a></h5>
+<ul>
+<li>任意</li>
+</ul>
+<h5 id="错误码"><a href="#错误码">错误码</a></h5>
+<ul>
+<li><a href="enum.CondError.html#variant.Ok" title="CondError::Ok"><code>CondError::Ok</code></a> 没有错误</li>
+<li><a href="enum.CondError.html#variant.NotInit" title="CondError::NotInit"><code>CondError::NotInit</code></a> 条件量没有初始化</li>
+<li><a href="enum.CondError.html#variant.AlreadyFrozen" title="CondError::AlreadyFrozen"><code>CondError::AlreadyFrozen</code></a> 条件量已被冻结</li>
+</ul>
+<h5 id="示例-2"><a href="#示例-2">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">xwrust::xwos::sync::cond</span>::<span class="kw-2">*</span>;
+
+<span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">xwrust_main</span>() {
+    <span class="comment">// ...省略...</span>
+    <span class="ident">condvar</span>: <span class="ident">Cond</span> <span class="op">=</span> <span class="ident">Cond::new</span>();
+    <span class="ident">condvar</span>.<span class="ident">init</span>();
+    <span class="ident">condvar</span>.<span class="ident">freeze</span>();
+}</code></pre></div>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.thaw" class="method has-srclink"><span class="rightside"><a class="srclink" href="../../../../src/xwrust/xwos/sync/cond.rs.html#448-465">source</a></span><a href="#method.thaw" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.thaw" class="fnname">thaw</a>(&amp;self) -&gt; <a class="enum" href="enum.CondError.html" title="enum xwrust::xwos::sync::cond::CondError">CondError</a></h4></section></summary><div class="docblock"><p>解冻条件量</p>
+<p>被冻结的条件量解冻后，可被单播 <a href="struct.Cond.html#method.unicast" title="Cond::unicast()"><code>Cond::unicast()</code></a> 或广播 <a href="struct.Cond.html#method.broadcast" title="Cond::broadcast()"><code>Cond::broadcast()</code></a> 。</p>
+<h5 id="上下文-2"><a href="#上下文-2">上下文</a></h5>
+<ul>
+<li>任意</li>
+</ul>
+<h5 id="错误码-1"><a href="#错误码-1">错误码</a></h5>
+<ul>
+<li><a href="enum.CondError.html#variant.Ok" title="CondError::Ok"><code>CondError::Ok</code></a> 没有错误</li>
+<li><a href="enum.CondError.html#variant.NotInit" title="CondError::NotInit"><code>CondError::NotInit</code></a> 条件量没有初始化</li>
+<li><a href="enum.CondError.html#variant.AlreadyThawed" title="CondError::AlreadyThawed"><code>CondError::AlreadyThawed</code></a> 条件量已解冻</li>
+</ul>
+<h5 id="示例-3"><a href="#示例-3">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">xwrust::xwos::sync::cond</span>::<span class="kw-2">*</span>;
+
+<span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">xwrust_main</span>() {
+    <span class="comment">// ...省略...</span>
+    <span class="ident">condvar</span>: <span class="ident">Cond</span> <span class="op">=</span> <span class="ident">Cond::new</span>();
+    <span class="ident">condvar</span>.<span class="ident">init</span>();
+    <span class="ident">condvar</span>.<span class="ident">freeze</span>(); <span class="comment">// 冻结</span>
+    <span class="comment">// ...省略...</span>
+    <span class="ident">condvar</span>.<span class="ident">thaw</span>(); <span class="comment">// 解冻</span>
+}</code></pre></div>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.unicast" class="method has-srclink"><span class="rightside"><a class="srclink" href="../../../../src/xwrust/xwos/sync/cond.rs.html#494-511">source</a></span><a href="#method.unicast" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.unicast" class="fnname">unicast</a>(&amp;self) -&gt; <a class="enum" href="enum.CondError.html" title="enum xwrust::xwos::sync::cond::CondError">CondError</a></h4></section></summary><div class="docblock"><p>单播条件量对象</p>
+<p>只会唤醒第一个线程，阻塞线程的队列使用的是先进先出(FIFO)算法 。</p>
+<h5 id="上下文-3"><a href="#上下文-3">上下文</a></h5>
+<ul>
+<li>任意</li>
+</ul>
+<h5 id="错误码-2"><a href="#错误码-2">错误码</a></h5>
+<ul>
+<li><a href="enum.CondError.html#variant.Ok" title="CondError::Ok"><code>CondError::Ok</code></a> 没有错误</li>
+<li><a href="enum.CondError.html#variant.NotInit" title="CondError::NotInit"><code>CondError::NotInit</code></a> 条件量没有初始化</li>
+<li><a href="enum.CondError.html#variant.AlreadyFrozen" title="CondError::AlreadyFrozen"><code>CondError::AlreadyFrozen</code></a> 条件量已被冻结</li>
+</ul>
+<h5 id="示例-4"><a href="#示例-4">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">xwrust::xwos::sync::cond</span>::<span class="kw-2">*</span>;
+
+<span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">xwrust_main</span>() {
+    <span class="comment">// ...省略...</span>
+    <span class="ident">condvar</span>: <span class="ident">Cond</span> <span class="op">=</span> <span class="ident">Cond::new</span>();
+    <span class="ident">condvar</span>.<span class="ident">init</span>();
+    <span class="comment">// ...省略...</span>
+    <span class="ident">condvar</span>.<span class="ident">unicast</span>();
+}</code></pre></div>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.broadcast" class="method has-srclink"><span class="rightside"><a class="srclink" href="../../../../src/xwrust/xwos/sync/cond.rs.html#540-557">source</a></span><a href="#method.broadcast" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.broadcast" class="fnname">broadcast</a>(&amp;self) -&gt; <a class="enum" href="enum.CondError.html" title="enum xwrust::xwos::sync::cond::CondError">CondError</a></h4></section></summary><div class="docblock"><p>广播条件量</p>
+<p>阻塞队列中的线程会全部被唤醒。</p>
+<h5 id="上下文-4"><a href="#上下文-4">上下文</a></h5>
+<ul>
+<li>任意</li>
+</ul>
+<h5 id="错误码-3"><a href="#错误码-3">错误码</a></h5>
+<ul>
+<li><a href="enum.CondError.html#variant.Ok" title="CondError::Ok"><code>CondError::Ok</code></a> 没有错误</li>
+<li><a href="enum.CondError.html#variant.NotInit" title="CondError::NotInit"><code>CondError::NotInit</code></a> 条件量没有初始化</li>
+<li><a href="enum.CondError.html#variant.AlreadyFrozen" title="CondError::AlreadyFrozen"><code>CondError::AlreadyFrozen</code></a> 条件量已被冻结</li>
+</ul>
+<h5 id="示例-5"><a href="#示例-5">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="ident">xwrust::xwos::sync::cond</span>::<span class="kw-2">*</span>;
+
+<span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">xwrust_main</span>() {
+    <span class="comment">// ...省略...</span>
+    <span class="ident">condvar</span>: <span class="ident">Cond</span> <span class="op">=</span> <span class="ident">Cond::new</span>();
+    <span class="ident">condvar</span>.<span class="ident">init</span>();
+    <span class="comment">// ...省略...</span>
+    <span class="ident">condvar</span>.<span class="ident">broadcast</span>();
+}</code></pre></div>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.bind" class="method has-srclink"><span class="rightside"><a class="srclink" href="../../../../src/xwrust/xwos/sync/cond.rs.html#609-637">source</a></span><a href="#method.bind" class="anchor"></a><h4 class="code-header">pub fn <a href="#method.bind" class="fnname">bind</a>&lt;'a, const M:&nbsp;<a class="type" href="../../../types/type.XwSz.html" title="type xwrust::types::XwSz">XwSz</a>&gt;(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;'a self, <br>&nbsp;&nbsp;&nbsp;&nbsp;sel: &amp;'a <a class="struct" href="../sel/struct.Sel.html" title="struct xwrust::xwos::sync::sel::Sel">Sel</a>&lt;M&gt;, <br>&nbsp;&nbsp;&nbsp;&nbsp;pos: <a class="type" href="../../../types/type.XwSq.html" title="type xwrust::types::XwSq">XwSq</a><br>) -&gt; Result&lt;<a class="struct" href="struct.CondSel.html" title="struct xwrust::xwos::sync::cond::CondSel">CondSel</a>&lt;'a, M&gt;, <a class="enum" href="enum.CondError.html" title="enum xwrust::xwos::sync::cond::CondError">CondError</a>&gt; <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;[<a class="type" href="../../../types/type.XwBmp.html" title="type xwrust::types::XwBmp">XwBmp</a>; ((M + XwBmp::BITS as usize - 1) / XwBmp::BITS as usize)]: Sized,&nbsp;</span></h4></section></summary><div class="docblock"><p>绑定条件量对象到信号选择器</p>
+<ul>
+<li>条件量绑定到信号选择器上时，采用 <strong>非独占</strong> 的方式进行绑定。</li>
+<li>绑定成功，通过 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Ok"><code>Ok()</code></a> 返回 <a href="struct.CondSel.html"><code>CondSel&lt;'a, M&gt;</code></a> 。</li>
+<li>如果位置已被其他 <strong>同步对象</strong> 以 <strong>独占</strong> 的方式占领，通过 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Err"><code>Err()</code></a> 返回 <a href="enum.CondError.html#variant.SelPosBusy" title="CondError::SelPosBusy"><code>CondError::SelPosBusy</code></a> 。</li>
+<li>当指定的位置超出范围（例如 <a href="../sel/struct.Sel.html"><code>Sel&lt;M&gt;</code></a> 只有8个位置，用户偏偏要绑定到位置9 ），通过 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Err"><code>Err()</code></a> 返回 <a href="enum.CondError.html#variant.OutOfSelPos" title="CondError::OutOfSelPos"><code>CondError::OutOfSelPos</code></a> 。</li>
+<li>重复绑定，通过 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Err"><code>Err()</code></a> 返回 <a href="enum.CondError.html#variant.AlreadyBound" title="CondError::AlreadyBound"><code>CondError::AlreadyBound</code></a> 。</li>
+</ul>
+<p><a href="struct.CondSel.html"><code>CondSel&lt;'a, M&gt;</code></a> 中包含条件量的绑定信息。 <a href="struct.CondSel.html"><code>CondSel&lt;'a, M&gt;</code></a> 与 <a href="struct.Cond.html" title="Cond"><code>Cond</code></a> 与 <a href="../sel/struct.Sel.html"><code>Sel&lt;M&gt;</code></a> 具有相同的生命周期约束 <code>'a</code> 。
+<a href="struct.CondSel.html#method.selected" title="CondSel::selected()"><code>CondSel::selected()</code></a> 可用来判断条件量是否被选择。当 <a href="struct.CondSel.html"><code>CondSel&lt;'a, M&gt;</code></a> <a href="https://doc.rust-lang.org/std/mem/fn.drop.html"><code>drop()</code></a> 时，会自动解绑。</p>
+<h5 id="参数说明"><a href="#参数说明">参数说明</a></h5>
+<ul>
+<li>sel: 信号选择器的引用</li>
+<li>pos: 位置</li>
+</ul>
+<h5 id="上下文-5"><a href="#上下文-5">上下文</a></h5>
+<ul>
+<li>任意</li>
+</ul>
+<h5 id="错误码-4"><a href="#错误码-4">错误码</a></h5>
+<ul>
+<li><a href="enum.CondError.html#variant.OutOfSelPos" title="CondError::OutOfSelPos"><code>CondError::OutOfSelPos</code></a> 信号选择器的位置超出范围</li>
+<li><a href="enum.CondError.html#variant.AlreadyBound" title="CondError::AlreadyBound"><code>CondError::AlreadyBound</code></a> 条件量已经绑定</li>
+<li><a href="enum.CondError.html#variant.SelPosBusy" title="CondError::SelPosBusy"><code>CondError::SelPosBusy</code></a> 信号选择器的位置被占用</li>
+</ul>
+<h5 id="示例-6"><a href="#示例-6">示例</a></h5>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">xwrust_example_sel</span>() {
+    <span class="comment">// ...省略...</span>
+    <span class="kw">let</span> <span class="ident">cond0</span> <span class="op">=</span> <span class="ident">Arc::new</span>(<span class="ident">Cond::new</span>());
+    <span class="ident">cond0</span>.<span class="ident">init</span>();
+    <span class="kw">let</span> <span class="ident">cond0sel</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">cond0</span>.<span class="ident">bind</span>(<span class="kw-2">&amp;</span><span class="ident">sel</span>, <span class="number">0</span>) {
+        <span class="prelude-val">Ok</span>(<span class="ident">s</span>) =&gt; { <span class="comment">// 绑定成功，`s` 为 `CondSel`</span>
+            <span class="ident">s</span>
+        },
+        <span class="prelude-val">Err</span>(<span class="ident">e</span>) =&gt; { <span class="comment">// 绑定失败，`e` 为 `SelError`</span>
+            <span class="kw">return</span>;
+        }
+    };
+    <span class="comment">// ...省略...</span>
+}</code></pre></div>
+</div></details></div></details></div><h2 id="trait-implementations" class="small-section-header">Trait Implementations<a href="#trait-implementations" class="anchor"></a></h2><div id="trait-implementations-list"><details class="rustdoc-toggle implementors-toggle" open><summary><section id="impl-Drop" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../../../../src/xwrust/xwos/sync/cond.rs.html#298-304">source</a></span><a href="#impl-Drop" class="anchor"></a><h3 class="code-header in-band">impl Drop for <a class="struct" href="struct.Cond.html" title="struct xwrust::xwos::sync::cond::Cond">Cond</a></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.drop" class="method trait-impl has-srclink"><span class="rightside"><a class="srclink" href="../../../../src/xwrust/xwos/sync/cond.rs.html#299-303">source</a></span><a href="#method.drop" class="anchor"></a><h4 class="code-header">fn <a class="fnname">drop</a>(&amp;mut self)</h4></section></summary><div class='docblock'><p>Executes the destructor for this type. <a>Read more</a></p>
+</div></details></div></details><section id="impl-Send" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../../../../src/xwrust/xwos/sync/cond.rs.html#295">source</a></span><a href="#impl-Send" class="anchor"></a><h3 class="code-header in-band">impl Send for <a class="struct" href="struct.Cond.html" title="struct xwrust::xwos::sync::cond::Cond">Cond</a></h3></section><section id="impl-Sync" class="impl has-srclink"><span class="rightside"><a class="srclink" href="../../../../src/xwrust/xwos/sync/cond.rs.html#296">source</a></span><a href="#impl-Sync" class="anchor"></a><h3 class="code-header in-band">impl Sync for <a class="struct" href="struct.Cond.html" title="struct xwrust::xwos::sync::cond::Cond">Cond</a></h3></section></div><h2 id="synthetic-implementations" class="small-section-header">Auto Trait Implementations<a href="#synthetic-implementations" class="anchor"></a></h2><div id="synthetic-implementations-list"><section id="impl-RefUnwindSafe" class="impl has-srclink"><a href="#impl-RefUnwindSafe" class="anchor"></a><h3 class="code-header in-band">impl !RefUnwindSafe for <a class="struct" href="struct.Cond.html" title="struct xwrust::xwos::sync::cond::Cond">Cond</a></h3></section><section id="impl-Unpin" class="impl has-srclink"><a href="#impl-Unpin" class="anchor"></a><h3 class="code-header in-band">impl Unpin for <a class="struct" href="struct.Cond.html" title="struct xwrust::xwos::sync::cond::Cond">Cond</a></h3></section><section id="impl-UnwindSafe" class="impl has-srclink"><a href="#impl-UnwindSafe" class="anchor"></a><h3 class="code-header in-band">impl UnwindSafe for <a class="struct" href="struct.Cond.html" title="struct xwrust::xwos::sync::cond::Cond">Cond</a></h3></section></div><h2 id="blanket-implementations" class="small-section-header">Blanket Implementations<a href="#blanket-implementations" class="anchor"></a></h2><div id="blanket-implementations-list"><details class="rustdoc-toggle implementors-toggle"><summary><section id="impl-Any" class="impl has-srclink"><a href="#impl-Any" class="anchor"></a><h3 class="code-header in-band">impl&lt;T&gt; Any for T <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;T: 'static + ?Sized,&nbsp;</span></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.type_id" class="method trait-impl has-srclink"><a href="#method.type_id" class="anchor"></a><h4 class="code-header">fn <a class="fnname">type_id</a>(&amp;self) -&gt; TypeId</h4></section></summary><div class='docblock'><p>Gets the <code>TypeId</code> of <code>self</code>. <a>Read more</a></p>
+</div></details></div></details><details class="rustdoc-toggle implementors-toggle"><summary><section id="impl-Borrow%3CT%3E" class="impl has-srclink"><a href="#impl-Borrow%3CT%3E" class="anchor"></a><h3 class="code-header in-band">impl&lt;T&gt; Borrow&lt;T&gt; for T <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;T: ?Sized,&nbsp;</span></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.borrow" class="method trait-impl has-srclink"><span class="rightside"><span class="since" title="const unstable">const: <a href="https://github.com/rust-lang/rust/issues/91522" title="Tracking issue for const_borrow">unstable</a></span></span><a href="#method.borrow" class="anchor"></a><h4 class="code-header">fn <a class="fnname">borrow</a>(&amp;self) -&gt; &amp;T</h4></section></summary><div class='docblock'><p>Immutably borrows from an owned value. <a>Read more</a></p>
+</div></details></div></details><details class="rustdoc-toggle implementors-toggle"><summary><section id="impl-BorrowMut%3CT%3E" class="impl has-srclink"><a href="#impl-BorrowMut%3CT%3E" class="anchor"></a><h3 class="code-header in-band">impl&lt;T&gt; BorrowMut&lt;T&gt; for T <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;T: ?Sized,&nbsp;</span></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.borrow_mut" class="method trait-impl has-srclink"><span class="rightside"><span class="since" title="const unstable">const: <a href="https://github.com/rust-lang/rust/issues/91522" title="Tracking issue for const_borrow">unstable</a></span></span><a href="#method.borrow_mut" class="anchor"></a><h4 class="code-header">fn <a class="fnname">borrow_mut</a>(&amp;mut self) -&gt; &amp;mut T</h4></section></summary><div class='docblock'><p>Mutably borrows from an owned value. <a>Read more</a></p>
+</div></details></div></details><details class="rustdoc-toggle implementors-toggle"><summary><section id="impl-From%3CT%3E" class="impl has-srclink"><a href="#impl-From%3CT%3E" class="anchor"></a><h3 class="code-header in-band">impl&lt;T&gt; From&lt;T&gt; for T</h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.from" class="method trait-impl has-srclink"><span class="rightside"><span class="since" title="const unstable">const: <a href="https://github.com/rust-lang/rust/issues/88674" title="Tracking issue for const_convert">unstable</a></span></span><a href="#method.from" class="anchor"></a><h4 class="code-header">fn <a class="fnname">from</a>(t: T) -&gt; T</h4></section></summary><div class="docblock"><p>Returns the argument unchanged.</p>
+</div></details></div></details><details class="rustdoc-toggle implementors-toggle"><summary><section id="impl-Into%3CU%3E" class="impl has-srclink"><a href="#impl-Into%3CU%3E" class="anchor"></a><h3 class="code-header in-band">impl&lt;T, U&gt; Into&lt;U&gt; for T <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: From&lt;T&gt;,&nbsp;</span></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle method-toggle" open><summary><section id="method.into" class="method trait-impl has-srclink"><span class="rightside"><span class="since" title="const unstable">const: <a href="https://github.com/rust-lang/rust/issues/88674" title="Tracking issue for const_convert">unstable</a></span></span><a href="#method.into" class="anchor"></a><h4 class="code-header">fn <a class="fnname">into</a>(self) -&gt; U</h4></section></summary><div class="docblock"><p>Calls <code>U::from(self)</code>.</p>
+<p>That is, this conversion is whatever the implementation of
+<code>[From]&lt;T&gt; for U</code> chooses to do.</p>
+</div></details></div></details><details class="rustdoc-toggle implementors-toggle"><summary><section id="impl-TryFrom%3CU%3E" class="impl has-srclink"><a href="#impl-TryFrom%3CU%3E" class="anchor"></a><h3 class="code-header in-band">impl&lt;T, U&gt; TryFrom&lt;U&gt; for T <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: Into&lt;T&gt;,&nbsp;</span></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle" open><summary><section id="associatedtype.Error" class="associatedtype trait-impl has-srclink"><a href="#associatedtype.Error" class="anchor"></a><h4 class="code-header">type <a class="associatedtype">Error</a> = Infallible</h4></section></summary><div class='docblock'><p>The type returned in the event of a conversion error.</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.try_from" class="method trait-impl has-srclink"><span class="rightside"><span class="since" title="const unstable">const: <a href="https://github.com/rust-lang/rust/issues/88674" title="Tracking issue for const_convert">unstable</a></span></span><a href="#method.try_from" class="anchor"></a><h4 class="code-header">fn <a class="fnname">try_from</a>(value: U) -&gt; Result&lt;T, &lt;T as TryFrom&lt;U&gt;&gt;::Error&gt;</h4></section></summary><div class='docblock'><p>Performs the conversion.</p>
+</div></details></div></details><details class="rustdoc-toggle implementors-toggle"><summary><section id="impl-TryInto%3CU%3E" class="impl has-srclink"><a href="#impl-TryInto%3CU%3E" class="anchor"></a><h3 class="code-header in-band">impl&lt;T, U&gt; TryInto&lt;U&gt; for T <span class="where fmt-newline">where<br>&nbsp;&nbsp;&nbsp;&nbsp;U: TryFrom&lt;T&gt;,&nbsp;</span></h3></section></summary><div class="impl-items"><details class="rustdoc-toggle" open><summary><section id="associatedtype.Error-1" class="associatedtype trait-impl has-srclink"><a href="#associatedtype.Error-1" class="anchor"></a><h4 class="code-header">type <a class="associatedtype">Error</a> = &lt;U as TryFrom&lt;T&gt;&gt;::Error</h4></section></summary><div class='docblock'><p>The type returned in the event of a conversion error.</p>
+</div></details><details class="rustdoc-toggle method-toggle" open><summary><section id="method.try_into" class="method trait-impl has-srclink"><span class="rightside"><span class="since" title="const unstable">const: <a href="https://github.com/rust-lang/rust/issues/88674" title="Tracking issue for const_convert">unstable</a></span></span><a href="#method.try_into" class="anchor"></a><h4 class="code-header">fn <a class="fnname">try_into</a>(self) -&gt; Result&lt;U, &lt;U as TryFrom&lt;T&gt;&gt;::Error&gt;</h4></section></summary><div class='docblock'><p>Performs the conversion.</p>
+</div></details></div></details></div></section></div></main><div id="rustdoc-vars" data-root-path="../../../../" data-current-crate="xwrust" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (ee160f2f5 2022-05-23)" ></div>
+</body></html>

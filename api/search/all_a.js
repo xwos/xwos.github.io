@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['i_5fa_0',['i_a',['../structxwmm__mempool__objcache.html#ab876b978a4238f33b78443659e0fc38c',1,'xwmm_mempool_objcache::i_a()'],['../structxwmm__mempool__page__allocator.html#a143805207e804e61a3b0c746047826d8',1,'xwmm_mempool_page_allocator::i_a()']]],
+  ['i_5fallocator_2eh_1',['i_allocator.h',['../i__allocator_8h.html',1,'']]],
+  ['idle_2',['idle',['../structxwmm__mempool__objcache.html#a26d781cc1112808f876f0d2551da2d30',1,'xwmm_mempool_objcache']]],
+  ['idleness_3',['idleness',['../structxwmm__mempool__objcache.html#aca5c7fbe77e4fc6836679fc6f4189c3d',1,'xwmm_mempool_objcache']]],
+  ['index_2emd_4',['index.md',['../index_8md.html',1,'']]],
+  ['int_5fmax_5',['INT_MAX',['../group__xwos__lib__type.html#ga9ec306f36d50c7375e74f0d1c55a3a67',1,'type.h']]],
+  ['int_5fmin_6',['INT_MIN',['../group__xwos__lib__type.html#ga21658776274b3d146c674318b635a334',1,'type.h']]],
+  ['int_5fshift_7',['INT_SHIFT',['../group__xwos__lib__type.html#ga096e1c3276b36012178659b663137a61',1,'type.h']]],
+  ['interface_8',['interface',['../group__xwos__standard.html#ga8f8bdbe5685d2ab60ca313c61017b92a',1,'standard.h']]],
+  ['irq_2eh_9',['irq.h',['../irq_8h.html',1,'(全局命名空间)'],['../jack_2irq_8h.html',1,'(全局命名空间)']]],
+  ['irq_2ehxx_10',['irq.hxx',['../irq_8hxx.html',1,'']]],
+  ['irqn_11',['irqn',['../structxwos__irq__resource.html#a11c30bcd780378e30a6f0e29b3d644ce',1,'xwos_irq_resource']]],
+  ['is_5ferr_12',['is_err',['../group__xwos__lib__error.html#ga11327d55c644e1604a2563675b4fe6b3',1,'error.h']]],
+  ['is_5ferr_5for_5fnull_13',['is_err_or_null',['../group__xwos__lib__error.html#ga56f0fbb2dabb48f5925c98e23a9602ff',1,'error.h']]],
+  ['is_5ferr_5fvalue_14',['IS_ERR_VALUE',['../group__xwos__lib__error.html#gab4defec03f8dc965be27f19aba24d265',1,'error.h']]],
+  ['isr_15',['isr',['../structxwos__irq__resource.html#a1fe62667f9bca43234170e8c58c74a86',1,'xwos_irq_resource']]]
+];

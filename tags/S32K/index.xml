@@ -1,0 +1,129 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>XWOS – S32K</title>
+    <link>/tags/S32K/</link>
+    <description>Recent content in S32K on XWOS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	  <atom:link href="/tags/S32K/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: 开发环境</title>
+      <link>/docs/quick-guide/S32K/Env/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/quick-guide/S32K/Env/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;windows-10-64bit&#34;&gt;Windows-10-64bit&lt;/h2&gt;
+&lt;h3 id=&#34;基本工具&#34;&gt;基本工具&lt;/h3&gt;
+&lt;p&gt;参考&lt;a href=&#34;../../../user-manual/build-system#%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE&#34;&gt;用户手册-构建系统-编译环境设置&lt;/a&gt;安装工具链：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://pan.baidu.com/s/1WwSaEajt6JqgMOLOa8iPEQ&#34;&gt;https://pan.baidu.com/s/1WwSaEajt6JqgMOLOa8iPEQ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;提取码：xwos&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;ide&#34;&gt;IDE&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.nxp.com/design/software/development-software/s32-design-studio-ide/s32-design-studio-for-arm:S32DS-ARM&#34;&gt;S32DS for Arm&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;创建工程&#34;&gt;创建工程&lt;/h2&gt;
+&lt;h3 id=&#34;工程模板&#34;&gt;工程模板&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;仓库：&lt;a href=&#34;https://gitee.com/xwos/S32K144Evb.git&#34;&gt;https://gitee.com/xwos/S32K144Evb.git&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;下载：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git clone --recursive https://gitee.com/xwos/S32K144Evb.git
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;在已有的仓库中同步代码&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git pull
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git submodule update
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;工程改名&#34;&gt;工程改名&lt;/h3&gt;
+&lt;p&gt;若需要对工程改名，应该在导入工程前修改以下内容：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;文件夹名改成&lt;code&gt;新的工程名&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;在&lt;code&gt;brd/cfg/XuanWuOS.h&lt;/code&gt;文件中，将&lt;code&gt;XuanWuOS_CFG_BOARD&lt;/code&gt;的定义改成&lt;code&gt;新的工程名&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;在&lt;code&gt;.cproject&lt;/code&gt;文件中，搜索&lt;code&gt;S32K144Evb&lt;/code&gt;并全部替换成&lt;code&gt;新的工程名&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;在&lt;code&gt;.project&lt;/code&gt;文件中，搜索&lt;code&gt;S32K144Evb&lt;/code&gt;并全部替换成&lt;code&gt;新的工程名&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;在&lt;code&gt;ProcessorExpert.pe&lt;/code&gt;文件中搜索&lt;code&gt;S32K144Evb&lt;/code&gt;并全部替换成&lt;code&gt;新的工程名&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;在&lt;code&gt;Project_Settings/Debugger&lt;/code&gt;文件夹中，在所有文件中搜索&lt;code&gt;S32K144Evb&lt;/code&gt;并全部替换成&lt;code&gt;新的工程名&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;在&lt;code&gt;.settings&lt;/code&gt;文件夹中，在所有文件中搜索&lt;code&gt;S32K144Evb&lt;/code&gt;并全部替换成&lt;code&gt;新的工程名&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;导入工程&#34;&gt;导入工程&lt;/h3&gt;
+&lt;p&gt;打开菜单&lt;strong&gt;File &amp;ndash;&amp;gt; Import&amp;hellip; &amp;ndash;&amp;gt; General &amp;ndash;&amp;gt; Projects from Folder or Archive&lt;/strong&gt;导入。
+导入后，S32DS会重新生成一次源代码，这会使得部分对SDK的修改被覆盖：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;S32DS-Regenerate.png&#34; alt=&#34;img&#34; title=&#34;S32DS重新生成源码&#34;&gt;&lt;/p&gt;
+&lt;p&gt;幸好我们使用git管理源码，可使用git命令将这这些文件找回：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a2f&#34;&gt;cd&lt;/span&gt; s32k144evb
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git checkout SDK/platform/devices/status.h
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git checkout SDK/rtos/osif/osif.h
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;修改的这两个文件可使得玄武OS与S32K的SDK能更好地一起工作，但每次使用S32DS重新生成
+代码时，这两个文件都会被覆盖。一劳永逸的方法是将这两个文件覆盖到S32DS的安装目录：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;S32DS的安装目录&lt;span style=&#34;color:#b62;font-weight:bold&#34;&gt;\S&lt;/span&gt;32DS&lt;span style=&#34;color:#b62;font-weight:bold&#34;&gt;\s&lt;/span&gt;oftware&lt;span style=&#34;color:#b62;font-weight:bold&#34;&gt;\S&lt;/span&gt;32SDK_S32K1xx_RTM_3.0.0&lt;span style=&#34;color:#b62;font-weight:bold&#34;&gt;\p&lt;/span&gt;latform&lt;span style=&#34;color:#b62;font-weight:bold&#34;&gt;\d&lt;/span&gt;evices&lt;span style=&#34;color:#b62;font-weight:bold&#34;&gt;\s&lt;/span&gt;tatus.h
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;S32DS的安装目录&lt;span style=&#34;color:#b62;font-weight:bold&#34;&gt;\S&lt;/span&gt;32DS&lt;span style=&#34;color:#b62;font-weight:bold&#34;&gt;\s&lt;/span&gt;oftware&lt;span style=&#34;color:#b62;font-weight:bold&#34;&gt;\S&lt;/span&gt;32SDK_S32K1xx_RTM_3.0.0&lt;span style=&#34;color:#b62;font-weight:bold&#34;&gt;\r&lt;/span&gt;tos&lt;span style=&#34;color:#b62;font-weight:bold&#34;&gt;\o&lt;/span&gt;sif&lt;span style=&#34;color:#b62;font-weight:bold&#34;&gt;\o&lt;/span&gt;sif.h
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;工程设置&#34;&gt;工程设置&lt;/h3&gt;
+&lt;h4 id=&#34;编译设置&#34;&gt;编译设置&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;菜单&lt;strong&gt;Project –&amp;gt; Properties&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Debug&lt;/strong&gt;和&lt;strong&gt;Release&lt;/strong&gt;两个配置都需要增加：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;S32DS-Properties-C_C++_Build-Behavior.png&#34; alt=&#34;img&#34; title=&#34;编译设置&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;S32DS-Properties-C_C++_Build-Settings.png&#34; alt=&#34;img&#34; title=&#34;编译行为&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;环境变量设置&#34;&gt;环境变量设置&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;菜单&lt;strong&gt;Project –&amp;gt; Properties –&amp;gt; C/C++ Build –&amp;gt; Environment&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;点击&lt;strong&gt;Restore Defaults&lt;/strong&gt;先恢复一次默认设置。&lt;/li&gt;
+&lt;li&gt;设置：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;WKSPC&lt;/code&gt;: &lt;code&gt;../${ConfigName}&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~V&lt;/code&gt;: &lt;code&gt;1&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~D&lt;/code&gt;: &lt;strong&gt;Debug&lt;/strong&gt;配置为&lt;code&gt;1&lt;/code&gt;，&lt;strong&gt;Release&lt;/strong&gt;配置为&lt;code&gt;0&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Debug&lt;/strong&gt;和&lt;strong&gt;Release&lt;/strong&gt;两个配置都需要增加。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;S32DS-Properties-C_C++_Build-Environment.png&#34; alt=&#34;img&#34; title=&#34;Build-Env配置&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;环境变量设置-1&#34;&gt;环境变量设置&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;修改Debug和Release两个配置的&lt;strong&gt;PATH&lt;/strong&gt;环境变量。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;S32DS-Properties-C_C++_Build-Environment-PATH.png&#34; alt=&#34;img&#34; title=&#34;Path设置&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;编译工程&#34;&gt;编译工程&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;S32DS-Build.png&#34; alt=&#34;img&#34; title=&#34;编译&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;调试&#34;&gt;调试&lt;/h2&gt;
+&lt;h3 id=&#34;设置jlink调试&#34;&gt;设置JLink调试&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;Jlink-Main.png&#34; alt=&#34;img&#34; title=&#34;Main&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;Jlink-Debugger.png&#34; alt=&#34;img&#34; title=&#34;Debugger&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;Jlink-Startup.png&#34; alt=&#34;img&#34; title=&#34;Startup&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;重启调试&#34;&gt;重启调试&lt;/h3&gt;
+&lt;p&gt;调试过程可能需要复位系统，可以在右键菜单中选择&lt;strong&gt;Restart&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;Jlink-Restart.png&#34; alt=&#34;img&#34; title=&#34;重新开始调试&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;增加官方sdk&#34;&gt;增加官方SDK&lt;/h2&gt;
+&lt;p&gt;工程模板中已将官方SDK以&lt;strong&gt;OEM模块&lt;/strong&gt;的形式集成：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;模块路径：&lt;code&gt;brd/bm/s32kbsp&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Makefile：&lt;code&gt;brd/bm/s32kbsp/xwmo.mk&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;编译开关：&lt;code&gt;BMCFG_s32kbsp&lt;/code&gt;，定义在&lt;code&gt;brd/cfg/oem.h&lt;/code&gt;文件中&lt;/li&gt;
+&lt;li&gt;OEM模块也是&lt;a href=&#34;../../../user-manual/build-system#%E7%8E%84%E6%AD%A6%E6%A8%A1%E5%9D%97&#34;&gt;玄武模块&lt;/a&gt;的一种&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;增加用户软件&#34;&gt;增加用户软件&lt;/h2&gt;
+&lt;p&gt;工程模板中已经有一个名为&lt;code&gt;app&lt;/code&gt;的OEM模块，用户可在其中增加自己的C代码：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;模块路径：&lt;code&gt;app&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Makefile：&lt;code&gt;app/xwmo.mk&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;编译开关：&lt;code&gt;OEMCFG_app&lt;/code&gt;，定义在&lt;code&gt;brd/cfg/oem.h&lt;/code&gt;文件中&lt;/li&gt;
+&lt;li&gt;OEM模块也是&lt;a href=&#34;../../../user-manual/build-system#%E7%8E%84%E6%AD%A6%E6%A8%A1%E5%9D%97&#34;&gt;玄武模块&lt;/a&gt;的一种&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,230 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>XWOS – GD32</title>
+    <link>/docs/quick-guide/GD32/</link>
+    <description>Recent content in GD32 on XWOS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	  <atom:link href="/docs/quick-guide/GD32/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: 开发环境</title>
+      <link>/docs/quick-guide/GD32/Env/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/quick-guide/GD32/Env/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;ubuntu-2004&#34;&gt;ubuntu-20.04&lt;/h2&gt;
+&lt;h3 id=&#34;基本工具&#34;&gt;基本工具&lt;/h3&gt;
+&lt;p&gt;参考&lt;a href=&#34;../../../user-manual/build-system#%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE&#34;&gt;用户手册-构建系统-编译环境设置&lt;/a&gt;安装工具链：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://pan.baidu.com/s/1WwSaEajt6JqgMOLOa8iPEQ&#34;&gt;https://pan.baidu.com/s/1WwSaEajt6JqgMOLOa8iPEQ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;提取码：xwos&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;pyocd&#34;&gt;pyocd&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;用途：为gdb提供调试服务&lt;/li&gt;
+&lt;li&gt;安装方法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo apt install python3
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;pip3 install pyocd
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;ide&#34;&gt;IDE&lt;/h3&gt;
+&lt;h4 id=&#34;安装ide&#34;&gt;安装IDE&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://projects.eclipse.org/projects/iot.embed-cdt/downloads&#34;&gt;Eclipse Embedded&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;安装插件&#34;&gt;安装插件&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;打开菜单&amp;quot;Help –&amp;gt; Install New Software…&amp;quot;；&lt;/li&gt;
+&lt;li&gt;选择&amp;quot;Embedded C/C++ v6.x Updates&amp;quot;，安装工具集：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;Eclipse-Install-Plugins.png&#34; alt=&#34;img&#34; title=&#34;安装插件&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;创建工程&#34;&gt;创建工程&lt;/h2&gt;
+&lt;h3 id=&#34;工程模板&#34;&gt;工程模板&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;GD32F103
+&lt;ul&gt;
+&lt;li&gt;仓库：&lt;a href=&#34;https://gitee.com/xwos/GD32F103RBTmpl.git&#34;&gt;https://gitee.com/xwos/GD32F103RBTmpl.git&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;命令：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git clone --recursive https://gitee.com/xwos/GD32F103RBTmpl.git
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;gd32f303
+&lt;ul&gt;
+&lt;li&gt;仓库：&lt;a href=&#34;https://gitee.com/xwos/GD32F303CCTmpl.git&#34;&gt;https://gitee.com/xwos/GD32F303CCTmpl.git&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;命令：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git clone --recursive https://gitee.com/xwos/GD32F303CCTmpl.git
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;在已有的仓库中同步代码&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git pull
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;git submodule update
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;工程改名&#34;&gt;工程改名&lt;/h3&gt;
+&lt;p&gt;若需要对工程改名，以&lt;code&gt;GD32F103RBTmpl&lt;/code&gt;为例，应该在导入工程前修改以下内容：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;文件夹名由&lt;code&gt;GD32F103RBTmpl&lt;/code&gt;改成&lt;code&gt;新的工程名&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;文件&lt;code&gt;brd/cfg/XuanWuOS.h&lt;/code&gt;中，将&lt;code&gt;XuanWuOS_CFG_BOARD&lt;/code&gt;的定义改成&lt;code&gt;新的工程名&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;隐藏文件&lt;code&gt;.cproject&lt;/code&gt;中，将所有的&lt;code&gt;GD32F103RBTmpl&lt;/code&gt;都替换成&lt;code&gt;新的工程名&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;隐藏文件&lt;code&gt;.project&lt;/code&gt;中，将所有的&lt;code&gt;GD32F103RBTmpl&lt;/code&gt;都替换成&lt;code&gt;新的工程名&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;隐藏文件&lt;code&gt;.settings&lt;/code&gt;中，将所有文件中的所有的&lt;code&gt;GD32F103RBTmpl&lt;/code&gt;都替换成&lt;code&gt;新的工程名&lt;/code&gt;；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;导入工程&#34;&gt;导入工程&lt;/h3&gt;
+&lt;p&gt;菜单：&lt;strong&gt;File &amp;ndash;&amp;gt; Import&amp;hellip; &amp;ndash;&amp;gt; General &amp;ndash;&amp;gt; Projects from Folder or Archive&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;工程设置&#34;&gt;工程设置&lt;/h3&gt;
+&lt;h4 id=&#34;编译设置&#34;&gt;编译设置&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;菜单：&lt;strong&gt;Project –&amp;gt; Properties&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Debug&lt;/strong&gt;和&lt;strong&gt;Release&lt;/strong&gt;两个配置都需要增加：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;Eclipse-Properties-C_C++_Build-Behavior.png&#34; alt=&#34;img&#34; title=&#34;编译设置&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;Eclipse-Properties-C_C++_Build-Settings.png&#34; alt=&#34;img&#34; title=&#34;编译行为&#34;&gt;&lt;/p&gt;
+&lt;h4 id=&#34;环境变量设置&#34;&gt;环境变量设置&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;菜单&lt;strong&gt;Project –&amp;gt; Properties –&amp;gt; C/C++ Build –&amp;gt; Environment&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;点击&lt;strong&gt;Restore Defaults&lt;/strong&gt;先恢复一次默认设置。&lt;/li&gt;
+&lt;li&gt;设置：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;WKSPC&lt;/code&gt;: &lt;code&gt;../${ConfigName}&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~V&lt;/code&gt;: &lt;code&gt;1&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;~D&lt;/code&gt;: &lt;strong&gt;Debug&lt;/strong&gt;配置为&lt;code&gt;1&lt;/code&gt;，&lt;strong&gt;Release&lt;/strong&gt;配置为&lt;code&gt;0&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Debug&lt;/strong&gt;和&lt;strong&gt;Release&lt;/strong&gt;两个配置都需要增加。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;Eclipse-Properties-C_C++_Build-Environment.png&#34; alt=&#34;img&#34; title=&#34;Build-Env配置&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;修改芯片配置&#34;&gt;修改芯片配置&lt;/h2&gt;
+&lt;p&gt;模板中的默认芯片可能与用户的不一样，需要按实际情况进行修改。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;brd/bdl/bdl.mk&lt;/code&gt;：根据芯片密度，修改定义。按照官方手册：
+&lt;ul&gt;
+&lt;li&gt;GD32F101xx和GD32F103xx的闪存存储器容量16K到128K字节之间的产品称作中密度产品，
+需要修改成&lt;code&gt;-DGD32F10X_MD&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;GD32F101xx和GD32F103xx的闪存存储器容量256K到512K字节之间的产品称作高密度产品，
+需要修改成&lt;code&gt;-DGD32F10X_HD&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;GD32F101xx和GD32F103xx的闪存存储器容量大于512K节的产品称作超高密度产品，
+需要修改成&lt;code&gt;-DGD32F10X_XD&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;GD32F105xx和GD32F107xx微控制器称作互联型产品，
+需要修改成&lt;code&gt;-DGD32F10X_CL&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;brd/cfg/XuanWuOS.lds&lt;/code&gt;：根据芯片的Flash与RAM情况，调整memory的参数：
+&lt;ul&gt;
+&lt;li&gt;中断向量表、Image信息块以及代码区加起来不能超过Flash区域；&lt;/li&gt;
+&lt;li&gt;数据区、中断栈加起来不能超过RAM区域。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;MEMORY {
+        flash_mr (rx): org = 0x08000000, len = 128k /* Flash的首地址与大小 */
+        ocram_mr (rwx): org = 0x20000000, len = 20k /* RAM的首地址与大小 */
+
+        /* 中断向量表 */
+        /* 将加载地址和运行地址配置为相同表示中断向量表不需要从Flash中拷贝到
+           内存 */
+        vctbl_lmr (rx): org = 0x08000000, len = 1024 /* 加载地址 */
+        vctbl_vmr (rw): org = 0x08000000, len = 1024 /* 运行地址 */
+
+        /* Image信息块 */
+        /* XWOS会在bin文件中增加一个数据块，记录Image的基本信息，
+           这一块信息放在中断向量表 */
+        image_description_mr (rx): org = 0x08000400, len = 1k /* image description */
+
+        /* 代码区 */
+        /* 所有的可执行代码 */
+        code_mr (rx): org = 0x08000800, len = 126k /* .xwos.vctbl &amp;amp;
+                                                      .xwos.init.text &amp;amp;
+                                                      .xwos.init.rodata &amp;amp;
+                                                      .xwos.exit.text &amp;amp;
+                                                      .xwos.exit.rodata &amp;amp;
+                                                      .xwos.isr.text &amp;amp;
+                                                      .xwos.text &amp;amp;
+                                                      .xwos.rodata &amp;amp;
+                                                      .text &amp;amp;
+                                                      .rodata */
+
+        /* 数据区 */
+        /* 全局变量、栈、堆 */
+        data_mr (arw): org = 0x20000000, len = 18k /* .data, .bss &amp;amp; .heap */
+
+        /* 中断栈 */
+        /* 剩下的内存留给处理器执行中断函数时使用 */
+        xwos_stk_mr (rw): org = 0x20004800, len = 2k /* xwos stack */
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;编译工程&#34;&gt;编译工程&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&#34;Eclipse-Build.png&#34; alt=&#34;img&#34; title=&#34;编译&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;调试&#34;&gt;调试&lt;/h2&gt;
+&lt;h3 id=&#34;设置daplink仿真器的访问权限&#34;&gt;设置DAPLink仿真器的访问权限&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo gedit /etc/udev/rules.d/81-daplink.rules
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;输入下面内容后，保存退出。&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;ATTRS{idProduct}==&amp;#34;f001&amp;#34;, ATTRS{idVendor}==&amp;#34;0d28&amp;#34;, MODE=&amp;#34;666&amp;#34;
+ATTRS{idProduct}==&amp;#34;f002&amp;#34;, ATTRS{idVendor}==&amp;#34;0d28&amp;#34;, MODE=&amp;#34;666&amp;#34;
+ATTRS{idProduct}==&amp;#34;2722&amp;#34;, ATTRS{idVendor}==&amp;#34;0d28&amp;#34;, MODE=&amp;#34;666&amp;#34;
+ATTRS{idProduct}==&amp;#34;0204&amp;#34;, ATTRS{idVendor}==&amp;#34;0d28&amp;#34;, MODE=&amp;#34;666&amp;#34;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;重启系统或使用下面命令使得配置生效：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-sh&#34; data-lang=&#34;sh&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sudo udevadm control --reload
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;设置pyocd使用daplink调试&#34;&gt;设置pyocd，使用DAPLink调试&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Main选择卡：选择工程，设置ELF文件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;pyocd-Main.png&#34; alt=&#34;img&#34; title=&#34;Main&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Debugger选择卡
+&lt;ul&gt;
+&lt;li&gt;需要设置pyocd与arm-none-eabi-gdb两个程序的路径，如果用户
+是按照之前的指南安装环境，这两个程序可在系统路径中搜索到；&lt;/li&gt;
+&lt;li&gt;需要设定复位的方式，若仿真器与目标板之间由Reset连线，可选择Hardware，否则
+选择Software(SYSRESETREQ)；&lt;/li&gt;
+&lt;li&gt;需要通过&amp;ndash;pack选项为pyocd指定DFP的路径，DFP可在&lt;a href=&#34;http://www.gd32mcu.com/cn/download&#34;&gt;GD的官网&lt;/a&gt;中下载&lt;strong&gt;keil5 ADD-ON&lt;/strong&gt;包找到，
+下载后将其放在工程目录内，例如&lt;code&gt;brd/cfg/dbg/GigaDevice.GD32F10x_DFP.2.0.1.pack&lt;/code&gt;；&lt;/li&gt;
+&lt;li&gt;通过&amp;ndash;target选项为pyocd指定器件名称，例如：&lt;strong&gt;gd32f303cc&lt;/strong&gt;、&lt;strong&gt;gd32f103rb&lt;/strong&gt;、&lt;strong&gt;gd32F103ve&lt;/strong&gt;等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;pyocd-Debugger.png&#34; alt=&#34;img&#34; title=&#34;Debugger&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Startup选择卡：可设置一个启动断点，通常设置为&lt;code&gt;arch_isr_reset&lt;/code&gt;或&lt;code&gt;xwos_main&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;pyocd-Startup.png&#34; alt=&#34;img&#34; title=&#34;Startup&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;重启调试&#34;&gt;重启调试&lt;/h3&gt;
+&lt;p&gt;调试过程若需要复位系统，可以在右键菜单中选择&lt;strong&gt;Restart&lt;/strong&gt;，操作方式如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;按住复位按键；&lt;/li&gt;
+&lt;li&gt;在右键菜单中选择&lt;strong&gt;Restart&lt;/strong&gt;；&lt;/li&gt;
+&lt;li&gt;释放复位按键。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;增加官方firmware-library&#34;&gt;增加官方Firmware Library&lt;/h2&gt;
+&lt;p&gt;工程模板中已将官方的&lt;strong&gt;Firmware Library&lt;/strong&gt;以&lt;strong&gt;OEM模块&lt;/strong&gt;的形式集成：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;模块路径：&lt;code&gt;gd32fmwlib&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;编译规则：&lt;code&gt;gd32fmwlib/xwmo.mk&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;编译开关：&lt;code&gt;OEMCFG_gd32fmwlib&lt;/code&gt;，定义在&lt;code&gt;brd/cfg/oem.h&lt;/code&gt;文件中&lt;/li&gt;
+&lt;li&gt;OEM模块也是&lt;a href=&#34;../../../user-manual/build-system#%E7%8E%84%E6%AD%A6%E6%A8%A1%E5%9D%97&#34;&gt;玄武模块&lt;/a&gt;的一种&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;增加用户软件&#34;&gt;增加用户软件&lt;/h2&gt;
+&lt;p&gt;工程模板中已经有一个名为&lt;code&gt;app&lt;/code&gt;的OEM模块，用户可在其中增加自己的C代码，也可仿照
+此模块建立其他的OEM模块：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;模块路径：&lt;code&gt;app&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;编译规则：&lt;code&gt;app/xwmo.mk&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;编译开关：&lt;code&gt;OEMCFG_app&lt;/code&gt;，定义在&lt;code&gt;brd/cfg/oem.h&lt;/code&gt;文件中&lt;/li&gt;
+&lt;li&gt;OEM模块也是&lt;a href=&#34;../../../user-manual/build-system#%E7%8E%84%E6%AD%A6%E6%A8%A1%E5%9D%97&#34;&gt;玄武模块&lt;/a&gt;的一种&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

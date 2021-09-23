@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["xwrust"] = [{"text":"impl GlobalAlloc for <a class=\"struct\" href=\"xwrust/xwmm/struct.Allocator.html\" title=\"struct xwrust::xwmm::Allocator\">Allocator</a>","synthetic":false,"types":["xwrust::xwmm::Allocator"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

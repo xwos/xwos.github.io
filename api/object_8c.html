@@ -1,0 +1,699 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.3"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>XWOS API: xwos/lib/object.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<a href="/" class="github-corner" title="返回首页">
+  <svg viewBox="0 0 250 250" style="position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path
+      d="M 0 0 L 250 250 L 250 0 L 0 0 z M 181.19336 6.25 A 18.281986 19.638775 0 0 1 192.79297 10.798828 L 241.54492 54.201172 A 6.0939954 6.5462585 0 0 1 237.64453 65.787109 L 233.13477 65.787109 A 3.0469979 3.2731292 0 0 0 230.08789 69.060547 L 230.08789 111.61133 A 18.281986 19.638775 0 0 1 211.80664 131.25 L 205.71289 131.25 A 12.187991 13.092517 0 0 1 193.52344 118.1582 L 193.52344 98.519531 A 12.187991 13.092517 0 0 0 181.33594 85.425781 A 12.187991 13.092517 0 0 0 169.14844 98.519531 L 169.14844 118.1582 A 12.187991 13.092517 0 0 1 156.95898 131.25 L 150.86523 131.25 A 18.281986 19.638775 0 0 1 132.58398 111.61133 L 132.58398 68.994141 A 3.0469979 3.2731292 0 0 0 129.29297 65.722656 L 124.7832 65.722656 A 6.0939954 6.5462585 0 0 1 120.88281 54.201172 L 169.39258 10.798828 A 18.281986 19.638775 0 0 1 181.19336 6.25 z "/>
+  </svg>
+</a>
+<style>.github-corner:hover</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">XWOS API
+   &#160;<span id="projectnumber">3.0</span>
+   </div>
+   <div id="projectbrief">XWOS API参考手册</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.3 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('object_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">宏定义</a> &#124;
+<a href="#func-members">函数</a> &#124;
+<a href="#var-members">变量</a>  </div>
+  <div class="headertitle"><div class="title">object.c 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>玄武OS通用库：XWOS的对象  
+<a href="#details">更多...</a></p>
+<div class="textblock"><code>#include &lt;<a class="el" href="standard_8h_source.html">xwos/standard.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="object_8h_source.html">xwos/lib/object.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="irq_8h_source.html">xwos/osal/irq.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="skd_8h_source.html">xwos/osal/skd.h</a>&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+object.c 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="object_8c__incl.png" border="0" usemap="#axwos_2lib_2object_8c" alt=""/></div>
+<map name="axwos_2lib_2object_8c" id="axwos_2lib_2object_8c">
+<area shape="rect" title="玄武OS通用库：XWOS的对象" alt="" coords="780,5,900,32"/>
+<area shape="rect" href="standard_8h.html" title="玄武OS的标准头文件" alt="" coords="789,229,907,256"/>
+<area shape="rect" href="object_8h.html" title="玄武OS通用库：XWOS的对象" alt="" coords="672,80,792,107"/>
+<area shape="rect" href="irq_8h.html" title="操作系统抽象层：中断" alt="" coords="855,80,966,107"/>
+<area shape="rect" href="skd_8h.html" title="操作系统抽象层：调度器" alt="" coords="1059,80,1176,107"/>
+<area shape="rect" title=" " alt="" coords="651,453,773,480"/>
+<area shape="rect" href="rule_8h.html" title="玄武OS通用库：编译规则" alt="" coords="456,304,563,331"/>
+<area shape="rect" href="compiler_8h.html" title="玄武OS通用库：编译器宏定义" alt="" coords="675,304,810,331"/>
+<area shape="rect" href="version_8h.html" title="玄武OS通用库：版本号" alt="" coords="1021,304,1147,331"/>
+<area shape="rect" href="type_8h.html" title="玄武OS通用库：基本类型定义" alt="" coords="886,379,997,405"/>
+<area shape="rect" href="error_8h.html" title="玄武OS通用库：错误" alt="" coords="886,304,997,331"/>
+<area shape="rect" title=" " alt="" coords="1172,304,1319,331"/>
+<area shape="rect" title=" " alt="" coords="454,379,565,405"/>
+<area shape="rect" title=" " alt="" coords="640,379,811,405"/>
+<area shape="rect" title=" " alt="" coords="933,453,1080,480"/>
+<area shape="rect" title=" " alt="" coords="840,453,909,480"/>
+<area shape="rect" href="errno_8h.html" title="玄武OS通用库：错误码" alt="" coords="1021,379,1136,405"/>
+<area shape="rect" href="xwaop_8h.html" title="玄武OS通用库：原子操作" alt="" coords="425,155,548,181"/>
+<area shape="rect" href="common_8h.html" title="玄武OS内存管理：通用定义" alt="" coords="623,155,767,181"/>
+<area shape="rect" title=" " alt="" coords="598,229,765,256"/>
+<area shape="rect" title=" " alt="" coords="5,229,179,256"/>
+<area shape="rect" title=" " alt="" coords="203,229,376,256"/>
+<area shape="rect" title=" " alt="" coords="400,229,573,256"/>
+<area shape="rect" href="jack_2irq_8h.html" title="操作系统抽象层：中断接口描述" alt="" coords="841,155,980,181"/>
+<area shape="rect" href="jack_2skd_8h.html" title="操作系统抽象层：调度接口描述" alt="" coords="1143,229,1289,256"/>
+<area shape="rect" href="time_8h.html" title="操作系统抽象层：时间" alt="" coords="1106,155,1227,181"/>
+</map>
+</div>
+</div>
+<p><a href="object_8c_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:a266dc6b65f3befa1f79d4e91d9d89d79"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a266dc6b65f3befa1f79d4e91d9d89d79">XWOS_OBJTIK_CHUNK</a>&#160;&#160;&#160;((<a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>)(1 &lt;&lt; 20)) /* 1M */</td></tr>
+<tr class="separator:a266dc6b65f3befa1f79d4e91d9d89d79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0862bb2032c09d5d20b243d99e1b82f7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a0862bb2032c09d5d20b243d99e1b82f7">XWOS_OBJTIK_CHUNK_MSK</a>&#160;&#160;&#160;(<a class="el" href="object_8c.html#a266dc6b65f3befa1f79d4e91d9d89d79">XWOS_OBJTIK_CHUNK</a> - 1)</td></tr>
+<tr class="separator:a0862bb2032c09d5d20b243d99e1b82f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:gac367aafa28ae8ec98b30e21133980067"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lib__xwobj.html#gac367aafa28ae8ec98b30e21133980067">xwos_objtik_init</a> (void)</td></tr>
+<tr class="memdesc:gac367aafa28ae8ec98b30e21133980067"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化对象标签分配器  <a href="group__xwos__lib__xwobj.html#gac367aafa28ae8ec98b30e21133980067">更多...</a><br /></td></tr>
+<tr class="separator:gac367aafa28ae8ec98b30e21133980067"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbe8a125041d1dc6a3c1178aa08fbcd6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#afbe8a125041d1dc6a3c1178aa08fbcd6">xwos_objtik_get</a> (void)</td></tr>
+<tr class="memdesc:afbe8a125041d1dc6a3c1178aa08fbcd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">从对象标签分配器获取一个标签  <a href="object_8c.html#afbe8a125041d1dc6a3c1178aa08fbcd6">更多...</a><br /></td></tr>
+<tr class="separator:afbe8a125041d1dc6a3c1178aa08fbcd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga908c48f09f38f5be9d69758fe30c5d3f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lib__xwobj.html#ga908c48f09f38f5be9d69758fe30c5d3f">xwos_object_construct</a> (struct <a class="el" href="structxwos__object.html">xwos_object</a> *obj)</td></tr>
+<tr class="memdesc:ga908c48f09f38f5be9d69758fe30c5d3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS对象的构造函数  <a href="group__xwos__lib__xwobj.html#ga908c48f09f38f5be9d69758fe30c5d3f">更多...</a><br /></td></tr>
+<tr class="separator:ga908c48f09f38f5be9d69758fe30c5d3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaaaa2a74387092ee01a9e495a2994d1fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lib__xwobj.html#gaaaa2a74387092ee01a9e495a2994d1fa">xwos_object_destruct</a> (struct <a class="el" href="structxwos__object.html">xwos_object</a> *obj)</td></tr>
+<tr class="memdesc:gaaaa2a74387092ee01a9e495a2994d1fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS对象的析构函数  <a href="group__xwos__lib__xwobj.html#gaaaa2a74387092ee01a9e495a2994d1fa">更多...</a><br /></td></tr>
+<tr class="separator:gaaaa2a74387092ee01a9e495a2994d1fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga82ce393acdabdb355bf091c21f784444"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lib__xwobj.html#ga82ce393acdabdb355bf091c21f784444">xwos_object_activate</a> (struct <a class="el" href="structxwos__object.html">xwos_object</a> *obj, <a class="el" href="group__xwos__lib__xwobj.html#gab1b0f358b7105999b384518cc9fb96be">xwobj_gc_f</a> gcfunc)</td></tr>
+<tr class="memdesc:ga82ce393acdabdb355bf091c21f784444"><td class="mdescLeft">&#160;</td><td class="mdescRight">激活一个XWOS对象（将其引用计数初始化位1）  <a href="group__xwos__lib__xwobj.html#ga82ce393acdabdb355bf091c21f784444">更多...</a><br /></td></tr>
+<tr class="separator:ga82ce393acdabdb355bf091c21f784444"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga30a964ee062b6d76176dd64439b51586"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lib__xwobj.html#ga30a964ee062b6d76176dd64439b51586">xwos_object_setgc</a> (struct <a class="el" href="structxwos__object.html">xwos_object</a> *obj, <a class="el" href="group__xwos__lib__xwobj.html#gab1b0f358b7105999b384518cc9fb96be">xwobj_gc_f</a> gcfunc)</td></tr>
+<tr class="memdesc:ga30a964ee062b6d76176dd64439b51586"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置XWOS对象的垃圾回收函数  <a href="group__xwos__lib__xwobj.html#ga30a964ee062b6d76176dd64439b51586">更多...</a><br /></td></tr>
+<tr class="separator:ga30a964ee062b6d76176dd64439b51586"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4613deb6ad50ee8bb3acd1da5842d4ff"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a4613deb6ad50ee8bb3acd1da5842d4ff">xwos_object_acquire_refaop_tst</a> (const void *ov, void *arg)</td></tr>
+<tr class="separator:a4613deb6ad50ee8bb3acd1da5842d4ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9c8346b5ea34f808ceb236094452aa9"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#ad9c8346b5ea34f808ceb236094452aa9">xwos_object_acquire_refaop_op</a> (void *nv, const void *ov, void *arg)</td></tr>
+<tr class="separator:ad9c8346b5ea34f808ceb236094452aa9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac510a6eb1b6a08450ec6d65fe3bf7694"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lib__xwobj.html#gac510a6eb1b6a08450ec6d65fe3bf7694">xwos_object_acquire</a> (struct <a class="el" href="structxwos__object.html">xwos_object</a> *obj, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> tik)</td></tr>
+<tr class="memdesc:gac510a6eb1b6a08450ec6d65fe3bf7694"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查对象的标签并增加引用计数  <a href="group__xwos__lib__xwobj.html#gac510a6eb1b6a08450ec6d65fe3bf7694">更多...</a><br /></td></tr>
+<tr class="separator:gac510a6eb1b6a08450ec6d65fe3bf7694"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5031cf72886d5d649a52fad1e5ebabd0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a5031cf72886d5d649a52fad1e5ebabd0">xwos_object_release_refaop_tst</a> (const void *ov, void *arg)</td></tr>
+<tr class="separator:a5031cf72886d5d649a52fad1e5ebabd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d298f16411f2f31955972446e7de771"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#a4d298f16411f2f31955972446e7de771">xwos_object_release_refaop_op</a> (void *nv, const void *ov, void *arg)</td></tr>
+<tr class="separator:a4d298f16411f2f31955972446e7de771"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac2826d86066a8dfdcc77fe7a8c53edfc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lib__xwobj.html#gac2826d86066a8dfdcc77fe7a8c53edfc">xwos_object_release</a> (struct <a class="el" href="structxwos__object.html">xwos_object</a> *obj, <a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> tik)</td></tr>
+<tr class="memdesc:gac2826d86066a8dfdcc77fe7a8c53edfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查对象的标签并减少引用计数  <a href="group__xwos__lib__xwobj.html#gac2826d86066a8dfdcc77fe7a8c53edfc">更多...</a><br /></td></tr>
+<tr class="separator:gac2826d86066a8dfdcc77fe7a8c53edfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga78e0a4c3320e9e2348d4443294147458"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lib__xwobj.html#ga78e0a4c3320e9e2348d4443294147458">xwos_object_grab</a> (struct <a class="el" href="structxwos__object.html">xwos_object</a> *obj)</td></tr>
+<tr class="memdesc:ga78e0a4c3320e9e2348d4443294147458"><td class="mdescLeft">&#160;</td><td class="mdescRight">增加对象的引用计数  <a href="group__xwos__lib__xwobj.html#ga78e0a4c3320e9e2348d4443294147458">更多...</a><br /></td></tr>
+<tr class="separator:ga78e0a4c3320e9e2348d4443294147458"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad75451193241a605aef8b9fc6f934dcb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lib__xwobj.html#gad75451193241a605aef8b9fc6f934dcb">xwos_object_put</a> (struct <a class="el" href="structxwos__object.html">xwos_object</a> *obj)</td></tr>
+<tr class="memdesc:gad75451193241a605aef8b9fc6f934dcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">减少对象的引用计数  <a href="group__xwos__lib__xwobj.html#gad75451193241a605aef8b9fc6f934dcb">更多...</a><br /></td></tr>
+<tr class="separator:gad75451193241a605aef8b9fc6f934dcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga33f685c358784c30a9f1fb8a5ca11d3d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lib__xwobj.html#ga33f685c358784c30a9f1fb8a5ca11d3d">xwos_object_rawput</a> (struct <a class="el" href="structxwos__object.html">xwos_object</a> *obj)</td></tr>
+<tr class="memdesc:ga33f685c358784c30a9f1fb8a5ca11d3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">减少对象的引用计数，不触发垃圾回收函数  <a href="group__xwos__lib__xwobj.html#ga33f685c358784c30a9f1fb8a5ca11d3d">更多...</a><br /></td></tr>
+<tr class="separator:ga33f685c358784c30a9f1fb8a5ca11d3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga92e633f0ae27bb9be69c6cfef2ceda87"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lib__xwobj.html#ga92e633f0ae27bb9be69c6cfef2ceda87">xwos_object_get_refcnt</a> (struct <a class="el" href="structxwos__object.html">xwos_object</a> *obj)</td></tr>
+<tr class="memdesc:ga92e633f0ae27bb9be69c6cfef2ceda87"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取XWOS对象的引用计数  <a href="group__xwos__lib__xwobj.html#ga92e633f0ae27bb9be69c6cfef2ceda87">更多...</a><br /></td></tr>
+<tr class="separator:ga92e633f0ae27bb9be69c6cfef2ceda87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+变量</h2></td></tr>
+<tr class="memitem:aee131967e080e72d71c6988877c62c61"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga271ee1ca2541a577892dbc7c59974478">atomic_xwsq_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#aee131967e080e72d71c6988877c62c61">xwos_objtik_dispatcher</a> = ( 1U * ((<a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>)(1 &lt;&lt; 20)) )</td></tr>
+<tr class="memdesc:aee131967e080e72d71c6988877c62c61"><td class="mdescLeft">&#160;</td><td class="mdescRight">对象标签分配器，每次分配XWOS_OBJTIK_CHUNK个ID给CPU  <a href="object_8c.html#aee131967e080e72d71c6988877c62c61">更多...</a><br /></td></tr>
+<tr class="separator:aee131967e080e72d71c6988877c62c61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff98626927c2bd00ba3a0e55794834fe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga271ee1ca2541a577892dbc7c59974478">atomic_xwsq_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="object_8c.html#aff98626927c2bd00ba3a0e55794834fe">xwos_objtik</a> [1U] = {0}</td></tr>
+<tr class="memdesc:aff98626927c2bd00ba3a0e55794834fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">每CPU的对象标签分配器  <a href="object_8c.html#aff98626927c2bd00ba3a0e55794834fe">更多...</a><br /></td></tr>
+<tr class="separator:aff98626927c2bd00ba3a0e55794834fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p >玄武OS通用库：XWOS的对象 </p>
+<dl class="section author"><dt>作者</dt><dd><ul>
+<li>隐星魂 (Roy Sun) <a href="#" onclick="location.href='mai'+'lto:'+'xwo'+'s@'+'xwo'+'s.'+'tec'+'h'; return false;">xwos@<span class="obfuscator">.nosp@m.</span>xwos<span class="obfuscator">.nosp@m.</span>.tech</a> </li>
+</ul>
+</dd></dl>
+<dl class="section copyright"><dt>版权所有</dt><dd><ul>
+<li>Copyright © 2015 xwos.tech, All Rights Reserved. <blockquote class="doxtable">
+<p >&zwj;This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at <a href="http://mozilla.org/MPL/2.0/">http://mozilla.org/MPL/2.0/</a>. </p>
+</blockquote>
+</li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="object_8c_source.html">object.c</a> 中定义.</p>
+</div><h2 class="groupheader">宏定义说明</h2>
+<a id="a266dc6b65f3befa1f79d4e91d9d89d79" name="a266dc6b65f3befa1f79d4e91d9d89d79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a266dc6b65f3befa1f79d4e91d9d89d79">&#9670;&nbsp;</a></span>XWOS_OBJTIK_CHUNK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XWOS_OBJTIK_CHUNK&#160;&#160;&#160;((<a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>)(1 &lt;&lt; 20)) /* 1M */</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="object_8c_source.html">object.c</a> 第 <a class="el" href="object_8c_source.html#l00018">18</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0862bb2032c09d5d20b243d99e1b82f7" name="a0862bb2032c09d5d20b243d99e1b82f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0862bb2032c09d5d20b243d99e1b82f7">&#9670;&nbsp;</a></span>XWOS_OBJTIK_CHUNK_MSK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XWOS_OBJTIK_CHUNK_MSK&#160;&#160;&#160;(<a class="el" href="object_8c.html#a266dc6b65f3befa1f79d4e91d9d89d79">XWOS_OBJTIK_CHUNK</a> - 1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="object_8c_source.html">object.c</a> 第 <a class="el" href="object_8c_source.html#l00019">19</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">函数说明</h2>
+<a id="ad9c8346b5ea34f808ceb236094452aa9" name="ad9c8346b5ea34f808ceb236094452aa9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9c8346b5ea34f808ceb236094452aa9">&#9670;&nbsp;</a></span>xwos_object_acquire_refaop_op()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void xwos_object_acquire_refaop_op </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>nv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>ov</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>arg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >&lt; 去除未使用变量的警告</p>
+
+<p class="definition">在文件 <a class="el" href="object_8c_source.html">object.c</a> 第 <a class="el" href="object_8c_source.html#l00173">173</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  174</span>{</div>
+<div class="line"><span class="lineno">  175</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> * n;</div>
+<div class="line"><span class="lineno">  176</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> * o;</div>
+<div class="line"><span class="lineno">  177</span> </div>
+<div class="line"><span class="lineno">  178</span>        <a class="code hl_define" href="group__xwos__standard.html#ga56f3f47f5e509a2a67d1b43cd52338c2">XWOS_UNUSED</a>(arg);</div>
+<div class="line"><span class="lineno">  179</span>        n = (<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> *)nv;</div>
+<div class="line"><span class="lineno">  180</span>        o = (<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> *)ov;</div>
+<div class="line"><span class="lineno">  181</span>        *n = *o + 1;</div>
+<div class="line"><span class="lineno">  182</span>}</div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga59fe68c80516b22de8dccb84275d23f2"><div class="ttname"><a href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a></div><div class="ttdeci">unsigned long xwsq_t</div><div class="ttdef"><b>Definition:</b> <a href="type_8h_source.html#l00145">type.h:145</a></div></div>
+<div class="ttc" id="agroup__xwos__standard_html_ga56f3f47f5e509a2a67d1b43cd52338c2"><div class="ttname"><a href="group__xwos__standard.html#ga56f3f47f5e509a2a67d1b43cd52338c2">XWOS_UNUSED</a></div><div class="ttdeci">#define XWOS_UNUSED(x)</div><div class="ttdef"><b>Definition:</b> <a href="standard_8h_source.html#l00068">standard.h:68</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="object_8c_ad9c8346b5ea34f808ceb236094452aa9_icgraph.png" border="0" usemap="#aobject_8c_ad9c8346b5ea34f808ceb236094452aa9_icgraph" alt=""/></div>
+<map name="aobject_8c_ad9c8346b5ea34f808ceb236094452aa9_icgraph" id="aobject_8c_ad9c8346b5ea34f808ceb236094452aa9_icgraph">
+<area shape="rect" title=" " alt="" coords="352,23,496,65"/>
+<area shape="rect" href="group__xwos__lib__xwobj.html#gac510a6eb1b6a08450ec6d65fe3bf7694" title="检查对象的标签并增加引用计数" alt="" coords="160,31,304,57"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#ga57943883d32434a333448235939496c8" title="XWCQ API：检查循环队列对象的标签并增加引用计数" alt="" coords="7,5,110,32"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga56d7abee4028c69998cbc48a81be7a6e" title="XWMQ API：检查消息队列对象的标签并增加引用计数" alt="" coords="5,56,112,83"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a4613deb6ad50ee8bb3acd1da5842d4ff" name="a4613deb6ad50ee8bb3acd1da5842d4ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4613deb6ad50ee8bb3acd1da5842d4ff">&#9670;&nbsp;</a></span>xwos_object_acquire_refaop_tst()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_object_acquire_refaop_tst </td>
+          <td>(</td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>ov</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>arg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p >&lt; 所有XWOS的对象都有相同的幻数</p>
+<p >&lt;Permission denied</p>
+<p >&lt;Object dead</p>
+<p >&lt;No error</p>
+
+<p class="definition">在文件 <a class="el" href="object_8c_source.html">object.c</a> 第 <a class="el" href="object_8c_source.html#l00153">153</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  154</span>{</div>
+<div class="line"><span class="lineno">  155</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> * o;</div>
+<div class="line"><span class="lineno">  156</span>        <a class="code hl_struct" href="structxwobj__d.html">xwobj_d</a> * objd;</div>
+<div class="line"><span class="lineno">  157</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">  158</span> </div>
+<div class="line"><span class="lineno">  159</span>        o = (<span class="keyword">const</span> <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> *)ov;</div>
+<div class="line"><span class="lineno">  160</span>        objd = arg;</div>
+<div class="line"><span class="lineno">  161</span>        <span class="keywordflow">if</span> ((<a class="code hl_define" href="group__xwos__lib__xwobj.html#gac41d54b372e03df32577d0f11031c6b9">XWOS_OBJ_MAGIC</a> != objd-&gt;<a class="code hl_variable" href="structxwobj__d.html#a748b8b4e8bd0d83d5244c20f56a97948">obj</a>-&gt;<a class="code hl_variable" href="structxwos__object.html#a882d44ee4a24ab73b65f2cb6921eb8ba">magic</a>) ||</div>
+<div class="line"><span class="lineno">  162</span>                   (objd-&gt;<a class="code hl_variable" href="structxwobj__d.html#aac5a996bf5c5eec966da7febde8daf9a">tik</a> != objd-&gt;<a class="code hl_variable" href="structxwobj__d.html#a748b8b4e8bd0d83d5244c20f56a97948">obj</a>-&gt;<a class="code hl_variable" href="structxwos__object.html#ab5ec53f5e4ed98664c3cffabb82435bf">tik</a>)) {</div>
+<div class="line"><span class="lineno">  163</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#gac2a2e9fa555401f94478f74e01868032">EACCES</a>;</div>
+<div class="line"><span class="lineno">  164</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (*o &lt; 1) {</div>
+<div class="line"><span class="lineno">  165</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#gad9d19290a2998889d26d54ebb9ec2ef7">EOBJDEAD</a>;</div>
+<div class="line"><span class="lineno">  166</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  167</span>                rc = <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><span class="lineno">  168</span>        }</div>
+<div class="line"><span class="lineno">  169</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  170</span>}</div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga6a72d49d869215a02342eb465166537b"><div class="ttname"><a href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a></div><div class="ttdeci">#define XWOK</div><div class="ttdoc">No error</div><div class="ttdef"><b>Definition:</b> <a href="errno_8h_source.html#l00182">errno.h:182</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_gac2a2e9fa555401f94478f74e01868032"><div class="ttname"><a href="group__xwos__lib__errno.html#gac2a2e9fa555401f94478f74e01868032">EACCES</a></div><div class="ttdeci">#define EACCES</div><div class="ttdoc">Permission denied</div><div class="ttdef"><b>Definition:</b> <a href="errno_8h_source.html#l00043">errno.h:43</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_gad9d19290a2998889d26d54ebb9ec2ef7"><div class="ttname"><a href="group__xwos__lib__errno.html#gad9d19290a2998889d26d54ebb9ec2ef7">EOBJDEAD</a></div><div class="ttdeci">#define EOBJDEAD</div><div class="ttdoc">Object dead</div><div class="ttdef"><b>Definition:</b> <a href="errno_8h_source.html#l00194">errno.h:194</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga06847ea8c7edb2b1f166288b230f251f"><div class="ttname"><a href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a></div><div class="ttdeci">signed long xwer_t</div><div class="ttdef"><b>Definition:</b> <a href="type_8h_source.html#l00193">type.h:193</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__xwobj_html_gac41d54b372e03df32577d0f11031c6b9"><div class="ttname"><a href="group__xwos__lib__xwobj.html#gac41d54b372e03df32577d0f11031c6b9">XWOS_OBJ_MAGIC</a></div><div class="ttdeci">#define XWOS_OBJ_MAGIC</div><div class="ttdef"><b>Definition:</b> <a href="object_8h_source.html#l00035">object.h:35</a></div></div>
+<div class="ttc" id="astructxwobj__d_html"><div class="ttname"><a href="structxwobj__d.html">xwobj_d</a></div><div class="ttdoc">XWOS对象描述符</div><div class="ttdef"><b>Definition:</b> <a href="object_8h_source.html#l00063">object.h:63</a></div></div>
+<div class="ttc" id="astructxwobj__d_html_a748b8b4e8bd0d83d5244c20f56a97948"><div class="ttname"><a href="structxwobj__d.html#a748b8b4e8bd0d83d5244c20f56a97948">xwobj_d::obj</a></div><div class="ttdeci">struct xwos_object * obj</div><div class="ttdef"><b>Definition:</b> <a href="object_8h_source.html#l00064">object.h:64</a></div></div>
+<div class="ttc" id="astructxwobj__d_html_aac5a996bf5c5eec966da7febde8daf9a"><div class="ttname"><a href="structxwobj__d.html#aac5a996bf5c5eec966da7febde8daf9a">xwobj_d::tik</a></div><div class="ttdeci">xwsq_t tik</div><div class="ttdef"><b>Definition:</b> <a href="object_8h_source.html#l00065">object.h:65</a></div></div>
+<div class="ttc" id="astructxwos__object_html_a882d44ee4a24ab73b65f2cb6921eb8ba"><div class="ttname"><a href="structxwos__object.html#a882d44ee4a24ab73b65f2cb6921eb8ba">xwos_object::magic</a></div><div class="ttdeci">xwsq_t magic</div><div class="ttdef"><b>Definition:</b> <a href="object_8h_source.html#l00052">object.h:52</a></div></div>
+<div class="ttc" id="astructxwos__object_html_ab5ec53f5e4ed98664c3cffabb82435bf"><div class="ttname"><a href="structxwos__object.html#ab5ec53f5e4ed98664c3cffabb82435bf">xwos_object::tik</a></div><div class="ttdeci">xwsq_t tik</div><div class="ttdef"><b>Definition:</b> <a href="object_8h_source.html#l00051">object.h:51</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="object_8c_a4613deb6ad50ee8bb3acd1da5842d4ff_icgraph.png" border="0" usemap="#aobject_8c_a4613deb6ad50ee8bb3acd1da5842d4ff_icgraph" alt=""/></div>
+<map name="aobject_8c_a4613deb6ad50ee8bb3acd1da5842d4ff_icgraph" id="aobject_8c_a4613deb6ad50ee8bb3acd1da5842d4ff_icgraph">
+<area shape="rect" title=" " alt="" coords="352,23,496,65"/>
+<area shape="rect" href="group__xwos__lib__xwobj.html#gac510a6eb1b6a08450ec6d65fe3bf7694" title="检查对象的标签并增加引用计数" alt="" coords="160,31,304,57"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#ga57943883d32434a333448235939496c8" title="XWCQ API：检查循环队列对象的标签并增加引用计数" alt="" coords="7,5,110,32"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga56d7abee4028c69998cbc48a81be7a6e" title="XWMQ API：检查消息队列对象的标签并增加引用计数" alt="" coords="5,56,112,83"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a4d298f16411f2f31955972446e7de771" name="a4d298f16411f2f31955972446e7de771"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d298f16411f2f31955972446e7de771">&#9670;&nbsp;</a></span>xwos_object_release_refaop_op()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void xwos_object_release_refaop_op </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>nv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>ov</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>arg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >&lt; 去除未使用变量的警告</p>
+
+<p class="definition">在文件 <a class="el" href="object_8c_source.html">object.c</a> 第 <a class="el" href="object_8c_source.html#l00232">232</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  233</span>{</div>
+<div class="line"><span class="lineno">  234</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> * n;</div>
+<div class="line"><span class="lineno">  235</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> * o;</div>
+<div class="line"><span class="lineno">  236</span> </div>
+<div class="line"><span class="lineno">  237</span>        <a class="code hl_define" href="group__xwos__standard.html#ga56f3f47f5e509a2a67d1b43cd52338c2">XWOS_UNUSED</a>(arg);</div>
+<div class="line"><span class="lineno">  238</span>        n = (<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> *)nv;</div>
+<div class="line"><span class="lineno">  239</span>        o = (<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> *)ov;</div>
+<div class="line"><span class="lineno">  240</span>        *n = *o - 1;</div>
+<div class="line"><span class="lineno">  241</span>}</div>
+</div><!-- fragment --><div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="object_8c_a4d298f16411f2f31955972446e7de771_icgraph.png" border="0" usemap="#aobject_8c_a4d298f16411f2f31955972446e7de771_icgraph" alt=""/></div>
+<map name="aobject_8c_a4d298f16411f2f31955972446e7de771_icgraph" id="aobject_8c_a4d298f16411f2f31955972446e7de771_icgraph">
+<area shape="rect" title=" " alt="" coords="352,23,496,65"/>
+<area shape="rect" href="group__xwos__lib__xwobj.html#gac2826d86066a8dfdcc77fe7a8c53edfc" title="检查对象的标签并减少引用计数" alt="" coords="160,31,304,57"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#ga67f1a573d9536edea6196c91f811c0bd" title="XWCQ API：检查循环队列对象的标签并增加引用计数" alt="" coords="7,5,110,32"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#gad59d65cfc07928213263d3a8a3c031bd" title="XWMQ API：检查消息队列对象的标签并减少引用计数" alt="" coords="5,56,112,83"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a5031cf72886d5d649a52fad1e5ebabd0" name="a5031cf72886d5d649a52fad1e5ebabd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5031cf72886d5d649a52fad1e5ebabd0">&#9670;&nbsp;</a></span>xwos_object_release_refaop_tst()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_object_release_refaop_tst </td>
+          <td>(</td>
+          <td class="paramtype">const void *&#160;</td>
+          <td class="paramname"><em>ov</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>arg</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >&lt; 所有XWOS的对象都有相同的幻数</p>
+<p >&lt;Permission denied</p>
+<p >&lt;Object dead</p>
+<p >&lt;No error</p>
+
+<p class="definition">在文件 <a class="el" href="object_8c_source.html">object.c</a> 第 <a class="el" href="object_8c_source.html#l00212">212</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  213</span>{</div>
+<div class="line"><span class="lineno">  214</span>        <span class="keyword">const</span> <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> * o;</div>
+<div class="line"><span class="lineno">  215</span>        <a class="code hl_struct" href="structxwobj__d.html">xwobj_d</a> * objd;</div>
+<div class="line"><span class="lineno">  216</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">  217</span> </div>
+<div class="line"><span class="lineno">  218</span>        o = (<span class="keyword">const</span> <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> *)ov;</div>
+<div class="line"><span class="lineno">  219</span>        objd = arg;</div>
+<div class="line"><span class="lineno">  220</span>        <span class="keywordflow">if</span> ((<a class="code hl_define" href="group__xwos__lib__xwobj.html#gac41d54b372e03df32577d0f11031c6b9">XWOS_OBJ_MAGIC</a> != objd-&gt;<a class="code hl_variable" href="structxwobj__d.html#a748b8b4e8bd0d83d5244c20f56a97948">obj</a>-&gt;<a class="code hl_variable" href="structxwos__object.html#a882d44ee4a24ab73b65f2cb6921eb8ba">magic</a>) ||</div>
+<div class="line"><span class="lineno">  221</span>                   (objd-&gt;<a class="code hl_variable" href="structxwobj__d.html#aac5a996bf5c5eec966da7febde8daf9a">tik</a> != objd-&gt;<a class="code hl_variable" href="structxwobj__d.html#a748b8b4e8bd0d83d5244c20f56a97948">obj</a>-&gt;<a class="code hl_variable" href="structxwos__object.html#ab5ec53f5e4ed98664c3cffabb82435bf">tik</a>)) {</div>
+<div class="line"><span class="lineno">  222</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#gac2a2e9fa555401f94478f74e01868032">EACCES</a>;</div>
+<div class="line"><span class="lineno">  223</span>        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (*o &lt; 1) {</div>
+<div class="line"><span class="lineno">  224</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#gad9d19290a2998889d26d54ebb9ec2ef7">EOBJDEAD</a>;</div>
+<div class="line"><span class="lineno">  225</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  226</span>                rc = <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><span class="lineno">  227</span>        }</div>
+<div class="line"><span class="lineno">  228</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  229</span>}</div>
+</div><!-- fragment --><div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="object_8c_a5031cf72886d5d649a52fad1e5ebabd0_icgraph.png" border="0" usemap="#aobject_8c_a5031cf72886d5d649a52fad1e5ebabd0_icgraph" alt=""/></div>
+<map name="aobject_8c_a5031cf72886d5d649a52fad1e5ebabd0_icgraph" id="aobject_8c_a5031cf72886d5d649a52fad1e5ebabd0_icgraph">
+<area shape="rect" title=" " alt="" coords="352,23,496,65"/>
+<area shape="rect" href="group__xwos__lib__xwobj.html#gac2826d86066a8dfdcc77fe7a8c53edfc" title="检查对象的标签并减少引用计数" alt="" coords="160,31,304,57"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#ga67f1a573d9536edea6196c91f811c0bd" title="XWCQ API：检查循环队列对象的标签并增加引用计数" alt="" coords="7,5,110,32"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#gad59d65cfc07928213263d3a8a3c031bd" title="XWMQ API：检查消息队列对象的标签并减少引用计数" alt="" coords="5,56,112,83"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="afbe8a125041d1dc6a3c1178aa08fbcd6" name="afbe8a125041d1dc6a3c1178aa08fbcd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbe8a125041d1dc6a3c1178aa08fbcd6">&#9670;&nbsp;</a></span>xwos_objtik_get()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> xwos_objtik_get </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>从对象标签分配器获取一个标签 </p>
+<dl class="section return"><dt>返回</dt><dd>标签 </dd></dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>为了避免频繁地访问多CPU共享原子变量xwos_objtik_dispatcher，每次获取标签 都是从当前CPU的每CPU变量xwos_objtik中分配的，只有当xwos_objtik的分配额 达到最大额度XWOS_OBJTIK_CHUNK时，才会访问xwos_objtik_dispatcher再次预先分配 XWOS_OBJTIK_CHUNK个标签。 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="object_8c_source.html">object.c</a> 第 <a class="el" href="object_8c_source.html#l00055">55</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   56</span>{</div>
+<div class="line"><span class="lineno">   57</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga0bb4d847ba02675e5264444479899532">xwid_t</a> cpu;</div>
+<div class="line"><span class="lineno">   58</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga271ee1ca2541a577892dbc7c59974478">atomic_xwsq_t</a> * objtik;</div>
+<div class="line"><span class="lineno">   59</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> curr, max, ov;</div>
+<div class="line"><span class="lineno">   60</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">   61</span> </div>
+<div class="line"><span class="lineno">   62</span>        cpu = <a class="code hl_function" href="group__xwos__skd.html#ga0bb2baaefcfc0f62687977ea70fcaa28">xwos_skd_id_lc</a>();</div>
+<div class="line"><span class="lineno">   63</span>        objtik = &amp;<a class="code hl_variable" href="object_8c.html#aff98626927c2bd00ba3a0e55794834fe">xwos_objtik</a>[cpu];</div>
+<div class="line"><span class="lineno">   64</span>        <span class="keywordflow">while</span> (<span class="keyword">true</span>) {</div>
+<div class="line"><span class="lineno">   65</span>                curr = <a class="code hl_define" href="group__xwos__lib__xwaop.html#ga9a53ba42b71093821567101c3ebcbe77">xwaop_load</a>(<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>, objtik, <a class="code hl_enumvalue" href="group__xwos__lib__type.html#gga33d957600264a16ede92db2e6e42f830acdb5a6e088c69ee770c24d3612d12adc">xwaop_mo_relaxed</a>);</div>
+<div class="line"><span class="lineno">   66</span>                max = (curr &amp; (~XWOS_OBJTIK_CHUNK_MSK)) + <a class="code hl_define" href="object_8c.html#a0862bb2032c09d5d20b243d99e1b82f7">XWOS_OBJTIK_CHUNK_MSK</a>;</div>
+<div class="line"><span class="lineno">   67</span>                rc = <a class="code hl_define" href="group__xwos__lib__xwaop.html#gaa6dd901c6074f8b669889c71066f4a3a">xwaop_tlt_then_add</a>(<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>, objtik, max, 1, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, &amp;ov);</div>
+<div class="line"><span class="lineno">   68</span>                <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">   69</span>                        <a class="code hl_typedef" href="group__xwos__lib__type.html#gaf8126ee3732e83d788722e2232a20948">xwreg_t</a> cpuirq;</div>
+<div class="line"><span class="lineno">   70</span>                        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> chunk;</div>
+<div class="line"><span class="lineno">   71</span> </div>
+<div class="line"><span class="lineno">   72</span>                        <a class="code hl_function" href="group__xwos__irq.html#ga6786862246388dace5c878fa112fac4d">xwos_cpuirq_save_lc</a>(&amp;cpuirq);</div>
+<div class="line"><span class="lineno">   73</span>                        curr = <a class="code hl_define" href="group__xwos__lib__xwaop.html#ga9a53ba42b71093821567101c3ebcbe77">xwaop_load</a>(<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>, objtik, <a class="code hl_enumvalue" href="group__xwos__lib__type.html#gga33d957600264a16ede92db2e6e42f830acdb5a6e088c69ee770c24d3612d12adc">xwaop_mo_relaxed</a>);</div>
+<div class="line"><span class="lineno">   74</span>                        <span class="keywordflow">if</span> (curr == max) {</div>
+<div class="line"><span class="lineno">   75</span>                                ov = curr;</div>
+<div class="line"><span class="lineno">   76</span>                                <a class="code hl_define" href="group__xwos__lib__xwaop.html#gadd1ff1c64048de270aac44c35a8519e7">xwaop_add</a>(<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>, &amp;<a class="code hl_variable" href="object_8c.html#aee131967e080e72d71c6988877c62c61">xwos_objtik_dispatcher</a>,</div>
+<div class="line"><span class="lineno">   77</span>                                          <a class="code hl_define" href="object_8c.html#a266dc6b65f3befa1f79d4e91d9d89d79">XWOS_OBJTIK_CHUNK</a>, <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>, &amp;chunk);</div>
+<div class="line"><span class="lineno">   78</span>                                <a class="code hl_define" href="group__xwos__lib__xwaop.html#ga6da3bb0b18332df2e13b2ccb80a66b97">xwaop_store</a>(<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>, objtik, <a class="code hl_enumvalue" href="group__xwos__lib__type.html#gga33d957600264a16ede92db2e6e42f830acdb5a6e088c69ee770c24d3612d12adc">xwaop_mo_relaxed</a>, chunk);</div>
+<div class="line"><span class="lineno">   79</span>                                <a class="code hl_function" href="group__xwos__irq.html#gab348bfecc115e0d9bb7fc54646f26ebd">xwos_cpuirq_restore_lc</a>(cpuirq);</div>
+<div class="line"><span class="lineno">   80</span>                                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">   81</span>                        } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">   82</span>                                <a class="code hl_function" href="group__xwos__irq.html#gab348bfecc115e0d9bb7fc54646f26ebd">xwos_cpuirq_restore_lc</a>(cpuirq);</div>
+<div class="line"><span class="lineno">   83</span>                        }</div>
+<div class="line"><span class="lineno">   84</span>                } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">   85</span>                        <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">   86</span>                }</div>
+<div class="line"><span class="lineno">   87</span>        }</div>
+<div class="line"><span class="lineno">   88</span>        <span class="keywordflow">return</span> ov;</div>
+<div class="line"><span class="lineno">   89</span>}</div>
+<div class="ttc" id="agroup__xwos__irq_html_ga6786862246388dace5c878fa112fac4d"><div class="ttname"><a href="group__xwos__irq.html#ga6786862246388dace5c878fa112fac4d">xwos_cpuirq_save_lc</a></div><div class="ttdeci">static void xwos_cpuirq_save_lc(xwreg_t *cpuirq)</div><div class="ttdoc">XWOS API：保存然后关闭本地CPU的中断</div><div class="ttdef"><b>Definition:</b> <a href="irq_8h_source.html#l00302">irq.h:302</a></div></div>
+<div class="ttc" id="agroup__xwos__irq_html_gab348bfecc115e0d9bb7fc54646f26ebd"><div class="ttname"><a href="group__xwos__irq.html#gab348bfecc115e0d9bb7fc54646f26ebd">xwos_cpuirq_restore_lc</a></div><div class="ttdeci">static void xwos_cpuirq_restore_lc(xwreg_t cpuirq)</div><div class="ttdoc">XWOS API：恢复本地CPU的中断</div><div class="ttdef"><b>Definition:</b> <a href="irq_8h_source.html#l00288">irq.h:288</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition:</b> <a href="type_8h_source.html#l00028">type.h:28</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga0bb4d847ba02675e5264444479899532"><div class="ttname"><a href="group__xwos__lib__type.html#ga0bb4d847ba02675e5264444479899532">xwid_t</a></div><div class="ttdeci">unsigned long xwid_t</div><div class="ttdef"><b>Definition:</b> <a href="type_8h_source.html#l00161">type.h:161</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga271ee1ca2541a577892dbc7c59974478"><div class="ttname"><a href="group__xwos__lib__type.html#ga271ee1ca2541a577892dbc7c59974478">atomic_xwsq_t</a></div><div class="ttdeci">__xwcc_atomic xwsq_t atomic_xwsq_t</div><div class="ttdef"><b>Definition:</b> <a href="type_8h_source.html#l00149">type.h:149</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_gaf8126ee3732e83d788722e2232a20948"><div class="ttname"><a href="group__xwos__lib__type.html#gaf8126ee3732e83d788722e2232a20948">xwreg_t</a></div><div class="ttdeci">unsigned long xwreg_t</div><div class="ttdef"><b>Definition:</b> <a href="type_8h_source.html#l00129">type.h:129</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_gga33d957600264a16ede92db2e6e42f830acdb5a6e088c69ee770c24d3612d12adc"><div class="ttname"><a href="group__xwos__lib__type.html#gga33d957600264a16ede92db2e6e42f830acdb5a6e088c69ee770c24d3612d12adc">xwaop_mo_relaxed</a></div><div class="ttdeci">@ xwaop_mo_relaxed</div><div class="ttdef"><b>Definition:</b> <a href="type_8h_source.html#l00246">type.h:246</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__xwaop_html_ga6da3bb0b18332df2e13b2ccb80a66b97"><div class="ttname"><a href="group__xwos__lib__xwaop.html#ga6da3bb0b18332df2e13b2ccb80a66b97">xwaop_store</a></div><div class="ttdeci">#define xwaop_store(type, a, memorder, v)</div><div class="ttdoc">对原子变量进行原子操作：存储</div><div class="ttdef"><b>Definition:</b> <a href="xwaop_8h_source.html#l00058">xwaop.h:58</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__xwaop_html_ga9a53ba42b71093821567101c3ebcbe77"><div class="ttname"><a href="group__xwos__lib__xwaop.html#ga9a53ba42b71093821567101c3ebcbe77">xwaop_load</a></div><div class="ttdeci">#define xwaop_load(type, a, memorder)</div><div class="ttdoc">对原子变量进行原子操作：加载</div><div class="ttdef"><b>Definition:</b> <a href="xwaop_8h_source.html#l00047">xwaop.h:47</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__xwaop_html_gaa6dd901c6074f8b669889c71066f4a3a"><div class="ttname"><a href="group__xwos__lib__xwaop.html#gaa6dd901c6074f8b669889c71066f4a3a">xwaop_tlt_then_add</a></div><div class="ttdeci">#define xwaop_tlt_then_add(type, a, t, v, nv, ov)</div><div class="ttdoc">对原子变量进行原子操作：读取－测试“小于”－相加－回写</div><div class="ttdef"><b>Definition:</b> <a href="xwaop_8h_source.html#l00457">xwaop.h:457</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__xwaop_html_gadd1ff1c64048de270aac44c35a8519e7"><div class="ttname"><a href="group__xwos__lib__xwaop.html#gadd1ff1c64048de270aac44c35a8519e7">xwaop_add</a></div><div class="ttdeci">#define xwaop_add(type, a, v, nv, ov)</div><div class="ttdoc">对原子变量进行原子操作：读取－相加－回写</div><div class="ttdef"><b>Definition:</b> <a href="xwaop_8h_source.html#l00332">xwaop.h:332</a></div></div>
+<div class="ttc" id="agroup__xwos__skd_html_ga0bb2baaefcfc0f62687977ea70fcaa28"><div class="ttname"><a href="group__xwos__skd.html#ga0bb2baaefcfc0f62687977ea70fcaa28">xwos_skd_id_lc</a></div><div class="ttdeci">static xwid_t xwos_skd_id_lc(void)</div><div class="ttdoc">XWOS API：获取当前CPU的ID</div><div class="ttdef"><b>Definition:</b> <a href="skd_8h_source.html#l00126">skd.h:126</a></div></div>
+<div class="ttc" id="aobject_8c_html_a0862bb2032c09d5d20b243d99e1b82f7"><div class="ttname"><a href="object_8c.html#a0862bb2032c09d5d20b243d99e1b82f7">XWOS_OBJTIK_CHUNK_MSK</a></div><div class="ttdeci">#define XWOS_OBJTIK_CHUNK_MSK</div><div class="ttdef"><b>Definition:</b> <a href="object_8c_source.html#l00019">object.c:19</a></div></div>
+<div class="ttc" id="aobject_8c_html_a266dc6b65f3befa1f79d4e91d9d89d79"><div class="ttname"><a href="object_8c.html#a266dc6b65f3befa1f79d4e91d9d89d79">XWOS_OBJTIK_CHUNK</a></div><div class="ttdeci">#define XWOS_OBJTIK_CHUNK</div><div class="ttdef"><b>Definition:</b> <a href="object_8c_source.html#l00018">object.c:18</a></div></div>
+<div class="ttc" id="aobject_8c_html_aee131967e080e72d71c6988877c62c61"><div class="ttname"><a href="object_8c.html#aee131967e080e72d71c6988877c62c61">xwos_objtik_dispatcher</a></div><div class="ttdeci">atomic_xwsq_t xwos_objtik_dispatcher</div><div class="ttdoc">对象标签分配器，每次分配XWOS_OBJTIK_CHUNK个ID给CPU</div><div class="ttdef"><b>Definition:</b> <a href="object_8c_source.html#l00024">object.c:24</a></div></div>
+<div class="ttc" id="aobject_8c_html_aff98626927c2bd00ba3a0e55794834fe"><div class="ttname"><a href="object_8c.html#aff98626927c2bd00ba3a0e55794834fe">xwos_objtik</a></div><div class="ttdeci">atomic_xwsq_t xwos_objtik[1U]</div><div class="ttdoc">每CPU的对象标签分配器</div><div class="ttdef"><b>Definition:</b> <a href="object_8c_source.html#l00029">object.c:29</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="object_8c_afbe8a125041d1dc6a3c1178aa08fbcd6_cgraph.png" border="0" usemap="#aobject_8c_afbe8a125041d1dc6a3c1178aa08fbcd6_cgraph" alt=""/></div>
+<map name="aobject_8c_afbe8a125041d1dc6a3c1178aa08fbcd6_cgraph" id="aobject_8c_afbe8a125041d1dc6a3c1178aa08fbcd6_cgraph">
+<area shape="rect" title="从对象标签分配器获取一个标签" alt="" coords="5,56,121,83"/>
+<area shape="rect" href="group__xwos__irq.html#gab348bfecc115e0d9bb7fc54646f26ebd" title="XWOS API：恢复本地CPU的中断" alt="" coords="169,5,328,32"/>
+<area shape="rect" href="group__xwos__irq.html#ga6786862246388dace5c878fa112fac4d" title="XWOS API：保存然后关闭本地CPU的中断" alt="" coords="175,56,322,83"/>
+<area shape="rect" href="group__xwos__skd.html#ga0bb2baaefcfc0f62687977ea70fcaa28" title="XWOS API：获取当前CPU的ID" alt="" coords="191,107,306,133"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="object_8c_afbe8a125041d1dc6a3c1178aa08fbcd6_icgraph.png" border="0" usemap="#aobject_8c_afbe8a125041d1dc6a3c1178aa08fbcd6_icgraph" alt=""/></div>
+<map name="aobject_8c_afbe8a125041d1dc6a3c1178aa08fbcd6_icgraph" id="aobject_8c_afbe8a125041d1dc6a3c1178aa08fbcd6_icgraph">
+<area shape="rect" title="从对象标签分配器获取一个标签" alt="" coords="489,81,605,108"/>
+<area shape="rect" href="group__xwos__lib__xwobj.html#ga82ce393acdabdb355bf091c21f784444" title="激活一个XWOS对象（将其引用计数初始化位1）" alt="" coords="293,81,441,108"/>
+<area shape="rect" href="xwcq_8c.html#ac875caf539133d07b40b9973319fc3f3" title="激活循环队列对象" alt="" coords="137,5,243,32"/>
+<area shape="rect" href="xwmq_8c.html#aa0841cf7abe8c4dfd5626a12bf99f72d" title=" " alt="" coords="135,56,245,83"/>
+<area shape="rect" href="group__xwmd__isc__xwpcp.html#ga9a2d336c79ea57b2f8b5fb247999e10a" title="XWPCP API: 启动XWPCP" alt="" coords="143,107,237,133"/>
+<area shape="rect" href="group__xwmd__isc__xwscp.html#ga459e293c6005220d6aabe23dde1e441c" title="XWSCP API: 启动XWSCP" alt="" coords="143,157,237,184"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#ga0c3766b13d0b48e0c99fab1d814c7b57" title="XWCQ API：初始化循环队列" alt="" coords="7,5,85,32"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga51603f04fac6de40ea6726d69b264cc7" title="XWMQ API：静态方式初始化消息队列" alt="" coords="5,56,87,83"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">变量说明</h2>
+<a id="aff98626927c2bd00ba3a0e55794834fe" name="aff98626927c2bd00ba3a0e55794834fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff98626927c2bd00ba3a0e55794834fe">&#9670;&nbsp;</a></span>xwos_objtik</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga271ee1ca2541a577892dbc7c59974478">atomic_xwsq_t</a> xwos_objtik[1U] = {0}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>每CPU的对象标签分配器 </p>
+
+<p class="definition">在文件 <a class="el" href="object_8c_source.html">object.c</a> 第 <a class="el" href="object_8c_source.html#l00029">29</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aee131967e080e72d71c6988877c62c61" name="aee131967e080e72d71c6988877c62c61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee131967e080e72d71c6988877c62c61">&#9670;&nbsp;</a></span>xwos_objtik_dispatcher</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga271ee1ca2541a577892dbc7c59974478">atomic_xwsq_t</a> xwos_objtik_dispatcher = ( 1U * ((<a class="el" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>)(1 &lt;&lt; 20)) )</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>对象标签分配器，每次分配XWOS_OBJTIK_CHUNK个ID给CPU </p>
+
+<p class="definition">在文件 <a class="el" href="object_8c_source.html">object.c</a> 第 <a class="el" href="object_8c_source.html#l00024">24</a> 行定义.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_43a52829888b753087a6774748486ed5.html">xwos</a></li><li class="navelem"><a class="el" href="dir_661654454d33f46b32a0e119e0a883df.html">lib</a></li><li class="navelem"><a class="el" href="object_8c.html">object.c</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
+  </ul>
+</div>
+</body>
+</html>

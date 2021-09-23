@@ -1,0 +1,1 @@
+window.ALL_CRATES = ["libc","libc_print","template","xwrust"];

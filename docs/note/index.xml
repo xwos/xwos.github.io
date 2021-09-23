@@ -1,0 +1,692 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>XWOS – 笔记</title>
+    <link>/docs/note/</link>
+    <description>Recent content in 笔记 on XWOS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	  <atom:link href="/docs/note/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: SOC移植</title>
+      <link>/docs/note/soc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/note/soc/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
+&lt;p&gt;XWOS的移植，包括以下几个环节：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;编译环境&lt;/li&gt;
+&lt;li&gt;初始化流程&lt;/li&gt;
+&lt;li&gt;XWOS移植层（XWOSPL）&lt;/li&gt;
+&lt;li&gt;XWOS移植实现层（XWOSIMPL）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;XWOS采用&lt;strong&gt;适配器模式&lt;/strong&gt;的方法来构建移植相关的代码：XWOS移植层（XWOSPL）&lt;strong&gt;定义&lt;/strong&gt;接口，
+XWOS移植实现层（XWOSIMPL）提供&lt;strong&gt;实现&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;为了提高代码的复用性，XWOS移植实现层（XWOSIMPL）相关的代码又细分为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;架构描述层(ADL)&lt;/li&gt;
+&lt;li&gt;CPU描述层(CDL)&lt;/li&gt;
+&lt;li&gt;SOC描述层(SDL)&lt;/li&gt;
+&lt;li&gt;电路板描述层(BDL)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;例如，ARMv7m架构下，ADL目录为&lt;code&gt;xwcd/soc/arm/v7m/gcc/&lt;/code&gt;，其中代码对
+STM32、S32K、i.MX RT1052、GD32等都是复用的，m3、m4、m7的差异又由CDL目录来描述，
+相同的CPU内核不同SOC又由SDL来描述，不同的电路板由BDL来描述，最后由他们共同完成
+对编译环境、初始化流程以及XWOS移植实现层（XWOSIMPL）的“&lt;strong&gt;实现&lt;/strong&gt;”。&lt;/p&gt;
+&lt;h2 id=&#34;xwos移植层xwospl头文件规则&#34;&gt;XWOS移植层（XWOSPL）头文件规则&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos/ospl/*.h&lt;/code&gt;：XWOS提供给BSP的头文件，不可被XWOS自身的头文件包含。
+&lt;ul&gt;
+&lt;li&gt;前缀&lt;code&gt;xwospl&lt;/code&gt;：BSP中需要提供实现的函数&lt;/li&gt;
+&lt;li&gt;前缀&lt;code&gt;xwosplcb&lt;/code&gt;：BSP中可以调用的函数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/ospl/soc/*.h&lt;/code&gt;：BSP提供给XWOS的头文件，可被XWOS的头文件包含。
+&lt;ul&gt;
+&lt;li&gt;前缀&lt;code&gt;soc&lt;/code&gt;：BSP中额外提供结构体、函数等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;移植&#34;&gt;移植&lt;/h2&gt;
+&lt;p&gt;XWOS的移植，包括：基本类型、编译器、断点、setjmp、系统调用与系统特权、
+位操作、原子操作、无锁队列、自旋锁、中断、硬件定时器、调度器。&lt;/p&gt;
+&lt;h3 id=&#34;基本类型&#34;&gt;基本类型&lt;/h3&gt;
+&lt;p&gt;XWOS定义了自己的一套基本类型，所有源码都是围绕基本类型展开的。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;XWOS头文件：&lt;code&gt;xwos/lib/type.h&lt;/code&gt;，
+详见&lt;a href=&#34;../../user-manual/basic-promise#%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B&#34;&gt;基本类型&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;Adapter：&lt;code&gt;xwos/ospl/soc/type.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Adaptee：&lt;code&gt;xwosimpl_soc_type.h&lt;/code&gt;文件对某些类型按照架构的ELFABI规则重新进行了
+定义，并且需要将&lt;code&gt;ARCH_HAVE_xxxx&lt;/code&gt;宏定义为1，表明覆盖&lt;code&gt;xxxx&lt;/code&gt;的默认定义，
+此文件一般位于&lt;strong&gt;ADL&lt;/strong&gt;目录，例如&lt;code&gt;xwcd/soc/arm/v7m/gcc/xwosimpl_soc_type.h&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;基本类型：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWU8_T&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwu8_t&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwu8_t&lt;/code&gt;：类型，8位无符号整数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWU8_A&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwu8_a&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwu8_a&lt;/code&gt;：类型，原子的8位无符号整数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWS8_T&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xws8_t&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xws8_t&lt;/code&gt;：类型，8位有符号整数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWS8_A&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xws8_a&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xws8_a&lt;/code&gt;：类型，原子的8位有符号整数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWU16_T&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwu16_t&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwu16_t&lt;/code&gt;：类型，16位无符号整数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWU16_A&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwu16_a&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwu16_a&lt;/code&gt;：类型，原子的16位无符号整数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWS16_T&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xws16_t&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xws16_t&lt;/code&gt;：类型，16位有符号整数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWS16_A&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xws16_a&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xws16_a&lt;/code&gt;：类型，原子的16位有符号整数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWU32_T&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwu32_t&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwu32_t&lt;/code&gt;：类型，32位无符号整数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWU32_A&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwu32_a&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwu32_a&lt;/code&gt;：类型，原子的32位无符号整数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWS32_T&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xws32_t&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xws32_t&lt;/code&gt;：类型，32位有符号整数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWS32_A&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xws32_a&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xws32_a&lt;/code&gt;：类型，原子的32位有符号整数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWU64_T&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwu64_t&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwu64_t&lt;/code&gt;：类型，64位无符号整数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWU64_A&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwu64_a&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwu64_a&lt;/code&gt;：类型，原子的64位无符号整数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWS64_T&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xws64_t&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xws64_t&lt;/code&gt;：类型，64位有符号整数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWS64_A&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xws64_a&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xws64_a&lt;/code&gt;：类型，原子的64位有符号整数&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWSZ_T&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwsz_t&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwsz_t&lt;/code&gt;：类型，无符号大小值类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWSZ_A&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwsz_a&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwsz_a&lt;/code&gt;：类型，原子的无符号大小值类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWSSZ_T&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwssz_t&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwssz_t&lt;/code&gt;：类型，有符号大小值类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWSSZ_A&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwssz_a&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwssz_a&lt;/code&gt;：类型，原子的有符号大小值类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWSTK_T&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwstk_t&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwstk_t&lt;/code&gt;：类型，无符号栈类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWSTK_A&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwstk_a&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwstk_a&lt;/code&gt;：类型，原子的无符号栈类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWPTR_T&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwptr_t&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwptr_t&lt;/code&gt;：类型，无符号指针值类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWPTR_A&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwptr_a&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwptr_a&lt;/code&gt;：类型，原子的无符号指针值类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWREG_T&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwreg_t&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwreg_t&lt;/code&gt;：类型，无符号寄存器类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWREG_A&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwreg_a&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwreg_a&lt;/code&gt;：类型，原子的无符号寄存器类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWSREG_T&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwsreg_t&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwsreg_t&lt;/code&gt;：类型，有符号寄存器类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWSREG_A&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwsreg_a&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwsreg_a&lt;/code&gt;：类型，原子的有符号寄存器类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWSQ_T&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwsq_t&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwsq_t&lt;/code&gt;：类型，无符号顺序值类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWSQ_A&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwsq_a&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwsq_a&lt;/code&gt;：类型，原子的无符号顺序值类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWSSQ_T&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwssq_t&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwssq_t&lt;/code&gt;：类型，有符号顺序值类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWSSQ_A&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwssq_a&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwssq_a&lt;/code&gt;：类型，原子的有符号顺序值类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWID_T&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwid_t&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwid_t&lt;/code&gt;：类型，无符号ID值类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWID_A&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwid_a&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwid_a&lt;/code&gt;：类型，原子的无符号ID值类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWSID_T&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwsid_t&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwsid_t&lt;/code&gt;：类型，有符号ID值类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWSID_A&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwsid_a&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwsid_a&lt;/code&gt;：类型，原子的有符号ID值类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWER_T&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwer_t&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwer_t&lt;/code&gt;：类型，有符号错误码类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWER_A&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwer_a&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwer_a&lt;/code&gt;：类型，原子的有符号错误码类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWPR_T&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwpr_t&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwpr_t&lt;/code&gt;：类型，有符号优先级类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWPR_A&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwpr_a&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwpr_a&lt;/code&gt;：类型，原子的有符号优先级类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWBMP_T&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwbmp_t&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmp_t&lt;/code&gt;：类型，无符号位图类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWBMP_A&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwbmp_a&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbmpy_a&lt;/code&gt;：类型，原子的无符号位图类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWTM_T&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwtm_t&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwtm_t&lt;/code&gt;：类型，有符号优先级类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWTM_A&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwtm_a&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwtm_a&lt;/code&gt;：类型，原子的有符号优先级类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWLFQ_T&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwlfq_t&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwlfq_t&lt;/code&gt;：类型，无锁队列类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWLFQ_A&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwlfq_a&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwlfq_a&lt;/code&gt;：类型，原子的无锁队列类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWISR_F&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwisr_f&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwer_a&lt;/code&gt;：类型，原子的有符号错误码类型&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ARCH_HAVE_XWIRQ_T&lt;/code&gt;：宏，定义为1表示arch_type.h中提供类型xwirq_t&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwirq_t&lt;/code&gt;：类型，有符号中断号类型&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;编译器&#34;&gt;编译器&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;XWOS头文件：&lt;code&gt;xwos/lib/compiler.h&lt;/code&gt;，被&lt;code&gt;xwos/standard.h&lt;/code&gt;包含。&lt;/li&gt;
+&lt;li&gt;Adapter：&lt;code&gt;xwos/ospl/soc/compiler.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Adaptee：&lt;code&gt;xwosimpl_soc_compiler.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;内存屏障：XWOS支持多核系统，多核系统中存在内存数据一致性的问题，
+CPU架构通常会提供内存屏障指令来解决这个问题。移植XWOS时，需要对这些指令进行封装。
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwccmb()&lt;/code&gt;：编译器的内存屏障，防止编译器优化重排代码&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmb_mp_mb()&lt;/code&gt;：多核系统的内存屏障&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmb_mp_rmb()&lt;/code&gt;：多核系统的读内存屏障&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmb_mp_wmb()&lt;/code&gt;：多核系统的写内存屏障&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmb_mp_ddb()&lt;/code&gt;：多核系统的数据依赖屏障&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmb_mp_load_acquire()&lt;/code&gt;：多核系统的&lt;strong&gt;load-acquire&lt;/strong&gt;语义的内存屏障&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmb_mp_store_release()&lt;/code&gt;：多核系统的&lt;strong&gt;store-release&lt;/strong&gt;语义的内存屏障&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;题外话：数据依赖屏障&lt;/p&gt;
+&lt;p&gt;用在存在address dependency的两个读操作之间，和Write barrier/memory barrier
+配合使用，确保内存的写操作能够按照程序顺序(Program Order)对这两个读操作可见。例如,&lt;/p&gt;
+&lt;p&gt;初始条件：&lt;code&gt;A=0; B=1; P=&amp;amp;B;&lt;/code&gt;
+CPU1: &lt;code&gt;A=8; xwmb_mp_wmb(); P=&amp;amp;A;&lt;/code&gt;
+CPU2: &lt;code&gt;Q=P; C=*Q;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;在CPU2上第二个读*Q，依赖于第一个读P，这被称为address dependency，大部分CPU，例如
+X86、ARM都能检测到address dependency，并保证CPU2上Program Order不会发生改变，当
+读到C==8时，Q的值一定为&amp;amp;A。但在DEC Alpha上，(Q==&amp;amp;A &amp;amp;&amp;amp; C==1)是有可能出现的，此时需要
+使用数据依赖屏障才能得到正确的结果：&lt;/p&gt;
+&lt;p&gt;CPU2: &lt;code&gt;Q=P; xwmb_mp_ddb(); C=*Q;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;数据依赖屏障比较少见，在标准库(&lt;code&gt;std:atomic/stdatomic.h&lt;/code&gt;)中，有一种内存序
+&lt;code&gt;release-consume&lt;/code&gt;，其中&lt;code&gt;release&lt;/code&gt;就是CPU1写内存时的写屏障，consume就是CPU2上的数据依赖屏障。&lt;/p&gt;
+&lt;p&gt;除了指针访问数据会产生&lt;code&gt;address dependency&lt;/code&gt;，数组下标也会产生&lt;code&gt;address dependency&lt;/code&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;编译器相关的宏定义：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;__xwcc_section(s)&lt;/code&gt;：表明符号属于段s。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwcc_aligned(x)&lt;/code&gt;：表明数据的起始地址对齐到x字节处。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwcc_inline&lt;/code&gt;：表明函数是内联函数，需要和static一起使用。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwcc_packed&lt;/code&gt;：表明数据结构体是紧凑分布的，编译器不要做优化对齐处理。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwcc_must_check&lt;/code&gt;：表明函数返回值必须被读取，否则编译器会报错，若编译器不支持可定义为空宏。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwcc_unused&lt;/code&gt;：表明变量或函数未被使用，用于去除编译警告，若编译器不支持可定义为空。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwcc_noreturn&lt;/code&gt;：表明函数不会返回，若编译器不支持可定义为空。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwcc_hot&lt;/code&gt;：表明函数在代码中经常被调用，若编译器不支持可定义为空。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwcc_atomic&lt;/code&gt;：表明变量是原子的，C11标准中被定义为_Atomic，C99标准中被定义为volatile&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwcc_likely(x)&lt;/code&gt;：表明条件x大概率为true，用于编译if..else..的优化，若编译器不支持，
+应该定义为(x)。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwcc_unlikely(x)&lt;/code&gt;：表明条件x大概率为false，用于编译if..else..的优化，若编译器不支持，
+应该定义为(x)。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwcc_alignl1cache&lt;/code&gt;：表明数据的起始地址对齐到1级缓存(way-set缓存)的缓存线&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwcc_alignptr&lt;/code&gt;：表明数据的起始地址对齐到指针的尺寸&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwcc_offsetof(type, member)&lt;/code&gt;：计算member在结构体type中的偏移，等价于标准C库中的offsetof()&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;断点&#34;&gt;断点&lt;/h3&gt;
+&lt;p&gt;许多CPU架构都提供断点指令，以方便调试，XWOS内核对其进行了统一封装。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;XWOS头文件：被包含在&lt;code&gt;xwos/standard.h&lt;/code&gt;内。&lt;/li&gt;
+&lt;li&gt;Adapter：&lt;code&gt;xwos/ospl/soc/bkpt.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Adaptee：&lt;code&gt;xwosimpl_soc_bkpt.h&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;setjmplongjmp&#34;&gt;setjmp/longjmp&lt;/h3&gt;
+&lt;p&gt;XWOS的C库中提供了类似于C标准库中的````setjmp()/longjmp()```函数组合，
+其实现与切换上下文时如何保存寄存器有密切关系。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;XWOS头文件：&lt;code&gt;xwos/lib/setjmp.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Adapter：&lt;code&gt;xwos/ospl/soc/setjmp.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Adaptee：&lt;code&gt;xwosimpl_soc_setjmp.h&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;系统调用与系统特权&#34;&gt;系统调用与系统特权&lt;/h3&gt;
+&lt;p&gt;XWOS的C库中提供了可切换CPU访问权限的函数。通常CPU都有两种权限模式：用户和系统，
+用户模式下某些CPU内的寄存器无法被访问（例如开关中断），
+只能通过特殊指令让CPU进入系统模式才可访问。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;XWOS头文件：&lt;code&gt;xwos/lib/sc.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Adapter：&lt;code&gt;xwos/ospl/soc/xwsc.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Adaptee：&lt;code&gt;xwosimpl_soc_xwsc.h&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;位操作&#34;&gt;位操作&lt;/h3&gt;
+&lt;p&gt;XWOS的C库中提供了位操作的函数集合，为提高效率，部分位操作可使用特殊指令实现。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;XWOS头文件：&lt;code&gt;xwos/lib/xwbop.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Adapter：&lt;code&gt;xwos/ospl/soc/xwbop.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Adaptee：&lt;code&gt;xwosimpl_soc_xwbop.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;基本类型的位操作函数集合：
+&lt;ul&gt;
+&lt;li&gt;位序镜面翻转：Intel位序（主流的小端CPU都是Inter位序）是越往高位位序号越大，
+摩托罗拉位序（PowerPC架构的CPU）是越往高位位序号越小，
+因此在两个系统混用时需要将数据的位序进行镜面翻转
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwbop_rbit8()&lt;/code&gt;：镜面翻转8位数据的位序&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_rbit16()&lt;/code&gt;：镜面翻转16位数据的位序&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_rbit32()&lt;/code&gt;：镜面翻转32位数据的位序&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_rbit64()&lt;/code&gt;：镜面翻转64位数据的位序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;大小端反转
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwbop_re16()&lt;/code&gt;：反转16位数据的字节序&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_re16s32()&lt;/code&gt;：反转16位数据的字节序，并将符号位扩展到32位，返回有符号32位数据&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_re32()&lt;/code&gt;：反转32位数据的字节序&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_re32s64()&lt;/code&gt;：反转32位数据的字节序，并将符号位扩展到64位，返回有符号64位数据&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_re64()&lt;/code&gt;：：反转64位数据的字节序&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;查找被置1的位
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwbop_ffs8()&lt;/code&gt;：8位数据，从最低有效位开始查找&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_fls8()&lt;/code&gt;：8位数据，从最高有效位开始查找&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_ffs16()&lt;/code&gt;：16位数据，从最低有效位开始查找&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_fls16()&lt;/code&gt;：16位数据，从最高有效位开始查找&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_ffs32()&lt;/code&gt;：32位数据，从最低有效位开始查找&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_fls32()&lt;/code&gt;：32位数据，从最高有效位开始查找&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_ffs64()&lt;/code&gt;：64位数据，从最低有效位开始查找&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwbop_fls64()&lt;/code&gt;：64位数据，从最高有效位开始查找&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;原子操作&#34;&gt;原子操作&lt;/h3&gt;
+&lt;p&gt;XWOS的C库中提供了原子操作的函数集合，原子操作的实现依赖于CPU的原子操作指令。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;XWOS头文件：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos/lib/xwaop.h&lt;/code&gt;：基本类型原子操作&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/lib/xwbmpaop.h&lt;/code&gt;：位图数组原子操作&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Adapter：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos/ospl/soc/xwaop8.h&lt;/code&gt;：8位原子操作&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/ospl/soc/xwaop16.h&lt;/code&gt;：16位原子操作&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/ospl/soc/xwaop32.h&lt;/code&gt;：32位原子操作&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/ospl/soc/xwaop64.h&lt;/code&gt;：64位原子操作&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/ospl/soc/xwbmpaop.h&lt;/code&gt;：位图数组原子操作&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Adaptee：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwosimpl_soc_xwaop8.h&lt;/code&gt;：8位原子操作&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwosimpl_soc_xwaop16.h&lt;/code&gt;：16位原子操作&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwosimpl_soc_xwaop32.h&lt;/code&gt;：32位原子操作&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwosimpl_soc_xwaop64.h&lt;/code&gt;：64位原子操作&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwosimpl_soc_xwbmpaop.h&lt;/code&gt;：位图数组原子操作&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;说明
+&lt;ul&gt;
+&lt;li&gt;其他类型的原子操作，XWOS内核会基于4个基本类型进行封装。
+64位原子操作如果不支持可不提供；&lt;/li&gt;
+&lt;li&gt;如果CPU架构比较简单，无原子操作指令，可通过关中断实现这些原子操作函数；&lt;/li&gt;
+&lt;li&gt;某些CPU架构只提供与CPU位宽一致的原子操作指令，考虑代码的通用性，最好只使用
+与CPU位宽一致的原子数据类型；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;基本类型的原子操作函数集合：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;load()&lt;/code&gt;：加载（可指定内存序）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;store()&lt;/code&gt;：存储（可指定内存序）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;read()&lt;/code&gt;：读（内存序：load-require）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;write()&lt;/code&gt;：写（内存序：store-release）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;add()&lt;/code&gt;：加法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sub()&lt;/code&gt;：减法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;rsb()&lt;/code&gt;：反向减法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;and()&lt;/code&gt;：与运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;or()&lt;/code&gt;：或运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xor()&lt;/code&gt;：异或运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;teq_then_write()&lt;/code&gt;：测试是否与测试值相等，然后写&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;teq_then_add()&lt;/code&gt;：测试是否与测试值相等，然后做加法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;teq_then_sub()&lt;/code&gt;：测试是否与测试值相等，然后做减法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;teq_then_rsb()&lt;/code&gt;：测试是否与测试值相等，然后做反向减法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tne_then_write()&lt;/code&gt;：测试是否与测试值不相等，然后写&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tne_then_add()&lt;/code&gt;：测试是否与测试值不相等，然后做加法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tne_then_sub()&lt;/code&gt;：测试是否与测试值不相等，然后做减法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tne_then_rsb()&lt;/code&gt;：测试是否与测试值不相等，然后做反向减法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tge_then_write()&lt;/code&gt;：测试是否大于等于测试值，然后写&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tge_then_add()&lt;/code&gt;：测试是否大于等于测试值，然后做加法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tge_then_sub()&lt;/code&gt;：测试是否大于等于测试值，然后做减法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tge_then_rsb()&lt;/code&gt;：测试是否大于等于测试值，然后做反向减法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgt_then_write()&lt;/code&gt;：测试是否大于测试值，然后写&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgt_then_add()&lt;/code&gt;：测试是否大于测试值，然后做加法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgt_then_sub()&lt;/code&gt;：测试是否大于测试值，然后做减法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgt_then_rsb()&lt;/code&gt;：测试是否大于测试值，然后做反向减法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tle_then_write()&lt;/code&gt;：测试是否小于等于测试值，然后写&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tle_then_add()&lt;/code&gt;：测试是否小于等于测试值，然后做加法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tle_then_sub()&lt;/code&gt;：测试是否小于等于测试值，然后做减法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tle_then_rsb()&lt;/code&gt;：测试是否小于等于测试值，然后做反向减法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tlt_then_write()&lt;/code&gt;：测试是否小于测试值，然后写&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tlt_then_add()&lt;/code&gt;：测试是否小于测试值，然后做加法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tlt_then_sub()&lt;/code&gt;：测试是否小于测试值，然后做减法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tlt_then_rsb()&lt;/code&gt;：测试是否小于测试值，然后做反向减法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgele_then_write()&lt;/code&gt;：测试是否旧值是否在闭区间[l,r]，然后写&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgele_then_add()&lt;/code&gt;：测试是否旧值是否在闭区间[l,r]，然后做加法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgele_then_sub()&lt;/code&gt;：测试是否旧值是否在闭区间[l,r]，然后做减法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgele_then_rsb()&lt;/code&gt;：测试是否旧值是否在闭区间[l,r]，然后做反向减法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgelt_then_write()&lt;/code&gt;：测试是否旧值是否在左闭右开区间[l,r)，然后写&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgelt_then_add()&lt;/code&gt;：测试是否旧值是否在左闭右开区间[l,r)，然后做加法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgelt_then_sub()&lt;/code&gt;：测试是否旧值是否在左闭右开区间[l,r)，然后做减法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgelt_then_rsb()&lt;/code&gt;：测试是否旧值是否在左闭右开区间[l,r)，然后做反向减法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgtle_then_write()&lt;/code&gt;：测试是否旧值是否在左开右闭区间(l,r]，然后写&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgtle_then_add()&lt;/code&gt;：测试是否旧值是否在左开右闭区间(l,r]，然后做加法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgtle_then_sub()&lt;/code&gt;：测试是否旧值是否在左开右闭区间(l,r]，然后做减法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgtle_then_rsb()&lt;/code&gt;：测试是否旧值是否在左开右闭区间(l,r]，然后做反向减法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgtlt_then_write()&lt;/code&gt;：测试是否旧值是否在开区间(l,r)，然后写&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgtlt_then_add()&lt;/code&gt;：测试是否旧值是否在开区间(l,r)，然后做加法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgtlt_then_sub()&lt;/code&gt;：测试是否旧值是否在开区间(l,r)，然后做减法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tgtlt_then_rsb()&lt;/code&gt;：测试是否旧值是否在开区间(l,r)，然后做反向减法运算&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tst_then_op()&lt;/code&gt;：使用tst函数测试，然后使用op函数操作&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;位图数组的原子操作
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;c0i()&lt;/code&gt;：将第i位清0&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;s1i()&lt;/code&gt;：将第i位置1&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;x1i()&lt;/code&gt;：翻转第i位&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;t1i()&lt;/code&gt;：测试第i位是否为1&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;t0i_then_s1i()&lt;/code&gt;：测试第i位是否为0，然后把它置1&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;t1i_then_c0i()&lt;/code&gt;：测试第i位是否为1，然后把它清0&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ffs_then_c0i()&lt;/code&gt;：从最低有效位开始查找第一个为1的位并把它清0&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ffz_then_s1i()&lt;/code&gt;：从最低有效位开始查找第一个为0的位并把它置1&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;fls_then_c0i()&lt;/code&gt;：从最高有效位开始查找第一个为1的位并把它清0&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;flz_then_s1i()&lt;/code&gt;：从最高有效位开始查找第一个为0的位并把它置1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;无锁队列&#34;&gt;无锁队列&lt;/h3&gt;
+&lt;p&gt;XWOS的C库中提供了无锁队列的函数，无锁队列的实现依赖于CPU的原子操作指令。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;XWOS头文件：&lt;code&gt;xwos/lib/lfq.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Adapter：&lt;code&gt;xwos/ospl/soc/lfq.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Adaptee：&lt;code&gt;xwosimpl_soc_lfq.h&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;自旋锁&#34;&gt;自旋锁&lt;/h3&gt;
+&lt;p&gt;在多核系统中，被多个CPU共同访问的内存区域需要被自旋锁保护，自旋锁的实现依赖于
+原子操作指令与内存屏障指令。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;XWOS头文件：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos/osal/lock/spinlock.h&lt;/code&gt;：自旋锁&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/osal/lock/seqlock.h&lt;/code&gt;：自旋锁的派生锁，顺序锁&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Adapter：&lt;code&gt;xwos/ospl/soc/spinlock.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Adaptee：&lt;code&gt;xwosimpl_soc_spinlock.h&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;中断&#34;&gt;中断&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;XWOS头文件：&lt;code&gt;xwos/osal/irq.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Adapter：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos/ospl/irq.h&lt;/code&gt;：&lt;strong&gt;定义&lt;/strong&gt;了BSP中需要适配的函数；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwos/ospl/soc/irq.h&lt;/code&gt;：包含了与SOC相关的一些中断结构体类型的定义。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Adaptee：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwosimpl_irq.h&lt;/code&gt;：&lt;strong&gt;实现&lt;/strong&gt;了XWOS移植层中定义的函数；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwosimpl_soc_irq.h&lt;/code&gt;：提供了与SOC相关的一些中断结构体类型的定义。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;结构体类型：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;struct soc_irq_cfg&lt;/code&gt;：每个中断配置，例如优先级等；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;struct soc_irq_data&lt;/code&gt;：每个中断的数据（中断处理函数的参数）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;结构体：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwospl_ivt&lt;/code&gt;：中断向量表，由于每个电路板的中断情况不一样，因此此结构体
+通常定义在&lt;strong&gt;电路板描述层(BDL)&lt;/strong&gt;；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_idvt&lt;/code&gt;：中断参数表，由于每个电路板的中断情况不一样，因此
+此结构体通常定义在&lt;strong&gt;电路板描述层(BDL)&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;中断号：
+&lt;ul&gt;
+&lt;li&gt;XWOS定义了中断号类型&lt;code&gt;xwirq_t&lt;/code&gt;，是一个有符号数：
+&lt;ul&gt;
+&lt;li&gt;整数和0：表示SOC的外设中断，外设中断通常可以配置与CPU的“亲合力”；&lt;/li&gt;
+&lt;li&gt;负数：表示异常，异常通常是每个都有的CPU私有中断。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;中断优先级&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;切换上下文的中断 &amp;lt;= 滴答定时器的中断 &amp;lt; 调度器服务中断
+切换上下文的中断 &amp;lt; 其他中断 &amp;lt; 调度器服务中断
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;操作系统移植层中需要提供的函数：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwospl_cpuirq_enable_lc()&lt;/code&gt;：打开当前CPU的中断开关&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_cpuirq_disable_lc()&lt;/code&gt;：关闭当前CPU的中断开关&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_cpuirq_restore_lc()&lt;/code&gt;：恢复当前CPU的中断开关&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_cpuirq_save_lc()&lt;/code&gt;：存储当前CPU的中断开关标志，然后关闭&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_irq_get_id()&lt;/code&gt;：获取当前中断的中断号&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_irq_request()&lt;/code&gt;：申请中断&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_irq_release()&lt;/code&gt;：释放中断&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_irq_enable()&lt;/code&gt;：开启中断&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_irq_disable()&lt;/code&gt;：关闭中断&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_irq_save()&lt;/code&gt;：保存中断开关标志并关闭中断&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_irq_restore()&lt;/code&gt;：恢复中断开关标志&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_irq_pend()&lt;/code&gt;：挂起中断标志&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_irq_clear()&lt;/code&gt;：清除中断标志&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_irq_cfg()&lt;/code&gt;：配置中断&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_irq_get_cfg();&lt;/code&gt;：获取中断配置&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_irq_get_data()&lt;/code&gt;：获取中断数据&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;硬件定时器&#34;&gt;硬件定时器&lt;/h3&gt;
+&lt;p&gt;每个CPU都需要一个私有的硬件定时器提供滴答中断，XWOS的调度、超时、软件定时器都
+基于滴答中断来实现。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Adapter：&lt;code&gt;xwos/ospl/syshwt.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Adaptee：&lt;code&gt;xwosimpl_syshwt.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;适配函数：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwospl_syshwt_init()&lt;/code&gt;：初始化硬件定时器&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_syshwt_start()&lt;/code&gt;：启动硬件定时器&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_syshwt_stop()&lt;/code&gt;：关闭硬件定时器&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_syshwt_get_timeconfetti()&lt;/code&gt;：返回还有多少纳秒进入下一次定时器中断&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;调度器&#34;&gt;调度器&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Adapter：&lt;code&gt;xwos/ospl/skd.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Adaptee：&lt;code&gt;xwosimpl_skd.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;适配函数：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwospl_skd_init()&lt;/code&gt;：初始化调度调度器，一般用于初始化调度相关的中断&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_skd_init_stack()&lt;/code&gt;：初始化调度对象的栈&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_skd_get_id()&lt;/code&gt;：获取当前CPU的ID&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_skd_start_lc()&lt;/code&gt;：启动调度器&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_skd_suspend()&lt;/code&gt;：暂停调度器，用于电源管理&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_skd_resume()&lt;/code&gt;：继续调度器，用于电源管理&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_thrd_exit_lc()&lt;/code&gt;：本地CPU上的线程退出&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_thrd_freeze_lc()&lt;/code&gt;：冻结本地CPU中正在运行的线程&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_thrd_outmigrate()&lt;/code&gt;：将线程迁出其他CPU，并准备迁入其他CPU（仅限多核）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwospl_thrd_immigrate()&lt;/code&gt;：迁移线程至目标CPU（仅限多核）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;链接脚本&#34;&gt;链接脚本&lt;/h2&gt;
+&lt;p&gt;SOC描述层中包含了SOC的基本链接脚本，使用时需要在电路板目录的&lt;code&gt;cfg&lt;/code&gt;文件夹中定义
+一个&lt;code&gt;XuanWuOS.lds&lt;/code&gt;，其中包含了SOC的地址空间的定义，然后再&lt;code&gt;include&lt;/code&gt;SOC描述层
+中的连接脚本即可。例如：&lt;code&gt;xwbd/WeActH750/cfg/XuanWuOS.lds&lt;/code&gt;中只定义了&lt;code&gt;MEMORY&lt;/code&gt;，
+然后&lt;code&gt;include xwcd/soc/arm/v7m/gcc/m7/stm32/h7.lds&lt;/code&gt;。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;XWOS定义了一些&lt;strong&gt;段(section)&lt;/strong&gt;，链接时，可将内核代码、内核数据放在镜像文件的
+特定区域。这需要在&lt;strong&gt;链接脚本&lt;/strong&gt;中指明这些&lt;strong&gt;段&lt;/strong&gt;如何存放。
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;__xwos_init_code&lt;/code&gt;：初始化代码，存放在**.xwos.init.text**段&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwos_init_rodata&lt;/code&gt;：初始化阶段的const数据，存放在**.xwos.init.rodata**段&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwos_exit_code&lt;/code&gt;：退出代码，存放在**.xwos.exit.text**段&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwos_exit_rodata&lt;/code&gt;：退出阶段的const数据，存放在**.xwos.exit.rodata**段&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwos_ivt&lt;/code&gt;：中断向量表，存放在**.xwos.ivt**段&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwos_isr&lt;/code&gt;：中断代码，存放在**.xwos.isr.text**段&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwos_bh&lt;/code&gt;：中断底半部代码，存放在**.xwos.isr.text**段&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwos_code&lt;/code&gt;：XWOS内核代码，存放在**.xwos.text**段&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwos_api&lt;/code&gt;：XWOS内核API，存放在**.xwos.text**段&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwos_rodata&lt;/code&gt;：const数据，存放在**.xwos.rodata**段&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;__xwos_data&lt;/code&gt;：全局变量与静态变量，存放在**.xwos.data**段&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;如果不需要这些自定义的&lt;strong&gt;段&lt;/strong&gt;，可将上面的宏定义为&lt;strong&gt;空&lt;/strong&gt;，相应的，代码会默认
+放在&lt;code&gt;.text&lt;/code&gt;段，数据会默认放在&lt;code&gt;.data&lt;/code&gt;段，const数据会默认放在&lt;code&gt;.rodata&lt;/code&gt;段。
+这三个&lt;strong&gt;段&lt;/strong&gt;都是由编译器默认产生的。&lt;/li&gt;
+&lt;li&gt;当&lt;code&gt;__xwos_data&lt;/code&gt;定义为&lt;strong&gt;空&lt;/strong&gt;时，配置文件&lt;code&gt;cfg/xwos.h&lt;/code&gt;中的
+配置&lt;code&gt;XWKNCFG_RELOCATE_DATA&lt;/code&gt;也应该不定义或定义为0。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;初始化流程&#34;&gt;初始化流程&lt;/h2&gt;
+&lt;p&gt;XWOS提供了一个通用的&lt;a href=&#34;../../user-manual/boot-flow&#34;&gt;启动流程&lt;/a&gt;：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code class=&#34;language-mermaid&#34; data-lang=&#34;mermaid&#34;&gt;flowchart LR
+    poweron(&amp;#34;上电&amp;#34;) --&amp;gt; 低级初始化阶段 --&amp;gt; 系统初始化阶段 --&amp;gt; 用户程序
+
+    subgraph 低级初始化阶段
+        direction TB
+        arch_lowlevel_init[&amp;#34;arch_lowlevel_init()&amp;#34;] --&amp;gt; cpu_lowlevel_init
+        cpu_lowlevel_init[&amp;#34;cpu_lowlevel_init()&amp;#34;] --&amp;gt; soc_lowlevel_init
+        soc_lowlevel_init[&amp;#34;soc_lowlevel_init()&amp;#34;] --&amp;gt; board_lowlevel_init
+        board_lowlevel_init[&amp;#34;board_lowlevel_init()&amp;#34;]
+    end
+
+    subgraph 系统初始化阶段
+        direction TB
+        xwos_init[&amp;#34;xwos_init()&amp;#34;] --&amp;gt; arch_relocate
+        arch_relocate[&amp;#34;arch_relocate()&amp;#34;] --&amp;gt; arch_init
+        arch_init[&amp;#34;arch_init()&amp;#34;] --&amp;gt; cpu_init
+        cpu_init[&amp;#34;cpu_init()&amp;#34;] --&amp;gt; soc_init
+        soc_init[&amp;#34;soc_init()&amp;#34;] --&amp;gt; board_init
+    end
+
+    subgraph 用户程序
+        direction LR
+        subgraph &amp;#34;xwos_main()&amp;#34;
+            direction LR
+            skd[&amp;#34;启动调度器&amp;#34;]
+            thd[&amp;#34;线程初始化&amp;#34;]
+            device[&amp;#34;设备驱动初始化&amp;#34;]
+            libc[&amp;#34;C/C++标准库初始化&amp;#34;]
+            lua[&amp;#34;Lua虚拟机初始化&amp;#34;]
+        end
+    end
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;用户可在流程中找地方插入SOC的初始化的代码，但要注意：
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;lowlevel_init&lt;/strong&gt;的流程中不可访问全局变量，因为还未将全局变量的初值从
+flash中拷贝到RAM中；&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;cxx_init&lt;/strong&gt;之后才可开始调用C++的代码；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;XWOS的初始化流程中，在&lt;code&gt;soc_init()&lt;/code&gt;中完成对中断控制器、调度器的初始化，
+如果用户不使用XWOS的初始化流程，需要依次调用：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwos_init()&lt;/code&gt;：初始化XWOS内核；&lt;/li&gt;
+&lt;li&gt;多核系统：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwmp_irqc_construct()&lt;/code&gt;：初始化每个CPU的中断控制器；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmp_irqc_register()&lt;/code&gt;：将每个CPU的中断控制器注册到中断控制子系统；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwmp_skd_init_lc()&lt;/code&gt;：分别在每个CPU上都运行一次这个函数初始化自己的调度器；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;单核系统：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;xwup_irqc_init()&lt;/code&gt;：初始化中断控制器；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xwup_skd_init_lc()&lt;/code&gt;：初始化调度器；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;编译集成环境&#34;&gt;编译集成环境&lt;/h2&gt;
+&lt;p&gt;XWOS提供了一个&lt;a href=&#34;../../user-manual/build-system&#34;&gt;构建系统&lt;/a&gt;，可在Windows、Linux上运行。
+用户可以选择使用XWOS的编译集成环境，也可以使用其他IDE进行编译。&lt;/p&gt;
+&lt;h3 id=&#34;使用玄武构建系统&#34;&gt;使用玄武构建系统&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;XWOS的构建系统在构建&lt;strong&gt;内核&lt;/strong&gt;、&lt;strong&gt;xwmd&lt;/strong&gt;模块、&lt;strong&gt;xwcd&lt;/strong&gt;模块、&lt;strong&gt;xwem&lt;/strong&gt;模块、
+&lt;strong&gt;xwam&lt;/strong&gt;模块、&lt;strong&gt;oem&lt;/strong&gt;模块时都是独立编译成静态库**.a**，然后再链接。
+各个模块的编译配置（头文件、编译器选项）都是完全独立的，可以理解为不同的子工程。&lt;/li&gt;
+&lt;li&gt;构建是从&lt;code&gt;xwbd/电路板名称/&lt;/code&gt;录下执行命令&lt;code&gt;make&lt;/code&gt;开始的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;使用其他ide构建系统&#34;&gt;使用其他IDE构建系统&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;需要增加的头文件搜索路径：
+&lt;ul&gt;
+&lt;li&gt;XuanWuOS根目录&lt;code&gt;XuanWuOS&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;架构描述层(ADL)目录：以ARMv7m为例，&lt;code&gt;xwcd/soc/arm/v7m/gcc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;CPU描述层(CDL)目录：以ARMv7m7为例，&lt;code&gt;xwcd/soc/arm/v7m/gcc/m7&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;SOC描述层(SDL)目录：以STM32H7为例，&lt;code&gt;xwcd/soc/arm/v7m/gcc/m7/stm32h7x&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;电路板目录：以开发板WeActH750为例，&lt;code&gt;xwbd/WeActH750&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;需要包含的源码文件：
+&lt;ul&gt;
+&lt;li&gt;内核目录&lt;code&gt;xwos&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;架构描述层(ADL)目录：以ARMv7m为例，&lt;code&gt;xwcd/soc/arm/v7m/gcc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;CPU描述层(CDL)目录：以ARMv7m7为例，&lt;code&gt;xwcd/soc/arm/v7m/gcc/m7&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;SOC描述层(SDL)目录：以STM32H7为例，&lt;code&gt;xwcd/soc/arm/v7m/gcc/m7/stm32h7x&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;电路板目录：以开发板WeActH750为例，&lt;code&gt;xwbd/WeActH750&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;中间件&lt;code&gt;xwmd&lt;/code&gt;、驱动框架&lt;code&gt;xwcd/ds&lt;/code&gt;、第三方模块&lt;code&gt;xwem&lt;/code&gt;、应用模块&lt;code&gt;xwam&lt;/code&gt;
+不是必须的，若只使用XWOS内核，这些可以删除。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;若其他IDE的工具链不是gcc，则需要重新实现ADL、CDL、SDL中的代码，
+此种情况&lt;code&gt;xwcd/soc&lt;/code&gt;中的代码也不需要。&lt;/li&gt;
+&lt;li&gt;需要修改配置，以开发板WeActH750为例，&lt;code&gt;xwbd/WeActH750/cfg&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;需要在&lt;code&gt;xwbd/WeActH750&lt;/code&gt;目录，执行一次&lt;code&gt;make cfg&lt;/code&gt;，生成
+然后将&lt;code&gt;xwbd/WeActH750/wkspc/autogen.h&lt;/code&gt;拷贝到&lt;code&gt;xwbd/WeActH750/cfg&lt;/code&gt;中。&lt;/li&gt;
+&lt;li&gt;需要配置IDE的连接脚本。&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: newlib</title>
+      <link>/docs/note/newlib/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/note/newlib/</guid>
+      <description>
+        
+        
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Lua开发笔记</title>
+      <link>/docs/note/lua/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/note/lua/</guid>
+      <description>
+        
+        
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Rust开发笔记</title>
+      <link>/docs/note/rust/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/note/rust/</guid>
+      <description>
+        
+        
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

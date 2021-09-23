@@ -1,0 +1,584 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.3"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>XWOS API: xwos/mm/kma.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<a href="/" class="github-corner" title="返回首页">
+  <svg viewBox="0 0 250 250" style="position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path
+      d="M 0 0 L 250 250 L 250 0 L 0 0 z M 181.19336 6.25 A 18.281986 19.638775 0 0 1 192.79297 10.798828 L 241.54492 54.201172 A 6.0939954 6.5462585 0 0 1 237.64453 65.787109 L 233.13477 65.787109 A 3.0469979 3.2731292 0 0 0 230.08789 69.060547 L 230.08789 111.61133 A 18.281986 19.638775 0 0 1 211.80664 131.25 L 205.71289 131.25 A 12.187991 13.092517 0 0 1 193.52344 118.1582 L 193.52344 98.519531 A 12.187991 13.092517 0 0 0 181.33594 85.425781 A 12.187991 13.092517 0 0 0 169.14844 98.519531 L 169.14844 118.1582 A 12.187991 13.092517 0 0 1 156.95898 131.25 L 150.86523 131.25 A 18.281986 19.638775 0 0 1 132.58398 111.61133 L 132.58398 68.994141 A 3.0469979 3.2731292 0 0 0 129.29297 65.722656 L 124.7832 65.722656 A 6.0939954 6.5462585 0 0 1 120.88281 54.201172 L 169.39258 10.798828 A 18.281986 19.638775 0 0 1 181.19336 6.25 z "/>
+  </svg>
+</a>
+<style>.github-corner:hover</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">XWOS API
+   &#160;<span id="projectnumber">3.0</span>
+   </div>
+   <div id="projectbrief">XWOS API参考手册</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.3 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('kma_8c.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a> &#124;
+<a href="#var-members">变量</a>  </div>
+  <div class="headertitle"><div class="title">kma.c 文件参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>玄武OS内存管理：内核内存分配器  
+<a href="#details">更多...</a></p>
+<div class="textblock"><code>#include &lt;<a class="el" href="standard_8h_source.html">xwos/standard.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="common_8h_source.html">xwos/mm/common.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="sma_8h_source.html">xwos/mm/sma.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="kma_8h_source.html">xwos/mm/kma.h</a>&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+kma.c 的引用(Include)关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="kma_8c__incl.png" border="0" usemap="#axwos_2mm_2kma_8c" alt=""/></div>
+<map name="axwos_2mm_2kma_8c" id="axwos_2mm_2kma_8c">
+<area shape="rect" title="玄武OS内存管理：内核内存分配器" alt="" coords="313,5,432,32"/>
+<area shape="rect" href="standard_8h.html" title="玄武OS的标准头文件" alt="" coords="320,229,438,256"/>
+<area shape="rect" href="common_8h.html" title="玄武OS内存管理：通用定义" alt="" coords="252,155,396,181"/>
+<area shape="rect" href="sma_8h.html" title="玄武OS内存管理：简单内存分配器" alt="" coords="362,80,481,107"/>
+<area shape="rect" href="kma_8h.html" title="玄武OS内存管理：内核内存分配器" alt="" coords="472,155,590,181"/>
+<area shape="rect" title=" " alt="" coords="99,453,222,480"/>
+<area shape="rect" href="rule_8h.html" title="玄武OS通用库：编译规则" alt="" coords="26,304,132,331"/>
+<area shape="rect" href="compiler_8h.html" title="玄武OS通用库：编译器宏定义" alt="" coords="157,304,292,331"/>
+<area shape="rect" href="version_8h.html" title="玄武OS通用库：版本号" alt="" coords="316,304,442,331"/>
+<area shape="rect" href="type_8h.html" title="玄武OS通用库：基本类型定义" alt="" coords="441,379,552,405"/>
+<area shape="rect" href="error_8h.html" title="玄武OS通用库：错误" alt="" coords="518,304,629,331"/>
+<area shape="rect" title=" " alt="" coords="654,304,800,331"/>
+<area shape="rect" title=" " alt="" coords="60,379,170,405"/>
+<area shape="rect" title=" " alt="" coords="246,379,416,405"/>
+<area shape="rect" title=" " alt="" coords="338,453,484,480"/>
+<area shape="rect" title=" " alt="" coords="508,453,578,480"/>
+<area shape="rect" href="errno_8h.html" title="玄武OS通用库：错误码" alt="" coords="576,379,691,405"/>
+</map>
+</div>
+</div>
+<p><a href="kma_8c_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:aa4efa35079ad92edb00d601ad52cd396"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kma_8c.html#aa4efa35079ad92edb00d601ad52cd396">xwmm_dkma_alloc</a> (<a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> size, <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> aligned, void **membuf)</td></tr>
+<tr class="memdesc:aa4efa35079ad92edb00d601ad52cd396"><td class="mdescLeft">&#160;</td><td class="mdescRight">从默认的内核内存分配器中申请内存  <a href="kma_8c.html#aa4efa35079ad92edb00d601ad52cd396">更多...</a><br /></td></tr>
+<tr class="separator:aa4efa35079ad92edb00d601ad52cd396"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80eb95c38d00ad0025c7e70fed397611"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kma_8c.html#a80eb95c38d00ad0025c7e70fed397611">xwmm_dkma_free</a> (void *mem)</td></tr>
+<tr class="memdesc:a80eb95c38d00ad0025c7e70fed397611"><td class="mdescLeft">&#160;</td><td class="mdescRight">释放内存到默认的内核内存分配器  <a href="kma_8c.html#a80eb95c38d00ad0025c7e70fed397611">更多...</a><br /></td></tr>
+<tr class="separator:a80eb95c38d00ad0025c7e70fed397611"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc0867644b6694e0033e6f0caa81e0a3"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kma_8c.html#abc0867644b6694e0033e6f0caa81e0a3">xwmm_dkma_init</a> (void)</td></tr>
+<tr class="memdesc:abc0867644b6694e0033e6f0caa81e0a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化默认的内核内存分配器  <a href="kma_8c.html#abc0867644b6694e0033e6f0caa81e0a3">更多...</a><br /></td></tr>
+<tr class="separator:abc0867644b6694e0033e6f0caa81e0a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga147b8c58bc6d497e36fd481578686a42"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmm__kma.html#ga147b8c58bc6d497e36fd481578686a42">xwmm_kma_init</a> (void)</td></tr>
+<tr class="memdesc:ga147b8c58bc6d497e36fd481578686a42"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化内核内存分配器  <a href="group__xwmm__kma.html#ga147b8c58bc6d497e36fd481578686a42">更多...</a><br /></td></tr>
+<tr class="separator:ga147b8c58bc6d497e36fd481578686a42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga00038592c85946acf5747c5f4590daf2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmm__kma.html#ga00038592c85946acf5747c5f4590daf2">xwmm_kma_exit</a> (void)</td></tr>
+<tr class="memdesc:ga00038592c85946acf5747c5f4590daf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">退出内核内存分配器  <a href="group__xwmm__kma.html#ga00038592c85946acf5747c5f4590daf2">更多...</a><br /></td></tr>
+<tr class="separator:ga00038592c85946acf5747c5f4590daf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae963a33b3604196b1eb92cd953086b55"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmm__kma.html#gae963a33b3604196b1eb92cd953086b55">xwmm_kma_alloc</a> (<a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> size, <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> aligned, void **membuf)</td></tr>
+<tr class="memdesc:gae963a33b3604196b1eb92cd953086b55"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMM API：申请内核内存  <a href="group__xwmm__kma.html#gae963a33b3604196b1eb92cd953086b55">更多...</a><br /></td></tr>
+<tr class="separator:gae963a33b3604196b1eb92cd953086b55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga94c9660b5c01633cba58aca04d3bdc8b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmm__kma.html#ga94c9660b5c01633cba58aca04d3bdc8b">xwmm_kma_free</a> (void *mem)</td></tr>
+<tr class="memdesc:ga94c9660b5c01633cba58aca04d3bdc8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWMM API：释放内核内存  <a href="group__xwmm__kma.html#ga94c9660b5c01633cba58aca04d3bdc8b">更多...</a><br /></td></tr>
+<tr class="separator:ga94c9660b5c01633cba58aca04d3bdc8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+变量</h2></td></tr>
+<tr class="memitem:a85d23525e5ba24b67d7883fd86bfc915"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kma_8c.html#a85d23525e5ba24b67d7883fd86bfc915">xwmm_dkma_mmz_origin</a> []</td></tr>
+<tr class="separator:a85d23525e5ba24b67d7883fd86bfc915"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4858f259c7f781c6ffc68d94bee0792"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kma_8c.html#ab4858f259c7f781c6ffc68d94bee0792">xwmm_dkma_mmz_size</a> []</td></tr>
+<tr class="separator:ab4858f259c7f781c6ffc68d94bee0792"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02edc2e69b82af346ba61fe48624aa38"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kma_8c.html#a02edc2e69b82af346ba61fe48624aa38">xwmm_dkma_mmz_pos</a> []</td></tr>
+<tr class="separator:a02edc2e69b82af346ba61fe48624aa38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c37d9da959f7599c1ce6eaccbd3e751"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structxwmm__sma.html">xwmm_sma</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kma_8c.html#a8c37d9da959f7599c1ce6eaccbd3e751">xwmm_dkma</a></td></tr>
+<tr class="memdesc:a8c37d9da959f7599c1ce6eaccbd3e751"><td class="mdescLeft">&#160;</td><td class="mdescRight">使用简单内存分配器作为默认的内核内存分配器  <a href="kma_8c.html#a8c37d9da959f7599c1ce6eaccbd3e751">更多...</a><br /></td></tr>
+<tr class="separator:a8c37d9da959f7599c1ce6eaccbd3e751"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a78c2dd9ef6ce5f4d3653a000a93bfc"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kma_8c.html#a6a78c2dd9ef6ce5f4d3653a000a93bfc">xwmm_dkma_name</a> [] = &quot;xwmm_dkma&quot;</td></tr>
+<tr class="memdesc:a6a78c2dd9ef6ce5f4d3653a000a93bfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">默认的内核内存分配器的名字  <a href="kma_8c.html#a6a78c2dd9ef6ce5f4d3653a000a93bfc">更多...</a><br /></td></tr>
+<tr class="separator:a6a78c2dd9ef6ce5f4d3653a000a93bfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a771245963a249b78d16eb4c4000143fd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwmm__kma.html#gab73e92ff550aa9f6912fdcc99954b276">xwmm_kma_alloc_f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kma_8c.html#a771245963a249b78d16eb4c4000143fd">xwmm_kma_alloc_vf</a> = <a class="el" href="kma_8c.html#aa4efa35079ad92edb00d601ad52cd396">xwmm_dkma_alloc</a></td></tr>
+<tr class="memdesc:a771245963a249b78d16eb4c4000143fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">申请内核内存虚函数  <a href="kma_8c.html#a771245963a249b78d16eb4c4000143fd">更多...</a><br /></td></tr>
+<tr class="separator:a771245963a249b78d16eb4c4000143fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b39f51d831525921ccd6160080be1bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwmm__kma.html#ga76ded8c957c8b1b0e86770e68b9eca76">xwmm_kma_free_f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kma_8c.html#a3b39f51d831525921ccd6160080be1bd">xwmm_kma_free_vf</a> = <a class="el" href="kma_8c.html#a80eb95c38d00ad0025c7e70fed397611">xwmm_dkma_free</a></td></tr>
+<tr class="memdesc:a3b39f51d831525921ccd6160080be1bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">释放内核内存虚函数  <a href="kma_8c.html#a3b39f51d831525921ccd6160080be1bd">更多...</a><br /></td></tr>
+<tr class="separator:a3b39f51d831525921ccd6160080be1bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p >玄武OS内存管理：内核内存分配器 </p>
+<dl class="section author"><dt>作者</dt><dd><ul>
+<li>隐星魂 (Roy Sun) <a href="#" onclick="location.href='mai'+'lto:'+'xwo'+'s@'+'xwo'+'s.'+'tec'+'h'; return false;">xwos@<span class="obfuscator">.nosp@m.</span>xwos<span class="obfuscator">.nosp@m.</span>.tech</a> </li>
+</ul>
+</dd></dl>
+<dl class="section copyright"><dt>版权所有</dt><dd><ul>
+<li>Copyright © 2015 xwos.tech, All Rights Reserved. <blockquote class="doxtable">
+<p >&zwj;This Source Code Form is subject to the terms of the Mozilla Public License, v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one at <a href="http://mozilla.org/MPL/2.0/">http://mozilla.org/MPL/2.0/</a>. </p>
+</blockquote>
+</li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="kma_8c_source.html">kma.c</a> 中定义.</p>
+</div><h2 class="groupheader">函数说明</h2>
+<a id="aa4efa35079ad92edb00d601ad52cd396" name="aa4efa35079ad92edb00d601ad52cd396"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4efa35079ad92edb00d601ad52cd396">&#9670;&nbsp;</a></span>xwmm_dkma_alloc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwmm_dkma_alloc </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a>&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a>&#160;</td>
+          <td class="paramname"><em>aligned</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void **&#160;</td>
+          <td class="paramname"><em>membuf</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>从默认的内核内存分配器中申请内存 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">size</td><td>大小 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">aligned</td><td>申请到的内存的首地址需要对齐到的边界 </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">membuf</td><td>指向指针缓存的指针，此指针缓存用于返回申请到的内存的首地址 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">-EFAULT</td><td>空指针 </td></tr>
+    <tr><td class="paramname">-EINVAL</td><td>参数无效 </td></tr>
+    <tr><td class="paramname">-ENOMEM</td><td>内存不足 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>同步/异步：同步</li>
+<li>上下文：中断、中断底半部、线程</li>
+<li>重入性：可重入 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="kma_8c_source.html">kma.c</a> 第 <a class="el" href="kma_8c_source.html#l00079">79</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   80</span>{</div>
+<div class="line"><span class="lineno">   81</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="group__xwmm__sma.html#ga23b31fe8bea9515fe678ab4cc2ab9c40">xwmm_sma_alloc</a>(&amp;<a class="code hl_variable" href="kma_8c.html#a8c37d9da959f7599c1ce6eaccbd3e751">xwmm_dkma</a>, size, aligned, membuf);</div>
+<div class="line"><span class="lineno">   82</span>}</div>
+<div class="ttc" id="agroup__xwmm__sma_html_ga23b31fe8bea9515fe678ab4cc2ab9c40"><div class="ttname"><a href="group__xwmm__sma.html#ga23b31fe8bea9515fe678ab4cc2ab9c40">xwmm_sma_alloc</a></div><div class="ttdeci">xwer_t xwmm_sma_alloc(struct xwmm_sma *sa, xwsz_t size, xwsz_t aligned, void **membuf)</div><div class="ttdoc">XWMM API：从简单内存分配器中申请内存</div><div class="ttdef"><b>Definition:</b> <a href="sma_8c_source.html#l00070">sma.c:70</a></div></div>
+<div class="ttc" id="akma_8c_html_a8c37d9da959f7599c1ce6eaccbd3e751"><div class="ttname"><a href="kma_8c.html#a8c37d9da959f7599c1ce6eaccbd3e751">xwmm_dkma</a></div><div class="ttdeci">struct xwmm_sma xwmm_dkma</div><div class="ttdoc">使用简单内存分配器作为默认的内核内存分配器</div><div class="ttdef"><b>Definition:</b> <a href="kma_8c_source.html#l00031">kma.c:31</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="kma_8c_aa4efa35079ad92edb00d601ad52cd396_cgraph.png" border="0" usemap="#akma_8c_aa4efa35079ad92edb00d601ad52cd396_cgraph" alt=""/></div>
+<map name="akma_8c_aa4efa35079ad92edb00d601ad52cd396_cgraph" id="akma_8c_aa4efa35079ad92edb00d601ad52cd396_cgraph">
+<area shape="rect" title="从默认的内核内存分配器中申请内存" alt="" coords="5,5,140,32"/>
+<area shape="rect" href="group__xwmm__sma.html#ga23b31fe8bea9515fe678ab4cc2ab9c40" title="XWMM API：从简单内存分配器中申请内存" alt="" coords="188,5,315,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a80eb95c38d00ad0025c7e70fed397611" name="a80eb95c38d00ad0025c7e70fed397611"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80eb95c38d00ad0025c7e70fed397611">&#9670;&nbsp;</a></span>xwmm_dkma_free()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwmm_dkma_free </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>mem</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>释放内存到默认的内核内存分配器 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">mem</td><td>内存首地址指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>空指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>同步/异步：同步</li>
+<li>上下文：中断、中断底半部、线程</li>
+<li>重入性：可重入 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="kma_8c_source.html">kma.c</a> 第 <a class="el" href="kma_8c_source.html#l00096">96</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   97</span>{</div>
+<div class="line"><span class="lineno">   98</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="group__xwmm__sma.html#gadad88dc37274dd8f2ce5ccc5f942b980">xwmm_sma_free</a>(&amp;<a class="code hl_variable" href="kma_8c.html#a8c37d9da959f7599c1ce6eaccbd3e751">xwmm_dkma</a>, mem);</div>
+<div class="line"><span class="lineno">   99</span>}</div>
+<div class="ttc" id="agroup__xwmm__sma_html_gadad88dc37274dd8f2ce5ccc5f942b980"><div class="ttname"><a href="group__xwmm__sma.html#gadad88dc37274dd8f2ce5ccc5f942b980">xwmm_sma_free</a></div><div class="ttdeci">xwer_t xwmm_sma_free(struct xwmm_sma *sa, void *mem)</div><div class="ttdoc">XWMM API：释放内存</div><div class="ttdef"><b>Definition:</b> <a href="sma_8c_source.html#l00128">sma.c:128</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="kma_8c_a80eb95c38d00ad0025c7e70fed397611_cgraph.png" border="0" usemap="#akma_8c_a80eb95c38d00ad0025c7e70fed397611_cgraph" alt=""/></div>
+<map name="akma_8c_a80eb95c38d00ad0025c7e70fed397611_cgraph" id="akma_8c_a80eb95c38d00ad0025c7e70fed397611_cgraph">
+<area shape="rect" title="释放内存到默认的内核内存分配器" alt="" coords="5,5,135,32"/>
+<area shape="rect" href="group__xwmm__sma.html#gadad88dc37274dd8f2ce5ccc5f942b980" title="XWMM API：释放内存" alt="" coords="183,5,305,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="abc0867644b6694e0033e6f0caa81e0a3" name="abc0867644b6694e0033e6f0caa81e0a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc0867644b6694e0033e6f0caa81e0a3">&#9670;&nbsp;</a></span>xwmm_dkma_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwmm_dkma_init </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>初始化默认的内核内存分配器 </p>
+
+<p class="definition">在文件 <a class="el" href="kma_8c_source.html">kma.c</a> 第 <a class="el" href="kma_8c_source.html#l00052">52</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   53</span>{</div>
+<div class="line"><span class="lineno">   54</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">   55</span> </div>
+<div class="line"><span class="lineno">   56</span>        rc = <a class="code hl_function" href="group__xwmm__sma.html#ga343183d3ac03788b80f8e876a56750a9">xwmm_sma_init</a>(&amp;<a class="code hl_variable" href="kma_8c.html#a8c37d9da959f7599c1ce6eaccbd3e751">xwmm_dkma</a>,</div>
+<div class="line"><span class="lineno">   57</span>                           (<a class="code hl_typedef" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a>)<a class="code hl_variable" href="kma_8c.html#a85d23525e5ba24b67d7883fd86bfc915">xwmm_dkma_mmz_origin</a>,</div>
+<div class="line"><span class="lineno">   58</span>                           (<a class="code hl_typedef" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a>)<a class="code hl_variable" href="kma_8c.html#ab4858f259c7f781c6ffc68d94bee0792">xwmm_dkma_mmz_size</a>,</div>
+<div class="line"><span class="lineno">   59</span>                           (<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>)<a class="code hl_variable" href="kma_8c.html#a02edc2e69b82af346ba61fe48624aa38">xwmm_dkma_mmz_pos</a>,</div>
+<div class="line"><span class="lineno">   60</span>                           <a class="code hl_variable" href="kma_8c.html#a6a78c2dd9ef6ce5f4d3653a000a93bfc">xwmm_dkma_name</a>);</div>
+<div class="line"><span class="lineno">   61</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">   62</span>}</div>
+<div class="ttc" id="agroup__xwmm__sma_html_ga343183d3ac03788b80f8e876a56750a9"><div class="ttname"><a href="group__xwmm__sma.html#ga343183d3ac03788b80f8e876a56750a9">xwmm_sma_init</a></div><div class="ttdeci">xwer_t xwmm_sma_init(struct xwmm_sma *sa, xwptr_t origin, xwsz_t size, xwsq_t pos, const char *name)</div><div class="ttdoc">XWMM API：初始化简单内存分配器对象</div><div class="ttdef"><b>Definition:</b> <a href="sma_8c_source.html#l00035">sma.c:35</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga06847ea8c7edb2b1f166288b230f251f"><div class="ttname"><a href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a></div><div class="ttdeci">signed long xwer_t</div><div class="ttdef"><b>Definition:</b> <a href="type_8h_source.html#l00193">type.h:193</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga2d00153ecb0cdcc8ea0823c13ee59649"><div class="ttname"><a href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a></div><div class="ttdeci">unsigned long xwsz_t</div><div class="ttdef"><b>Definition:</b> <a href="type_8h_source.html#l00097">type.h:97</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga59fe68c80516b22de8dccb84275d23f2"><div class="ttname"><a href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a></div><div class="ttdeci">unsigned long xwsq_t</div><div class="ttdef"><b>Definition:</b> <a href="type_8h_source.html#l00145">type.h:145</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_gacef49946313c8d1985a8279bb40e31c4"><div class="ttname"><a href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a></div><div class="ttdeci">unsigned long xwptr_t</div><div class="ttdef"><b>Definition:</b> <a href="type_8h_source.html#l00121">type.h:121</a></div></div>
+<div class="ttc" id="akma_8c_html_a02edc2e69b82af346ba61fe48624aa38"><div class="ttname"><a href="kma_8c.html#a02edc2e69b82af346ba61fe48624aa38">xwmm_dkma_mmz_pos</a></div><div class="ttdeci">xwu8_t xwmm_dkma_mmz_pos[]</div></div>
+<div class="ttc" id="akma_8c_html_a6a78c2dd9ef6ce5f4d3653a000a93bfc"><div class="ttname"><a href="kma_8c.html#a6a78c2dd9ef6ce5f4d3653a000a93bfc">xwmm_dkma_name</a></div><div class="ttdeci">const char xwmm_dkma_name[]</div><div class="ttdoc">默认的内核内存分配器的名字</div><div class="ttdef"><b>Definition:</b> <a href="kma_8c_source.html#l00036">kma.c:36</a></div></div>
+<div class="ttc" id="akma_8c_html_a85d23525e5ba24b67d7883fd86bfc915"><div class="ttname"><a href="kma_8c.html#a85d23525e5ba24b67d7883fd86bfc915">xwmm_dkma_mmz_origin</a></div><div class="ttdeci">xwu8_t xwmm_dkma_mmz_origin[]</div></div>
+<div class="ttc" id="akma_8c_html_ab4858f259c7f781c6ffc68d94bee0792"><div class="ttname"><a href="kma_8c.html#ab4858f259c7f781c6ffc68d94bee0792">xwmm_dkma_mmz_size</a></div><div class="ttdeci">xwu8_t xwmm_dkma_mmz_size[]</div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="kma_8c_abc0867644b6694e0033e6f0caa81e0a3_cgraph.png" border="0" usemap="#akma_8c_abc0867644b6694e0033e6f0caa81e0a3_cgraph" alt=""/></div>
+<map name="akma_8c_abc0867644b6694e0033e6f0caa81e0a3_cgraph" id="akma_8c_abc0867644b6694e0033e6f0caa81e0a3_cgraph">
+<area shape="rect" title="初始化默认的内核内存分配器" alt="" coords="5,5,129,32"/>
+<area shape="rect" href="group__xwmm__sma.html#ga343183d3ac03788b80f8e876a56750a9" title="XWMM API：初始化简单内存分配器对象" alt="" coords="177,5,295,32"/>
+</map>
+</div>
+<div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="kma_8c_abc0867644b6694e0033e6f0caa81e0a3_icgraph.png" border="0" usemap="#akma_8c_abc0867644b6694e0033e6f0caa81e0a3_icgraph" alt=""/></div>
+<map name="akma_8c_abc0867644b6694e0033e6f0caa81e0a3_icgraph" id="akma_8c_abc0867644b6694e0033e6f0caa81e0a3_icgraph">
+<area shape="rect" title="初始化默认的内核内存分配器" alt="" coords="171,5,295,32"/>
+<area shape="rect" href="group__xwmm__kma.html#ga147b8c58bc6d497e36fd481578686a42" title="初始化内核内存分配器" alt="" coords="5,5,123,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">变量说明</h2>
+<a id="a8c37d9da959f7599c1ce6eaccbd3e751" name="a8c37d9da959f7599c1ce6eaccbd3e751"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c37d9da959f7599c1ce6eaccbd3e751">&#9670;&nbsp;</a></span>xwmm_dkma</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structxwmm__sma.html">xwmm_sma</a> xwmm_dkma</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>使用简单内存分配器作为默认的内核内存分配器 </p>
+
+<p class="definition">在文件 <a class="el" href="kma_8c_source.html">kma.c</a> 第 <a class="el" href="kma_8c_source.html#l00031">31</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a85d23525e5ba24b67d7883fd86bfc915" name="a85d23525e5ba24b67d7883fd86bfc915"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85d23525e5ba24b67d7883fd86bfc915">&#9670;&nbsp;</a></span>xwmm_dkma_mmz_origin</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a> xwmm_dkma_mmz_origin[]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a02edc2e69b82af346ba61fe48624aa38" name="a02edc2e69b82af346ba61fe48624aa38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02edc2e69b82af346ba61fe48624aa38">&#9670;&nbsp;</a></span>xwmm_dkma_mmz_pos</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a> xwmm_dkma_mmz_pos[]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab4858f259c7f781c6ffc68d94bee0792" name="ab4858f259c7f781c6ffc68d94bee0792"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4858f259c7f781c6ffc68d94bee0792">&#9670;&nbsp;</a></span>xwmm_dkma_mmz_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a> xwmm_dkma_mmz_size[]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6a78c2dd9ef6ce5f4d3653a000a93bfc" name="a6a78c2dd9ef6ce5f4d3653a000a93bfc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a78c2dd9ef6ce5f4d3653a000a93bfc">&#9670;&nbsp;</a></span>xwmm_dkma_name</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char xwmm_dkma_name[] = &quot;xwmm_dkma&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>默认的内核内存分配器的名字 </p>
+
+<p class="definition">在文件 <a class="el" href="kma_8c_source.html">kma.c</a> 第 <a class="el" href="kma_8c_source.html#l00036">36</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a771245963a249b78d16eb4c4000143fd" name="a771245963a249b78d16eb4c4000143fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a771245963a249b78d16eb4c4000143fd">&#9670;&nbsp;</a></span>xwmm_kma_alloc_vf</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwmm__kma.html#gab73e92ff550aa9f6912fdcc99954b276">xwmm_kma_alloc_f</a> xwmm_kma_alloc_vf = <a class="el" href="kma_8c.html#aa4efa35079ad92edb00d601ad52cd396">xwmm_dkma_alloc</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>申请内核内存虚函数 </p>
+
+<p class="definition">在文件 <a class="el" href="kma_8c_source.html">kma.c</a> 第 <a class="el" href="kma_8c_source.html#l00041">41</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3b39f51d831525921ccd6160080be1bd" name="a3b39f51d831525921ccd6160080be1bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b39f51d831525921ccd6160080be1bd">&#9670;&nbsp;</a></span>xwmm_kma_free_vf</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwmm__kma.html#ga76ded8c957c8b1b0e86770e68b9eca76">xwmm_kma_free_f</a> xwmm_kma_free_vf = <a class="el" href="kma_8c.html#a80eb95c38d00ad0025c7e70fed397611">xwmm_dkma_free</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>释放内核内存虚函数 </p>
+
+<p class="definition">在文件 <a class="el" href="kma_8c_source.html">kma.c</a> 第 <a class="el" href="kma_8c_source.html#l00046">46</a> 行定义.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_43a52829888b753087a6774748486ed5.html">xwos</a></li><li class="navelem"><a class="el" href="dir_9dc98d2d57b5a37b2d02400b59474658.html">mm</a></li><li class="navelem"><a class="el" href="kma_8c.html">kma.c</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
+  </ul>
+</div>
+</body>
+</html>

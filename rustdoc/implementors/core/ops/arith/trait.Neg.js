@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["xwrust"] = [{"text":"impl&lt;const N:&nbsp;<a class=\"type\" href=\"xwrust/types/type.XwSz.html\" title=\"type xwrust::types::XwSz\">XwSz</a>&gt; Neg for <a class=\"struct\" href=\"xwrust/xwbmp/struct.Bmp.html\" title=\"struct xwrust::xwbmp::Bmp\">Bmp</a>&lt;N&gt; <span class=\"where fmt-newline\">where<br>&nbsp;&nbsp;&nbsp;&nbsp;[<a class=\"type\" href=\"xwrust/types/type.XwBmp.html\" title=\"type xwrust::types::XwBmp\">XwBmp</a>; ((N + XwBmp::BITS as usize - 1) / XwBmp::BITS as usize)]: Sized,&nbsp;</span>","synthetic":false,"types":["xwrust::xwbmp::Bmp"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

@@ -1,0 +1,461 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>XWOS – 锁</title>
+    <link>/docs/user-manual/lock/</link>
+    <description>Recent content in 锁 on XWOS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	  <atom:link href="/docs/user-manual/lock/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: 自旋锁</title>
+      <link>/docs/user-manual/lock/spinlock/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/user-manual/lock/spinlock/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
+&lt;p&gt;自旋锁是多核系统中为防止多个处理器同时访问临界区而引入的一种锁。
+当一个CPU获得自旋锁并访问临界区时，其他CPU只能 &lt;strong&gt;自旋&lt;/strong&gt; 等待锁。
+所谓 &lt;strong&gt;自旋&lt;/strong&gt; ，是指不断循环测试锁的是否可用。&lt;/p&gt;
+&lt;p&gt;自旋锁内的操作是不可被打断的。因此，自旋锁还伴随其他操作，例如关闭调度器的抢占，关闭中断底半部，关闭中断等。
+在单核(UP)系统中，只有一个CPU，不需要自旋过程，单核系统为了软件接口与多核系统兼容，也会实现自旋锁，这种自旋锁只需关闭抢占、中断底半部或中断。&lt;/p&gt;
+&lt;h2 id=&#34;自旋锁的初始化&#34;&gt;自旋锁的初始化&lt;/h2&gt;
+&lt;p&gt;自旋锁是基于原子操作指令实现的，自旋锁结构体很小，核心数据是一个CPU指令能操作的基本数据类型，因此不提供动态创建和删除方法。
+用户可以通过 &lt;a href=&#34;../../../../api/group__xwos__lock__spinlock.html#gac8bbb82a3177f919e10ef3c3d21c7608&#34;&gt;&lt;code&gt;xwos_splk_init()&lt;/code&gt;&lt;/a&gt; 初始化自选锁。&lt;/p&gt;
+&lt;h2 id=&#34;锁模式&#34;&gt;锁模式&lt;/h2&gt;
+&lt;p&gt;自旋锁有很多不同后缀的CAPI，临界区的安全性也不一样：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;临界区只对 &lt;strong&gt;线程&lt;/strong&gt; 上下文是安全的：
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__spinlock.html#ga80e1248f482959ad664f367dd6a2123e&#34;&gt;&lt;code&gt;xwos_splk_lock()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__spinlock.html#gad8cae0c2e4a9956f9df7b3118b6db534&#34;&gt;&lt;code&gt;xwos_splk_trylock()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__spinlock.html#ga7c45ee96acf66e3ab1aba48a0f49f1c4&#34;&gt;&lt;code&gt;xwos_splk_unlock()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_lock(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_unlock(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;临界区对 &lt;strong&gt;任意&lt;/strong&gt; 上下文都是安全的：
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__spinlock.html#ga3011217ec5d1cba45824484f507dce77&#34;&gt;&lt;code&gt;xwos_splk_lock_cpuirq()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占、CPU中断&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__spinlock.html#ga5a37d2c7c27a7507392f15eeb03d2a02&#34;&gt;&lt;code&gt;xwos_splk_trylock_cpuirq()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占、CPU中断&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__spinlock.html#gaba92901efc65f4e61a3e364b29d6e10c&#34;&gt;&lt;code&gt;xwos_splk_unlock_cpuirq()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占、CPU中断&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_lock_cpuirq(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_unlock_cpuirq(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;临界区嵌套时，对 &lt;strong&gt;任意&lt;/strong&gt; 上下文都是安全的：
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__spinlock.html#gad393963b449be923d8af40538b9befdf&#34;&gt;&lt;code&gt;xwos_splk_lock_cpuirqsv()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占，保存CPU中断标志并关闭&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__spinlock.html#ga74fc2498076cc0f1b4810bd1ad9d4bff&#34;&gt;&lt;code&gt;xwos_splk_trylock_cpuirqsv()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占，保存CPU中断标志并关闭&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__spinlock.html#gaa83b4a8f3340ddf35346dbedf9ce3979&#34;&gt;&lt;code&gt;xwos_splk_unlock_cpuirqrs()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占，恢复CPU中断&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_lock_cpuirqsv(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock1, &lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;cpuirq1);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区1 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_lock_cpuirqsv(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock2, &lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;cpuirq2);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区2 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_unlock_cpuirqrs(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;loc2, cpuirq2);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区1 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_unlock_cpuirqrs(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;loc1, cpuirq1);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;临界区对 &lt;strong&gt;线程&lt;/strong&gt; 、 &lt;strong&gt;指定的外设中断&lt;/strong&gt; 是安全的：
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__spinlock.html#ga7e50b3ee8f605b1963bf7223c249da28&#34;&gt;&lt;code&gt;xwos_splk_lock_irqs()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占，关闭部分外部中断&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__spinlock.html#ga1946f1240fb699cb9d6a252c76b0eb77&#34;&gt;&lt;code&gt;xwos_splk_trylock_irqs()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占，关闭部分外部中断&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__spinlock.html#ga94b35ab4ed1799807411bcfdcd1a3950&#34;&gt;&lt;code&gt;xwos_splk_unlock_irqs()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占、开启部分外部中断&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_lock_irqs(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock, irq_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_unlock_irqs(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock, irq_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;临界区嵌套时，对 &lt;strong&gt;线程&lt;/strong&gt; 、 &lt;strong&gt;指定的外设中断&lt;/strong&gt; 是安全的：
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__spinlock.html#ga92a795c788a274e6fb545b6d4226b01b&#34;&gt;&lt;code&gt;xwos_splk_lock_irqssv()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占，保存部分外部中断标志并关闭&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__spinlock.html#ga17b92af6dfcf155366f46bb83f1b8ff5&#34;&gt;&lt;code&gt;xwos_splk_trylock_irqssv()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占，保存部分外部中断标志并关闭&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__spinlock.html#ga58441e6006fe5d402e06f5caaab42092&#34;&gt;&lt;code&gt;xwos_splk_unlock_irqsrs()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占、恢复部分外部中断&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_lock_irqssv(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock1, irq_array, flag1_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区1 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_lock_irqssv(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock2, irq_array, flag2_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区2 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_unlock_irqsrs(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock2, irq_array, flag2_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区1 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_unlock_irqsrs(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock1, irq_array, flag1_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;临界区对 &lt;strong&gt;线程&lt;/strong&gt; 、 ** 中断底半部** 是安全的：
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__spinlock.html#ga3c50609a0c759cb526502a27937aab47&#34;&gt;&lt;code&gt;xwos_splk_lock_bh()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占、中断底半部&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__spinlock.html#ga6d6a918600518b0ed891937ec378087a&#34;&gt;&lt;code&gt;xwos_splk_trylock_bh()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占、中断底半部&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__spinlock.html#gafbf75863c2f6323d6de84e4b1ce6c18a&#34;&gt;&lt;code&gt;xwos_splk_unlock_bh()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占、中断底半部&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_lock_bh(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_unlock_bh(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;api参考&#34;&gt;API参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__spinlock.html&#34;&gt;&lt;strong&gt;头文件 &amp;lt;xwos/osal/lock/spinlock.h&amp;gt;&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 顺序锁</title>
+      <link>/docs/user-manual/lock/seqlock/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/user-manual/lock/seqlock/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
+&lt;p&gt;顺序锁是对自旋锁改良后的锁，顺序锁中包含一个自旋锁，并且带有一个顺序值。
+但顺序锁有个缺陷，写者将数据写为空指针时，有可能导致读者引用空指针而崩溃。&lt;/p&gt;
+&lt;p&gt;顺序锁将临界区分为三种：&lt;/p&gt;
+&lt;h4 id=&#34;独占写&#34;&gt;独占写&lt;/h4&gt;
+&lt;p&gt;任何对顺序锁临界区的 &lt;strong&gt;写&lt;/strong&gt; 操作都是独占的，每次 &lt;strong&gt;写&lt;/strong&gt; 操作时，会先上锁自旋锁，
+然后增加顺序值，离开临界区时也会再次增加顺序值。言外之意，顺序值增加两次，顺序值增加的次数是 &lt;strong&gt;偶数&lt;/strong&gt; 。&lt;/p&gt;
+&lt;h4 id=&#34;非独占读&#34;&gt;非独占读&lt;/h4&gt;
+&lt;p&gt;如果多个CPU进行的是 &lt;strong&gt;只读&lt;/strong&gt; 操作，它们可以同时进入 &lt;strong&gt;非独占读临界区&lt;/strong&gt; 。
+CPU进入非独占读临界区无需获得自旋锁，但需要先测试顺序值是否为 &lt;strong&gt;偶数&lt;/strong&gt; ，并记录此时的顺序值。
+当退出读临界区时，需要再次读取顺序值，并与之前记录的值进行比较：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如果相等，表示读的结果有效；&lt;/li&gt;
+&lt;li&gt;如果不相等，则表示读的过程中别的CPU进行了写操作，此次的读操作无效。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;独占读&#34;&gt;独占读&lt;/h4&gt;
+&lt;p&gt;如果希望读临界区不会被写操作无效掉，可以使用独占读的方式，
+独占读会排斥其他CPU上的独占写和独占读操作，但不会排斥非独占读，
+其他CPU依然可以进入非独占读临界区。&lt;/p&gt;
+&lt;h2 id=&#34;自旋锁的初始化&#34;&gt;自旋锁的初始化&lt;/h2&gt;
+&lt;p&gt;自旋锁是基于原子操作指令实现的，自旋锁结构体很小，核心数据是一个CPU指令能操作的基本数据类型，因此不提供动态创建和删除方法。
+用户可以通过 &lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#ga230119b86fd51047f83cbe1e74982892&#34;&gt;&lt;code&gt;xwos_sqlk_init()&lt;/code&gt;&lt;/a&gt; 初始化自选锁。&lt;/p&gt;
+&lt;h2 id=&#34;锁模式&#34;&gt;锁模式&lt;/h2&gt;
+&lt;h3 id=&#34;非独占读临界区&#34;&gt;非独占读临界区&lt;/h3&gt;
+&lt;p&gt;如果多个CPU进行的是 &lt;strong&gt;只读&lt;/strong&gt; 操作，它们可以同时进入 &lt;strong&gt;非独占读临界区&lt;/strong&gt; 。
+CPU进入非独占读临界区无需获得自旋锁，但需要先测试顺序值是否为 &lt;strong&gt;偶数&lt;/strong&gt;，并记录此时的顺序值，此操作可通过 &lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#ga7cd1c5a34e6c318d537e4780f3ae85f4&#34;&gt;&lt;code&gt;xwos_sqlk_rd_begin()&lt;/code&gt;&lt;/a&gt; 来完成。
+当退出读临界区时，需要再次读取顺序值，并与之前记录的值进行比较，此操作可通过 &lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#gabcf1bae603513b049184fe2179d1301e&#34;&gt;&lt;code&gt;xwos_sqlk_rd_retry()&lt;/code&gt;&lt;/a&gt; 完成：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如果相等，表示读的结果有效；&lt;/li&gt;
+&lt;li&gt;如果不相等，则表示读的过程中别的CPU进行了写操作，此次的读操作无效。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        seq &lt;span style=&#34;color:#666&#34;&gt;=&lt;/span&gt; xwos_sqlk_rd_begin(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock); &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 进入临界区前先获取顺序值 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;do&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 非独占读临界区 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        } &lt;span style=&#34;color:#a2f;font-weight:bold&#34;&gt;while&lt;/span&gt; (xwos_sqlk_rd_retry(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock&lt;span style=&#34;&#34;&gt;，&lt;/span&gt; seq)); &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 测试顺序值是否发生了变化 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;写临界区&#34;&gt;写临界区&lt;/h3&gt;
+&lt;p&gt;任何对顺序锁临界区的 &lt;strong&gt;写&lt;/strong&gt; 操作都是独占的，每次 &lt;strong&gt;写&lt;/strong&gt; 操作时，会先上锁自旋锁，
+然后增加顺序值，离开临界区时也会再次增加顺序值。言外之意，顺序值增加两次，顺序值增加的次数是 &lt;strong&gt;偶数&lt;/strong&gt; 。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;临界区只对 &lt;strong&gt;线程&lt;/strong&gt; 上下文是安全的：
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#ga16274374f2eeac631149433d1cf3491a&#34;&gt;&lt;code&gt;xwos_splk_wr_lock()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#ga5cc1e68a7d23ca6b7210de17b950e64b&#34;&gt;&lt;code&gt;xwos_splk_wr_trylock()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#ga1320e69104e26e1a79b5459e7607584c&#34;&gt;&lt;code&gt;xwos_splk_wr_unlock()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_wr_lock(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_wr_unlock(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;临界区对 &lt;strong&gt;任意&lt;/strong&gt; 上下文都是安全的：
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#ga61fbffa6ca444335dbf3a4c2d2fd79b5&#34;&gt;&lt;code&gt;xwos_splk_wr_lock_cpuirq()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占、CPU中断&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#gaa46493b921777da3bc92fd5e91cf2388&#34;&gt;&lt;code&gt;xwos_splk_wr_trylock_cpuirq()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占、CPU中断&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#ga694c4ac137e605fd951a3e3c1d37c855&#34;&gt;&lt;code&gt;xwos_splk_wr_unlock_cpuirq()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占、CPU中断&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_wr_lock_cpuirq(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_wr_unlock_cpuirq(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;临界区嵌套时，对 &lt;strong&gt;任意&lt;/strong&gt; 上下文都是安全的：
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#gabc138d69277ba1017ade0f27c6c282cb&#34;&gt;&lt;code&gt;xwos_splk_wr_lock_cpuirqsv()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占，保存CPU中断标志并关闭&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#ga065396cb9c428d0e6234ade20506ff2a&#34;&gt;&lt;code&gt;xwos_splk_wr_trylock_cpuirqsv()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占，保存CPU中断标志并关闭&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#gadcb38d5d6dad7969e1231c47c131f3c8&#34;&gt;&lt;code&gt;xwos_splk_wr_unlock_cpuirqrs()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占，恢复CPU中断&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_wr_lock_cpuirqsv(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock1, &lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;cpuirq1);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区1 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_wr_lock_cpuirqsv(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock2, &lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;cpuirq2);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区2 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_wr_unlock_cpuirqrs(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;loc2, cpuirq2);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区1 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_wr_unlock_cpuirqrs(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;loc1, cpuirq1);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;临界区对 &lt;strong&gt;线程&lt;/strong&gt; 、 &lt;strong&gt;指定的外设中断&lt;/strong&gt; 是安全的：
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#gaac8a682117d914620347320e9f560152&#34;&gt;&lt;code&gt;xwos_splk_wr_lock_irqs()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占，关闭部分外部中断&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#ga3eb1f6f9a6a1feda5569757540b01df6&#34;&gt;&lt;code&gt;xwos_splk_wr_trylock_irqs()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占，关闭部分外部中断&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#ga2e5a2faac19775d37f6f5ccde32a7313&#34;&gt;&lt;code&gt;xwos_splk_wr_unlock_irqs()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占、开启部分外部中断&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_wr_lock_irqs(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock, irq_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_wr_unlock_irqs(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock, irq_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;临界区嵌套时，对 &lt;strong&gt;线程&lt;/strong&gt; 、 &lt;strong&gt;指定的外设中断&lt;/strong&gt; 是安全的：
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#ga3f5f4b0151aa7b01887270f15a13818c&#34;&gt;&lt;code&gt;xwos_splk_wr_lock_irqssv()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占，保存部分外部中断标志并关闭&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#ga21e971d6ca670922416042f7ecc4d063&#34;&gt;&lt;code&gt;xwos_splk_wr_trylock_irqssv()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占，保存部分外部中断标志并关闭&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#ga0fe331dfdb5fa645618cc74a90278d03&#34;&gt;&lt;code&gt;xwos_splk_wr_unlock_irqsrs()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占、恢复部分外部中断&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_wr_lock_irqssv(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock1, irq_array, flag1_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区1 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_wr_lock_irqssv(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock2, irq_array, flag2_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区2 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_wr_unlock_irqsrs(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock2, irq_array, flag2_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区1 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_wr_unlock_irqsrs(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock1, irq_array, flag1_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;临界区对 &lt;strong&gt;线程&lt;/strong&gt; 、 ** 中断底半部** 是安全的：
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#gaffbc56b927fa504cad49f737a8be68d1&#34;&gt;&lt;code&gt;xwos_splk_wr_lock_bh()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占、中断底半部&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#ga4771dca2b7e1f58df3fea5dc0278bd0a&#34;&gt;&lt;code&gt;xwos_splk_wr_trylock_bh()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占、中断底半部&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#ga3e2867fefe9d28031957e563ffc76ff5&#34;&gt;&lt;code&gt;xwos_splk_wr_unlock_bh()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占、中断底半部&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_wr_lock_bh(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_wr_unlock_bh(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;独占读临界区&#34;&gt;独占读临界区&lt;/h3&gt;
+&lt;p&gt;如果希望读临界区不会被写操作无效掉，可以使用独占读的方式，
+独占读会排斥其他CPU上的独占写和独占读操作，但不会排斥非独占读，
+其他CPU依然可以进入非独占读临界区。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;临界区只对 &lt;strong&gt;线程&lt;/strong&gt; 上下文是安全的：
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#ga0bc2e7584ad91b0c250ff029b25d70bd&#34;&gt;&lt;code&gt;xwos_splk_rdex_lock()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#gaa870ff02e389c6f9d61ee4119fc38204&#34;&gt;&lt;code&gt;xwos_splk_rdex_trylock()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#ga390316c0f4e02e92669a87fefe0a0bb4&#34;&gt;&lt;code&gt;xwos_splk_rdex_unlock()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_rdex_lock(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_rdex_unlock(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;临界区对 &lt;strong&gt;任意&lt;/strong&gt; 上下文都是安全的：
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#ga24cf158c1835abd6bacdcd846b1ba787&#34;&gt;&lt;code&gt;xwos_splk_rdex_lock_cpuirq()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占、CPU中断&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#ga5cd525a876d961a541876ba9a217e77e&#34;&gt;&lt;code&gt;xwos_splk_rdex_trylock_cpuirq()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占、CPU中断&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#gadd1ae7af48feae2d216dc588d2789490&#34;&gt;&lt;code&gt;xwos_splk_rdex_unlock_cpuirq()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占、CPU中断&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_rdex_lock_cpuirq(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_rdex_unlock_cpuirq(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;临界区嵌套时，对 &lt;strong&gt;任意&lt;/strong&gt; 上下文都是安全的：
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#ga9c906f30b85d221d21be57fe2ff79410&#34;&gt;&lt;code&gt;xwos_splk_rdex_lock_cpuirqsv()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占，保存CPU中断标志并关闭&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#ga7466ec4b9fede25fce836c3e0f718661&#34;&gt;&lt;code&gt;xwos_splk_rdex_trylock_cpuirqsv()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占，保存CPU中断标志并关闭&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#ga6eb881e1a1c6e73879053a45e7af20cc&#34;&gt;&lt;code&gt;xwos_splk_rdex_unlock_cpuirqrs()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占，恢复CPU中断&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_rdex_lock_cpuirqsv(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock1, &lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;cpuirq1);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区1 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_rdex_lock_cpuirqsv(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock2, &lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;cpuirq2);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区2 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_rdex_unlock_cpuirqrs(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;loc2, cpuirq2);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区1 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_rdex_unlock_cpuirqrs(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;loc1, cpuirq1);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;临界区对 &lt;strong&gt;线程&lt;/strong&gt; 、 &lt;strong&gt;指定的外设中断&lt;/strong&gt; 是安全的：
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#gad67dfd2f001aab35f69cf99d9831ba8c&#34;&gt;&lt;code&gt;xwos_splk_rdex_lock_irqs()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占，关闭部分外部中断&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#ga2fb086d3289975531800d2633542c7a8&#34;&gt;&lt;code&gt;xwos_splk_rdex_trylock_irqs()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占，关闭部分外部中断&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#ga868886500d9e33300b0fbccd032ff449&#34;&gt;&lt;code&gt;xwos_splk_rdex_unlock_irqs()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占、开启部分外部中断&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_rdex_lock_irqs(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock, irq_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_rdex_unlock_irqs(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock, irq_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;临界区嵌套时，对 &lt;strong&gt;线程&lt;/strong&gt; 、 &lt;strong&gt;指定的外设中断&lt;/strong&gt; 是安全的：
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#ga8f7f5fa7a0103fb2bc89d69a6afbcdab&#34;&gt;&lt;code&gt;xwos_splk_rdex_lock_irqssv()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占，保存部分外部中断标志并关闭&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#gaf80962b3c0731f34615604c6dbe30839&#34;&gt;&lt;code&gt;xwos_splk_rdex_trylock_irqssv()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占，保存部分外部中断标志并关闭&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#ga62dff199b6143032fe9bd5a03f51067c&#34;&gt;&lt;code&gt;xwos_splk_rdex_unlock_irqsrs()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占、恢复部分外部中断&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_rdex_lock_irqssv(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock1, irq_array, flag1_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区1 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_rdex_lock_irqssv(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock2, irq_array, flag2_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区2 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_rdex_unlock_irqsrs(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock2, irq_array, flag2_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区1 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_rdex_unlock_irqsrs(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock1, irq_array, flag1_array, num);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;临界区对 &lt;strong&gt;线程&lt;/strong&gt; 、 ** 中断底半部** 是安全的：
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#gad649d232c24bbbf43fb9d9f163381692&#34;&gt;&lt;code&gt;xwos_splk_rdex_lock_bh()&lt;/code&gt;&lt;/a&gt; ：上锁，关闭抢占、中断底半部&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#gab71ec7bec664746455b4f5c3ffaf5505&#34;&gt;&lt;code&gt;xwos_splk_rdex_trylock_bh()&lt;/code&gt;&lt;/a&gt; ：尝试上锁，关闭抢占、中断底半部&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html#ga56e9f3261d8966ac1dfc51619cd5f48d&#34;&gt;&lt;code&gt;xwos_splk_rdex_unlock_bh()&lt;/code&gt;&lt;/a&gt; ：解锁，开启抢占、中断底半部&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_rdex_lock_bh(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;/* 临界区 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;        xwos_splk_rdex_unlock_bh(&lt;span style=&#34;color:#666&#34;&gt;&amp;amp;&lt;/span&gt;lock);
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;api参考&#34;&gt;API参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__seqlock.html&#34;&gt;&lt;strong&gt;头文件 &amp;lt;xwos/osal/lock/seqlock.h&amp;gt;&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: 互斥锁</title>
+      <link>/docs/user-manual/lock/mutex/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/user-manual/lock/mutex/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;介绍&#34;&gt;介绍&lt;/h2&gt;
+&lt;p&gt;互斥锁是用来保证不同线程正确访问共享数据的机制。访问共享数据的代码片段被称为临界区。&lt;/p&gt;
+&lt;p&gt;互斥锁都 &lt;strong&gt;不可&lt;/strong&gt; 用在除线程以外的其他上下文(Context)。&lt;/p&gt;
+&lt;p&gt;与自旋锁及其派生锁不同，等待互斥锁的线程会被阻塞，并让出CPU的使用权。&lt;/p&gt;
+&lt;p&gt;互斥锁存在优先级反转问题：&lt;/p&gt;
+
+
+
+
+
+
+
+&lt;div class=&#34;card rounded p-2 td-post-card mb-4 mt-4&#34; style=&#34;max-width: 810px&#34;&gt;
+	&lt;img class=&#34;card-img-top&#34; src=&#34;/docs/user-manual/lock/mutex/priority-inversion_hu06d113db6caaf8381d16863409fb983c_97009_800x800_fill_catmullrom_smart1_3.png&#34; width=&#34;800&#34; height=&#34;800&#34;&gt;
+	
+	&lt;div class=&#34;card-body px-0 pt-2 pb-0 text-center&#34;&gt;
+		&lt;p class=&#34;card-text&#34;&gt;
+XWOS互斥锁的优先级反转问题
+&lt;small class=&#34;text-muted&#34;&gt;&lt;br/&gt;Photo: xwos.tech / CC-BY&lt;/small&gt;&lt;/p&gt;
+	&lt;/div&gt;
+	
+&lt;/div&gt;
+
+&lt;p&gt;XWOS内核采取优先级天花板和优先级继承的混会策略解决此问题：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;线程和互斥锁都拥有优先级，它们在创建时需要指定一个 &lt;strong&gt;静态优先级&lt;/strong&gt; ，
+当线程持有互斥锁时，线程可以获取互斥锁的优先级作为 &lt;strong&gt;动态优先级&lt;/strong&gt; ，
+当互斥锁被线程等待时，互斥锁可以获取线程的优先级作为 &lt;strong&gt;动态优先级&lt;/strong&gt; ，
+最终的优先级由 &lt;strong&gt;静态优先级&lt;/strong&gt; 和 &lt;strong&gt;动态优先级&lt;/strong&gt; 比较，取较大的一个；&lt;/li&gt;
+&lt;li&gt;假设线程A优先级低，线程B的优先级中，线程C的优先级高。
+线程A已经获得锁的情况下，线程C等待锁，会临时提高锁的优先级，
+锁的优先级再传递给线程A，此时线程A不会被线程B抢占。&lt;/li&gt;
+&lt;li&gt;优先级可以无限继承：假设线程A的优先级最低，线程T1、T2、…… 、Tn的优先级依次递增，系统中有互斥锁L、M1、M2、…、Mn。
+假设A持有L，T1持有M1去等待L，T2持有M2去等待M1，T3持有M3去等待M2，以此类推，Tn持有Mn去等待Mn-1。
+由此形成优先级传递链： &lt;code&gt;Tn-&amp;gt;Mn-1-&amp;gt;Tn-1-&amp;gt;&amp;amp;#x2026;-&amp;gt;M3-&amp;gt;T3-&amp;gt;M2-&amp;gt;T2-&amp;gt;M1-&amp;gt;T1-&amp;gt;L-&amp;gt;A&lt;/code&gt; ，
+Tn的优先级将会依次传递到Mn-1、Tn-1、…… 、M3、T3、M2、T2、M1、T1、L、A。&lt;/li&gt;
+&lt;li&gt;如何寻找互斥锁与线程的 &lt;strong&gt;动态优先级&lt;/strong&gt; ，是寻找最大值的问题，因此可以采用与时间树类似的方法，使用红黑树解决此问题：
+&lt;ul&gt;
+&lt;li&gt;使用一个 &lt;strong&gt;rightmost&lt;/strong&gt; 指针指向最大值，需要时可直接从 &lt;strong&gt;rightmost&lt;/strong&gt; 快速获取。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;rightmost&lt;/strong&gt; 从红黑树中删除时，按照二叉树的性质，下一任 &lt;strong&gt;rightmost&lt;/strong&gt; 是前任的左孩子（即前驱）。
+如果前任的左孩子为叶子，下一任 &lt;strong&gt;rightmost&lt;/strong&gt; 一定是前任的父节点。&lt;/li&gt;
+&lt;li&gt;红黑树中不允许存在关键字相等的节点，因此拥有相同优先级的节点相互连接成链表。&lt;/li&gt;
+&lt;li&gt;互斥锁解锁时，从等待队列中选择最高优先级的线程获取互斥锁，若最高优先级的线程不止一个，按照先进先出的方法选取线程。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;互斥锁的初始化销毁与动态创建删除&#34;&gt;互斥锁的初始化、销毁与动态创建、删除&lt;/h2&gt;
+&lt;h3 id=&#34;静态初始化销毁&#34;&gt;静态初始化、销毁&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;静态初始化： &lt;a href=&#34;../../../../api/group__xwos__lock__mtx.html#ga05ea2a9762a817291b0ae6d76586e022&#34;&gt;&lt;code&gt;xwos_mtx_init()&lt;/code&gt;&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;静态&lt;/strong&gt; 是指用户预先定义线程结构体对象，这些对象在编译时由编译器分配内存。&lt;/li&gt;
+&lt;li&gt;程序的退出阶段，静态初始化的互斥锁需要使用 &lt;a href=&#34;../../../../api/group__xwos__lock__mtx.html#ga7b2464babb829bdc7fd0e433ff54bdca&#34;&gt;&lt;code&gt;xwos_mtx_fini()&lt;/code&gt;&lt;/a&gt; 销毁。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;动态创建删除&#34;&gt;动态创建、删除&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;静态初始化： &lt;a href=&#34;../../../../api/group__xwos__lock__mtx.html#ga815282818f9a5ed5c1cd580e097a868b&#34;&gt;&lt;code&gt;xwos_mtx_create()&lt;/code&gt;&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;动态&lt;/strong&gt; 是指程序在运行时，通过内存分配函数从某个内存区域上申请分配一块内存，并把这块内存初始化为所需要的对象。删除对象后，需要释放内存。&lt;/li&gt;
+&lt;li&gt;程序的退出阶段，动态创建的互斥锁需要使用 &lt;a href=&#34;../../../../api/group__xwos__lock__mtx.html#ga8f76d838298d8b5e1ae06889c7a5c3e0&#34;&gt;&lt;code&gt;xwos_mtx_delete()&lt;/code&gt;&lt;/a&gt; 删除。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;互斥锁对象的生命周期&#34;&gt;互斥锁对象的生命周期&lt;/h2&gt;
+&lt;p&gt;互斥锁对象继承于 &lt;a href=&#34;../../../../api/structxwos__object.html&#34;&gt;&lt;code&gt;struct xwos_object&lt;/code&gt;&lt;/a&gt; 。
+互斥锁对象的生命周期由引用计数管理，当引用计数减为 &lt;code&gt;0&lt;/code&gt; 时，自动调用 &lt;strong&gt;垃圾回收&lt;/strong&gt; 函数回收内存资源。&lt;/p&gt;
+&lt;p&gt;互斥锁的CAPI，参数为 &lt;a href=&#34;../../../../api/structxwos__mtx.html&#34;&gt;&lt;code&gt;struct xwos_mtx&lt;/code&gt;&lt;/a&gt; ，&lt;strong&gt;不会&lt;/strong&gt; 自动管理互斥锁对象的生命周期。&lt;/p&gt;
+
+
+&lt;div class=&#34;alert alert-warning&#34; role=&#34;alert&#34;&gt;
+&lt;h4 class=&#34;alert-heading&#34;&gt;注意&lt;/h4&gt;
+
+    &lt;p&gt;通常情况下，用户也不需要去调用对象的生命周期管理的CAPI，除非用户的应用复杂到需要在多个CPU上并发地执行 &lt;strong&gt;操作&lt;/strong&gt; 与 &lt;strong&gt;删除&lt;/strong&gt; 的代码。&lt;/p&gt;
+&lt;p&gt;XWOS之所以将生命周期管理的CAPI开放出来，是因为XWOS的内核是微内核，功能简单。
+中间件以及高级语言的运行时需要调用生命周期管理的CAPI，例如高级语言的垃圾回收机制。&lt;/p&gt;
+
+
+&lt;/div&gt;
+
+&lt;h3 id=&#34;静态互斥锁对象的生命周期管理&#34;&gt;静态互斥锁对象的生命周期管理&lt;/h3&gt;
+&lt;p&gt;静态互斥锁对象是函数外直接定义的全局变量或 &lt;code&gt;static&lt;/code&gt; 变量，不存在释放内存问题，也不存在 &lt;strong&gt;ABA问题&lt;/strong&gt; 。
+因此可以使用下面的API管理生命周期：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__mtx.html#ga2a560b50a5329f098f2a4cdd4331fef6&#34;&gt;&lt;code&gt;xwos_mtx_grab()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__mtx.html#gafaef1dadab1c11783c1aab9a7ffff589&#34;&gt;&lt;code&gt;xwos_mtx_put()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;动态互斥锁对象的生命周期管理&#34;&gt;动态互斥锁对象的生命周期管理&lt;/h3&gt;
+&lt;p&gt;动态互斥锁对象是在动态申请的内存中构建的对象，当其生命周期结束时，需要释放内存，也有可能存在 &lt;strong&gt;ABA问题&lt;/strong&gt; 。
+因此可以使用下面的API管理生命周期：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__mtx.html#ga84e1bbb7833198a00678b9a3e5f83941&#34;&gt;&lt;code&gt;xwos_mtx_acquire()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__mtx.html#ga698748b62131af5a434bfa5dae6dcda2&#34;&gt;&lt;code&gt;xwos_mtx_release()&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;上锁&#34;&gt;上锁&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__mtx.html#gabd23c15c16510525e6a91fc3fcfa20f3&#34;&gt;&lt;code&gt;xwos_mtx_lock()&lt;/code&gt;&lt;/a&gt; 等待并获取互斥锁&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__mtx.html#ga5fd796bb80d4d1dfa65bf60741f05241&#34;&gt;&lt;code&gt;xwos_mtx_trylock()&lt;/code&gt;&lt;/a&gt; 尝试获取互斥锁，不会阻塞调用线程&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__mtx.html#ga37eb46fa1271ff0ecebd4e0ceb0f4420&#34;&gt;&lt;code&gt;xwos_mtx_lock_to()&lt;/code&gt;&lt;/a&gt; 限时等待上锁互斥锁&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__mtx.html#gac72f69bffd93d6d8fa7dcc6bf0302574&#34;&gt;&lt;code&gt;xwos_mtx_lock_unintr()&lt;/code&gt;&lt;/a&gt; 等待并获取互斥锁，且等待不可被中断&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;解锁&#34;&gt;解锁&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__mtx.html#gaa6b3a2ce561acc043d826e47a9470919&#34;&gt;&lt;code&gt;xwos_mtx_unlock()&lt;/code&gt;&lt;/a&gt; 解锁互斥锁&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;api参考&#34;&gt;API参考&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;../../../../api/group__xwos__lock__mtx.html&#34;&gt;&lt;strong&gt;头文件 &amp;lt;xwos/osal/lock/mtx.h&amp;gt;&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

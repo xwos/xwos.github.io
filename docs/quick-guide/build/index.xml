@@ -1,0 +1,82 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>XWOS – 编译与集成</title>
+    <link>/docs/quick-guide/build/</link>
+    <description>Recent content in 编译与集成 on XWOS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    
+	  <atom:link href="/docs/quick-guide/build/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: 增加玄武模块</title>
+      <link>/docs/quick-guide/build/xwmo/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/quick-guide/build/xwmo/</guid>
+      <description>
+        
+        
+        &lt;h2 id=&#34;如何增加玄武模块&#34;&gt;如何增加玄武模块&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;增加模块文件夹
+&lt;ul&gt;
+&lt;li&gt;中间件模块：位于 &lt;code&gt;xwmd/&lt;/code&gt; 目录中；&lt;/li&gt;
+&lt;li&gt;设备驱动模块：位于 &lt;code&gt;xwcd/&lt;/code&gt; 目录中；&lt;/li&gt;
+&lt;li&gt;电路板模块：位于 &lt;code&gt;$(XuanWuOS_BRD_DIR)/bm/&lt;/code&gt; 目录中，其中 &lt;code&gt;$(XuanWuOS_BRD_DIR)&lt;/code&gt; 是电路板目录，也就是执行 &lt;code&gt;make&lt;/code&gt; 的目录；&lt;/li&gt;
+&lt;li&gt;第三方软件模块：位于 &lt;code&gt;xwem/&lt;/code&gt; 目录中；&lt;/li&gt;
+&lt;li&gt;应用模块：位于 &lt;code&gt;xwam/&lt;/code&gt; 目录中；&lt;/li&gt;
+&lt;li&gt;OEM模块：位于OEM文件夹内；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;文件夹名称需要满足&lt;a href=&#34;../../../user-manual/build-system#%E6%A8%A1%E5%9D%97%E8%B7%AF%E5%BE%84%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99&#34;&gt;模块路径命名规则&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;在配置文件中增加&lt;strong&gt;编译开关&lt;/strong&gt;并配置为1，各种模块的配置文件路径如下：
+&lt;ul&gt;
+&lt;li&gt;中间件模块： &lt;code&gt;$(XuanWuOS_BRD_DIR)/cfg/xwmd.h&lt;/code&gt; ；&lt;/li&gt;
+&lt;li&gt;设备驱动模块： &lt;code&gt;$(XuanWuOS_BRD_DIR)/cfg/xwcd.h&lt;/code&gt; ；&lt;/li&gt;
+&lt;li&gt;电路板模块： &lt;code&gt;$(XuanWuOS_BRD_DIR)/cfg/board.h&lt;/code&gt; ；&lt;/li&gt;
+&lt;li&gt;第三方软件模块： &lt;code&gt;$(XuanWuOS_BRD_DIR)/cfg/xwem.h&lt;/code&gt; ；&lt;/li&gt;
+&lt;li&gt;应用模块： &lt;code&gt;$(XuanWuOS_BRD_DIR)/cfg/xwam.h&lt;/code&gt; ；&lt;/li&gt;
+&lt;li&gt;OEM模块： &lt;code&gt;$(XuanWuOS_BRD_DIR)/cfg/oem.h&lt;/code&gt; ；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;编译开关&lt;/strong&gt; 需满足&lt;a href=&#34;../../../user-manual/build-system#%E6%A8%A1%E5%9D%97%E7%BC%96%E8%AF%91%E5%BC%80%E5%85%B3%E7%9A%84%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99&#34;&gt;模块编译开关的命名规则&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;编写编译规则 &lt;code&gt;xwmo.mk&lt;/code&gt; ，参考&lt;a href=&#34;../../../user-manual/build-system#xwmomk&#34;&gt;xwmo.mk模板&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;增加源码；&lt;/li&gt;
+&lt;li&gt;可以借助&lt;a href=&#34;../../../user-manual/build-system#%E8%BE%85%E5%8A%A9%E5%8A%9F%E8%83%BD&#34;&gt;辅助功能&lt;/a&gt;进行验证（以电路板WeActMiniStm32H750中编译 &lt;code&gt;xwem/vm/lua&lt;/code&gt; 为例）：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a2f&#34;&gt;source&lt;/span&gt; xwbd/WeActMiniStm32H750/env.sh
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;xwcroot &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;# 切换到根路径&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a2f&#34;&gt;cd&lt;/span&gt; xwem/vm/lua
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;xwmc &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;# 获取编译开关（可用于检查配置文件中编译开关是否书写正确）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;xwmm &lt;span style=&#34;color:#080;font-style:italic&#34;&gt;# 编译&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;如何定义oem文件夹&#34;&gt;如何定义OEM文件夹&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;配置文件： &lt;code&gt;$(XuanWuOS_BRD_DIR)/cfg/XuanWuOS.h&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;宏： &lt;code&gt;XuanWuOS_CFG_OEMPATH&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;路径说明
+&lt;ul&gt;
+&lt;li&gt;此路径通常配置为相对路径，相对于 &lt;strong&gt;电路板文件夹&lt;/strong&gt; &lt;code&gt;$(XuanWuOS_BRD_DIR)&lt;/code&gt; ；&lt;/li&gt;
+&lt;li&gt;此路径也可以是绝对路径；&lt;/li&gt;
+&lt;li&gt;此路径可以是任意路径，并不一定要在XWOS内部。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;举例
+&lt;ul&gt;
+&lt;li&gt;工程：S32K144Evb&lt;/li&gt;
+&lt;li&gt;下载： &lt;code&gt;git clone --recursive https://gitee.com/xwos/S32K144Evb.git&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;$(XuanWuOS_BRD_DIR)&lt;/code&gt; 是 &lt;code&gt;brd&lt;/code&gt; ， &lt;code&gt;XuanWuOS_CFG_OEMPATH&lt;/code&gt; 被定义为 &lt;code&gt;..&lt;/code&gt; ，OEM文件夹是 &lt;code&gt;brd/..&lt;/code&gt; ，也即是工程的根目录。XWOS在此工程中作为子目录存在，OEM目录还可作为XWOS的父目录。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>

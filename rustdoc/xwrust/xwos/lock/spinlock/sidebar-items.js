@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["SIZEOF_XWOS_SPLK","XWOS自旋锁占用的内存大小"]],"enum":[["SpinlockError","自旋锁的错误码"],["SpinlockMode","自旋锁的上锁模式"]],"struct":[["Spinlock","自旋锁结构体"],["SpinlockGuard","自旋锁的RAII Guard"]]});

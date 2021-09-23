@@ -1,0 +1,1242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.3"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>XWOS API: 精简的点对点通讯协议</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<a href="/" class="github-corner" title="返回首页">
+  <svg viewBox="0 0 250 250" style="position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path
+      d="M 0 0 L 250 250 L 250 0 L 0 0 z M 181.19336 6.25 A 18.281986 19.638775 0 0 1 192.79297 10.798828 L 241.54492 54.201172 A 6.0939954 6.5462585 0 0 1 237.64453 65.787109 L 233.13477 65.787109 A 3.0469979 3.2731292 0 0 0 230.08789 69.060547 L 230.08789 111.61133 A 18.281986 19.638775 0 0 1 211.80664 131.25 L 205.71289 131.25 A 12.187991 13.092517 0 0 1 193.52344 118.1582 L 193.52344 98.519531 A 12.187991 13.092517 0 0 0 181.33594 85.425781 A 12.187991 13.092517 0 0 0 169.14844 98.519531 L 169.14844 118.1582 A 12.187991 13.092517 0 0 1 156.95898 131.25 L 150.86523 131.25 A 18.281986 19.638775 0 0 1 132.58398 111.61133 L 132.58398 68.994141 A 3.0469979 3.2731292 0 0 0 129.29297 65.722656 L 124.7832 65.722656 A 6.0939954 6.5462585 0 0 1 120.88281 54.201172 L 169.39258 10.798828 A 18.281986 19.638775 0 0 1 181.19336 6.25 z "/>
+  </svg>
+</a>
+<style>.github-corner:hover</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">XWOS API
+   &#160;<span id="projectnumber">3.0</span>
+   </div>
+   <div id="projectbrief">XWOS API参考手册</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.3 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('group__xwmd__isc__xwscp.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">宏定义</a> &#124;
+<a href="#enum-members">枚举</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">精简的点对点通讯协议<div class="ingroups"><a class="el" href="group__xwmd.html">XWOS中间件</a> &raquo; <a class="el" href="group__xwmd__isc.html">XWOS的通讯机制</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+精简的点对点通讯协议 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmd__isc__xwscp.png" border="0" usemap="#agroup____xwmd____isc____xwscp" alt=""/></div>
+<map name="agroup____xwmd____isc____xwscp" id="agroup____xwmd____isc____xwscp">
+<area shape="rect" href="group__xwmd__isc.html" title=" " alt="" coords="5,5,133,31"/>
+<area shape="rect" title=" " alt="" coords="181,5,333,31"/>
+</map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:gaabe32ba7131de5d7d84cdbf3e884c184"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwscp.html#gaabe32ba7131de5d7d84cdbf3e884c184">XWSCP_VERSION</a>&#160;&#160;&#160;(&quot;3.0.0&quot;)</td></tr>
+<tr class="separator:gaabe32ba7131de5d7d84cdbf3e884c184"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6108dcaba8005bae9d62631f6ee0b6be"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwscp.html#ga6108dcaba8005bae9d62631f6ee0b6be">XWSCP_VERSION_MAJOR</a>&#160;&#160;&#160;3U</td></tr>
+<tr class="separator:ga6108dcaba8005bae9d62631f6ee0b6be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacf1e5ffa007c795284890f64cd3da3ab"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwscp.html#gacf1e5ffa007c795284890f64cd3da3ab">XWSCP_VERSION_MINOR</a>&#160;&#160;&#160;0U</td></tr>
+<tr class="separator:gacf1e5ffa007c795284890f64cd3da3ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9a8e7c0a51e7c44b1a620d150d87219a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwscp.html#ga9a8e7c0a51e7c44b1a620d150d87219a">XWSCP_VERSION_REVISION</a>&#160;&#160;&#160;0U</td></tr>
+<tr class="separator:ga9a8e7c0a51e7c44b1a620d150d87219a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab0ef5affb2a319d3b9185010080e5a58"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwscp.html#gab0ef5affb2a319d3b9185010080e5a58">XWSCP_RETRY_PERIOD</a>&#160;&#160;&#160;(XWMDCFG_isc_xwscp_PERIOD)</td></tr>
+<tr class="separator:gab0ef5affb2a319d3b9185010080e5a58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa67edbcbc91ebeb547e807fb77de1b39"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwscp.html#gaa67edbcbc91ebeb547e807fb77de1b39">XWSCP_MEMBLK_SIZE</a>&#160;&#160;&#160;(XWMDCFG_isc_xwscp_MEMBLK_SIZE)</td></tr>
+<tr class="separator:gaa67edbcbc91ebeb547e807fb77de1b39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga17c9e21879c9b0a3f3ba9e6ef2b6e941"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwscp.html#ga17c9e21879c9b0a3f3ba9e6ef2b6e941">XWSCP_MEMBLK_ODR</a>&#160;&#160;&#160;(XWMDCFG_isc_xwscp_MEMBLK_ODR)</td></tr>
+<tr class="separator:ga17c9e21879c9b0a3f3ba9e6ef2b6e941"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3c96092abb7dfa5be32d1c8aa576fd38"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwscp.html#ga3c96092abb7dfa5be32d1c8aa576fd38">XWSCP_MEMBLK_NUM</a>&#160;&#160;&#160;(1 &lt;&lt; <a class="el" href="group__xwmd__isc__xwscp.html#ga17c9e21879c9b0a3f3ba9e6ef2b6e941">XWSCP_MEMBLK_ODR</a>)</td></tr>
+<tr class="separator:ga3c96092abb7dfa5be32d1c8aa576fd38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7fad7ffb4a559a89b4fdf83dba75c5da"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwscp.html#ga7fad7ffb4a559a89b4fdf83dba75c5da">XWSCP_MEMPOOL_SIZE</a>&#160;&#160;&#160;(<a class="el" href="group__xwmd__isc__xwscp.html#gaa67edbcbc91ebeb547e807fb77de1b39">XWSCP_MEMBLK_SIZE</a> * <a class="el" href="group__xwmd__isc__xwscp.html#ga3c96092abb7dfa5be32d1c8aa576fd38">XWSCP_MEMBLK_NUM</a>)</td></tr>
+<tr class="separator:ga7fad7ffb4a559a89b4fdf83dba75c5da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga770fc8f3c1af978096ba11b06ffea5c2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwscp.html#ga770fc8f3c1af978096ba11b06ffea5c2">XWSCP_DEF_MEMPOOL</a>(name)&#160;&#160;&#160;<a class="el" href="group__xwos__lib__compiler.html#ga0debe7f6289b00c11369e3283e69ead5">__xwcc_alignl1cache</a> <a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a> name[<a class="el" href="group__xwmd__isc__xwscp.html#ga7fad7ffb4a559a89b4fdf83dba75c5da">XWSCP_MEMPOOL_SIZE</a>]</td></tr>
+<tr class="memdesc:ga770fc8f3c1af978096ba11b06ffea5c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">定义内存池  <a href="group__xwmd__isc__xwscp.html#ga770fc8f3c1af978096ba11b06ffea5c2">更多...</a><br /></td></tr>
+<tr class="separator:ga770fc8f3c1af978096ba11b06ffea5c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+枚举</h2></td></tr>
+<tr class="memitem:ga27a4f4d39876bdba1e887986bc208130"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwscp.html#ga27a4f4d39876bdba1e887986bc208130">xwscp_msg_qos_em</a> { <br />
+&#160;&#160;<a class="el" href="group__xwmd__isc__xwscp.html#gga27a4f4d39876bdba1e887986bc208130ad496e3be891905705393993808ee5ac1">XWSCP_MSG_QOS_0</a> = 0
+, <a class="el" href="group__xwmd__isc__xwscp.html#gga27a4f4d39876bdba1e887986bc208130a477ac4f58acacb46579f05b752726009">XWSCP_MSG_QOS_1</a>
+, <a class="el" href="group__xwmd__isc__xwscp.html#gga27a4f4d39876bdba1e887986bc208130a2293171127aaf968ab565e838c793bdf">XWSCP_MSG_QOS_2</a>
+, <a class="el" href="group__xwmd__isc__xwscp.html#gga27a4f4d39876bdba1e887986bc208130addb0c3f3c5020dd0c5e473ffd8d23c6b">XWSCP_MSG_QOS_3</a>
+, <br />
+&#160;&#160;<a class="el" href="group__xwmd__isc__xwscp.html#gga27a4f4d39876bdba1e887986bc208130ae9328a8241528171555836c626623680">XWSCP_MSG_QOS_NUM</a>
+, <a class="el" href="group__xwmd__isc__xwscp.html#gga27a4f4d39876bdba1e887986bc208130ac647d0c8988a13ef1340047097f69244">XWSCP_MSG_QOS_CHKSUM_MSK</a> = (1 &lt;&lt; 0U)
+, <a class="el" href="group__xwmd__isc__xwscp.html#gga27a4f4d39876bdba1e887986bc208130a498491793a4b0b58f52e502c3cfc5c5b">XWSCP_MSG_QOS_ACK_MSK</a> = (1 &lt;&lt; 1U)
+<br />
+ }</td></tr>
+<tr class="memdesc:ga27a4f4d39876bdba1e887986bc208130"><td class="mdescLeft">&#160;</td><td class="mdescRight">服务质量枚举  <a href="group__xwmd__isc__xwscp.html#ga27a4f4d39876bdba1e887986bc208130">更多...</a><br /></td></tr>
+<tr class="separator:ga27a4f4d39876bdba1e887986bc208130"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:ga459e293c6005220d6aabe23dde1e441c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwscp.html#ga459e293c6005220d6aabe23dde1e441c">xwscp_start</a> (struct xwscp *xwscp, const char *name, const struct xwscp_hwifal_operations *hwifops, void *hwifcb, <a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a> *mem, <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> memsize)</td></tr>
+<tr class="memdesc:ga459e293c6005220d6aabe23dde1e441c"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWSCP API: 启动XWSCP  <a href="group__xwmd__isc__xwscp.html#ga459e293c6005220d6aabe23dde1e441c">更多...</a><br /></td></tr>
+<tr class="separator:ga459e293c6005220d6aabe23dde1e441c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8a9eea6aba028c1b6f7834a50c2283f7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwscp.html#ga8a9eea6aba028c1b6f7834a50c2283f7">xwscp_stop</a> (struct xwscp *xwscp)</td></tr>
+<tr class="memdesc:ga8a9eea6aba028c1b6f7834a50c2283f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWSCP API: 停止XWSCP  <a href="group__xwmd__isc__xwscp.html#ga8a9eea6aba028c1b6f7834a50c2283f7">更多...</a><br /></td></tr>
+<tr class="separator:ga8a9eea6aba028c1b6f7834a50c2283f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabfd46e6c8923953c85a475ecd7a5d7a4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwscp.html#gabfd46e6c8923953c85a475ecd7a5d7a4">xwscp_connect</a> (struct xwscp *xwscp, <a class="el" href="group__xwos__lib__type.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a> to)</td></tr>
+<tr class="memdesc:gabfd46e6c8923953c85a475ecd7a5d7a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWSCP API: 连接远程端  <a href="group__xwmd__isc__xwscp.html#gabfd46e6c8923953c85a475ecd7a5d7a4">更多...</a><br /></td></tr>
+<tr class="separator:gabfd46e6c8923953c85a475ecd7a5d7a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga504a9e3c119efb5e5515c03335c717a2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwscp.html#ga504a9e3c119efb5e5515c03335c717a2">xwscp_tx</a> (struct xwscp *xwscp, const <a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a> data[], <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> *size, <a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a> qos, <a class="el" href="group__xwos__lib__type.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a> to)</td></tr>
+<tr class="memdesc:ga504a9e3c119efb5e5515c03335c717a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWSCP API: 发送一条报文，并在限定的时间等待回应  <a href="group__xwmd__isc__xwscp.html#ga504a9e3c119efb5e5515c03335c717a2">更多...</a><br /></td></tr>
+<tr class="separator:ga504a9e3c119efb5e5515c03335c717a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1b6dc6b60940490e8647e1284a970a4f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwscp.html#ga1b6dc6b60940490e8647e1284a970a4f">xwscp_rx</a> (struct xwscp *xwscp, <a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a> buf[], <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> *size, <a class="el" href="group__xwos__lib__type.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a> to)</td></tr>
+<tr class="memdesc:ga1b6dc6b60940490e8647e1284a970a4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWSCP API: 接收一条报文，若接收队列为空，就限时等待  <a href="group__xwmd__isc__xwscp.html#ga1b6dc6b60940490e8647e1284a970a4f">更多...</a><br /></td></tr>
+<tr class="separator:ga1b6dc6b60940490e8647e1284a970a4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad4f35c0a8fa71136f111b332f225ee67"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwmd__isc__xwscp.html#gad4f35c0a8fa71136f111b332f225ee67">xwscp_try_rx</a> (struct xwscp *xwscp, <a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a> buf[], <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> *size)</td></tr>
+<tr class="memdesc:gad4f35c0a8fa71136f111b332f225ee67"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWSCP API: 尝试接收消息，若接收队列为空，立即返回错误码  <a href="group__xwmd__isc__xwscp.html#gad4f35c0a8fa71136f111b332f225ee67">更多...</a><br /></td></tr>
+<tr class="separator:gad4f35c0a8fa71136f111b332f225ee67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<h2 class="groupheader">宏定义说明</h2>
+<a id="ga770fc8f3c1af978096ba11b06ffea5c2" name="ga770fc8f3c1af978096ba11b06ffea5c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga770fc8f3c1af978096ba11b06ffea5c2">&#9670;&nbsp;</a></span>XWSCP_DEF_MEMPOOL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XWSCP_DEF_MEMPOOL</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">name</td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="group__xwos__lib__compiler.html#ga0debe7f6289b00c11369e3283e69ead5">__xwcc_alignl1cache</a> <a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a> name[<a class="el" href="group__xwmd__isc__xwscp.html#ga7fad7ffb4a559a89b4fdf83dba75c5da">XWSCP_MEMPOOL_SIZE</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>定义内存池 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>数值名 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">在文件 <a class="el" href="xwscp_2mif_8h_source.html">mif.h</a> 第 <a class="el" href="xwscp_2mif_8h_source.html#l00046">46</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ga3c96092abb7dfa5be32d1c8aa576fd38" name="ga3c96092abb7dfa5be32d1c8aa576fd38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3c96092abb7dfa5be32d1c8aa576fd38">&#9670;&nbsp;</a></span>XWSCP_MEMBLK_NUM</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XWSCP_MEMBLK_NUM&#160;&#160;&#160;(1 &lt;&lt; <a class="el" href="group__xwmd__isc__xwscp.html#ga17c9e21879c9b0a3f3ba9e6ef2b6e941">XWSCP_MEMBLK_ODR</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >内存块的数量 </p>
+
+<p class="definition">在文件 <a class="el" href="xwscp_2mif_8h_source.html">mif.h</a> 第 <a class="el" href="xwscp_2mif_8h_source.html#l00039">39</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ga17c9e21879c9b0a3f3ba9e6ef2b6e941" name="ga17c9e21879c9b0a3f3ba9e6ef2b6e941"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga17c9e21879c9b0a3f3ba9e6ef2b6e941">&#9670;&nbsp;</a></span>XWSCP_MEMBLK_ODR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XWSCP_MEMBLK_ODR&#160;&#160;&#160;(XWMDCFG_isc_xwscp_MEMBLK_ODR)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >内存块数量的阶，内存块数量等于1左移“阶”次 </p>
+
+<p class="definition">在文件 <a class="el" href="xwscp_2mif_8h_source.html">mif.h</a> 第 <a class="el" href="xwscp_2mif_8h_source.html#l00038">38</a> 行定义.</p>
+
+</div>
+</div>
+<a id="gaa67edbcbc91ebeb547e807fb77de1b39" name="gaa67edbcbc91ebeb547e807fb77de1b39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa67edbcbc91ebeb547e807fb77de1b39">&#9670;&nbsp;</a></span>XWSCP_MEMBLK_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XWSCP_MEMBLK_SIZE&#160;&#160;&#160;(XWMDCFG_isc_xwscp_MEMBLK_SIZE)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >单位内存块的大小 </p>
+
+<p class="definition">在文件 <a class="el" href="xwscp_2mif_8h_source.html">mif.h</a> 第 <a class="el" href="xwscp_2mif_8h_source.html#l00037">37</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ga7fad7ffb4a559a89b4fdf83dba75c5da" name="ga7fad7ffb4a559a89b4fdf83dba75c5da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7fad7ffb4a559a89b4fdf83dba75c5da">&#9670;&nbsp;</a></span>XWSCP_MEMPOOL_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XWSCP_MEMPOOL_SIZE&#160;&#160;&#160;(<a class="el" href="group__xwmd__isc__xwscp.html#gaa67edbcbc91ebeb547e807fb77de1b39">XWSCP_MEMBLK_SIZE</a> * <a class="el" href="group__xwmd__isc__xwscp.html#ga3c96092abb7dfa5be32d1c8aa576fd38">XWSCP_MEMBLK_NUM</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >内存池的总大小 </p>
+
+<p class="definition">在文件 <a class="el" href="xwscp_2mif_8h_source.html">mif.h</a> 第 <a class="el" href="xwscp_2mif_8h_source.html#l00040">40</a> 行定义.</p>
+
+</div>
+</div>
+<a id="gab0ef5affb2a319d3b9185010080e5a58" name="gab0ef5affb2a319d3b9185010080e5a58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab0ef5affb2a319d3b9185010080e5a58">&#9670;&nbsp;</a></span>XWSCP_RETRY_PERIOD</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XWSCP_RETRY_PERIOD&#160;&#160;&#160;(XWMDCFG_isc_xwscp_PERIOD)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >重试发送的周期 </p>
+
+<p class="definition">在文件 <a class="el" href="xwscp_2mif_8h_source.html">mif.h</a> 第 <a class="el" href="xwscp_2mif_8h_source.html#l00036">36</a> 行定义.</p>
+
+</div>
+</div>
+<a id="gaabe32ba7131de5d7d84cdbf3e884c184" name="gaabe32ba7131de5d7d84cdbf3e884c184"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaabe32ba7131de5d7d84cdbf3e884c184">&#9670;&nbsp;</a></span>XWSCP_VERSION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XWSCP_VERSION&#160;&#160;&#160;(&quot;3.0.0&quot;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >XWSCP的版本号字符串 </p>
+
+<p class="definition">在文件 <a class="el" href="xwscp_2mif_8h_source.html">mif.h</a> 第 <a class="el" href="xwscp_2mif_8h_source.html#l00031">31</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ga6108dcaba8005bae9d62631f6ee0b6be" name="ga6108dcaba8005bae9d62631f6ee0b6be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6108dcaba8005bae9d62631f6ee0b6be">&#9670;&nbsp;</a></span>XWSCP_VERSION_MAJOR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XWSCP_VERSION_MAJOR&#160;&#160;&#160;3U</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >XWSCP的大版本号 </p>
+
+<p class="definition">在文件 <a class="el" href="xwscp_2mif_8h_source.html">mif.h</a> 第 <a class="el" href="xwscp_2mif_8h_source.html#l00032">32</a> 行定义.</p>
+
+</div>
+</div>
+<a id="gacf1e5ffa007c795284890f64cd3da3ab" name="gacf1e5ffa007c795284890f64cd3da3ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacf1e5ffa007c795284890f64cd3da3ab">&#9670;&nbsp;</a></span>XWSCP_VERSION_MINOR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XWSCP_VERSION_MINOR&#160;&#160;&#160;0U</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >XWSCP的小版本号 </p>
+
+<p class="definition">在文件 <a class="el" href="xwscp_2mif_8h_source.html">mif.h</a> 第 <a class="el" href="xwscp_2mif_8h_source.html#l00033">33</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ga9a8e7c0a51e7c44b1a620d150d87219a" name="ga9a8e7c0a51e7c44b1a620d150d87219a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9a8e7c0a51e7c44b1a620d150d87219a">&#9670;&nbsp;</a></span>XWSCP_VERSION_REVISION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XWSCP_VERSION_REVISION&#160;&#160;&#160;0U</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >XWSCP的修订版本号 </p>
+
+<p class="definition">在文件 <a class="el" href="xwscp_2mif_8h_source.html">mif.h</a> 第 <a class="el" href="xwscp_2mif_8h_source.html#l00034">34</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">枚举类型说明</h2>
+<a id="ga27a4f4d39876bdba1e887986bc208130" name="ga27a4f4d39876bdba1e887986bc208130"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga27a4f4d39876bdba1e887986bc208130">&#9670;&nbsp;</a></span>xwscp_msg_qos_em</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__xwmd__isc__xwscp.html#ga27a4f4d39876bdba1e887986bc208130">xwscp_msg_qos_em</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>服务质量枚举 </p>
+<table class="fieldtable">
+<tr><th colspan="2">枚举值</th></tr><tr><td class="fieldname"><a id="gga27a4f4d39876bdba1e887986bc208130ad496e3be891905705393993808ee5ac1" name="gga27a4f4d39876bdba1e887986bc208130ad496e3be891905705393993808ee5ac1"></a>XWSCP_MSG_QOS_0&#160;</td><td class="fielddoc"><p >不可靠消息，无CRC校验码 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga27a4f4d39876bdba1e887986bc208130a477ac4f58acacb46579f05b752726009" name="gga27a4f4d39876bdba1e887986bc208130a477ac4f58acacb46579f05b752726009"></a>XWSCP_MSG_QOS_1&#160;</td><td class="fielddoc"><p >不可靠消息，有CRC校验码 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga27a4f4d39876bdba1e887986bc208130a2293171127aaf968ab565e838c793bdf" name="gga27a4f4d39876bdba1e887986bc208130a2293171127aaf968ab565e838c793bdf"></a>XWSCP_MSG_QOS_2&#160;</td><td class="fielddoc"><p >可靠消息，无CRC校验码 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga27a4f4d39876bdba1e887986bc208130addb0c3f3c5020dd0c5e473ffd8d23c6b" name="gga27a4f4d39876bdba1e887986bc208130addb0c3f3c5020dd0c5e473ffd8d23c6b"></a>XWSCP_MSG_QOS_3&#160;</td><td class="fielddoc"><p >可靠消息，有CRC校验码 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga27a4f4d39876bdba1e887986bc208130ae9328a8241528171555836c626623680" name="gga27a4f4d39876bdba1e887986bc208130ae9328a8241528171555836c626623680"></a>XWSCP_MSG_QOS_NUM&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="gga27a4f4d39876bdba1e887986bc208130ac647d0c8988a13ef1340047097f69244" name="gga27a4f4d39876bdba1e887986bc208130ac647d0c8988a13ef1340047097f69244"></a>XWSCP_MSG_QOS_CHKSUM_MSK&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="gga27a4f4d39876bdba1e887986bc208130a498491793a4b0b58f52e502c3cfc5c5b" name="gga27a4f4d39876bdba1e887986bc208130a498491793a4b0b58f52e502c3cfc5c5b"></a>XWSCP_MSG_QOS_ACK_MSK&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">在文件 <a class="el" href="xwscp_2mif_8h_source.html">mif.h</a> 第 <a class="el" href="xwscp_2mif_8h_source.html#l00051">51</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   51</span>                      {</div>
+<div class="line"><span class="lineno">   52</span>        <a class="code hl_enumvalue" href="group__xwmd__isc__xwscp.html#gga27a4f4d39876bdba1e887986bc208130ad496e3be891905705393993808ee5ac1">XWSCP_MSG_QOS_0</a> = 0, </div>
+<div class="line"><span class="lineno">   53</span>        <a class="code hl_enumvalue" href="group__xwmd__isc__xwscp.html#gga27a4f4d39876bdba1e887986bc208130a477ac4f58acacb46579f05b752726009">XWSCP_MSG_QOS_1</a>, </div>
+<div class="line"><span class="lineno">   54</span>        <a class="code hl_enumvalue" href="group__xwmd__isc__xwscp.html#gga27a4f4d39876bdba1e887986bc208130a2293171127aaf968ab565e838c793bdf">XWSCP_MSG_QOS_2</a>, </div>
+<div class="line"><span class="lineno">   55</span>        <a class="code hl_enumvalue" href="group__xwmd__isc__xwscp.html#gga27a4f4d39876bdba1e887986bc208130addb0c3f3c5020dd0c5e473ffd8d23c6b">XWSCP_MSG_QOS_3</a>, </div>
+<div class="line"><span class="lineno">   56</span>        <a class="code hl_enumvalue" href="group__xwmd__isc__xwscp.html#gga27a4f4d39876bdba1e887986bc208130ae9328a8241528171555836c626623680">XWSCP_MSG_QOS_NUM</a>,</div>
+<div class="line"><span class="lineno">   57</span> </div>
+<div class="line"><span class="lineno">   58</span>        <a class="code hl_enumvalue" href="group__xwmd__isc__xwscp.html#gga27a4f4d39876bdba1e887986bc208130ac647d0c8988a13ef1340047097f69244">XWSCP_MSG_QOS_CHKSUM_MSK</a> = (1 &lt;&lt; 0U),</div>
+<div class="line"><span class="lineno">   59</span>        <a class="code hl_enumvalue" href="group__xwmd__isc__xwscp.html#gga27a4f4d39876bdba1e887986bc208130a498491793a4b0b58f52e502c3cfc5c5b">XWSCP_MSG_QOS_ACK_MSK</a> = (1 &lt;&lt; 1U),</div>
+<div class="line"><span class="lineno">   60</span>};</div>
+<div class="ttc" id="agroup__xwmd__isc__xwscp_html_gga27a4f4d39876bdba1e887986bc208130a2293171127aaf968ab565e838c793bdf"><div class="ttname"><a href="group__xwmd__isc__xwscp.html#gga27a4f4d39876bdba1e887986bc208130a2293171127aaf968ab565e838c793bdf">XWSCP_MSG_QOS_2</a></div><div class="ttdeci">@ XWSCP_MSG_QOS_2</div><div class="ttdef"><b>Definition:</b> <a href="xwscp_2mif_8h_source.html#l00054">mif.h:54</a></div></div>
+<div class="ttc" id="agroup__xwmd__isc__xwscp_html_gga27a4f4d39876bdba1e887986bc208130a477ac4f58acacb46579f05b752726009"><div class="ttname"><a href="group__xwmd__isc__xwscp.html#gga27a4f4d39876bdba1e887986bc208130a477ac4f58acacb46579f05b752726009">XWSCP_MSG_QOS_1</a></div><div class="ttdeci">@ XWSCP_MSG_QOS_1</div><div class="ttdef"><b>Definition:</b> <a href="xwscp_2mif_8h_source.html#l00053">mif.h:53</a></div></div>
+<div class="ttc" id="agroup__xwmd__isc__xwscp_html_gga27a4f4d39876bdba1e887986bc208130a498491793a4b0b58f52e502c3cfc5c5b"><div class="ttname"><a href="group__xwmd__isc__xwscp.html#gga27a4f4d39876bdba1e887986bc208130a498491793a4b0b58f52e502c3cfc5c5b">XWSCP_MSG_QOS_ACK_MSK</a></div><div class="ttdeci">@ XWSCP_MSG_QOS_ACK_MSK</div><div class="ttdef"><b>Definition:</b> <a href="xwscp_2mif_8h_source.html#l00059">mif.h:59</a></div></div>
+<div class="ttc" id="agroup__xwmd__isc__xwscp_html_gga27a4f4d39876bdba1e887986bc208130ac647d0c8988a13ef1340047097f69244"><div class="ttname"><a href="group__xwmd__isc__xwscp.html#gga27a4f4d39876bdba1e887986bc208130ac647d0c8988a13ef1340047097f69244">XWSCP_MSG_QOS_CHKSUM_MSK</a></div><div class="ttdeci">@ XWSCP_MSG_QOS_CHKSUM_MSK</div><div class="ttdef"><b>Definition:</b> <a href="xwscp_2mif_8h_source.html#l00058">mif.h:58</a></div></div>
+<div class="ttc" id="agroup__xwmd__isc__xwscp_html_gga27a4f4d39876bdba1e887986bc208130ad496e3be891905705393993808ee5ac1"><div class="ttname"><a href="group__xwmd__isc__xwscp.html#gga27a4f4d39876bdba1e887986bc208130ad496e3be891905705393993808ee5ac1">XWSCP_MSG_QOS_0</a></div><div class="ttdeci">@ XWSCP_MSG_QOS_0</div><div class="ttdef"><b>Definition:</b> <a href="xwscp_2mif_8h_source.html#l00052">mif.h:52</a></div></div>
+<div class="ttc" id="agroup__xwmd__isc__xwscp_html_gga27a4f4d39876bdba1e887986bc208130addb0c3f3c5020dd0c5e473ffd8d23c6b"><div class="ttname"><a href="group__xwmd__isc__xwscp.html#gga27a4f4d39876bdba1e887986bc208130addb0c3f3c5020dd0c5e473ffd8d23c6b">XWSCP_MSG_QOS_3</a></div><div class="ttdeci">@ XWSCP_MSG_QOS_3</div><div class="ttdef"><b>Definition:</b> <a href="xwscp_2mif_8h_source.html#l00055">mif.h:55</a></div></div>
+<div class="ttc" id="agroup__xwmd__isc__xwscp_html_gga27a4f4d39876bdba1e887986bc208130ae9328a8241528171555836c626623680"><div class="ttname"><a href="group__xwmd__isc__xwscp.html#gga27a4f4d39876bdba1e887986bc208130ae9328a8241528171555836c626623680">XWSCP_MSG_QOS_NUM</a></div><div class="ttdeci">@ XWSCP_MSG_QOS_NUM</div><div class="ttdef"><b>Definition:</b> <a href="xwscp_2mif_8h_source.html#l00056">mif.h:56</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">函数说明</h2>
+<a id="gabfd46e6c8923953c85a475ecd7a5d7a4" name="gabfd46e6c8923953c85a475ecd7a5d7a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabfd46e6c8923953c85a475ecd7a5d7a4">&#9670;&nbsp;</a></span>xwscp_connect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwscp_connect </td>
+          <td>(</td>
+          <td class="paramtype">struct xwscp *&#160;</td>
+          <td class="paramname"><em>xwscp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a>&#160;</td>
+          <td class="paramname"><em>to</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWSCP API: 连接远程端 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">xwscp</td><td>XWSCP对象的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">to</td><td>期望唤醒的时间点 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>空指针 </td></tr>
+    <tr><td class="paramname">-ENETUNREACH</td><td>远程端无回应 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>同步/异步：同步</li>
+<li>上下文：线程</li>
+<li>重入性：可重入</li>
+</ul>
+</dd></dl>
+<p>如果 <code>to</code> 是过去的时间点，将直接返回 <code>-ETIMEDOUT</code> 。 </p>
+<p >&lt;No more processes</p>
+<p >&lt;Connection timed out</p>
+<p >&lt;Network is unreachable</p>
+
+<p class="definition">在文件 <a class="el" href="xwscp_2mif_8c_source.html">mif.c</a> 第 <a class="el" href="xwscp_2mif_8c_source.html#l00281">281</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  282</span>{</div>
+<div class="line"><span class="lineno">  283</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">  284</span> </div>
+<div class="line"><span class="lineno">  285</span>        XWSCP_VALIDATE((xwscp), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  286</span> </div>
+<div class="line"><span class="lineno">  287</span>        rc = <a class="code hl_function" href="group__xwos__lock__mtx.html#ga37eb46fa1271ff0ecebd4e0ceb0f4420">xwos_mtx_lock_to</a>(&amp;xwscp-&gt;tx.mtx, to);</div>
+<div class="line"><span class="lineno">  288</span>        <span class="keywordflow">if</span> (<a class="code hl_define" href="group__xwos__lib__compiler.html#gadc8a67c68c81395e096207c710e7b703">__xwcc_unlikely</a>(rc &lt; 0)) {</div>
+<div class="line"><span class="lineno">  289</span>                <span class="keywordflow">goto</span> err_txmtx_lock_to;</div>
+<div class="line"><span class="lineno">  290</span>        }</div>
+<div class="line"><span class="lineno">  291</span>        <span class="keywordflow">do</span> {</div>
+<div class="line"><span class="lineno">  292</span>                rc = <a class="code hl_function" href="xwscp_2mif_8c.html#a6132b5e52d009c56d267093f3cfb4cee">xwscp_connect_once</a>(xwscp, to);</div>
+<div class="line"><span class="lineno">  293</span>        } <span class="keywordflow">while</span> (-<a class="code hl_define" href="group__xwos__lib__errno.html#gaf0fac1cea1165b4debec7f686edf3313">EAGAIN</a> == rc);</div>
+<div class="line"><span class="lineno">  294</span>        <span class="keywordflow">if</span> (-<a class="code hl_define" href="group__xwos__lib__errno.html#ga597718e59a8fc9c4d4ab63f5a34e28b1">ETIMEDOUT</a> == rc) {</div>
+<div class="line"><span class="lineno">  295</span>                xwscp_hwifal_notify(xwscp, XWSCP_HWIFNTF_NETUNREACH);</div>
+<div class="line"><span class="lineno">  296</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f91f1ad503432783c7a5d1481b45419">ENETUNREACH</a>;</div>
+<div class="line"><span class="lineno">  297</span>        }</div>
+<div class="line"><span class="lineno">  298</span>        <a class="code hl_function" href="group__xwos__lock__mtx.html#gaa6b3a2ce561acc043d826e47a9470919">xwos_mtx_unlock</a>(&amp;xwscp-&gt;tx.mtx);</div>
+<div class="line"><span class="lineno">  299</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  300</span> </div>
+<div class="line"><span class="lineno">  301</span>err_txmtx_lock_to:</div>
+<div class="line"><span class="lineno">  302</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  303</span>}</div>
+<div class="ttc" id="agroup__xwos__lib__compiler_html_gadc8a67c68c81395e096207c710e7b703"><div class="ttname"><a href="group__xwos__lib__compiler.html#gadc8a67c68c81395e096207c710e7b703">__xwcc_unlikely</a></div><div class="ttdeci">#define __xwcc_unlikely(x)</div><div class="ttdef"><b>Definition:</b> <a href="compiler_8h_source.html#l00119">compiler.h:119</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga3f317946e043623f9d6b93dbf60e6316"><div class="ttname"><a href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a></div><div class="ttdeci">#define EFAULT</div><div class="ttdoc">Bad address</div><div class="ttdef"><b>Definition:</b> <a href="errno_8h_source.html#l00044">errno.h:44</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga3f91f1ad503432783c7a5d1481b45419"><div class="ttname"><a href="group__xwos__lib__errno.html#ga3f91f1ad503432783c7a5d1481b45419">ENETUNREACH</a></div><div class="ttdeci">#define ENETUNREACH</div><div class="ttdoc">Network is unreachable</div><div class="ttdef"><b>Definition:</b> <a href="errno_8h_source.html#l00127">errno.h:127</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga597718e59a8fc9c4d4ab63f5a34e28b1"><div class="ttname"><a href="group__xwos__lib__errno.html#ga597718e59a8fc9c4d4ab63f5a34e28b1">ETIMEDOUT</a></div><div class="ttdeci">#define ETIMEDOUT</div><div class="ttdoc">Connection timed out</div><div class="ttdef"><b>Definition:</b> <a href="errno_8h_source.html#l00129">errno.h:129</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_gaf0fac1cea1165b4debec7f686edf3313"><div class="ttname"><a href="group__xwos__lib__errno.html#gaf0fac1cea1165b4debec7f686edf3313">EAGAIN</a></div><div class="ttdeci">#define EAGAIN</div><div class="ttdoc">No more processes</div><div class="ttdef"><b>Definition:</b> <a href="errno_8h_source.html#l00041">errno.h:41</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga06847ea8c7edb2b1f166288b230f251f"><div class="ttname"><a href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a></div><div class="ttdeci">signed long xwer_t</div><div class="ttdef"><b>Definition:</b> <a href="type_8h_source.html#l00193">type.h:193</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__mtx_html_ga37eb46fa1271ff0ecebd4e0ceb0f4420"><div class="ttname"><a href="group__xwos__lock__mtx.html#ga37eb46fa1271ff0ecebd4e0ceb0f4420">xwos_mtx_lock_to</a></div><div class="ttdeci">static xwer_t xwos_mtx_lock_to(struct xwos_mtx *mtx, xwtm_t to)</div><div class="ttdoc">XWOS API：限时等待上锁互斥锁</div><div class="ttdef"><b>Definition:</b> <a href="lock_2mtx_8h_source.html#l00275">mtx.h:275</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__mtx_html_gaa6b3a2ce561acc043d826e47a9470919"><div class="ttname"><a href="group__xwos__lock__mtx.html#gaa6b3a2ce561acc043d826e47a9470919">xwos_mtx_unlock</a></div><div class="ttdeci">static xwer_t xwos_mtx_unlock(struct xwos_mtx *mtx)</div><div class="ttdoc">XWOS API：解锁互斥锁</div><div class="ttdef"><b>Definition:</b> <a href="lock_2mtx_8h_source.html#l00227">mtx.h:227</a></div></div>
+<div class="ttc" id="axwscp_2mif_8c_html_a6132b5e52d009c56d267093f3cfb4cee"><div class="ttname"><a href="xwscp_2mif_8c.html#a6132b5e52d009c56d267093f3cfb4cee">xwscp_connect_once</a></div><div class="ttdeci">static xwer_t xwscp_connect_once(struct xwscp *xwscp, xwtm_t to)</div><div class="ttdef"><b>Definition:</b> <a href="xwscp_2mif_8c_source.html#l00221">mif.c:221</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmd__isc__xwscp_gabfd46e6c8923953c85a475ecd7a5d7a4_cgraph.png" border="0" usemap="#agroup__xwmd__isc__xwscp_gabfd46e6c8923953c85a475ecd7a5d7a4_cgraph" alt=""/></div>
+<map name="agroup__xwmd__isc__xwscp_gabfd46e6c8923953c85a475ecd7a5d7a4_cgraph" id="agroup__xwmd__isc__xwscp_gabfd46e6c8923953c85a475ecd7a5d7a4_cgraph">
+<area shape="rect" title="XWSCP API: 连接远程端" alt="" coords="5,56,119,83"/>
+<area shape="rect" href="group__xwos__lock__mtx.html#ga37eb46fa1271ff0ecebd4e0ceb0f4420" title="XWOS API：限时等待上锁互斥锁" alt="" coords="366,5,497,32"/>
+<area shape="rect" href="group__xwos__lock__mtx.html#gaa6b3a2ce561acc043d826e47a9470919" title="XWOS API：解锁互斥锁" alt="" coords="368,56,495,83"/>
+<area shape="rect" href="xwscp_2mif_8c.html#a6132b5e52d009c56d267093f3cfb4cee" title=" " alt="" coords="167,107,315,133"/>
+<area shape="rect" href="group__xwos__sync__cond.html#gad8c1310da94bd715059fef8521264cfa" title="XWOS API：限时阻塞当前线程，直到被条件量唤醒" alt="" coords="363,107,500,133"/>
+<area shape="rect" href="group__xwos__time.html#gad9ca66730be82d000b7f7ad74eb835b4" title="比较两个系统时间" alt="" coords="388,157,475,184"/>
+<area shape="rect" href="group__xwos__time.html#gaf9f8d6de1ed07945ec6635af480aa2f4" title="XWOS API：获取当前CPU的未来 系统时间 点" alt="" coords="397,208,466,235"/>
+<area shape="rect" href="group__xwos__time.html#ga123646dbc0c9e01824ef8833ec7b8589" title="将两个系统时间相加，并检查溢出" alt="" coords="548,183,672,209"/>
+<area shape="rect" href="group__xwos__time.html#gad144b9695441072c91d83aabc54ab5c4" title="XWOS API：获取当前CPU的系统时间点" alt="" coords="567,233,653,260"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga1b6dc6b60940490e8647e1284a970a4f" name="ga1b6dc6b60940490e8647e1284a970a4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1b6dc6b60940490e8647e1284a970a4f">&#9670;&nbsp;</a></span>xwscp_rx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwscp_rx </td>
+          <td>(</td>
+          <td class="paramtype">struct xwscp *&#160;</td>
+          <td class="paramname"><em>xwscp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a>&#160;</td>
+          <td class="paramname"><em>buf</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> *&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a>&#160;</td>
+          <td class="paramname"><em>to</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWSCP API: 接收一条报文，若接收队列为空，就限时等待 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">xwscp</td><td>XWSCP对象的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">buf</td><td>接收数据的缓冲区指针 </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">size</td><td>指向缓冲区的指针，此缓冲区：<ul>
+<li>(I) 作为输入时，表示报文的字节数</li>
+<li>(O) 作为输出时，返回实际接收的字节数 </li>
+</ul>
+</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">to</td><td>期望唤醒的时间点 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>空指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>同步/异步：同步</li>
+<li>上下文：线程</li>
+<li>重入性：可重入</li>
+</ul>
+</dd></dl>
+<p>如果 <code>to</code> 是过去的时间点，将直接返回 <code>-ETIMEDOUT</code> 。 </p>
+<p >&lt;No error</p>
+
+<p class="definition">在文件 <a class="el" href="xwscp_2mif_8c_source.html">mif.c</a> 第 <a class="el" href="xwscp_2mif_8c_source.html#l00477">477</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  478</span>{</div>
+<div class="line"><span class="lineno">  479</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">  480</span>        <span class="keyword">union </span>xwscp_slot * slot;</div>
+<div class="line"><span class="lineno">  481</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a> * sdupos;</div>
+<div class="line"><span class="lineno">  482</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> sdusize;</div>
+<div class="line"><span class="lineno">  483</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> realsize;</div>
+<div class="line"><span class="lineno">  484</span> </div>
+<div class="line"><span class="lineno">  485</span>        XWSCP_VALIDATE((xwscp), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  486</span>        XWSCP_VALIDATE((size), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  487</span> </div>
+<div class="line"><span class="lineno">  488</span>        rc = <a class="code hl_function" href="group__xwos__sync__sem.html#gab9fce6b4dc3add4c714dfa1c8041593f">xwos_sem_wait_to</a>(&amp;xwscp-&gt;rx.sem, to);</div>
+<div class="line"><span class="lineno">  489</span>        <span class="keywordflow">if</span> (<a class="code hl_define" href="group__xwos__lib__compiler.html#gadc8a67c68c81395e096207c710e7b703">__xwcc_unlikely</a>(rc &lt; 0)) {</div>
+<div class="line"><span class="lineno">  490</span>                <span class="keywordflow">goto</span> err_sem_wait_to;</div>
+<div class="line"><span class="lineno">  491</span>        }</div>
+<div class="line"><span class="lineno">  492</span>        slot = xwscp_rxq_choose(xwscp);</div>
+<div class="line"><span class="lineno">  493</span>        sdupos = XWSCP_SDUPOS(&amp;slot-&gt;rx.frm.head);</div>
+<div class="line"><span class="lineno">  494</span>        sdusize = XWSCP_RXSDUSIZE(&amp;slot-&gt;rx);</div>
+<div class="line"><span class="lineno">  495</span>        realsize = sdusize &gt; *size ? *size : sdusize;</div>
+<div class="line"><span class="lineno">  496</span>        memcpy(buf, sdupos, realsize);</div>
+<div class="line"><span class="lineno">  497</span>        <a class="code hl_function" href="group__xwmm__bma.html#ga7648b862d8fc0cb4a496d224c0a7f5a3">xwmm_bma_free</a>(xwscp-&gt;mempool, slot);</div>
+<div class="line"><span class="lineno">  498</span>        *size = realsize;</div>
+<div class="line"><span class="lineno">  499</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><span class="lineno">  500</span> </div>
+<div class="line"><span class="lineno">  501</span>err_sem_wait_to:</div>
+<div class="line"><span class="lineno">  502</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  503</span>}</div>
+<div class="ttc" id="agroup__xwmm__bma_html_ga7648b862d8fc0cb4a496d224c0a7f5a3"><div class="ttname"><a href="group__xwmm__bma.html#ga7648b862d8fc0cb4a496d224c0a7f5a3">xwmm_bma_free</a></div><div class="ttdeci">xwer_t xwmm_bma_free(struct xwmm_bma *bma, void *mem)</div><div class="ttdoc">XWMM API：释放内存块</div><div class="ttdef"><b>Definition:</b> <a href="bma_8c_source.html#l00404">bma.c:404</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga6a72d49d869215a02342eb465166537b"><div class="ttname"><a href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a></div><div class="ttdeci">#define XWOK</div><div class="ttdoc">No error</div><div class="ttdef"><b>Definition:</b> <a href="errno_8h_source.html#l00182">errno.h:182</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga2d00153ecb0cdcc8ea0823c13ee59649"><div class="ttname"><a href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a></div><div class="ttdeci">unsigned long xwsz_t</div><div class="ttdef"><b>Definition:</b> <a href="type_8h_source.html#l00097">type.h:97</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga4433c8b2d64a72382ab333d11bfd0093"><div class="ttname"><a href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a></div><div class="ttdeci">uint8_t xwu8_t</div><div class="ttdef"><b>Definition:</b> <a href="type_8h_source.html#l00033">type.h:33</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__sem_html_gab9fce6b4dc3add4c714dfa1c8041593f"><div class="ttname"><a href="group__xwos__sync__sem.html#gab9fce6b4dc3add4c714dfa1c8041593f">xwos_sem_wait_to</a></div><div class="ttdeci">static xwer_t xwos_sem_wait_to(struct xwos_sem *sem, xwtm_t to)</div><div class="ttdoc">XWOS API：限时等待并获取信号量</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sem_8h_source.html#l00349">sem.h:349</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmd__isc__xwscp_ga1b6dc6b60940490e8647e1284a970a4f_cgraph.png" border="0" usemap="#agroup__xwmd__isc__xwscp_ga1b6dc6b60940490e8647e1284a970a4f_cgraph" alt=""/></div>
+<map name="agroup__xwmd__isc__xwscp_ga1b6dc6b60940490e8647e1284a970a4f_cgraph" id="agroup__xwmd__isc__xwscp_ga1b6dc6b60940490e8647e1284a970a4f_cgraph">
+<area shape="rect" title="XWSCP API: 接收一条报文，若接收队列为空，就限时等待" alt="" coords="5,136,84,163"/>
+<area shape="rect" href="group__xwmm__bma.html#ga7648b862d8fc0cb4a496d224c0a7f5a3" title="XWMM API：释放内存块" alt="" coords="138,111,261,137"/>
+<area shape="rect" href="group__xwos__sync__sem.html#gab9fce6b4dc3add4c714dfa1c8041593f" title="XWOS API：限时等待并获取信号量" alt="" coords="132,161,267,188"/>
+<area shape="rect" href="group__xwos__lib__error.html#ga11327d55c644e1604a2563675b4fe6b3" title="测试指针的值是否为错误码" alt="" coords="375,35,429,61"/>
+<area shape="rect" href="group__xwos__lib__error.html#ga83451b4fa6b93e2bfe7f0b70cdf609fd" title="将指针的值转换为错误码" alt="" coords="373,85,431,112"/>
+<area shape="rect" href="bma_8c.html#a23e3c965cba3a637b375fd6b6076f3ad" title="合并内存块" alt="" coords="327,136,477,163"/>
+<area shape="rect" href="bma_8c.html#a15e3480a65e5546b1741de53e14642d7" title="从内存块首地址获得其控制块的指针" alt="" coords="315,191,489,217"/>
+<area shape="rect" href="bma_8c.html#aaeba29f4783fafad29d6d68dadd9869b" title="寻找内存块的伙伴" alt="" coords="543,56,706,83"/>
+<area shape="rect" href="bma_8c.html#ab9f54b5d9652a0ede324ab08f0f93ee8" title="将一块内存加入到阶链表" alt="" coords="537,107,712,133"/>
+<area shape="rect" href="bma_8c.html#ac3ac44994de282a1379a02e8080c83b0" title="从阶链表中删除一块内存" alt="" coords="551,158,698,199"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga2aa317fe5cea0989c273b3c69f69d795" title="将一个节点加入链表尾部（链表头的前面）" alt="" coords="782,5,921,32"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga3286c94ae92265dea90fd52bfdb85569" title="初始化一个链表节点。" alt="" coords="1003,132,1149,159"/>
+<area shape="rect" href="bma_8c.html#aafad73243c00281bd2a0f93cec7667ae" title="从内存块的控制块指针获得内存块的首地址" alt="" coords="764,107,939,133"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gad393963b449be923d8af40538b9befdf" title="XWOS API：上锁自旋锁，保存本地CPU的中断标志并关闭" alt="" coords="766,157,937,184"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gaa83b4a8f3340ddf35346dbedf9ce3979" title="XWOS API：解锁自旋锁，并恢复本地CPU的中断标志" alt="" coords="760,208,943,235"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga42c09bc0da5cac8327003314056f43b7" title="将一个新节点加入到prev与next之间" alt="" coords="991,5,1161,32"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#gab12f3ce1a4e53de3112b10c9ffb06cae" title="删除一个节点，并重新初始化它" alt="" coords="784,259,919,285"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#gab7918962f86f86d5c7049922a5173e81" title="删除prev节点与next节点之间的节点" alt="" coords="993,259,1159,285"/>
+<area shape="rect" href="group__xwos__lib__error.html#ga043267bacbf102d87c376e6605228ab6" title="将错误码转换为指针" alt="" coords="595,224,654,251"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga459e293c6005220d6aabe23dde1e441c" name="ga459e293c6005220d6aabe23dde1e441c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga459e293c6005220d6aabe23dde1e441c">&#9670;&nbsp;</a></span>xwscp_start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwscp_start </td>
+          <td>(</td>
+          <td class="paramtype">struct xwscp *&#160;</td>
+          <td class="paramname"><em>xwscp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const struct xwscp_hwifal_operations *&#160;</td>
+          <td class="paramname"><em>hwifops</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>hwifcb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a> *&#160;</td>
+          <td class="paramname"><em>mem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a>&#160;</td>
+          <td class="paramname"><em>memsize</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWSCP API: 启动XWSCP </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">xwscp</td><td>XWSCP对象的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">name</td><td>XWSCP实例的名字 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">hwifops</td><td>硬件接口抽象层操作函数集合 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">hwifcb</td><td>硬件接口控制块指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">mem</td><td>连续的内存块 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">memsize</td><td>连续的内存块大小，值必须为 <a class="el" href="group__xwmd__isc__xwscp.html#ga7fad7ffb4a559a89b4fdf83dba75c5da">XWSCP_MEMPOOL_SIZE</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>空指针 </td></tr>
+    <tr><td class="paramname">--ENOMEM</td><td>内存池台小 </td></tr>
+    <tr><td class="paramname">-EPERM</td><td>XWSCP未初始化 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>参数<code>mem</code>作为xwscp发送和接收缓冲区，用户可以 使用<code>xwu8_t xwscp_mem[XWSCP_MEMPOOL_SIZE];</code>定义，也可增加修饰符 将这段内存定义在DMA区域，并对齐到L1CacheLine，以便提高整体效率；</li>
+<li>参数<code>memsize</code>作用是提醒用户<code>mem</code>的大小必须为 <a class="el" href="group__xwmd__isc__xwscp.html#ga7fad7ffb4a559a89b4fdf83dba75c5da">XWSCP_MEMPOOL_SIZE</a> ， API内部会做检查。 </li>
+</ul>
+</dd>
+<dd>
+<ul>
+<li>同步/异步：同步</li>
+<li>上下文：线程</li>
+<li>重入性：不可重入 </li>
+</ul>
+</dd></dl>
+<p >&lt;Bad address</p>
+<p >&lt;Size error</p>
+<p >&lt; 单位内存块的大小</p>
+<p >&lt; 内存块数量的阶，内存块数量等于1左移“阶”次</p>
+<p >&lt; 内存块数量的阶，内存块数量等于1左移“阶”次</p>
+<p >&lt; 内存块的数量</p>
+<p >&lt;No error</p>
+
+<p class="definition">在文件 <a class="el" href="xwscp_2mif_8c_source.html">mif.c</a> 第 <a class="el" href="xwscp_2mif_8c_source.html#l00068">68</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   71</span>{</div>
+<div class="line"><span class="lineno">   72</span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwos__thd__attr.html">xwos_thd_attr</a> attr;</div>
+<div class="line"><span class="lineno">   73</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">   74</span> </div>
+<div class="line"><span class="lineno">   75</span>        XWSCP_VALIDATE((xwscp), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">   76</span>        XWSCP_VALIDATE((hwifops), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">   77</span>        XWSCP_VALIDATE((hwifops-&gt;tx), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">   78</span>        XWSCP_VALIDATE((hwifops-&gt;rx), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">   79</span> </div>
+<div class="line"><span class="lineno">   80</span>        XWSCP_VALIDATE_FORCE((mem), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">   81</span>        XWSCP_VALIDATE_FORCE((<a class="code hl_define" href="group__xwmd__isc__xwscp.html#ga7fad7ffb4a559a89b4fdf83dba75c5da">XWSCP_MEMPOOL_SIZE</a> == memsize),</div>
+<div class="line"><span class="lineno">   82</span>                             <span class="stringliteral">&quot;memsize-error&quot;</span>,</div>
+<div class="line"><span class="lineno">   83</span>                             -<a class="code hl_define" href="group__xwos__lib__errno.html#gacb09eefda9ef228712245d1104fe9c89">ESIZE</a>);</div>
+<div class="line"><span class="lineno">   84</span> </div>
+<div class="line"><span class="lineno">   85</span>        xwscplogf(DEBUG, <span class="stringliteral">&quot;Starting XWSCP-%s ...\n&quot;</span>, <a class="code hl_define" href="group__xwmd__isc__xwscp.html#gaabe32ba7131de5d7d84cdbf3e884c184">XWSCP_VERSION</a>);</div>
+<div class="line"><span class="lineno">   86</span> </div>
+<div class="line"><span class="lineno">   87</span>        <a class="code hl_function" href="group__xwos__lib__xwobj.html#ga908c48f09f38f5be9d69758fe30c5d3f">xwos_object_construct</a>(&amp;xwscp-&gt;xwobj);</div>
+<div class="line"><span class="lineno">   88</span>        xwscp-&gt;hwifcb = <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><span class="lineno">   89</span>        xwscp-&gt;hwifst = XWSCP_HWIFST_CLOSED;</div>
+<div class="line"><span class="lineno">   90</span>        xwscp-&gt;name = <a class="code hl_variable" href="structxwos__thd__attr.html#a531a0aa57810571d5510c56d416f2156">name</a>;</div>
+<div class="line"><span class="lineno">   91</span>        xwscp-&gt;hwifops = hwifops;</div>
+<div class="line"><span class="lineno">   92</span>        xwscp-&gt;rx.thd = <a class="code hl_define" href="group__xwos__thd.html#ga60b998ad71911afa5245d6122fa4608c">XWOS_THD_NILD</a>;</div>
+<div class="line"><span class="lineno">   93</span>        xwscp-&gt;mempool = <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><span class="lineno">   94</span>        <a class="code hl_function" href="group__xwos__lib__xwobj.html#ga82ce393acdabdb355bf091c21f784444">xwos_object_activate</a>(&amp;xwscp-&gt;xwobj, <a class="code hl_function" href="xwscp_2mif_8c.html#a56a1ab8f1e93801145beef0486bf745a">xwscp_gc</a>);</div>
+<div class="line"><span class="lineno">   95</span> </div>
+<div class="line"><span class="lineno">   96</span>        <span class="comment">/* 创建内存池 */</span></div>
+<div class="line"><span class="lineno">   97</span>        xwscp-&gt;mempool = (<span class="keyword">struct </span><a class="code hl_struct" href="structxwmm__bma.html">xwmm_bma</a> *)&amp;xwscp-&gt;mempool_bma_raw;</div>
+<div class="line"><span class="lineno">   98</span>        rc = <a class="code hl_function" href="group__xwmm__bma.html#ga591aeadbb32ce6e77563d873ecb53b33">xwmm_bma_init</a>(xwscp-&gt;mempool, <span class="stringliteral">&quot;xwscp.mempool&quot;</span>,</div>
+<div class="line"><span class="lineno">   99</span>                           (<a class="code hl_typedef" href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a>)mem, memsize,</div>
+<div class="line"><span class="lineno">  100</span>                           <a class="code hl_define" href="group__xwmd__isc__xwscp.html#gaa67edbcbc91ebeb547e807fb77de1b39">XWSCP_MEMBLK_SIZE</a>, <a class="code hl_define" href="group__xwmd__isc__xwscp.html#ga17c9e21879c9b0a3f3ba9e6ef2b6e941">XWSCP_MEMBLK_ODR</a>);</div>
+<div class="line"><span class="lineno">  101</span>        <span class="keywordflow">if</span> (<a class="code hl_define" href="group__xwos__lib__compiler.html#gadc8a67c68c81395e096207c710e7b703">__xwcc_unlikely</a>(rc &lt; 0)) {</div>
+<div class="line"><span class="lineno">  102</span>                xwscplogf(ERR, <span class="stringliteral">&quot;init bma ... [rc:%d]\n&quot;</span>, rc);</div>
+<div class="line"><span class="lineno">  103</span>                <span class="keywordflow">goto</span> err_bma_init;</div>
+<div class="line"><span class="lineno">  104</span>        }</div>
+<div class="line"><span class="lineno">  105</span> </div>
+<div class="line"><span class="lineno">  106</span>        <span class="comment">/* 初始化发送状态机 */</span></div>
+<div class="line"><span class="lineno">  107</span>        xwscp-&gt;tx.cnt = 0;</div>
+<div class="line"><span class="lineno">  108</span>        rc = <a class="code hl_function" href="group__xwos__lock__mtx.html#ga05ea2a9762a817291b0ae6d76586e022">xwos_mtx_init</a>(&amp;xwscp-&gt;tx.mtx, <a class="code hl_define" href="group__xwos__skd.html#ga440d65baefaf78c6d4d2ac4a817470bd">XWOS_SKD_PRIORITY_RT_MIN</a>);</div>
+<div class="line"><span class="lineno">  109</span>        <span class="keywordflow">if</span> (<a class="code hl_define" href="group__xwos__lib__compiler.html#gadc8a67c68c81395e096207c710e7b703">__xwcc_unlikely</a>(rc &lt; 0)) {</div>
+<div class="line"><span class="lineno">  110</span>                xwscplogf(ERR, <span class="stringliteral">&quot;Init tx.mtx ... [rc:%d]\n&quot;</span>, rc);</div>
+<div class="line"><span class="lineno">  111</span>                <span class="keywordflow">goto</span> err_txmtx_init;</div>
+<div class="line"><span class="lineno">  112</span>        }</div>
+<div class="line"><span class="lineno">  113</span>        rc = <a class="code hl_function" href="group__xwos__lock__mtx.html#ga05ea2a9762a817291b0ae6d76586e022">xwos_mtx_init</a>(&amp;xwscp-&gt;tx.csmtx, <a class="code hl_define" href="group__xwos__skd.html#ga440d65baefaf78c6d4d2ac4a817470bd">XWOS_SKD_PRIORITY_RT_MIN</a>);</div>
+<div class="line"><span class="lineno">  114</span>        <span class="keywordflow">if</span> (<a class="code hl_define" href="group__xwos__lib__compiler.html#gadc8a67c68c81395e096207c710e7b703">__xwcc_unlikely</a>(rc &lt; 0)) {</div>
+<div class="line"><span class="lineno">  115</span>                xwscplogf(ERR, <span class="stringliteral">&quot;Init csmtx ... [rc:%d]\n&quot;</span>, rc);</div>
+<div class="line"><span class="lineno">  116</span>                <span class="keywordflow">goto</span> err_csmtx_init;</div>
+<div class="line"><span class="lineno">  117</span>        }</div>
+<div class="line"><span class="lineno">  118</span>        rc = <a class="code hl_function" href="group__xwos__sync__cond.html#ga02154ceda2ebb3198e0f452d05e84fe8">xwos_cond_init</a>(&amp;xwscp-&gt;tx.cscond);</div>
+<div class="line"><span class="lineno">  119</span>        <span class="keywordflow">if</span> (<a class="code hl_define" href="group__xwos__lib__compiler.html#gadc8a67c68c81395e096207c710e7b703">__xwcc_unlikely</a>(rc &lt; 0)) {</div>
+<div class="line"><span class="lineno">  120</span>                xwscplogf(ERR, <span class="stringliteral">&quot;Init ACK condition ... [rc:%d]\n&quot;</span>, rc);</div>
+<div class="line"><span class="lineno">  121</span>                <span class="keywordflow">goto</span> err_cscond_init;</div>
+<div class="line"><span class="lineno">  122</span>        }</div>
+<div class="line"><span class="lineno">  123</span>        xwscp-&gt;tx.remote.ack = 0;</div>
+<div class="line"><span class="lineno">  124</span>        xwscp-&gt;tx.remote.id = 0;</div>
+<div class="line"><span class="lineno">  125</span> </div>
+<div class="line"><span class="lineno">  126</span>        <span class="comment">/* 初始化接收状态机 */</span></div>
+<div class="line"><span class="lineno">  127</span>        xwscp-&gt;rx.cnt = 0;</div>
+<div class="line"><span class="lineno">  128</span>        <a class="code hl_function" href="group__xwos__lib__bclst.html#ga08f9a7aec46aaeee30262e4bbdc65c0a">xwlib_bclst_init_head</a>(&amp;xwscp-&gt;rx.head);</div>
+<div class="line"><span class="lineno">  129</span>        <a class="code hl_function" href="group__xwos__lock__spinlock.html#gac8bbb82a3177f919e10ef3c3d21c7608">xwos_splk_init</a>(&amp;xwscp-&gt;rx.lock);</div>
+<div class="line"><span class="lineno">  130</span>        rc = <a class="code hl_function" href="group__xwos__sync__sem.html#gaef37596ed9c49312579530b2218150ad">xwos_sem_init</a>(&amp;xwscp-&gt;rx.sem, 0, <a class="code hl_define" href="group__xwmd__isc__xwscp.html#ga3c96092abb7dfa5be32d1c8aa576fd38">XWSCP_MEMBLK_NUM</a>);</div>
+<div class="line"><span class="lineno">  131</span>        <span class="keywordflow">if</span> (<a class="code hl_define" href="group__xwos__lib__compiler.html#gadc8a67c68c81395e096207c710e7b703">__xwcc_unlikely</a>(rc &lt; 0)) {</div>
+<div class="line"><span class="lineno">  132</span>                xwscplogf(ERR, <span class="stringliteral">&quot;Init rx.sem ... [rc:%d]\n&quot;</span>, rc);</div>
+<div class="line"><span class="lineno">  133</span>                <span class="keywordflow">goto</span> err_rxsem_init;</div>
+<div class="line"><span class="lineno">  134</span>        }</div>
+<div class="line"><span class="lineno">  135</span> </div>
+<div class="line"><span class="lineno">  136</span>        <span class="comment">/* 打开端口 */</span></div>
+<div class="line"><span class="lineno">  137</span>        rc = xwscp_hwifal_open(xwscp, hwifcb);</div>
+<div class="line"><span class="lineno">  138</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  139</span>                <span class="keywordflow">goto</span> err_hwifal_open;</div>
+<div class="line"><span class="lineno">  140</span>        }</div>
+<div class="line"><span class="lineno">  141</span> </div>
+<div class="line"><span class="lineno">  142</span>        <span class="comment">/* 创建线程 */</span></div>
+<div class="line"><span class="lineno">  143</span>        <a class="code hl_function" href="group__xwos__thd.html#ga393cded78694c660c355165a4bebe2a3">xwos_thd_attr_init</a>(&amp;attr);</div>
+<div class="line"><span class="lineno">  144</span>        attr.name = <span class="stringliteral">&quot;xwmd.isc.xwscp.thd&quot;</span>;</div>
+<div class="line"><span class="lineno">  145</span>        attr.stack = <a class="code hl_define" href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>;</div>
+<div class="line"><span class="lineno">  146</span>        attr.stack_size = 2048;</div>
+<div class="line"><span class="lineno">  147</span>        attr.priority = <a class="code hl_define" href="xwscp_2mif_8c.html#a0a40abfa70017f21efdbe426d4704be4">XWSCP_THD_PRIORITY</a>;</div>
+<div class="line"><span class="lineno">  148</span>        attr.detached = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  149</span>        attr.privileged = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  150</span>        rc = <a class="code hl_function" href="group__xwos__thd.html#ga9ea84b7446f41812f71b7bb81d1ceecb">xwos_thd_create</a>(&amp;xwscp-&gt;rx.thd, &amp;attr, (<a class="code hl_typedef" href="group__xwos__thd.html#ga85c1251db099a47b39527a5709baf911">xwos_thd_f</a>)xwscp_thd, xwscp);</div>
+<div class="line"><span class="lineno">  151</span>        <span class="keywordflow">if</span> (rc &lt; 0) {</div>
+<div class="line"><span class="lineno">  152</span>                <span class="keywordflow">goto</span> err_rxthd_create;</div>
+<div class="line"><span class="lineno">  153</span>        }</div>
+<div class="line"><span class="lineno">  154</span> </div>
+<div class="line"><span class="lineno">  155</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><span class="lineno">  156</span> </div>
+<div class="line"><span class="lineno">  157</span>err_rxthd_create:</div>
+<div class="line"><span class="lineno">  158</span>        xwscp_hwifal_close(xwscp);</div>
+<div class="line"><span class="lineno">  159</span>err_hwifal_open:</div>
+<div class="line"><span class="lineno">  160</span>        <a class="code hl_function" href="group__xwos__sync__sem.html#ga91a3f44977a865f10e9a46f13e261d3a">xwos_sem_fini</a>(&amp;xwscp-&gt;rx.sem);</div>
+<div class="line"><span class="lineno">  161</span>err_rxsem_init:</div>
+<div class="line"><span class="lineno">  162</span>        <a class="code hl_function" href="group__xwos__sync__cond.html#ga2007c32a3bc08294a77ab09ac17e2e20">xwos_cond_fini</a>(&amp;xwscp-&gt;tx.cscond);</div>
+<div class="line"><span class="lineno">  163</span>err_cscond_init:</div>
+<div class="line"><span class="lineno">  164</span>        <a class="code hl_function" href="group__xwos__lock__mtx.html#ga7b2464babb829bdc7fd0e433ff54bdca">xwos_mtx_fini</a>(&amp;xwscp-&gt;tx.csmtx);</div>
+<div class="line"><span class="lineno">  165</span>err_csmtx_init:</div>
+<div class="line"><span class="lineno">  166</span>        <a class="code hl_function" href="group__xwos__lock__mtx.html#ga7b2464babb829bdc7fd0e433ff54bdca">xwos_mtx_fini</a>(&amp;xwscp-&gt;tx.mtx);</div>
+<div class="line"><span class="lineno">  167</span>err_txmtx_init:</div>
+<div class="line"><span class="lineno">  168</span>err_bma_init:</div>
+<div class="line"><span class="lineno">  169</span>        <a class="code hl_function" href="group__xwos__lib__xwobj.html#ga33f685c358784c30a9f1fb8a5ca11d3d">xwos_object_rawput</a>(&amp;xwscp-&gt;xwobj);</div>
+<div class="line"><span class="lineno">  170</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  171</span>}</div>
+<div class="ttc" id="agroup__xwmd__isc__xwscp_html_ga17c9e21879c9b0a3f3ba9e6ef2b6e941"><div class="ttname"><a href="group__xwmd__isc__xwscp.html#ga17c9e21879c9b0a3f3ba9e6ef2b6e941">XWSCP_MEMBLK_ODR</a></div><div class="ttdeci">#define XWSCP_MEMBLK_ODR</div><div class="ttdef"><b>Definition:</b> <a href="xwscp_2mif_8h_source.html#l00038">mif.h:38</a></div></div>
+<div class="ttc" id="agroup__xwmd__isc__xwscp_html_ga3c96092abb7dfa5be32d1c8aa576fd38"><div class="ttname"><a href="group__xwmd__isc__xwscp.html#ga3c96092abb7dfa5be32d1c8aa576fd38">XWSCP_MEMBLK_NUM</a></div><div class="ttdeci">#define XWSCP_MEMBLK_NUM</div><div class="ttdef"><b>Definition:</b> <a href="xwscp_2mif_8h_source.html#l00039">mif.h:39</a></div></div>
+<div class="ttc" id="agroup__xwmd__isc__xwscp_html_ga7fad7ffb4a559a89b4fdf83dba75c5da"><div class="ttname"><a href="group__xwmd__isc__xwscp.html#ga7fad7ffb4a559a89b4fdf83dba75c5da">XWSCP_MEMPOOL_SIZE</a></div><div class="ttdeci">#define XWSCP_MEMPOOL_SIZE</div><div class="ttdef"><b>Definition:</b> <a href="xwscp_2mif_8h_source.html#l00040">mif.h:40</a></div></div>
+<div class="ttc" id="agroup__xwmd__isc__xwscp_html_gaa67edbcbc91ebeb547e807fb77de1b39"><div class="ttname"><a href="group__xwmd__isc__xwscp.html#gaa67edbcbc91ebeb547e807fb77de1b39">XWSCP_MEMBLK_SIZE</a></div><div class="ttdeci">#define XWSCP_MEMBLK_SIZE</div><div class="ttdef"><b>Definition:</b> <a href="xwscp_2mif_8h_source.html#l00037">mif.h:37</a></div></div>
+<div class="ttc" id="agroup__xwmd__isc__xwscp_html_gaabe32ba7131de5d7d84cdbf3e884c184"><div class="ttname"><a href="group__xwmd__isc__xwscp.html#gaabe32ba7131de5d7d84cdbf3e884c184">XWSCP_VERSION</a></div><div class="ttdeci">#define XWSCP_VERSION</div><div class="ttdef"><b>Definition:</b> <a href="xwscp_2mif_8h_source.html#l00031">mif.h:31</a></div></div>
+<div class="ttc" id="agroup__xwmm__bma_html_ga591aeadbb32ce6e77563d873ecb53b33"><div class="ttname"><a href="group__xwmm__bma.html#ga591aeadbb32ce6e77563d873ecb53b33">xwmm_bma_init</a></div><div class="ttdeci">xwer_t xwmm_bma_init(struct xwmm_bma *bma, const char *name, xwptr_t origin, xwsz_t size, xwsz_t blksize, xwsz_t blkodr)</div><div class="ttdoc">XWMM API：初始化伙伴算法内存块分配器</div><div class="ttdef"><b>Definition:</b> <a href="bma_8c_source.html#l00074">bma.c:74</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__bclst_html_ga08f9a7aec46aaeee30262e4bbdc65c0a"><div class="ttname"><a href="group__xwos__lib__bclst.html#ga08f9a7aec46aaeee30262e4bbdc65c0a">xwlib_bclst_init_head</a></div><div class="ttdeci">static void xwlib_bclst_init_head(struct xwlib_bclst_node *h)</div><div class="ttdoc">初始化一个链表头。</div><div class="ttdef"><b>Definition:</b> <a href="bclst_8h_source.html#l00229">bclst.h:229</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_gacb09eefda9ef228712245d1104fe9c89"><div class="ttname"><a href="group__xwos__lib__errno.html#gacb09eefda9ef228712245d1104fe9c89">ESIZE</a></div><div class="ttdeci">#define ESIZE</div><div class="ttdoc">Size error</div><div class="ttdef"><b>Definition:</b> <a href="errno_8h_source.html#l00202">errno.h:202</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="group__xwos__lib__type.html#ga070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdef"><b>Definition:</b> <a href="type_8h_source.html#l00028">type.h:28</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_gacef49946313c8d1985a8279bb40e31c4"><div class="ttname"><a href="group__xwos__lib__type.html#gacef49946313c8d1985a8279bb40e31c4">xwptr_t</a></div><div class="ttdeci">unsigned long xwptr_t</div><div class="ttdef"><b>Definition:</b> <a href="type_8h_source.html#l00121">type.h:121</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__xwobj_html_ga33f685c358784c30a9f1fb8a5ca11d3d"><div class="ttname"><a href="group__xwos__lib__xwobj.html#ga33f685c358784c30a9f1fb8a5ca11d3d">xwos_object_rawput</a></div><div class="ttdeci">xwer_t xwos_object_rawput(struct xwos_object *obj)</div><div class="ttdoc">减少对象的引用计数，不触发垃圾回收函数</div><div class="ttdef"><b>Definition:</b> <a href="object_8c_source.html#l00333">object.c:333</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__xwobj_html_ga82ce393acdabdb355bf091c21f784444"><div class="ttname"><a href="group__xwos__lib__xwobj.html#ga82ce393acdabdb355bf091c21f784444">xwos_object_activate</a></div><div class="ttdeci">xwer_t xwos_object_activate(struct xwos_object *obj, xwobj_gc_f gcfunc)</div><div class="ttdoc">激活一个XWOS对象（将其引用计数初始化位1）</div><div class="ttdef"><b>Definition:</b> <a href="object_8c_source.html#l00124">object.c:124</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__xwobj_html_ga908c48f09f38f5be9d69758fe30c5d3f"><div class="ttname"><a href="group__xwos__lib__xwobj.html#ga908c48f09f38f5be9d69758fe30c5d3f">xwos_object_construct</a></div><div class="ttdeci">void xwos_object_construct(struct xwos_object *obj)</div><div class="ttdoc">XWOS对象的构造函数</div><div class="ttdef"><b>Definition:</b> <a href="object_8c_source.html#l00096">object.c:96</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__mtx_html_ga05ea2a9762a817291b0ae6d76586e022"><div class="ttname"><a href="group__xwos__lock__mtx.html#ga05ea2a9762a817291b0ae6d76586e022">xwos_mtx_init</a></div><div class="ttdeci">static xwer_t xwos_mtx_init(struct xwos_mtx *mtx, xwpr_t sprio)</div><div class="ttdoc">XWOS API：静态方式初始化互斥锁</div><div class="ttdef"><b>Definition:</b> <a href="lock_2mtx_8h_source.html#l00059">mtx.h:59</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__mtx_html_ga7b2464babb829bdc7fd0e433ff54bdca"><div class="ttname"><a href="group__xwos__lock__mtx.html#ga7b2464babb829bdc7fd0e433ff54bdca">xwos_mtx_fini</a></div><div class="ttdeci">static xwer_t xwos_mtx_fini(struct xwos_mtx *mtx)</div><div class="ttdoc">XWOS API：销毁静态方式初始化的互斥锁</div><div class="ttdef"><b>Definition:</b> <a href="lock_2mtx_8h_source.html#l00074">mtx.h:74</a></div></div>
+<div class="ttc" id="agroup__xwos__lock__spinlock_html_gac8bbb82a3177f919e10ef3c3d21c7608"><div class="ttname"><a href="group__xwos__lock__spinlock.html#gac8bbb82a3177f919e10ef3c3d21c7608">xwos_splk_init</a></div><div class="ttdeci">static void xwos_splk_init(struct xwos_splk *spl)</div><div class="ttdoc">XWOS API：初始化自旋锁</div><div class="ttdef"><b>Definition:</b> <a href="lock_2spinlock_8h_source.html#l00040">spinlock.h:40</a></div></div>
+<div class="ttc" id="agroup__xwos__skd_html_ga440d65baefaf78c6d4d2ac4a817470bd"><div class="ttname"><a href="group__xwos__skd.html#ga440d65baefaf78c6d4d2ac4a817470bd">XWOS_SKD_PRIORITY_RT_MIN</a></div><div class="ttdeci">#define XWOS_SKD_PRIORITY_RT_MIN</div><div class="ttdoc">XWOS API：最小实时优先级</div><div class="ttdef"><b>Definition:</b> <a href="skd_8h_source.html#l00029">skd.h:29</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__cond_html_ga02154ceda2ebb3198e0f452d05e84fe8"><div class="ttname"><a href="group__xwos__sync__cond.html#ga02154ceda2ebb3198e0f452d05e84fe8">xwos_cond_init</a></div><div class="ttdeci">static xwer_t xwos_cond_init(struct xwos_cond *cond)</div><div class="ttdoc">XWOS API：静态方式初始化条件量对象</div><div class="ttdef"><b>Definition:</b> <a href="sync_2cond_8h_source.html#l00058">cond.h:58</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__cond_html_ga2007c32a3bc08294a77ab09ac17e2e20"><div class="ttname"><a href="group__xwos__sync__cond.html#ga2007c32a3bc08294a77ab09ac17e2e20">xwos_cond_fini</a></div><div class="ttdeci">static xwer_t xwos_cond_fini(struct xwos_cond *cond)</div><div class="ttdoc">XWOS API：销毁静态方式初始化的条件量对象</div><div class="ttdef"><b>Definition:</b> <a href="sync_2cond_8h_source.html#l00073">cond.h:73</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__sem_html_ga91a3f44977a865f10e9a46f13e261d3a"><div class="ttname"><a href="group__xwos__sync__sem.html#ga91a3f44977a865f10e9a46f13e261d3a">xwos_sem_fini</a></div><div class="ttdeci">static xwer_t xwos_sem_fini(struct xwos_sem *sem)</div><div class="ttdoc">XWOS API：销毁静态方式初始化的信号量对象</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sem_8h_source.html#l00075">sem.h:75</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__sem_html_gaef37596ed9c49312579530b2218150ad"><div class="ttname"><a href="group__xwos__sync__sem.html#gaef37596ed9c49312579530b2218150ad">xwos_sem_init</a></div><div class="ttdeci">static xwer_t xwos_sem_init(struct xwos_sem *sem, xwssq_t val, xwssq_t max)</div><div class="ttdoc">XWOS API：静态方式初始化信号量对象</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sem_8h_source.html#l00060">sem.h:60</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_ga393cded78694c660c355165a4bebe2a3"><div class="ttname"><a href="group__xwos__thd.html#ga393cded78694c660c355165a4bebe2a3">xwos_thd_attr_init</a></div><div class="ttdeci">static void xwos_thd_attr_init(struct xwos_thd_attr *attr)</div><div class="ttdoc">XWOS API：初始化线程属性结构体</div><div class="ttdef"><b>Definition:</b> <a href="thd_8h_source.html#l00120">thd.h:120</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_ga60b998ad71911afa5245d6122fa4608c"><div class="ttname"><a href="group__xwos__thd.html#ga60b998ad71911afa5245d6122fa4608c">XWOS_THD_NILD</a></div><div class="ttdeci">#define XWOS_THD_NILD</div><div class="ttdoc">XWOS API：空的线程对象描述符</div><div class="ttdef"><b>Definition:</b> <a href="thd_8h_source.html#l00050">thd.h:50</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_ga85c1251db099a47b39527a5709baf911"><div class="ttname"><a href="group__xwos__thd.html#ga85c1251db099a47b39527a5709baf911">xwos_thd_f</a></div><div class="ttdeci">xwer_t(* xwos_thd_f)(void *)</div><div class="ttdoc">XWOS API：线程函数指针类型</div><div class="ttdef"><b>Definition:</b> <a href="thd_8h_source.html#l00037">thd.h:37</a></div></div>
+<div class="ttc" id="agroup__xwos__thd_html_ga9ea84b7446f41812f71b7bb81d1ceecb"><div class="ttname"><a href="group__xwos__thd.html#ga9ea84b7446f41812f71b7bb81d1ceecb">xwos_thd_create</a></div><div class="ttdeci">static xwer_t xwos_thd_create(xwos_thd_d *thdd, const struct xwos_thd_attr *attr, xwos_thd_f thdfunc, void *arg)</div><div class="ttdoc">XWOS API：使用动态申请内存方式创建线程并初始化</div><div class="ttdef"><b>Definition:</b> <a href="thd_8h_source.html#l00215">thd.h:215</a></div></div>
+<div class="ttc" id="astructxwmm__bma_html"><div class="ttname"><a href="structxwmm__bma.html">xwmm_bma</a></div><div class="ttdoc">伙伴算法内存块分配器</div><div class="ttdef"><b>Definition:</b> <a href="bma_8h_source.html#l00074">bma.h:74</a></div></div>
+<div class="ttc" id="astructxwos__thd__attr_html"><div class="ttname"><a href="structxwos__thd__attr.html">xwos_thd_attr</a></div><div class="ttdoc">XWOS API：线程属性</div><div class="ttdef"><b>Definition:</b> <a href="thd_8h_source.html#l00055">thd.h:55</a></div></div>
+<div class="ttc" id="astructxwos__thd__attr_html_a531a0aa57810571d5510c56d416f2156"><div class="ttname"><a href="structxwos__thd__attr.html#a531a0aa57810571d5510c56d416f2156">xwos_thd_attr::name</a></div><div class="ttdeci">const char * name</div><div class="ttdef"><b>Definition:</b> <a href="thd_8h_source.html#l00056">thd.h:56</a></div></div>
+<div class="ttc" id="axwscp_2mif_8c_html_a0a40abfa70017f21efdbe426d4704be4"><div class="ttname"><a href="xwscp_2mif_8c.html#a0a40abfa70017f21efdbe426d4704be4">XWSCP_THD_PRIORITY</a></div><div class="ttdeci">#define XWSCP_THD_PRIORITY</div><div class="ttdoc">接收线程的优先级</div><div class="ttdef"><b>Definition:</b> <a href="xwscp_2mif_8c_source.html#l00028">mif.c:28</a></div></div>
+<div class="ttc" id="axwscp_2mif_8c_html_a56a1ab8f1e93801145beef0486bf745a"><div class="ttname"><a href="xwscp_2mif_8c.html#a56a1ab8f1e93801145beef0486bf745a">xwscp_gc</a></div><div class="ttdeci">static xwer_t xwscp_gc(void *obj)</div><div class="ttdoc">XWSCP的垃圾回收函数</div><div class="ttdef"><b>Definition:</b> <a href="xwscp_2mif_8c_source.html#l00198">mif.c:198</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmd__isc__xwscp_ga459e293c6005220d6aabe23dde1e441c_cgraph.png" border="0" usemap="#agroup__xwmd__isc__xwscp_ga459e293c6005220d6aabe23dde1e441c_cgraph" alt=""/></div>
+<map name="agroup__xwmd__isc__xwscp_ga459e293c6005220d6aabe23dde1e441c_cgraph" id="agroup__xwmd__isc__xwscp_ga459e293c6005220d6aabe23dde1e441c_cgraph">
+<area shape="rect" title="XWSCP API: 启动XWSCP" alt="" coords="5,411,99,437"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga08f9a7aec46aaeee30262e4bbdc65c0a" title="初始化一个链表头。" alt="" coords="365,56,511,83"/>
+<area shape="rect" href="group__xwmm__bma.html#ga591aeadbb32ce6e77563d873ecb53b33" title="XWMM API：初始化伙伴算法内存块分配器" alt="" coords="166,107,283,133"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gac8bbb82a3177f919e10ef3c3d21c7608" title="XWOS API：初始化自旋锁" alt="" coords="384,157,492,184"/>
+<area shape="rect" href="group__xwos__sync__cond.html#ga2007c32a3bc08294a77ab09ac17e2e20" title="XWOS API：销毁静态方式初始化的条件量对象" alt="" coords="382,208,494,235"/>
+<area shape="rect" href="group__xwos__sync__cond.html#ga02154ceda2ebb3198e0f452d05e84fe8" title="XWOS API：静态方式初始化条件量对象" alt="" coords="169,411,281,437"/>
+<area shape="rect" href="group__xwos__lock__mtx.html#ga7b2464babb829bdc7fd0e433ff54bdca" title="XWOS API：销毁静态方式初始化的互斥锁" alt="" coords="385,259,491,285"/>
+<area shape="rect" href="group__xwos__lock__mtx.html#ga05ea2a9762a817291b0ae6d76586e022" title="XWOS API：静态方式初始化互斥锁" alt="" coords="171,461,278,488"/>
+<area shape="rect" href="group__xwos__lib__xwobj.html#ga82ce393acdabdb355bf091c21f784444" title="激活一个XWOS对象（将其引用计数初始化位1）" alt="" coords="151,512,299,539"/>
+<area shape="rect" href="group__xwos__lib__xwobj.html#ga908c48f09f38f5be9d69758fe30c5d3f" title="XWOS对象的构造函数" alt="" coords="147,563,303,589"/>
+<area shape="rect" href="group__xwos__lib__xwobj.html#ga33f685c358784c30a9f1fb8a5ca11d3d" title="减少对象的引用计数，不触发垃圾回收函数" alt="" coords="154,613,295,640"/>
+<area shape="rect" href="group__xwos__sync__sem.html#ga91a3f44977a865f10e9a46f13e261d3a" title="XWOS API：销毁静态方式初始化的信号量对象" alt="" coords="383,360,493,387"/>
+<area shape="rect" href="group__xwos__sync__sem.html#gaef37596ed9c49312579530b2218150ad" title="XWOS API：静态方式初始化信号量对象" alt="" coords="170,664,279,691"/>
+<area shape="rect" href="group__xwos__thd.html#ga393cded78694c660c355165a4bebe2a3" title="XWOS API：初始化线程属性结构体" alt="" coords="161,715,289,741"/>
+<area shape="rect" href="group__xwos__thd.html#ga9ea84b7446f41812f71b7bb81d1ceecb" title="XWOS API：使用动态申请内存方式创建线程并初始化" alt="" coords="164,765,285,792"/>
+<area shape="rect" href="xwscp_2mif_8c.html#a56a1ab8f1e93801145beef0486bf745a" title="XWSCP的垃圾回收函数" alt="" coords="184,309,265,336"/>
+<area shape="rect" href="bma_8c.html#ab9f54b5d9652a0ede324ab08f0f93ee8" title="将一块内存加入到阶链表" alt="" coords="351,107,525,133"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga2aa317fe5cea0989c273b3c69f69d795" title="将一个节点加入链表尾部（链表头的前面）" alt="" coords="595,208,734,235"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga3286c94ae92265dea90fd52bfdb85569" title="初始化一个链表节点。" alt="" coords="591,5,738,32"/>
+<area shape="rect" href="bma_8c.html#aafad73243c00281bd2a0f93cec7667ae" title="从内存块的控制块指针获得内存块的首地址" alt="" coords="577,56,752,83"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gad393963b449be923d8af40538b9befdf" title="XWOS API：上锁自旋锁，保存本地CPU的中断标志并关闭" alt="" coords="579,107,750,133"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gaa83b4a8f3340ddf35346dbedf9ce3979" title="XWOS API：解锁自旋锁，并恢复本地CPU的中断标志" alt="" coords="573,157,756,184"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga42c09bc0da5cac8327003314056f43b7" title="将一个新节点加入到prev与next之间" alt="" coords="804,208,975,235"/>
+<area shape="rect" href="object_8c.html#afbe8a125041d1dc6a3c1178aa08fbcd6" title="从对象标签分配器获取一个标签" alt="" coords="380,512,496,539"/>
+<area shape="rect" href="group__xwos__irq.html#gab348bfecc115e0d9bb7fc54646f26ebd" title="XWOS API：恢复本地CPU的中断" alt="" coords="585,461,744,488"/>
+<area shape="rect" href="group__xwos__irq.html#ga6786862246388dace5c878fa112fac4d" title="XWOS API：保存然后关闭本地CPU的中断" alt="" coords="591,512,738,539"/>
+<area shape="rect" href="group__xwos__skd.html#ga0bb2baaefcfc0f62687977ea70fcaa28" title="XWOS API：获取当前CPU的ID" alt="" coords="607,563,722,589"/>
+<area shape="rect" href="group__xwos__thd.html#ga26965560c7f4ad21b5089eed17a30e25" title="XWOS API：终止线程并等待它退出，回收线程内存资源，并抛出线程的返回值" alt="" coords="383,309,493,336"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga8a9eea6aba028c1b6f7834a50c2283f7" name="ga8a9eea6aba028c1b6f7834a50c2283f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8a9eea6aba028c1b6f7834a50c2283f7">&#9670;&nbsp;</a></span>xwscp_stop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwscp_stop </td>
+          <td>(</td>
+          <td class="paramtype">struct xwscp *&#160;</td>
+          <td class="paramname"><em>xwscp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWSCP API: 停止XWSCP </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">xwscp</td><td>XWSCP对象的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>空指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>同步/异步：同步</li>
+<li>上下文：线程</li>
+<li>重入性：不可重入 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="xwscp_2mif_8c_source.html">mif.c</a> 第 <a class="el" href="xwscp_2mif_8c_source.html#l00185">185</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  186</span>{</div>
+<div class="line"><span class="lineno">  187</span>        XWSCP_VALIDATE((xwscp), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  188</span> </div>
+<div class="line"><span class="lineno">  189</span>        <span class="keywordflow">return</span> xwscp_put(xwscp);</div>
+<div class="line"><span class="lineno">  190</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="gad4f35c0a8fa71136f111b332f225ee67" name="gad4f35c0a8fa71136f111b332f225ee67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad4f35c0a8fa71136f111b332f225ee67">&#9670;&nbsp;</a></span>xwscp_try_rx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwscp_try_rx </td>
+          <td>(</td>
+          <td class="paramtype">struct xwscp *&#160;</td>
+          <td class="paramname"><em>xwscp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a>&#160;</td>
+          <td class="paramname"><em>buf</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> *&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWSCP API: 尝试接收消息，若接收队列为空，立即返回错误码 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">xwscp</td><td>XWSCP对象的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">buf</td><td>接收数据的缓冲区指针 </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">size</td><td>指向缓冲区的指针，此缓冲区：<ul>
+<li>(I) 作为输入时，表示报文的字节数</li>
+<li>(O) 作为输出时，返回实际接收的字节数 </li>
+</ul>
+</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>空指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>同步/异步：同步</li>
+<li>上下文：中断、中断底半部、线程</li>
+<li>重入性：可重入 </li>
+</ul>
+</dd></dl>
+<p >&lt;No error</p>
+
+<p class="definition">在文件 <a class="el" href="xwscp_2mif_8c_source.html">mif.c</a> 第 <a class="el" href="xwscp_2mif_8c_source.html#l00521">521</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  522</span>{</div>
+<div class="line"><span class="lineno">  523</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">  524</span>        <span class="keyword">union </span>xwscp_slot * slot;</div>
+<div class="line"><span class="lineno">  525</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a> * sdupos;</div>
+<div class="line"><span class="lineno">  526</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> sdusize;</div>
+<div class="line"><span class="lineno">  527</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> realsize;</div>
+<div class="line"><span class="lineno">  528</span> </div>
+<div class="line"><span class="lineno">  529</span>        XWSCP_VALIDATE((xwscp), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  530</span>        XWSCP_VALIDATE((size), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  531</span> </div>
+<div class="line"><span class="lineno">  532</span>        rc = <a class="code hl_function" href="group__xwos__sync__sem.html#ga453bbb4747cdd5cc94ddb9b988ee0866">xwos_sem_trywait</a>(&amp;xwscp-&gt;rx.sem);</div>
+<div class="line"><span class="lineno">  533</span>        <span class="keywordflow">if</span> (<a class="code hl_define" href="group__xwos__lib__compiler.html#gadc8a67c68c81395e096207c710e7b703">__xwcc_unlikely</a>(rc &lt; 0)) {</div>
+<div class="line"><span class="lineno">  534</span>                <span class="keywordflow">goto</span> err_sem_trywait;</div>
+<div class="line"><span class="lineno">  535</span>        }</div>
+<div class="line"><span class="lineno">  536</span>        slot = xwscp_rxq_choose(xwscp);</div>
+<div class="line"><span class="lineno">  537</span>        sdupos = XWSCP_SDUPOS(&amp;slot-&gt;rx.frm.head);</div>
+<div class="line"><span class="lineno">  538</span>        sdusize = XWSCP_RXSDUSIZE(&amp;slot-&gt;rx);</div>
+<div class="line"><span class="lineno">  539</span>        realsize = sdusize &gt; *size ? *size : sdusize;</div>
+<div class="line"><span class="lineno">  540</span>        memcpy(buf, sdupos, realsize);</div>
+<div class="line"><span class="lineno">  541</span>        <a class="code hl_function" href="group__xwmm__bma.html#ga7648b862d8fc0cb4a496d224c0a7f5a3">xwmm_bma_free</a>(xwscp-&gt;mempool, slot);</div>
+<div class="line"><span class="lineno">  542</span>        *size = realsize;</div>
+<div class="line"><span class="lineno">  543</span>        <span class="keywordflow">return</span> <a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a>;</div>
+<div class="line"><span class="lineno">  544</span> </div>
+<div class="line"><span class="lineno">  545</span>err_sem_trywait:</div>
+<div class="line"><span class="lineno">  546</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  547</span>}</div>
+<div class="ttc" id="agroup__xwos__sync__sem_html_ga453bbb4747cdd5cc94ddb9b988ee0866"><div class="ttname"><a href="group__xwos__sync__sem.html#ga453bbb4747cdd5cc94ddb9b988ee0866">xwos_sem_trywait</a></div><div class="ttdeci">static xwer_t xwos_sem_trywait(struct xwos_sem *sem)</div><div class="ttdoc">XWOS API：尝试获取信号量</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sem_8h_source.html#l00385">sem.h:385</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmd__isc__xwscp_gad4f35c0a8fa71136f111b332f225ee67_cgraph.png" border="0" usemap="#agroup__xwmd__isc__xwscp_gad4f35c0a8fa71136f111b332f225ee67_cgraph" alt=""/></div>
+<map name="agroup__xwmd__isc__xwscp_gad4f35c0a8fa71136f111b332f225ee67_cgraph" id="agroup__xwmd__isc__xwscp_gad4f35c0a8fa71136f111b332f225ee67_cgraph">
+<area shape="rect" title="XWSCP API: 尝试接收消息，若接收队列为空，立即返回错误码" alt="" coords="5,136,105,163"/>
+<area shape="rect" href="group__xwmm__bma.html#ga7648b862d8fc0cb4a496d224c0a7f5a3" title="XWMM API：释放内存块" alt="" coords="157,111,280,137"/>
+<area shape="rect" href="group__xwos__sync__sem.html#ga453bbb4747cdd5cc94ddb9b988ee0866" title="XWOS API：尝试获取信号量" alt="" coords="153,161,284,188"/>
+<area shape="rect" href="group__xwos__lib__error.html#ga11327d55c644e1604a2563675b4fe6b3" title="测试指针的值是否为错误码" alt="" coords="392,35,447,61"/>
+<area shape="rect" href="group__xwos__lib__error.html#ga83451b4fa6b93e2bfe7f0b70cdf609fd" title="将指针的值转换为错误码" alt="" coords="390,85,449,112"/>
+<area shape="rect" href="bma_8c.html#a23e3c965cba3a637b375fd6b6076f3ad" title="合并内存块" alt="" coords="345,136,494,163"/>
+<area shape="rect" href="bma_8c.html#a15e3480a65e5546b1741de53e14642d7" title="从内存块首地址获得其控制块的指针" alt="" coords="332,191,507,217"/>
+<area shape="rect" href="bma_8c.html#aaeba29f4783fafad29d6d68dadd9869b" title="寻找内存块的伙伴" alt="" coords="561,56,723,83"/>
+<area shape="rect" href="bma_8c.html#ab9f54b5d9652a0ede324ab08f0f93ee8" title="将一块内存加入到阶链表" alt="" coords="555,107,729,133"/>
+<area shape="rect" href="bma_8c.html#ac3ac44994de282a1379a02e8080c83b0" title="从阶链表中删除一块内存" alt="" coords="569,158,715,199"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga2aa317fe5cea0989c273b3c69f69d795" title="将一个节点加入链表尾部（链表头的前面）" alt="" coords="799,5,938,32"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga3286c94ae92265dea90fd52bfdb85569" title="初始化一个链表节点。" alt="" coords="1020,132,1167,159"/>
+<area shape="rect" href="bma_8c.html#aafad73243c00281bd2a0f93cec7667ae" title="从内存块的控制块指针获得内存块的首地址" alt="" coords="781,107,956,133"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gad393963b449be923d8af40538b9befdf" title="XWOS API：上锁自旋锁，保存本地CPU的中断标志并关闭" alt="" coords="783,157,954,184"/>
+<area shape="rect" href="group__xwos__lock__spinlock.html#gaa83b4a8f3340ddf35346dbedf9ce3979" title="XWOS API：解锁自旋锁，并恢复本地CPU的中断标志" alt="" coords="777,208,960,235"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#ga42c09bc0da5cac8327003314056f43b7" title="将一个新节点加入到prev与next之间" alt="" coords="1008,5,1179,32"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#gab12f3ce1a4e53de3112b10c9ffb06cae" title="删除一个节点，并重新初始化它" alt="" coords="801,259,936,285"/>
+<area shape="rect" href="group__xwos__lib__bclst.html#gab7918962f86f86d5c7049922a5173e81" title="删除prev节点与next节点之间的节点" alt="" coords="1010,259,1177,285"/>
+<area shape="rect" href="group__xwos__lib__error.html#ga043267bacbf102d87c376e6605228ab6" title="将错误码转换为指针" alt="" coords="613,224,671,251"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga504a9e3c119efb5e5515c03335c717a2" name="ga504a9e3c119efb5e5515c03335c717a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga504a9e3c119efb5e5515c03335c717a2">&#9670;&nbsp;</a></span>xwscp_tx()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwscp_tx </td>
+          <td>(</td>
+          <td class="paramtype">struct xwscp *&#160;</td>
+          <td class="paramname"><em>xwscp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a>&#160;</td>
+          <td class="paramname"><em>data</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> *&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga4433c8b2d64a72382ab333d11bfd0093">xwu8_t</a>&#160;</td>
+          <td class="paramname"><em>qos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a>&#160;</td>
+          <td class="paramname"><em>to</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWSCP API: 发送一条报文，并在限定的时间等待回应 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">xwscp</td><td>XWSCP对象的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>数据缓冲区的指针 </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">size</td><td>指向缓冲区的指针，此缓冲区：<ul>
+<li>(I) 作为输入时，表示数据的字节数</li>
+<li>(O) 作为输出时，返回实际发送的字节数 </li>
+</ul>
+</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">qos</td><td>服务质量，取值范围： <a class="el" href="group__xwmd__isc__xwscp.html#ga27a4f4d39876bdba1e887986bc208130">xwscp_msg_qos_em</a> </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">to</td><td>期望唤醒的时间点 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>空指针 </td></tr>
+    <tr><td class="paramname">-E2BIG</td><td>数据太长 </td></tr>
+    <tr><td class="paramname">-ENOTCONN</td><td>无链接 </td></tr>
+    <tr><td class="paramname">-ECONNRESET</td><td>链接被复位 </td></tr>
+    <tr><td class="paramname">-ENETUNREACH</td><td>远程端无回应 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>同步/异步：同步</li>
+<li>上下文：线程</li>
+<li>重入性：可重入</li>
+</ul>
+</dd></dl>
+<p>如果 <code>to</code> 是过去的时间点，将直接返回 <code>-ETIMEDOUT</code> 。 </p>
+<p >&lt;No more processes</p>
+<p >&lt;Connection timed out</p>
+<p >&lt;Network is unreachable</p>
+<p >&lt;Socket is not connected</p>
+
+<p class="definition">在文件 <a class="el" href="xwscp_2mif_8c_source.html">mif.c</a> 第 <a class="el" href="xwscp_2mif_8c_source.html#l00424">424</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  427</span>{</div>
+<div class="line"><span class="lineno">  428</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> hwifst;</div>
+<div class="line"><span class="lineno">  429</span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> rc;</div>
+<div class="line"><span class="lineno">  430</span> </div>
+<div class="line"><span class="lineno">  431</span>        XWSCP_VALIDATE((xwscp), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  432</span>        XWSCP_VALIDATE((size), <span class="stringliteral">&quot;nullptr&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f317946e043623f9d6b93dbf60e6316">EFAULT</a>);</div>
+<div class="line"><span class="lineno">  433</span>        XWSCP_VALIDATE((*size &lt;= XWSCP_SDU_MAX_SIZE), <span class="stringliteral">&quot;msg2long&quot;</span>, -<a class="code hl_define" href="group__xwos__lib__errno.html#gaba8481985c201ff726f349d7f2d09895">E2BIG</a>);</div>
+<div class="line"><span class="lineno">  434</span> </div>
+<div class="line"><span class="lineno">  435</span>        rc = <a class="code hl_function" href="group__xwos__lock__mtx.html#ga37eb46fa1271ff0ecebd4e0ceb0f4420">xwos_mtx_lock_to</a>(&amp;xwscp-&gt;tx.mtx, to);</div>
+<div class="line"><span class="lineno">  436</span>        <span class="keywordflow">if</span> (<a class="code hl_define" href="group__xwos__lib__compiler.html#gadc8a67c68c81395e096207c710e7b703">__xwcc_unlikely</a>(rc &lt; 0)) {</div>
+<div class="line"><span class="lineno">  437</span>                <span class="keywordflow">goto</span> err_txmtx_lock_to;</div>
+<div class="line"><span class="lineno">  438</span>        }</div>
+<div class="line"><span class="lineno">  439</span>        <a class="code hl_define" href="group__xwos__lib__xwaop.html#gaee6eecf70eb836b8130c24673299c8d9">xwaop_read</a>(<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>, &amp;xwscp-&gt;hwifst, &amp;hwifst);</div>
+<div class="line"><span class="lineno">  440</span>        <span class="keywordflow">if</span> (XWSCP_HWIFST_CONNECT &amp; hwifst) {</div>
+<div class="line"><span class="lineno">  441</span>                <span class="keywordflow">do</span> {</div>
+<div class="line"><span class="lineno">  442</span>                        rc = <a class="code hl_function" href="xwscp_2mif_8c.html#a015c5794c6c2be9ac5d0da6459b41755">xwscp_tx_once</a>(xwscp, data, size, qos, to);</div>
+<div class="line"><span class="lineno">  443</span>                } <span class="keywordflow">while</span> (-<a class="code hl_define" href="group__xwos__lib__errno.html#gaf0fac1cea1165b4debec7f686edf3313">EAGAIN</a> == rc);</div>
+<div class="line"><span class="lineno">  444</span>                <span class="keywordflow">if</span> (-<a class="code hl_define" href="group__xwos__lib__errno.html#ga597718e59a8fc9c4d4ab63f5a34e28b1">ETIMEDOUT</a> == rc) {</div>
+<div class="line"><span class="lineno">  445</span>                        xwscp_hwifal_notify(xwscp, XWSCP_HWIFNTF_NETUNREACH);</div>
+<div class="line"><span class="lineno">  446</span>                        rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#ga3f91f1ad503432783c7a5d1481b45419">ENETUNREACH</a>;</div>
+<div class="line"><span class="lineno">  447</span>                }</div>
+<div class="line"><span class="lineno">  448</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  449</span>                rc = -<a class="code hl_define" href="group__xwos__lib__errno.html#gaf23e48762a0676f49d480db91cfd5e4b">ENOTCONN</a>;</div>
+<div class="line"><span class="lineno">  450</span>        }</div>
+<div class="line"><span class="lineno">  451</span>        <a class="code hl_function" href="group__xwos__lock__mtx.html#gaa6b3a2ce561acc043d826e47a9470919">xwos_mtx_unlock</a>(&amp;xwscp-&gt;tx.mtx);</div>
+<div class="line"><span class="lineno">  452</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  453</span> </div>
+<div class="line"><span class="lineno">  454</span>err_txmtx_lock_to:</div>
+<div class="line"><span class="lineno">  455</span>        <span class="keywordflow">return</span> rc;</div>
+<div class="line"><span class="lineno">  456</span>}</div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_gaba8481985c201ff726f349d7f2d09895"><div class="ttname"><a href="group__xwos__lib__errno.html#gaba8481985c201ff726f349d7f2d09895">E2BIG</a></div><div class="ttdeci">#define E2BIG</div><div class="ttdoc">Arg list too long</div><div class="ttdef"><b>Definition:</b> <a href="errno_8h_source.html#l00037">errno.h:37</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_gaf23e48762a0676f49d480db91cfd5e4b"><div class="ttname"><a href="group__xwos__lib__errno.html#gaf23e48762a0676f49d480db91cfd5e4b">ENOTCONN</a></div><div class="ttdeci">#define ENOTCONN</div><div class="ttdoc">Socket is not connected</div><div class="ttdef"><b>Definition:</b> <a href="errno_8h_source.html#l00141">errno.h:141</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga59fe68c80516b22de8dccb84275d23f2"><div class="ttname"><a href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a></div><div class="ttdeci">unsigned long xwsq_t</div><div class="ttdef"><b>Definition:</b> <a href="type_8h_source.html#l00145">type.h:145</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__xwaop_html_gaee6eecf70eb836b8130c24673299c8d9"><div class="ttname"><a href="group__xwos__lib__xwaop.html#gaee6eecf70eb836b8130c24673299c8d9">xwaop_read</a></div><div class="ttdeci">#define xwaop_read(type, a, ov)</div><div class="ttdoc">对原子变量进行原子操作：读取</div><div class="ttdef"><b>Definition:</b> <a href="xwaop_8h_source.html#l00079">xwaop.h:79</a></div></div>
+<div class="ttc" id="axwscp_2mif_8c_html_a015c5794c6c2be9ac5d0da6459b41755"><div class="ttname"><a href="xwscp_2mif_8c.html#a015c5794c6c2be9ac5d0da6459b41755">xwscp_tx_once</a></div><div class="ttdeci">static xwer_t xwscp_tx_once(struct xwscp *xwscp, const xwu8_t data[], xwsz_t *size, xwu8_t qos, xwtm_t to)</div><div class="ttdef"><b>Definition:</b> <a href="xwscp_2mif_8c_source.html#l00348">mif.c:348</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwmd__isc__xwscp_ga504a9e3c119efb5e5515c03335c717a2_cgraph.png" border="0" usemap="#agroup__xwmd__isc__xwscp_ga504a9e3c119efb5e5515c03335c717a2_cgraph" alt=""/></div>
+<map name="agroup__xwmd__isc__xwscp_ga504a9e3c119efb5e5515c03335c717a2_cgraph" id="agroup__xwmd__isc__xwscp_ga504a9e3c119efb5e5515c03335c717a2_cgraph">
+<area shape="rect" title="XWSCP API: 发送一条报文，并在限定的时间等待回应" alt="" coords="5,56,84,83"/>
+<area shape="rect" href="group__xwos__lock__mtx.html#ga37eb46fa1271ff0ecebd4e0ceb0f4420" title="XWOS API：限时等待上锁互斥锁" alt="" coords="297,5,427,32"/>
+<area shape="rect" href="group__xwos__lock__mtx.html#gaa6b3a2ce561acc043d826e47a9470919" title="XWOS API：解锁互斥锁" alt="" coords="299,56,425,83"/>
+<area shape="rect" href="xwscp_2mif_8c.html#a015c5794c6c2be9ac5d0da6459b41755" title=" " alt="" coords="132,107,245,133"/>
+<area shape="rect" href="group__xwos__sync__cond.html#gad8c1310da94bd715059fef8521264cfa" title="XWOS API：限时阻塞当前线程，直到被条件量唤醒" alt="" coords="293,208,431,235"/>
+<area shape="rect" href="xwscp_2mif_8c.html#ac19ce8a38a59200322498a3cbf40e842" title=" " alt="" coords="304,259,420,285"/>
+<area shape="rect" href="group__xwos__time.html#gad9ca66730be82d000b7f7ad74eb835b4" title="比较两个系统时间" alt="" coords="319,107,405,133"/>
+<area shape="rect" href="group__xwos__time.html#gaf9f8d6de1ed07945ec6635af480aa2f4" title="XWOS API：获取当前CPU的未来 系统时间 点" alt="" coords="327,157,397,184"/>
+<area shape="rect" href="group__xwos__time.html#ga123646dbc0c9e01824ef8833ec7b8589" title="将两个系统时间相加，并检查溢出" alt="" coords="479,132,603,159"/>
+<area shape="rect" href="group__xwos__time.html#gad144b9695441072c91d83aabc54ab5c4" title="XWOS API：获取当前CPU的系统时间点" alt="" coords="498,183,583,209"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
+  </ul>
+</div>
+</body>
+</html>

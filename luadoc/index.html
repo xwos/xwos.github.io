@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>XWLUA参考手册</title>
+    <link rel="stylesheet" href="ldoc_new.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>XWLUA</h1>
+
+
+
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="modules/xwtm.html">xwtm</a></li>
+  <li><a href="modules/xwxt.html">xwxt</a></li>
+  <li><a href="modules/xwos.skd.html">xwos.skd</a></li>
+  <li><a href="modules/xwos.thd.html">xwos.thd</a></li>
+  <li><a href="modules/xwos.cthd.html">xwos.cthd</a></li>
+  <li><a href="modules/xwos.lock.mtx.html">xwos.lock.mtx</a></li>
+  <li><a href="modules/xwos.lock.splk.html">xwos.lock.splk</a></li>
+  <li><a href="modules/xwos.lock.sqlk.html">xwos.lock.sqlk</a></li>
+  <li><a href="modules/xwos.sync.sem.html">xwos.sync.sem</a></li>
+  <li><a href="modules/xwos.sync.cond.html">xwos.sync.cond</a></li>
+  <li><a href="modules/xwos.sync.flg.html">xwos.sync.flg</a></li>
+  <li><a href="modules/xwos.sync.br.html">xwos.sync.br</a></li>
+  <li><a href="modules/xwos.sync.sel.html">xwos.sync.sel</a></li>
+  <li><a href="modules/xwos.pm.html">xwos.pm</a></li>
+</ul>
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><a href="classes/xwlib.bmp.html">xwlib.bmp</a></li>
+  <li><a href="classes/thdsp.html">thdsp</a></li>
+  <li><a href="classes/mtxsp.html">mtxsp</a></li>
+  <li><a href="classes/splksp.html">splksp</a></li>
+  <li><a href="classes/sqlksp.html">sqlksp</a></li>
+  <li><a href="classes/semsp.html">semsp</a></li>
+  <li><a href="classes/condsp.html">condsp</a></li>
+  <li><a href="classes/flgsp.html">flgsp</a></li>
+  <li><a href="classes/brsp.html">brsp</a></li>
+  <li><a href="classes/selsp.html">selsp</a></li>
+  <li><a href="classes/xwds.soc.html">xwds.soc</a></li>
+  <li><a href="classes/xwds.uart.html">xwds.uart</a></li>
+  <li><a href="classes/xwds.i2cm.html">xwds.i2cm</a></li>
+  <li><a href="classes/xwds.spim.html">xwds.spim</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+
+  <h2>XWOS LUA API参考手册</h2>
+  <p><a href="/"><strong>返回首页</strong></a></p>
+
+<h2>Modules</h2>
+<table class="module_list">
+	<tr>
+		<td class="name"  nowrap><a href="modules/xwtm.html">xwtm</a></td>
+		<td class="summary">XWLUA模块：系统时间</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="modules/xwxt.html">xwxt</a></td>
+		<td class="summary">XWLUA模块：全局导出表</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="modules/xwos.skd.html">xwos.skd</a></td>
+		<td class="summary">XWLUA模块：调度器</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="modules/xwos.thd.html">xwos.thd</a></td>
+		<td class="summary">XWLUA模块：线程</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="modules/xwos.cthd.html">xwos.cthd</a></td>
+		<td class="summary">XWLUA模块：当前线程</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="modules/xwos.lock.mtx.html">xwos.lock.mtx</a></td>
+		<td class="summary">XWLUA模块：互斥锁</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="modules/xwos.lock.splk.html">xwos.lock.splk</a></td>
+		<td class="summary">XWLUA模块：自旋锁</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="modules/xwos.lock.sqlk.html">xwos.lock.sqlk</a></td>
+		<td class="summary">XWLUA模块：顺序锁</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="modules/xwos.sync.sem.html">xwos.sync.sem</a></td>
+		<td class="summary">XWLUA模块：信号量</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="modules/xwos.sync.cond.html">xwos.sync.cond</a></td>
+		<td class="summary">XWLUA模块：条件量</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="modules/xwos.sync.flg.html">xwos.sync.flg</a></td>
+		<td class="summary">XWLUA模块：事件标志</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="modules/xwos.sync.br.html">xwos.sync.br</a></td>
+		<td class="summary">XWLUA模块：线程栅栏</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="modules/xwos.sync.sel.html">xwos.sync.sel</a></td>
+		<td class="summary">XWLUA模块：信号选择器</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="modules/xwos.pm.html">xwos.pm</a></td>
+		<td class="summary">XWLUA模块：电源管理</td>
+	</tr>
+</table>
+<h2>Classes</h2>
+<table class="module_list">
+	<tr>
+		<td class="name"  nowrap><a href="classes/xwlib.bmp.html">xwlib.bmp</a></td>
+		<td class="summary">XWLUA模块：位图</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/thdsp.html">thdsp</a></td>
+		<td class="summary">XWLUA类：线程对象强指针</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/mtxsp.html">mtxsp</a></td>
+		<td class="summary">XWLUA类：互斥锁对象强指针</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/splksp.html">splksp</a></td>
+		<td class="summary">XWLUA类：自旋锁对象强指针</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/sqlksp.html">sqlksp</a></td>
+		<td class="summary">XWLUA类：顺序锁对象强指针</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/semsp.html">semsp</a></td>
+		<td class="summary">XWLUA类：信号量对象强指针</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/condsp.html">condsp</a></td>
+		<td class="summary">XWLUA类：条件量对象强指针</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/flgsp.html">flgsp</a></td>
+		<td class="summary">XWLUA类：事件标志对象强指针</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/brsp.html">brsp</a></td>
+		<td class="summary">XWLUA类：线程栅栏对象强指针</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/selsp.html">selsp</a></td>
+		<td class="summary">XWLUA类：信号选择器对象强指针</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/xwds.soc.html">xwds.soc</a></td>
+		<td class="summary">XWLUA模块：SOC</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/xwds.uart.html">xwds.uart</a></td>
+		<td class="summary">XWLUA模块：UART</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/xwds.i2cm.html">xwds.i2cm</a></td>
+		<td class="summary">XWLUA模块：I2C主机模式控制器</td>
+	</tr>
+	<tr>
+		<td class="name"  nowrap><a href="classes/xwds.spim.html">xwds.spim</a></td>
+		<td class="summary">XWLUA模块：SPI主机模式控制器</td>
+	</tr>
+</table>
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2022-06-12 00:34:12 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="线程从一个时间起点睡眠到另一个时间点"><meta name="keywords" content="rust, rustlang, rust-lang, sleep_from"><title>sleep_from in xwrust::xwos::cthd - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script>
+    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc fn"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../xwrust/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../../xwrust/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div>
+        </a><div class="sidebar-elems"><h2 class="location"><a href="index.html">In xwrust::xwos::cthd</a></h2><div id="sidebar-vars" data-name="sleep_from" data-ty="fn" data-relpath=""></div><script defer src="sidebar-items.js"></script></div></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../xwrust/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><div id="settings-menu" tabindex="-1">
+                                <a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div>
+                        </div></form></nav></div><section id="main-content" class="content"><div class="main-heading">
+    <h1 class="fqn"><span class="in-band">Function <a href="../../index.html">xwrust</a>::<wbr><a href="../index.html">xwos</a>::<wbr><a href="index.html">cthd</a>::<wbr><a class="fn" href="#">sleep_from</a><button id="copy-path" onclick="copy_path(this)" title="Copy item path to clipboard"><img src="../../../clipboard.svg" width="19" height="18" alt="Copy item path"></button></span></h1><span class="out-of-band"><a class="srclink" href="../../../src/xwrust/xwos/cthd.rs.html#249-255">source</a> · <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class="inner">&#x2212;</span>]</a></span></div><div class="docblock item-decl"><pre class="rust fn"><code>pub fn sleep_from(from: <a class="type" href="../../types/type.XwTm.html" title="type xwrust::types::XwTm">XwTm</a>, dur: <a class="type" href="../../types/type.XwTm.html" title="type xwrust::types::XwTm">XwTm</a>) -&gt; (<a class="type" href="../../types/type.XwEr.html" title="type xwrust::types::XwEr">XwEr</a>, <a class="type" href="../../types/type.XwTm.html" title="type xwrust::types::XwTm">XwTm</a>)</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>线程从一个时间起点睡眠到另一个时间点</p>
+<p>调用此方法前，需要先确定一个时间起点 <code>from</code> ，可以通过 <code>xwtm::now()</code> 获取当前的系统时间作为起点。
+唤醒时间为 <code>from</code> + <code>dur</code> 。
+此方法会将线程唤醒时的系统时间返回，可作为下一次调用的时间起点。
+由此，循环调用，可以形成周期为 <code>dur</code> ，更为精确的周期性睡眠唤醒。</p>
+<h2 id="参数说明"><a href="#参数说明">参数说明</a></h2>
+<ul>
+<li>from: 时间起点</li>
+<li>dur: 期望被唤醒的时间增量</li>
+</ul>
+<h2 id="返回值-rc-from"><a href="#返回值-rc-from">返回值 (rc, from)</a></h2>
+<ul>
+<li>rc
+<ul>
+<li>0: 睡眠成功</li>
+<li>-EINTR: 睡眠被中断</li>
+<li>-ETIMEDOUT: 时间点是过去</li>
+</ul>
+</li>
+<li>from: 线程唤醒时的系统时间</li>
+</ul>
+<h2 id="上下文"><a href="#上下文">上下文</a></h2>
+<ul>
+<li>线程</li>
+</ul>
+<h2 id="示例"><a href="#示例">示例</a></h2>
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use</span> <span class="kw">use</span> <span class="ident">xwrust::xwos::cthd</span>;
+<span class="kw">use</span> <span class="kw">use</span> <span class="ident">xwrust::xwtx</span>;
+
+<span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">from</span> <span class="op">=</span> <span class="ident">xwtm::now</span>();
+<span class="kw">loop</span> {
+    <span class="kw">let</span> <span class="kw-2">mut</span> (<span class="ident">rc</span>, <span class="ident">from</span>) <span class="op">=</span> <span class="ident">cthd::sleep_from</span>(<span class="ident">from</span>, <span class="ident">xwtm::s</span>(<span class="number">1</span>)); <span class="comment">// 从from开始睡眠1s</span>
+}</code></pre></div>
+</div></details></section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="xwrust" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.63.0-nightly (ee160f2f5 2022-05-23)" ></div>
+</body></html>

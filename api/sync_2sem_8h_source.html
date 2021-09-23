@@ -1,0 +1,315 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.3"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>XWOS API: xwos/osal/sync/sem.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<a href="/" class="github-corner" title="返回首页">
+  <svg viewBox="0 0 250 250" style="position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path
+      d="M 0 0 L 250 250 L 250 0 L 0 0 z M 181.19336 6.25 A 18.281986 19.638775 0 0 1 192.79297 10.798828 L 241.54492 54.201172 A 6.0939954 6.5462585 0 0 1 237.64453 65.787109 L 233.13477 65.787109 A 3.0469979 3.2731292 0 0 0 230.08789 69.060547 L 230.08789 111.61133 A 18.281986 19.638775 0 0 1 211.80664 131.25 L 205.71289 131.25 A 12.187991 13.092517 0 0 1 193.52344 118.1582 L 193.52344 98.519531 A 12.187991 13.092517 0 0 0 181.33594 85.425781 A 12.187991 13.092517 0 0 0 169.14844 98.519531 L 169.14844 118.1582 A 12.187991 13.092517 0 0 1 156.95898 131.25 L 150.86523 131.25 A 18.281986 19.638775 0 0 1 132.58398 111.61133 L 132.58398 68.994141 A 3.0469979 3.2731292 0 0 0 129.29297 65.722656 L 124.7832 65.722656 A 6.0939954 6.5462585 0 0 1 120.88281 54.201172 L 169.39258 10.798828 A 18.281986 19.638775 0 0 1 181.19336 6.25 z "/>
+  </svg>
+</a>
+<style>.github-corner:hover</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">XWOS API
+   &#160;<span id="projectnumber">3.0</span>
+   </div>
+   <div id="projectbrief">XWOS API参考手册</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.3 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('sync_2sem_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">sem.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="sync_2sem_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#ifndef __xwos_osal_sync_sem_h__</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#define __xwos_osal_sync_sem_h__</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;<a class="code" href="standard_8h.html">xwos/standard.h</a>&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;<a class="code" href="jack_2sync_2sem_8h.html">xwos/osal/jack/sync/sem.h</a>&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;<a class="code" href="time_8h.html">xwos/osal/time.h</a>&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;<a class="code" href="sync_2sel_8h.html">xwos/osal/sync/sel.h</a>&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="structxwos__sem.html">   30</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structxwos__sem.html">xwos_sem</a> {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="structxwos__sem.html#a2f79380f6f46abd1fa9a78ab229172a3">   31</a></span>        <span class="keyword">struct </span>xwosdl_sem <a class="code hl_variable" href="structxwos__sem.html#a2f79380f6f46abd1fa9a78ab229172a3">ossem</a>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>};</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="structxwos__sem__d.html">   37</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="structxwos__sem__d.html#a4cb5ddbf657c2377c90c89b8beb95b01">   38</a></span>        <span class="keyword">struct </span><a class="code hl_struct" href="structxwos__sem.html">xwos_sem</a> * <a class="code hl_variable" href="structxwos__sem__d.html#a4cb5ddbf657c2377c90c89b8beb95b01">sem</a>; </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="structxwos__sem__d.html#a6b87f8ef266ed3ca39f94c69ebbc2411">   39</a></span>        <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> <a class="code hl_variable" href="structxwos__sem__d.html#a6b87f8ef266ed3ca39f94c69ebbc2411">tik</a>; </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>} <a class="code hl_struct" href="structxwos__sem__d.html">xwos_sem_d</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="group__xwos__sync__sem.html#ga5750ad9e8b8d0eb0726140e5c12bccb2">   45</a></span><span class="preprocessor">#define XWOS_SEM_NILD ((xwos_sem_d){NULL, 0,})</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="group__xwos__sync__sem.html#gaef37596ed9c49312579530b2218150ad">   60</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__sem.html#gaef37596ed9c49312579530b2218150ad">xwos_sem_init</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sem.html">xwos_sem</a> * sem, <a class="code hl_typedef" href="group__xwos__lib__type.html#ga89fd1295e4575443671eb9ae21c34567">xwssq_t</a> val, <a class="code hl_typedef" href="group__xwos__lib__type.html#ga89fd1295e4575443671eb9ae21c34567">xwssq_t</a> max)</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>{</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="keywordflow">return</span> xwosdl_sem_init(&amp;sem-&gt;<a class="code hl_variable" href="structxwos__sem.html#a2f79380f6f46abd1fa9a78ab229172a3">ossem</a>, val, max);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>}</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="group__xwos__sync__sem.html#ga91a3f44977a865f10e9a46f13e261d3a">   75</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__sem.html#ga91a3f44977a865f10e9a46f13e261d3a">xwos_sem_fini</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sem.html">xwos_sem</a> * sem)</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>{</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        <span class="keywordflow">return</span> xwosdl_sem_fini(&amp;sem-&gt;<a class="code hl_variable" href="structxwos__sem.html#a2f79380f6f46abd1fa9a78ab229172a3">ossem</a>);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>}</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="group__xwos__sync__sem.html#ga70b16e65e7f3b8bbb87435804f1829d3">   94</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__sem.html#ga70b16e65e7f3b8bbb87435804f1829d3">xwos_sem_grab</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sem.html">xwos_sem</a> * sem)</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>{</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <span class="keywordflow">return</span> xwosdl_sem_grab(&amp;sem-&gt;<a class="code hl_variable" href="structxwos__sem.html#a2f79380f6f46abd1fa9a78ab229172a3">ossem</a>);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>}</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="group__xwos__sync__sem.html#ga83a3b567eb40632d954a35b98ecf1950">  113</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__sem.html#ga83a3b567eb40632d954a35b98ecf1950">xwos_sem_put</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sem.html">xwos_sem</a> * sem)</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>{</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>        <span class="keywordflow">return</span> xwosdl_sem_put(&amp;sem-&gt;<a class="code hl_variable" href="structxwos__sem.html#a2f79380f6f46abd1fa9a78ab229172a3">ossem</a>);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>}</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="group__xwos__sync__sem.html#gadebdd16a61933d67d2702355fcd543e2">  132</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__sem.html#gadebdd16a61933d67d2702355fcd543e2">xwos_sem_create</a>(<a class="code hl_struct" href="structxwos__sem__d.html">xwos_sem_d</a> * semd, <a class="code hl_typedef" href="group__xwos__lib__type.html#ga89fd1295e4575443671eb9ae21c34567">xwssq_t</a> val, <a class="code hl_typedef" href="group__xwos__lib__type.html#ga89fd1295e4575443671eb9ae21c34567">xwssq_t</a> max)</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>{</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        <span class="keywordflow">return</span> xwosdl_sem_create((xwosdl_sem_d *)semd, val, max);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>}</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno"><a class="line" href="group__xwos__sync__sem.html#ga5bac50165dee16acce035f3a88d96d1b">  147</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__sem.html#ga5bac50165dee16acce035f3a88d96d1b">xwos_sem_delete</a>(<a class="code hl_struct" href="structxwos__sem__d.html">xwos_sem_d</a> semd)</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>{</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>        <span class="keywordflow">return</span> xwosdl_sem_delete(&amp;semd.<a class="code hl_variable" href="structxwos__sem__d.html#a4cb5ddbf657c2377c90c89b8beb95b01">sem</a>-&gt;<a class="code hl_variable" href="structxwos__sem.html#a2f79380f6f46abd1fa9a78ab229172a3">ossem</a>, semd.<a class="code hl_variable" href="structxwos__sem__d.html#a6b87f8ef266ed3ca39f94c69ebbc2411">tik</a>);</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>}</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="group__xwos__sync__sem.html#gabd6b221831f9154af4061281e4de3bbe">  164</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__sem.html#gabd6b221831f9154af4061281e4de3bbe">xwos_sem_acquire</a>(<a class="code hl_struct" href="structxwos__sem__d.html">xwos_sem_d</a> semd)</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>{</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>        <span class="keywordflow">return</span> xwosdl_sem_acquire(&amp;semd.<a class="code hl_variable" href="structxwos__sem__d.html#a4cb5ddbf657c2377c90c89b8beb95b01">sem</a>-&gt;<a class="code hl_variable" href="structxwos__sem.html#a2f79380f6f46abd1fa9a78ab229172a3">ossem</a>, semd.<a class="code hl_variable" href="structxwos__sem__d.html#a6b87f8ef266ed3ca39f94c69ebbc2411">tik</a>);</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>}</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno"><a class="line" href="group__xwos__sync__sem.html#ga2fd69e5ea645814fa3a52241167a9e1e">  181</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__sem.html#ga2fd69e5ea645814fa3a52241167a9e1e">xwos_sem_release</a>(<a class="code hl_struct" href="structxwos__sem__d.html">xwos_sem_d</a> semd)</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>{</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>        <span class="keywordflow">return</span> xwosdl_sem_release(&amp;semd.<a class="code hl_variable" href="structxwos__sem__d.html#a4cb5ddbf657c2377c90c89b8beb95b01">sem</a>-&gt;<a class="code hl_variable" href="structxwos__sem.html#a2f79380f6f46abd1fa9a78ab229172a3">ossem</a>, semd.<a class="code hl_variable" href="structxwos__sem__d.html#a6b87f8ef266ed3ca39f94c69ebbc2411">tik</a>);</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>}</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span> </div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno"><a class="line" href="group__xwos__sync__sem.html#ga7a9fce6442e01999d99844112d604595">  194</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> <a class="code hl_function" href="group__xwos__sync__sem.html#ga7a9fce6442e01999d99844112d604595">xwos_sem_gettik</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sem.html">xwos_sem</a> * sem)</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>{</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>        <span class="keywordflow">return</span> xwosdl_sem_gettik(&amp;sem-&gt;<a class="code hl_variable" href="structxwos__sem.html#a2f79380f6f46abd1fa9a78ab229172a3">ossem</a>);</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>}</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span> </div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno"><a class="line" href="group__xwos__sync__sem.html#ga3db0f00f30ee777e71d08b431cc7cfb1">  207</a></span><a class="code hl_struct" href="structxwos__sem__d.html">xwos_sem_d</a> <a class="code hl_function" href="group__xwos__sync__sem.html#ga3db0f00f30ee777e71d08b431cc7cfb1">xwos_sem_getd</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sem.html">xwos_sem</a> * sem)</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>{</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>        <a class="code hl_struct" href="structxwos__sem__d.html">xwos_sem_d</a> semd;</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span> </div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>        semd.<a class="code hl_variable" href="structxwos__sem__d.html#a4cb5ddbf657c2377c90c89b8beb95b01">sem</a> = sem;</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>        semd.<a class="code hl_variable" href="structxwos__sem__d.html#a6b87f8ef266ed3ca39f94c69ebbc2411">tik</a> = xwosdl_sem_gettik(&amp;sem-&gt;<a class="code hl_variable" href="structxwos__sem.html#a2f79380f6f46abd1fa9a78ab229172a3">ossem</a>);</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>        <span class="keywordflow">return</span> semd;</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>}</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno"><a class="line" href="group__xwos__sync__sem.html#ga4a04b2c6003ed59a0f82c7b8ed8c7f68">  232</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__sem.html#ga4a04b2c6003ed59a0f82c7b8ed8c7f68">xwos_sem_bind</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sem.html">xwos_sem</a> * sem, <span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sel.html">xwos_sel</a> * sel, <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> pos)</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>{</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>        <span class="keywordflow">return</span> xwosdl_sem_bind(&amp;sem-&gt;<a class="code hl_variable" href="structxwos__sem.html#a2f79380f6f46abd1fa9a78ab229172a3">ossem</a>, &amp;sel-&gt;<a class="code hl_variable" href="structxwos__sel.html#adaf7f267f13f41092f7d4ce9a8e464d7">ossel</a>, pos);</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>}</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno"><a class="line" href="group__xwos__sync__sem.html#ga4aab3913939aa6cfa040af1039e564d5">  249</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__sem.html#ga4aab3913939aa6cfa040af1039e564d5">xwos_sem_unbind</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sem.html">xwos_sem</a> * sem, <span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sel.html">xwos_sel</a> * sel)</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>{</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>        <span class="keywordflow">return</span> xwosdl_sem_unbind(&amp;sem-&gt;<a class="code hl_variable" href="structxwos__sem.html#a2f79380f6f46abd1fa9a78ab229172a3">ossem</a>, &amp;sel-&gt;<a class="code hl_variable" href="structxwos__sel.html#adaf7f267f13f41092f7d4ce9a8e464d7">ossel</a>);</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>}</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno"><a class="line" href="group__xwos__sync__sem.html#ga9f215ee967e9f3dbd1d7e34402109849">  270</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__sem.html#ga9f215ee967e9f3dbd1d7e34402109849">xwos_sem_freeze</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sem.html">xwos_sem</a> * sem)</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>{</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>        <span class="keywordflow">return</span> xwosdl_sem_freeze(&amp;sem-&gt;<a class="code hl_variable" href="structxwos__sem.html#a2f79380f6f46abd1fa9a78ab229172a3">ossem</a>);</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>}</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span> </div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno"><a class="line" href="group__xwos__sync__sem.html#gadbbb35963b95d865ddb392a97639ec87">  288</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__sem.html#gadbbb35963b95d865ddb392a97639ec87">xwos_sem_thaw</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sem.html">xwos_sem</a> * sem)</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>{</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>        <span class="keywordflow">return</span> xwosdl_sem_thaw(&amp;sem-&gt;<a class="code hl_variable" href="structxwos__sem.html#a2f79380f6f46abd1fa9a78ab229172a3">ossem</a>);</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>}</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span> </div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno"><a class="line" href="group__xwos__sync__sem.html#gaf6f291eaa8c268dccb6ebc675a24755b">  307</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__sem.html#gaf6f291eaa8c268dccb6ebc675a24755b">xwos_sem_post</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sem.html">xwos_sem</a> * sem)</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>{</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>        <span class="keywordflow">return</span> xwosdl_sem_post(&amp;sem-&gt;<a class="code hl_variable" href="structxwos__sem.html#a2f79380f6f46abd1fa9a78ab229172a3">ossem</a>);</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>}</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span> </div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno"><a class="line" href="group__xwos__sync__sem.html#ga5a7b38f68e2fc5159909a1eb4b7db7a2">  326</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__sem.html#ga5a7b38f68e2fc5159909a1eb4b7db7a2">xwos_sem_wait</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sem.html">xwos_sem</a> * sem)</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>{</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>        <span class="keywordflow">return</span> xwosdl_sem_wait(&amp;sem-&gt;<a class="code hl_variable" href="structxwos__sem.html#a2f79380f6f46abd1fa9a78ab229172a3">ossem</a>);</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>}</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span> </div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno"><a class="line" href="group__xwos__sync__sem.html#gab9fce6b4dc3add4c714dfa1c8041593f">  349</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__sem.html#gab9fce6b4dc3add4c714dfa1c8041593f">xwos_sem_wait_to</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sem.html">xwos_sem</a> * sem, <a class="code hl_typedef" href="group__xwos__lib__type.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a> to)</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>{</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>        <span class="keywordflow">return</span> xwosdl_sem_wait_to(&amp;sem-&gt;<a class="code hl_variable" href="structxwos__sem.html#a2f79380f6f46abd1fa9a78ab229172a3">ossem</a>, to);</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>}</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span> </div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno"><a class="line" href="group__xwos__sync__sem.html#ga794e05587874027d02d0e4c87f9c2893">  367</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__sem.html#ga794e05587874027d02d0e4c87f9c2893">xwos_sem_wait_unintr</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sem.html">xwos_sem</a> * sem)</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>{</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>        <span class="keywordflow">return</span> xwosdl_sem_wait_unintr(&amp;sem-&gt;<a class="code hl_variable" href="structxwos__sem.html#a2f79380f6f46abd1fa9a78ab229172a3">ossem</a>);</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>}</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span> </div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno"><a class="line" href="group__xwos__sync__sem.html#ga453bbb4747cdd5cc94ddb9b988ee0866">  385</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__sem.html#ga453bbb4747cdd5cc94ddb9b988ee0866">xwos_sem_trywait</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sem.html">xwos_sem</a> * sem)</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>{</div>
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno">  387</span>        <span class="keywordflow">return</span> xwosdl_sem_trywait(&amp;sem-&gt;<a class="code hl_variable" href="structxwos__sem.html#a2f79380f6f46abd1fa9a78ab229172a3">ossem</a>);</div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span>}</div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span> </div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span><span class="keyword">static</span> <a class="code hl_define" href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno"><a class="line" href="group__xwos__sync__sem.html#gae60a79b7b0856e27b2fc29164c3398c6">  401</a></span><a class="code hl_typedef" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> <a class="code hl_function" href="group__xwos__sync__sem.html#gae60a79b7b0856e27b2fc29164c3398c6">xwos_sem_getvalue</a>(<span class="keyword">struct</span> <a class="code hl_struct" href="structxwos__sem.html">xwos_sem</a> * sem, <a class="code hl_typedef" href="group__xwos__lib__type.html#ga89fd1295e4575443671eb9ae21c34567">xwssq_t</a> * sval)</div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span>{</div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>        <span class="keywordflow">return</span> xwosdl_sem_getvalue(&amp;sem-&gt;<a class="code hl_variable" href="structxwos__sem.html#a2f79380f6f46abd1fa9a78ab229172a3">ossem</a>, sval);</div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>}</div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span> </div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span><span class="preprocessor">#endif </span><span class="comment">/* xwos/osal/sync/sem.h */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="agroup__xwos__lib__compiler_html_ga9210398f1f7e1083da5b23f4693e6b89"><div class="ttname"><a href="group__xwos__lib__compiler.html#ga9210398f1f7e1083da5b23f4693e6b89">__xwos_inline_api</a></div><div class="ttdeci">#define __xwos_inline_api</div><div class="ttdef"><b>Definition:</b> <a href="compiler_8h_source.html#l00179">compiler.h:179</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga06847ea8c7edb2b1f166288b230f251f"><div class="ttname"><a href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a></div><div class="ttdeci">signed long xwer_t</div><div class="ttdef"><b>Definition:</b> <a href="type_8h_source.html#l00193">type.h:193</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga3079bb70c0290f939f9c6896fe43ec61"><div class="ttname"><a href="group__xwos__lib__type.html#ga3079bb70c0290f939f9c6896fe43ec61">xwtm_t</a></div><div class="ttdeci">xws64_t xwtm_t</div><div class="ttdef"><b>Definition:</b> <a href="type_8h_source.html#l00209">type.h:209</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga59fe68c80516b22de8dccb84275d23f2"><div class="ttname"><a href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a></div><div class="ttdeci">unsigned long xwsq_t</div><div class="ttdef"><b>Definition:</b> <a href="type_8h_source.html#l00145">type.h:145</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga89fd1295e4575443671eb9ae21c34567"><div class="ttname"><a href="group__xwos__lib__type.html#ga89fd1295e4575443671eb9ae21c34567">xwssq_t</a></div><div class="ttdeci">signed long xwssq_t</div><div class="ttdef"><b>Definition:</b> <a href="type_8h_source.html#l00153">type.h:153</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__sem_html_ga2fd69e5ea645814fa3a52241167a9e1e"><div class="ttname"><a href="group__xwos__sync__sem.html#ga2fd69e5ea645814fa3a52241167a9e1e">xwos_sem_release</a></div><div class="ttdeci">static xwer_t xwos_sem_release(xwos_sem_d semd)</div><div class="ttdoc">XWOS API：检查对象的标签并减少引用计数</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sem_8h_source.html#l00181">sem.h:181</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__sem_html_ga3db0f00f30ee777e71d08b431cc7cfb1"><div class="ttname"><a href="group__xwos__sync__sem.html#ga3db0f00f30ee777e71d08b431cc7cfb1">xwos_sem_getd</a></div><div class="ttdeci">static xwos_sem_d xwos_sem_getd(struct xwos_sem *sem)</div><div class="ttdoc">XWOS API：获取信号量对象描述符</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sem_8h_source.html#l00207">sem.h:207</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__sem_html_ga453bbb4747cdd5cc94ddb9b988ee0866"><div class="ttname"><a href="group__xwos__sync__sem.html#ga453bbb4747cdd5cc94ddb9b988ee0866">xwos_sem_trywait</a></div><div class="ttdeci">static xwer_t xwos_sem_trywait(struct xwos_sem *sem)</div><div class="ttdoc">XWOS API：尝试获取信号量</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sem_8h_source.html#l00385">sem.h:385</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__sem_html_ga4a04b2c6003ed59a0f82c7b8ed8c7f68"><div class="ttname"><a href="group__xwos__sync__sem.html#ga4a04b2c6003ed59a0f82c7b8ed8c7f68">xwos_sem_bind</a></div><div class="ttdeci">static xwer_t xwos_sem_bind(struct xwos_sem *sem, struct xwos_sel *sel, xwsq_t pos)</div><div class="ttdoc">XWOS API：绑定信号量对象到信号选择器</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sem_8h_source.html#l00232">sem.h:232</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__sem_html_ga4aab3913939aa6cfa040af1039e564d5"><div class="ttname"><a href="group__xwos__sync__sem.html#ga4aab3913939aa6cfa040af1039e564d5">xwos_sem_unbind</a></div><div class="ttdeci">static xwer_t xwos_sem_unbind(struct xwos_sem *sem, struct xwos_sel *sel)</div><div class="ttdoc">XWOS API：从信号选择器上解绑信号量对象</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sem_8h_source.html#l00249">sem.h:249</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__sem_html_ga5a7b38f68e2fc5159909a1eb4b7db7a2"><div class="ttname"><a href="group__xwos__sync__sem.html#ga5a7b38f68e2fc5159909a1eb4b7db7a2">xwos_sem_wait</a></div><div class="ttdeci">static xwer_t xwos_sem_wait(struct xwos_sem *sem)</div><div class="ttdoc">XWOS API：等待并获取信号量</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sem_8h_source.html#l00326">sem.h:326</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__sem_html_ga5bac50165dee16acce035f3a88d96d1b"><div class="ttname"><a href="group__xwos__sync__sem.html#ga5bac50165dee16acce035f3a88d96d1b">xwos_sem_delete</a></div><div class="ttdeci">static xwer_t xwos_sem_delete(xwos_sem_d semd)</div><div class="ttdoc">XWOS API：删除动态方式创建的信号量对象</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sem_8h_source.html#l00147">sem.h:147</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__sem_html_ga70b16e65e7f3b8bbb87435804f1829d3"><div class="ttname"><a href="group__xwos__sync__sem.html#ga70b16e65e7f3b8bbb87435804f1829d3">xwos_sem_grab</a></div><div class="ttdeci">static xwer_t xwos_sem_grab(struct xwos_sem *sem)</div><div class="ttdoc">XWOS API：增加信号量对象的引用计数</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sem_8h_source.html#l00094">sem.h:94</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__sem_html_ga794e05587874027d02d0e4c87f9c2893"><div class="ttname"><a href="group__xwos__sync__sem.html#ga794e05587874027d02d0e4c87f9c2893">xwos_sem_wait_unintr</a></div><div class="ttdeci">static xwer_t xwos_sem_wait_unintr(struct xwos_sem *sem)</div><div class="ttdoc">XWOS API：等待并获取信号量，且等待不可被中断</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sem_8h_source.html#l00367">sem.h:367</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__sem_html_ga7a9fce6442e01999d99844112d604595"><div class="ttname"><a href="group__xwos__sync__sem.html#ga7a9fce6442e01999d99844112d604595">xwos_sem_gettik</a></div><div class="ttdeci">static xwsq_t xwos_sem_gettik(struct xwos_sem *sem)</div><div class="ttdoc">XWOS API：获取信号量对象的标签</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sem_8h_source.html#l00194">sem.h:194</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__sem_html_ga83a3b567eb40632d954a35b98ecf1950"><div class="ttname"><a href="group__xwos__sync__sem.html#ga83a3b567eb40632d954a35b98ecf1950">xwos_sem_put</a></div><div class="ttdeci">static xwer_t xwos_sem_put(struct xwos_sem *sem)</div><div class="ttdoc">XWOS API：减少信号量对象的引用计数</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sem_8h_source.html#l00113">sem.h:113</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__sem_html_ga91a3f44977a865f10e9a46f13e261d3a"><div class="ttname"><a href="group__xwos__sync__sem.html#ga91a3f44977a865f10e9a46f13e261d3a">xwos_sem_fini</a></div><div class="ttdeci">static xwer_t xwos_sem_fini(struct xwos_sem *sem)</div><div class="ttdoc">XWOS API：销毁静态方式初始化的信号量对象</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sem_8h_source.html#l00075">sem.h:75</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__sem_html_ga9f215ee967e9f3dbd1d7e34402109849"><div class="ttname"><a href="group__xwos__sync__sem.html#ga9f215ee967e9f3dbd1d7e34402109849">xwos_sem_freeze</a></div><div class="ttdeci">static xwer_t xwos_sem_freeze(struct xwos_sem *sem)</div><div class="ttdoc">XWOS API：冻结信号量对象</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sem_8h_source.html#l00270">sem.h:270</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__sem_html_gab9fce6b4dc3add4c714dfa1c8041593f"><div class="ttname"><a href="group__xwos__sync__sem.html#gab9fce6b4dc3add4c714dfa1c8041593f">xwos_sem_wait_to</a></div><div class="ttdeci">static xwer_t xwos_sem_wait_to(struct xwos_sem *sem, xwtm_t to)</div><div class="ttdoc">XWOS API：限时等待并获取信号量</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sem_8h_source.html#l00349">sem.h:349</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__sem_html_gabd6b221831f9154af4061281e4de3bbe"><div class="ttname"><a href="group__xwos__sync__sem.html#gabd6b221831f9154af4061281e4de3bbe">xwos_sem_acquire</a></div><div class="ttdeci">static xwer_t xwos_sem_acquire(xwos_sem_d semd)</div><div class="ttdoc">XWOS API：检查信号量对象的标签并增加引用计数</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sem_8h_source.html#l00164">sem.h:164</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__sem_html_gadbbb35963b95d865ddb392a97639ec87"><div class="ttname"><a href="group__xwos__sync__sem.html#gadbbb35963b95d865ddb392a97639ec87">xwos_sem_thaw</a></div><div class="ttdeci">static xwer_t xwos_sem_thaw(struct xwos_sem *sem)</div><div class="ttdoc">XWOS API：解冻信号量对象</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sem_8h_source.html#l00288">sem.h:288</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__sem_html_gadebdd16a61933d67d2702355fcd543e2"><div class="ttname"><a href="group__xwos__sync__sem.html#gadebdd16a61933d67d2702355fcd543e2">xwos_sem_create</a></div><div class="ttdeci">static xwer_t xwos_sem_create(xwos_sem_d *semd, xwssq_t val, xwssq_t max)</div><div class="ttdoc">XWOS API：动态方式创建信号量对象</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sem_8h_source.html#l00132">sem.h:132</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__sem_html_gae60a79b7b0856e27b2fc29164c3398c6"><div class="ttname"><a href="group__xwos__sync__sem.html#gae60a79b7b0856e27b2fc29164c3398c6">xwos_sem_getvalue</a></div><div class="ttdeci">static xwer_t xwos_sem_getvalue(struct xwos_sem *sem, xwssq_t *sval)</div><div class="ttdoc">XWOS API：读取信号量对象计数器的值</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sem_8h_source.html#l00401">sem.h:401</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__sem_html_gaef37596ed9c49312579530b2218150ad"><div class="ttname"><a href="group__xwos__sync__sem.html#gaef37596ed9c49312579530b2218150ad">xwos_sem_init</a></div><div class="ttdeci">static xwer_t xwos_sem_init(struct xwos_sem *sem, xwssq_t val, xwssq_t max)</div><div class="ttdoc">XWOS API：静态方式初始化信号量对象</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sem_8h_source.html#l00060">sem.h:60</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__sem_html_gaf6f291eaa8c268dccb6ebc675a24755b"><div class="ttname"><a href="group__xwos__sync__sem.html#gaf6f291eaa8c268dccb6ebc675a24755b">xwos_sem_post</a></div><div class="ttdeci">static xwer_t xwos_sem_post(struct xwos_sem *sem)</div><div class="ttdoc">XWOS API：发布信号量</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sem_8h_source.html#l00307">sem.h:307</a></div></div>
+<div class="ttc" id="ajack_2sync_2sem_8h_html"><div class="ttname"><a href="jack_2sync_2sem_8h.html">sem.h</a></div><div class="ttdoc">操作系统抽象层：信号量接口描述</div></div>
+<div class="ttc" id="astandard_8h_html"><div class="ttname"><a href="standard_8h.html">standard.h</a></div><div class="ttdoc">玄武OS的标准头文件</div></div>
+<div class="ttc" id="astructxwos__sel_html"><div class="ttname"><a href="structxwos__sel.html">xwos_sel</a></div><div class="ttdoc">XWOS API：信号选择器对象</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sel_8h_source.html#l00029">sel.h:29</a></div></div>
+<div class="ttc" id="astructxwos__sel_html_adaf7f267f13f41092f7d4ce9a8e464d7"><div class="ttname"><a href="structxwos__sel.html#adaf7f267f13f41092f7d4ce9a8e464d7">xwos_sel::ossel</a></div><div class="ttdeci">struct xwmp_evt ossel</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sel_8h_source.html#l00030">sel.h:30</a></div></div>
+<div class="ttc" id="astructxwos__sem__d_html"><div class="ttname"><a href="structxwos__sem__d.html">xwos_sem_d</a></div><div class="ttdoc">XWOS API：信号量对象描述符</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sem_8h_source.html#l00037">sem.h:37</a></div></div>
+<div class="ttc" id="astructxwos__sem__d_html_a4cb5ddbf657c2377c90c89b8beb95b01"><div class="ttname"><a href="structxwos__sem__d.html#a4cb5ddbf657c2377c90c89b8beb95b01">xwos_sem_d::sem</a></div><div class="ttdeci">struct xwos_sem * sem</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sem_8h_source.html#l00038">sem.h:38</a></div></div>
+<div class="ttc" id="astructxwos__sem__d_html_a6b87f8ef266ed3ca39f94c69ebbc2411"><div class="ttname"><a href="structxwos__sem__d.html#a6b87f8ef266ed3ca39f94c69ebbc2411">xwos_sem_d::tik</a></div><div class="ttdeci">xwsq_t tik</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sem_8h_source.html#l00039">sem.h:39</a></div></div>
+<div class="ttc" id="astructxwos__sem_html"><div class="ttname"><a href="structxwos__sem.html">xwos_sem</a></div><div class="ttdoc">XWOS API：信号量对象</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sem_8h_source.html#l00030">sem.h:30</a></div></div>
+<div class="ttc" id="astructxwos__sem_html_a2f79380f6f46abd1fa9a78ab229172a3"><div class="ttname"><a href="structxwos__sem.html#a2f79380f6f46abd1fa9a78ab229172a3">xwos_sem::ossem</a></div><div class="ttdeci">struct xwmp_sem ossem</div><div class="ttdef"><b>Definition:</b> <a href="sync_2sem_8h_source.html#l00031">sem.h:31</a></div></div>
+<div class="ttc" id="async_2sel_8h_html"><div class="ttname"><a href="sync_2sel_8h.html">sel.h</a></div><div class="ttdoc">操作系统抽象层：信号选择器</div></div>
+<div class="ttc" id="atime_8h_html"><div class="ttname"><a href="time_8h.html">time.h</a></div><div class="ttdoc">操作系统抽象层：时间</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_43a52829888b753087a6774748486ed5.html">xwos</a></li><li class="navelem"><a class="el" href="dir_acf86ca9b9e1693a183c44f1acf6992c.html">osal</a></li><li class="navelem"><a class="el" href="dir_dc1dda2d8f083c6e53d9aa3dee5f69db.html">sync</a></li><li class="navelem"><a class="el" href="sync_2sem_8h.html">sem.h</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.3 </li>
+  </ul>
+</div>
+</body>
+</html>

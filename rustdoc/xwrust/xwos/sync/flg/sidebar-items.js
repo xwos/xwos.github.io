@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["SIZEOF_XWOS_FLG","XWOS事件标志对象占用的内存大小"]],"enum":[["Action","触发后的动作"],["FlgError","事件标志的错误码"],["Trigger","触发条件"]],"struct":[["Flg","事件标志对象结构体"],["FlgSel","事件标志的选择子"]]});

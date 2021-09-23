@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["SIZEOF_XWOS_THD","XWOS线程对象占用的内存大小"]],"enum":[["ThdJoinState","线程的 `join()/stop()` 状态"]],"fn":[["spawn","新建一个动态线程"]],"struct":[["DThdBuilder","动态线程的工厂模式结构体，可用于配置新线程的属性"],["DThdElement","动态线程的元素"],["DThdHandle","动态线程的句柄"],["SThd","静态线程对象结构体"],["SThdHandle","静态线程的句柄"],["ThdD","XWOS的线程对象描述符"]]});

@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["SIZEOF_XWDS_SOC","XWOS自旋锁占用的内存大小"]],"enum":[["GpioPort","GPIO 端口"]],"struct":[["EirqFlag","外部中断标志"],["Soc","SOC设备"]],"trait":[["Eirq","SOC的特性：外部GPIO中断"],["Gpio","SOC的特性：GPIO"]]});

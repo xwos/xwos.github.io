@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["SIZEOF_XWMQ","消息队列对象占用的内存大小"],["SIZEOF_XWMQ_MSG","消息占用的内存大小"]],"enum":[["XwmqError","消息队列的错误码"]],"struct":[["Xwmq","消息队列对象结构体"],["XwmqRx",""],["XwmqTx",""]]});
