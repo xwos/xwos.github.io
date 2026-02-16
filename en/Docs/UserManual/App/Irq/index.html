@@ -1,0 +1,840 @@
+<!doctype html>
+<html itemscope itemtype="http://schema.org/WebPage" lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="alternate" type="application/rss&#43;xml" href="/en/Docs/UserManual/App/Irq/index.xml">
+<meta name="robots" content="index, follow">
+
+
+<link rel="shortcut icon" href="/favicons/favicon.ico" >
+<link rel="apple-touch-icon" href="/favicons/apple-touch-icon-180x180.png" sizes="180x180">
+<link rel="icon" type="image/png" href="/favicons/favicon-16x16.png" sizes="16x16">
+<link rel="icon" type="image/png" href="/favicons/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/favicons/android-36x36.png" sizes="36x36">
+<link rel="icon" type="image/png" href="/favicons/android-48x48.png" sizes="48x48">
+<link rel="icon" type="image/png" href="/favicons/android-72x72.png" sizes="72x72">
+<link rel="icon" type="image/png" href="/favicons/android-96x96.png" sizes="96x96">
+<link rel="icon" type="image/png" href="/favicons/android-144x144.png" sizes="144x144">
+<link rel="icon" type="image/png" href="/favicons/android-192x192.png" sizes="192x192">
+
+<title>Interrupt | XWOS</title>
+<meta name="description" content="XWOS">
+<meta property="og:url" content="/en/Docs/UserManual/App/Irq/">
+  <meta property="og:site_name" content="XWOS">
+  <meta property="og:title" content="Interrupt">
+  <meta property="og:description" content="CAPI Reference Header File &lt;xwos/osal/irq.h&gt; ">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="website">
+
+  <meta itemprop="name" content="Interrupt">
+  <meta itemprop="description" content="CAPI Reference Header File &lt;xwos/osal/irq.h&gt; ">
+  <meta itemprop="dateModified" content="2026-07-07T14:32:22+08:00">
+  <meta itemprop="wordCount" content="5">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Interrupt">
+  <meta name="twitter:description" content="CAPI Reference Header File &lt;xwos/osal/irq.h&gt; ">
+<link rel="preload" href="/scss/main.min.911e7e0cdbd646d9e38f49bb3d1d9dad2832ff5b46fc6c8c7b0e9562257f0719.css" as="style"><link href="/scss/main.min.911e7e0cdbd646d9e38f49bb3d1d9dad2832ff5b46fc6c8c7b0e9562257f0719.css" rel="stylesheet">
+<script
+  src="https://unpkg.zhimg.com/jquery@3.7.1/dist/jquery.min.js"
+  integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+  crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/css/prism.css"/>
+<link rel="stylesheet" href="https://unpkg.zhimg.com/@docsearch/css@3.6.0"
+  integrity="sha512-AyDFDkYyALC5qoao077IqAOV7UC4oKCBTp+mJfjIt306AIRoBxoEZYDo0kAx/R7RbT+3EYEky1po/F1w1eQt7g=="
+  crossorigin="anonymous" />
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-556RX9P3T5"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-556RX9P3T5');
+        }
+      </script>
+  </head>
+  <body class="td-section">
+    <header>
+      <nav class="td-navbar js-navbar-scroll" data-bs-theme="dark">
+<div class="container-fluid flex-column flex-md-row">
+  <a class="navbar-brand" href="/en/"><span class="navbar-brand__logo navbar-logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2560 2560"><path fill="#00bfff" d="M0 1810.1553l219.82044-530.1552L.13063863 749.84488 530.28555 530.28549 749.71426 125e-7 1280 219.82035 1810.1553.26115l219.5592 530.02434L2560 749.71425 2340.1796 1280.0001l219.559 530.1552-530.1549 219.5592L1810.0244 2560 1280 2340.1796 749.84499 2559.739 530.28576 2029.7145.0 1810.286zM341.42045 891.16725 502.4652 1280.0001 341.42045 1668.8329l388.70206 160.9142 161.04475 388.8328L1280 2057.535l388.8328 161.0449 160.9142-388.8328 388.8326-160.9142-161.045-388.8328 161.045-388.83285-388.702-161.045-160.9144-388.70199L1280 502.46518 891.16726 341.42026 730.12251 730.12225z"/></svg></span><span class="navbar-brand__name">XWOS</span></a>
+  <div class="td-navbar-nav-scroll ms-md-auto" id="main_navbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link active" href="/en/Docs/"><i class="fas fa-book"></i><span>Docs</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/en/CAPI/"><i class='xwico-c'></i><span>CAPI</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/en/LuaAPI/"><i class='xwico-lua'></i><span>LuaAPI</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/RustAPI/xwrust/"><i class='xwico-rust'></i><span>RustAPI</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://gitee.com/xwos/XWOS/" target="_blank" rel="noopener"><i class='xwico-gitee'></i><span>gitee</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="https://github.com/xwos/XWOS/" target="_blank" rel="noopener"><i class='fab fa-github'></i><span>github</span></a>
+      </li>
+      <li class="nav-item dropdown d-none d-lg-block">
+        <div class="dropdown">
+  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">English</a>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="/Docs/UserManual/App/Irq/">简体中文</a></li>
+    </ul>
+</div></li>
+      <li class="td-light-dark-menu nav-item dropdown">
+        <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+  <symbol id="check2" viewBox="0 0 16 16">
+    <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+  </symbol>
+  <symbol id="circle-half" viewBox="0 0 16 16">
+    <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z"/>
+  </symbol>
+  <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+    <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z"/>
+    <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
+  </symbol>
+  <symbol id="sun-fill" viewBox="0 0 16 16">
+    <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+  </symbol>
+</svg>
+
+<button class="btn btn-link nav-link dropdown-toggle d-flex align-items-center"
+        id="bd-theme"
+        type="button"
+        aria-expanded="false"
+        data-bs-toggle="dropdown"
+        data-bs-display="static"
+        aria-label="Toggle theme (auto)">
+  <svg class="bi my-1 theme-icon-active"><use href="#circle-half"></use></svg>
+</button>
+<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bd-theme-text">
+  <li>
+    <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+      <svg class="bi me-2 opacity-50"><use href="#sun-fill"></use></svg>
+      Light
+      <svg class="bi ms-auto d-none"><use href="#check2"></use></svg>
+    </button>
+  </li>
+  <li>
+    <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+      <svg class="bi me-2 opacity-50"><use href="#moon-stars-fill"></use></svg>
+      Dark
+      <svg class="bi ms-auto d-none"><use href="#check2"></use></svg>
+    </button>
+  </li>
+  <li>
+    <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
+      <svg class="bi me-2 opacity-50"><use href="#circle-half"></use></svg>
+      Auto
+      <svg class="bi ms-auto d-none"><use href="#check2"></use></svg>
+    </button>
+  </li>
+</ul>
+
+      </li>
+      </ul>
+  </div>
+  <div class="d-none d-lg-block">
+    <div class="td-search">
+  <div class="td-search--algolia" id="docsearch-1"></div>
+</div>
+  </div>
+</div>
+</nav>
+    </header>
+    <div class="container-fluid td-outer">
+      <div class="td-main">
+        <div class="row flex-xl-nowrap">
+          <aside class="col-12 col-md-3 col-xl-2 td-sidebar d-print-none">
+            <div id="td-sidebar-menu" class="td-sidebar__inner">
+  <form class="td-sidebar__search d-flex align-items-center">
+    <div class="td-search">
+  <div class="td-search--algolia" id="docsearch-0"></div>
+</div>
+    <button class="btn btn-link td-sidebar__toggle d-md-none p-0 ms-3 fas fa-bars" type="button" data-bs-toggle="collapse" data-bs-target="#td-section-nav" aria-controls="td-section-nav" aria-expanded="false" aria-label="Toggle section navigation">
+    </button>
+  </form>
+  <nav class="td-sidebar-nav collapse foldable-nav" id="td-section-nav">
+    <div class="td-sidebar-nav__section nav-item dropdown d-block d-lg-none">
+      <div class="dropdown">
+  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">English</a>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="/Docs/UserManual/App/Irq/">简体中文</a></li>
+    </ul>
+</div>
+    </div>
+    <ul class="td-sidebar-nav__section pe-md-3 ul-0">
+      <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-endocs-li">
+  <a href="/en/Docs/" class="align-left ps-0 td-sidebar-link td-sidebar-link__section tree-root" id="m-endocs"><span class="">Docs</span></a>
+  <ul class="ul-1">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-endocsusermanual-li">
+  <input type="checkbox" id="m-endocsusermanual-check" checked/>
+  <label for="m-endocsusermanual-check"><a href="/en/Docs/UserManual/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsusermanual"><span class="">User Manual</span></a></label>
+  
+  <ul class="ul-2 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-endocsusermanualenv-li">
+  <input type="checkbox" id="m-endocsusermanualenv-check"/>
+  <label for="m-endocsusermanualenv-check"><a href="/en/Docs/UserManual/Env/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsusermanualenv"><span class="">Development Environment</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsusermanualenvxwtc-li">
+  <input type="checkbox" id="m-endocsusermanualenvxwtc-check"/>
+  <label for="m-endocsusermanualenvxwtc-check"><a href="/en/Docs/UserManual/Env/XWTC/" title="XWOS Build Toolchain Installation Guide" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocsusermanualenvxwtc"><span class="">XWTC</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsusermanualenvrust-li">
+  <input type="checkbox" id="m-endocsusermanualenvrust-check"/>
+  <label for="m-endocsusermanualenvrust-check"><a href="/en/Docs/UserManual/Env/Rust/" title="Rust Development Environment Guide" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocsusermanualenvrust"><span class="">RUST</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsusermanualenveclipse-li">
+  <input type="checkbox" id="m-endocsusermanualenveclipse-check"/>
+  <label for="m-endocsusermanualenveclipse-check"><a href="/en/Docs/UserManual/Env/Eclipse/" title="Eclipse-Based IDE Setup Guide" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocsusermanualenveclipse"><span class="">Eclipse-Guide</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-endocsusermanualboard-li">
+  <input type="checkbox" id="m-endocsusermanualboard-check"/>
+  <label for="m-endocsusermanualboard-check"><a href="/en/Docs/UserManual/Board/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsusermanualboard"><span class="">Development Boards</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsusermanualboardrpi4b-li">
+  <input type="checkbox" id="m-endocsusermanualboardrpi4b-check"/>
+  <label for="m-endocsusermanualboardrpi4b-check"><a href="/en/Docs/UserManual/Board/RPi4B/" title="Raspberry Pi 4B" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsusermanualboardrpi4b"><span class="">RPi4B</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsusermanualboardstm32-li">
+  <input type="checkbox" id="m-endocsusermanualboardstm32-check"/>
+  <label for="m-endocsusermanualboardstm32-check"><a href="/en/Docs/UserManual/Board/STM32/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocsusermanualboardstm32"><span class="">STM32</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-endocsusermanualboardflagchip-li">
+  <input type="checkbox" id="m-endocsusermanualboardflagchip-check"/>
+  <label for="m-endocsusermanualboardflagchip-check"><a href="/en/Docs/UserManual/Board/Flagchip/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsusermanualboardflagchip"><span class="">Flagchip</span></a></label>
+  
+  <ul class="ul-4 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsusermanualboardflagchipfc7300demoboard-li">
+  <input type="checkbox" id="m-endocsusermanualboardflagchipfc7300demoboard-check"/>
+  <label for="m-endocsusermanualboardflagchipfc7300demoboard-check"><a href="/en/Docs/UserManual/Board/Flagchip/Fc7300DemoBoard/" title="Fc7300DemoBoard" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsusermanualboardflagchipfc7300demoboard"><span class="">FC7300</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsusermanualboardgd32-li">
+  <input type="checkbox" id="m-endocsusermanualboardgd32-check"/>
+  <label for="m-endocsusermanualboardgd32-check"><a href="/en/Docs/UserManual/Board/GD32/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsusermanualboardgd32"><span class="">GD32</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsusermanualboardapm32-li">
+  <input type="checkbox" id="m-endocsusermanualboardapm32-check"/>
+  <label for="m-endocsusermanualboardapm32-check"><a href="/en/Docs/UserManual/Board/APM32/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsusermanualboardapm32"><span class="">APM32</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsusermanualboardch32-li">
+  <input type="checkbox" id="m-endocsusermanualboardch32-check"/>
+  <label for="m-endocsusermanualboardch32-check"><a href="/en/Docs/UserManual/Board/CH32/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsusermanualboardch32"><span class="">CH32</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsusermanualboards32k-li">
+  <input type="checkbox" id="m-endocsusermanualboards32k-check"/>
+  <label for="m-endocsusermanualboards32k-check"><a href="/en/Docs/UserManual/Board/S32K/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsusermanualboards32k"><span class="">S32K</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsusermanualboardkea-li">
+  <input type="checkbox" id="m-endocsusermanualboardkea-check"/>
+  <label for="m-endocsusermanualboardkea-check"><a href="/en/Docs/UserManual/Board/KEA/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsusermanualboardkea"><span class="">KEA</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsusermanualboardgd32v-li">
+  <input type="checkbox" id="m-endocsusermanualboardgd32v-check"/>
+  <label for="m-endocsusermanualboardgd32v-check"><a href="/en/Docs/UserManual/Board/GD32V/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsusermanualboardgd32v"><span class="">GD32V</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsusermanualboardeppc-li">
+  <input type="checkbox" id="m-endocsusermanualboardeppc-check"/>
+  <label for="m-endocsusermanualboardeppc-check"><a href="/en/Docs/UserManual/Board/EPPC/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsusermanualboardeppc"><span class="">EPPC</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child active-path" id="m-endocsusermanualapp-li">
+  <input type="checkbox" id="m-endocsusermanualapp-check" checked/>
+  <label for="m-endocsusermanualapp-check"><a href="/en/Docs/UserManual/App/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsusermanualapp"><span class="">Application Manual</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsusermanualappbuild-li">
+  <input type="checkbox" id="m-endocsusermanualappbuild-check"/>
+  <label for="m-endocsusermanualappbuild-check"><a href="/en/Docs/UserManual/App/Build/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsusermanualappbuild"><span class="">Build</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsusermanualappxwosstd-li">
+  <input type="checkbox" id="m-endocsusermanualappxwosstd-check"/>
+  <label for="m-endocsusermanualappxwosstd-check"><a href="/en/Docs/UserManual/App/XwosStd/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsusermanualappxwosstd"><span class="">XWOS Standard</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsusermanualappcfg-li">
+  <input type="checkbox" id="m-endocsusermanualappcfg-check"/>
+  <label for="m-endocsusermanualappcfg-check"><a href="/en/Docs/UserManual/App/Cfg/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsusermanualappcfg"><span class="">Configuration</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child active-path" id="m-endocsusermanualappirq-li">
+  <input type="checkbox" id="m-endocsusermanualappirq-check" checked/>
+  <label for="m-endocsusermanualappirq-check"><a href="/en/Docs/UserManual/App/Irq/" class="align-left ps-0  active td-sidebar-link td-sidebar-link__section" id="m-endocsusermanualappirq"><span class="td-sidebar-nav-active-item">Interrupt</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsusermanualappthd-li">
+  <input type="checkbox" id="m-endocsusermanualappthd-check"/>
+  <label for="m-endocsusermanualappthd-check"><a href="/en/Docs/UserManual/App/Thd/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsusermanualappthd"><span class="">Thread</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsusermanualappswt-li">
+  <input type="checkbox" id="m-endocsusermanualappswt-check"/>
+  <label for="m-endocsusermanualappswt-check"><a href="/en/Docs/UserManual/App/Swt/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsusermanualappswt"><span class="">Software Timer</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-endocsusermanualapplock-li">
+  <input type="checkbox" id="m-endocsusermanualapplock-check"/>
+  <label for="m-endocsusermanualapplock-check"><a href="/en/Docs/UserManual/App/Lock/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsusermanualapplock"><span class="">Locks</span></a></label>
+  
+  <ul class="ul-4 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsusermanualapplockspinlock-li">
+  <input type="checkbox" id="m-endocsusermanualapplockspinlock-check"/>
+  <label for="m-endocsusermanualapplockspinlock-check"><a href="/en/Docs/UserManual/App/Lock/Spinlock/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocsusermanualapplockspinlock"><span class="">Spinlock</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsusermanualapplockseqlock-li">
+  <input type="checkbox" id="m-endocsusermanualapplockseqlock-check"/>
+  <label for="m-endocsusermanualapplockseqlock-check"><a href="/en/Docs/UserManual/App/Lock/Seqlock/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocsusermanualapplockseqlock"><span class="">Sequential Lock</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsusermanualapplockmutex-li">
+  <input type="checkbox" id="m-endocsusermanualapplockmutex-check"/>
+  <label for="m-endocsusermanualapplockmutex-check"><a href="/en/Docs/UserManual/App/Lock/Mutex/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocsusermanualapplockmutex"><span class="">Mutex</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-endocsusermanualappsync-li">
+  <input type="checkbox" id="m-endocsusermanualappsync-check"/>
+  <label for="m-endocsusermanualappsync-check"><a href="/en/Docs/UserManual/App/Sync/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsusermanualappsync"><span class="">Synchronization</span></a></label>
+  
+  <ul class="ul-4 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsusermanualappsyncsem-li">
+  <input type="checkbox" id="m-endocsusermanualappsyncsem-check"/>
+  <label for="m-endocsusermanualappsyncsem-check"><a href="/en/Docs/UserManual/App/Sync/Sem/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocsusermanualappsyncsem"><span class="">Semaphore</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsusermanualappsynccond-li">
+  <input type="checkbox" id="m-endocsusermanualappsynccond-check"/>
+  <label for="m-endocsusermanualappsynccond-check"><a href="/en/Docs/UserManual/App/Sync/Cond/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocsusermanualappsynccond"><span class="">Condition Variable</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsusermanualappsyncflg-li">
+  <input type="checkbox" id="m-endocsusermanualappsyncflg-check"/>
+  <label for="m-endocsusermanualappsyncflg-check"><a href="/en/Docs/UserManual/App/Sync/Flg/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocsusermanualappsyncflg"><span class="">Event Flag</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsusermanualappsyncbr-li">
+  <input type="checkbox" id="m-endocsusermanualappsyncbr-check"/>
+  <label for="m-endocsusermanualappsyncbr-check"><a href="/en/Docs/UserManual/App/Sync/Br/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocsusermanualappsyncbr"><span class="">Thread Barrier</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsusermanualappsyncsel-li">
+  <input type="checkbox" id="m-endocsusermanualappsyncsel-check"/>
+  <label for="m-endocsusermanualappsyncsel-check"><a href="/en/Docs/UserManual/App/Sync/Sel/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocsusermanualappsyncsel"><span class="">Signal Selector</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsusermanualapppm-li">
+  <input type="checkbox" id="m-endocsusermanualapppm-check"/>
+  <label for="m-endocsusermanualapppm-check"><a href="/en/Docs/UserManual/App/Pm/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsusermanualapppm"><span class="">Power Management</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsusermanualporting-li">
+  <input type="checkbox" id="m-endocsusermanualporting-check"/>
+  <label for="m-endocsusermanualporting-check"><a href="/en/Docs/UserManual/Porting/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsusermanualporting"><span class="">XWOS Porting Guide</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsusermanualem-li">
+  <input type="checkbox" id="m-endocsusermanualem-check"/>
+  <label for="m-endocsusermanualem-check"><a href="/en/Docs/UserManual/Em/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsusermanualem"><span class="">Third-Party Software Porting Notes</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-endocstechrefmanual-li">
+  <input type="checkbox" id="m-endocstechrefmanual-check"/>
+  <label for="m-endocstechrefmanual-check"><a href="/en/Docs/TechRefManual/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocstechrefmanual"><span class="">Technical Reference</span></a></label>
+  
+  <ul class="ul-2 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualarchitecture-li">
+  <input type="checkbox" id="m-endocstechrefmanualarchitecture-check"/>
+  <label for="m-endocstechrefmanualarchitecture-check"><a href="/en/Docs/TechRefManual/Architecture/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocstechrefmanualarchitecture"><span class="">Software Architecture</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualxwosstd-li">
+  <input type="checkbox" id="m-endocstechrefmanualxwosstd-check"/>
+  <label for="m-endocstechrefmanualxwosstd-check"><a href="/en/Docs/TechRefManual/XwosStd/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocstechrefmanualxwosstd"><span class="">XWOS Standard</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualcodestyle-li">
+  <input type="checkbox" id="m-endocstechrefmanualcodestyle-check"/>
+  <label for="m-endocstechrefmanualcodestyle-check"><a href="/en/Docs/TechRefManual/CodeStyle/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocstechrefmanualcodestyle"><span class="">Code Style</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualcfg-li">
+  <input type="checkbox" id="m-endocstechrefmanualcfg-check"/>
+  <label for="m-endocstechrefmanualcfg-check"><a href="/en/Docs/TechRefManual/Cfg/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocstechrefmanualcfg"><span class="">Configuration</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualbuildsystem-li">
+  <input type="checkbox" id="m-endocstechrefmanualbuildsystem-check"/>
+  <label for="m-endocstechrefmanualbuildsystem-check"><a href="/en/Docs/TechRefManual/BuildSystem/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocstechrefmanualbuildsystem"><span class="">Build System</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualbootflow-li">
+  <input type="checkbox" id="m-endocstechrefmanualbootflow-check"/>
+  <label for="m-endocstechrefmanualbootflow-check"><a href="/en/Docs/TechRefManual/BootFlow/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocstechrefmanualbootflow"><span class="">Boot Flow</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualxwobj-li">
+  <input type="checkbox" id="m-endocstechrefmanualxwobj-check"/>
+  <label for="m-endocstechrefmanualxwobj-check"><a href="/en/Docs/TechRefManual/Xwobj/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocstechrefmanualxwobj"><span class="">XWOS Object</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualirq-li">
+  <input type="checkbox" id="m-endocstechrefmanualirq-check"/>
+  <label for="m-endocstechrefmanualirq-check"><a href="/en/Docs/TechRefManual/Irq/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocstechrefmanualirq"><span class="">Interrupt Management</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualskd-li">
+  <input type="checkbox" id="m-endocstechrefmanualskd-check"/>
+  <label for="m-endocstechrefmanualskd-check"><a href="/en/Docs/TechRefManual/Skd/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocstechrefmanualskd"><span class="">Scheduler</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualcontext-li">
+  <input type="checkbox" id="m-endocstechrefmanualcontext-check"/>
+  <label for="m-endocstechrefmanualcontext-check"><a href="/en/Docs/TechRefManual/Context/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocstechrefmanualcontext"><span class="">Context</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualthd-li">
+  <input type="checkbox" id="m-endocstechrefmanualthd-check"/>
+  <label for="m-endocstechrefmanualthd-check"><a href="/en/Docs/TechRefManual/Thd/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocstechrefmanualthd"><span class="">Thread</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualswt-li">
+  <input type="checkbox" id="m-endocstechrefmanualswt-check"/>
+  <label for="m-endocstechrefmanualswt-check"><a href="/en/Docs/TechRefManual/Swt/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocstechrefmanualswt"><span class="">Software Timer</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-endocstechrefmanuallock-li">
+  <input type="checkbox" id="m-endocstechrefmanuallock-check"/>
+  <label for="m-endocstechrefmanuallock-check"><a href="/en/Docs/TechRefManual/Lock/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocstechrefmanuallock"><span class="">Lock</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanuallockspinlock-li">
+  <input type="checkbox" id="m-endocstechrefmanuallockspinlock-check"/>
+  <label for="m-endocstechrefmanuallockspinlock-check"><a href="/en/Docs/TechRefManual/Lock/Spinlock/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocstechrefmanuallockspinlock"><span class="">Spinlock</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanuallockseqlock-li">
+  <input type="checkbox" id="m-endocstechrefmanuallockseqlock-check"/>
+  <label for="m-endocstechrefmanuallockseqlock-check"><a href="/en/Docs/TechRefManual/Lock/Seqlock/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocstechrefmanuallockseqlock"><span class="">Seqlock</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanuallockmutex-li">
+  <input type="checkbox" id="m-endocstechrefmanuallockmutex-check"/>
+  <label for="m-endocstechrefmanuallockmutex-check"><a href="/en/Docs/TechRefManual/Lock/Mutex/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocstechrefmanuallockmutex"><span class="">Mutex</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-endocstechrefmanualsync-li">
+  <input type="checkbox" id="m-endocstechrefmanualsync-check"/>
+  <label for="m-endocstechrefmanualsync-check"><a href="/en/Docs/TechRefManual/Sync/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocstechrefmanualsync"><span class="">Synchronization</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualsyncsem-li">
+  <input type="checkbox" id="m-endocstechrefmanualsyncsem-check"/>
+  <label for="m-endocstechrefmanualsyncsem-check"><a href="/en/Docs/TechRefManual/Sync/Sem/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocstechrefmanualsyncsem"><span class="">Semaphore</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualsynccond-li">
+  <input type="checkbox" id="m-endocstechrefmanualsynccond-check"/>
+  <label for="m-endocstechrefmanualsynccond-check"><a href="/en/Docs/TechRefManual/Sync/Cond/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocstechrefmanualsynccond"><span class="">Condition Variable</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualsyncflg-li">
+  <input type="checkbox" id="m-endocstechrefmanualsyncflg-check"/>
+  <label for="m-endocstechrefmanualsyncflg-check"><a href="/en/Docs/TechRefManual/Sync/Flg/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocstechrefmanualsyncflg"><span class="">Event Flag</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualsyncbr-li">
+  <input type="checkbox" id="m-endocstechrefmanualsyncbr-check"/>
+  <label for="m-endocstechrefmanualsyncbr-check"><a href="/en/Docs/TechRefManual/Sync/Br/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocstechrefmanualsyncbr"><span class="">Thread Barrier</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualsyncsel-li">
+  <input type="checkbox" id="m-endocstechrefmanualsyncsel-check"/>
+  <label for="m-endocstechrefmanualsyncsel-check"><a href="/en/Docs/TechRefManual/Sync/Sel/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocstechrefmanualsyncsel"><span class="">Signal Selector</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualmm-li">
+  <input type="checkbox" id="m-endocstechrefmanualmm-check"/>
+  <label for="m-endocstechrefmanualmm-check"><a href="/en/Docs/TechRefManual/Mm/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocstechrefmanualmm"><span class="">Memory Management</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualpm-li">
+  <input type="checkbox" id="m-endocstechrefmanualpm-check"/>
+  <label for="m-endocstechrefmanualpm-check"><a href="/en/Docs/TechRefManual/Pm/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocstechrefmanualpm"><span class="">Power Management</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-endocstechrefmanualxwlib-li">
+  <input type="checkbox" id="m-endocstechrefmanualxwlib-check"/>
+  <label for="m-endocstechrefmanualxwlib-check"><a href="/en/Docs/TechRefManual/Xwlib/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocstechrefmanualxwlib"><span class="">General Library</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualxwlibxwbop-li">
+  <input type="checkbox" id="m-endocstechrefmanualxwlibxwbop-check"/>
+  <label for="m-endocstechrefmanualxwlibxwbop-check"><a href="/en/Docs/TechRefManual/Xwlib/Xwbop/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocstechrefmanualxwlibxwbop"><span class="">Bit Operation Library</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualxwlibxwaop-li">
+  <input type="checkbox" id="m-endocstechrefmanualxwlibxwaop-check"/>
+  <label for="m-endocstechrefmanualxwlibxwaop-check"><a href="/en/Docs/TechRefManual/Xwlib/Xwaop/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocstechrefmanualxwlibxwaop"><span class="">Atomic Operation Library</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualxwliblog-li">
+  <input type="checkbox" id="m-endocstechrefmanualxwliblog-check"/>
+  <label for="m-endocstechrefmanualxwliblog-check"><a href="/en/Docs/TechRefManual/Xwlib/Log/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocstechrefmanualxwliblog"><span class="">Logging</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualxwlibcrc-li">
+  <input type="checkbox" id="m-endocstechrefmanualxwlibcrc-check"/>
+  <label for="m-endocstechrefmanualxwlibcrc-check"><a href="/en/Docs/TechRefManual/Xwlib/Crc/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocstechrefmanualxwlibcrc"><span class="">CRC</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-endocstechrefmanualisc-li">
+  <input type="checkbox" id="m-endocstechrefmanualisc-check"/>
+  <label for="m-endocstechrefmanualisc-check"><a href="/en/Docs/TechRefManual/Isc/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocstechrefmanualisc"><span class="">Inter-System Communication</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualiscxwmq-li">
+  <input type="checkbox" id="m-endocstechrefmanualiscxwmq-check"/>
+  <label for="m-endocstechrefmanualiscxwmq-check"><a href="/en/Docs/TechRefManual/Isc/Xwmq/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocstechrefmanualiscxwmq"><span class="">Message Queue</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualiscxwcq-li">
+  <input type="checkbox" id="m-endocstechrefmanualiscxwcq-check"/>
+  <label for="m-endocstechrefmanualiscxwcq-check"><a href="/en/Docs/TechRefManual/Isc/Xwcq/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocstechrefmanualiscxwcq"><span class="">Circular Queue</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-endocstechrefmanualc_c-li">
+  <input type="checkbox" id="m-endocstechrefmanualc_c-check"/>
+  <label for="m-endocstechrefmanualc_c-check"><a href="/en/Docs/TechRefManual/C_C&#43;&#43;/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocstechrefmanualc_c"><span class="">C/C&#43;&#43;</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualc_clibc-li">
+  <input type="checkbox" id="m-endocstechrefmanualc_clibc-check"/>
+  <label for="m-endocstechrefmanualc_clibc-check"><a href="/en/Docs/TechRefManual/C_C&#43;&#43;/Libc/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocstechrefmanualc_clibc"><span class="">Libc</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualc_cc-li">
+  <input type="checkbox" id="m-endocstechrefmanualc_cc-check"/>
+  <label for="m-endocstechrefmanualc_cc-check"><a href="/en/Docs/TechRefManual/C_C&#43;&#43;/C&#43;&#43;/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocstechrefmanualc_cc"><span class="">C&#43;&#43;</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanuallua-li">
+  <input type="checkbox" id="m-endocstechrefmanuallua-check"/>
+  <label for="m-endocstechrefmanuallua-check"><a href="/en/Docs/TechRefManual/Lua/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocstechrefmanuallua"><span class="">Lua Language</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-endocstechrefmanualxwsh-li">
+  <input type="checkbox" id="m-endocstechrefmanualxwsh-check"/>
+  <label for="m-endocstechrefmanualxwsh-check"><a href="/en/Docs/TechRefManual/Xwsh/" title="Command Line Interpreter (xwsh)" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocstechrefmanualxwsh"><span class="">Command Line Interpreter</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualxwshcore-li">
+  <input type="checkbox" id="m-endocstechrefmanualxwshcore-check"/>
+  <label for="m-endocstechrefmanualxwshcore-check"><a href="/en/Docs/TechRefManual/Xwsh/Core/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocstechrefmanualxwshcore"><span class="">Core</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualxwshcommand-li">
+  <input type="checkbox" id="m-endocstechrefmanualxwshcommand-check"/>
+  <label for="m-endocstechrefmanualxwshcommand-check"><a href="/en/Docs/TechRefManual/Xwsh/Command/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocstechrefmanualxwshcommand"><span class="">Command System</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualxwshextension-li">
+  <input type="checkbox" id="m-endocstechrefmanualxwshextension-check"/>
+  <label for="m-endocstechrefmanualxwshextension-check"><a href="/en/Docs/TechRefManual/Xwsh/Extension/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocstechrefmanualxwshextension"><span class="">Extension</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualxwshintegration-li">
+  <input type="checkbox" id="m-endocstechrefmanualxwshintegration-check"/>
+  <label for="m-endocstechrefmanualxwshintegration-check"><a href="/en/Docs/TechRefManual/Xwsh/Integration/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocstechrefmanualxwshintegration"><span class="">Integration Guide</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualxwshapireference-li">
+  <input type="checkbox" id="m-endocstechrefmanualxwshapireference-check"/>
+  <label for="m-endocstechrefmanualxwshapireference-check"><a href="/en/Docs/TechRefManual/Xwsh/ApiReference/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocstechrefmanualxwshapireference"><span class="">API Reference</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocstechrefmanualrust-li">
+  <input type="checkbox" id="m-endocstechrefmanualrust-check"/>
+  <label for="m-endocstechrefmanualrust-check"><a href="/en/Docs/TechRefManual/Rust/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocstechrefmanualrust"><span class="">Rust Language</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-endocsnote-li">
+  <input type="checkbox" id="m-endocsnote-check"/>
+  <label for="m-endocsnote-check"><a href="/en/Docs/Note/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsnote"><span class="">Notes</span></a></label>
+  
+  <ul class="ul-2 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-endocsnotesoc-li">
+  <input type="checkbox" id="m-endocsnotesoc-check"/>
+  <label for="m-endocsnotesoc-check"><a href="/en/Docs/Note/SOC/" title="SoC Porting" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsnotesoc"><span class="">SoC</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-endocsnotesocarm-m-li">
+  <input type="checkbox" id="m-endocsnotesocarm-m-check"/>
+  <label for="m-endocsnotesocarm-m-check"><a href="/en/Docs/Note/SOC/ARM-M/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsnotesocarm-m"><span class="">ARM-Cortex-M Porting Guide</span></a></label>
+  
+  <ul class="ul-4 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsnotesocarm-mstm32-li">
+  <input type="checkbox" id="m-endocsnotesocarm-mstm32-check"/>
+  <label for="m-endocsnotesocarm-mstm32-check"><a href="/en/Docs/Note/SOC/ARM-M/STM32/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocsnotesocarm-mstm32"><span class="">STM32 Porting Guide</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsnotesocarm64-a-li">
+  <input type="checkbox" id="m-endocsnotesocarm64-a-check"/>
+  <label for="m-endocsnotesocarm64-a-check"><a href="/en/Docs/Note/SOC/ARM64-A/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsnotesocarm64-a"><span class="">ARM64-A Porting Guide</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-endocsnotesocrisc-v-li">
+  <input type="checkbox" id="m-endocsnotesocrisc-v-check"/>
+  <label for="m-endocsnotesocrisc-v-check"><a href="/en/Docs/Note/SOC/RISC-V/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsnotesocrisc-v"><span class="">RISC-V Porting Guide</span></a></label>
+  
+  <ul class="ul-4 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsnotesocrisc-vgd32v-li">
+  <input type="checkbox" id="m-endocsnotesocrisc-vgd32v-check"/>
+  <label for="m-endocsnotesocrisc-vgd32v-check"><a href="/en/Docs/Note/SOC/RISC-V/GD32V/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocsnotesocrisc-vgd32v"><span class="">GD32V Porting Guide</span></a></label>
+  
+</li>
+  </ul>
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-endocsnotenewlib-li">
+  <input type="checkbox" id="m-endocsnotenewlib-check"/>
+  <label for="m-endocsnotenewlib-check"><a href="/en/Docs/Note/Newlib/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsnotenewlib"><span class="">Newlib</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsnotenewlibmultithread-li">
+  <input type="checkbox" id="m-endocsnotenewlibmultithread-check"/>
+  <label for="m-endocsnotenewlibmultithread-check"><a href="/en/Docs/Note/Newlib/MultiThread/" title="Multithreading" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocsnotenewlibmultithread"><span class="">MultiThread</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsnotenewlibmm-li">
+  <input type="checkbox" id="m-endocsnotenewlibmm-check"/>
+  <label for="m-endocsnotenewlibmm-check"><a href="/en/Docs/Note/Newlib/MM/" title="Dynamic Memory Management" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocsnotenewlibmm"><span class="">MM</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsnotenewliberrno-li">
+  <input type="checkbox" id="m-endocsnotenewliberrno-check"/>
+  <label for="m-endocsnotenewliberrno-check"><a href="/en/Docs/Note/Newlib/errno/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocsnotenewliberrno"><span class="">errno</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsnotenewlibtls-li">
+  <input type="checkbox" id="m-endocsnotenewlibtls-check"/>
+  <label for="m-endocsnotenewlibtls-check"><a href="/en/Docs/Note/Newlib/TLS/" title="Thread Local Storage" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocsnotenewlibtls"><span class="">TLS</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-endocsnotepicolibc-li">
+  <input type="checkbox" id="m-endocsnotepicolibc-check"/>
+  <label for="m-endocsnotepicolibc-check"><a href="/en/Docs/Note/Picolibc/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsnotepicolibc"><span class="">Picolibc</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsnotepicolibctls-li">
+  <input type="checkbox" id="m-endocsnotepicolibctls-check"/>
+  <label for="m-endocsnotepicolibctls-check"><a href="/en/Docs/Note/Picolibc/TLS/" title="Thread Local Storage" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocsnotepicolibctls"><span class="">TLS</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsnotepicolibcmm-li">
+  <input type="checkbox" id="m-endocsnotepicolibcmm-check"/>
+  <label for="m-endocsnotepicolibcmm-check"><a href="/en/Docs/Note/Picolibc/MM/" title="Dynamic Memory Management" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocsnotepicolibcmm"><span class="">MM</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsnotepicolibcerrno-li">
+  <input type="checkbox" id="m-endocsnotepicolibcerrno-check"/>
+  <label for="m-endocsnotepicolibcerrno-check"><a href="/en/Docs/Note/Picolibc/errno/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocsnotepicolibcerrno"><span class="">errno</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-endocsnotelua-li">
+  <input type="checkbox" id="m-endocsnotelua-check"/>
+  <label for="m-endocsnotelua-check"><a href="/en/Docs/Note/Lua/" title="Lua Development Notes" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsnotelua"><span class="">Lua</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsnoteluaenv-li">
+  <input type="checkbox" id="m-endocsnoteluaenv-check"/>
+  <label for="m-endocsnoteluaenv-check"><a href="/en/Docs/Note/Lua/env/" title="Lua Development Environment" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocsnoteluaenv"><span class="">Development Environment</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-endocsnoterust-li">
+  <input type="checkbox" id="m-endocsnoterust-check"/>
+  <label for="m-endocsnoterust-check"><a href="/en/Docs/Note/Rust/" title="Rust Development Notes" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsnoterust"><span class="">Rust</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsnoterustbuild-li">
+  <input type="checkbox" id="m-endocsnoterustbuild-check"/>
+  <label for="m-endocsnoterustbuild-check"><a href="/en/Docs/Note/Rust/Build/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocsnoterustbuild"><span class="">Integration and Build</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsnoterustbringup-li">
+  <input type="checkbox" id="m-endocsnoterustbringup-check"/>
+  <label for="m-endocsnoterustbringup-check"><a href="/en/Docs/Note/Rust/Bringup/" title="Rust Initial Validation" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocsnoterustbringup"><span class="">Bringup</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsnoterustenv-li">
+  <input type="checkbox" id="m-endocsnoterustenv-check"/>
+  <label for="m-endocsnoterustenv-check"><a href="/en/Docs/Note/Rust/Env/" title="Rust Development Environment Installation Notes" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocsnoterustenv"><span class="">Env</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsnoterustmulticrates-li">
+  <input type="checkbox" id="m-endocsnoterustmulticrates-check"/>
+  <label for="m-endocsnoterustmulticrates-check"><a href="/en/Docs/Note/Rust/MultiCrates/" title="Supporting Multiple Crates" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocsnoterustmulticrates"><span class="">MultiCrates</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsnotemisra-c2012-li">
+  <input type="checkbox" id="m-endocsnotemisra-c2012-check"/>
+  <label for="m-endocsnotemisra-c2012-check"><a href="/en/Docs/Note/MISRA-C2012/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsnotemisra-c2012"><span class="">MISRA-C2012</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-endocsnoteai-li">
+  <input type="checkbox" id="m-endocsnoteai-check"/>
+  <label for="m-endocsnoteai-check"><a href="/en/Docs/Note/AI/" title="AI Engineering" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsnoteai"><span class="">AI</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsnoteaiopencode-li">
+  <input type="checkbox" id="m-endocsnoteaiopencode-check"/>
+  <label for="m-endocsnoteaiopencode-check"><a href="/en/Docs/Note/AI/opencode/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocsnoteaiopencode"><span class="">opencode</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-endocsnotecodestyle-li">
+  <input type="checkbox" id="m-endocsnotecodestyle-check"/>
+  <label for="m-endocsnotecodestyle-check"><a href="/en/Docs/Note/CodeStyle/" title="Code Style" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsnotecodestyle"><span class="">CodeStyle</span></a></label>
+  
+  <ul class="ul-3 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsnotecodestyleclang-format-li">
+  <input type="checkbox" id="m-endocsnotecodestyleclang-format-check"/>
+  <label for="m-endocsnotecodestyleclang-format-check"><a href="/en/Docs/Note/CodeStyle/clang-format/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocsnotecodestyleclang-format"><span class="">clang-format</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsnotecodestyleemacs-li">
+  <input type="checkbox" id="m-endocsnotecodestyleemacs-check"/>
+  <label for="m-endocsnotecodestyleemacs-check"><a href="/en/Docs/Note/CodeStyle/emacs/" title="Emacs CC-Mode" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocsnotecodestyleemacs"><span class="">emacs-cc-mode</span></a></label>
+  
+</li>
+  </ul>
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section with-child" id="m-endocsstandard-li">
+  <input type="checkbox" id="m-endocsstandard-check"/>
+  <label for="m-endocsstandard-check"><a href="/en/Docs/Standard/" class="align-left ps-0  td-sidebar-link td-sidebar-link__section" id="m-endocsstandard"><span class="">Standards</span></a></label>
+  
+  <ul class="ul-2 foldable">
+    <li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsstandardgitmsg-li">
+  <input type="checkbox" id="m-endocsstandardgitmsg-check"/>
+  <label for="m-endocsstandardgitmsg-check"><a href="/en/Docs/Standard/GitMsg/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocsstandardgitmsg"><span class="">Git Commit Message Standard</span></a></label>
+  
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocsstandardversionbranch-li">
+  <input type="checkbox" id="m-endocsstandardversionbranch-check"/>
+  <label for="m-endocsstandardversionbranch-check"><a href="/en/Docs/Standard/VersionBranch/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocsstandardversionbranch"><span class="">Branch and Version Number Standard</span></a></label>
+  
+</li>
+  </ul>
+</li><li class="td-sidebar-nav__section-title td-sidebar-nav__section without-child" id="m-endocslicense-li">
+  <input type="checkbox" id="m-endocslicense-check"/>
+  <label for="m-endocslicense-check"><a href="/en/Docs/License/" class="align-left ps-0  td-sidebar-link td-sidebar-link__page" id="m-endocslicense"><span class="">Open Source License</span></a></label>
+  
+</li>
+  </ul>
+</li>
+    </ul>
+  </nav>
+</div>
+
+          </aside>
+          <aside class="d-none d-xl-block col-xl-2 td-sidebar-toc d-print-none">
+            <div class="td-page-meta ms-2 pb-1 pt-2 mb-0">
+<a href="https://gitee.com/xwos/XWOS/tree/page/content/en/Docs/UserManual/App/Irq/_index.md" class="td-page-meta--view td-page-meta__view" target="_blank" rel="noopener"><i class="fa-solid fa-file-lines fa-fw"></i> View page source</a>
+  <a href="https://gitee.com/xwos/XWOS/edit/page/content/en/Docs/UserManual/App/Irq/_index.md" class="td-page-meta--edit td-page-meta__edit" target="_blank" rel="noopener"><i class="fa-solid fa-pen-to-square fa-fw"></i> Edit this page</a>
+  <a href="https://gitee.com/xwos/XWOS/new/page/content/en/Docs/UserManual/App/Irq?filename=change-me.md&amp;value=---%0Atitle%3A&#43;%22Long&#43;Page&#43;Title%22%0AlinkTitle%3A&#43;%22Short&#43;Nav&#43;Title%22%0Aweight%3A&#43;100%0Adescription%3A&#43;%3E-%0A&#43;&#43;&#43;&#43;&#43;Page&#43;description&#43;for&#43;heading&#43;and&#43;indexes.%0A---%0A%0A%23%23&#43;Heading%0A%0AEdit&#43;this&#43;template&#43;to&#43;create&#43;your&#43;new&#43;page.%0A%0A%2A&#43;Give&#43;it&#43;a&#43;good&#43;name%2C&#43;ending&#43;in&#43;%60.md%60&#43;-&#43;e.g.&#43;%60getting-started.md%60%0A%2A&#43;Edit&#43;the&#43;%22front&#43;matter%22&#43;section&#43;at&#43;the&#43;top&#43;of&#43;the&#43;page&#43;%28weight&#43;controls&#43;how&#43;its&#43;ordered&#43;amongst&#43;other&#43;pages&#43;in&#43;the&#43;same&#43;directory%3B&#43;lowest&#43;number&#43;first%29.%0A%2A&#43;Add&#43;a&#43;good&#43;commit&#43;message&#43;at&#43;the&#43;bottom&#43;of&#43;the&#43;page&#43;%28%3C80&#43;characters%3B&#43;use&#43;the&#43;extended&#43;description&#43;field&#43;for&#43;more&#43;detail%29.%0A%2A&#43;Create&#43;a&#43;new&#43;branch&#43;so&#43;you&#43;can&#43;preview&#43;your&#43;new&#43;file&#43;and&#43;request&#43;a&#43;review&#43;via&#43;Pull&#43;Request.%0A" class="td-page-meta--child td-page-meta__child" target="_blank" rel="noopener"><i class="fa-solid fa-pen-to-square fa-fw"></i> Create child page</a>
+  <a href="https://gitee.com/xwos/XWOS/issues/new?title=Interrupt" class="td-page-meta--issue td-page-meta__issue" target="_blank" rel="noopener"><i class="fa-solid fa-list-check fa-fw"></i> Create documentation issue</a>
+  <a href="https://gitee.com/xwos/XWOS/issues/new" class="td-page-meta--project td-page-meta__project-issue" target="_blank" rel="noopener"><i class="fa-solid fa-list-check fa-fw"></i> Create project issue</a>
+  
+</div>
+
+            <div class="td-toc">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#capi-reference">CAPI Reference</a></li>
+  </ul>
+</nav>
+      </div>
+    
+            <div class="taxonomy taxonomy-terms-cloud taxo-categories">
+      <h5 class="taxonomy-title">Categories</h5>
+      <ul class="taxonomy-terms">
+        <li><a class="taxonomy-term" href="/en/categories/XWLUA/" data-taxonomy-term="XWLUA"><span class="taxonomy-label">XWLUA</span><span class="taxonomy-count">1</span></a></li>
+        <li><a class="taxonomy-term" href="/en/categories/XWOS/" data-taxonomy-term="XWOS"><span class="taxonomy-label">XWOS</span><span class="taxonomy-count">42</span></a></li>
+        <li><a class="taxonomy-term" href="/en/categories/XWRUST/" data-taxonomy-term="XWRUST"><span class="taxonomy-label">XWRUST</span><span class="taxonomy-count">1</span></a></li>
+        </ul>
+    </div>
+  
+
+          </aside>
+          <main class="col-12 col-md-9 col-xl-8 ps-md-5" role="main">
+            
+  
+
+            <nav aria-label="breadcrumb" class="td-breadcrumbs">
+  <ol class="breadcrumb">
+  <li class="breadcrumb-item">
+    <a href="/en/Docs/">Docs</a></li>
+  <li class="breadcrumb-item">
+    <a href="/en/Docs/UserManual/">User Manual</a></li>
+  <li class="breadcrumb-item">
+    <a href="/en/Docs/UserManual/App/">Application Manual</a></li>
+  <li class="breadcrumb-item active" aria-current="page">
+    Interrupt</li>
+  </ol>
+</nav>
+            
+<div class="td-content">
+	<h1>Interrupt</h1>
+  
+	<header class="article-meta">
+		
+<p class="reading-time"><i class="fa-solid fa-clock" aria-hidden="true"></i>&nbsp; less than a minute &nbsp;</p>
+</header>
+	<h2 id="capi-reference">CAPI Reference</h2>
+<ul>
+<li><a href="../../../../CAPI/group__xwos__irq.html"><strong>Header File &lt;xwos/osal/irq.h&gt;</strong></a></li>
+</ul>
+
+  <div class="section-index">
+    
+    
+    </div>
+<div class="td-page-meta__lastmod">
+  Last modified July 7, 2026: <a href="https://gitee.com/xwos/XWOS/commit/1c12f7d773e071e0650eab6d30628cd70d640f28">chore: :tade: 创建玄武操作系统网站 (1c12f7d)</a>
+</div>
+</div>
+
+          </main>
+        </div>
+      </div>
+      <footer class="td-footer row d-print-none">
+  <div class="container-fluid">
+    <div class="row mx-md-2">
+      <div class="td-footer__left col-6 col-sm-4 order-sm-1">
+        
+      </div><div class="td-footer__right col-6 col-sm-4 order-sm-3">
+        
+      </div><div class="td-footer__center col-12 col-sm-4 py-2 order-sm-2">
+        <span class="td-footer__copyright">&copy;
+    2026
+    <span class="td-footer__authors">xwos.tech</span></span><span class="td-footer__all_rights_reserved">All Rights Reserved</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <script src='/js/deflate.js'></script>
+<link rel="stylesheet" href="https://unpkg.zhimg.com/katex@0.16.10/dist/katex.min.css"
+      integrity="sha512-r2+FkHzf1u0+SQbZOoIz2RxWOIWfdEzRuYybGjzKq18jG9zaSfEy9s3+jMqG/zPtRor/q4qaUCYQpmSjTw8M+g==" crossorigin="anonymous">
+  <script defer src="https://unpkg.zhimg.com/katex@0.16.10/dist/katex.min.js"
+        integrity="sha512-INps9zQ2GUEMCQD7xiZQbGUVnqnzEvlynVy6eqcTcHN4+aQiLo9/uaQqckDpdJ8Zm3M0QBs+Pktg4pz0kEklUg=="
+        crossorigin="anonymous">
+</script>
+  <script defer src="https://unpkg.zhimg.com/katex@0.16.10/dist/contrib/mhchem.min.js"
+        integrity="sha512-mxjNw/u1lIsFC09k/unscDRY3ofIYPVFbWkP8slrePcS36ht4d/OZ8rRu5yddB2uiqajhTcLD8+jupOWuYPebg=="
+        crossorigin="anonymous">
+</script>
+  <script defer src="https://unpkg.zhimg.com/katex@0.16.10/dist/contrib/auto-render.min.js"
+       integrity="sha512-YJVxTjqttjsU3cSvaTRqsSl0wbRgZUNF+NGGCgto/MUbIvaLdXQzGTCQu4CvyJZbZctgflVB0PXw9LLmTWm5/w==" crossorigin="anonymous"
+       onload='renderMathInElement(document.body, null);'>
+</script>
+<script src="/js/main.min.ba4f86479f124382f06216e2558aa5ca94c2f81e795a983410ffbbaa02769f8e.js" integrity="sha256-uk&#43;GR58SQ4LwYhbiVYqlypTC&#43;B55Wpg0EP&#43;7qgJ2n44=" crossorigin="anonymous"></script>
+<script src='/js/prism.js'></script>
+<script src="https://unpkg.zhimg.com/@docsearch/js@3.6.0"
+  integrity="sha512-FtDaTWf3IS29TLuYzTPlytjGqcXkwrzG9ivq7xXElnOZeiYTbcIy/hwXAgrrRNnI0+PfN+WFz4/+4phhJmuS8Q=="
+  crossorigin="anonymous" ></script>
+<script type="text/javascript">
+const containers = ['#docsearch-0', '#docsearch-1'];
+for (let c of containers) {
+  docsearch({
+    container: c,
+    appId: "R2IYF7ETH7",
+    apiKey: "599cec31baffa4868cae4e79f180729b",
+    indexName: "docsearch",
+  });
+}
+</script>
+<script src='/js/tabpane-persist.js'></script>
+
+  </body>
+</html>

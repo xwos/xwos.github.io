@@ -1,0 +1,154 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="XWOS RUST"><title>xwrust - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../static.files/rustdoc-650bd49d.css"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="xwrust" data-themes="" data-resource-suffix="" data-rustdoc-version="1.99.0-nightly (11177f223 2026-08-02)" data-channel="nightly" data-search-js="search-cf4fc35e.js" data-stringdex-js="stringdex-b5109af9.js" data-settings-js="settings-170eb4bf.js" ><script src="../static.files/storage-41dd4d93.js"></script><script defer src="../crates.js"></script><script defer src="../static.files/main-417ebf0a.js"></script><noscript><link rel="stylesheet" href="../static.files/noscript-d4bd101e.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-044be391.svg"></head><body class="rustdoc mod crate"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><rustdoc-topbar><h2><a href="#">Crate xwrust</a></h2></rustdoc-topbar><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../xwrust/index.html">xwrust</a><span class="version">1.0.0</span></h2></div><div class="sidebar-elems"><ul class="block"><li><a id="all-types" href="all.html">All Items</a></li></ul><section id="rustdoc-toc"><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#xwos-rust" title="XWOS RUST">XWOS RUST</a></li><li><a href="#简介" title="简介">简介</a></li><li><a href="#xwos-rust-的功能" title="XWOS RUST 的功能">XWOS RUST 的功能</a></li><li><a href="#返回xwos首页" title="返回XWOS首页">返回XWOS首页</a></li></ul><h3><a href="#modules">Crate Items</a></h3><ul class="block"><li><a href="#modules" title="Modules">Modules</a></li><li><a href="#macros" title="Macros">Macros</a></li></ul></section><div id="rustdoc-modnav"></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><section id="main-content" class="content" tabindex="-1"><div class="main-heading"><h1>Crate <span>xwrust</span>&nbsp;<button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../src/xwrust/lib.rs.html#1-181">Source</a> </span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="xwos-rust"><a class="doc-anchor" href="#xwos-rust">§</a>XWOS RUST</h2><h2 id="简介"><a class="doc-anchor" href="#%E7%AE%80%E4%BB%8B">§</a>简介</h2>
+<p>XWOS RUST是Rust语言 <code>#![no_std]</code> 环境下的XWOS框架，可让用户使用RUST语言开发RTOS的应用。</p>
+<p>在编写XWOS RUST时，作者充分阅读并参考了RUST语言std库的代码，尽量仿照std库的形式提供API。</p>
+<p>传统RUST程序的入口是 <code>main.rs</code> 的 <code>fn main()</code> ，
+XWOS RUST的入口是 <code>pub unsafe extern "C" fn xwrust_main()</code> 。</p>
+<p>编写XWOS RUST的应用时，需要以下步骤：</p>
+<ul>
+<li>
+<ol>
+<li>在工程目录（例如电路板模块 <code>bm</code> 文件夹 或 <code>$(OEM)</code> 文件夹）建立一个独立的 <a href="../../Docs/TechRefManual/BuildSystem/#%E7%8E%84%E6%AD%A6%E6%A8%A1%E5%9D%97"><strong>玄武模块</strong></a> ，
+并创建 <code>makefile</code> 。</li>
+</ol>
+</li>
+</ul>
+<div class="example-wrap"><pre class="language-makefile"><code>include $(XWOS_WKSPC_DIR)/XWOS.cfg
+include xwbs/functions.mk
+include xwbs/xwmo.rust.mk</code></pre></div>
+<ul>
+<li>
+<ol start="2">
+<li>创建 <code>Cargo.toml</code> 。</li>
+</ol>
+</li>
+</ul>
+<div class="example-wrap"><pre class="language-toml"><code>[package]
+name = &quot;rustapp&quot;
+version = &quot;0.1.0&quot;
+edition = &quot;2021&quot;
+
+[lib]
+name = &quot;rustapp&quot;
+crate-type = [&quot;staticlib&quot;]
+
+[dependencies]
+cortex-m = &quot;0.7&quot;
+xwrust = {path = &quot;../../../../xwmd/xwrust&quot;}</code></pre></div>
+<ul>
+<li>
+<ol start="3">
+<li>创建 <code>.cargo/config.toml</code> 。</li>
+</ol>
+</li>
+</ul>
+<div class="example-wrap"><pre class="language-toml"><code>[build]
+rustflags = [
+ &quot;--cfg&quot;, &quot;unix&quot;,
+ &quot;--cfg&quot;, &quot;target_env=\&quot;newlib\&quot;&quot;,
+]
+target-dir = &quot;target&quot;
+
+[unstable]
+build-std = [&quot;core&quot;, &quot;alloc&quot;]</code></pre></div>
+<ul>
+<li>
+<ol start="4">
+<li>在 <code>src/lib.rs</code> 中实现 <code>pub unsafe extern "C" fn xwrust_main()</code> 。</li>
+</ol>
+</li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="attr">#![no_std]
+
+</span><span class="kw">use </span>xwrust::xwmm::allocator::XwrustAllocator;
+
+<span class="attr">#[global_allocator]
+</span><span class="kw">pub static </span>GLOBAL_ALLOCATOR: XwrustAllocator = XwrustAllocator;
+
+<span class="attr">#[no_mangle]
+</span><span class="kw">pub unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>xwrust_main() {
+    <span class="comment">// 用户代码
+</span>}</code></pre></div>
+<ul>
+<li>
+<ol start="5">
+<li>在XWOS的C语言入口 <code>xwos_main()</code> 中创建一个线程来调用 <code>xwrust_main()</code> 。</li>
+</ol>
+</li>
+</ul>
+<div class="example-wrap"><pre class="language-C"><code>extern void xwrust_main(void);
+
+#define XWRUST_THD_PRIORITY XWOS_SKD_PRIORITY_DROP(XWOS_SKD_PRIORITY_RT_MAX, 0)
+xwer_t xwrust_thd_mainfunc(void * arg);
+__xwcc_alignl1cache xwstk_t xwrust_thd_stack[2048U] = {0};
+struct xwos_thd xwrust_thd;
+xwos_thd_d xwrust_thdd;
+
+xwer_t xwos_main(void)
+{
+        xwer_t rc;
+        struct xwos_thd_attr attr;
+
+        xwos_thd_attr_init(&amp;attr);
+        attr.name = &quot;xwrust.thd&quot;;
+        attr.stack = xwrust_thd_stack;
+        attr.stack_size = sizeof(xwrust_thd_stack);
+        attr.priority = XWRUST_THD_PRIORITY;
+        attr.detached = true;
+        attr.privileged = true;
+        rc = xwos_thd_init(&amp;xwrust_thd, &amp;xwrust_thdd,
+                           &amp;attr,
+                           xwrust_thd_mainfunc, NULL);
+}
+
+xwer_t xwrust_thd_mainfunc(void * arg)
+{
+        xwrust_main();
+}</code></pre></div><h2 id="xwos-rust-的功能"><a class="doc-anchor" href="#xwos-rust-%E7%9A%84%E5%8A%9F%E8%83%BD">§</a>XWOS RUST 的功能</h2>
+<p>XWOS RUST提供了RTOS的基本功能：</p>
+<ul>
+<li><a href="xwmm/index.html" title="mod xwrust::xwmm">内存管理</a>
+<ul>
+<li><a href="xwmm/allocator/index.html" title="mod xwrust::xwmm::allocator">全局内存分配器</a></li>
+</ul>
+</li>
+<li><a href="xwos/skd/index.html" title="mod xwrust::xwos::skd">调度器</a></li>
+<li><a href="xwos/pm/index.html" title="mod xwrust::xwos::pm">电源管理</a></li>
+<li><a href="xwos/thd/index.html" title="mod xwrust::xwos::thd">线程</a></li>
+<li><a href="xwos/swt/index.html" title="mod xwrust::xwos::swt">软件定时器</a></li>
+<li><a href="xwos/lock/index.html" title="mod xwrust::xwos::lock">锁</a>
+<ul>
+<li><a href="xwos/lock/mtx/index.html" title="mod xwrust::xwos::lock::mtx">互斥锁</a></li>
+<li><a href="xwos/lock/spinlock/index.html" title="mod xwrust::xwos::lock::spinlock">自旋锁</a></li>
+<li><a href="xwos/lock/seqlock/index.html" title="mod xwrust::xwos::lock::seqlock">顺序锁</a></li>
+</ul>
+</li>
+<li><a href="xwos/sync/index.html" title="mod xwrust::xwos::sync">同步机制</a>
+<ul>
+<li><a href="xwos/sync/sem/index.html" title="mod xwrust::xwos::sync::sem">信号量</a></li>
+<li><a href="xwos/sync/cond/index.html" title="mod xwrust::xwos::sync::cond">条件量</a></li>
+<li><a href="xwos/sync/flg/index.html" title="mod xwrust::xwos::sync::flg">事件标志</a></li>
+<li><a href="xwos/sync/br/index.html" title="mod xwrust::xwos::sync::br">线程栅栏</a></li>
+<li><a href="xwos/sync/sel/index.html" title="mod xwrust::xwos::sync::sel">信号选择器</a></li>
+</ul>
+</li>
+<li>线程间通讯
+<ul>
+<li><a href="xwmd/xwmq/index.html" title="mod xwrust::xwmd::xwmq">消息队列</a></li>
+<li><a href="xwmd/xwcq/index.html" title="mod xwrust::xwmd::xwcq">循环队列</a></li>
+</ul>
+</li>
+<li>其他
+<ul>
+<li><a href="xwtm/index.html" title="mod xwrust::xwtm">时间</a></li>
+<li><a href="types/index.html" title="mod xwrust::types">类型</a></li>
+<li><a href="errno/index.html" title="mod xwrust::errno">错误码</a></li>
+<li><a href="xwbmp/index.html" title="mod xwrust::xwbmp">位图</a></li>
+</ul>
+</li>
+</ul>
+<p>XWOS RUST所有功能都提供了 <a href="https://doc.rust-lang.org/std/keyword.static.html"><code>static</code></a> 创建的方法，如果不使用 <a href="https://doc.rust-lang.org/alloc/sync/struct.Arc.html"><code>Arc&lt;T&gt;</code></a>, <a href="https://doc.rust-lang.org/alloc/boxed/struct.Box.html"><code>Box&lt;T&gt;</code></a> 等，
+即可实现完全静态内存分配的代码。</p>
+<h2 id="返回xwos首页"><a class="doc-anchor" href="#%E8%BF%94%E5%9B%9Exwos%E9%A6%96%E9%A1%B5">§</a>返回XWOS首页</h2>
+<p><a href="/"><strong>XWOS首页</strong></a></p>
+</div></details><h2 id="modules" class="section-header">Modules<a href="#modules" class="anchor">§</a></h2><dl class="item-table"><dt><a class="mod" href="cfg/index.html" title="mod xwrust::cfg">cfg</a></dt><dd>XWOS RUST：配置</dd><dt><a class="mod" href="errno/index.html" title="mod xwrust::errno">errno</a></dt><dd>XWOS RUST：错误码</dd><dt><a class="mod" href="macros/index.html" title="mod xwrust::macros">macros</a></dt><dd>XWOS RUST：宏</dd><dt><a class="mod" href="panic/index.html" title="mod xwrust::panic">panic</a></dt><dd>XWOS RUST：panic</dd><dt><a class="mod" href="types/index.html" title="mod xwrust::types">types</a></dt><dd>XWOS RUST：基本类型</dd><dt><a class="mod" href="xwbmp/index.html" title="mod xwrust::xwbmp">xwbmp</a></dt><dd>XWOS RUST：位图数组</dd><dt><a class="mod" href="xwds/index.html" title="mod xwrust::xwds">xwds</a></dt><dd>XWOS RUST：设备栈</dd><dt><a class="mod" href="xwmd/index.html" title="mod xwrust::xwmd">xwmd</a></dt><dd>XWOS RUST：中间件</dd><dt><a class="mod" href="xwmm/index.html" title="mod xwrust::xwmm">xwmm</a></dt><dd>XWOS RUST：内存管理</dd><dt><a class="mod" href="xwos/index.html" title="mod xwrust::xwos">xwos</a></dt><dd>XWOS RUST：内核库</dd><dt><a class="mod" href="xwtm/index.html" title="mod xwrust::xwtm">xwtm</a></dt><dd>XWOS RUST：系统时间</dd></dl><h2 id="macros" class="section-header">Macros<a href="#macros" class="anchor">§</a></h2><dl class="item-table"><dt><a class="macro" href="macro.bit.html" title="macro xwrust::bit">bit</a></dt><dd>生成位掩码的宏</dd><dt><a class="macro" href="macro.pin.html" title="macro xwrust::pin">pin</a></dt><dd>生成GPIO PIN掩码的宏</dd></dl></section></div></main></body></html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="XWOS RUST：条件量"><title>xwrust::xwos::sync::cond - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../../static.files/rustdoc-650bd49d.css"><meta name="rustdoc-vars" data-root-path="../../../../" data-static-root-path="../../../../static.files/" data-current-crate="xwrust" data-themes="" data-resource-suffix="" data-rustdoc-version="1.99.0-nightly (11177f223 2026-08-02)" data-channel="nightly" data-search-js="search-cf4fc35e.js" data-stringdex-js="stringdex-b5109af9.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../../static.files/storage-41dd4d93.js"></script><script defer src="../sidebar-items.js"></script><script defer src="../../../../static.files/main-417ebf0a.js"></script><noscript><link rel="stylesheet" href="../../../../static.files/noscript-d4bd101e.css"></noscript><link rel="alternate icon" type="image/png" href="../../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../../static.files/favicon-044be391.svg"></head><body class="rustdoc mod"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><rustdoc-topbar><h2><a href="#">Module cond</a></h2></rustdoc-topbar><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../../xwrust/index.html">xwrust</a><span class="version">1.0.0</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Module cond</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#xwos-rust条件量" title="XWOS RUST：条件量">XWOS RUST：条件量</a></li><li><a href="#创建" title="创建">创建</a></li><li><a href="#初始化" title="初始化">初始化</a></li><li><a href="#单播" title="单播">单播</a></li><li><a href="#广播" title="广播">广播</a></li><li><a href="#冻结与解冻" title="冻结与解冻">冻结与解冻</a><ul><li><a href="#冻结" title="冻结">冻结</a></li><li><a href="#解冻" title="解冻">解冻</a></li></ul></li><li><a href="#等待" title="等待">等待</a><ul><li><a href="#普通等待" title="普通等待">普通等待</a></li><li><a href="#超时等待" title="超时等待">超时等待</a></li><li><a href="#不可中断等待" title="不可中断等待">不可中断等待</a></li></ul></li><li><a href="#绑定到信号选择器" title="绑定到信号选择器">绑定到信号选择器</a></li><li><a href="#示例" title="示例">示例</a></li></ul><h3><a href="#structs">Module Items</a></h3><ul class="block"><li><a href="#structs" title="Structs">Structs</a></li><li><a href="#enums" title="Enums">Enums</a></li><li><a href="#constants" title="Constants">Constants</a></li></ul></section><div id="rustdoc-modnav"><h2><a href="../index.html">In xwrust::<wbr>xwos::<wbr>sync</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><section id="main-content" class="content" tabindex="-1"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../../../index.html">xwrust</a>::<wbr><a href="../../index.html">xwos</a>::<wbr><a href="../index.html">sync</a></div><h1>Module <span>cond</span>&nbsp;<button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../../../src/xwrust/xwos/sync/cond.rs.html#1-712">Source</a> </span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="xwos-rust条件量"><a class="doc-anchor" href="#xwos-rust%E6%9D%A1%E4%BB%B6%E9%87%8F">§</a>XWOS RUST：条件量</h2>
+<p>条件量是操作系统比较底层的同步机制，可以同时阻塞多个线程。当条件成立，条件量可以唤醒一个或所有正在等待的线程。</p>
+<p>XWOS RUST的条件量通常还需要一个伴生的锁一起工作。线程通常需要持有 <strong>锁</strong> 的情况下去等待条件量，
+条件量阻塞线程的同时会同步释放 <strong>锁</strong> 。当条件成立，线程被唤醒时，条件量会自动获得 <strong>锁</strong>。</p>
+<p>XWOS RUST的条件量机制，主要包括以下操作：</p>
+<ul>
+<li>线程A等待条件量的 <strong>条件</strong> 成立而阻塞；</li>
+<li>另一个线程B或中断或其他任意上下文使 <strong>条件</strong> 成立，并唤醒条件量上阻塞的线程，可以 <strong>单播</strong> 也可以 <strong>广播</strong> 。
+为了防止两个上下文竞争 <strong>条件</strong> ，条件量需要和一个 <strong>锁</strong> 一起使用，锁用于保护 <strong>条件</strong> 不会被同时访问。</li>
+<li>XWOS的条件量的锁的类型包括：
+<ul>
+<li>互斥锁</li>
+<li>自旋锁</li>
+<li>顺序锁的独占读锁</li>
+<li>顺序锁的写锁</li>
+</ul>
+</li>
+</ul>
+<h2 id="创建"><a class="doc-anchor" href="#%E5%88%9B%E5%BB%BA">§</a>创建</h2>
+<p>XWOS RUST的条件量可使用 <a href="struct.Cond.html#method.new" title="associated function xwrust::xwos::sync::cond::Cond::new"><code>Cond::new()</code></a> 创建。</p>
+<ul>
+<li>可以创建具有静态生命周期 <a href="https://doc.rust-lang.org/std/keyword.static.html"><code>static</code></a> 约束的全局变量：</li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwos::sync::cond::<span class="kw-2">*</span>;
+
+<span class="kw">static </span>GLOBAL_COND: Cond = Cond::new();</code></pre></div>
+<ul>
+<li>也可以使用 <a href="https://doc.rust-lang.org/alloc/sync/struct.Arc.html"><code>alloc::sync::Arc</code></a> 在heap中创建：</li>
+</ul>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">extern crate </span>alloc;
+<span class="kw">use </span>alloc::sync::Arc;
+
+<span class="kw">use </span>xwrust::xwos::sync::cond::<span class="kw-2">*</span>;
+
+<span class="kw">pub fn </span>xwrust_example_cond() {
+    <span class="kw">let </span>cond = Arc::new(Cond::new());
+    <span class="kw">let </span>cond_c = cond.clone();
+}</code></pre></div><h2 id="初始化"><a class="doc-anchor" href="#%E5%88%9D%E5%A7%8B%E5%8C%96">§</a>初始化</h2>
+<p>无论以何种方式创建的条件量，都必须在使用前调用 <a href="struct.Cond.html#method.init" title="method xwrust::xwos::sync::cond::Cond::init"><code>Cond::init()</code></a> 进行初始化：</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">pub fn </span>xwrust_example_cond() {
+    GLOBAL_COND.init();
+    cond.init();
+}</code></pre></div><h2 id="单播"><a class="doc-anchor" href="#%E5%8D%95%E6%92%AD">§</a>单播</h2>
+<p><a href="struct.Cond.html#method.unicast" title="method xwrust::xwos::sync::cond::Cond::unicast"><code>Cond::unicast()</code></a> 方法可用来使得条件量的条件成立，但只唤醒一个线程。此方法可在 <strong>任意</strong> 上下文使用。</p>
+<h2 id="广播"><a class="doc-anchor" href="#%E5%B9%BF%E6%92%AD">§</a>广播</h2>
+<p><a href="struct.Cond.html#method.broadcast" title="method xwrust::xwos::sync::cond::Cond::broadcast"><code>Cond::broadcast()</code></a> 方法可用来使得条件量的条件成立，并唤醒全部线程。此方法可在 <strong>任意</strong> 上下文使用。</p>
+<h2 id="冻结与解冻"><a class="doc-anchor" href="#%E5%86%BB%E7%BB%93%E4%B8%8E%E8%A7%A3%E5%86%BB">§</a>冻结与解冻</h2><h3 id="冻结"><a class="doc-anchor" href="#%E5%86%BB%E7%BB%93">§</a>冻结</h3>
+<p>XWOS RUST的条件量可以使用方法 <a href="struct.Cond.html#method.freeze" title="method xwrust::xwos::sync::cond::Cond::freeze"><code>Cond::freeze()</code></a> 进行 <strong>冻结</strong> 操作，被冻结的条件量不能再进行 <strong>单薄</strong> 和 <strong>广播</strong> 操作。</p>
+<h3 id="解冻"><a class="doc-anchor" href="#%E8%A7%A3%E5%86%BB">§</a>解冻</h3>
+<p><a href="struct.Cond.html#method.thaw" title="method xwrust::xwos::sync::cond::Cond::thaw"><code>Cond::thaw()</code></a> 方法是<strong>冻结</strong> 操作的逆操作。条件量解冻后，可重新进行 <strong>单薄</strong> 和 <strong>广播</strong> 操作。</p>
+<h2 id="等待"><a class="doc-anchor" href="#%E7%AD%89%E5%BE%85">§</a>等待</h2>
+<p>等待操作需要在获得锁的情况下进行，因此 <strong>等待</strong> 的方法实现在锁的 <strong>守卫(Guard)</strong> 内部，以便区分锁的类型：</p>
+<h3 id="普通等待"><a class="doc-anchor" href="#%E6%99%AE%E9%80%9A%E7%AD%89%E5%BE%85">§</a>普通等待</h3>
+<p><strong>普通等待</strong> 的方法只可在 <strong>线程</strong> 上下文中使用，会 <strong>消费</strong> 锁的 <strong>守卫(Guard)</strong> ，然后线程阻塞等待条件量：</p>
+<ul>
+<li>通过 <strong>单播</strong> 或 <strong>广播</strong> 可唤醒线程，线程唤醒后，会进行获得锁的操作。当锁是互斥锁时，线程可能又会因无法获得锁而被阻塞。</li>
+<li>当线程的阻塞等待被中断时，会在 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Err"><code>Err</code></a> 中返回 <a href="enum.CondError.html#variant.Interrupt" title="variant xwrust::xwos::sync::cond::CondError::Interrupt"><code>CondError::Interrupt</code></a> 。</li>
+<li>获得锁后，会在 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Ok"><code>Ok</code></a> 中重新返回锁的 <strong>守卫(Guard)</strong> 。</li>
+<li>当发生错误，返回 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Err"><code>Err</code></a> 时，锁的 <strong>守卫(Guard)</strong> 被 <strong>消费</strong> ，生命周期结束，不再可用。</li>
+</ul>
+<p>各种锁的 <strong>等待</strong> 条件量的方法：</p>
+<ul>
+<li>互斥锁： <a href="../../lock/mtx/struct.MutexGuard.html#method.wait" title="method xwrust::xwos::lock::mtx::MutexGuard::wait"><code>crate::xwos::lock::mtx::MutexGuard::wait()</code></a></li>
+<li>自旋锁： <a href="../../lock/spinlock/struct.SpinlockGuard.html#method.wait" title="method xwrust::xwos::lock::spinlock::SpinlockGuard::wait"><code>crate::xwos::lock::spinlock::SpinlockGuard::wait()</code></a></li>
+<li>顺序锁的独占读锁： <a href="../../lock/seqlock/struct.SeqlockGuard.html#method.wait" title="method xwrust::xwos::lock::seqlock::SeqlockGuard::wait"><code>crate::xwos::lock::seqlock::SeqlockGuard::wait()</code></a></li>
+<li>顺序锁的写锁： <a href="../../lock/seqlock/struct.SeqlockGuard.html#method.wait" title="method xwrust::xwos::lock::seqlock::SeqlockGuard::wait"><code>crate::xwos::lock::seqlock::SeqlockGuard::wait()</code></a></li>
+</ul>
+<h3 id="超时等待"><a class="doc-anchor" href="#%E8%B6%85%E6%97%B6%E7%AD%89%E5%BE%85">§</a>超时等待</h3>
+<p><strong>超时等待</strong> 的方法只可在 <strong>线程</strong> 上下文中使用，会 <strong>消费</strong> 锁的 <strong>守卫(Guard)</strong> ，然后线程阻塞等待条件量，等待时会指定一个唤醒时间点：</p>
+<ul>
+<li>通过 <strong>单播</strong> 或 <strong>广播</strong> 可唤醒线程，线程唤醒后，会进行获得锁的操作。
+当锁是互斥锁时，线程可能又会因无法获得锁而被阻塞，但到指定的唤醒时间点时一定会超时唤醒。</li>
+<li>当线程的阻塞等待被中断时，会在 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Err"><code>Err</code></a> 中返回 <a href="enum.CondError.html#variant.Interrupt" title="variant xwrust::xwos::sync::cond::CondError::Interrupt"><code>CondError::Interrupt</code></a> 。</li>
+<li>当到达指定的唤醒时间点，线程被唤醒，并返回 <a href="enum.CondError.html#variant.Timedout" title="variant xwrust::xwos::sync::cond::CondError::Timedout"><code>CondError::Timedout</code></a> 。</li>
+<li>获得锁后，会在 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Ok"><code>Ok</code></a> 中重新返回锁的 <strong>守卫(Guard)</strong> 。</li>
+<li>当发生错误，返回 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Err"><code>Err</code></a> 时，锁的 <strong>守卫(Guard)</strong> 被 <strong>消费</strong> ，生命周期结束，不再可用。</li>
+</ul>
+<p>各种锁的 <strong>等待</strong> 条件量的方法：</p>
+<ul>
+<li>互斥锁： <a href="../../lock/mtx/struct.MutexGuard.html#method.wait_to" title="method xwrust::xwos::lock::mtx::MutexGuard::wait_to"><code>crate::xwos::lock::mtx::MutexGuard::wait_to()</code></a></li>
+<li>自旋锁： <a href="../../lock/spinlock/struct.SpinlockGuard.html#method.wait_to" title="method xwrust::xwos::lock::spinlock::SpinlockGuard::wait_to"><code>crate::xwos::lock::spinlock::SpinlockGuard::wait_to()</code></a></li>
+<li>顺序锁的独占读锁： <a href="../../lock/seqlock/struct.SeqlockGuard.html#method.wait_to" title="method xwrust::xwos::lock::seqlock::SeqlockGuard::wait_to"><code>crate::xwos::lock::seqlock::SeqlockGuard::wait_to()</code></a></li>
+<li>顺序锁的写锁： <a href="../../lock/seqlock/struct.SeqlockGuard.html#method.wait_to" title="method xwrust::xwos::lock::seqlock::SeqlockGuard::wait_to"><code>crate::xwos::lock::seqlock::SeqlockGuard::wait_to()</code></a></li>
+</ul>
+<h3 id="不可中断等待"><a class="doc-anchor" href="#%E4%B8%8D%E5%8F%AF%E4%B8%AD%E6%96%AD%E7%AD%89%E5%BE%85">§</a>不可中断等待</h3>
+<p><strong>不可中断等待</strong> 的方法只可在 <strong>线程</strong> 上下文中使用，会 <strong>消费</strong> 锁的 <strong>守卫(Guard)</strong> ，然后线程阻塞等待条件量，并且不可被中断：</p>
+<ul>
+<li>通过 <strong>单播</strong> 或 <strong>广播</strong> 可唤醒线程，线程唤醒后，会进行获得锁的操作。
+当锁是互斥锁时，线程可能又会因无法获得锁而被阻塞，互斥锁的阻塞等待同样是不可被中断的。</li>
+<li>获得锁后，会在 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Ok"><code>Ok</code></a> 中重新返回锁的 <strong>守卫(Guard)</strong> 。</li>
+<li>当发生错误，返回 <a href="https://doc.rust-lang.org/core/result/enum.Result.html#variant.Err"><code>Err</code></a> 时，锁的 <strong>守卫(Guard)</strong> 被 <strong>消费</strong> ，生命周期结束，不再可用。</li>
+</ul>
+<p>各种锁的 <strong>等待</strong> 条件量的方法：</p>
+<ul>
+<li>互斥锁： <a href="../../lock/mtx/struct.MutexGuard.html#method.wait_unintr" title="method xwrust::xwos::lock::mtx::MutexGuard::wait_unintr"><code>crate::xwos::lock::mtx::MutexGuard::wait_unintr()</code></a></li>
+<li>自旋锁： <a href="../../lock/spinlock/struct.SpinlockGuard.html#method.wait_unintr" title="method xwrust::xwos::lock::spinlock::SpinlockGuard::wait_unintr"><code>crate::xwos::lock::spinlock::SpinlockGuard::wait_unintr()</code></a></li>
+<li>顺序锁的独占读锁： <a href="../../lock/seqlock/struct.SeqlockGuard.html#method.wait_unintr" title="method xwrust::xwos::lock::seqlock::SeqlockGuard::wait_unintr"><code>crate::xwos::lock::seqlock::SeqlockGuard::wait_unintr()</code></a></li>
+<li>顺序锁的写锁： <a href="../../lock/seqlock/struct.SeqlockGuard.html#method.wait_unintr" title="method xwrust::xwos::lock::seqlock::SeqlockGuard::wait_unintr"><code>crate::xwos::lock::seqlock::SeqlockGuard::wait_unintr()</code></a></li>
+</ul>
+<h2 id="绑定到信号选择器"><a class="doc-anchor" href="#%E7%BB%91%E5%AE%9A%E5%88%B0%E4%BF%A1%E5%8F%B7%E9%80%89%E6%8B%A9%E5%99%A8">§</a>绑定到信号选择器</h2>
+<p>条件量是 <strong>同步对象</strong> ，可以通过方法 <a href="struct.Cond.html#method.bind" title="method xwrust::xwos::sync::cond::Cond::bind"><code>Cond::bind()</code></a> 将条件量绑定到信号选择器 <a href="../sel/struct.Sel.html" title="struct xwrust::xwos::sync::sel::Sel"><code>Sel&lt;M&gt;</code></a> 上，通过 <a href="../sel/struct.Sel.html" title="struct xwrust::xwos::sync::sel::Sel"><code>Sel&lt;M&gt;</code></a> ，单一线程可以同时等待多个不同的 <strong>同步对象</strong> 。</p>
+<p>条件量采用 <strong>非独占</strong> 的方式进行绑定。</p>
+<h2 id="示例"><a class="doc-anchor" href="#%E7%A4%BA%E4%BE%8B">§</a>示例</h2>
+<p><a href="https://gitee.com/xwos/XWOS/blob/main/xwam/xwrust-example/xwrust_example_cond/src/lib.rs">XWOS/xwam/xwrust-example/xwrust_example_cond</a></p>
+</div></details><h2 id="structs" class="section-header">Structs<a href="#structs" class="anchor">§</a></h2><dl class="item-table"><dt><a class="struct" href="struct.Cond.html" title="struct xwrust::xwos::sync::cond::Cond">Cond</a></dt><dd>条件量对象结构体</dd><dt><a class="struct" href="struct.CondSel.html" title="struct xwrust::xwos::sync::cond::CondSel">CondSel</a></dt><dd>条件量的选择子</dd></dl><h2 id="enums" class="section-header">Enums<a href="#enums" class="anchor">§</a></h2><dl class="item-table"><dt><a class="enum" href="enum.CondError.html" title="enum xwrust::xwos::sync::cond::CondError">Cond<wbr>Error</a></dt><dd>条件量的错误码</dd></dl><h2 id="constants" class="section-header">Constants<a href="#constants" class="anchor">§</a></h2><dl class="item-table"><dt><a class="constant" href="constant.SIZEOF_XWOS_COND.html" title="constant xwrust::xwos::sync::cond::SIZEOF_XWOS_COND">SIZEOF_<wbr>XWOS_<wbr>COND</a></dt><dd>XWOS条件量对象占用的内存大小</dd></dl></section></div></main></body></html>

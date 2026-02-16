@@ -1,0 +1,295 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>XWLUA参考手册</title>
+    <link rel="stylesheet" href="../ldoc_new.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>XWLUA</h1>
+
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Methods">Methods</a></li>
+</ul>
+
+
+<h2>Classes</h2>
+<ul class="nowrap">
+  <li><a href="../classes/xwlib.bmp.html">xwlib.bmp</a></li>
+  <li><a href="../classes/thdsp.html">thdsp</a></li>
+  <li><a href="../classes/mtxsp.html">mtxsp</a></li>
+  <li><a href="../classes/splksp.html">splksp</a></li>
+  <li><a href="../classes/sqlksp.html">sqlksp</a></li>
+  <li><a href="../classes/semsp.html">semsp</a></li>
+  <li><a href="../classes/condsp.html">condsp</a></li>
+  <li><a href="../classes/flgsp.html">flgsp</a></li>
+  <li><a href="../classes/brsp.html">brsp</a></li>
+  <li><a href="../classes/selsp.html">selsp</a></li>
+  <li><a href="../classes/xwds.soc.html">xwds.soc</a></li>
+  <li><a href="../classes/xwds.uart.html">xwds.uart</a></li>
+  <li><a href="../classes/xwds.spim.html">xwds.spim</a></li>
+  <li><a href="../classes/xwds.i2cm.html">xwds.i2cm</a></li>
+  <li><strong>xwds.i2cm.msg</strong></li>
+</ul>
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/xwtm.html">xwtm</a></li>
+  <li><a href="../modules/xwvm.html">xwvm</a></li>
+  <li><a href="../modules/xwxt.html">xwxt</a></li>
+  <li><a href="../modules/xwos.skd.html">xwos.skd</a></li>
+  <li><a href="../modules/xwos.thd.html">xwos.thd</a></li>
+  <li><a href="../modules/xwos.cthd.html">xwos.cthd</a></li>
+  <li><a href="../modules/xwos.lock.mtx.html">xwos.lock.mtx</a></li>
+  <li><a href="../modules/xwos.lock.splk.html">xwos.lock.splk</a></li>
+  <li><a href="../modules/xwos.lock.sqlk.html">xwos.lock.sqlk</a></li>
+  <li><a href="../modules/xwos.sync.sem.html">xwos.sync.sem</a></li>
+  <li><a href="../modules/xwos.sync.cond.html">xwos.sync.cond</a></li>
+  <li><a href="../modules/xwos.sync.flg.html">xwos.sync.flg</a></li>
+  <li><a href="../modules/xwos.sync.br.html">xwos.sync.br</a></li>
+  <li><a href="../modules/xwos.sync.sel.html">xwos.sync.sel</a></li>
+  <li><a href="../modules/xwos.pm.html">xwos.pm</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Class <code>xwds.i2cm.msg</code></h1>
+<p>XWLUA模块：XWLUA I2C主机消息</p>
+<p>
+
+<h2>CAPI</h2>
+</p>
+
+
+<h2><a href="#Methods">Methods</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#xwds.i2cm.msg:addr">xwds.i2cm.msg:addr (idx, addr, addr10bit)</a></td>
+	<td class="summary">设置XWLUA I2C主机消息的外设地址</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#xwds.i2cm.msg:read">xwds.i2cm.msg:read (idx, flag)</a></td>
+	<td class="summary">设置XWLUA I2C主机消息的读标志</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#xwds.i2cm.msg:start">xwds.i2cm.msg:start (idx, flag)</a></td>
+	<td class="summary">设置XWLUA I2C主机消息的开始标志</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#xwds.i2cm.msg:stop">xwds.i2cm.msg:stop (idx, flag)</a></td>
+	<td class="summary">设置XWLUA I2C主机消息的停止标志</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#xwds.i2cm.msg:data">xwds.i2cm.msg:data (idx, data)</a></td>
+	<td class="summary">设置XWLUA I2C主机消息的数据（用于发送）</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#xwds.i2cm.msg:buffer">xwds.i2cm.msg:buffer (idx, size)</a></td>
+	<td class="summary">为XWLUA I2C主机消息申请数据缓冲区（用于接收）</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Methods"></a>Methods</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "xwds.i2cm.msg:addr"></a>
+    <strong>xwds.i2cm.msg:addr (idx, addr, addr10bit)</strong>
+    </dt>
+    <dd>
+    设置XWLUA I2C主机消息的外设地址
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">idx</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) 消息的索引
+        </li>
+        <li><span class="parameter">addr</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) 外设地址
+        </li>
+        <li><span class="parameter">addr10bit</span>
+            <span class="types"><span class="type">boolean</span></span>
+         (<strong>in</strong>) 是否为10位地址模式<br>
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "xwds.i2cm.msg:read"></a>
+    <strong>xwds.i2cm.msg:read (idx, flag)</strong>
+    </dt>
+    <dd>
+    设置XWLUA I2C主机消息的读标志
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">idx</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) 消息的索引
+        </li>
+        <li><span class="parameter">flag</span>
+            <span class="types"><span class="type">boolean</span></span>
+         (<strong>in</strong>) 是否为读模式<br>
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "xwds.i2cm.msg:start"></a>
+    <strong>xwds.i2cm.msg:start (idx, flag)</strong>
+    </dt>
+    <dd>
+    设置XWLUA I2C主机消息的开始标志
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">idx</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) 消息的索引
+        </li>
+        <li><span class="parameter">flag</span>
+            <span class="types"><span class="type">boolean</span></span>
+         (<strong>in</strong>) 是否包含START标志<br>
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "xwds.i2cm.msg:stop"></a>
+    <strong>xwds.i2cm.msg:stop (idx, flag)</strong>
+    </dt>
+    <dd>
+    设置XWLUA I2C主机消息的停止标志
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">idx</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) 消息的索引
+        </li>
+        <li><span class="parameter">flag</span>
+            <span class="types"><span class="type">boolean</span></span>
+         (<strong>in</strong>) 是否包含STOP标志<br>
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "xwds.i2cm.msg:data"></a>
+    <strong>xwds.i2cm.msg:data (idx, data)</strong>
+    </dt>
+    <dd>
+    设置XWLUA I2C主机消息的数据（用于发送）
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">idx</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) 消息的索引
+        </li>
+        <li><span class="parameter">data</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+         (<strong>in</strong>) 待发送的数据<br>
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "xwds.i2cm.msg:buffer"></a>
+    <strong>xwds.i2cm.msg:buffer (idx, size)</strong>
+    </dt>
+    <dd>
+    为XWLUA I2C主机消息申请数据缓冲区（用于接收）
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">idx</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) 消息的索引
+        </li>
+        <li><span class="parameter">size</span>
+            <span class="types"><span class="type">number</span></span>
+         (<strong>in</strong>) 缓冲区大小
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.4/manual.html#6.4">string</a></span>
+        用于接收数据的缓冲区<br>
+    </ol>
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/lunarmodules/LDoc">LDoc 1.5.0</a></i>
+<i style="float:right;">Last updated 2026-08-22 13:20:52 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

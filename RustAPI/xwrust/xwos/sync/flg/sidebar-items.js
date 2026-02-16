@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["SIZEOF_XWOS_FLG"],"enum":["FlgError","Trigger"],"struct":["Flg","FlgSel"]};

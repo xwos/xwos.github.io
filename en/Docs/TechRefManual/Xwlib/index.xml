@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>General Library on XWOS</title>
+    <link>/en/Docs/TechRefManual/Xwlib/</link>
+    <description>Recent content in General Library on XWOS</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <atom:link href="/en/Docs/TechRefManual/Xwlib/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Bit Operation Library</title>
+      <link>/en/Docs/TechRefManual/Xwlib/Xwbop/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/en/Docs/TechRefManual/Xwlib/Xwbop/</guid>
+      <description>&lt;h2 id=&#34;bit-operations&#34;&gt;Bit Operations&lt;/h2&gt;&#xA;&lt;p&gt;XWOS provides a bit operation template library. Various &lt;strong&gt;non-function-pointer types&lt;/strong&gt; defined in &lt;a href=&#34;../../XwosStd#basic-types&#34;&gt;Basic Types&lt;/a&gt;&#xA;can use bit operations. The bit operation function templates include:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;code&gt;xwbop_s1m()&lt;/code&gt;: Set all bits in the data mask portion to 1&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;xwbop_c0m()&lt;/code&gt;: Clear all bits in the data mask portion to 0&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;xwbop_x1m()&lt;/code&gt;: Toggle all bits in the data mask portion&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;xwbop_rbit()&lt;/code&gt;: Mirror-reverse the bits of the data&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;xwbop_re()&lt;/code&gt;: Reverse the endianness of the data&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;xwbop_ffs()&lt;/code&gt;: Find the first bit set to 1 starting from the least significant bit&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;xwbop_fls()&lt;/code&gt;: Find the first bit set to 1 starting from the most significant bit&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;xwbop_ffz()&lt;/code&gt;: Find the first bit cleared to 0 starting from the least significant bit&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;xwbop_flz()&lt;/code&gt;: Find the first bit cleared to 0 starting from the most significant bit&lt;/li&gt;&#xA;&lt;li&gt;&lt;code&gt;xwbop_weight()&lt;/code&gt;: Count the number of 1 bits in the data&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The first parameter of all bit operation functions is the &lt;a href=&#34;../../XwosStd#basic-types&#34;&gt;Basic Type&lt;/a&gt;,&#xA;and the second parameter is the data or pointer to the data, for example:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Atomic Operation Library</title>
+      <link>/en/Docs/TechRefManual/Xwlib/Xwaop/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/en/Docs/TechRefManual/Xwlib/Xwaop/</guid>
+      <description>&lt;h2 id=&#34;memory-model&#34;&gt;Memory Model&lt;/h2&gt;&#xA;&lt;p&gt;Like the standard library, XWOS atomic operations are divided into 6 memory ordering models:&lt;/p&gt;&#xA;&lt;h4 id=&#34;xwaop_mo_relaxed&#34;&gt;&lt;code&gt;xwaop_mo_relaxed&lt;/code&gt;&lt;/h4&gt;&#xA;&lt;p&gt;Relaxed ordering, no memory barrier operations.&lt;/p&gt;&#xA;&lt;h4 id=&#34;xwaop_mo_consume&#34;&gt;&lt;code&gt;xwaop_mo_consume&lt;/code&gt;&lt;/h4&gt;&#xA;&lt;p&gt;Consume ordering, adds a &lt;strong&gt;Data dependency barrier&lt;/strong&gt; between read operations.&#xA;This barrier is uncommon; for common x86/ARM architectures, &lt;strong&gt;Data dependency barrier&lt;/strong&gt; is handled automatically.&#xA;To the author&amp;rsquo;s knowledge, currently only Alpha architecture CPUs require programmer attention to &lt;strong&gt;Data dependency barrier&lt;/strong&gt;.&#xA;The Rust language does not even provide this memory ordering.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Logging</title>
+      <link>/en/Docs/TechRefManual/Xwlib/Log/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/en/Docs/TechRefManual/Xwlib/Log/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;XWOS provides a logging framework where users can output logs with levels:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;VERBOSE, Level 1, verbose&lt;/li&gt;&#xA;&lt;li&gt;DEBUG, Level 2, debug&lt;/li&gt;&#xA;&lt;li&gt;INFO, Level 3, informational&lt;/li&gt;&#xA;&lt;li&gt;NOTICE, Level 4, notice&lt;/li&gt;&#xA;&lt;li&gt;WARNING, Level 5, warning&lt;/li&gt;&#xA;&lt;li&gt;ERR, Level 6, error&lt;/li&gt;&#xA;&lt;li&gt;CRIT, Level 7, critical&lt;/li&gt;&#xA;&lt;li&gt;EMERG, Level 8, emergency&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Users can control whether logs of various levels are output by configuring &lt;code&gt;XWLIBCFG_XWLOG_LEVEL&lt;/code&gt;:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Only logs with a level greater than or equal to &lt;code&gt;XWLIBCFG_XWLOG_LEVEL&lt;/code&gt; will be output.&lt;/li&gt;&#xA;&lt;li&gt;When &lt;code&gt;XWLIBCFG_XWLOG_LEVEL&lt;/code&gt; is configured as &lt;code&gt;0&lt;/code&gt;, all logs are disabled.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The XWOS logging framework requires the user to provide a backend driver interface in the BSP to determine whether logs are ultimately output to a serial port, SD card, or other device:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>CRC</title>
+      <link>/en/Docs/TechRefManual/Xwlib/Crc/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/en/Docs/TechRefManual/Xwlib/Crc/</guid>
+      <description>&lt;h2 id=&#34;api-reference&#34;&gt;API Reference&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;CRC8&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;../../../../CAPI/group__xwos__lib__crc8.html&#34;&gt;&lt;strong&gt;Header file &amp;lt;xwos/lib/crc8.h&amp;gt;&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;CRC32&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;../../../../CAPI/group__xwos__lib__crc32.html&#34;&gt;&lt;strong&gt;Header file &amp;lt;xwos/lib/crc32.h&amp;gt;&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["SIZEOF_XWOS_SQLK"],"enum":["SeqlockError","SeqlockMode"],"struct":["Seqlock","SeqlockGuard","SeqlockReadGuard"]};

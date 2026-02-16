@@ -1,0 +1,22 @@
+var searchData=
+[
+  ['i2cm_0',['i2cm',['../structxwlua__i2cm.html#acd916c8844c98e97ea14feeddd910062',1,'xwlua_i2cm']]],
+  ['i2cp_1',['i2cp',['../structxwds__canc.html#aa5b459d3a0f6addba70a64feb2ce967e',1,'xwds_canc::i2cp'],['../structxwds__cantrcv.html#aa8806acd067d4f9432fda299b6047392',1,'xwds_cantrcv::i2cp'],['../structxwds__iochip.html#a3c452355aa77e8e144cd9e48d6b7f415',1,'xwds_iochip::i2cp'],['../structxwds__eeprom.html#ac0d69a37031ba09618fa1e33e91395d2',1,'xwds_eeprom::i2cp'],['../structxwds__eeprom__driver.html#a2e75c734f9a26078cbbf8aa04656c7b2',1,'xwds_eeprom_driver::i2cp']]],
+  ['i_5fa_2',['i_a',['../structxwmm__mempool__objcache.html#ab876b978a4238f33b78443659e0fc38c',1,'xwmm_mempool_objcache::i_a'],['../structxwmm__mempool__page__allocator.html#a143805207e804e61a3b0c746047826d8',1,'xwmm_mempool_page_allocator::i_a']]],
+  ['id_3',['id',['../structxwssc__frmhead.html#a05ad6809b7604b5b32c29b220f97358d',1,'xwssc_frmhead::id'],['../structxwssc.html#aabaffd523e78c047f001aefd94859ff2',1,'xwssc::id'],['../structxwds__can__msg.html#a867c6dd58d3c98c01c5cc156e3ada41a',1,'xwds_can_msg::id'],['../structxwds__canc__bd__cfg.html#a87841554a65b54ebbd34602c6a4577bc',1,'xwds_canc_bd_cfg::id'],['../structxwds__device.html#a5569b5fd7ddf368776a20c04583c59ac',1,'xwds_device::id'],['../structxwds__lin__msg.html#a279e56d066ad6357b47aacbc5aa0353a',1,'xwds_lin_msg::id']]],
+  ['idle_4',['idle',['../structxwmm__mempool__objcache.html#a26d781cc1112808f876f0d2551da2d30',1,'xwmm_mempool_objcache']]],
+  ['idleness_5',['idleness',['../structxwmm__mempool__objcache.html#aca5c7fbe77e4fc6836679fc6f4189c3d',1,'xwmm_mempool_objcache']]],
+  ['idx_6',['idx',['../structxwssc__carrier.html#a3729860350b4eb0016aca39186ea451d',1,'xwssc_carrier::idx'],['../structxwds__uartc.html#a71edfe4a921858a8764c017848236963',1,'xwds_uartc::idx']]],
+  ['init_5fopmode_7',['init_opmode',['../structxwds__cantrcv__cfg.html#a28e2fea22e3761ae180fbf683ee8ba6a',1,'xwds_cantrcv_cfg']]],
+  ['instruction_8',['instruction',['../structxwds__w25qxx__cmd.html#abab075cd6c1bc556d398a1a4d227e8be',1,'xwds_w25qxx_cmd']]],
+  ['inversion_9',['inversion',['../structxwds__st7735__parameter.html#a22562da97c6ffd954edc0e5045528e7c',1,'xwds_st7735_parameter']]],
+  ['io_10',['io',['../structxwds__w25qxx__driver.html#a4e037f9a2f1a2a03c223750789445e58',1,'xwds_w25qxx_driver']]],
+  ['iochip_11',['iochip',['../structxwds__resource__extgpio.html#aeecbf6fe7d7054457b15bd746e20b88e',1,'xwds_resource_extgpio::iochip'],['../structxwds__tca9539.html#ac9b929a2117715fa4af9f1515d116559',1,'xwds_tca9539::iochip']]],
+  ['irq_12',['irq',['../structxwds__tca9539.html#a732beadf906db78361a9aa90ec607651',1,'xwds_tca9539']]],
+  ['irqn_13',['irqn',['../structxwds__resource__irq.html#a63ddee0d4f549a208426f3ac7bf5b4c9',1,'xwds_resource_irq']]],
+  ['irqrsc_5farray_14',['irqrsc_array',['../structxwds__resources.html#ae3172eb11dee961728ed5df282f9b31a',1,'xwds_resources']]],
+  ['irqrsc_5fnum_15',['irqrsc_num',['../structxwds__resources.html#a1a3f9dbe5cd98068eaf76a478bf56163',1,'xwds_resources']]],
+  ['isr_16',['isr',['../structxwds__resource__irq.html#a1dd53723decb8a1cee0d8240cfd20c5b',1,'xwds_resource_irq']]],
+  ['isrargs_17',['isrargs',['../structxwds__soc.html#a87a990e534b453fa6119a20edf451f83',1,'xwds_soc']]],
+  ['isrs_18',['isrs',['../structxwds__soc.html#a8ba3a7059897d16cc06c8d8438479bf4',1,'xwds_soc']]]
+];

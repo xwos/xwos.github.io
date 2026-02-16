@@ -1,0 +1,845 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>XWOS API: xwos::sync::Cond类 参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<a href="/" class="github-corner" title="返回首页">
+  <svg viewBox="0 0 250 250" style="position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path
+      d="M 0 0 L 250 250 L 250 0 L 0 0 z M 181.19336 6.25 A 18.281986 19.638775 0 0 1 192.79297 10.798828 L 241.54492 54.201172 A 6.0939954 6.5462585 0 0 1 237.64453 65.787109 L 233.13477 65.787109 A 3.0469979 3.2731292 0 0 0 230.08789 69.060547 L 230.08789 111.61133 A 18.281986 19.638775 0 0 1 211.80664 131.25 L 205.71289 131.25 A 12.187991 13.092517 0 0 1 193.52344 118.1582 L 193.52344 98.519531 A 12.187991 13.092517 0 0 0 181.33594 85.425781 A 12.187991 13.092517 0 0 0 169.14844 98.519531 L 169.14844 118.1582 A 12.187991 13.092517 0 0 1 156.95898 131.25 L 150.86523 131.25 A 18.281986 19.638775 0 0 1 132.58398 111.61133 L 132.58398 68.994141 A 3.0469979 3.2731292 0 0 0 129.29297 65.722656 L 124.7832 65.722656 A 6.0939954 6.5462585 0 0 1 120.88281 54.201172 L 169.39258 10.798828 A 18.281986 19.638775 0 0 1 181.19336 6.25 z "/>
+  </svg>
+</a>
+<style>.github-corner:hover</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">XWOS API
+   &#160;<span id="projectnumber">4.0</span>
+   </div>
+   <div id="projectbrief">XWOS C/C++ API参考手册</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('classxwos_1_1sync_1_1Cond.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pro-attribs">Protected 属性</a>  </div>
+  <div class="headertitle"><div class="title">xwos::sync::Cond类 参考<div class="ingroups"><a class="el" href="group__xwos__cxx.html">XWOS内核C++API</a> &raquo; <a class="el" href="group__xwos__cxx__sync.html">XWOS的同步机制</a> &raquo; <a class="el" href="group__xwos__cxx__sync__Cond.html">条件量</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>条件量基类  
+ <a href="classxwos_1_1sync_1_1Cond.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Cond_8hxx_source.html">Cond.hxx</a>&gt;</code></p>
+<div class="dynheader">
+类 xwos::sync::Cond 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxwos_1_1sync_1_1Cond__inherit__graph.png" border="0" usemap="#axwos_1_1sync_1_1Cond_inherit__map" alt="Inheritance graph"/></div>
+<map name="axwos_1_1sync_1_1Cond_inherit__map" id="axwos_1_1sync_1_1Cond_inherit__map">
+<area shape="rect" title="条件量基类" alt="" coords="92,5,220,31"/>
+<area shape="rect" href="classxwos_1_1sync_1_1DCond.html" title="静态条件量" alt="" coords="5,79,144,104"/>
+<area shape="poly" title=" " alt="" coords="134,42,90,80,86,76,131,38"/>
+<area shape="rect" href="classxwos_1_1sync_1_1SCond.html" title="静态条件量" alt="" coords="169,79,306,104"/>
+<area shape="poly" title=" " alt="" coords="181,38,226,76,222,80,178,42"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+xwos::sync::Cond 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxwos_1_1sync_1_1Cond__coll__graph.png" border="0" usemap="#axwos_1_1sync_1_1Cond_coll__map" alt="Collaboration graph"/></div>
+<map name="axwos_1_1sync_1_1Cond_coll__map" id="axwos_1_1sync_1_1Cond_coll__map">
+<area shape="rect" title="条件量基类" alt="" coords="5,93,133,119"/>
+<area shape="rect" href="structxwos__cond.html" title="XWOS API：条件量对象" alt="" coords="25,5,113,31"/>
+<area shape="poly" title=" " alt="" coords="72,45,72,93,67,93,67,45"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:aaac337021f94f8de26945bbd2d5fb3ed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxwos_1_1sync_1_1Cond.html#aaac337021f94f8de26945bbd2d5fb3ed">unicast</a> ()</td></tr>
+<tr class="memdesc:aaac337021f94f8de26945bbd2d5fb3ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">单播条件量  <br /></td></tr>
+<tr class="separator:aaac337021f94f8de26945bbd2d5fb3ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9505db5139d2929b8f5ecda6ad34108"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxwos_1_1sync_1_1Cond.html#ab9505db5139d2929b8f5ecda6ad34108">broadcast</a> ()</td></tr>
+<tr class="memdesc:ab9505db5139d2929b8f5ecda6ad34108"><td class="mdescLeft">&#160;</td><td class="mdescRight">广播条件量  <br /></td></tr>
+<tr class="separator:ab9505db5139d2929b8f5ecda6ad34108"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6c7d6a58d00a047c94f18264d68b7f7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxwos_1_1sync_1_1Cond.html#af6c7d6a58d00a047c94f18264d68b7f7">freeze</a> ()</td></tr>
+<tr class="memdesc:af6c7d6a58d00a047c94f18264d68b7f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">冻结条件量  <br /></td></tr>
+<tr class="separator:af6c7d6a58d00a047c94f18264d68b7f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa90a09b9810a1c497225dc89e2ec293a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxwos_1_1sync_1_1Cond.html#aa90a09b9810a1c497225dc89e2ec293a">thaw</a> ()</td></tr>
+<tr class="memdesc:aa90a09b9810a1c497225dc89e2ec293a"><td class="mdescLeft">&#160;</td><td class="mdescRight">解冻条件量  <br /></td></tr>
+<tr class="separator:aa90a09b9810a1c497225dc89e2ec293a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3faa88df8f54502bc4470b9c7e43eab9"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> TSelNum&gt; </td></tr>
+<tr class="memitem:a3faa88df8f54502bc4470b9c7e43eab9"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classxwos_1_1sync_1_1Cond.html#a3faa88df8f54502bc4470b9c7e43eab9">bind</a> (<a class="el" href="classxwos_1_1sync_1_1Sel.html">Sel</a>&lt; TSelNum &gt; *sel, long pos)</td></tr>
+<tr class="memdesc:a3faa88df8f54502bc4470b9c7e43eab9"><td class="mdescLeft">&#160;</td><td class="mdescRight">绑定条件量对象到信号选择器  <br /></td></tr>
+<tr class="separator:a3faa88df8f54502bc4470b9c7e43eab9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04e14df4fe643e366cfd13de94a7cb89"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> TSelNum&gt; </td></tr>
+<tr class="memitem:a04e14df4fe643e366cfd13de94a7cb89"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classxwos_1_1sync_1_1Cond.html#a04e14df4fe643e366cfd13de94a7cb89">bind</a> (<a class="el" href="classxwos_1_1sync_1_1Sel.html">Sel</a>&lt; TSelNum &gt; &amp;sel, long pos)</td></tr>
+<tr class="separator:a04e14df4fe643e366cfd13de94a7cb89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c9114340ab60663d308e6d73f8a73f3"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> TSelNum&gt; </td></tr>
+<tr class="memitem:a8c9114340ab60663d308e6d73f8a73f3"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classxwos_1_1sync_1_1Cond.html#a8c9114340ab60663d308e6d73f8a73f3">unbind</a> (<a class="el" href="classxwos_1_1sync_1_1Sel.html">Sel</a>&lt; TSelNum &gt; *sel)</td></tr>
+<tr class="memdesc:a8c9114340ab60663d308e6d73f8a73f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">从信号选择器上解绑条件量对象  <br /></td></tr>
+<tr class="separator:a8c9114340ab60663d308e6d73f8a73f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acebb321ae9b8d57ea138974847a9a5b4"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> TSelNum&gt; </td></tr>
+<tr class="memitem:acebb321ae9b8d57ea138974847a9a5b4"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classxwos_1_1sync_1_1Cond.html#acebb321ae9b8d57ea138974847a9a5b4">unbind</a> (<a class="el" href="classxwos_1_1sync_1_1Sel.html">Sel</a>&lt; TSelNum &gt; &amp;sel)</td></tr>
+<tr class="separator:acebb321ae9b8d57ea138974847a9a5b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ebb07f29188410d8ef5706c61dac697"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structxwos__cond.html">xwos_cond</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxwos_1_1sync_1_1Cond.html#a0ebb07f29188410d8ef5706c61dac697">getXwosObj</a> ()</td></tr>
+<tr class="memdesc:a0ebb07f29188410d8ef5706c61dac697"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取XWOS对象指针  <br /></td></tr>
+<tr class="separator:a0ebb07f29188410d8ef5706c61dac697"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:af15c664b84fc4648ab148060d2ba261a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxwos_1_1sync_1_1Cond.html#af15c664b84fc4648ab148060d2ba261a">Cond</a> ()</td></tr>
+<tr class="separator:af15c664b84fc4648ab148060d2ba261a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0250400a15fa5706c6bc412d18630f80"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxwos_1_1sync_1_1Cond.html#a0250400a15fa5706c6bc412d18630f80">~Cond</a> ()</td></tr>
+<tr class="separator:a0250400a15fa5706c6bc412d18630f80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:a2744135ce8116bb2495489e4300a7cf7"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structxwos__cond.html">xwos_cond</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxwos_1_1sync_1_1Cond.html#a2744135ce8116bb2495489e4300a7cf7">mCondPtr</a></td></tr>
+<tr class="separator:a2744135ce8116bb2495489e4300a7cf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>条件量基类 </p>
+
+<p class="definition">在文件 <a class="el" href="Cond_8hxx_source.html">Cond.hxx</a> 第 <a class="el" href="Cond_8hxx_source.html#l00055">55</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="af15c664b84fc4648ab148060d2ba261a" name="af15c664b84fc4648ab148060d2ba261a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af15c664b84fc4648ab148060d2ba261a">&#9670;&#160;</a></span>Cond()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">xwos::sync::Cond::Cond </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Cond_8hxx_source.html">Cond.hxx</a> 第 <a class="el" href="Cond_8hxx_source.html#l00061">61</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   61</span>: <a class="code hl_variable" href="classxwos_1_1sync_1_1Cond.html#a2744135ce8116bb2495489e4300a7cf7">mCondPtr</a>(<span class="keyword">nullptr</span>) {}</div>
+<div class="ttc" id="aclassxwos_1_1sync_1_1Cond_html_a2744135ce8116bb2495489e4300a7cf7"><div class="ttname"><a href="classxwos_1_1sync_1_1Cond.html#a2744135ce8116bb2495489e4300a7cf7">xwos::sync::Cond::mCondPtr</a></div><div class="ttdeci">struct xwos_cond * mCondPtr</div><div class="ttdef"><b>Definition</b> <a href="Cond_8hxx_source.html#l00058">Cond.hxx:58</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a0250400a15fa5706c6bc412d18630f80" name="a0250400a15fa5706c6bc412d18630f80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0250400a15fa5706c6bc412d18630f80">&#9670;&#160;</a></span>~Cond()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">xwos::sync::Cond::~Cond </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Cond_8hxx_source.html">Cond.hxx</a> 第 <a class="el" href="Cond_8hxx_source.html#l00062">62</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   62</span>{ <a class="code hl_variable" href="classxwos_1_1sync_1_1Cond.html#a2744135ce8116bb2495489e4300a7cf7">mCondPtr</a> = <span class="keyword">nullptr</span>; }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="aaac337021f94f8de26945bbd2d5fb3ed" name="aaac337021f94f8de26945bbd2d5fb3ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaac337021f94f8de26945bbd2d5fb3ed">&#9670;&#160;</a></span>unicast()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos::sync::Cond::unicast </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>单播条件量 </p>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>无效的指针或空指针 </td></tr>
+    <tr><td class="paramname">-ENEGATIVE</td><td>条件量对象已被冻结 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意</li>
+</ul>
+</dd></dl>
+<ul>
+<li>单播条件量会唤醒第一个等待的线程。</li>
+<li>此C++API只对未冻结的条件量对象起作用，已冻结的条件量对象将返回 错误码 <code>-ENEGATIVE</code> 。 </li>
+</ul>
+
+<p class="definition">在文件 <a class="el" href="Cond_8hxx_source.html">Cond.hxx</a> 第 <a class="el" href="Cond_8hxx_source.html#l00078">78</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   78</span>{ <span class="keywordflow">return</span> <a class="code hl_function" href="group__xwos__sync__cond.html#gafe8a5951b17d91fe378756815abc8b9b">xwos_cond_unicast</a>(<a class="code hl_variable" href="classxwos_1_1sync_1_1Cond.html#a2744135ce8116bb2495489e4300a7cf7">mCondPtr</a>); }</div>
+<div class="ttc" id="agroup__xwos__sync__cond_html_gafe8a5951b17d91fe378756815abc8b9b"><div class="ttname"><a href="group__xwos__sync__cond.html#gafe8a5951b17d91fe378756815abc8b9b">xwos_cond_unicast</a></div><div class="ttdeci">static xwer_t xwos_cond_unicast(struct xwos_cond *cond)</div><div class="ttdoc">XWOS API：单播条件量对象</div><div class="ttdef"><b>Definition</b> <a href="sync_2cond_8h_source.html#l00378">cond.h:378</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxwos_1_1sync_1_1Cond_aaac337021f94f8de26945bbd2d5fb3ed_cgraph.png" border="0" usemap="#aclassxwos_1_1sync_1_1Cond_aaac337021f94f8de26945bbd2d5fb3ed_cgraph" alt=""/></div>
+<map name="aclassxwos_1_1sync_1_1Cond_aaac337021f94f8de26945bbd2d5fb3ed_cgraph" id="aclassxwos_1_1sync_1_1Cond_aaac337021f94f8de26945bbd2d5fb3ed_cgraph">
+<area shape="rect" title="单播条件量" alt="" coords="5,5,184,31"/>
+<area shape="rect" href="group__xwos__sync__cond.html#gafe8a5951b17d91fe378756815abc8b9b" title="XWOS API：单播条件量对象" alt="" coords="232,5,369,31"/>
+<area shape="poly" title=" " alt="" coords="184,15,218,15,218,21,184,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ab9505db5139d2929b8f5ecda6ad34108" name="ab9505db5139d2929b8f5ecda6ad34108"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9505db5139d2929b8f5ecda6ad34108">&#9670;&#160;</a></span>broadcast()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos::sync::Cond::broadcast </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>广播条件量 </p>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>无效的指针或空指针 </td></tr>
+    <tr><td class="paramname">-ENEGATIVE</td><td>条件量对象已被冻结 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意</li>
+</ul>
+</dd></dl>
+<ul>
+<li>广播条件量会唤醒所有等待的线程。</li>
+<li>此C++API只对未冻结的条件量对象起作用，已冻结的条件量对象将返回 错误码 <code>-ENEGATIVE</code> 。 </li>
+</ul>
+
+<p class="definition">在文件 <a class="el" href="Cond_8hxx_source.html">Cond.hxx</a> 第 <a class="el" href="Cond_8hxx_source.html#l00093">93</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   93</span>{ <span class="keywordflow">return</span> <a class="code hl_function" href="group__xwos__sync__cond.html#ga6a85c4b4f0a48d8f7af6d1eb9edf5828">xwos_cond_broadcast</a>(<a class="code hl_variable" href="classxwos_1_1sync_1_1Cond.html#a2744135ce8116bb2495489e4300a7cf7">mCondPtr</a>); }</div>
+<div class="ttc" id="agroup__xwos__sync__cond_html_ga6a85c4b4f0a48d8f7af6d1eb9edf5828"><div class="ttname"><a href="group__xwos__sync__cond.html#ga6a85c4b4f0a48d8f7af6d1eb9edf5828">xwos_cond_broadcast</a></div><div class="ttdeci">static xwer_t xwos_cond_broadcast(struct xwos_cond *cond)</div><div class="ttdoc">XWOS API：广播条件量对象</div><div class="ttdef"><b>Definition</b> <a href="sync_2cond_8h_source.html#l00358">cond.h:358</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxwos_1_1sync_1_1Cond_ab9505db5139d2929b8f5ecda6ad34108_cgraph.png" border="0" usemap="#aclassxwos_1_1sync_1_1Cond_ab9505db5139d2929b8f5ecda6ad34108_cgraph" alt=""/></div>
+<map name="aclassxwos_1_1sync_1_1Cond_ab9505db5139d2929b8f5ecda6ad34108_cgraph" id="aclassxwos_1_1sync_1_1Cond_ab9505db5139d2929b8f5ecda6ad34108_cgraph">
+<area shape="rect" title="广播条件量" alt="" coords="5,5,199,31"/>
+<area shape="rect" href="group__xwos__sync__cond.html#ga6a85c4b4f0a48d8f7af6d1eb9edf5828" title="XWOS API：广播条件量对象" alt="" coords="247,5,399,31"/>
+<area shape="poly" title=" " alt="" coords="199,15,233,15,233,21,199,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af6c7d6a58d00a047c94f18264d68b7f7" name="af6c7d6a58d00a047c94f18264d68b7f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6c7d6a58d00a047c94f18264d68b7f7">&#9670;&#160;</a></span>freeze()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos::sync::Cond::freeze </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>冻结条件量 </p>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>无效的指针或空指针 </td></tr>
+    <tr><td class="paramname">-EALREADY</td><td>条件量对象已被冻结 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意</li>
+</ul>
+</dd></dl>
+<ul>
+<li>已冻结的条件量不允许单播或广播，但可以被线程等待。</li>
+<li>对已经冻结的条件量再次冻结，将返回 <code>-EALREADY</code> 。 </li>
+</ul>
+
+<p class="definition">在文件 <a class="el" href="Cond_8hxx_source.html">Cond.hxx</a> 第 <a class="el" href="Cond_8hxx_source.html#l00107">107</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  107</span>{ <span class="keywordflow">return</span> <a class="code hl_function" href="group__xwos__sync__cond.html#gae28d45933a9a1cd5fbb282533f3a96d5">xwos_cond_freeze</a>(<a class="code hl_variable" href="classxwos_1_1sync_1_1Cond.html#a2744135ce8116bb2495489e4300a7cf7">mCondPtr</a>); }</div>
+<div class="ttc" id="agroup__xwos__sync__cond_html_gae28d45933a9a1cd5fbb282533f3a96d5"><div class="ttname"><a href="group__xwos__sync__cond.html#gae28d45933a9a1cd5fbb282533f3a96d5">xwos_cond_freeze</a></div><div class="ttdeci">static xwer_t xwos_cond_freeze(struct xwos_cond *cond)</div><div class="ttdoc">XWOS API：冻结条件量对象</div><div class="ttdef"><b>Definition</b> <a href="sync_2cond_8h_source.html#l00319">cond.h:319</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxwos_1_1sync_1_1Cond_af6c7d6a58d00a047c94f18264d68b7f7_cgraph.png" border="0" usemap="#aclassxwos_1_1sync_1_1Cond_af6c7d6a58d00a047c94f18264d68b7f7_cgraph" alt=""/></div>
+<map name="aclassxwos_1_1sync_1_1Cond_af6c7d6a58d00a047c94f18264d68b7f7_cgraph" id="aclassxwos_1_1sync_1_1Cond_af6c7d6a58d00a047c94f18264d68b7f7_cgraph">
+<area shape="rect" title="冻结条件量" alt="" coords="5,5,177,31"/>
+<area shape="rect" href="group__xwos__sync__cond.html#gae28d45933a9a1cd5fbb282533f3a96d5" title="XWOS API：冻结条件量对象" alt="" coords="225,5,356,31"/>
+<area shape="poly" title=" " alt="" coords="178,15,211,15,211,21,178,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aa90a09b9810a1c497225dc89e2ec293a" name="aa90a09b9810a1c497225dc89e2ec293a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa90a09b9810a1c497225dc89e2ec293a">&#9670;&#160;</a></span>thaw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos::sync::Cond::thaw </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>解冻条件量 </p>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>无效的指针或空指针 </td></tr>
+    <tr><td class="paramname">-EALREADY</td><td>条件量对象未被冻结 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意</li>
+</ul>
+</dd></dl>
+<ul>
+<li>此函数只对已冻结的条件量对象起作用， 对未冻结的条件量对象调用此函数将返回错误码 <code>-EALREADY</code> 。 </li>
+</ul>
+
+<p class="definition">在文件 <a class="el" href="Cond_8hxx_source.html">Cond.hxx</a> 第 <a class="el" href="Cond_8hxx_source.html#l00121">121</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  121</span>{ <span class="keywordflow">return</span> <a class="code hl_function" href="group__xwos__sync__cond.html#gab932d4d14e734f2f413783512b0b10ac">xwos_cond_thaw</a>(<a class="code hl_variable" href="classxwos_1_1sync_1_1Cond.html#a2744135ce8116bb2495489e4300a7cf7">mCondPtr</a>); }</div>
+<div class="ttc" id="agroup__xwos__sync__cond_html_gab932d4d14e734f2f413783512b0b10ac"><div class="ttname"><a href="group__xwos__sync__cond.html#gab932d4d14e734f2f413783512b0b10ac">xwos_cond_thaw</a></div><div class="ttdeci">static xwer_t xwos_cond_thaw(struct xwos_cond *cond)</div><div class="ttdoc">XWOS API：解冻条件量对象</div><div class="ttdef"><b>Definition</b> <a href="sync_2cond_8h_source.html#l00338">cond.h:338</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxwos_1_1sync_1_1Cond_aa90a09b9810a1c497225dc89e2ec293a_cgraph.png" border="0" usemap="#aclassxwos_1_1sync_1_1Cond_aa90a09b9810a1c497225dc89e2ec293a_cgraph" alt=""/></div>
+<map name="aclassxwos_1_1sync_1_1Cond_aa90a09b9810a1c497225dc89e2ec293a_cgraph" id="aclassxwos_1_1sync_1_1Cond_aa90a09b9810a1c497225dc89e2ec293a_cgraph">
+<area shape="rect" title="解冻条件量" alt="" coords="5,5,169,31"/>
+<area shape="rect" href="group__xwos__sync__cond.html#gab932d4d14e734f2f413783512b0b10ac" title="XWOS API：解冻条件量对象" alt="" coords="217,5,340,31"/>
+<area shape="poly" title=" " alt="" coords="170,15,203,15,203,21,170,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a3faa88df8f54502bc4470b9c7e43eab9" name="a3faa88df8f54502bc4470b9c7e43eab9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3faa88df8f54502bc4470b9c7e43eab9">&#9670;&#160;</a></span>bind() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> TSelNum&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos::sync::Cond::bind </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classxwos_1_1sync_1_1Sel.html">Sel</a>&lt; TSelNum &gt; *&#160;</td>
+          <td class="paramname"><em>sel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>pos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>绑定条件量对象到信号选择器 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">sel</td><td>信号选择器的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pos</td><td>条件量对象映射到信号选择器位图中的位置 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>无效的指针或空指针 </td></tr>
+    <tr><td class="paramname">-ECHRNG</td><td>位置超出范围 </td></tr>
+    <tr><td class="paramname">-EALREADY</td><td>同步对象已经绑定到事件对象 </td></tr>
+    <tr><td class="paramname">-EBUSY</td><td>通道已经被其他同步对象独占 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意</li>
+<li>绑定方式：非独占绑定</li>
+<li>绑定了信号选择器的条件量对象，只有 <b>广播</b> 才会向信号选择器发送信号。 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="Cond_8hxx_source.html">Cond.hxx</a> 第 <a class="el" href="Cond_8hxx_source.html#l00139">139</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  140</span>    {</div>
+<div class="line"><span class="lineno">  141</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="group__xwos__sync__cond.html#gae2675cc244078d9ba58e9d8ae24faa4b">xwos_cond_bind</a>(<a class="code hl_variable" href="classxwos_1_1sync_1_1Cond.html#a2744135ce8116bb2495489e4300a7cf7">mCondPtr</a>, sel-&gt;getXwosObj(), (<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>)pos);</div>
+<div class="line"><span class="lineno">  142</span>    }</div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga59fe68c80516b22de8dccb84275d23f2"><div class="ttname"><a href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a></div><div class="ttdeci">unsigned long xwsq_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00445">type.h:445</a></div></div>
+<div class="ttc" id="agroup__xwos__sync__cond_html_gae2675cc244078d9ba58e9d8ae24faa4b"><div class="ttname"><a href="group__xwos__sync__cond.html#gae2675cc244078d9ba58e9d8ae24faa4b">xwos_cond_bind</a></div><div class="ttdeci">static xwer_t xwos_cond_bind(struct xwos_cond *cond, struct xwos_sel *sel, xwsq_t pos)</div><div class="ttdoc">XWOS API：绑定条件量对象到信号选择器</div><div class="ttdef"><b>Definition</b> <a href="sync_2cond_8h_source.html#l00283">cond.h:283</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxwos_1_1sync_1_1Cond_a3faa88df8f54502bc4470b9c7e43eab9_cgraph.png" border="0" usemap="#aclassxwos_1_1sync_1_1Cond_a3faa88df8f54502bc4470b9c7e43eab9_cgraph" alt=""/></div>
+<map name="aclassxwos_1_1sync_1_1Cond_a3faa88df8f54502bc4470b9c7e43eab9_cgraph" id="aclassxwos_1_1sync_1_1Cond_a3faa88df8f54502bc4470b9c7e43eab9_cgraph">
+<area shape="rect" title="绑定条件量对象到信号选择器" alt="" coords="5,31,165,56"/>
+<area shape="rect" href="classxwos_1_1sync_1_1Sel.html#a3bcc7ae559413a6dfb283c3b02c8eb4a" title="获取XWOS对象指针" alt="" coords="213,5,408,31"/>
+<area shape="poly" title=" " alt="" coords="165,32,200,28,200,33,166,37"/>
+<area shape="rect" href="group__xwos__sync__cond.html#gae2675cc244078d9ba58e9d8ae24faa4b" title="XWOS API：绑定条件量对象到信号选择器" alt="" coords="251,55,370,80"/>
+<area shape="poly" title=" " alt="" coords="166,49,238,57,237,62,166,55"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a04e14df4fe643e366cfd13de94a7cb89" name="a04e14df4fe643e366cfd13de94a7cb89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04e14df4fe643e366cfd13de94a7cb89">&#9670;&#160;</a></span>bind() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> TSelNum&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos::sync::Cond::bind </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classxwos_1_1sync_1_1Sel.html">Sel</a>&lt; TSelNum &gt; &amp;&#160;</td>
+          <td class="paramname"><em>sel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>pos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>这是为便于使用而提供的一个重载成员函数.与上面的函数相比，它接受不同类型的参数.</p>
+
+<p class="definition">在文件 <a class="el" href="Cond_8hxx_source.html">Cond.hxx</a> 第 <a class="el" href="Cond_8hxx_source.html#l00147">147</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  148</span>    {</div>
+<div class="line"><span class="lineno">  149</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="group__xwos__sync__cond.html#gae2675cc244078d9ba58e9d8ae24faa4b">xwos_cond_bind</a>(<a class="code hl_variable" href="classxwos_1_1sync_1_1Cond.html#a2744135ce8116bb2495489e4300a7cf7">mCondPtr</a>, sel.getXwosObj(), (<a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a>)pos);</div>
+<div class="line"><span class="lineno">  150</span>    }</div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxwos_1_1sync_1_1Cond_a04e14df4fe643e366cfd13de94a7cb89_cgraph.png" border="0" usemap="#aclassxwos_1_1sync_1_1Cond_a04e14df4fe643e366cfd13de94a7cb89_cgraph" alt=""/></div>
+<map name="aclassxwos_1_1sync_1_1Cond_a04e14df4fe643e366cfd13de94a7cb89_cgraph" id="aclassxwos_1_1sync_1_1Cond_a04e14df4fe643e366cfd13de94a7cb89_cgraph">
+<area shape="rect" title=" " alt="" coords="5,31,165,56"/>
+<area shape="rect" href="classxwos_1_1sync_1_1Sel.html#a3bcc7ae559413a6dfb283c3b02c8eb4a" title="获取XWOS对象指针" alt="" coords="213,5,408,31"/>
+<area shape="poly" title=" " alt="" coords="165,32,200,28,200,33,166,37"/>
+<area shape="rect" href="group__xwos__sync__cond.html#gae2675cc244078d9ba58e9d8ae24faa4b" title="XWOS API：绑定条件量对象到信号选择器" alt="" coords="251,55,370,80"/>
+<area shape="poly" title=" " alt="" coords="166,49,238,57,237,62,166,55"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a8c9114340ab60663d308e6d73f8a73f3" name="a8c9114340ab60663d308e6d73f8a73f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c9114340ab60663d308e6d73f8a73f3">&#9670;&#160;</a></span>unbind() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> TSelNum&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos::sync::Cond::unbind </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classxwos_1_1sync_1_1Sel.html">Sel</a>&lt; TSelNum &gt; *&#160;</td>
+          <td class="paramname"><em>sel</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>从信号选择器上解绑条件量对象 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">sel</td><td>信号选择器的引用 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EFAULT</td><td>空指针 </td></tr>
+    <tr><td class="paramname">-ENOTCONN</td><td>同步对象没有绑定到事件对象上 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="Cond_8hxx_source.html">Cond.hxx</a> 第 <a class="el" href="Cond_8hxx_source.html#l00163">163</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  164</span>    {</div>
+<div class="line"><span class="lineno">  165</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="group__xwos__sync__cond.html#gafaf7f192db151d1f3759a2dc8f5e7157">xwos_cond_unbind</a>(<a class="code hl_variable" href="classxwos_1_1sync_1_1Cond.html#a2744135ce8116bb2495489e4300a7cf7">mCondPtr</a>, sel-&gt;getXwosObj());</div>
+<div class="line"><span class="lineno">  166</span>    }</div>
+<div class="ttc" id="agroup__xwos__sync__cond_html_gafaf7f192db151d1f3759a2dc8f5e7157"><div class="ttname"><a href="group__xwos__sync__cond.html#gafaf7f192db151d1f3759a2dc8f5e7157">xwos_cond_unbind</a></div><div class="ttdeci">static xwer_t xwos_cond_unbind(struct xwos_cond *cond, struct xwos_sel *sel)</div><div class="ttdoc">XWOS API：从信号选择器上解绑条件量对象</div><div class="ttdef"><b>Definition</b> <a href="sync_2cond_8h_source.html#l00300">cond.h:300</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxwos_1_1sync_1_1Cond_a8c9114340ab60663d308e6d73f8a73f3_cgraph.png" border="0" usemap="#aclassxwos_1_1sync_1_1Cond_a8c9114340ab60663d308e6d73f8a73f3_cgraph" alt=""/></div>
+<map name="aclassxwos_1_1sync_1_1Cond_a8c9114340ab60663d308e6d73f8a73f3_cgraph" id="aclassxwos_1_1sync_1_1Cond_a8c9114340ab60663d308e6d73f8a73f3_cgraph">
+<area shape="rect" title="从信号选择器上解绑条件量对象" alt="" coords="5,31,180,56"/>
+<area shape="rect" href="classxwos_1_1sync_1_1Sel.html#a3bcc7ae559413a6dfb283c3b02c8eb4a" title="获取XWOS对象指针" alt="" coords="228,5,423,31"/>
+<area shape="poly" title=" " alt="" coords="180,31,214,27,215,33,181,36"/>
+<area shape="rect" href="group__xwos__sync__cond.html#gafaf7f192db151d1f3759a2dc8f5e7157" title="XWOS API：从信号选择器上解绑条件量对象" alt="" coords="259,55,392,80"/>
+<area shape="poly" title=" " alt="" coords="181,50,245,56,245,62,180,55"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="acebb321ae9b8d57ea138974847a9a5b4" name="acebb321ae9b8d57ea138974847a9a5b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acebb321ae9b8d57ea138974847a9a5b4">&#9670;&#160;</a></span>unbind() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> TSelNum&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos::sync::Cond::unbind </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classxwos_1_1sync_1_1Sel.html">Sel</a>&lt; TSelNum &gt; &amp;&#160;</td>
+          <td class="paramname"><em>sel</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>这是为便于使用而提供的一个重载成员函数.与上面的函数相比，它接受不同类型的参数.</p>
+
+<p class="definition">在文件 <a class="el" href="Cond_8hxx_source.html">Cond.hxx</a> 第 <a class="el" href="Cond_8hxx_source.html#l00171">171</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  172</span>    {</div>
+<div class="line"><span class="lineno">  173</span>        <span class="keywordflow">return</span> <a class="code hl_function" href="group__xwos__sync__cond.html#gafaf7f192db151d1f3759a2dc8f5e7157">xwos_cond_unbind</a>(<a class="code hl_variable" href="classxwos_1_1sync_1_1Cond.html#a2744135ce8116bb2495489e4300a7cf7">mCondPtr</a>, sel.getXwosObj());</div>
+<div class="line"><span class="lineno">  174</span>    }</div>
+</div><!-- fragment --><div class="dynheader">
+函数调用图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxwos_1_1sync_1_1Cond_acebb321ae9b8d57ea138974847a9a5b4_cgraph.png" border="0" usemap="#aclassxwos_1_1sync_1_1Cond_acebb321ae9b8d57ea138974847a9a5b4_cgraph" alt=""/></div>
+<map name="aclassxwos_1_1sync_1_1Cond_acebb321ae9b8d57ea138974847a9a5b4_cgraph" id="aclassxwos_1_1sync_1_1Cond_acebb321ae9b8d57ea138974847a9a5b4_cgraph">
+<area shape="rect" title=" " alt="" coords="5,31,180,56"/>
+<area shape="rect" href="classxwos_1_1sync_1_1Sel.html#a3bcc7ae559413a6dfb283c3b02c8eb4a" title="获取XWOS对象指针" alt="" coords="228,5,423,31"/>
+<area shape="poly" title=" " alt="" coords="180,31,214,27,215,33,181,36"/>
+<area shape="rect" href="group__xwos__sync__cond.html#gafaf7f192db151d1f3759a2dc8f5e7157" title="XWOS API：从信号选择器上解绑条件量对象" alt="" coords="259,55,392,80"/>
+<area shape="poly" title=" " alt="" coords="181,50,245,56,245,62,180,55"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0ebb07f29188410d8ef5706c61dac697" name="a0ebb07f29188410d8ef5706c61dac697"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ebb07f29188410d8ef5706c61dac697">&#9670;&#160;</a></span>getXwosObj()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structxwos__cond.html">xwos_cond</a> * xwos::sync::Cond::getXwosObj </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取XWOS对象指针 </p>
+
+<p class="definition">在文件 <a class="el" href="Cond_8hxx_source.html">Cond.hxx</a> 第 <a class="el" href="Cond_8hxx_source.html#l00179">179</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  179</span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classxwos_1_1sync_1_1Cond.html#a2744135ce8116bb2495489e4300a7cf7">mCondPtr</a>; }</div>
+</div><!-- fragment --><div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="classxwos_1_1sync_1_1Cond_a0ebb07f29188410d8ef5706c61dac697_icgraph.png" border="0" usemap="#aclassxwos_1_1sync_1_1Cond_a0ebb07f29188410d8ef5706c61dac697_icgraph" alt=""/></div>
+<map name="aclassxwos_1_1sync_1_1Cond_a0ebb07f29188410d8ef5706c61dac697_icgraph" id="aclassxwos_1_1sync_1_1Cond_a0ebb07f29188410d8ef5706c61dac697_icgraph">
+<area shape="rect" title="获取XWOS对象指针" alt="" coords="204,173,411,198"/>
+<area shape="rect" href="classxwos_1_1lock_1_1Seqlock_1_1RdexLkIrqsGrd.html#a797053ad19fd22de8aa67c5ae09305d4" title="等待条件量" alt="" coords="5,5,156,45"/>
+<area shape="poly" title=" " alt="" coords="282,165,227,114,155,60,133,48,135,43,157,55,230,110,286,161"/>
+<area shape="rect" href="classxwos_1_1lock_1_1Seqlock_1_1WrLkIrqsGrd.html#aeb314657a391887cc6838c5ca26b7634" title="等待条件量" alt="" coords="11,69,151,109"/>
+<area shape="poly" title=" " alt="" coords="263,170,128,112,130,107,265,165"/>
+<area shape="rect" href="classxwos_1_1lock_1_1Spinlock_1_1LkIrqsGrd.html#a6fe905f99d9a1d0393f725b1dec538d5" title="等待条件量" alt="" coords="9,133,152,173"/>
+<area shape="poly" title=" " alt="" coords="203,173,152,166,153,161,204,168"/>
+<area shape="rect" href="classxwos_1_1lock_1_1Seqlock_1_1RdexLkIrqsGrd.html#a0e9256c1cae801979cf921ded9329744" title="限时等待条件量" alt="" coords="5,197,156,237"/>
+<area shape="poly" title=" " alt="" coords="204,203,156,209,156,204,203,197"/>
+<area shape="rect" href="classxwos_1_1lock_1_1Seqlock_1_1WrLkIrqsGrd.html#a732d9747932826ed4d6d454bc2b6e292" title="限时等待条件量" alt="" coords="11,261,151,301"/>
+<area shape="poly" title=" " alt="" coords="265,206,130,264,128,259,263,201"/>
+<area shape="rect" href="classxwos_1_1lock_1_1Spinlock_1_1LkIrqsGrd.html#a3fd7eba721961fd9ffebc5abdeeb3722" title="限时等待条件量" alt="" coords="9,325,152,365"/>
+<area shape="poly" title=" " alt="" coords="286,210,230,261,157,316,135,328,133,323,155,311,227,257,282,206"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">结构体成员变量说明</h2>
+<a id="a2744135ce8116bb2495489e4300a7cf7" name="a2744135ce8116bb2495489e4300a7cf7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2744135ce8116bb2495489e4300a7cf7">&#9670;&#160;</a></span>mCondPtr</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct <a class="el" href="structxwos__cond.html">xwos_cond</a>* xwos::sync::Cond::mCondPtr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="Cond_8hxx_source.html">Cond.hxx</a> 第 <a class="el" href="Cond_8hxx_source.html#l00058">58</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>xwos/cxx/sync/<a class="el" href="Cond_8hxx_source.html">Cond.hxx</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespacexwos.html">xwos</a></li><li class="navelem"><a class="el" href="namespacexwos_1_1sync.html">sync</a></li><li class="navelem"><a class="el" href="classxwos_1_1sync_1_1Cond.html">Cond</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
+  </ul>
+</div>
+</body>
+</html>

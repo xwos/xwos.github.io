@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["SIZEOF_XWOS_MTX"],"enum":["MutexError"],"struct":["Mutex","MutexGuard"]};

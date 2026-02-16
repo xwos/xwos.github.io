@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Lock on XWOS</title>
+    <link>/en/Docs/TechRefManual/Lock/</link>
+    <description>Recent content in Lock on XWOS</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <atom:link href="/en/Docs/TechRefManual/Lock/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Spinlock</title>
+      <link>/en/Docs/TechRefManual/Lock/Spinlock/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/en/Docs/TechRefManual/Lock/Spinlock/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;A spinlock is a lock introduced in multi-core systems to prevent multiple processors from accessing a common memory area (called a critical section) simultaneously. When one CPU acquires the spinlock and accesses the critical section, other CPUs can only &lt;strong&gt;spin&lt;/strong&gt; waiting for the lock. &lt;strong&gt;Spinning&lt;/strong&gt; refers to continuously looping and testing whether the &lt;strong&gt;lock&lt;/strong&gt; has been released.&lt;/p&gt;&#xA;&lt;p&gt;The spinlock is a lock mechanism designed specifically for SMP scenarios. In a single-core (UP) system, a spinlock is not needed. However, for the uniformity of software interfaces, a dummy spinlock is implemented, which is simply an encapsulation of disabling preemption, bottom half (BH), or interrupts.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Seqlock</title>
+      <link>/en/Docs/TechRefManual/Lock/Seqlock/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/en/Docs/TechRefManual/Lock/Seqlock/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;A seqlock is a lock that improves upon the &lt;a href=&#34;../Spinlock&#34;&gt;spinlock&lt;/a&gt;. It primarily distinguishes between read and write operations. A seqlock contains a spinlock and a sequence value. The seqlock divides critical sections into three types:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Exclusive write: Any &lt;strong&gt;write&lt;/strong&gt; operation on the seqlock critical section is exclusive. Each &lt;strong&gt;write&lt;/strong&gt; operation first locks the spinlock, then increments the sequence value, and increments the sequence value again when leaving the critical section. In other words, the sequence value increments twice, so the number of increments is always &lt;strong&gt;even&lt;/strong&gt;.&lt;/li&gt;&#xA;&lt;li&gt;Non-exclusive read: If multiple CPUs perform &lt;strong&gt;read-only&lt;/strong&gt; operations, they can simultaneously enter the &lt;strong&gt;non-exclusive read critical section&lt;/strong&gt;. CPUs entering the non-exclusive read critical section do not need to acquire the spinlock but must first check whether the sequence value is &lt;strong&gt;even&lt;/strong&gt; and record the sequence value at that time. When exiting the read critical section, they need to read the sequence value again and compare it with the previously recorded value:&#xA;&lt;ul&gt;&#xA;&lt;li&gt;If equal, the read result is valid;&lt;/li&gt;&#xA;&lt;li&gt;If not equal, it means another CPU performed a write operation during the read, and this read operation is invalid.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;Exclusive read: If you want the read critical section not to be invalidated by write operations, you can use the exclusive read mode. Exclusive read will exclude exclusive write and exclusive read operations on other CPUs, but will not exclude non-exclusive reads; other CPUs can still enter the non-exclusive read critical section.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h3 id=&#34;limitations&#34;&gt;Limitations&lt;/h3&gt;&#xA;&lt;p&gt;A seqlock has a flaw: when a &lt;strong&gt;writer&lt;/strong&gt; writes data as a null pointer, it might cause a &lt;strong&gt;non-exclusive reader&lt;/strong&gt; to dereference a null pointer and crash.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Mutex</title>
+      <link>/en/Docs/TechRefManual/Lock/Mutex/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/en/Docs/TechRefManual/Lock/Mutex/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;A mutex is a mechanism used to ensure that different threads correctly access shared data. The code fragment that accesses shared data is called a critical section.&#xA;A mutex must &lt;strong&gt;not&lt;/strong&gt; be used in any context other than &lt;strong&gt;thread&lt;/strong&gt; context.&lt;/p&gt;&#xA;&lt;p&gt;When a thread waits for a mutex, the thread is blocked and yields CPU usage.&#xA;Mutexes have the problem of priority inversion:&lt;/p&gt;&#xA;&lt;figure class=&#34;card rounded p-2 td-post-card mb-4 mt-4&#34; style=&#34;max-width: 810px&#34;&gt;&#xA;&lt;img class=&#34;card-img-top&#34; src=&#34;/en/Docs/TechRefManual/Lock/Mutex/priority-inversion_hu10655569885900186477.png&#34; width=&#34;800&#34; height=&#34;800&#34;&gt;&#xA;&lt;figcaption class=&#34;card-body px-0 pt-2 pb-0 text-center&#34;&gt;&#xA;&lt;p class=&#34;card-text&#34;&gt;&#xA;&#xA;&#xA;Priority inversion of XWOS mutex&#xA;&lt;small class=&#34;text-body-secondary&#34;&gt;&lt;br/&gt;Photo: xwos.tech / CC-BY&lt;/small&gt;&#xA;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Synchronization on XWOS</title>
+    <link>/en/Docs/TechRefManual/Sync/</link>
+    <description>Recent content in Synchronization on XWOS</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <atom:link href="/en/Docs/TechRefManual/Sync/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Semaphore</title>
+      <link>/en/Docs/TechRefManual/Sync/Sem/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/en/Docs/TechRefManual/Sync/Sem/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;The semaphore is a relatively low-level synchronization mechanism in operating systems. It is a counter with a &lt;strong&gt;wait queue&lt;/strong&gt;.&lt;/p&gt;&#xA;&lt;p&gt;The semaphore contains an integer counter:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;When the semaphore value equals &lt;strong&gt;0&lt;/strong&gt;, threads wait in the &lt;strong&gt;wait queue&lt;/strong&gt; for the value to become greater than &lt;strong&gt;0&lt;/strong&gt;;&lt;/li&gt;&#xA;&lt;li&gt;When the semaphore value is greater than &lt;strong&gt;0&lt;/strong&gt;, a waiting thread can be awakened. The awakened thread takes one unit of value, reducing the semaphore count by &lt;strong&gt;1&lt;/strong&gt;;&lt;/li&gt;&#xA;&lt;li&gt;When the semaphore value is less than &lt;strong&gt;0&lt;/strong&gt;, the semaphore is in a &lt;strong&gt;frozen&lt;/strong&gt; state. This state does not exist in theoretical semaphores; it is an extension of XWOS.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Any context can increase the value of the semaphore; this operation is called &lt;strong&gt;post&lt;/strong&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Condition Variable</title>
+      <link>/en/Docs/TechRefManual/Sync/Cond/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/en/Docs/TechRefManual/Sync/Cond/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;The condition variable is a relatively low-level synchronization mechanism in operating systems that can simultaneously block multiple threads. When the condition is met, the condition variable can wake up one or all waiting threads.&lt;/p&gt;&#xA;&lt;p&gt;Operating systems or language libraries provide condition variable functionality, for example:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;POSIX &lt;code&gt;pthread_cond_t&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;C++ &lt;code&gt;std::condition_variable&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;Java &lt;code&gt;java.util.concurrent.locks.Condition&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;Python &lt;code&gt;threading.Condition&lt;/code&gt;&lt;/li&gt;&#xA;&lt;li&gt;Rust &lt;code&gt;std::sync::condvar&lt;/code&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;A thread must hold a &lt;strong&gt;mutex&lt;/strong&gt; before waiting on a condition variable.&#xA;When the condition variable blocks the thread, it synchronously releases the &lt;strong&gt;mutex&lt;/strong&gt;. When the condition is met and the thread is awakened, the condition variable automatically re-locks the &lt;strong&gt;mutex&lt;/strong&gt;.&#xA;When an error occurs while waiting on the condition variable, the condition variable also automatically re-locks the &lt;strong&gt;mutex&lt;/strong&gt; before returning.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Event Flag</title>
+      <link>/en/Docs/TechRefManual/Sync/Flg/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/en/Docs/TechRefManual/Sync/Flg/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;When the system needs to handle many events, if each event is bound to a specific condition variable,&#xA;and each condition variable is waited on by a thread, the system would require a large amount of memory to create condition variables and threads.&lt;/p&gt;&#xA;&lt;p&gt;The event flag uses a bitmap to manage a group of events. Each bit in the bitmap represents an event.&#xA;When one or more event states change, the corresponding bits change and wake up the waiting threads.&#xA;Once awakened, the thread can retrieve the event states from the event bitmap.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Thread Barrier</title>
+      <link>/en/Docs/TechRefManual/Sync/Br/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/en/Docs/TechRefManual/Sync/Br/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;The XWOS thread barrier is a synchronization mechanism used to coordinate parallel work among multiple threads.&lt;/p&gt;&#xA;&lt;p&gt;When creating a thread barrier, you specify how many thread slots it has.&#xA;When a thread reaches the thread barrier, it will block and wait until the specified number of threads have all reached the barrier, at which point all threads are awakened simultaneously.&lt;/p&gt;&#xA;&lt;h3 id=&#34;thread-barrier-object-and-object-descriptor&#34;&gt;Thread Barrier Object and Object Descriptor&lt;/h3&gt;&#xA;&lt;p&gt;The thread barrier object is a derived class of &lt;a href=&#34;../../Xwobj&#34;&gt;XWOS Object&lt;/a&gt; &lt;a href=&#34;../../../../api/structxwos__object.html&#34;&gt;&lt;code&gt;struct xwos_object&lt;/code&gt;&lt;/a&gt;.&#xA;Similarly, thread barrier objects also use the &lt;strong&gt;thread barrier object descriptor&lt;/strong&gt; &lt;a href=&#34;../../../../api/structxwos__br__d.html&#34;&gt;&lt;code&gt;xwos_br_d&lt;/code&gt;&lt;/a&gt;&#xA;to solve the problems of validity and identity legitimacy.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Signal Selector</title>
+      <link>/en/Docs/TechRefManual/Sync/Sel/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>/en/Docs/TechRefManual/Sync/Sel/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;The signal selector is similar to event flags, using a bitmap to manage a group of &lt;strong&gt;synchronization objects&lt;/strong&gt;. This allows a single thread to wait on multiple &lt;strong&gt;synchronization objects&lt;/strong&gt; simultaneously.&lt;/p&gt;&#xA;&lt;p&gt;Each &lt;strong&gt;synchronization object&lt;/strong&gt; is bound to a specific &lt;strong&gt;bit&lt;/strong&gt; in the signal selector bitmap.&lt;/p&gt;&#xA;&lt;p&gt;When these &lt;strong&gt;synchronization objects&lt;/strong&gt; send a &lt;strong&gt;select signal&lt;/strong&gt;, the specific &lt;strong&gt;bit&lt;/strong&gt; in the signal selector bitmap is set to &lt;strong&gt;1&lt;/strong&gt;, and the thread waiting on the signal selector is awakened.&#xA;After waking up, the thread can check which &lt;strong&gt;bits&lt;/strong&gt; are set to &lt;strong&gt;1&lt;/strong&gt; to determine which &lt;strong&gt;synchronization objects&lt;/strong&gt; sent the &lt;strong&gt;select signal&lt;/strong&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,36 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="XWOS RUST：全局内存分配器"><title>xwrust::xwmm::allocator - Rust</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Italic-81dc35de.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-MediumItalic-ccf7e434.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2"href="../../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../../static.files/rustdoc-650bd49d.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="xwrust" data-themes="" data-resource-suffix="" data-rustdoc-version="1.99.0-nightly (11177f223 2026-08-02)" data-channel="nightly" data-search-js="search-cf4fc35e.js" data-stringdex-js="stringdex-b5109af9.js" data-settings-js="settings-170eb4bf.js" ><script src="../../../static.files/storage-41dd4d93.js"></script><script defer src="../sidebar-items.js"></script><script defer src="../../../static.files/main-417ebf0a.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-d4bd101e.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-eab170b8.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-044be391.svg"></head><body class="rustdoc mod"><a class="skip-main-content" href="#main-content">Skip to main content</a><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><rustdoc-topbar><h2><a href="#">Module allocator</a></h2></rustdoc-topbar><nav class="sidebar"><div class="sidebar-crate"><h2><a href="../../../xwrust/index.html">xwrust</a><span class="version">1.0.0</span></h2></div><div class="sidebar-elems"><section id="rustdoc-toc"><h2 class="location"><a href="#">Module allocator</a></h2><h3><a href="#">Sections</a></h3><ul class="block top-toc"><li><a href="#xwos-rust全局内存分配器" title="XWOS RUST：全局内存分配器">XWOS RUST：全局内存分配器</a></li><li><a href="#允许动态内存的情况" title="允许动态内存的情况">允许动态内存的情况</a></li><li><a href="#禁止动态内存的情况" title="禁止动态内存的情况">禁止动态内存的情况</a></li></ul><h3><a href="#structs">Module Items</a></h3><ul class="block"><li><a href="#structs" title="Structs">Structs</a></li></ul></section><div id="rustdoc-modnav"><h2><a href="../index.html">In xwrust::<wbr>xwmm</a></h2></div></div></nav><div class="sidebar-resizer" title="Drag to resize sidebar"></div><main><div class="width-limiter"><section id="main-content" class="content" tabindex="-1"><div class="main-heading"><div class="rustdoc-breadcrumbs"><a href="../../index.html">xwrust</a>::<wbr><a href="../index.html">xwmm</a></div><h1>Module <span>allocator</span>&nbsp;<button id="copy-path" title="Copy item path to clipboard">Copy item path</button></h1><rustdoc-toolbar></rustdoc-toolbar><span class="sub-heading"><a class="src" href="../../../src/xwrust/xwmm/allocator.rs.html#1-95">Source</a> </span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="xwos-rust全局内存分配器"><a class="doc-anchor" href="#xwos-rust%E5%85%A8%E5%B1%80%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E5%99%A8">§</a>XWOS RUST：全局内存分配器</h2>
+<p>Rust的 <code>#![no_std]</code> 环境要求用户定义 <a href="https://doc.rust-lang.org/core/prelude/v1/attr.global_allocator.html"><code>global_allocator</code></a> ，作为动态内存管理的实现。</p>
+<h2 id="允许动态内存的情况"><a class="doc-anchor" href="#%E5%85%81%E8%AE%B8%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%9A%84%E6%83%85%E5%86%B5">§</a>允许动态内存的情况</h2>
+<p>若用户需要使用基于动态内存的特性，例如 <a href="https://doc.rust-lang.org/alloc/boxed/struct.Box.html"><code>Box&lt;T&gt;</code></a> 和 <a href="https://doc.rust-lang.org/alloc/sync/struct.Arc.html"><code>Arc&lt;T&gt;</code></a> ，
+需要在应用代码中定义 <code>GLOBAL_ALLOCATOR</code> 并赋值为 <a href="struct.XwrustAllocator.html" title="struct xwrust::xwmm::allocator::XwrustAllocator"><code>XwrustAllocator</code></a> 。</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="attr">#![no_std]
+</span><span class="kw">use </span>xwrust::xwmm::allocator::XwrustAllocator;
+
+<span class="attr">#[global_allocator]
+</span><span class="kw">pub static </span>GLOBAL_ALLOCATOR: XwrustAllocator = XwrustAllocator;
+
+<span class="attr">#[no_mangle]
+</span><span class="kw">pub unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>xwrust_main() {
+    <span class="comment">// 用户代码
+</span>}</code></pre></div><h2 id="禁止动态内存的情况"><a class="doc-anchor" href="#%E7%A6%81%E6%AD%A2%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%9A%84%E6%83%85%E5%86%B5">§</a>禁止动态内存的情况</h2>
+<p>若用户禁止在代码中使用动态内存，只使用静态内存，
+需要在应用代码中定义 <code>GLOBAL_ALLOCATOR</code> 并赋值为 <a href="struct.DummyAllocator.html" title="struct xwrust::xwmm::allocator::DummyAllocator"><code>DummyAllocator</code></a> 。</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">use </span>xwrust::xwmm::allocator::DummyAllocator;
+
+<span class="attr">#[global_allocator]
+</span><span class="kw">pub static </span>GLOBAL_ALLOCATOR: DummyAllocator = DummyAllocator;
+
+<span class="attr">#[no_mangle]
+</span><span class="kw">pub unsafe extern </span><span class="string">"C" </span><span class="kw">fn </span>xwrust_main() {
+    <span class="comment">// 用户代码
+</span>}</code></pre></div>
+<p>在禁止使用动态内存管理的场合下，下列模块不可以使用：</p>
+<ul>
+<li><a href="https://doc.rust-lang.org/alloc/boxed/struct.Box.html"><code>Box&lt;T&gt;</code></a></li>
+<li><a href="https://doc.rust-lang.org/alloc/sync/struct.Arc.html"><code>Arc&lt;T&gt;</code></a></li>
+<li><a href="../../xwos/thd/index.html" title="mod xwrust::xwos::thd">动态线程</a></li>
+<li><a href="../../xwmd/xwmq/index.html" title="mod xwrust::xwmd::xwmq">Xwmq</a></li>
+</ul>
+</div></details><h2 id="structs" class="section-header">Structs<a href="#structs" class="anchor">§</a></h2><dl class="item-table"><dt><a class="struct" href="struct.DummyAllocator.html" title="struct xwrust::xwmm::allocator::DummyAllocator">Dummy<wbr>Allocator</a></dt><dd>虚假的内存分配器</dd><dt><a class="struct" href="struct.XwrustAllocator.html" title="struct xwrust::xwmm::allocator::XwrustAllocator">Xwrust<wbr>Allocator</a></dt><dd>内存分配器</dd></dl></section></div></main></body></html>

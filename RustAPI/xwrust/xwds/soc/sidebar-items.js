@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["SIZEOF_XWDS_SOC"],"enum":["GpioPort"],"struct":["EirqFlag","Soc"],"trait":["Eirq","Gpio"]};

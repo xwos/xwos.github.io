@@ -1,0 +1,544 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>XWOS API: 顺序锁</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<a href="/" class="github-corner" title="返回首页">
+  <svg viewBox="0 0 250 250" style="position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path
+      d="M 0 0 L 250 250 L 250 0 L 0 0 z M 181.19336 6.25 A 18.281986 19.638775 0 0 1 192.79297 10.798828 L 241.54492 54.201172 A 6.0939954 6.5462585 0 0 1 237.64453 65.787109 L 233.13477 65.787109 A 3.0469979 3.2731292 0 0 0 230.08789 69.060547 L 230.08789 111.61133 A 18.281986 19.638775 0 0 1 211.80664 131.25 L 205.71289 131.25 A 12.187991 13.092517 0 0 1 193.52344 118.1582 L 193.52344 98.519531 A 12.187991 13.092517 0 0 0 181.33594 85.425781 A 12.187991 13.092517 0 0 0 169.14844 98.519531 L 169.14844 118.1582 A 12.187991 13.092517 0 0 1 156.95898 131.25 L 150.86523 131.25 A 18.281986 19.638775 0 0 1 132.58398 111.61133 L 132.58398 68.994141 A 3.0469979 3.2731292 0 0 0 129.29297 65.722656 L 124.7832 65.722656 A 6.0939954 6.5462585 0 0 1 120.88281 54.201172 L 169.39258 10.798828 A 18.281986 19.638775 0 0 1 181.19336 6.25 z "/>
+  </svg>
+</a>
+<style>.github-corner:hover</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">XWOS API
+   &#160;<span id="projectnumber">4.0</span>
+   </div>
+   <div id="projectbrief">XWOS C/C++ API参考手册</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('group__xwos__cxx__lock__Seqlock.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">结构体</a>  </div>
+  <div class="headertitle"><div class="title">顺序锁<div class="ingroups"><a class="el" href="group__xwos__cxx.html">XWOS内核C++API</a> &raquo; <a class="el" href="group__xwos__cxx__lock.html">XWOS的锁机制</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+顺序锁 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwos__cxx__lock__Seqlock.png" border="0" usemap="#agroup____xwos____cxx____lock____Seqlock" alt=""/></div>
+<map name="agroup____xwos____cxx____lock____Seqlock" id="agroup____xwos____cxx____lock____Seqlock">
+<area shape="rect" href="group__xwos__cxx__lock.html" title=" " alt="" coords="5,5,120,31"/>
+<area shape="rect" title=" " alt="" coords="168,5,229,31"/>
+</map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+结构体</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classxwos_1_1lock_1_1Seqlock.html">xwos::lock::Seqlock</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">顺序锁  <a href="classxwos_1_1lock_1_1Seqlock.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<p>顺序锁的结构体非常小，因此不分别提供静态初始化与动态创建的方法。</p>
+<h2><a class="anchor" id="autotoc_md106"></a>
+共享读</h2>
+<ul>
+<li>示例</li>
+</ul>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="Seqlock_8hxx.html">xwos/cxx/lock/Seqlock.hxx</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock.html">xwos::lock::Seqlock</a> gLock;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> foo()</div>
+<div class="line">{</div>
+<div class="line">    <a class="code hl_typedef" href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a> seq;</div>
+<div class="line">    <span class="keywordflow">do</span> {</div>
+<div class="line">        seq = gLock.<a class="code hl_function" href="classxwos_1_1lock_1_1Seqlock.html#a285294252db62eb7f98ba047827aa9b1">readBegin</a>();</div>
+<div class="line">        共享读临界区</div>
+<div class="line">    } <span class="keywordflow">while</span> (gLock.<a class="code hl_function" href="classxwos_1_1lock_1_1Seqlock.html#af23821612544bc17437f3c857bd9535d">readRetry</a>(seq));</div>
+<div class="line">}</div>
+<div class="ttc" id="aSeqlock_8hxx_html"><div class="ttname"><a href="Seqlock_8hxx.html">Seqlock.hxx</a></div><div class="ttdoc">xwos::lock::Seqlock</div></div>
+<div class="ttc" id="aclassxwos_1_1lock_1_1Seqlock_html"><div class="ttname"><a href="classxwos_1_1lock_1_1Seqlock.html">xwos::lock::Seqlock</a></div><div class="ttdoc">顺序锁</div><div class="ttdef"><b>Definition</b> <a href="Seqlock_8hxx_source.html#l00479">Seqlock.hxx:480</a></div></div>
+<div class="ttc" id="aclassxwos_1_1lock_1_1Seqlock_html_a285294252db62eb7f98ba047827aa9b1"><div class="ttname"><a href="classxwos_1_1lock_1_1Seqlock.html#a285294252db62eb7f98ba047827aa9b1">xwos::lock::Seqlock::readBegin</a></div><div class="ttdeci">xwsq_t readBegin()</div><div class="ttdoc">开启共享读临界区</div></div>
+<div class="ttc" id="aclassxwos_1_1lock_1_1Seqlock_html_af23821612544bc17437f3c857bd9535d"><div class="ttname"><a href="classxwos_1_1lock_1_1Seqlock.html#af23821612544bc17437f3c857bd9535d">xwos::lock::Seqlock::readRetry</a></div><div class="ttdeci">bool readRetry(xwsq_t start)</div><div class="ttdoc">关闭共享读临界区，并检查是否需要重试</div></div>
+<div class="ttc" id="agroup__xwos__lib__type_html_ga59fe68c80516b22de8dccb84275d23f2"><div class="ttname"><a href="group__xwos__lib__type.html#ga59fe68c80516b22de8dccb84275d23f2">xwsq_t</a></div><div class="ttdeci">unsigned long xwsq_t</div><div class="ttdef"><b>Definition</b> <a href="type_8h_source.html#l00445">type.h:445</a></div></div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md107"></a>
+顺序锁的RAII机制守卫</h2>
+<p>顺序锁不同的锁模式具有不同的RAII机制守卫：</p>
+<h3><a class="anchor" id="autotoc_md108"></a>
+Seqlock::RdexLkGrd : 独占读普通上锁模式</h3>
+<ul>
+<li>构造函数关闭当前CPU调度器的抢占，然后上锁顺序锁。 上锁失败会自旋等待，直到上锁成功为止。</li>
+<li>析构函数解锁顺序锁，开启当前CPU调度器的抢占。</li>
+<li>示例</li>
+</ul>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="Seqlock_8hxx.html">xwos/cxx/lock/Seqlock.hxx</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock.html">xwos::lock::Seqlock</a> gLock;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> foo()</div>
+<div class="line">{</div>
+<div class="line">    { <span class="comment">// 构造 `grd` 时会自动对顺序锁上锁</span></div>
+<div class="line">        <a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock_1_1RdexLkGrd.html">xwos::lock::Seqlock::RdexLkGrd</a> grd(gSlock);</div>
+<div class="line">        进入临界区</div>
+<div class="line">    } <span class="comment">// grd析构时会自动解锁顺序锁</span></div>
+<div class="line">}</div>
+<div class="ttc" id="aclassxwos_1_1lock_1_1Seqlock_1_1RdexLkGrd_html"><div class="ttname"><a href="classxwos_1_1lock_1_1Seqlock_1_1RdexLkGrd.html">xwos::lock::Seqlock::RdexLkGrd</a></div><div class="ttdoc">独占读普通上锁模式下的顺序锁RAII机制守卫</div><div class="ttdef"><b>Definition</b> <a href="Seqlock_8hxx_source.html#l00500">Seqlock.hxx:501</a></div></div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md109"></a>
+Seqlock::TryRdexLkGrd : 独占读普通尝试上锁模式</h3>
+<ul>
+<li>构造函数关闭并保存本地CPU的中断，关闭当前CPU调度器的抢占，上锁顺序锁。 上锁失败会自旋等待，直到上锁成功为止。</li>
+<li>析构函数解锁顺序锁，开启当前CPU调度器的抢占， 用保存的中断标志恢复本地CPU的中断。</li>
+<li>示例</li>
+</ul>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="Seqlock_8hxx.html">xwos/cxx/lock/Seqlock.hxx</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock.html">xwos::lock::Seqlock</a> gLock;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> foo()</div>
+<div class="line">{</div>
+<div class="line">    { <span class="comment">// 构造 `grd` 时尝试进入临界区</span></div>
+<div class="line">        <a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock_1_1TryRdexLkGrd.html">xwos::lock::Seqlock::TryRdexLkGrd</a> grd(gLock);</div>
+<div class="line">        <span class="keywordflow">if</span> (<a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a> == grd.getRc()) {</div>
+<div class="line">            <span class="comment">// 上锁成功，进入临界区</span></div>
+<div class="line">        } <span class="keywordflow">else</span> {</div>
+<div class="line">            <span class="comment">// 上锁失败</span></div>
+<div class="line">        }</div>
+<div class="line">    } <span class="comment">// 如果上锁成功，析构 `grd` 时退出临界区</span></div>
+<div class="line">}</div>
+<div class="ttc" id="aclassxwos_1_1lock_1_1Seqlock_1_1TryRdexLkGrd_html"><div class="ttname"><a href="classxwos_1_1lock_1_1Seqlock_1_1TryRdexLkGrd.html">xwos::lock::Seqlock::TryRdexLkGrd</a></div><div class="ttdoc">独占读普通尝试上锁模式下的顺序锁RAII机制守卫</div><div class="ttdef"><b>Definition</b> <a href="Seqlock_8hxx_source.html#l00627">Seqlock.hxx:628</a></div></div>
+<div class="ttc" id="agroup__xwos__lib__errno_html_ga6a72d49d869215a02342eb465166537b"><div class="ttname"><a href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a></div><div class="ttdeci">#define XWOK</div><div class="ttdoc">No error</div><div class="ttdef"><b>Definition</b> <a href="errno_8h_source.html#l00182">errno.h:182</a></div></div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md110"></a>
+Seqlock::RdexLkThGrd : 独占读CPU中断上锁模式</h3>
+<ul>
+<li>构造函数关闭并保存本地CPU的中断，关闭当前CPU调度器的抢占，上锁顺序锁。 上锁失败会自旋等待，直到上锁成功为止。</li>
+<li>析构函数解锁顺序锁，开启当前CPU调度器的抢占， 用保存的中断标志恢复本地CPU的中断。</li>
+<li>示例</li>
+</ul>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="Seqlock_8hxx.html">xwos/cxx/lock/Seqlock.hxx</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock.html">xwos::lock::Seqlock</a> gLock;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> foo()</div>
+<div class="line">{</div>
+<div class="line">    { <span class="comment">// 构造 `grd` 时进入临界区</span></div>
+<div class="line">        <a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock_1_1RdexLkThGrd.html">xwos::lock::Seqlock::RdexLkThGrd</a> grd(gSlock);</div>
+<div class="line">        进入临界区</div>
+<div class="line">    } <span class="comment">// 析构 `grd` 时退出临界区</span></div>
+<div class="line">}</div>
+<div class="ttc" id="aclassxwos_1_1lock_1_1Seqlock_1_1RdexLkThGrd_html"><div class="ttname"><a href="classxwos_1_1lock_1_1Seqlock_1_1RdexLkThGrd.html">xwos::lock::Seqlock::RdexLkThGrd</a></div><div class="ttdoc">独占读CPU中断上锁模式下的顺序锁RAII机制守卫</div><div class="ttdef"><b>Definition</b> <a href="Seqlock_8hxx_source.html#l00669">Seqlock.hxx:670</a></div></div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md111"></a>
+Seqlock::TryRdexLkThGrd : 独占读CPU中断尝试上锁模式</h3>
+<ul>
+<li>构造函数关闭并保存本地CPU的中断，关闭当前CPU调度器的抢占，上锁顺序锁。 上锁失败不会自旋等待，会开启当前CPU调度器的抢占， 用保存的中断标志恢复本地CPU的中断，并在 <code>mRc</code> 中返回 <code>-EAGAIN</code></li>
+<li>析构函数解锁顺序锁，开启当前CPU调度器的抢占， 用保存的中断标志恢复本地CPU的中断。</li>
+<li>示例</li>
+</ul>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="Seqlock_8hxx.html">xwos/cxx/lock/Seqlock.hxx</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock.html">xwos::lock::Seqlock</a> gLock;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> foo()</div>
+<div class="line">{</div>
+<div class="line">    { <span class="comment">// 构造 `grd` 时尝试进入临界区</span></div>
+<div class="line">        <a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock_1_1TryRdexLkThGrd.html">xwos::lock::Seqlock::TryRdexLkThGrd</a> grd(gLock);</div>
+<div class="line">        <span class="keywordflow">if</span> (<a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a> == grd.getRc()) {</div>
+<div class="line">            <span class="comment">// 上锁成功，进入临界区</span></div>
+<div class="line">        } <span class="keywordflow">else</span> {</div>
+<div class="line">            <span class="comment">// 上锁失败</span></div>
+<div class="line">        }</div>
+<div class="line">    } <span class="comment">// 如果上锁成功，析构 `grd` 时退出临界区</span></div>
+<div class="line">}</div>
+<div class="ttc" id="aclassxwos_1_1lock_1_1Seqlock_1_1TryRdexLkThGrd_html"><div class="ttname"><a href="classxwos_1_1lock_1_1Seqlock_1_1TryRdexLkThGrd.html">xwos::lock::Seqlock::TryRdexLkThGrd</a></div><div class="ttdoc">独占读CPU中断尝试上锁模式下的顺序锁RAII机制守卫</div><div class="ttdef"><b>Definition</b> <a href="Seqlock_8hxx_source.html#l00799">Seqlock.hxx:800</a></div></div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md112"></a>
+Seqlock::RdexLkBhGrd : 独占读中断底半部上锁模式</h3>
+<ul>
+<li>构造函数关闭当前CPU调度器的抢占，关闭本地CPU的中断底半部，然后上锁顺序锁。 上锁失败会自旋等待，直到上锁成功为止。</li>
+<li>析构函数解锁顺序锁，开启本地CPU的中断底半部，开启当前CPU调度器的抢占。</li>
+<li>示例</li>
+</ul>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="Seqlock_8hxx.html">xwos/cxx/lock/Seqlock.hxx</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock.html">xwos::lock::Seqlock</a> gLock;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> foo()</div>
+<div class="line">{</div>
+<div class="line">    { <span class="comment">// 构造 `grd` 时进入临界区</span></div>
+<div class="line">        <a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock_1_1RdexLkBhGrd.html">xwos::lock::Seqlock::RdexLkBhGrd</a> grd(gSlock);</div>
+<div class="line">        进入临界区</div>
+<div class="line">    } <span class="comment">// 析构 `grd` 时退出临界区</span></div>
+<div class="line">}</div>
+<div class="ttc" id="aclassxwos_1_1lock_1_1Seqlock_1_1RdexLkBhGrd_html"><div class="ttname"><a href="classxwos_1_1lock_1_1Seqlock_1_1RdexLkBhGrd.html">xwos::lock::Seqlock::RdexLkBhGrd</a></div><div class="ttdoc">独占读中断底半部上锁模式下的顺序锁RAII机制守卫</div><div class="ttdef"><b>Definition</b> <a href="Seqlock_8hxx_source.html#l00840">Seqlock.hxx:841</a></div></div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md113"></a>
+Seqlock::TryRdexLkBhGrd : 独占读中断底半部尝试上锁模式</h3>
+<ul>
+<li>构造函数关闭当前CPU调度器的抢占，关闭本地CPU的中断底半部， 然后尝试上锁顺序锁。 上锁失败不会自旋等待，会开启当前CPU调度器的抢占，开启本地CPU的中断底半部， 并在 <code>mRc</code> 中返回 <code>-EAGAIN</code> 。</li>
+<li>析构函数解锁顺序锁，开启本地CPU的中断底半部，开启当前CPU调度器的抢占。</li>
+<li>示例</li>
+</ul>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="Seqlock_8hxx.html">xwos/cxx/lock/Seqlock.hxx</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock.html">xwos::lock::Seqlock</a> gLock;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> foo()</div>
+<div class="line">{</div>
+<div class="line">    { <span class="comment">// 构造 `grd` 时尝试进入临界区</span></div>
+<div class="line">        <a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock_1_1RdexLkBhGrd.html">xwos::lock::Seqlock::RdexLkBhGrd</a>(gLock);</div>
+<div class="line">        <span class="keywordflow">if</span> (<a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a> == grd.getRc()) {</div>
+<div class="line">            <span class="comment">// 上锁成功，进入临界区</span></div>
+<div class="line">        } <span class="keywordflow">else</span> {</div>
+<div class="line">            <span class="comment">// 上锁失败</span></div>
+<div class="line">        }</div>
+<div class="line">    } <span class="comment">// 如果上锁成功，析构 `grd` 时退出临界区</span></div>
+<div class="line">}</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md114"></a>
+Seqlock::RdexLkIrqsGrd : 独占读部分中断上锁模式</h3>
+<ul>
+<li>构造函数关闭并保存模板参数列表内的中断，关闭当前CPU调度器的抢占，上锁顺序锁。 上锁失败会自旋等待，直到上锁成功为止。</li>
+<li>析构函数解锁顺序锁，开启当前CPU调度器的抢占， 用保存的中断标志恢复模板参数列表内的中断。</li>
+<li>示例</li>
+</ul>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="Seqlock_8hxx.html">xwos/cxx/lock/Seqlock.hxx</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock.html">xwos::lock::Seqlock</a> gLock;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> foo()</div>
+<div class="line">{</div>
+<div class="line">    { <span class="comment">// 构造 `grd` 时进入临界区，同时关闭编号为1, 3, 5, 8的四个中断。</span></div>
+<div class="line">        <a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock_1_1RdexLkIrqsGrd.html">xwos::lock::Seqlock::RdexLkIrqsGrd&lt;1, 3, 5, 8&gt;</a> grd(gSlock);</div>
+<div class="line">        进入临界区</div>
+<div class="line">    } <span class="comment">// 析构 `grd` 时退出临界区，并恢复编号为1, 3, 5, 8的四个中断。</span></div>
+<div class="line">}</div>
+<div class="ttc" id="aclassxwos_1_1lock_1_1Seqlock_1_1RdexLkIrqsGrd_html"><div class="ttname"><a href="classxwos_1_1lock_1_1Seqlock_1_1RdexLkIrqsGrd.html">xwos::lock::Seqlock::RdexLkIrqsGrd</a></div><div class="ttdoc">独占读部分中断上锁模式的顺序锁RAII机制守卫</div><div class="ttdef"><b>Definition</b> <a href="Seqlock_8hxx_source.html#l01012">Seqlock.hxx:1013</a></div></div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md115"></a>
+Seqlock::TryRdexLkIrqsGrd : 独占读部分中断尝试上锁模式</h3>
+<ul>
+<li>构造函数关闭并保存模板参数列表内的中断，关闭当前CPU调度器的抢占，上锁顺序锁。 上锁失败不会自旋等待，会开启当前CPU调度器的抢占， 用保存的中断标志恢复模板参数列表内的中断， 并在 <code>mRc</code> 中返回 <code>-EAGAIN</code> 。</li>
+<li>析构函数解锁顺序锁，开启当前CPU调度器的抢占， 用保存的中断标志恢复模板参数列表内的中断。</li>
+<li>示例</li>
+</ul>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="Seqlock_8hxx.html">xwos/cxx/lock/Seqlock.hxx</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock.html">xwos::lock::Seqlock</a> gLock;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> foo()</div>
+<div class="line">{</div>
+<div class="line">    { <span class="comment">// 构造 `grd` 时尝试进入临界区，同时关闭编号为1, 3, 5, 8的四个中断。</span></div>
+<div class="line">        <a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock_1_1TryRdexLkIrqsGrd.html">xwos::lock::Seqlock::TryRdexLkIrqsGrd&lt;1, 3, 5, 8&gt;</a> grd(gLock);</div>
+<div class="line">        <span class="keywordflow">if</span> (<a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a> == grd.getRc()) {</div>
+<div class="line">            <span class="comment">// 上锁成功，进入临界区</span></div>
+<div class="line">        } <span class="keywordflow">else</span> {</div>
+<div class="line">            <span class="comment">// 上锁失败</span></div>
+<div class="line">        }</div>
+<div class="line">    } <span class="comment">// 如果上锁成功，析构 `grd` 时退出临界区，并恢复编号为1, 3, 5, 8的四个中断。</span></div>
+<div class="line">}</div>
+<div class="ttc" id="aclassxwos_1_1lock_1_1Seqlock_1_1TryRdexLkIrqsGrd_html"><div class="ttname"><a href="classxwos_1_1lock_1_1Seqlock_1_1TryRdexLkIrqsGrd.html">xwos::lock::Seqlock::TryRdexLkIrqsGrd</a></div><div class="ttdoc">独占读部分中断尝试上锁模式下的顺序锁RAII机制守卫</div><div class="ttdef"><b>Definition</b> <a href="Seqlock_8hxx_source.html#l01227">Seqlock.hxx:1228</a></div></div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md116"></a>
+Seqlock::WrLkGrd : 独占写普通上锁模式</h3>
+<ul>
+<li>构造函数关闭当前CPU调度器的抢占，然后上锁顺序锁。 上锁失败会自旋等待，直到上锁成功为止。</li>
+<li>析构函数解锁顺序锁，开启当前CPU调度器的抢占。</li>
+<li>示例</li>
+</ul>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="Seqlock_8hxx.html">xwos/cxx/lock/Seqlock.hxx</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock.html">xwos::lock::Seqlock</a> gLock;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> foo()</div>
+<div class="line">{</div>
+<div class="line">    { <span class="comment">// 构造 `grd` 时会自动对顺序锁上锁</span></div>
+<div class="line">        <a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock_1_1WrLkGrd.html">xwos::lock::Seqlock::WrLkGrd</a> grd(gSlock);</div>
+<div class="line">        进入临界区</div>
+<div class="line">    } <span class="comment">// grd析构时会自动解锁顺序锁</span></div>
+<div class="line">}</div>
+<div class="ttc" id="aclassxwos_1_1lock_1_1Seqlock_1_1WrLkGrd_html"><div class="ttname"><a href="classxwos_1_1lock_1_1Seqlock_1_1WrLkGrd.html">xwos::lock::Seqlock::WrLkGrd</a></div><div class="ttdoc">独占写普通上锁模式下的顺序锁RAII机制守卫</div><div class="ttdef"><b>Definition</b> <a href="Seqlock_8hxx_source.html#l01294">Seqlock.hxx:1295</a></div></div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md117"></a>
+Seqlock::TryWrLkGrd : 独占写普通尝试上锁模式</h3>
+<ul>
+<li>构造函数关闭并保存本地CPU的中断，关闭当前CPU调度器的抢占，上锁顺序锁。 上锁失败会自旋等待，直到上锁成功为止。</li>
+<li>析构函数解锁顺序锁，开启当前CPU调度器的抢占， 用保存的中断标志恢复本地CPU的中断。</li>
+<li>示例</li>
+</ul>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="Seqlock_8hxx.html">xwos/cxx/lock/Seqlock.hxx</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock.html">xwos::lock::Seqlock</a> gLock;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> foo()</div>
+<div class="line">{</div>
+<div class="line">    { <span class="comment">// 构造 `grd` 时尝试进入临界区</span></div>
+<div class="line">        <a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock_1_1TryWrLkGrd.html">xwos::lock::Seqlock::TryWrLkGrd</a> grd(gLock);</div>
+<div class="line">        <span class="keywordflow">if</span> (<a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a> == grd.getRc()) {</div>
+<div class="line">            <span class="comment">// 上锁成功，进入临界区</span></div>
+<div class="line">        } <span class="keywordflow">else</span> {</div>
+<div class="line">            <span class="comment">// 上锁失败</span></div>
+<div class="line">        }</div>
+<div class="line">    } <span class="comment">// 如果上锁成功，析构 `grd` 时退出临界区</span></div>
+<div class="line">}</div>
+<div class="ttc" id="aclassxwos_1_1lock_1_1Seqlock_1_1TryWrLkGrd_html"><div class="ttname"><a href="classxwos_1_1lock_1_1Seqlock_1_1TryWrLkGrd.html">xwos::lock::Seqlock::TryWrLkGrd</a></div><div class="ttdoc">独占写普通尝试上锁模式下的顺序锁RAII机制守卫</div><div class="ttdef"><b>Definition</b> <a href="Seqlock_8hxx_source.html#l01422">Seqlock.hxx:1423</a></div></div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md118"></a>
+Seqlock::WrLkThGrd : 独占写CPU中断上锁模式</h3>
+<ul>
+<li>构造函数关闭并保存本地CPU的中断，关闭当前CPU调度器的抢占，上锁顺序锁。 上锁失败会自旋等待，直到上锁成功为止。</li>
+<li>析构函数解锁顺序锁，开启当前CPU调度器的抢占， 用保存的中断标志恢复本地CPU的中断。</li>
+<li>示例</li>
+</ul>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="Seqlock_8hxx.html">xwos/cxx/lock/Seqlock.hxx</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock.html">xwos::lock::Seqlock</a> gLock;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> foo()</div>
+<div class="line">{</div>
+<div class="line">    { <span class="comment">// 构造 `grd` 时进入临界区</span></div>
+<div class="line">        <a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock_1_1WrLkThGrd.html">xwos::lock::Seqlock::WrLkThGrd</a> grd(gSlock);</div>
+<div class="line">        进入临界区</div>
+<div class="line">    } <span class="comment">// 析构 `grd` 时退出临界区</span></div>
+<div class="line">}</div>
+<div class="ttc" id="aclassxwos_1_1lock_1_1Seqlock_1_1WrLkThGrd_html"><div class="ttname"><a href="classxwos_1_1lock_1_1Seqlock_1_1WrLkThGrd.html">xwos::lock::Seqlock::WrLkThGrd</a></div><div class="ttdoc">独占写CPU中断上锁模式下的顺序锁RAII机制守卫</div><div class="ttdef"><b>Definition</b> <a href="Seqlock_8hxx_source.html#l01464">Seqlock.hxx:1465</a></div></div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md119"></a>
+Seqlock::TryWrLkThGrd : 独占写CPU中断尝试上锁模式</h3>
+<ul>
+<li>构造函数关闭并保存本地CPU的中断，关闭当前CPU调度器的抢占，上锁顺序锁。 上锁失败不会自旋等待，会开启当前CPU调度器的抢占， 用保存的中断标志恢复本地CPU的中断，并在 <code>mRc</code> 中返回 <code>-EAGAIN</code></li>
+<li>析构函数解锁顺序锁，开启当前CPU调度器的抢占， 用保存的中断标志恢复本地CPU的中断。</li>
+<li>示例</li>
+</ul>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="Seqlock_8hxx.html">xwos/cxx/lock/Seqlock.hxx</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock.html">xwos::lock::Seqlock</a> gLock;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> foo()</div>
+<div class="line">{</div>
+<div class="line">    { <span class="comment">// 构造 `grd` 时尝试进入临界区</span></div>
+<div class="line">        <a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock_1_1TryWrLkThGrd.html">xwos::lock::Seqlock::TryWrLkThGrd</a> grd(gLock);</div>
+<div class="line">        <span class="keywordflow">if</span> (<a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a> == grd.getRc()) {</div>
+<div class="line">            <span class="comment">// 上锁成功，进入临界区</span></div>
+<div class="line">        } <span class="keywordflow">else</span> {</div>
+<div class="line">            <span class="comment">// 上锁失败</span></div>
+<div class="line">        }</div>
+<div class="line">    } <span class="comment">// 如果上锁成功，析构 `grd` 时退出临界区</span></div>
+<div class="line">}</div>
+<div class="ttc" id="aclassxwos_1_1lock_1_1Seqlock_1_1TryWrLkThGrd_html"><div class="ttname"><a href="classxwos_1_1lock_1_1Seqlock_1_1TryWrLkThGrd.html">xwos::lock::Seqlock::TryWrLkThGrd</a></div><div class="ttdoc">独占写CPU中断尝试上锁模式下的顺序锁RAII机制守卫</div><div class="ttdef"><b>Definition</b> <a href="Seqlock_8hxx_source.html#l01594">Seqlock.hxx:1595</a></div></div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md120"></a>
+Seqlock::WrLkBhGrd : 独占写中断底半部上锁模式</h3>
+<ul>
+<li>构造函数关闭当前CPU调度器的抢占，关闭本地CPU的中断底半部，然后上锁顺序锁。 上锁失败会自旋等待，直到上锁成功为止。</li>
+<li>析构函数解锁顺序锁，开启本地CPU的中断底半部，开启当前CPU调度器的抢占。</li>
+<li>示例</li>
+</ul>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="Seqlock_8hxx.html">xwos/cxx/lock/Seqlock.hxx</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock.html">xwos::lock::Seqlock</a> gLock;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> foo()</div>
+<div class="line">{</div>
+<div class="line">    { <span class="comment">// 构造 `grd` 时进入临界区</span></div>
+<div class="line">        <a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock_1_1WrLkBhGrd.html">xwos::lock::Seqlock::WrLkBhGrd</a> grd(gSlock);</div>
+<div class="line">        进入临界区</div>
+<div class="line">    } <span class="comment">// 析构 `grd` 时退出临界区</span></div>
+<div class="line">}</div>
+<div class="ttc" id="aclassxwos_1_1lock_1_1Seqlock_1_1WrLkBhGrd_html"><div class="ttname"><a href="classxwos_1_1lock_1_1Seqlock_1_1WrLkBhGrd.html">xwos::lock::Seqlock::WrLkBhGrd</a></div><div class="ttdoc">独占写中断底半部上锁模式下的顺序锁RAII机制守卫</div><div class="ttdef"><b>Definition</b> <a href="Seqlock_8hxx_source.html#l01635">Seqlock.hxx:1636</a></div></div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md121"></a>
+Seqlock::TryWrLkBhGrd : 独占写中断底半部尝试上锁模式</h3>
+<ul>
+<li>构造函数关闭当前CPU调度器的抢占，关闭本地CPU的中断底半部， 然后尝试上锁顺序锁。 上锁失败不会自旋等待，会开启当前CPU调度器的抢占，开启本地CPU的中断底半部， 并在 <code>mRc</code> 中返回 <code>-EAGAIN</code> 。</li>
+<li>析构函数解锁顺序锁，开启本地CPU的中断底半部，开启当前CPU调度器的抢占。</li>
+<li>示例</li>
+</ul>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="Seqlock_8hxx.html">xwos/cxx/lock/Seqlock.hxx</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock.html">xwos::lock::Seqlock</a> gLock;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> foo()</div>
+<div class="line">{</div>
+<div class="line">    { <span class="comment">// 构造 `grd` 时尝试进入临界区</span></div>
+<div class="line">        <a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock_1_1WrLkBhGrd.html">xwos::lock::Seqlock::WrLkBhGrd</a>(gLock);</div>
+<div class="line">        <span class="keywordflow">if</span> (<a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a> == grd.getRc()) {</div>
+<div class="line">            <span class="comment">// 上锁成功，进入临界区</span></div>
+<div class="line">        } <span class="keywordflow">else</span> {</div>
+<div class="line">            <span class="comment">// 上锁失败</span></div>
+<div class="line">        }</div>
+<div class="line">    } <span class="comment">// 如果上锁成功，析构 `grd` 时退出临界区</span></div>
+<div class="line">}</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md122"></a>
+Seqlock::WrLkIrqsGrd : 独占写部分中断上锁模式</h3>
+<ul>
+<li>构造函数关闭并保存模板参数列表内的中断，关闭当前CPU调度器的抢占，上锁顺序锁。 上锁失败会自旋等待，直到上锁成功为止。</li>
+<li>析构函数解锁顺序锁，开启当前CPU调度器的抢占， 用保存的中断标志恢复模板参数列表内的中断。</li>
+<li>示例</li>
+</ul>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="Seqlock_8hxx.html">xwos/cxx/lock/Seqlock.hxx</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock.html">xwos::lock::Seqlock</a> gLock;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> foo()</div>
+<div class="line">{</div>
+<div class="line">    { <span class="comment">// 构造 `grd` 时进入临界区，同时关闭编号为1, 3, 5, 8的四个中断。</span></div>
+<div class="line">        <a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock_1_1WrLkIrqsGrd.html">xwos::lock::Seqlock::WrLkIrqsGrd&lt;1, 3, 5, 8&gt;</a> grd(gSlock);</div>
+<div class="line">        进入临界区</div>
+<div class="line">    } <span class="comment">// 析构 `grd` 时退出临界区，并恢复编号为1, 3, 5, 8的四个中断。</span></div>
+<div class="line">}</div>
+<div class="ttc" id="aclassxwos_1_1lock_1_1Seqlock_1_1WrLkIrqsGrd_html"><div class="ttname"><a href="classxwos_1_1lock_1_1Seqlock_1_1WrLkIrqsGrd.html">xwos::lock::Seqlock::WrLkIrqsGrd</a></div><div class="ttdoc">独占写部分中断上锁模式的顺序锁RAII机制守卫</div><div class="ttdef"><b>Definition</b> <a href="Seqlock_8hxx_source.html#l01807">Seqlock.hxx:1808</a></div></div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md123"></a>
+Seqlock::TryWrLkIrqsGrd : 独占写部分中断尝试上锁模式</h3>
+<ul>
+<li>构造函数关闭并保存模板参数列表内的中断，关闭当前CPU调度器的抢占，上锁顺序锁。 上锁失败不会自旋等待，会开启当前CPU调度器的抢占， 用保存的中断标志恢复模板参数列表内的中断， 并在 <code>mRc</code> 中返回 <code>-EAGAIN</code> 。</li>
+<li>析构函数解锁顺序锁，开启当前CPU调度器的抢占， 用保存的中断标志恢复模板参数列表内的中断。</li>
+<li>示例</li>
+</ul>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="Seqlock_8hxx.html">xwos/cxx/lock/Seqlock.hxx</a>&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock.html">xwos::lock::Seqlock</a> gLock;</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> foo()</div>
+<div class="line">{</div>
+<div class="line">    { <span class="comment">// 构造 `grd` 时尝试进入临界区，同时关闭编号为1, 3, 5, 8的四个中断。</span></div>
+<div class="line">        <a class="code hl_class" href="classxwos_1_1lock_1_1Seqlock_1_1TryWrLkIrqsGrd.html">xwos::lock::Seqlock::TryWrLkIrqsGrd&lt;1, 3, 5, 8&gt;</a> grd(gLock);</div>
+<div class="line">        <span class="keywordflow">if</span> (<a class="code hl_define" href="group__xwos__lib__errno.html#ga6a72d49d869215a02342eb465166537b">XWOK</a> == grd.getRc()) {</div>
+<div class="line">            <span class="comment">// 上锁成功，进入临界区</span></div>
+<div class="line">        } <span class="keywordflow">else</span> {</div>
+<div class="line">            <span class="comment">// 上锁失败</span></div>
+<div class="line">        }</div>
+<div class="line">    } <span class="comment">// 如果上锁成功，析构 `grd` 时退出临界区，并恢复编号为1, 3, 5, 8的四个中断。</span></div>
+<div class="line">}</div>
+<div class="ttc" id="aclassxwos_1_1lock_1_1Seqlock_1_1TryWrLkIrqsGrd_html"><div class="ttname"><a href="classxwos_1_1lock_1_1Seqlock_1_1TryWrLkIrqsGrd.html">xwos::lock::Seqlock::TryWrLkIrqsGrd</a></div><div class="ttdoc">独占写部分中断尝试上锁模式下的顺序锁RAII机制守卫</div><div class="ttdef"><b>Definition</b> <a href="Seqlock_8hxx_source.html#l02022">Seqlock.hxx:2023</a></div></div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md124"></a>
+等待条件量并解锁</h2>
+<ul>
+<li><code><a class="el" href="classxwos_1_1lock_1_1Seqlock_1_1RdexLkGrd.html#afa7f56c3ea7c1216e4a7a9e248c29e97" title="等待条件量">Seqlock::RdexLkGrd::wait()</a></code></li>
+<li><code><a class="el" href="classxwos_1_1lock_1_1Seqlock_1_1RdexLkGrd.html#afa7f56c3ea7c1216e4a7a9e248c29e97" title="等待条件量">Seqlock::TryRdexLkGrd::wait()</a></code></li>
+<li><code><a class="el" href="classxwos_1_1lock_1_1Seqlock_1_1RdexLkThGrd.html#a769c5d9142b5f35272cb4c1a423dc1f9" title="等待条件量">Seqlock::RdexLkThGrd::wait()</a></code></li>
+<li><code><a class="el" href="classxwos_1_1lock_1_1Seqlock_1_1RdexLkThGrd.html#a769c5d9142b5f35272cb4c1a423dc1f9" title="等待条件量">Seqlock::TryRdexLkThGrd::wait()</a></code></li>
+<li><code><a class="el" href="classxwos_1_1lock_1_1Seqlock_1_1RdexLkBhGrd.html#a3fd30f1a1cce89afb275a64360e5f348" title="等待条件量">Seqlock::RdexLkBhGrd::wait()</a></code></li>
+<li><code><a class="el" href="classxwos_1_1lock_1_1Seqlock_1_1RdexLkBhGrd.html#a3fd30f1a1cce89afb275a64360e5f348" title="等待条件量">Seqlock::TryRdexLkBhGrd::wait()</a></code></li>
+<li><code><a class="el" href="classxwos_1_1lock_1_1Seqlock_1_1RdexLkIrqsGrd.html#a797053ad19fd22de8aa67c5ae09305d4" title="等待条件量">Seqlock::RdexLkIrqsGrd::wait()</a></code></li>
+<li><code><a class="el" href="classxwos_1_1lock_1_1Seqlock_1_1RdexLkIrqsGrd.html#a797053ad19fd22de8aa67c5ae09305d4" title="等待条件量">Seqlock::TryRdexLkIrqsGrd::wait()</a></code></li>
+<li><code><a class="el" href="classxwos_1_1lock_1_1Seqlock_1_1WrLkGrd.html#a28448c352b85a9162e95fc8292320b59" title="等待条件量">Seqlock::WrLkGrd::wait()</a></code></li>
+<li><code><a class="el" href="classxwos_1_1lock_1_1Seqlock_1_1WrLkGrd.html#a28448c352b85a9162e95fc8292320b59" title="等待条件量">Seqlock::TryWrLkGrd::wait()</a></code></li>
+<li><code><a class="el" href="classxwos_1_1lock_1_1Seqlock_1_1WrLkThGrd.html#aec09bd5fa60bf5b12dbf32afb374e10c" title="等待条件量">Seqlock::WrLkThGrd::wait()</a></code></li>
+<li><code><a class="el" href="classxwos_1_1lock_1_1Seqlock_1_1WrLkThGrd.html#aec09bd5fa60bf5b12dbf32afb374e10c" title="等待条件量">Seqlock::TryWrLkThGrd::wait()</a></code></li>
+<li><code><a class="el" href="classxwos_1_1lock_1_1Seqlock_1_1WrLkBhGrd.html#ab2d72de47a9bb639ea7cf1ab78c0bf4f" title="等待条件量">Seqlock::WrLkBhGrd::wait()</a></code></li>
+<li><code><a class="el" href="classxwos_1_1lock_1_1Seqlock_1_1WrLkBhGrd.html#ab2d72de47a9bb639ea7cf1ab78c0bf4f" title="等待条件量">Seqlock::TryWrLkBhGrd::wait()</a></code></li>
+<li><code><a class="el" href="classxwos_1_1lock_1_1Seqlock_1_1WrLkIrqsGrd.html#aeb314657a391887cc6838c5ca26b7634" title="等待条件量">Seqlock::WrLkIrqsGrd::wait()</a></code></li>
+<li><code><a class="el" href="classxwos_1_1lock_1_1Seqlock_1_1WrLkIrqsGrd.html#aeb314657a391887cc6838c5ca26b7634" title="等待条件量">Seqlock::TryWrLkIrqsGrd::wait()</a></code> </li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
+  </ul>
+</div>
+</body>
+</html>

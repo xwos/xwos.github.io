@@ -1,0 +1,1650 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>XWOS API: 自旋锁</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+<link href="custom-alternative.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<a href="/" class="github-corner" title="返回首页">
+  <svg viewBox="0 0 250 250" style="position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+    <path
+      d="M 0 0 L 250 250 L 250 0 L 0 0 z M 181.19336 6.25 A 18.281986 19.638775 0 0 1 192.79297 10.798828 L 241.54492 54.201172 A 6.0939954 6.5462585 0 0 1 237.64453 65.787109 L 233.13477 65.787109 A 3.0469979 3.2731292 0 0 0 230.08789 69.060547 L 230.08789 111.61133 A 18.281986 19.638775 0 0 1 211.80664 131.25 L 205.71289 131.25 A 12.187991 13.092517 0 0 1 193.52344 118.1582 L 193.52344 98.519531 A 12.187991 13.092517 0 0 0 181.33594 85.425781 A 12.187991 13.092517 0 0 0 169.14844 98.519531 L 169.14844 118.1582 A 12.187991 13.092517 0 0 1 156.95898 131.25 L 150.86523 131.25 A 18.281986 19.638775 0 0 1 132.58398 111.61133 L 132.58398 68.994141 A 3.0469979 3.2731292 0 0 0 129.29297 65.722656 L 124.7832 65.722656 A 6.0939954 6.5462585 0 0 1 120.88281 54.201172 L 169.39258 10.798828 A 18.281986 19.638775 0 0 1 181.19336 6.25 z "/>
+  </svg>
+</a>
+<style>.github-corner:hover</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo.svg"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">XWOS API
+   &#160;<span id="projectnumber">4.0</span>
+   </div>
+   <div id="projectbrief">XWOS C/C++ API参考手册</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('group__xwos__lock__spinlock.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">载入中...</div>
+<div class="SRStatus" id="Searching">搜索中...</div>
+<div class="SRStatus" id="NoMatches">未找到</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">结构体</a> &#124;
+<a href="#define-members">宏定义</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle"><div class="title">自旋锁<div class="ingroups"><a class="el" href="group__xwos.html">XWOS内核</a> &raquo; <a class="el" href="group__xwos__lock.html">XWOS的锁</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+<div class="dynheader">
+自旋锁 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwos__lock__spinlock.png" border="0" usemap="#agroup____xwos____lock____spinlock" alt=""/></div>
+<map name="agroup____xwos____lock____spinlock" id="agroup____xwos____lock____spinlock">
+<area shape="rect" href="group__xwos__lock.html" title=" " alt="" coords="5,5,95,31"/>
+<area shape="rect" title=" " alt="" coords="143,5,204,31"/>
+</map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+结构体</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structxwos__splk.html">xwos_splk</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：自旋锁  <a href="structxwos__splk.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:ga23bcddff386018e7011a142fba78f2f3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__spinlock.html#ga23bcddff386018e7011a142fba78f2f3">XWOS_SPLK_INITIALIZER</a>&#160;&#160;&#160;{ .osspl = XWOSDL_SPLK_INITIALIZER, }</td></tr>
+<tr class="memdesc:ga23bcddff386018e7011a142fba78f2f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：自旋锁的初始值  <br /></td></tr>
+<tr class="separator:ga23bcddff386018e7011a142fba78f2f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:gac8bbb82a3177f919e10ef3c3d21c7608"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__spinlock.html#gac8bbb82a3177f919e10ef3c3d21c7608">xwos_splk_init</a> (struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *spl)</td></tr>
+<tr class="memdesc:gac8bbb82a3177f919e10ef3c3d21c7608"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：初始化自旋锁  <br /></td></tr>
+<tr class="separator:gac8bbb82a3177f919e10ef3c3d21c7608"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga80e1248f482959ad664f367dd6a2123e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__spinlock.html#ga80e1248f482959ad664f367dd6a2123e">xwos_splk_lock</a> (struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *spl)</td></tr>
+<tr class="memdesc:ga80e1248f482959ad664f367dd6a2123e"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：上锁自旋锁，若自旋锁已开启临界区，就自旋等待  <br /></td></tr>
+<tr class="separator:ga80e1248f482959ad664f367dd6a2123e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad8cae0c2e4a9956f9df7b3118b6db534"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__spinlock.html#gad8cae0c2e4a9956f9df7b3118b6db534">xwos_splk_trylock</a> (struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *spl)</td></tr>
+<tr class="memdesc:gad8cae0c2e4a9956f9df7b3118b6db534"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：尝试上锁自旋锁  <br /></td></tr>
+<tr class="separator:gad8cae0c2e4a9956f9df7b3118b6db534"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7c45ee96acf66e3ab1aba48a0f49f1c4"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__spinlock.html#ga7c45ee96acf66e3ab1aba48a0f49f1c4">xwos_splk_unlock</a> (struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *spl)</td></tr>
+<tr class="memdesc:ga7c45ee96acf66e3ab1aba48a0f49f1c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：解锁自旋锁  <br /></td></tr>
+<tr class="separator:ga7c45ee96acf66e3ab1aba48a0f49f1c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3011217ec5d1cba45824484f507dce77"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__spinlock.html#ga3011217ec5d1cba45824484f507dce77">xwos_splk_lock_cpuirq</a> (struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *spl)</td></tr>
+<tr class="memdesc:ga3011217ec5d1cba45824484f507dce77"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：上锁自旋锁，并关闭本地CPU的中断  <br /></td></tr>
+<tr class="separator:ga3011217ec5d1cba45824484f507dce77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5a37d2c7c27a7507392f15eeb03d2a02"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__spinlock.html#ga5a37d2c7c27a7507392f15eeb03d2a02">xwos_splk_trylock_cpuirq</a> (struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *spl)</td></tr>
+<tr class="memdesc:ga5a37d2c7c27a7507392f15eeb03d2a02"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：尝试上锁自旋锁，并关闭本地CPU的中断  <br /></td></tr>
+<tr class="separator:ga5a37d2c7c27a7507392f15eeb03d2a02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaba92901efc65f4e61a3e364b29d6e10c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__spinlock.html#gaba92901efc65f4e61a3e364b29d6e10c">xwos_splk_unlock_cpuirq</a> (struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *spl)</td></tr>
+<tr class="memdesc:gaba92901efc65f4e61a3e364b29d6e10c"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：解锁自旋锁，并开启本地CPU的中断  <br /></td></tr>
+<tr class="separator:gaba92901efc65f4e61a3e364b29d6e10c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad393963b449be923d8af40538b9befdf"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__spinlock.html#gad393963b449be923d8af40538b9befdf">xwos_splk_lock_cpuirqsv</a> (struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *spl, <a class="el" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> *cpuirq)</td></tr>
+<tr class="memdesc:gad393963b449be923d8af40538b9befdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：上锁自旋锁，保存本地CPU的中断标志并关闭  <br /></td></tr>
+<tr class="separator:gad393963b449be923d8af40538b9befdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga74fc2498076cc0f1b4810bd1ad9d4bff"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__spinlock.html#ga74fc2498076cc0f1b4810bd1ad9d4bff">xwos_splk_trylock_cpuirqsv</a> (struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *spl, <a class="el" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> *cpuirq)</td></tr>
+<tr class="memdesc:ga74fc2498076cc0f1b4810bd1ad9d4bff"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：尝试上锁自旋锁，保存本地CPU的中断标志并关闭  <br /></td></tr>
+<tr class="separator:ga74fc2498076cc0f1b4810bd1ad9d4bff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa83b4a8f3340ddf35346dbedf9ce3979"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__spinlock.html#gaa83b4a8f3340ddf35346dbedf9ce3979">xwos_splk_unlock_cpuirqrs</a> (struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *spl, <a class="el" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> cpuirq)</td></tr>
+<tr class="memdesc:gaa83b4a8f3340ddf35346dbedf9ce3979"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：解锁自旋锁，并恢复本地CPU的中断标志  <br /></td></tr>
+<tr class="separator:gaa83b4a8f3340ddf35346dbedf9ce3979"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga180b7c6afd85706be046ac658e063500"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__spinlock.html#ga180b7c6afd85706be046ac658e063500">xwos_splk_lock_irqs</a> (struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *spl, const <a class="el" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a> irqs[], <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num)</td></tr>
+<tr class="memdesc:ga180b7c6afd85706be046ac658e063500"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：上锁自旋锁，并关闭部分中断  <br /></td></tr>
+<tr class="separator:ga180b7c6afd85706be046ac658e063500"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaaceededa7ac7935143e6cd100c5d44a7"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__spinlock.html#gaaceededa7ac7935143e6cd100c5d44a7">xwos_splk_trylock_irqs</a> (struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *spl, const <a class="el" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a> irqs[], <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num)</td></tr>
+<tr class="memdesc:gaaceededa7ac7935143e6cd100c5d44a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：尝试上锁自旋锁，并关闭部分中断  <br /></td></tr>
+<tr class="separator:gaaceededa7ac7935143e6cd100c5d44a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga835c88db6421ac3850307dd0e67a32cb"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__spinlock.html#ga835c88db6421ac3850307dd0e67a32cb">xwos_splk_unlock_irqs</a> (struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *spl, const <a class="el" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a> irqs[], <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num)</td></tr>
+<tr class="memdesc:ga835c88db6421ac3850307dd0e67a32cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：解锁自旋锁，并开启部分中断  <br /></td></tr>
+<tr class="separator:ga835c88db6421ac3850307dd0e67a32cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafad3e7f27d6bef3d09a0d4e0f410aba5"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__spinlock.html#gafad3e7f27d6bef3d09a0d4e0f410aba5">xwos_splk_lock_irqssv</a> (struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *spl, const <a class="el" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a> irqs[], <a class="el" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> flags[], <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num)</td></tr>
+<tr class="memdesc:gafad3e7f27d6bef3d09a0d4e0f410aba5"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：上锁自旋锁，保存部分中断的中断标志并关闭  <br /></td></tr>
+<tr class="separator:gafad3e7f27d6bef3d09a0d4e0f410aba5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad35fc21df26bfd483b15f0c523b60a8f"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__spinlock.html#gad35fc21df26bfd483b15f0c523b60a8f">xwos_splk_trylock_irqssv</a> (struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *spl, const <a class="el" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a> irqs[], <a class="el" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> flags[], <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num)</td></tr>
+<tr class="memdesc:gad35fc21df26bfd483b15f0c523b60a8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：尝试上锁自旋锁，保存部分中断的中断标志并关闭  <br /></td></tr>
+<tr class="separator:gad35fc21df26bfd483b15f0c523b60a8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1bc1a95a34a3804cf610fc0b87f434a8"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__spinlock.html#ga1bc1a95a34a3804cf610fc0b87f434a8">xwos_splk_unlock_irqsrs</a> (struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *spl, const <a class="el" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a> irqs[], <a class="el" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> flags[], <a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a> num)</td></tr>
+<tr class="memdesc:ga1bc1a95a34a3804cf610fc0b87f434a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：解锁自旋锁，并恢复部分中断的中断标志  <br /></td></tr>
+<tr class="separator:ga1bc1a95a34a3804cf610fc0b87f434a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3c50609a0c759cb526502a27937aab47"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__spinlock.html#ga3c50609a0c759cb526502a27937aab47">xwos_splk_lock_bh</a> (struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *spl)</td></tr>
+<tr class="memdesc:ga3c50609a0c759cb526502a27937aab47"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：上锁自旋锁，关闭本地CPU的中断底半部  <br /></td></tr>
+<tr class="separator:ga3c50609a0c759cb526502a27937aab47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6d6a918600518b0ed891937ec378087a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__spinlock.html#ga6d6a918600518b0ed891937ec378087a">xwos_splk_trylock_bh</a> (struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *spl)</td></tr>
+<tr class="memdesc:ga6d6a918600518b0ed891937ec378087a"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：尝试上锁自旋锁，关闭本地CPU的中断底半部  <br /></td></tr>
+<tr class="separator:ga6d6a918600518b0ed891937ec378087a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafbf75863c2f6323d6de84e4b1ce6c18a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__xwos__lock__spinlock.html#gafbf75863c2f6323d6de84e4b1ce6c18a">xwos_splk_unlock_bh</a> (struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *spl)</td></tr>
+<tr class="memdesc:gafbf75863c2f6323d6de84e4b1ce6c18a"><td class="mdescLeft">&#160;</td><td class="mdescRight">XWOS API：解锁自旋锁，开启本地CPU的中断底半部  <br /></td></tr>
+<tr class="separator:gafbf75863c2f6323d6de84e4b1ce6c18a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<p>技术参考手册： <a href="../Docs/TechRefManual/Lock/Spinlock">自旋锁</a></p>
+<h2><a class="anchor" id="autotoc_md16"></a>
+自旋锁的初始化</h2>
+<ul>
+<li><code><a class="el" href="group__xwos__lock__spinlock.html#gac8bbb82a3177f919e10ef3c3d21c7608" title="XWOS API：初始化自旋锁">xwos_splk_init()</a></code> ：静态初始化</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md17"></a>
+锁模式</h2>
+<ul>
+<li>保护 <b>线程</b> 上下文之间的临界区<ul>
+<li><code><a class="el" href="group__xwos__lock__spinlock.html#ga80e1248f482959ad664f367dd6a2123e" title="XWOS API：上锁自旋锁，若自旋锁已开启临界区，就自旋等待">xwos_splk_lock()</a></code> ：上锁，关闭抢占</li>
+<li><code><a class="el" href="group__xwos__lock__spinlock.html#gad8cae0c2e4a9956f9df7b3118b6db534" title="XWOS API：尝试上锁自旋锁">xwos_splk_trylock()</a></code> ：尝试上锁，关闭抢占</li>
+<li><code><a class="el" href="group__xwos__lock__spinlock.html#ga7c45ee96acf66e3ab1aba48a0f49f1c4" title="XWOS API：解锁自旋锁">xwos_splk_unlock()</a></code> ：解锁，开启抢占</li>
+</ul>
+</li>
+<li>保护 <b>任意</b> 上下文之间的单一临界区<ul>
+<li><code><a class="el" href="group__xwos__lock__spinlock.html#ga3011217ec5d1cba45824484f507dce77" title="XWOS API：上锁自旋锁，并关闭本地CPU的中断">xwos_splk_lock_cpuirq()</a></code> ：上锁，关闭抢占、CPU中断</li>
+<li><code><a class="el" href="group__xwos__lock__spinlock.html#ga5a37d2c7c27a7507392f15eeb03d2a02" title="XWOS API：尝试上锁自旋锁，并关闭本地CPU的中断">xwos_splk_trylock_cpuirq()</a></code> ：尝试上锁，关闭抢占、CPU中断</li>
+<li><code><a class="el" href="group__xwos__lock__spinlock.html#gaba92901efc65f4e61a3e364b29d6e10c" title="XWOS API：解锁自旋锁，并开启本地CPU的中断">xwos_splk_unlock_cpuirq()</a></code> ：解锁，开启抢占、CPU中断</li>
+</ul>
+</li>
+<li>保护 <b>任意</b> 上下文之间的 <b>嵌套</b> 临界区<ul>
+<li><code><a class="el" href="group__xwos__lock__spinlock.html#gad393963b449be923d8af40538b9befdf" title="XWOS API：上锁自旋锁，保存本地CPU的中断标志并关闭">xwos_splk_lock_cpuirqsv()</a></code> ：上锁，关闭抢占，保存CPU中断标志并关闭</li>
+<li><code><a class="el" href="group__xwos__lock__spinlock.html#ga74fc2498076cc0f1b4810bd1ad9d4bff" title="XWOS API：尝试上锁自旋锁，保存本地CPU的中断标志并关闭">xwos_splk_trylock_cpuirqsv()</a></code> ：尝试上锁，关闭抢占，保存CPU中断标志并关闭</li>
+<li><code><a class="el" href="group__xwos__lock__spinlock.html#gaa83b4a8f3340ddf35346dbedf9ce3979" title="XWOS API：解锁自旋锁，并恢复本地CPU的中断标志">xwos_splk_unlock_cpuirqrs()</a></code> ：解锁，开启抢占，恢复CPU中断</li>
+</ul>
+</li>
+<li>保护 <b>线程</b> 和 <b>指定中断</b> 上下文之间的临界区<ul>
+<li><code><a class="el" href="group__xwos__lock__spinlock.html#ga180b7c6afd85706be046ac658e063500" title="XWOS API：上锁自旋锁，并关闭部分中断">xwos_splk_lock_irqs()</a></code> ：上锁，关闭抢占，关闭部分中断</li>
+<li><code><a class="el" href="group__xwos__lock__spinlock.html#gaaceededa7ac7935143e6cd100c5d44a7" title="XWOS API：尝试上锁自旋锁，并关闭部分中断">xwos_splk_trylock_irqs()</a></code> ：尝试上锁，关闭抢占，关闭部分中断</li>
+<li><code><a class="el" href="group__xwos__lock__spinlock.html#ga835c88db6421ac3850307dd0e67a32cb" title="XWOS API：解锁自旋锁，并开启部分中断">xwos_splk_unlock_irqs()</a></code> ：解锁，开启抢占、开启部分中断</li>
+</ul>
+</li>
+<li>保护 <b>线程</b> 和 <b>指定中断</b> 上下文之间的 <b>嵌套</b> 临界区<ul>
+<li><code><a class="el" href="group__xwos__lock__spinlock.html#gafad3e7f27d6bef3d09a0d4e0f410aba5" title="XWOS API：上锁自旋锁，保存部分中断的中断标志并关闭">xwos_splk_lock_irqssv()</a></code> ：上锁，关闭抢占，保存部分中断标志并关闭</li>
+<li><code><a class="el" href="group__xwos__lock__spinlock.html#gad35fc21df26bfd483b15f0c523b60a8f" title="XWOS API：尝试上锁自旋锁，保存部分中断的中断标志并关闭">xwos_splk_trylock_irqssv()</a></code> ：尝试上锁，关闭抢占，保存部分中断标志并关闭</li>
+<li><code><a class="el" href="group__xwos__lock__spinlock.html#ga1bc1a95a34a3804cf610fc0b87f434a8" title="XWOS API：解锁自旋锁，并恢复部分中断的中断标志">xwos_splk_unlock_irqsrs()</a></code> ：解锁，开启抢占、恢复部分中断</li>
+</ul>
+</li>
+<li>保护 <b>线程</b> 和 <b>中断底半部</b> 上下文之间的临界区<ul>
+<li><code><a class="el" href="group__xwos__lock__spinlock.html#ga3c50609a0c759cb526502a27937aab47" title="XWOS API：上锁自旋锁，关闭本地CPU的中断底半部">xwos_splk_lock_bh()</a></code> ：上锁，关闭抢占、中断底半部</li>
+<li><code><a class="el" href="group__xwos__lock__spinlock.html#ga6d6a918600518b0ed891937ec378087a" title="XWOS API：尝试上锁自旋锁，关闭本地CPU的中断底半部">xwos_splk_trylock_bh()</a></code> ：尝试上锁，关闭抢占、中断底半部</li>
+<li><code><a class="el" href="group__xwos__lock__spinlock.html#gafbf75863c2f6323d6de84e4b1ce6c18a" title="XWOS API：解锁自旋锁，开启本地CPU的中断底半部">xwos_splk_unlock_bh()</a></code> ：解锁，开启抢占、中断底半部 </li>
+</ul>
+</li>
+</ul>
+<h2 class="groupheader">宏定义说明</h2>
+<a id="ga23bcddff386018e7011a142fba78f2f3" name="ga23bcddff386018e7011a142fba78f2f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga23bcddff386018e7011a142fba78f2f3">&#9670;&#160;</a></span>XWOS_SPLK_INITIALIZER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XWOS_SPLK_INITIALIZER&#160;&#160;&#160;{ .osspl = XWOSDL_SPLK_INITIALIZER, }</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>XWOS API：自旋锁的初始值 </p>
+
+<p class="definition">在文件 <a class="el" href="lock_2spinlock_8h_source.html">spinlock.h</a> 第 <a class="el" href="lock_2spinlock_8h_source.html#l00076">76</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">函数说明</h2>
+<a id="gac8bbb82a3177f919e10ef3c3d21c7608" name="gac8bbb82a3177f919e10ef3c3d21c7608"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac8bbb82a3177f919e10ef3c3d21c7608">&#9670;&#160;</a></span>xwos_splk_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void xwos_splk_init </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *&#160;</td>
+          <td class="paramname"><em>spl</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：初始化自旋锁 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">spl</td><td>自旋锁的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="lock_2spinlock_8h_source.html">spinlock.h</a> 第 <a class="el" href="lock_2spinlock_8h_source.html#l00085">85</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">   86</span>{</div>
+<div class="line"><span class="lineno">   87</span>        xwosdl_splk_init(&amp;spl-&gt;<a class="code hl_variable" href="structxwos__splk.html#a561d624b79f2ed6583f9cec92bae413e">osspl</a>);</div>
+<div class="line"><span class="lineno">   88</span>}</div>
+<div class="ttc" id="astructxwos__splk_html_a561d624b79f2ed6583f9cec92bae413e"><div class="ttname"><a href="structxwos__splk.html#a561d624b79f2ed6583f9cec92bae413e">xwos_splk::osspl</a></div><div class="ttdeci">xwosdl_splk_t osspl</div><div class="ttdef"><b>Definition</b> <a href="lock_2spinlock_8h_source.html#l00070">spinlock.h:70</a></div></div>
+</div><!-- fragment --><div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwos__lock__spinlock_gac8bbb82a3177f919e10ef3c3d21c7608_icgraph.png" border="0" usemap="#agroup__xwos__lock__spinlock_gac8bbb82a3177f919e10ef3c3d21c7608_icgraph" alt=""/></div>
+<map name="agroup__xwos__lock__spinlock_gac8bbb82a3177f919e10ef3c3d21c7608_icgraph" id="agroup__xwos__lock__spinlock_gac8bbb82a3177f919e10ef3c3d21c7608_icgraph">
+<area shape="rect" title="XWOS API：初始化自旋锁" alt="" coords="525,104,633,129"/>
+<area shape="rect" href="xwcq_8c.html#ac875caf539133d07b40b9973319fc3f3" title="激活循环队列对象" alt="" coords="346,5,453,31"/>
+<area shape="poly" title=" " alt="" coords="552,97,517,70,476,44,449,33,451,28,479,40,520,66,555,93"/>
+<area shape="rect" href="group__xwcd__ds__can__controller.html#gad7d877c56ccc4b18cfcda67d31e6df40" title="XWDS API：初始化接收缓冲队列" alt="" coords="331,55,468,80"/>
+<area shape="poly" title=" " alt="" coords="518,103,446,83,448,78,520,98"/>
+<area shape="rect" href="uart_2controller_8c.html#a0426ebf6f9c1cd7ae3b6de352a3d4424" title="XWDS VOP：探测UART控制器" alt="" coords="321,104,477,129"/>
+<area shape="poly" title=" " alt="" coords="512,119,478,119,478,114,512,114"/>
+<area shape="rect" href="group__xwmm__bma.html#ga591aeadbb32ce6e77563d873ecb53b33" title="XWMM API：初始化伙伴算法内存块分配器" alt="" coords="341,153,458,179"/>
+<area shape="poly" title=" " alt="" coords="520,136,448,156,446,151,518,131"/>
+<area shape="rect" href="xwmq_8c.html#aa0841cf7abe8c4dfd5626a12bf99f72d" title=" " alt="" coords="344,203,455,228"/>
+<area shape="poly" title=" " alt="" coords="555,140,520,168,479,194,451,205,449,200,476,189,517,163,552,136"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#ga0c3766b13d0b48e0c99fab1d814c7b57" title="XWCQ API：初始化循环队列" alt="" coords="194,5,271,31"/>
+<area shape="poly" title=" " alt="" coords="332,21,272,21,272,15,332,15"/>
+<area shape="rect" href="classxwisc_1_1Xwcq.html#ae43f72b4a5d11b05f1caf869d77d8a74" title=" " alt="" coords="5,5,144,31"/>
+<area shape="poly" title=" " alt="" coords="180,21,144,21,144,15,180,15"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga51603f04fac6de40ea6726d69b264cc7" title="XWMQ API：静态方式初始化消息队列" alt="" coords="192,203,273,228"/>
+<area shape="poly" title=" " alt="" coords="330,218,274,218,274,213,330,213"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga80e1248f482959ad664f367dd6a2123e" name="ga80e1248f482959ad664f367dd6a2123e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga80e1248f482959ad664f367dd6a2123e">&#9670;&#160;</a></span>xwos_splk_lock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void xwos_splk_lock </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *&#160;</td>
+          <td class="paramname"><em>spl</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：上锁自旋锁，若自旋锁已开启临界区，就自旋等待 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">spl</td><td>自旋锁的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：线程、空闲任务</li>
+</ul>
+</dd></dl>
+<ul>
+<li>此函数只会关闭本地CPU的抢占，因此只能保证其临界区在线程中是安全的。 </li>
+</ul>
+
+<p class="definition">在文件 <a class="el" href="lock_2spinlock_8h_source.html">spinlock.h</a> 第 <a class="el" href="lock_2spinlock_8h_source.html#l00099">99</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  100</span>{</div>
+<div class="line"><span class="lineno">  101</span>        xwosdl_splk_lock(&amp;spl-&gt;<a class="code hl_variable" href="structxwos__splk.html#a561d624b79f2ed6583f9cec92bae413e">osspl</a>);</div>
+<div class="line"><span class="lineno">  102</span>}</div>
+</div><!-- fragment --><div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwos__lock__spinlock_ga80e1248f482959ad664f367dd6a2123e_icgraph.png" border="0" usemap="#agroup__xwos__lock__spinlock_ga80e1248f482959ad664f367dd6a2123e_icgraph" alt=""/></div>
+<map name="agroup__xwos__lock__spinlock_ga80e1248f482959ad664f367dd6a2123e_icgraph" id="agroup__xwos__lock__spinlock_ga80e1248f482959ad664f367dd6a2123e_icgraph">
+<area shape="rect" title="XWOS API：上锁自旋锁，若自旋锁已开启临界区，就自旋等待" alt="" coords="196,45,311,70"/>
+<area shape="rect" href="classxwos_1_1lock_1_1Spinlock_1_1LkIrqsGrd.html#a6fe905f99d9a1d0393f725b1dec538d5" title="等待条件量" alt="" coords="5,5,148,45"/>
+<area shape="poly" title=" " alt="" coords="182,47,148,41,149,36,183,42"/>
+<area shape="rect" href="classxwos_1_1lock_1_1Spinlock_1_1LkIrqsGrd.html#a3fd7eba721961fd9ffebc5abdeeb3722" title="限时等待条件量" alt="" coords="5,69,148,109"/>
+<area shape="poly" title=" " alt="" coords="183,73,149,79,148,74,182,67"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="gad8cae0c2e4a9956f9df7b3118b6db534" name="gad8cae0c2e4a9956f9df7b3118b6db534"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad8cae0c2e4a9956f9df7b3118b6db534">&#9670;&#160;</a></span>xwos_splk_trylock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_splk_trylock </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *&#160;</td>
+          <td class="paramname"><em>spl</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：尝试上锁自旋锁 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">spl</td><td>自旋锁的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EAGAIN</td><td>获得自旋锁失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：线程、空闲任务</li>
+</ul>
+</dd></dl>
+<ul>
+<li>若自旋锁已开启临界区，立即返回，不会自旋等待。</li>
+<li>此函数只会关闭本地CPU的抢占，因此只能保证其临界区在线程中是安全的。 </li>
+</ul>
+
+<p class="definition">在文件 <a class="el" href="lock_2spinlock_8h_source.html">spinlock.h</a> 第 <a class="el" href="lock_2spinlock_8h_source.html#l00117">117</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  118</span>{</div>
+<div class="line"><span class="lineno">  119</span>        <span class="keywordflow">return</span> xwosdl_splk_trylock(&amp;spl-&gt;<a class="code hl_variable" href="structxwos__splk.html#a561d624b79f2ed6583f9cec92bae413e">osspl</a>);</div>
+<div class="line"><span class="lineno">  120</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga7c45ee96acf66e3ab1aba48a0f49f1c4" name="ga7c45ee96acf66e3ab1aba48a0f49f1c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7c45ee96acf66e3ab1aba48a0f49f1c4">&#9670;&#160;</a></span>xwos_splk_unlock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void xwos_splk_unlock </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *&#160;</td>
+          <td class="paramname"><em>spl</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：解锁自旋锁 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">spl</td><td>自旋锁的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：线程、空闲任务 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="lock_2spinlock_8h_source.html">spinlock.h</a> 第 <a class="el" href="lock_2spinlock_8h_source.html#l00129">129</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  130</span>{</div>
+<div class="line"><span class="lineno">  131</span>        xwosdl_splk_unlock(&amp;spl-&gt;<a class="code hl_variable" href="structxwos__splk.html#a561d624b79f2ed6583f9cec92bae413e">osspl</a>);</div>
+<div class="line"><span class="lineno">  132</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga3011217ec5d1cba45824484f507dce77" name="ga3011217ec5d1cba45824484f507dce77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3011217ec5d1cba45824484f507dce77">&#9670;&#160;</a></span>xwos_splk_lock_cpuirq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void xwos_splk_lock_cpuirq </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *&#160;</td>
+          <td class="paramname"><em>spl</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：上锁自旋锁，并关闭本地CPU的中断 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">spl</td><td>自旋锁的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意</li>
+</ul>
+</dd></dl>
+<ul>
+<li>此函数会关闭本地CPU的抢占与中断，因此可保证其临界区在所有上下文中都是安全的。 </li>
+</ul>
+
+<p class="definition">在文件 <a class="el" href="lock_2spinlock_8h_source.html">spinlock.h</a> 第 <a class="el" href="lock_2spinlock_8h_source.html#l00143">143</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  144</span>{</div>
+<div class="line"><span class="lineno">  145</span>        xwosdl_splk_lock_cpuirq(&amp;spl-&gt;<a class="code hl_variable" href="structxwos__splk.html#a561d624b79f2ed6583f9cec92bae413e">osspl</a>);</div>
+<div class="line"><span class="lineno">  146</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga5a37d2c7c27a7507392f15eeb03d2a02" name="ga5a37d2c7c27a7507392f15eeb03d2a02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5a37d2c7c27a7507392f15eeb03d2a02">&#9670;&#160;</a></span>xwos_splk_trylock_cpuirq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_splk_trylock_cpuirq </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *&#160;</td>
+          <td class="paramname"><em>spl</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：尝试上锁自旋锁，并关闭本地CPU的中断 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">spl</td><td>自旋锁的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EAGAIN</td><td>获得自旋锁失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意</li>
+</ul>
+</dd></dl>
+<ul>
+<li>若自旋锁已开启临界区，立即返回，不会自旋等待。</li>
+<li>此函数会关闭本地CPU的抢占与中断，因此可保证其临界区在所有上下文中都是安全的。 </li>
+</ul>
+
+<p class="definition">在文件 <a class="el" href="lock_2spinlock_8h_source.html">spinlock.h</a> 第 <a class="el" href="lock_2spinlock_8h_source.html#l00161">161</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  162</span>{</div>
+<div class="line"><span class="lineno">  163</span>        <span class="keywordflow">return</span> xwosdl_splk_trylock_cpuirq(&amp;spl-&gt;<a class="code hl_variable" href="structxwos__splk.html#a561d624b79f2ed6583f9cec92bae413e">osspl</a>);</div>
+<div class="line"><span class="lineno">  164</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="gaba92901efc65f4e61a3e364b29d6e10c" name="gaba92901efc65f4e61a3e364b29d6e10c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaba92901efc65f4e61a3e364b29d6e10c">&#9670;&#160;</a></span>xwos_splk_unlock_cpuirq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void xwos_splk_unlock_cpuirq </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *&#160;</td>
+          <td class="paramname"><em>spl</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：解锁自旋锁，并开启本地CPU的中断 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">spl</td><td>自旋锁的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="lock_2spinlock_8h_source.html">spinlock.h</a> 第 <a class="el" href="lock_2spinlock_8h_source.html#l00173">173</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  174</span>{</div>
+<div class="line"><span class="lineno">  175</span>        xwosdl_splk_unlock_cpuirq(&amp;spl-&gt;<a class="code hl_variable" href="structxwos__splk.html#a561d624b79f2ed6583f9cec92bae413e">osspl</a>);</div>
+<div class="line"><span class="lineno">  176</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="gad393963b449be923d8af40538b9befdf" name="gad393963b449be923d8af40538b9befdf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad393963b449be923d8af40538b9befdf">&#9670;&#160;</a></span>xwos_splk_lock_cpuirqsv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void xwos_splk_lock_cpuirqsv </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *&#160;</td>
+          <td class="paramname"><em>spl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> *&#160;</td>
+          <td class="paramname"><em>cpuirq</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：上锁自旋锁，保存本地CPU的中断标志并关闭 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">spl</td><td>自旋锁的指针 </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">cpuirq</td><td>缓冲区指针，用于返回本地CPU的中断标志 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意</li>
+</ul>
+</dd></dl>
+<ul>
+<li>此函数会关闭本地CPU的抢占与中断，因此可保证其临界区在所有上下文中都是安全的。 </li>
+</ul>
+
+<p class="definition">在文件 <a class="el" href="lock_2spinlock_8h_source.html">spinlock.h</a> 第 <a class="el" href="lock_2spinlock_8h_source.html#l00188">188</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  189</span>{</div>
+<div class="line"><span class="lineno">  190</span>        xwosdl_splk_lock_cpuirqsv(&amp;spl-&gt;<a class="code hl_variable" href="structxwos__splk.html#a561d624b79f2ed6583f9cec92bae413e">osspl</a>, cpuirq);</div>
+<div class="line"><span class="lineno">  191</span>}</div>
+</div><!-- fragment --><div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwos__lock__spinlock_gad393963b449be923d8af40538b9befdf_icgraph.png" border="0" usemap="#agroup__xwos__lock__spinlock_gad393963b449be923d8af40538b9befdf_icgraph" alt=""/></div>
+<map name="agroup__xwos__lock__spinlock_gad393963b449be923d8af40538b9befdf_icgraph" id="agroup__xwos__lock__spinlock_gad393963b449be923d8af40538b9befdf_icgraph">
+<area shape="rect" title="XWOS API：上锁自旋锁，保存本地CPU的中断标志并关闭" alt="" coords="441,893,612,919"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#ga1751e4a7d470159426dfc0b28f30c426" title="XWCQ API: 限时等待从循环队列的 首端 接收数据 (离队，DeQueue)" alt="" coords="257,55,349,80"/>
+<area shape="poly" title=" " alt="" coords="522,880,514,722,494,488,477,367,454,255,426,163,409,127,391,100,372,85,348,76,350,71,374,80,395,96,414,124,431,161,459,254,482,366,499,488,520,722,527,880"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#ga9268a23f62386b705f358da0690719d7" title="XWCQ API: 等待从循环队列的 首端 接收数据 (离队，DeQueue)， 并且等待不可被中断" alt="" coords="246,111,359,136"/>
+<area shape="poly" title=" " alt="" coords="521,880,511,733,488,518,471,407,449,304,423,219,408,186,391,161,377,148,358,138,361,134,380,143,395,158,412,184,428,217,455,303,476,406,494,517,517,733,527,879"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#gacc14c7eb323b5968c30d42371bced34b" title="XWCQ API：将数据发送到循环队列的 尾端 (入队，EnQueue)" alt="" coords="265,172,340,197"/>
+<area shape="poly" title=" " alt="" coords="520,880,507,746,481,554,464,455,443,364,419,287,391,234,367,213,339,198,342,193,371,208,395,231,424,285,448,362,469,454,487,554,512,746,526,879"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#ga99aaf9a7ad5acc2dde16642e3c76644f" title="XWCQ API：将数据发送循环队列的 首端 (插队，Jump the Queue)" alt="" coords="267,245,338,271"/>
+<area shape="poly" title=" " alt="" coords="520,880,508,756,482,579,465,488,444,405,419,337,406,310,391,291,366,273,337,264,339,259,369,268,395,287,410,308,424,335,449,404,470,487,487,578,513,755,526,880"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#ga8ee1e6f6ccb52d2ad7ff983299e457f8" title="XWCQ API: 限时等待从循环队列 头端 拷贝数据 (Peek at the Front of Queue)" alt="" coords="255,301,351,327"/>
+<area shape="poly" title=" " alt="" coords="523,879,521,786,515,722,505,651,489,576,465,501,433,429,391,364,369,343,342,329,345,324,372,339,395,360,438,427,470,499,494,575,510,650,521,721,526,785,529,879"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#ga47c4c89b9ae21ff278bb0911982a9178" title="XWCQ API: 等待从循环队列 头端 拷贝数据 (Peek at the Front of Queue)， 并且等待不可被中断" alt="" coords="244,375,361,400"/>
+<area shape="poly" title=" " alt="" coords="522,880,516,798,497,682,480,619,458,555,428,494,391,438,368,417,340,402,342,398,371,413,395,435,433,491,463,553,485,617,502,681,521,797,527,879"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#ga927902d5c0f3137e42dc3040b8186c1e" title="XWCQ API: 限时等待从循环队列 尾端 拷贝数据 (Peek at the Rear of Queue)" alt="" coords="255,449,351,475"/>
+<area shape="poly" title=" " alt="" coords="523,880,517,803,499,697,483,640,460,585,430,533,392,488,372,475,350,468,352,463,375,471,395,484,434,530,465,583,488,639,504,696,523,802,528,879"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#gab7a4f7dad6f65d876840a5e1279cdab6" title="XWCQ API: 等待从循环队列 尾端 拷贝数据 (Peek at the Rear of Queue)， 并且等待不可被中断" alt="" coords="244,499,361,524"/>
+<area shape="poly" title=" " alt="" coords="521,880,513,811,493,718,476,669,454,621,426,576,392,537,377,527,361,521,363,516,380,523,395,533,430,573,459,618,481,667,498,717,519,810,527,879"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#gaf4c60c0ca895ff95a7f636871a83592b" title="XWCQ API: 限时等待从循环队列的 尾端 接收数据 (反向离队，Reversely deQueue)" alt="" coords="258,548,347,573"/>
+<area shape="poly" title=" " alt="" coords="520,880,509,820,486,740,470,698,449,657,423,620,392,587,371,574,347,567,348,562,373,569,395,583,427,616,453,655,475,696,492,739,514,819,525,879"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#gadc32b77f21a0faec18ce917f4cae6b46" title="XWCQ API: 等待从循环队列的 尾端 接收数据 (反向离队，Reversely deQueue)， 并且等待不可被中断" alt="" coords="247,597,358,623"/>
+<area shape="poly" title=" " alt="" coords="518,880,504,828,480,762,443,694,419,663,392,636,375,626,357,619,359,614,378,621,395,632,423,659,447,691,485,760,509,827,523,879"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#ga7b6a39511984b0701595df93d4f07072" title="XWCQ API: 尝试从循环队列的 首端 接收数据 (离队，DeQueue)" alt="" coords="258,647,347,672"/>
+<area shape="poly" title=" " alt="" coords="515,881,498,838,473,785,437,731,416,707,392,686,370,674,347,667,348,662,372,669,395,681,419,703,441,728,477,782,503,836,520,879"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#gaf6e49bfc7b9b04d1c0162fba5fa19752" title="XWCQ API: 尝试从循环队列 头端 拷贝数据 (Peek at the Front of Queue)" alt="" coords="256,696,349,721"/>
+<area shape="poly" title=" " alt="" coords="511,882,492,849,465,809,432,769,392,735,371,724,349,717,350,712,373,719,395,730,435,765,469,805,496,846,515,880"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#gaa0cca193c18e50f3357ec81431f591da" title="XWCQ API: 尝试从循环队列 尾端 拷贝数据 (Peek at the Rear of Queue)" alt="" coords="256,745,349,771"/>
+<area shape="poly" title=" " alt="" coords="505,885,457,834,426,807,392,784,349,768,351,763,395,780,429,803,461,830,509,881"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#ga4ee21be691d89289330a6b775eaa2122" title="XWCQ API: 尝试从循环队列的 尾端 接收数据 (反向离队，Reversely deQueue)" alt="" coords="259,795,346,820"/>
+<area shape="poly" title=" " alt="" coords="493,889,446,861,392,835,345,820,347,815,394,830,449,857,496,884"/>
+<area shape="rect" href="group__xwcd__ds__can__controller.html#gad9b974a3472db27df2367967faa9b0c7" title="XWDS API：从接收缓冲队列中获取一条消息" alt="" coords="221,844,384,869"/>
+<area shape="poly" title=" " alt="" coords="455,893,361,872,362,867,456,888"/>
+<area shape="rect" href="group__xwcd__ds__can__controller.html#ga7813da5ba40873cc863981b013f26d08" title="XWDS API：发布一条消息到接收缓冲队列中" alt="" coords="222,893,383,919"/>
+<area shape="poly" title=" " alt="" coords="428,909,383,909,383,903,428,903"/>
+<area shape="rect" href="group__xwcd__ds__uart.html#gad2c775da0cd63065826ee33ef0f96843" title="XWDS Driver Callback：清空接收队列" alt="" coords="226,943,379,983"/>
+<area shape="poly" title=" " alt="" coords="464,925,380,946,379,941,462,920"/>
+<area shape="rect" href="group__xwcd__ds__uart.html#ga30ac59a8b24566dca48140918d8fef3b" title="XWDS Driver Callback：发布数据到接收队列" alt="" coords="212,1008,393,1033"/>
+<area shape="poly" title=" " alt="" coords="501,929,453,964,394,998,360,1010,358,1005,392,993,450,960,498,925"/>
+<area shape="rect" href="group__xwcd__ds__uart.html#ga4466e562e1beaada5f801ecc70a265d8" title="XWDS API：从接收队列中获取数据" alt="" coords="249,1057,356,1083"/>
+<area shape="poly" title=" " alt="" coords="511,932,464,991,431,1022,395,1048,357,1064,355,1059,392,1044,428,1018,460,987,507,929"/>
+<area shape="rect" href="group__xwcd__ds__uart.html#gaf85a6b7cc9911ac5698980fe834145a7" title="XWDS API：尝试从接收队列中获取数据" alt="" coords="238,1107,367,1132"/>
+<area shape="poly" title=" " alt="" coords="517,932,499,969,472,1014,437,1059,395,1098,369,1111,366,1106,392,1093,433,1056,468,1011,494,967,512,930"/>
+<area shape="rect" href="group__xwmm__bma.html#gaeb6fee8b92b2298f0c8519f1144318e8" title="XWMM API：申请一块连续的内存" alt="" coords="239,1156,366,1181"/>
+<area shape="poly" title=" " alt="" coords="521,933,505,979,480,1037,443,1096,421,1123,395,1147,367,1161,365,1157,392,1142,417,1120,439,1093,475,1034,500,977,516,931"/>
+<area shape="rect" href="group__xwmm__bma.html#ga7648b862d8fc0cb4a496d224c0a7f5a3" title="XWMM API：释放内存块" alt="" coords="241,1205,364,1231"/>
+<area shape="poly" title=" " alt="" coords="524,933,511,988,487,1059,470,1097,449,1133,424,1167,395,1196,366,1212,363,1207,392,1192,420,1163,445,1130,465,1094,482,1057,506,987,518,932"/>
+<area shape="rect" href="xwmq_8c.html#afcc2194eee03bb360b90d0c47b246072" title="从消息接收队列头部选择一条消息" alt="" coords="232,1255,373,1280"/>
+<area shape="poly" title=" " alt="" coords="526,933,516,997,494,1081,477,1126,455,1169,428,1210,395,1245,375,1258,372,1253,392,1241,424,1207,450,1167,472,1123,488,1079,510,996,520,932"/>
+<area shape="rect" href="xwmq_8c.html#ab11ae57b63b75fd37debce2e7bfc7881" title="从消息接收队列尾部选择一条消息" alt="" coords="237,1304,368,1329"/>
+<area shape="poly" title=" " alt="" coords="527,933,520,1005,500,1102,483,1154,461,1205,432,1253,395,1295,369,1310,367,1305,392,1291,427,1250,456,1203,478,1152,495,1101,515,1004,522,932"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga8359c9ba02c8fb2a74e6c4c6094d94cc" title="XWMQ API：限时等待消息槽，成功后将消息发送到消息队列的 尾端 （入队）" alt="" coords="255,1353,351,1379"/>
+<area shape="poly" title=" " alt="" coords="528,933,524,1012,517,1065,506,1123,490,1183,467,1241,435,1296,395,1344,375,1358,352,1365,350,1360,372,1353,392,1340,431,1293,462,1239,485,1181,501,1122,512,1064,519,1012,523,932"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga8a32f1b107baef4bc25957bca4d4bddd" title="XWMQ API：等待消息槽，且等待不可被中断， 成功后将消息发送到消息队列的 尾端 （入队）" alt="" coords="244,1403,361,1428"/>
+<area shape="poly" title=" " alt="" coords="524,933,508,1034,480,1172,462,1242,442,1305,420,1357,395,1393,380,1404,363,1412,361,1407,377,1400,391,1389,415,1355,437,1303,457,1240,475,1170,503,1033,519,932"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga0eb1aa3f3e83b696612a7cd9cc90a6f2" title="XWMQ API：限时等待消息槽，成功后将消息发送到消息队列的 首端 （插队）" alt="" coords="257,1452,349,1477"/>
+<area shape="poly" title=" " alt="" coords="525,933,510,1043,484,1196,466,1273,445,1344,422,1403,395,1443,374,1457,350,1464,348,1459,371,1452,391,1439,417,1400,440,1343,461,1272,478,1195,505,1042,520,932"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga3c6e22dce3a927f790d95f1e294c5789" title="XWMQ API：等待消息槽，且等待不可被中断， 成功后将消息发送到消息队列的 首端 （插队）" alt="" coords="246,1501,359,1527"/>
+<area shape="poly" title=" " alt="" coords="526,933,512,1052,487,1220,469,1305,448,1384,424,1448,410,1473,395,1492,379,1504,361,1511,359,1506,376,1499,391,1488,405,1470,419,1446,443,1382,464,1304,481,1219,507,1052,520,933"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga30b3fc4cf9323d3597eb8a383bdf611f" title="XWMQ API：尝试获取消息槽，成功后将消息发送到消息队列的 尾端 （入队）" alt="" coords="256,1551,349,1576"/>
+<area shape="poly" title=" " alt="" coords="526,933,514,1061,490,1244,472,1337,451,1423,425,1493,411,1520,395,1541,374,1556,350,1563,349,1558,372,1551,391,1537,407,1517,421,1491,446,1421,467,1336,485,1243,509,1061,521,933"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga706a753c885996d85ec7fbf6d7461385" title="XWMQ API：尝试获取消息槽，成功后将消息发送到消息队列的 首端 （插队）" alt="" coords="258,1600,347,1625"/>
+<area shape="poly" title=" " alt="" coords="527,933,516,1069,493,1267,476,1368,454,1461,427,1538,412,1568,395,1591,373,1606,348,1613,347,1608,371,1601,391,1587,408,1565,423,1536,449,1460,470,1367,488,1266,511,1069,521,932"/>
+<area shape="rect" href="xwos_2lib_2object_8c.html#a244af466d95b7ae5932b74f699549639" title="从对象标签分配器获取一个标签" alt="" coords="245,1649,361,1675"/>
+<area shape="poly" title=" " alt="" coords="527,932,518,1077,496,1290,479,1399,457,1500,429,1583,413,1615,395,1640,380,1652,362,1659,360,1654,377,1647,391,1636,409,1612,424,1581,452,1499,474,1398,491,1289,513,1077,522,932"/>
+<area shape="rect" href="classxwisc_1_1Xwcq.html#adfed722fcd4476787ae52217d406d85d" title="限时等待从循环队列的 首端 接收数据 (离队，DeQueue)" alt="" coords="25,5,144,31"/>
+<area shape="poly" title=" " alt="" coords="243,57,141,33,142,28,244,51"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#gac9f65a59cd4c07212e4515d81466edab" title="XWCQ API: 等待从循环队列的 首端 接收数据 (离队，DeQueue)" alt="" coords="47,55,122,80"/>
+<area shape="poly" title=" " alt="" coords="243,70,122,70,122,65,243,65"/>
+<area shape="rect" href="classxwisc_1_1Xwcq.html#a4e8e3dca6752fe15aff9a89d9a778d1c" title="等待从循环队列的 首端 接收数据 (离队，DeQueue)， 并且等待不可被中断" alt="" coords="7,104,162,129"/>
+<area shape="poly" title=" " alt="" coords="232,124,162,122,162,116,232,119"/>
+<area shape="rect" href="classxwisc_1_1Xwcq.html#a9b0f0d1e800b91d69d4e9341cb5899d9" title="将数据发送到循环队列的 尾端 (入队，EnQueue)" alt="" coords="25,153,144,179"/>
+<area shape="poly" title=" " alt="" coords="252,183,144,174,144,168,252,178"/>
+<area shape="rect" href="classxwisc_1_1Xwcq.html#af1d606e573ac059d8879a3427ddba770" title="将数据发送循环队列的 首端 (插队，Jump the Queue)" alt="" coords="27,203,142,228"/>
+<area shape="poly" title=" " alt="" coords="253,251,142,229,143,224,254,246"/>
+<area shape="rect" href="classxwisc_1_1Xwcq.html#a2c6ffa730b2a75f93c1ed0eadc0e3681" title="限时等待从循环队列 头端 拷贝数据 (Peek at the Front of Queue)" alt="" coords="23,252,146,277"/>
+<area shape="poly" title=" " alt="" coords="241,303,141,280,142,275,242,298"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#gaf743e9140c73b57f82592e612e5f0310" title="XWCQ API: 等待从循环队列 头端 拷贝数据 (Peek at the Front of Queue)" alt="" coords="45,301,124,327"/>
+<area shape="poly" title=" " alt="" coords="241,317,124,317,124,311,241,311"/>
+<area shape="rect" href="classxwisc_1_1Xwcq.html#a7325000de37006a1476de7df373396dd" title="等待从循环队列 头端 拷贝数据 (Peek at the Front of Queue)， 并且等待不可被中断" alt="" coords="5,351,164,376"/>
+<area shape="poly" title=" " alt="" coords="230,382,164,375,164,369,230,377"/>
+<area shape="rect" href="classxwisc_1_1Xwcq.html#ae6cfee2e6ae372f8a38e39ac190329c0" title="限时等待从循环队列 尾端 拷贝数据 (Peek at the Rear of Queue)" alt="" coords="23,400,146,425"/>
+<area shape="poly" title=" " alt="" coords="241,451,141,428,142,423,242,446"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#ga446e314e4d1bf1e91a6f17a4e57b5fc4" title="XWCQ API: 等待从循环队列 尾端 拷贝数据 (Peek at the Rear of Queue)" alt="" coords="45,449,124,475"/>
+<area shape="poly" title=" " alt="" coords="241,465,124,465,124,459,241,459"/>
+<area shape="rect" href="classxwisc_1_1Xwcq.html#a9963ee1938e95626f3c986afbbcbcb18" title="等待从循环队列 尾端 拷贝数据 (Peek at the Rear of Queue)， 并且等待不可被中断" alt="" coords="5,499,164,524"/>
+<area shape="poly" title=" " alt="" coords="230,514,164,514,164,509,230,509"/>
+<area shape="rect" href="classxwisc_1_1Xwcq.html#a88cb653f5ce1f850357f1a26549b192a" title="限时等待从循环队列的 尾端 接收数据 (反向离队，Reversely deQueue)" alt="" coords="27,548,143,573"/>
+<area shape="poly" title=" " alt="" coords="244,563,143,563,143,558,244,558"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#ga9aaa9a95186c3bd701b31dc05d1f051b" title="XWCQ API: 等待从循环队列的 尾端 接收数据 (反向离队，Reversely deQueue)" alt="" coords="49,597,120,623"/>
+<area shape="poly" title=" " alt="" coords="245,576,121,605,120,600,244,571"/>
+<area shape="rect" href="classxwisc_1_1Xwcq.html#a58e0b0bd5597ca94f10924bacc75f434" title="等待从循环队列的 尾端 接收数据 (反向离队，Reversely deQueue)， 并且等待不可被中断" alt="" coords="9,647,160,672"/>
+<area shape="poly" title=" " alt="" coords="234,628,142,649,141,644,233,623"/>
+<area shape="rect" href="classxwisc_1_1Xwcq.html#a185e5b53008152306ded6dbe943f9e13" title="尝试从循环队列的 首端 接收数据 (离队，DeQueue)" alt="" coords="16,696,153,721"/>
+<area shape="poly" title=" " alt="" coords="245,675,142,699,141,693,244,670"/>
+<area shape="rect" href="classxwisc_1_1Xwcq.html#acf82b6ea392af4c1181bfd545e52e365" title="尝试从循环队列 头端 拷贝数据 (Peek at the Front of Queue)" alt="" coords="15,745,155,771"/>
+<area shape="poly" title=" " alt="" coords="243,725,142,748,141,743,242,720"/>
+<area shape="rect" href="classxwisc_1_1Xwcq.html#aefb8c9e42d2670d0adb7a765618b28d5" title="尝试从循环队列 尾端 拷贝数据 (Peek at the Rear of Queue)" alt="" coords="15,795,155,820"/>
+<area shape="poly" title=" " alt="" coords="243,774,142,797,141,792,242,769"/>
+<area shape="rect" href="classxwisc_1_1Xwcq.html#abb640bb72bea01bb094b339f98e3530a" title="尝试从循环队列的 尾端 接收数据 (反向离队，Reversely deQueue)" alt="" coords="16,844,153,869"/>
+<area shape="poly" title=" " alt="" coords="247,823,142,847,141,841,245,817"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga74fc2498076cc0f1b4810bd1ad9d4bff" name="ga74fc2498076cc0f1b4810bd1ad9d4bff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga74fc2498076cc0f1b4810bd1ad9d4bff">&#9670;&#160;</a></span>xwos_splk_trylock_cpuirqsv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_splk_trylock_cpuirqsv </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *&#160;</td>
+          <td class="paramname"><em>spl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a> *&#160;</td>
+          <td class="paramname"><em>cpuirq</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：尝试上锁自旋锁，保存本地CPU的中断标志并关闭 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">spl</td><td>自旋锁的指针 </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">cpuirq</td><td>缓冲区指针，用于返回本地CPU的中断标志 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EAGAIN</td><td>获得自旋锁失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意</li>
+</ul>
+</dd></dl>
+<ul>
+<li>若自旋锁已开启临界区，立即返回，不会自旋等待。</li>
+<li>此函数会关闭本地CPU的抢占与中断，因此可保证其临界区在所有上下文中都是安全的。 </li>
+</ul>
+
+<p class="definition">在文件 <a class="el" href="lock_2spinlock_8h_source.html">spinlock.h</a> 第 <a class="el" href="lock_2spinlock_8h_source.html#l00207">207</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  208</span>{</div>
+<div class="line"><span class="lineno">  209</span>        <span class="keywordflow">return</span> xwosdl_splk_trylock_cpuirqsv(&amp;spl-&gt;<a class="code hl_variable" href="structxwos__splk.html#a561d624b79f2ed6583f9cec92bae413e">osspl</a>, cpuirq);</div>
+<div class="line"><span class="lineno">  210</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="gaa83b4a8f3340ddf35346dbedf9ce3979" name="gaa83b4a8f3340ddf35346dbedf9ce3979"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa83b4a8f3340ddf35346dbedf9ce3979">&#9670;&#160;</a></span>xwos_splk_unlock_cpuirqrs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void xwos_splk_unlock_cpuirqrs </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *&#160;</td>
+          <td class="paramname"><em>spl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a>&#160;</td>
+          <td class="paramname"><em>cpuirq</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：解锁自旋锁，并恢复本地CPU的中断标志 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">spl</td><td>自旋锁的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cpuirq</td><td>本地CPU的中断标志 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：任意 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="lock_2spinlock_8h_source.html">spinlock.h</a> 第 <a class="el" href="lock_2spinlock_8h_source.html#l00220">220</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  221</span>{</div>
+<div class="line"><span class="lineno">  222</span>        xwosdl_splk_unlock_cpuirqrs(&amp;spl-&gt;<a class="code hl_variable" href="structxwos__splk.html#a561d624b79f2ed6583f9cec92bae413e">osspl</a>, cpuirq);</div>
+<div class="line"><span class="lineno">  223</span>}</div>
+</div><!-- fragment --><div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwos__lock__spinlock_gaa83b4a8f3340ddf35346dbedf9ce3979_icgraph.png" border="0" usemap="#agroup__xwos__lock__spinlock_gaa83b4a8f3340ddf35346dbedf9ce3979_icgraph" alt=""/></div>
+<map name="agroup__xwos__lock__spinlock_gaa83b4a8f3340ddf35346dbedf9ce3979_icgraph" id="agroup__xwos__lock__spinlock_gaa83b4a8f3340ddf35346dbedf9ce3979_icgraph">
+<area shape="rect" title="XWOS API：解锁自旋锁，并恢复本地CPU的中断标志" alt="" coords="441,893,624,919"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#ga1751e4a7d470159426dfc0b28f30c426" title="XWCQ API: 限时等待从循环队列的 首端 接收数据 (离队，DeQueue)" alt="" coords="257,55,349,80"/>
+<area shape="poly" title=" " alt="" coords="528,880,519,722,496,488,478,367,455,255,426,163,410,127,391,100,372,85,348,76,350,71,374,80,395,96,414,124,431,161,460,253,484,366,502,487,524,722,533,880"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#ga9268a23f62386b705f358da0690719d7" title="XWCQ API: 等待从循环队列的 首端 接收数据 (离队，DeQueue)， 并且等待不可被中断" alt="" coords="246,111,359,136"/>
+<area shape="poly" title=" " alt="" coords="527,880,516,733,491,518,473,407,450,304,423,219,408,186,391,161,376,148,358,138,361,134,380,143,395,158,413,184,428,217,456,303,478,406,497,517,521,733,532,879"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#gacc14c7eb323b5968c30d42371bced34b" title="XWCQ API：将数据发送到循环队列的 尾端 (入队，EnQueue)" alt="" coords="265,172,340,197"/>
+<area shape="poly" title=" " alt="" coords="526,880,512,746,484,554,466,455,444,364,419,287,391,234,367,213,339,198,342,193,370,208,395,231,424,285,449,362,471,454,489,553,517,746,532,879"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#ga99aaf9a7ad5acc2dde16642e3c76644f" title="XWCQ API：将数据发送循环队列的 首端 (插队，Jump the Queue)" alt="" coords="267,245,338,271"/>
+<area shape="poly" title=" " alt="" coords="526,880,512,756,485,579,466,488,445,405,420,337,406,310,391,291,366,273,337,264,339,259,369,268,395,287,410,308,424,335,450,404,472,487,490,578,517,755,532,879"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#ga8ee1e6f6ccb52d2ad7ff983299e457f8" title="XWCQ API: 限时等待从循环队列 头端 拷贝数据 (Peek at the Front of Queue)" alt="" coords="255,301,351,327"/>
+<area shape="poly" title=" " alt="" coords="529,879,525,786,519,722,508,651,491,576,466,501,434,429,391,364,369,343,342,329,344,324,372,339,395,360,438,426,471,499,496,574,513,650,524,721,531,785,534,879"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#ga47c4c89b9ae21ff278bb0911982a9178" title="XWCQ API: 等待从循环队列 头端 拷贝数据 (Peek at the Front of Queue)， 并且等待不可被中断" alt="" coords="244,375,361,400"/>
+<area shape="poly" title=" " alt="" coords="528,880,520,798,500,682,482,618,459,555,429,494,391,438,367,417,340,402,342,398,371,413,395,435,433,491,464,553,487,617,505,681,526,797,533,879"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#ga927902d5c0f3137e42dc3040b8186c1e" title="XWCQ API: 限时等待从循环队列 尾端 拷贝数据 (Peek at the Rear of Queue)" alt="" coords="255,449,351,475"/>
+<area shape="poly" title=" " alt="" coords="528,880,522,803,502,697,485,640,461,585,430,533,392,488,372,475,350,468,352,463,375,471,395,484,435,530,466,582,490,639,507,696,527,802,534,879"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#gab7a4f7dad6f65d876840a5e1279cdab6" title="XWCQ API: 等待从循环队列 尾端 拷贝数据 (Peek at the Rear of Queue)， 并且等待不可被中断" alt="" coords="244,499,361,524"/>
+<area shape="poly" title=" " alt="" coords="527,880,518,811,496,718,478,669,455,621,427,576,392,537,377,527,360,521,362,516,380,523,395,533,431,573,460,618,483,667,501,717,523,810,532,879"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#gaf4c60c0ca895ff95a7f636871a83592b" title="XWCQ API: 限时等待从循环队列的 尾端 接收数据 (反向离队，Reversely deQueue)" alt="" coords="258,548,347,573"/>
+<area shape="poly" title=" " alt="" coords="525,880,513,820,489,740,472,698,450,657,423,620,392,587,371,574,347,567,349,562,373,569,395,583,427,616,454,655,477,696,494,738,518,818,530,879"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#gadc32b77f21a0faec18ce917f4cae6b46" title="XWCQ API: 等待从循环队列的 尾端 接收数据 (反向离队，Reversely deQueue)， 并且等待不可被中断" alt="" coords="247,597,358,623"/>
+<area shape="poly" title=" " alt="" coords="523,880,508,828,482,762,444,694,420,663,392,636,375,626,357,619,359,614,378,621,395,632,424,659,449,691,487,760,513,827,528,879"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#ga7b6a39511984b0701595df93d4f07072" title="XWCQ API: 尝试从循环队列的 首端 接收数据 (离队，DeQueue)" alt="" coords="258,647,347,672"/>
+<area shape="poly" title=" " alt="" coords="520,881,503,838,476,785,439,731,416,707,392,686,370,674,347,667,348,662,372,669,395,681,420,703,443,728,480,782,508,836,525,879"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#gaf6e49bfc7b9b04d1c0162fba5fa19752" title="XWCQ API: 尝试从循环队列 头端 拷贝数据 (Peek at the Front of Queue)" alt="" coords="256,696,349,721"/>
+<area shape="poly" title=" " alt="" coords="516,883,496,849,468,809,433,769,392,735,371,724,349,718,350,713,373,720,395,730,437,765,472,806,501,846,521,880"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#gaa0cca193c18e50f3357ec81431f591da" title="XWCQ API: 尝试从循环队列 尾端 拷贝数据 (Peek at the Rear of Queue)" alt="" coords="256,745,349,771"/>
+<area shape="poly" title=" " alt="" coords="510,884,459,834,427,807,392,784,349,768,351,763,395,780,430,803,463,830,513,881"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#ga4ee21be691d89289330a6b775eaa2122" title="XWCQ API: 尝试从循环队列的 尾端 接收数据 (反向离队，Reversely deQueue)" alt="" coords="259,795,346,820"/>
+<area shape="poly" title=" " alt="" coords="498,889,449,861,392,835,346,820,347,815,394,830,451,857,500,884"/>
+<area shape="rect" href="group__xwcd__ds__can__controller.html#gad9b974a3472db27df2367967faa9b0c7" title="XWDS API：从接收缓冲队列中获取一条消息" alt="" coords="221,844,384,869"/>
+<area shape="poly" title=" " alt="" coords="459,893,362,872,363,867,460,888"/>
+<area shape="rect" href="group__xwcd__ds__can__controller.html#ga7813da5ba40873cc863981b013f26d08" title="XWDS API：发布一条消息到接收缓冲队列中" alt="" coords="222,893,383,919"/>
+<area shape="poly" title=" " alt="" coords="427,909,384,909,384,903,427,903"/>
+<area shape="rect" href="group__xwcd__ds__uart.html#gad2c775da0cd63065826ee33ef0f96843" title="XWDS Driver Callback：清空接收队列" alt="" coords="226,943,379,983"/>
+<area shape="poly" title=" " alt="" coords="468,925,380,947,379,942,467,919"/>
+<area shape="rect" href="group__xwcd__ds__uart.html#ga30ac59a8b24566dca48140918d8fef3b" title="XWDS Driver Callback：发布数据到接收队列" alt="" coords="212,1008,393,1033"/>
+<area shape="poly" title=" " alt="" coords="506,929,456,964,394,998,360,1010,358,1005,392,993,453,959,503,925"/>
+<area shape="rect" href="group__xwcd__ds__uart.html#ga4466e562e1beaada5f801ecc70a265d8" title="XWDS API：从接收队列中获取数据" alt="" coords="249,1057,356,1083"/>
+<area shape="poly" title=" " alt="" coords="516,932,466,990,432,1022,395,1048,357,1063,355,1058,392,1044,429,1017,462,987,512,928"/>
+<area shape="rect" href="group__xwcd__ds__uart.html#gaf85a6b7cc9911ac5698980fe834145a7" title="XWDS API：尝试从接收队列中获取数据" alt="" coords="238,1107,367,1132"/>
+<area shape="poly" title=" " alt="" coords="522,932,503,969,475,1014,439,1059,395,1098,369,1110,366,1106,392,1093,435,1056,470,1011,498,967,518,930"/>
+<area shape="rect" href="group__xwmm__bma.html#gaeb6fee8b92b2298f0c8519f1144318e8" title="XWMM API：申请一块连续的内存" alt="" coords="239,1156,366,1181"/>
+<area shape="poly" title=" " alt="" coords="526,933,509,979,482,1037,445,1096,421,1123,395,1147,367,1161,365,1156,392,1142,417,1120,440,1093,478,1034,504,977,521,931"/>
+<area shape="rect" href="group__xwmm__bma.html#ga7648b862d8fc0cb4a496d224c0a7f5a3" title="XWMM API：释放内存块" alt="" coords="241,1205,364,1231"/>
+<area shape="poly" title=" " alt="" coords="529,933,515,988,489,1059,472,1097,450,1133,425,1167,395,1196,365,1212,363,1207,392,1192,421,1163,446,1130,467,1094,485,1057,510,987,524,932"/>
+<area shape="rect" href="xwmq_8c.html#afcc2194eee03bb360b90d0c47b246072" title="从消息接收队列头部选择一条消息" alt="" coords="232,1255,373,1280"/>
+<area shape="poly" title=" " alt="" coords="531,933,520,996,496,1081,479,1125,456,1169,429,1210,395,1245,375,1258,372,1253,392,1241,424,1206,452,1166,474,1123,491,1079,515,995,526,932"/>
+<area shape="rect" href="xwmq_8c.html#ab11ae57b63b75fd37debce2e7bfc7881" title="从消息接收队列尾部选择一条消息" alt="" coords="237,1304,368,1329"/>
+<area shape="poly" title=" " alt="" coords="533,933,524,1005,503,1102,485,1154,462,1205,432,1253,395,1295,369,1310,367,1305,392,1291,428,1250,457,1203,480,1152,498,1101,519,1004,527,932"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga8359c9ba02c8fb2a74e6c4c6094d94cc" title="XWMQ API：限时等待消息槽，成功后将消息发送到消息队列的 尾端 （入队）" alt="" coords="255,1353,351,1379"/>
+<area shape="poly" title=" " alt="" coords="534,933,528,1012,521,1065,509,1123,492,1183,468,1241,436,1296,395,1344,375,1357,352,1365,350,1360,372,1353,392,1340,432,1293,463,1239,487,1181,504,1122,516,1065,523,1012,529,932"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga8a32f1b107baef4bc25957bca4d4bddd" title="XWMQ API：等待消息槽，且等待不可被中断， 成功后将消息发送到消息队列的 尾端 （入队）" alt="" coords="244,1403,361,1428"/>
+<area shape="poly" title=" " alt="" coords="535,932,532,1020,526,1079,516,1144,498,1211,474,1277,440,1339,395,1393,380,1404,363,1412,360,1407,377,1400,392,1389,435,1336,469,1275,493,1209,510,1143,521,1078,527,1019,530,932"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga0eb1aa3f3e83b696612a7cd9cc90a6f2" title="XWMQ API：限时等待消息槽，成功后将消息发送到消息队列的 首端 （插队）" alt="" coords="257,1452,349,1477"/>
+<area shape="poly" title=" " alt="" coords="531,933,515,1043,486,1196,468,1274,446,1344,422,1403,395,1443,374,1457,350,1464,348,1459,372,1452,391,1439,417,1400,441,1343,462,1272,481,1195,509,1042,525,932"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga3c6e22dce3a927f790d95f1e294c5789" title="XWMQ API：等待消息槽，且等待不可被中断， 成功后将消息发送到消息队列的 首端 （插队）" alt="" coords="246,1501,359,1527"/>
+<area shape="poly" title=" " alt="" coords="531,933,517,1052,489,1220,471,1306,449,1384,424,1448,410,1473,395,1492,379,1504,360,1511,358,1506,376,1499,391,1488,406,1470,419,1446,444,1382,466,1304,484,1219,511,1052,526,933"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga30b3fc4cf9323d3597eb8a383bdf611f" title="XWMQ API：尝试获取消息槽，成功后将消息发送到消息队列的 尾端 （入队）" alt="" coords="256,1551,349,1576"/>
+<area shape="poly" title=" " alt="" coords="532,933,519,1062,493,1244,474,1337,452,1423,426,1493,411,1520,395,1541,374,1556,350,1563,349,1558,372,1551,391,1537,407,1517,421,1491,447,1421,469,1336,487,1243,513,1061,526,933"/>
+<area shape="rect" href="group__xwmd__isc__xwmq.html#ga706a753c885996d85ec7fbf6d7461385" title="XWMQ API：尝试获取消息槽，成功后将消息发送到消息队列的 首端 （插队）" alt="" coords="258,1600,347,1625"/>
+<area shape="poly" title=" " alt="" coords="532,933,521,1070,496,1267,478,1368,455,1461,428,1538,412,1568,395,1591,373,1606,348,1613,347,1608,371,1601,391,1587,408,1565,423,1536,450,1460,472,1367,490,1266,515,1069,527,932"/>
+<area shape="rect" href="xwos_2lib_2object_8c.html#a244af466d95b7ae5932b74f699549639" title="从对象标签分配器获取一个标签" alt="" coords="245,1649,361,1675"/>
+<area shape="poly" title=" " alt="" coords="533,932,522,1078,499,1290,481,1400,458,1500,430,1583,413,1615,395,1640,380,1652,362,1659,360,1654,377,1647,391,1636,409,1612,425,1581,453,1499,476,1399,494,1289,517,1077,527,932"/>
+<area shape="rect" href="classxwisc_1_1Xwcq.html#adfed722fcd4476787ae52217d406d85d" title="限时等待从循环队列的 首端 接收数据 (离队，DeQueue)" alt="" coords="25,5,144,31"/>
+<area shape="poly" title=" " alt="" coords="243,57,141,33,142,28,244,51"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#gac9f65a59cd4c07212e4515d81466edab" title="XWCQ API: 等待从循环队列的 首端 接收数据 (离队，DeQueue)" alt="" coords="47,55,122,80"/>
+<area shape="poly" title=" " alt="" coords="243,70,122,70,122,65,243,65"/>
+<area shape="rect" href="classxwisc_1_1Xwcq.html#a4e8e3dca6752fe15aff9a89d9a778d1c" title="等待从循环队列的 首端 接收数据 (离队，DeQueue)， 并且等待不可被中断" alt="" coords="7,104,162,129"/>
+<area shape="poly" title=" " alt="" coords="232,124,162,122,162,116,232,119"/>
+<area shape="rect" href="classxwisc_1_1Xwcq.html#a9b0f0d1e800b91d69d4e9341cb5899d9" title="将数据发送到循环队列的 尾端 (入队，EnQueue)" alt="" coords="25,153,144,179"/>
+<area shape="poly" title=" " alt="" coords="252,183,144,174,144,168,252,178"/>
+<area shape="rect" href="classxwisc_1_1Xwcq.html#af1d606e573ac059d8879a3427ddba770" title="将数据发送循环队列的 首端 (插队，Jump the Queue)" alt="" coords="27,203,142,228"/>
+<area shape="poly" title=" " alt="" coords="253,251,142,229,143,224,254,246"/>
+<area shape="rect" href="classxwisc_1_1Xwcq.html#a2c6ffa730b2a75f93c1ed0eadc0e3681" title="限时等待从循环队列 头端 拷贝数据 (Peek at the Front of Queue)" alt="" coords="23,252,146,277"/>
+<area shape="poly" title=" " alt="" coords="241,303,141,280,142,275,242,298"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#gaf743e9140c73b57f82592e612e5f0310" title="XWCQ API: 等待从循环队列 头端 拷贝数据 (Peek at the Front of Queue)" alt="" coords="45,301,124,327"/>
+<area shape="poly" title=" " alt="" coords="241,317,124,317,124,311,241,311"/>
+<area shape="rect" href="classxwisc_1_1Xwcq.html#a7325000de37006a1476de7df373396dd" title="等待从循环队列 头端 拷贝数据 (Peek at the Front of Queue)， 并且等待不可被中断" alt="" coords="5,351,164,376"/>
+<area shape="poly" title=" " alt="" coords="230,382,164,375,164,369,230,377"/>
+<area shape="rect" href="classxwisc_1_1Xwcq.html#ae6cfee2e6ae372f8a38e39ac190329c0" title="限时等待从循环队列 尾端 拷贝数据 (Peek at the Rear of Queue)" alt="" coords="23,400,146,425"/>
+<area shape="poly" title=" " alt="" coords="241,451,141,428,142,423,242,446"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#ga446e314e4d1bf1e91a6f17a4e57b5fc4" title="XWCQ API: 等待从循环队列 尾端 拷贝数据 (Peek at the Rear of Queue)" alt="" coords="45,449,124,475"/>
+<area shape="poly" title=" " alt="" coords="241,465,124,465,124,459,241,459"/>
+<area shape="rect" href="classxwisc_1_1Xwcq.html#a9963ee1938e95626f3c986afbbcbcb18" title="等待从循环队列 尾端 拷贝数据 (Peek at the Rear of Queue)， 并且等待不可被中断" alt="" coords="5,499,164,524"/>
+<area shape="poly" title=" " alt="" coords="230,514,164,514,164,509,230,509"/>
+<area shape="rect" href="classxwisc_1_1Xwcq.html#a88cb653f5ce1f850357f1a26549b192a" title="限时等待从循环队列的 尾端 接收数据 (反向离队，Reversely deQueue)" alt="" coords="27,548,143,573"/>
+<area shape="poly" title=" " alt="" coords="244,563,143,563,143,558,244,558"/>
+<area shape="rect" href="group__xwmd__isc__xwcq.html#ga9aaa9a95186c3bd701b31dc05d1f051b" title="XWCQ API: 等待从循环队列的 尾端 接收数据 (反向离队，Reversely deQueue)" alt="" coords="49,597,120,623"/>
+<area shape="poly" title=" " alt="" coords="245,576,121,605,120,600,244,571"/>
+<area shape="rect" href="classxwisc_1_1Xwcq.html#a58e0b0bd5597ca94f10924bacc75f434" title="等待从循环队列的 尾端 接收数据 (反向离队，Reversely deQueue)， 并且等待不可被中断" alt="" coords="9,647,160,672"/>
+<area shape="poly" title=" " alt="" coords="234,628,142,649,141,644,233,623"/>
+<area shape="rect" href="classxwisc_1_1Xwcq.html#a185e5b53008152306ded6dbe943f9e13" title="尝试从循环队列的 首端 接收数据 (离队，DeQueue)" alt="" coords="16,696,153,721"/>
+<area shape="poly" title=" " alt="" coords="245,675,142,699,141,693,244,670"/>
+<area shape="rect" href="classxwisc_1_1Xwcq.html#acf82b6ea392af4c1181bfd545e52e365" title="尝试从循环队列 头端 拷贝数据 (Peek at the Front of Queue)" alt="" coords="15,745,155,771"/>
+<area shape="poly" title=" " alt="" coords="243,725,142,748,141,743,242,720"/>
+<area shape="rect" href="classxwisc_1_1Xwcq.html#aefb8c9e42d2670d0adb7a765618b28d5" title="尝试从循环队列 尾端 拷贝数据 (Peek at the Rear of Queue)" alt="" coords="15,795,155,820"/>
+<area shape="poly" title=" " alt="" coords="243,774,142,797,141,792,242,769"/>
+<area shape="rect" href="classxwisc_1_1Xwcq.html#abb640bb72bea01bb094b339f98e3530a" title="尝试从循环队列的 尾端 接收数据 (反向离队，Reversely deQueue)" alt="" coords="16,844,153,869"/>
+<area shape="poly" title=" " alt="" coords="247,823,142,847,141,841,245,817"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga180b7c6afd85706be046ac658e063500" name="ga180b7c6afd85706be046ac658e063500"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga180b7c6afd85706be046ac658e063500">&#9670;&#160;</a></span>xwos_splk_lock_irqs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void xwos_splk_lock_irqs </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *&#160;</td>
+          <td class="paramname"><em>spl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a>&#160;</td>
+          <td class="paramname"><em>irqs</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a>&#160;</td>
+          <td class="paramname"><em>num</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：上锁自旋锁，并关闭部分中断 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">spl</td><td>自旋锁的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">irqs</td><td>中断资源数组指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">num</td><td>数组中元素数量 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：线程、中断资源数组中描述的中断</li>
+</ul>
+</dd></dl>
+<ul>
+<li>此函数只会关闭本地CPU的抢占和部分中断， 因此只能保证其临界区在这些中断与线程上下文是安全的。 </li>
+</ul>
+
+<p class="definition">在文件 <a class="el" href="lock_2spinlock_8h_source.html">spinlock.h</a> 第 <a class="el" href="lock_2spinlock_8h_source.html#l00237">237</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  240</span>{</div>
+<div class="line"><span class="lineno">  241</span>        xwosdl_splk_lock_irqs(&amp;spl-&gt;<a class="code hl_variable" href="structxwos__splk.html#a561d624b79f2ed6583f9cec92bae413e">osspl</a>, irqs, num);</div>
+<div class="line"><span class="lineno">  242</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="gaaceededa7ac7935143e6cd100c5d44a7" name="gaaceededa7ac7935143e6cd100c5d44a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaaceededa7ac7935143e6cd100c5d44a7">&#9670;&#160;</a></span>xwos_splk_trylock_irqs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_splk_trylock_irqs </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *&#160;</td>
+          <td class="paramname"><em>spl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a>&#160;</td>
+          <td class="paramname"><em>irqs</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a>&#160;</td>
+          <td class="paramname"><em>num</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：尝试上锁自旋锁，并关闭部分中断 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">spl</td><td>自旋锁的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">irqs</td><td>中断资源数组指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">num</td><td>数组中元素数量 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EAGAIN</td><td>获得自旋锁失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：线程、中断资源数组中描述的中断</li>
+</ul>
+</dd></dl>
+<ul>
+<li>若自旋锁已开启临界区，立即返回，不会自旋等待。</li>
+<li>此函数只会关闭本地CPU的抢占和部分中断， 因此只能保证其临界区在这些中断与线程上下文是安全的。 </li>
+</ul>
+
+<p class="definition">在文件 <a class="el" href="lock_2spinlock_8h_source.html">spinlock.h</a> 第 <a class="el" href="lock_2spinlock_8h_source.html#l00260">260</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  263</span>{</div>
+<div class="line"><span class="lineno">  264</span>        <span class="keywordflow">return</span> xwosdl_splk_trylock_irqs(&amp;spl-&gt;<a class="code hl_variable" href="structxwos__splk.html#a561d624b79f2ed6583f9cec92bae413e">osspl</a>, irqs, num);</div>
+<div class="line"><span class="lineno">  265</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga835c88db6421ac3850307dd0e67a32cb" name="ga835c88db6421ac3850307dd0e67a32cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga835c88db6421ac3850307dd0e67a32cb">&#9670;&#160;</a></span>xwos_splk_unlock_irqs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void xwos_splk_unlock_irqs </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *&#160;</td>
+          <td class="paramname"><em>spl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a>&#160;</td>
+          <td class="paramname"><em>irqs</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a>&#160;</td>
+          <td class="paramname"><em>num</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：解锁自旋锁，并开启部分中断 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">spl</td><td>自旋锁的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">irqs</td><td>中断资源数组指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">num</td><td>数组中元素数量 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：线程、中断资源数组中描述的中断 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="lock_2spinlock_8h_source.html">spinlock.h</a> 第 <a class="el" href="lock_2spinlock_8h_source.html#l00276">276</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  279</span>{</div>
+<div class="line"><span class="lineno">  280</span>        xwosdl_splk_unlock_irqs(&amp;spl-&gt;<a class="code hl_variable" href="structxwos__splk.html#a561d624b79f2ed6583f9cec92bae413e">osspl</a>, irqs, num);</div>
+<div class="line"><span class="lineno">  281</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="gafad3e7f27d6bef3d09a0d4e0f410aba5" name="gafad3e7f27d6bef3d09a0d4e0f410aba5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafad3e7f27d6bef3d09a0d4e0f410aba5">&#9670;&#160;</a></span>xwos_splk_lock_irqssv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void xwos_splk_lock_irqssv </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *&#160;</td>
+          <td class="paramname"><em>spl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a>&#160;</td>
+          <td class="paramname"><em>irqs</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a>&#160;</td>
+          <td class="paramname"><em>flags</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a>&#160;</td>
+          <td class="paramname"><em>num</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：上锁自旋锁，保存部分中断的中断标志并关闭 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">spl</td><td>自旋锁的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">irqs</td><td>中断资源数组指针 </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">flags</td><td>缓冲区指针，用于返回部分中断的中断标志 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">num</td><td>数组中元素数量 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：线程、中断资源数组中描述的中断</li>
+</ul>
+</dd></dl>
+<ul>
+<li>此函数只会关闭本地CPU的抢占和部分中断， 因此只能保证其临界区在这些中断与线程上下文是安全的。 </li>
+</ul>
+
+<p class="definition">在文件 <a class="el" href="lock_2spinlock_8h_source.html">spinlock.h</a> 第 <a class="el" href="lock_2spinlock_8h_source.html#l00296">296</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  299</span>{</div>
+<div class="line"><span class="lineno">  300</span>        xwosdl_splk_lock_irqssv(&amp;spl-&gt;<a class="code hl_variable" href="structxwos__splk.html#a561d624b79f2ed6583f9cec92bae413e">osspl</a>, irqs, flags, num);</div>
+<div class="line"><span class="lineno">  301</span>}</div>
+</div><!-- fragment --><div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwos__lock__spinlock_gafad3e7f27d6bef3d09a0d4e0f410aba5_icgraph.png" border="0" usemap="#agroup__xwos__lock__spinlock_gafad3e7f27d6bef3d09a0d4e0f410aba5_icgraph" alt=""/></div>
+<map name="agroup__xwos__lock__spinlock_gafad3e7f27d6bef3d09a0d4e0f410aba5_icgraph" id="agroup__xwos__lock__spinlock_gafad3e7f27d6bef3d09a0d4e0f410aba5_icgraph">
+<area shape="rect" title="XWOS API：上锁自旋锁，保存部分中断的中断标志并关闭" alt="" coords="205,45,363,70"/>
+<area shape="rect" href="classxwos_1_1lock_1_1Spinlock_1_1LkIrqsGrd.html#a81dbff3de7d8fa13e644b31f711f1275" title="构造自旋锁的RAII机制守卫" alt="" coords="5,5,157,45"/>
+<area shape="poly" title=" " alt="" coords="191,45,157,40,158,35,192,40"/>
+<area shape="rect" href="classxwos_1_1lock_1_1Spinlock_1_1LkIrqsGrd.html#a62e7afad0952909186594d76576cc5c1" title="构造自旋锁的RAII机制守卫" alt="" coords="5,69,157,109"/>
+<area shape="poly" title=" " alt="" coords="192,75,158,80,157,75,191,69"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="gad35fc21df26bfd483b15f0c523b60a8f" name="gad35fc21df26bfd483b15f0c523b60a8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad35fc21df26bfd483b15f0c523b60a8f">&#9670;&#160;</a></span>xwos_splk_trylock_irqssv()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_splk_trylock_irqssv </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *&#160;</td>
+          <td class="paramname"><em>spl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a>&#160;</td>
+          <td class="paramname"><em>irqs</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a>&#160;</td>
+          <td class="paramname"><em>flags</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a>&#160;</td>
+          <td class="paramname"><em>num</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：尝试上锁自旋锁，保存部分中断的中断标志并关闭 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">spl</td><td>自旋锁的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">irqs</td><td>中断资源数组指针 </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">flags</td><td>缓冲区指针，用于返回部分中断的中断标志 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">num</td><td>数组中元素数量 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EAGAIN</td><td>获得自旋锁失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：线程、中断资源数组中描述的中断</li>
+</ul>
+</dd></dl>
+<ul>
+<li>若自旋锁已开启临界区，立即返回，不会自旋等待。</li>
+<li>此函数只会关闭本地CPU的抢占和部分中断， 因此只能保证其临界区在这些中断与线程上下文是安全的。 </li>
+</ul>
+
+<p class="definition">在文件 <a class="el" href="lock_2spinlock_8h_source.html">spinlock.h</a> 第 <a class="el" href="lock_2spinlock_8h_source.html#l00320">320</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  323</span>{</div>
+<div class="line"><span class="lineno">  324</span>        <span class="keywordflow">return</span> xwosdl_splk_trylock_irqssv(&amp;spl-&gt;<a class="code hl_variable" href="structxwos__splk.html#a561d624b79f2ed6583f9cec92bae413e">osspl</a>, irqs, flags, num);</div>
+<div class="line"><span class="lineno">  325</span>}</div>
+</div><!-- fragment --><div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwos__lock__spinlock_gad35fc21df26bfd483b15f0c523b60a8f_icgraph.png" border="0" usemap="#agroup__xwos__lock__spinlock_gad35fc21df26bfd483b15f0c523b60a8f_icgraph" alt=""/></div>
+<map name="agroup__xwos__lock__spinlock_gad35fc21df26bfd483b15f0c523b60a8f_icgraph" id="agroup__xwos__lock__spinlock_gad35fc21df26bfd483b15f0c523b60a8f_icgraph">
+<area shape="rect" title="XWOS API：尝试上锁自旋锁，保存部分中断的中断标志并关闭" alt="" coords="244,45,416,70"/>
+<area shape="rect" href="classxwos_1_1lock_1_1Spinlock_1_1TryLkIrqsGrd.html#a7de3ccada8bfa74d249867b3e9f72f7a" title="构造自旋锁的RAII机制守卫" alt="" coords="5,5,196,45"/>
+<area shape="poly" title=" " alt="" coords="230,46,196,41,197,36,230,41"/>
+<area shape="rect" href="classxwos_1_1lock_1_1Spinlock_1_1TryLkIrqsGrd.html#ae70142c1a7c117f84f8ac8a07e3471d2" title="构造自旋锁的RAII机制守卫" alt="" coords="5,69,196,109"/>
+<area shape="poly" title=" " alt="" coords="230,74,197,79,196,73,230,69"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga1bc1a95a34a3804cf610fc0b87f434a8" name="ga1bc1a95a34a3804cf610fc0b87f434a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1bc1a95a34a3804cf610fc0b87f434a8">&#9670;&#160;</a></span>xwos_splk_unlock_irqsrs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void xwos_splk_unlock_irqsrs </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *&#160;</td>
+          <td class="paramname"><em>spl</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="group__xwos__lib__type.html#ga1b0baeccce0e5a04640f4ddff4e85fd4">xwirq_t</a>&#160;</td>
+          <td class="paramname"><em>irqs</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#gad21f70aa6f1364b63b1165784448bc16">xwreg_t</a>&#160;</td>
+          <td class="paramname"><em>flags</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__xwos__lib__type.html#ga2d00153ecb0cdcc8ea0823c13ee59649">xwsz_t</a>&#160;</td>
+          <td class="paramname"><em>num</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：解锁自旋锁，并恢复部分中断的中断标志 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">spl</td><td>自旋锁的指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">irqs</td><td>中断资源数组指针 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">flags</td><td>部分中断的中断标志数组 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">num</td><td>数组中元素数量 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：线程、中断资源数组中描述的中断 </li>
+</ul>
+</dd></dl>
+
+<p class="definition">在文件 <a class="el" href="lock_2spinlock_8h_source.html">spinlock.h</a> 第 <a class="el" href="lock_2spinlock_8h_source.html#l00337">337</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  340</span>{</div>
+<div class="line"><span class="lineno">  341</span>        xwosdl_splk_unlock_irqsrs(&amp;spl-&gt;<a class="code hl_variable" href="structxwos__splk.html#a561d624b79f2ed6583f9cec92bae413e">osspl</a>, irqs, flags, num);</div>
+<div class="line"><span class="lineno">  342</span>}</div>
+</div><!-- fragment --><div class="dynheader">
+这是这个函数的调用关系图:</div>
+<div class="dyncontent">
+<div class="center"><img src="group__xwos__lock__spinlock_ga1bc1a95a34a3804cf610fc0b87f434a8_icgraph.png" border="0" usemap="#agroup__xwos__lock__spinlock_ga1bc1a95a34a3804cf610fc0b87f434a8_icgraph" alt=""/></div>
+<map name="agroup__xwos__lock__spinlock_ga1bc1a95a34a3804cf610fc0b87f434a8_icgraph" id="agroup__xwos__lock__spinlock_ga1bc1a95a34a3804cf610fc0b87f434a8_icgraph">
+<area shape="rect" title="XWOS API：解锁自旋锁，并恢复部分中断的中断标志" alt="" coords="213,45,381,70"/>
+<area shape="rect" href="classxwos_1_1lock_1_1Spinlock_1_1LkIrqsGrd.html#a272736a940678e79f0f7b34b7f6352c7" title="解锁自旋锁" alt="" coords="14,5,157,45"/>
+<area shape="poly" title=" " alt="" coords="199,45,157,39,158,33,200,40"/>
+<area shape="rect" href="classxwos_1_1lock_1_1Spinlock_1_1LkIrqsGrd.html#a13b056cb190b1e5aaf9f7f8954adc35b" title="析构自旋锁的RAII机制守卫" alt="" coords="5,69,165,109"/>
+<area shape="poly" title=" " alt="" coords="200,75,166,80,165,75,199,69"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ga3c50609a0c759cb526502a27937aab47" name="ga3c50609a0c759cb526502a27937aab47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3c50609a0c759cb526502a27937aab47">&#9670;&#160;</a></span>xwos_splk_lock_bh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void xwos_splk_lock_bh </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *&#160;</td>
+          <td class="paramname"><em>spl</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：上锁自旋锁，关闭本地CPU的中断底半部 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">spl</td><td>自旋锁的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：线程、中断底半部</li>
+</ul>
+</dd></dl>
+<ul>
+<li>此函数只会关闭本地CPU的抢占和中断底半部， 因此只能保证其临界区在线程上下文与中断底半部中是安全的。 </li>
+</ul>
+
+<p class="definition">在文件 <a class="el" href="lock_2spinlock_8h_source.html">spinlock.h</a> 第 <a class="el" href="lock_2spinlock_8h_source.html#l00354">354</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  355</span>{</div>
+<div class="line"><span class="lineno">  356</span>        xwosdl_splk_lock_bh(&amp;spl-&gt;<a class="code hl_variable" href="structxwos__splk.html#a561d624b79f2ed6583f9cec92bae413e">osspl</a>);</div>
+<div class="line"><span class="lineno">  357</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ga6d6a918600518b0ed891937ec378087a" name="ga6d6a918600518b0ed891937ec378087a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6d6a918600518b0ed891937ec378087a">&#9670;&#160;</a></span>xwos_splk_trylock_bh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="group__xwos__lib__type.html#ga06847ea8c7edb2b1f166288b230f251f">xwer_t</a> xwos_splk_trylock_bh </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *&#160;</td>
+          <td class="paramname"><em>spl</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：尝试上锁自旋锁，关闭本地CPU的中断底半部 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">spl</td><td>自旋锁的指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>错误码 </dd></dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">XWOK</td><td>没有错误 </td></tr>
+    <tr><td class="paramname">-EAGAIN</td><td>获得自旋锁失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>注解</dt><dd><ul>
+<li>上下文：线程、中断底半部</li>
+</ul>
+</dd></dl>
+<ul>
+<li>若自旋锁已开启临界区，立即返回，不会自旋等待。</li>
+<li>此函数只会关闭本地CPU的抢占和中断底半部， 因此只能保证其临界区在线程上下文与中断底半部中是安全的。 </li>
+</ul>
+
+<p class="definition">在文件 <a class="el" href="lock_2spinlock_8h_source.html">spinlock.h</a> 第 <a class="el" href="lock_2spinlock_8h_source.html#l00373">373</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  374</span>{</div>
+<div class="line"><span class="lineno">  375</span>        <span class="keywordflow">return</span> xwosdl_splk_trylock_bh(&amp;spl-&gt;<a class="code hl_variable" href="structxwos__splk.html#a561d624b79f2ed6583f9cec92bae413e">osspl</a>);</div>
+<div class="line"><span class="lineno">  376</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="gafbf75863c2f6323d6de84e4b1ce6c18a" name="gafbf75863c2f6323d6de84e4b1ce6c18a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafbf75863c2f6323d6de84e4b1ce6c18a">&#9670;&#160;</a></span>xwos_splk_unlock_bh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void xwos_splk_unlock_bh </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structxwos__splk.html">xwos_splk</a> *&#160;</td>
+          <td class="paramname"><em>spl</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>XWOS API：解锁自旋锁，开启本地CPU的中断底半部 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">spl</td><td>自旋锁的指针</td></tr>
+  </table>
+  </dd>
+</dl>
+<ul>
+<li>上下文：线程、中断底半部 </li>
+</ul>
+
+<p class="definition">在文件 <a class="el" href="lock_2spinlock_8h_source.html">spinlock.h</a> 第 <a class="el" href="lock_2spinlock_8h_source.html#l00385">385</a> 行定义.</p>
+<div class="fragment"><div class="line"><span class="lineno">  386</span>{</div>
+<div class="line"><span class="lineno">  387</span>        xwosdl_splk_unlock_bh(&amp;spl-&gt;<a class="code hl_variable" href="structxwos__splk.html#a561d624b79f2ed6583f9cec92bae413e">osspl</a>);</div>
+<div class="line"><span class="lineno">  388</span>}</div>
+</div><!-- fragment -->
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7 </li>
+  </ul>
+</div>
+</body>
+</html>

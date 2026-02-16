@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["get_stage","resume","set_op","suspend"],"struct":["PmStage"],"type":["PmOperation"]};
